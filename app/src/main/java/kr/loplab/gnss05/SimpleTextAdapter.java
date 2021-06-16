@@ -21,7 +21,7 @@ public class SimpleTextAdapter extends RecyclerView.Adapter<SimpleTextAdapter.Vi
         ViewHolder(View itemView) {
             super(itemView) ;
             // 뷰 객체에 대한 참조. (hold strong reference)
-            textView1 = itemView.findViewById(R.id.list_text) ;
+            textView1 = itemView.findViewById(R.id.list_text2) ;
         }
     }
 
