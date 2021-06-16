@@ -8,7 +8,7 @@ import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 
 class MainActivity : AppCompatActivity(),
-    MyRecyclerViewAdapter.RecyclerItemClickListener {
+    MyRecyclerViewAdapter.RecyclerItemClickListener , SimpleTextAdapter.RecyclerItemClickListener {
     val TAG = javaClass.simpleName
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -82,6 +82,11 @@ class MainActivity : AppCompatActivity(),
                 dlg.start("메인의 내용을 변경할까요?")
             }
         }
+    }
+
+    override fun onItemClick2(view: View?, position: Int) {
+        Log.d(TAG, "onItemClick2: prrr $position")
+        Log.d(TAG, "onClick: 메인액티비티에서 부른 logd+ $position")
     }
 }
 

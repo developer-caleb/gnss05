@@ -41,8 +41,6 @@ class MyDialog(context : Context)  {
         listrecyclerview.adapter = adapter
 
 
-
-
         btnOK = dialog.findViewById(R.id.ok)
         btnOK.setOnClickListener {
             listener.onOKClicked("확인을 눌렀습니다")

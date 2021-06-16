@@ -1,57 +1,72 @@
-package kr.loplab.gnss05;
+package kr.loplab.gnss05
 
-import android.content.Context;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.TextView;
+import android.content.Context
+import android.util.Log
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.widget.TextView
+import androidx.recyclerview.widget.RecyclerView
+import java.util.*
 
-import androidx.recyclerview.widget.RecyclerView;
-
-import java.util.ArrayList;
-
-public class SimpleTextAdapter extends RecyclerView.Adapter<SimpleTextAdapter.ViewHolder> {
-
-    private ArrayList<String> mData = null ;
+class SimpleTextAdapter internal constructor(list: ArrayList<String>?) :
+    RecyclerView.Adapter<SimpleTextAdapter.ViewHolder>() {
+    private var mData: ArrayList<String>? = null
+    private var mClickListener: MyRecyclerViewAdapter.RecyclerItemClickListener? = null
+    private var TAG : String = javaClass.simpleName;
 
     // 아이템 뷰를 저장하는 뷰홀더 클래스.
-    public class ViewHolder extends RecyclerView.ViewHolder {
-        TextView textView1 ;
+    inner class ViewHolder internal constructor(itemView: View) :
+        RecyclerView.ViewHolder(itemView), View.OnClickListener {
+        var textView1: TextView
 
-        ViewHolder(View itemView) {
-            super(itemView) ;
+        override fun onClick(v: View?) {
+            if (mClickListener != null) mClickListener!!.onItemClick(itemView , adapterPosition)
+            Log.d(TAG, "onClick: recyclerview에서 부른 logd+ $adapterPosition")
+        }
+
+        init {
             // 뷰 객체에 대한 참조. (hold strong reference)
-            textView1 = itemView.findViewById(R.id.list_text2) ;
+            textView1 = itemView.findViewById(R.id.list_text2)
         }
     }
 
-    // 생성자에서 데이터 리스트 객체를 전달받음.
-    SimpleTextAdapter(ArrayList<String> list) {
-        mData = list ;
-    }
-
     // onCreateViewHolder() - 아이템 뷰를 위한 뷰홀더 객체 생성하여 리턴.
-    @Override
-    public SimpleTextAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        Context context = parent.getContext() ;
-        LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) ;
-
-        View view = inflater.inflate(R.layout.dialog_checkitem, parent, false) ;
-        SimpleTextAdapter.ViewHolder vh = new SimpleTextAdapter.ViewHolder(view) ;
-
-        return vh ;
+    override fun onCreateViewHolder(
+        parent: ViewGroup,
+        viewType: Int
+    ): ViewHolder {
+        val context = parent.context
+        val inflater =
+            context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
+        val view = inflater.inflate(R.layout.dialog_checkitem, parent, false)
+        return ViewHolder(view)
     }
 
     // onBindViewHolder() - position에 해당하는 데이터를 뷰홀더의 아이템뷰에 표시.
-    @Override
-    public void onBindViewHolder(SimpleTextAdapter.ViewHolder holder, int position) {
-        String text = mData.get(position) ;
-        holder.textView1.setText(text) ;
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        val text = mData!![position]
+        holder.textView1.text = text
+
+    }
+    // allows clicks events to be caught
+    fun setClickListener(itemClickListener: MyRecyclerViewAdapter.RecyclerItemClickListener?) {
+        mClickListener = itemClickListener
     }
 
     // getItemCount() - 전체 데이터 갯수 리턴.
-    @Override
-    public int getItemCount() {
-        return mData.size() ;
+    override fun getItemCount(): Int {
+        return mData!!.size
     }
+
+    interface RecyclerItemClickListener {
+        fun onItemClick2(view: View?, position: Int)
+    }
+
+    // 생성자에서 데이터 리스트 객체를 전달받음.
+    init {
+        mData = list
+    }
+
+
 }

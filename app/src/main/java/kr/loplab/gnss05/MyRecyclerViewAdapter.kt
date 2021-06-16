@@ -1,73 +1,66 @@
-package kr.loplab.gnss05;
+package kr.loplab.gnss05
 
-import android.content.Context;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.TextView;
-import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.RecyclerView;
+import android.content.Context
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.widget.TextView
+import androidx.recyclerview.widget.RecyclerView
 
-public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAdapter.ViewHolder> {
-    private String[] mData;
-    private LayoutInflater mInflater;
-    private RecyclerItemClickListener mClickListener;
-
-    // data is passed into the constructor
-    MyRecyclerViewAdapter(Context context, String[] data) {
-        this.mInflater = LayoutInflater.from(context);
-        this.mData = data;
-    }
+class MyRecyclerViewAdapter internal constructor(context: Context?, data: Array<String>) :
+    RecyclerView.Adapter<MyRecyclerViewAdapter.ViewHolder>() {
+    private val mData: Array<String>
+    private val mInflater: LayoutInflater
+    private var mClickListener: RecyclerItemClickListener? = null
 
     // inflates the cell layout from xml when needed
-    @Override
-    @NonNull
-    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = mInflater.inflate(R.layout.recyclerview_item, parent, false);
-        return new ViewHolder(view);
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+        val view = mInflater.inflate(R.layout.recyclerview_item, parent, false)
+        return ViewHolder(view)
     }
 
     // binds the data to the TextView in each cell
-    @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.myTextView.setText(mData[position]);
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        holder.myTextView.text = mData[position]
     }
 
     // total number of cells
-    @Override
-    public int getItemCount() {
-        return mData.length;
+    override fun getItemCount(): Int {
+        return mData.size
     }
 
-
     // stores and recycles views as they are scrolled off screen
-    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        TextView myTextView;
-
-        ViewHolder(View itemView) {
-            super(itemView);
-            myTextView = itemView.findViewById(R.id.info_text);
-            itemView.setOnClickListener(this);
+    inner class ViewHolder internal constructor(itemView: View) : RecyclerView.ViewHolder(itemView),
+        View.OnClickListener {
+        var myTextView: TextView
+        override fun onClick(view: View) {
+            if (mClickListener != null) mClickListener!!.onItemClick(view, adapterPosition)
         }
 
-        @Override
-        public void onClick(View view) {
-            if (mClickListener != null) mClickListener.onItemClick(view, getAdapterPosition());
+        init {
+            myTextView = itemView.findViewById(R.id.info_text)
+            itemView.setOnClickListener(this)
         }
     }
 
     // convenience method for getting data at click position
-    String getItem(int id) {
-        return mData[id];
+    fun getItem(id: Int): String {
+        return mData[id]
     }
 
     // allows clicks events to be caught
-    void setClickListener(RecyclerItemClickListener itemClickListener) {
-        this.mClickListener = itemClickListener;
+    fun setClickListener(itemClickListener: RecyclerItemClickListener?) {
+        mClickListener = itemClickListener
     }
 
     // parent activity will implement this method to respond to click events
-    public interface RecyclerItemClickListener {
-        void onItemClick(View view, int position);
+    interface RecyclerItemClickListener {
+        fun onItemClick(view: View?, position: Int)
+    }
+
+    // data is passed into the constructor
+    init {
+        mInflater = LayoutInflater.from(context)
+        mData = data
     }
 }
