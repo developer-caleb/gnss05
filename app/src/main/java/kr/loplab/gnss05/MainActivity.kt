@@ -75,7 +75,13 @@ class MainActivity : AppCompatActivity(), MyRecyclerViewAdapter.ItemClickListene
                 startActivity(nextIntent);}
             1 ->    { val nextIntent = Intent(this, NaverMap::class.java)
                 startActivity(nextIntent);}
-
+            2 -> {
+                val dlg = MyDialog(this)
+                dlg.setOnOKClickedListener{ content ->
+                    Log.d(TAG, "onItemClick: $content")
+                }
+                dlg.start("메인의 내용을 변경할까요?")
+            }
         }
     }
 }
