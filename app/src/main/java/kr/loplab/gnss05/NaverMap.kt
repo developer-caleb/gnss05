@@ -9,9 +9,7 @@ class NaverMap : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_naver_map)
 
-       /* NaverMapSdk.getInstance(this).setClient(
-            NaverMapSdk.NaverCloudPlatformClient("x3tscpw23x")
-        )*/
+       /* */
 
 
     }
