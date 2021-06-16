@@ -8,7 +8,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="30dp"
+        android:layout_height="@dimen/defaultHeaderHeight"
         android:background="#000000"
         android:orientation="horizontal">
 
@@ -18,7 +18,9 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:layout_weight="1"
-            android:text="헤더제목" />
+            android:paddingLeft="20dp"
+            android:text="헤더제목"
+            android:textSize="16sp" />
 
         <ImageView
             android:id="@+id/dialog_checkicon2"
@@ -95,7 +97,7 @@
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
         android:id="@+id/dialog_recyclerview"
-        android:layout_height="400dp"
+        android:layout_height="wrap_content"
         android:background="#C6FFA8"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         tools:itemCount="5"

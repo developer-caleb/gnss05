@@ -36,7 +36,7 @@ public class SimpleTextAdapter extends RecyclerView.Adapter<SimpleTextAdapter.Vi
         Context context = parent.getContext() ;
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) ;
 
-        View view = inflater.inflate(R.layout.recyclerview_item, parent, false) ;
+        View view = inflater.inflate(R.layout.dialog_checkitem, parent, false) ;
         SimpleTextAdapter.ViewHolder vh = new SimpleTextAdapter.ViewHolder(view) ;
 
         return vh ;
