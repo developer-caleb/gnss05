@@ -10,4 +10,7 @@
 
     <!--    아이콘 사이즈 그룹 -->
     <dimen name="rightArrowSize">35dp</dimen>
+    <dimen name="LIconsize">35dp</dimen>
+    <dimen name="SIconsize">35dp</dimen>
+    <dimen name="Backbuttonsize">20dp</dimen>
 </resources>

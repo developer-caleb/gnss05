@@ -33,5 +33,12 @@
         <item name = "android:layout_weight">0</item>
     </style>
 
+    <style name = "IMAGEVIEW_01">
+        <item name = "android:layout_weight">@dimen/LIconsize</item>
+        <item name = "android:layout_width">@dimen/LIconsize</item>
+        <item name = "android:layout_height">match_parent</item>
+        <item name = "android:padding">0dp</item>
+
+    </style>
 
 </resources>
