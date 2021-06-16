@@ -79,7 +79,7 @@ public class DefaultHeader extends FrameLayout {
         int backResId = typedArray.getResourceId(R.styleable.DefaultHeader_backButtonImageSource, R.drawable.icon_basic_header_btn_back);
         ivBack.setImageResource(backResId);
 
-        int backgroundcolor =typedArray.getColor(R.styleable.DefaultHeader_backgroundColor, getResources().getColor(R.color.black));
+        int backgroundcolor =typedArray.getColor(R.styleable.DefaultHeader_backgroundColor, getResources().getColor(R.color.headerblack));
         loHeader.setBackgroundColor(backgroundcolor);
 
         int backbuttoncolor =typedArray.getColor(R.styleable.DefaultHeader_backButtonColor, getResources().getColor(R.color.white));
