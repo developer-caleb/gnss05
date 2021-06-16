@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!--    글씨 크기 그룹    -->
+    <dimen name="fontHeaderTitle">19dp</dimen>
+    <dimen name="defaultButtonPadding">12dp</dimen>
+    <dimen name="defaultLayoutPadding">24dp</dimen>
+
+    <!--    레이아웃 사이즈 그룹 -->
+    <dimen name="defaultHeaderHeight">50dp</dimen>
+
+    <!--    아이콘 사이즈 그룹 -->
+    <dimen name="rightArrowSize">35dp</dimen>
+</resources>
