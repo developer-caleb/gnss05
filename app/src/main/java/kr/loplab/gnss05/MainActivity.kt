@@ -6,10 +6,9 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
-import kr.loplab.gnss05.MyRecyclerViewAdapter
-import kr.loplab.gnss05.R
 
-class MainActivity : AppCompatActivity(), MyRecyclerViewAdapter.ItemClickListener {
+class MainActivity : AppCompatActivity(),
+    MyRecyclerViewAdapter.RecyclerItemClickListener {
     val TAG = javaClass.simpleName
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

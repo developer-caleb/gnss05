@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAdapter.ViewHolder> {
     private String[] mData;
     private LayoutInflater mInflater;
-    private ItemClickListener mClickListener;
+    private RecyclerItemClickListener mClickListener;
 
     // data is passed into the constructor
     MyRecyclerViewAdapter(Context context, String[] data) {
@@ -62,12 +62,12 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
     }
 
     // allows clicks events to be caught
-    void setClickListener(ItemClickListener itemClickListener) {
+    void setClickListener(RecyclerItemClickListener itemClickListener) {
         this.mClickListener = itemClickListener;
     }
 
     // parent activity will implement this method to respond to click events
-    public interface ItemClickListener {
+    public interface RecyclerItemClickListener {
         void onItemClick(View view, int position);
     }
 }

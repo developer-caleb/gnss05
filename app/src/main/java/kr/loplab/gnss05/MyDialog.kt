@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
 
-class MyDialog(context : Context) {
+class MyDialog(context : Context)  {
     private val dialog = Dialog(context)   //부모 액티비티의 context 가 들어감
     private lateinit var btnOK : Button
     private lateinit var btnCancel : Button
