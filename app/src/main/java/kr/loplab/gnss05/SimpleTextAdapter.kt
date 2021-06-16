@@ -8,65 +8,64 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import java.util.*
+import kotlin.collections.ArrayList
 
-class SimpleTextAdapter internal constructor(list: ArrayList<String>?) :
+class SimpleTextAdapter internal constructor(context: Context?, data: ArrayList<String>) :
     RecyclerView.Adapter<SimpleTextAdapter.ViewHolder>() {
-    private var mData: ArrayList<String>? = null
-    private var mClickListener: MyRecyclerViewAdapter.RecyclerItemClickListener? = null
+    private val mData: ArrayList<String>
+    private val mInflater: LayoutInflater
+    private var mClickListener: RecyclerItemClickListener? = null
     private var TAG : String = javaClass.simpleName;
 
-    // 아이템 뷰를 저장하는 뷰홀더 클래스.
-    inner class ViewHolder internal constructor(itemView: View) :
-        RecyclerView.ViewHolder(itemView), View.OnClickListener {
-        var textView1: TextView
-
-        override fun onClick(v: View?) {
-            if (mClickListener != null) mClickListener!!.onItemClick(itemView , adapterPosition)
-            Log.d(TAG, "onClick: recyclerview에서 부른 logd+ $adapterPosition")
-        }
-
-        init {
-            // 뷰 객체에 대한 참조. (hold strong reference)
-            textView1 = itemView.findViewById(R.id.list_text2)
-        }
-    }
-
-    // onCreateViewHolder() - 아이템 뷰를 위한 뷰홀더 객체 생성하여 리턴.
-    override fun onCreateViewHolder(
-        parent: ViewGroup,
-        viewType: Int
-    ): ViewHolder {
-        val context = parent.context
-        val inflater =
-            context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
-        val view = inflater.inflate(R.layout.dialog_checkitem, parent, false)
+    // inflates the cell layout from xml when needed
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+        val view = mInflater.inflate(R.layout.recyclerview_item, parent, false)
         return ViewHolder(view)
     }
 
-    // onBindViewHolder() - position에 해당하는 데이터를 뷰홀더의 아이템뷰에 표시.
+    // binds the data to the TextView in each cell
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val text = mData!![position]
-        holder.textView1.text = text
-
+        holder.myTextView.text = mData[position]
     }
+
+    // total number of cells
+    override fun getItemCount(): Int {
+        return mData.size
+    }
+
+    // stores and recycles views as they are scrolled off screen
+    inner class ViewHolder internal constructor(itemView: View) : RecyclerView.ViewHolder(itemView),
+        View.OnClickListener {
+        var myTextView: TextView
+        override fun onClick(view: View) {
+            Log.d(TAG, "onClick: recyclerview로 호출했을 경우")
+            if (mClickListener != null) mClickListener!!.onItemClick2(view, adapterPosition)
+        }
+
+        init {
+            myTextView = itemView.findViewById(R.id.info_text)
+            itemView.setOnClickListener(this)
+        }
+    }
+
+    // convenience method for getting data at click position
+    fun getItem(id: Int): String {
+        return mData[id]
+    }
+
     // allows clicks events to be caught
-    fun setClickListener(itemClickListener: MyRecyclerViewAdapter.RecyclerItemClickListener?) {
+    fun setClickListener(itemClickListener: RecyclerItemClickListener?) {
         mClickListener = itemClickListener
     }
 
-    // getItemCount() - 전체 데이터 갯수 리턴.
-    override fun getItemCount(): Int {
-        return mData!!.size
-    }
-
+    // parent activity will implement this method to respond to click events
     interface RecyclerItemClickListener {
         fun onItemClick2(view: View?, position: Int)
     }
 
-    // 생성자에서 데이터 리스트 객체를 전달받음.
+    // data is passed into the constructor
     init {
-        mData = list
+        mInflater = LayoutInflater.from(context)
+        mData = data
     }
-
-
 }

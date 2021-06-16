@@ -10,14 +10,15 @@ import androidx.recyclerview.widget.RecyclerView
 
 
 class MyDialog(context : Context)  {
+    private var context2  = context;
     private val dialog = Dialog(context)   //부모 액티비티의 context 가 들어감
     private lateinit var btnOK : Button
     private lateinit var btnCancel : Button
     private lateinit var listener : MyDialogOKClickedListener
     private lateinit var listrecyclerview : RecyclerView
 
-
     fun start(content : String) {
+
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)   //타이틀바 제거
         dialog.setContentView(R.layout.dialog1)     //다이얼로그에 사용할 xml 파일을 불러옴
         dialog.setCancelable(true)    //다이얼로그의 바깥 화면을 눌렀을 때 다이얼로그가 닫히지 않도록 함
@@ -37,7 +38,7 @@ class MyDialog(context : Context)  {
         // 리사이클러뷰에 SimpleTextAdapter 객체 지정.
 
         // 리사이클러뷰에 SimpleTextAdapter 객체 지정.
-        val adapter = SimpleTextAdapter(list)
+        val adapter = SimpleTextAdapter(context2, list)
         listrecyclerview.adapter = adapter
 
 
