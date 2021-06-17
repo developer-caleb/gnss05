@@ -38,7 +38,7 @@ class SimpleTextAdapter internal constructor(context: Context?, data: ArrayList<
         View.OnClickListener {
         var myTextView: TextView
         override fun onClick(view: View) {
-            Log.d(TAG, "onClick: recyclerview로 호출했을 경우")
+            Log.d(TAG, "onClick: recyclerview로 호출했을 경우 $adapterPosition ㅎㅎ")
             if (mClickListener != null) mClickListener!!.onItemClick2(view, adapterPosition)else{
                 Log.d(TAG, "onClick: recyclerview로 호출했을 경우인데 대신에 mClickListener가 null임")
             }

@@ -3,13 +3,16 @@ package kr.loplab.gnss05
 
 import android.app.Dialog
 import android.content.Context
+import android.util.Log
+import android.view.View
 import android.view.Window
 import android.widget.Button
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
 
-class MyDialog(context : Context)  {
+class MyDialog(context : Context) : SimpleTextAdapter.RecyclerItemClickListener {
+    var TAG : String = javaClass.simpleName;
     private var context2  = context;
     private val dialog = Dialog(context)   //부모 액티비티의 context 가 들어감
     private lateinit var btnOK : Button
@@ -39,7 +42,9 @@ class MyDialog(context : Context)  {
 
         // 리사이클러뷰에 SimpleTextAdapter 객체 지정.
         val adapter = SimpleTextAdapter(context2, list)
+
         listrecyclerview.adapter = adapter
+        adapter.setClickListener(this)
 
 
         btnOK = dialog.findViewById(R.id.ok)
@@ -74,6 +79,10 @@ class MyDialog(context : Context)  {
     interface MyDialogOKClickedListener {
         fun onOKClicked(content : String)
         fun onCancelClicked(content : String)
+    }
+
+    override fun onItemClick2(view: View?, position: Int) {
+        Log.d(TAG, "onItemClick2: 음.. 일단 dialog에서는 가져와짐.. $position")
     }
 }
 
