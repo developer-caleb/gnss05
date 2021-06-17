@@ -19,7 +19,7 @@ class SimpleTextAdapter internal constructor(context: Context?, data: ArrayList<
 
     // inflates the cell layout from xml when needed
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = mInflater.inflate(R.layout.recyclerview_item, parent, false)
+        val view = mInflater.inflate(R.layout.dialog_checkitem, parent, false)
         return ViewHolder(view)
     }
 
@@ -39,11 +39,13 @@ class SimpleTextAdapter internal constructor(context: Context?, data: ArrayList<
         var myTextView: TextView
         override fun onClick(view: View) {
             Log.d(TAG, "onClick: recyclerview로 호출했을 경우")
-            if (mClickListener != null) mClickListener!!.onItemClick2(view, adapterPosition)
+            if (mClickListener != null) mClickListener!!.onItemClick2(view, adapterPosition)else{
+                Log.d(TAG, "onClick: recyclerview로 호출했을 경우인데 대신에 mClickListener가 null임")
+            }
         }
 
         init {
-            myTextView = itemView.findViewById(R.id.info_text)
+            myTextView = itemView.findViewById(R.id.list_text2)
             itemView.setOnClickListener(this)
         }
     }
