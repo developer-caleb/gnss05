@@ -9,13 +9,14 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Gnss05"
-        >
+        android:theme="@style/Theme.Gnss05">
+        <activity android:name=".ColorPickerdialog"></activity>
+        <activity android:name=".NaverMap" />
 
-        <activity android:name=".NaverMap"></activity>
         <meta-data
             android:name="com.naver.maps.map.CLIENT_ID"
             android:value="x3tscpw23x" />
+
         <activity
             android:name=".StandardPointActivity"
             android:parentActivityName=".MainActivity" />

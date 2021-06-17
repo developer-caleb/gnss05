@@ -15,6 +15,7 @@ class MainActivity : AppCompatActivity(),
         setContentView(R.layout.activity_main)
         val adapter: MyRecyclerViewAdapter
         val data = arrayOf(
+            "0",
             "1",
             "2",
             "3",
@@ -76,11 +77,17 @@ class MainActivity : AppCompatActivity(),
                 startActivity(nextIntent);}
             2 -> {
                 val dlg = MyDialog(this)
+                dlg.setClickListener(this)
                 dlg.setOnOKClickedListener{ content ->
                     Log.d(TAG, "onItemClick: $content")
                 }
                 dlg.start("메인의 내용을 변경할까요?")
             }
+            3 -> {
+                val nextIntent = Intent(this, ColorPickerdialog::class.java)
+                startActivity(nextIntent);
+            }
+
         }
     }
 

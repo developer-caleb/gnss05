@@ -19,6 +19,9 @@ class MyDialog(context : Context) : SimpleTextAdapter.RecyclerItemClickListener 
     private lateinit var btnCancel : Button
     private lateinit var listener : MyDialogOKClickedListener
     private lateinit var listrecyclerview : RecyclerView
+    private var mClickListener: SimpleTextAdapter.RecyclerItemClickListener? = null
+
+
 
     fun start(content : String) {
 
@@ -74,6 +77,10 @@ class MyDialog(context : Context) : SimpleTextAdapter.RecyclerItemClickListener 
                 listener(content)
             }
         }
+    }
+
+    fun setClickListener(itemClickListener: SimpleTextAdapter.RecyclerItemClickListener?) {
+        mClickListener = itemClickListener
     }
 
     interface MyDialogOKClickedListener {
