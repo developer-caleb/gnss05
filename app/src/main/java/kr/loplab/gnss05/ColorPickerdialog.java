@@ -23,7 +23,7 @@ public class ColorPickerdialog extends AppCompatActivity {
         setContentView(R.layout.activity_color_picker);
 
 
-
+        confirmbt1 = (TextView) findViewById(R.id.confirmbt1);
          picker = (ColorPicker) findViewById(R.id.picker22);
 
 
