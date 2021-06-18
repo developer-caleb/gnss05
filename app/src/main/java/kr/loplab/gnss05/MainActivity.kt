@@ -111,6 +111,8 @@ class MainActivity : AppCompatActivity(),
                     ) { // 이전 권한 여부를 거부한 권한이 있으면 실행되는 메소드
                       /*  Toast.makeText(this@MainActivity, "list : $list", Toast.LENGTH_LONG)
                             .show() // 거부한 권한 이름이 저장된 list*/
+
+
                         showSettingsDialog() // 권한 거부시 앱 정보 설정 페이지를 띄우기 위한 임의 메소드
                     } // onPermissionRationaleShouldBeShown()..
                 })
@@ -123,7 +125,7 @@ class MainActivity : AppCompatActivity(),
         val builder: AlertDialog.Builder = AlertDialog.Builder(this@MainActivity)
         builder.setTitle("권한 허용을 하셔야합니다.")
         builder.setMessage("거부 된 기능을 사용하시려면 설정에서 접근하여야합니다.")
-        builder.setPositiveButton("설정접근",
+        builder.setPositiveButton("설정",
             DialogInterface.OnClickListener { dialog, which ->
                 dialog.cancel()
                 openSettings() // 어플리케이션 정보 설정 페이지 띄움.
