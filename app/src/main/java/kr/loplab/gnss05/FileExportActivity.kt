@@ -20,7 +20,7 @@ class FileExportActivity : ActivityBase<ActivityFileExportBinding>() {
 
 
     override fun init() {
-        TODO("Not yet implemented")
+
     }
 
     override fun initListener() {
@@ -28,10 +28,10 @@ class FileExportActivity : ActivityBase<ActivityFileExportBinding>() {
             onBackPressed()
             println("hello")
         }
-        viewBinding.textView8.text = " \uD83D\uDCC2\uD83D\uDCC1\uD83D\uDDC2  Textview"
+        viewBinding.textView8.text = "\uD83D\uDDC2    Textview"
     }
 
     override fun initDatabinding() {
-        TODO("Not yet implemented")
+
     }
 }
