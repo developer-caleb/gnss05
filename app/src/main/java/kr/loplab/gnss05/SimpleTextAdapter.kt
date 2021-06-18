@@ -19,7 +19,7 @@ class SimpleTextAdapter internal constructor(context: Context?, data: ArrayList<
 
     // inflates the cell layout from xml when needed
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = mInflater.inflate(R.layout.dialog_checkitem, parent, false)
+        val view = mInflater.inflate(R.layout.recyclerview_checkitem, parent, false)
         return ViewHolder(view)
     }
 

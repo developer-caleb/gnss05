@@ -13,12 +13,6 @@ class FileExportActivity : ActivityBase<ActivityFileExportBinding>() {
 
 
 
-    fun addNormal (x: Int, y: Int): Int {
-        return x + y
-    }
-
-
-
     override fun init() {
 
     }
