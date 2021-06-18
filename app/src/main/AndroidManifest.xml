@@ -10,7 +10,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Gnss05">
-        <activity android:name=".ColorPickerdialog"></activity>
+        <activity android:name=".FileExportActivity"></activity>
+        <activity android:name=".ColorPickerdialog" />
         <activity android:name=".NaverMap" />
 
         <meta-data

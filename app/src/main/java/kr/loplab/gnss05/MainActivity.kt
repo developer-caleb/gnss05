@@ -87,7 +87,10 @@ class MainActivity : AppCompatActivity(),
                 val nextIntent = Intent(this, ColorPickerdialog::class.java)
                 startActivity(nextIntent);
             }
-
+            4 -> {
+                val nextIntent = Intent(this, FileExportActivity::class.java)
+                startActivity(nextIntent);
+            }
         }
     }
 
