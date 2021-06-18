@@ -11,8 +11,6 @@ class FileExportActivity : ActivityBase<ActivityFileExportBinding>() {
     override val layoutResourceId: Int
         get() = R.layout.activity_file_export
 
-
-
     override fun init() {
 
     }
