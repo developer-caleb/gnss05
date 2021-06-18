@@ -19,7 +19,7 @@ class StandardPointActivity : ActivityBase<ActivityStandardPointBinding>() {
     val viewModel : StandardPointViewModel by viewModel()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        
+
 
     }
 
