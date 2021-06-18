@@ -12,7 +12,9 @@ class FileExportActivity : ActivityBase<ActivityFileExportBinding>() {
         get() = R.layout.activity_file_export
 
     override fun init() {
-
+        val adapter = FiledirectoryRecyclerViewAdapter(this, data)
+        adapter.setClickListener(this)
+        recyclerView.adapter = adapter
     }
 
     override fun initListener() {
