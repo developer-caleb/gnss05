@@ -7,8 +7,10 @@
     android:orientation="vertical"
     tools:context=".FileExportActivity">
     <kr.loplab.gnss05.DefaultHeader
+        android:id="@+id/header_03"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        app:backButtonEnabled="true"
         app:title="파일출력"></kr.loplab.gnss05.DefaultHeader>
 
     <LinearLayout
@@ -22,8 +24,26 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="0"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
             app:srcCompat="@drawable/ic_folder" />
+
+        <TextView
+            android:id="@+id/textView8"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="0"
+            android:gravity="center"
+            android:text="TextView"
+            android:textColor="#000000" />
+
     </LinearLayout>
+
+    <TextView
+        android:id="@+id/textView15"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="TextView" />
 
 
 </LinearLayout>
