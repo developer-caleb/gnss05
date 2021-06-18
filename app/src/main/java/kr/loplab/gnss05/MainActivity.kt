@@ -124,7 +124,7 @@ class MainActivity : AppCompatActivity(),
     private fun showSettingsDialog() {
         val builder: AlertDialog.Builder = AlertDialog.Builder(this@MainActivity)
         builder.setTitle("권한 허용을 하셔야합니다.")
-        builder.setMessage("거부 된 기능을 사용하시려면 설정에서 접근하여야합니다.")
+        builder.setMessage("거부 된 기능은 설정에서 권한 허용 가능합니다.")
         builder.setPositiveButton("설정",
             DialogInterface.OnClickListener { dialog, which ->
                 dialog.cancel()
