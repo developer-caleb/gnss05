@@ -88,6 +88,7 @@
                 android:text="파일명입력.."
                 android:gravity="right"
                 android:paddingTop="13dp"
+                android:maxLines="1"
                         />
 
         </com.google.android.material.textfield.TextInputLayout>
