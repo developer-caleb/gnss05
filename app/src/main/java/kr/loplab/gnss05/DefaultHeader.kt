@@ -125,7 +125,8 @@ class DefaultHeader : FrameLayout {
         }
     }
 
-    fun setOptionButtonEnabled3(value: Boolean) {
+    @JvmName("setOptionButtonEnabled1")
+    fun setOptionButtonEnabled(value: Boolean) {
         tvOption!!.visibility = if (value) VISIBLE else GONE
         btnOption!!.visibility = if (value) VISIBLE else GONE
     }

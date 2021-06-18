@@ -13,9 +13,11 @@ class FileExportActivity : AppCompatActivity() {
         setContentView(R.layout.activity_file_export)
         header = findViewById(R.id.header_03)
 
-        header.setOnBackButtonClickListener { v ->
-            println("hello") // 클릭시 처리 … 쓸게 없어서 println 을 입력했다.
-            println("hello")
+
+
+        header.setOnBackButtonClickListener {
+           onBackPressed()
+           println("hello")
         }
 
     }
