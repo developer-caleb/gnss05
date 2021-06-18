@@ -14,7 +14,6 @@ import kr.loplab.gnss02.ActivityBase
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class StandardPointActivity : ActivityBase<ActivityStandardPointBinding>() {
-
     override val layoutResourceId: Int
         get() = R.layout.activity_standard_point
     val viewModel : StandardPointViewModel by viewModel()

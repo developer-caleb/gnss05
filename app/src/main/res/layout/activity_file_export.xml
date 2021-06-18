@@ -42,11 +42,19 @@
 
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/textView15"
+
+    <View
+        android:id="@+id/divider4"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="TextView" />
+        android:layout_height="1dp"
+        android:background="?android:attr/listDivider" />
+    <TextView
+        android:id="@+id/exportbt"
+        android:layout_width="match_parent"
+        android:text="내보내기"
+        style="@style/TextViewButton_STYLE01"/>
+
+
 
 
 </LinearLayout>

@@ -13,6 +13,7 @@
     <!--    레이아웃 사이즈 그룹 -->
     <dimen name="defaultHeaderHeight">50dp</dimen>
     <dimen name="defaultlayoutheight">50dp</dimen>
+    <dimen name="defaultbuttonheight">60dp</dimen>
 
     <!--    아이콘 사이즈 그룹 -->
     <dimen name="rightArrowSize">35dp</dimen>
