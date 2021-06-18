@@ -7,21 +7,21 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
-class FiledirectoryRecyclerViewAdapter internal constructor(context: Context?, data: Array<String>) :
+class FiledirectoryRecyclerViewAdapter internal constructor(context: Context?, data: ArrayList<Array<String>>) :
     RecyclerView.Adapter<FiledirectoryRecyclerViewAdapter.ViewHolder>() {
-    private val mData: Array<String>
+    private val mData: ArrayList<Array<String>>
     private val mInflater: LayoutInflater
     private var mClickListener: RecyclerItemClickListener? = null
 
     // inflates the cell layout from xml when needed
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = mInflater.inflate(R.layout.recyclerview_item, parent, false)
+        val view = mInflater.inflate(R.layout.recyclerview_listitem, parent, false)
         return ViewHolder(view)
     }
 
     // binds the data to the TextView in each cell
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.myTextView.text = mData[position]
+        holder.myTextView.text = mData[position][1]
     }
 
     // total number of cells
@@ -38,14 +38,14 @@ class FiledirectoryRecyclerViewAdapter internal constructor(context: Context?, d
         }
 
         init {
-            myTextView = itemView.findViewById(R.id.info_text)
+            myTextView = itemView.findViewById(R.id.list_text2)
             itemView.setOnClickListener(this)
         }
     }
 
     // convenience method for getting data at click position
     fun getItem(id: Int): String {
-        return mData[id]
+        return mData[id][1]
     }
 
     // allows clicks events to be caught

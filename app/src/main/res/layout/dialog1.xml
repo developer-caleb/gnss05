@@ -100,7 +100,6 @@
         android:layout_height="wrap_content"
         android:background="#C6FFA8"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        tools:itemCount="5"
         tools:listitem="@layout/recyclerview_checkitem"
 
         />
