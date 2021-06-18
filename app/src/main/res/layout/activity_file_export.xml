@@ -44,7 +44,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:background="@color/purple_200"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         tools:listitem="@layout/recyclerview_listitem"
         />
@@ -117,7 +116,7 @@
             android:layout_weight="0"
             android:paddingRight="20dp"
             android:text="측량 점 데이터 형식(*.csv)"
-            android:textColor="#000000" />
+            android:textColor="@color/grey_02" />
     </LinearLayout>
     <View
         android:id="@+id/divider6"

@@ -14,6 +14,10 @@ class FileExportActivity : ActivityBase<ActivityFileExportBinding>(),  Filedirec
 
     override fun init() {
         var data = ArrayList<Array<String>>()
+        data.add(arrayOf("아이콘맞출수있게 모드명?", "내부 저장소 루트 디렉토리로 이동", "이동할 디렉토리 주소"), )
+        data.add(arrayOf("아이콘맞출수있게 모드명?", "프로그램 저장 디렉토리로 이동", "이동할 디렉토리 주소"))
+        data.add(arrayOf("아이콘맞출수있게 모드명?", "SD카드 루트 디렉토리로 이동", "이동할 디렉토리 주소"))
+        data.add(arrayOf("아이콘맞출수있게 모드명?", "돌아가기", "이동할 디렉토리 주소"))
         for(x in 0..5){
             data.add(arrayOf("ddd", x.toString()))
         }
