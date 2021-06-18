@@ -91,13 +91,17 @@ class MainActivity : AppCompatActivity(),
                 .withPermissions(
                     Manifest.permission.WRITE_EXTERNAL_STORAGE,
                     Manifest.permission.READ_EXTERNAL_STORAGE,
-                    
+
                 ) // 위치
                 .withListener(object : MultiplePermissionsListener {
                     override fun onPermissionsChecked(multiplePermissionsReport: MultiplePermissionsReport) { // 권한 여부를 다 묻고 실행되는 메소드
                         // check if all permissions are granted
                         if (multiplePermissionsReport.areAllPermissionsGranted()) {
-                            Toast.makeText(this@MainActivity, "모든 권한 허용", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(this@MainActivity, "권한 허용 완료", Toast.LENGTH_SHORT).show()
+                        }
+                        if (!multiplePermissionsReport.areAllPermissionsGranted()) {
+                            Toast.makeText(this@MainActivity, "권한 재확인", Toast.LENGTH_SHORT).show()
+                            permissionchecking()
                         }
                     } // onPermissionsChecked()..
 
@@ -105,8 +109,8 @@ class MainActivity : AppCompatActivity(),
                         list: List<PermissionRequest?>,
                         permissionToken: PermissionToken?
                     ) { // 이전 권한 여부를 거부한 권한이 있으면 실행되는 메소드
-                        Toast.makeText(this@MainActivity, "list : $list", Toast.LENGTH_LONG)
-                            .show() // 거부한 권한 이름이 저장된 list
+                      /*  Toast.makeText(this@MainActivity, "list : $list", Toast.LENGTH_LONG)
+                            .show() // 거부한 권한 이름이 저장된 list*/
                         showSettingsDialog() // 권한 거부시 앱 정보 설정 페이지를 띄우기 위한 임의 메소드
                     } // onPermissionRationaleShouldBeShown()..
                 })
@@ -117,14 +121,14 @@ class MainActivity : AppCompatActivity(),
     // 만약 권한을 거절했을 경우,  다이얼로그 띄우기 위한 임의 메소드
     private fun showSettingsDialog() {
         val builder: AlertDialog.Builder = AlertDialog.Builder(this@MainActivity)
-        builder.setTitle("Need Permissions")
-        builder.setMessage("This app needs permission to use this feature. You can grant them in app settings.")
-        builder.setPositiveButton("GOTO SETTINGS",
+        builder.setTitle("권한 허용을 하셔야합니다.")
+        builder.setMessage("거부 된 기능을 사용하시려면 설정에서 접근하여야합니다.")
+        builder.setPositiveButton("설정접근",
             DialogInterface.OnClickListener { dialog, which ->
                 dialog.cancel()
                 openSettings() // 어플리케이션 정보 설정 페이지 띄움.
             })
-        builder.setNegativeButton("Cancel",
+        builder.setNegativeButton("취소",
             DialogInterface.OnClickListener { dialog, which -> dialog.cancel() })
         builder.show()
     } // showSettingsDialog()..
