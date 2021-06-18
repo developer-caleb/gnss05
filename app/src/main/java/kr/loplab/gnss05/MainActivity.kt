@@ -89,8 +89,9 @@ class MainActivity : AppCompatActivity(),
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             Dexter.withActivity(this)
                 .withPermissions(
-                    Manifest.permission.CAMERA,  // 카메라
-                    Manifest.permission.ACCESS_FINE_LOCATION
+                    Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                    Manifest.permission.READ_EXTERNAL_STORAGE,
+                    
                 ) // 위치
                 .withListener(object : MultiplePermissionsListener {
                     override fun onPermissionsChecked(multiplePermissionsReport: MultiplePermissionsReport) { // 권한 여부를 다 묻고 실행되는 메소드
