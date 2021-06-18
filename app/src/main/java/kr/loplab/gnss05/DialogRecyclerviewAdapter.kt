@@ -7,11 +7,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import java.util.*
 import kotlin.collections.ArrayList
 
-class SimpleTextAdapter internal constructor(context: Context?, data: ArrayList<String>) :
-    RecyclerView.Adapter<SimpleTextAdapter.ViewHolder>() {
+class DialogRecyclerviewAdapter internal constructor(context: Context?, data: ArrayList<String>) :
+    RecyclerView.Adapter<DialogRecyclerviewAdapter.ViewHolder>() {
     private val mData: ArrayList<String>
     private val mInflater: LayoutInflater
     private var mClickListener: RecyclerItemClickListener? = null

@@ -7,11 +7,10 @@ import android.util.Log
 import android.view.View
 import android.view.Window
 import android.widget.Button
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
 
-class MyDialog(context : Context) : SimpleTextAdapter.RecyclerItemClickListener {
+class MyDialog(context : Context) : DialogRecyclerviewAdapter.RecyclerItemClickListener {
     var TAG : String = javaClass.simpleName;
     private var context2  = context;
     private val dialog = Dialog(context)   //부모 액티비티의 context 가 들어감
@@ -19,7 +18,7 @@ class MyDialog(context : Context) : SimpleTextAdapter.RecyclerItemClickListener 
     private lateinit var btnCancel : Button
     private lateinit var listener : MyDialogOKClickedListener
     private lateinit var listrecyclerview : RecyclerView
-    private var mClickListener: SimpleTextAdapter.RecyclerItemClickListener? = null
+    private var mClickListener: DialogRecyclerviewAdapter.RecyclerItemClickListener? = null
 
 
 
@@ -44,7 +43,7 @@ class MyDialog(context : Context) : SimpleTextAdapter.RecyclerItemClickListener 
         // 리사이클러뷰에 SimpleTextAdapter 객체 지정.
 
         // 리사이클러뷰에 SimpleTextAdapter 객체 지정.
-        val adapter = SimpleTextAdapter(context2, list)
+        val adapter = DialogRecyclerviewAdapter(context2, list)
 
         listrecyclerview.adapter = adapter
         adapter.setClickListener(this)
@@ -79,7 +78,7 @@ class MyDialog(context : Context) : SimpleTextAdapter.RecyclerItemClickListener 
         }
     }
 
-    fun setClickListener(itemClickListener: SimpleTextAdapter.RecyclerItemClickListener?) {
+    fun setClickListener(itemClickListener: DialogRecyclerviewAdapter.RecyclerItemClickListener?) {
         mClickListener = itemClickListener
     }
 

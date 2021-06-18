@@ -8,12 +8,12 @@ import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 
 class MainActivity : AppCompatActivity(),
-    MyRecyclerViewAdapter.RecyclerItemClickListener , SimpleTextAdapter.RecyclerItemClickListener {
+    MainpageRecyclerViewAdapter.RecyclerItemClickListener , DialogRecyclerviewAdapter.RecyclerItemClickListener {
     val TAG = javaClass.simpleName
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        val adapter: MyRecyclerViewAdapter
+        val adapter: MainpageRecyclerViewAdapter
         val data = arrayOf(
             "0",
             "1",
@@ -58,7 +58,7 @@ class MainActivity : AppCompatActivity(),
 
         val numberOfColumns = 6
 
-        adapter = MyRecyclerViewAdapter(this, data)
+        adapter = MainpageRecyclerViewAdapter(this, data)
         adapter.setClickListener(this)
         recyclerView.adapter = adapter
 

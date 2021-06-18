@@ -7,8 +7,8 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
-class MyRecyclerViewAdapter internal constructor(context: Context?, data: Array<String>) :
-    RecyclerView.Adapter<MyRecyclerViewAdapter.ViewHolder>() {
+class MainpageRecyclerViewAdapter internal constructor(context: Context?, data: Array<String>) :
+    RecyclerView.Adapter<MainpageRecyclerViewAdapter.ViewHolder>() {
     private val mData: Array<String>
     private val mInflater: LayoutInflater
     private var mClickListener: RecyclerItemClickListener? = null
