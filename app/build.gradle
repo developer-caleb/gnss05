@@ -75,4 +75,7 @@ dependencies {
 
     //Color picker
     implementation 'com.larswerkman:HoloColorPicker:1.5'
+
+    //permission 획득하는 library
+    implementation 'com.karumi:dexter:6.1.0'
 }

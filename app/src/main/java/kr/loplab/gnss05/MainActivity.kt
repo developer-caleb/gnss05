@@ -1,11 +1,25 @@
 package kr.loplab.gnss05;
 
+import android.Manifest
+import android.app.AlertDialog
+import android.content.DialogInterface
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
+import android.net.Uri
+import android.os.Build
 import android.os.Bundle
+import android.provider.Settings
 import android.util.Log
 import android.view.View
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
+import com.karumi.dexter.Dexter
+import com.karumi.dexter.MultiplePermissionsReport
+import com.karumi.dexter.PermissionToken
+import com.karumi.dexter.listener.PermissionRequest
+import com.karumi.dexter.listener.multi.MultiplePermissionsListener
+
+
 
 class MainActivity : AppCompatActivity(),
     MainpageRecyclerViewAdapter.RecyclerItemClickListener , DialogRecyclerviewAdapter.RecyclerItemClickListener {
@@ -34,7 +48,7 @@ class MainActivity : AppCompatActivity(),
         adapter = MainpageRecyclerViewAdapter(this, data)
         adapter.setClickListener(this)
         recyclerView.adapter = adapter
-
+        permissionchecking()
 
 
 
@@ -71,6 +85,59 @@ class MainActivity : AppCompatActivity(),
         Log.d(TAG, "onItemClick2: prrr $position")
         Log.d(TAG, "onClick: 메인액티비티에서 부른 logd+ $position")
     }
+    fun permissionchecking(){
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            Dexter.withActivity(this)
+                .withPermissions(
+                    Manifest.permission.CAMERA,  // 카메라
+                    Manifest.permission.ACCESS_FINE_LOCATION
+                ) // 위치
+                .withListener(object : MultiplePermissionsListener {
+                    override fun onPermissionsChecked(multiplePermissionsReport: MultiplePermissionsReport) { // 권한 여부를 다 묻고 실행되는 메소드
+                        // check if all permissions are granted
+                        if (multiplePermissionsReport.areAllPermissionsGranted()) {
+                            Toast.makeText(this@MainActivity, "모든 권한 허용", Toast.LENGTH_SHORT).show()
+                        }
+                    } // onPermissionsChecked()..
+
+                    override fun onPermissionRationaleShouldBeShown(
+                        list: List<PermissionRequest?>,
+                        permissionToken: PermissionToken?
+                    ) { // 이전 권한 여부를 거부한 권한이 있으면 실행되는 메소드
+                        Toast.makeText(this@MainActivity, "list : $list", Toast.LENGTH_LONG)
+                            .show() // 거부한 권한 이름이 저장된 list
+                        showSettingsDialog() // 권한 거부시 앱 정보 설정 페이지를 띄우기 위한 임의 메소드
+                    } // onPermissionRationaleShouldBeShown()..
+                })
+                .check()
+        }
+    }
+
+    // 만약 권한을 거절했을 경우,  다이얼로그 띄우기 위한 임의 메소드
+    private fun showSettingsDialog() {
+        val builder: AlertDialog.Builder = AlertDialog.Builder(this@MainActivity)
+        builder.setTitle("Need Permissions")
+        builder.setMessage("This app needs permission to use this feature. You can grant them in app settings.")
+        builder.setPositiveButton("GOTO SETTINGS",
+            DialogInterface.OnClickListener { dialog, which ->
+                dialog.cancel()
+                openSettings() // 어플리케이션 정보 설정 페이지 띄움.
+            })
+        builder.setNegativeButton("Cancel",
+            DialogInterface.OnClickListener { dialog, which -> dialog.cancel() })
+        builder.show()
+    } // showSettingsDialog()..
+
+
+    // 어플리케이션 정보 설정 페이지
+    private fun openSettings() {
+        val intent = Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS)
+        val uri: Uri = Uri.fromParts("package", packageName, null)
+        intent.data = uri
+        startActivityForResult(intent, 101)
+    } // openSettings()..
+
+
 }
 
 
