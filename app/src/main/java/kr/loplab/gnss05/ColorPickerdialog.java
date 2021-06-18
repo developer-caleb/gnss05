@@ -25,11 +25,14 @@ public class ColorPickerdialog extends AppCompatActivity {
 
         confirmbt1 = (TextView) findViewById(R.id.confirmbt1);
          picker = (ColorPicker) findViewById(R.id.picker22);
-
+       // picker.setOldCenterColor(picker.getColor());
+        picker.setShowOldCenterColor(false);
 
         Log.d(TAG, "onCreate: 피커는 만들어졌는데 scrollbar size가 왜 안먹힐까?");
         confirmbt1.setOnClickListener(v -> {
             Log.d(TAG, "picker color->" + picker.getColor());
+            String hexColor = String.format("#%06X", (0xFFFFFF & picker.getColor()));
+            Log.d(TAG, "picker color->" + hexColor);
         });
 
       /*  SVBar svBar = (SVBar) findViewById(R.id.svbar);

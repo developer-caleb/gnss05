@@ -1,9 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!--    글씨 크기 그룹    -->
+    <dimen name="defaultTextsize">19dp</dimen>
     <dimen name="fontHeaderTitle">19dp</dimen>
+
+
+    <!--    패딩, 마진 그룹 -->
     <dimen name="defaultButtonPadding">12dp</dimen>
     <dimen name="defaultLayoutPadding">24dp</dimen>
+
 
     <!--    레이아웃 사이즈 그룹 -->
     <dimen name="defaultHeaderHeight">50dp</dimen>
