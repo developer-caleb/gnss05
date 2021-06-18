@@ -17,6 +17,12 @@
 
         android:background="@color/grey_05">
 
+        <ImageView
+            android:id="@+id/imageView8"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="0"
+            app:srcCompat="@drawable/ic_folder" />
     </LinearLayout>
 
 
