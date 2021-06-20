@@ -21,7 +21,7 @@ class FiledirectoryRecyclerViewAdapter internal constructor(context: Context?, d
 
     // binds the data to the TextView in each cell
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.myTextView.text = mData[position][1]
+        holder.myTextView.text = mData[position][0]
     }
 
     // total number of cells
@@ -45,7 +45,7 @@ class FiledirectoryRecyclerViewAdapter internal constructor(context: Context?, d
 
     // convenience method for getting data at click position
     fun getItem(id: Int): String {
-        return mData[id][1]
+        return mData[id][0]
     }
 
     // allows clicks events to be caught
