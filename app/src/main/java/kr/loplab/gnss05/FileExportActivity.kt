@@ -14,6 +14,7 @@ class FileExportActivity : ActivityBase<ActivityFileExportBinding>(),  Filedirec
 
     override fun init() {
         var data = ArrayList<Array<String>>()
+        data.add(arrayOf( "기본 저장 디렉토리로 이동", "이동할 디렉토리 주소"), )
         data.add(arrayOf( "내부 저장소 루트 디렉토리로 이동", "이동할 디렉토리 주소"), )
         data.add(arrayOf( "프로그램 저장 디렉토리로 이동", "이동할 디렉토리 주소"))
         data.add(arrayOf( "SD카드 루트 디렉토리로 이동", "이동할 디렉토리 주소"))
