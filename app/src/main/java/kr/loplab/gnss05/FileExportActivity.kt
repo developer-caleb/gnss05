@@ -29,6 +29,7 @@ class FileExportActivity : ActivityBase<ActivityFileExportBinding>(),  Filedirec
 
     override fun onBackPressed() {
         println("hello222")
+
     //super.onBackPressed()
     }
 
@@ -36,7 +37,7 @@ class FileExportActivity : ActivityBase<ActivityFileExportBinding>(),  Filedirec
         adapter  = FiledirectoryRecyclerViewAdapter(this, data)
         adapter.setClickListener(this)
         viewBinding.recyclerview.adapter = adapter
-        rootPath = Environment.getExternalStorageDirectory().getAbsolutePath();
+        rootPath = Environment.getExternalStorageDirectory().absolutePath;
         var result : Boolean = initdirectory(rootPath);
 
 
@@ -50,8 +51,9 @@ class FileExportActivity : ActivityBase<ActivityFileExportBinding>(),  Filedirec
 
     override fun initListener() {
         viewBinding.header03.setOnBackButtonClickListener {
-            onBackPressed()
+            //onBackPressed()
             println("hello")
+            super.onBackPressed()
         }
         viewBinding.folderIcon.text = "\uD83D\uDDC2    "
     }
