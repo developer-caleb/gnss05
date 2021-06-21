@@ -59,10 +59,20 @@ class FileExportActivity : ActivityBase<ActivityFileExportBinding>(),  Filedirec
 
     override fun onItemClick(view: View?, position: Int) {
         Log.d(TAG, "Recyclerview onItemClick: $position 클릭했음")
-        
+
+          Log.d("KJH_TEST",  "$position : " + data.get(position).toString());
+                currentPath = viewBinding.strDirectory.text.toString();
+                var path : String= data.get(position).toString();
+                if (path.equals("..")) {
+                    prevPath(path);
+                } else {
+                    nextPath(path);
+                }
+
+
     }
 
-    public fun initdirectory(rootPath : String) :Boolean   {
+    fun initdirectory(rootPath : String) :Boolean   {
         Log.d(TAG, "initdirectory: $rootPath")
         // 파일 객체 생성
         var fileRoot: File =  File(rootPath);
@@ -110,6 +120,7 @@ class FileExportActivity : ActivityBase<ActivityFileExportBinding>(),  Filedirec
 
         // 현재 경로에서 / 와 다음 경로 붙이기
         nextPath = "$currentPath/$str"
+        Log.d(TAG, "nextPath: $nextPath")
         val file = File(nextPath)
         if (file.isDirectory == false) {
             showToast("Not Directory");
@@ -135,6 +146,7 @@ class FileExportActivity : ActivityBase<ActivityFileExportBinding>(),  Filedirec
 
         // 처음부터 마지막 / 까지의 문자열 가져오기
         prevPath = prevPath.substring(0, lastSlashPosition)
+        Log.d(TAG, "prevPath: $prevPath")
         val file = File(prevPath)
         if (file.isDirectory == false) {
             showToast("Not Directory")
