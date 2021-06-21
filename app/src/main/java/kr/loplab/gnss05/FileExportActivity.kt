@@ -65,13 +65,14 @@ class FileExportActivity : ActivityBase<ActivityFileExportBinding>(),  Filedirec
         Log.d(TAG, "initdirectory: $rootPath")
         // 파일 객체 생성
         var fileRoot: File =  File(rootPath);
-        if(fileRoot.isDirectory() == false)        {
+        //디렉토리가 아님
+        if(!fileRoot.isDirectory())        {
             showToast("Not Directory");
             return false;
         }
         viewBinding.strDirectory.setText(rootPath);
 
-        // 파일 리스트 가져오기
+        //파일 리스트 가져오기 ->//파일 리스트가 없음
         var fileList  = fileRoot.list();
         if ( fileList == null )        {
             showToast("Could not find List");
@@ -88,9 +89,9 @@ class FileExportActivity : ActivityBase<ActivityFileExportBinding>(),  Filedirec
         data.add(arrayOf( "프로그램 저장 디렉토리로 이동", "이동할 디렉토리 주소"))
         data.add(arrayOf( "SD카드 루트 디렉토리로 이동", "이동할 디렉토리 주소"))
         data.add(arrayOf( "돌아가기", "이동할 디렉토리 주소"))
-        for(x in 0..5){
+       /* for(x in 0..5){
             data.add(arrayOf("ddd", x.toString()))
-        }
+        }*/
 
 
 

@@ -43,7 +43,7 @@ abstract class ActivityBase<T : ViewDataBinding>: AppCompatActivity() {
     }
 
     fun showToast(str:String){
-        Log.d(TAG, "showToast: str")
+        Log.d(TAG, "showToast: $str")
         Toast.makeText(applicationContext,str, Toast.LENGTH_LONG).show()
     }
 
