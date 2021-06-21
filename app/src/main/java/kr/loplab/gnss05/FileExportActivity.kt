@@ -70,10 +70,10 @@ class FileExportActivity : ActivityBase<ActivityFileExportBinding>(),  Filedirec
                 var path : String= data[position][1].toString();
 
                  when (path) {
-                     "0"-> print("print 1, 2")
-                     "1"-> print("print 1, 2")
-                     "2"-> print("print 1, 2")
-                     "3"-> print("print 1, 2")
+                     "0"-> initdirectory(rootPath)
+                     "1"-> initdirectory(rootPath)
+                     "2"-> initdirectory(rootPath)
+                     "3"-> initdirectory(rootPath)
                      "go back!"-> prevPath(path)
                      else ->  nextPath(path);
                  }
