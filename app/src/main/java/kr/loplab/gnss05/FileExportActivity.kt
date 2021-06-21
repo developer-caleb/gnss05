@@ -68,12 +68,15 @@ class FileExportActivity : ActivityBase<ActivityFileExportBinding>(),  Filedirec
           Log.d("KJH_TEST",  "$position : " + data.get(position).toString());
                 currentPath = viewBinding.strDirectory.text.toString();
                 var path : String= data[position][1].toString();
-                if (path.equals("..")) {
-                    prevPath(path);
-                } else {
-                    nextPath(path);
-                }
 
+                 when (path) {
+                     "0"-> print("print 1, 2")
+                     "1"-> print("print 1, 2")
+                     "2"-> print("print 1, 2")
+                     "3"-> print("print 1, 2")
+                     "go back!"-> prevPath(path)
+                     else ->  nextPath(path);
+                 }
 
     }
 
@@ -104,14 +107,7 @@ class FileExportActivity : ActivityBase<ActivityFileExportBinding>(),  Filedirec
         data.add(arrayOf( "내부 저장소 루트 디렉토리로 이동", "이동할 디렉토리 주소"), )
         data.add(arrayOf( "프로그램 저장 디렉토리로 이동", "이동할 디렉토리 주소"))
         data.add(arrayOf( "SD카드 루트 디렉토리로 이동", "이동할 디렉토리 주소"))
-        data.add(arrayOf( "돌아가기", "이동할 디렉토리 주소"))
-       /* for(x in 0..5){
-            data.add(arrayOf("ddd", x.toString()))
-        }*/
-
-
-
-
+        data.add(arrayOf( "돌아가기", "go back!"))
         fileList.forEachIndexed { index, string ->  data.add(arrayOf(fileList[index].toString(), fileList[index].toString()));}
 
         // 리스트 뷰에 적용
@@ -127,18 +123,22 @@ class FileExportActivity : ActivityBase<ActivityFileExportBinding>(),  Filedirec
         nextPath = "$currentPath/$str"
         Log.d(TAG, "nextPath: $nextPath")
         val file = File(nextPath)
-        if (file.isDirectory == false) {
+        if (!file.isDirectory) {
             showToast("Not Directory");
             return
         }
         val fileList = file.list()
         data.clear()
-        data.add(arrayOf("..", ",,"))
+        data.add(arrayOf( "기본 저장 디렉토리로 이동", "이동할 디렉토리 주소"), )
+        data.add(arrayOf( "내부 저장소 루트 디렉토리로 이동", "이동할 디렉토리 주소"), )
+        data.add(arrayOf( "프로그램 저장 디렉토리로 이동", "이동할 디렉토리 주소"))
+        data.add(arrayOf( "SD카드 루트 디렉토리로 이동", "이동할 디렉토리 주소"))
+        data.add(arrayOf( "돌아가기", "go back!"))
         for (i in fileList.indices) {
             data.add(arrayOf(fileList[i], fileList[i] ))
         }
         viewBinding.strDirectory.text = nextPath
-        adapter!!.notifyDataSetChanged()
+        adapter.notifyDataSetChanged()
     }
 
     fun prevPath(str: String?) {
@@ -153,13 +153,17 @@ class FileExportActivity : ActivityBase<ActivityFileExportBinding>(),  Filedirec
         prevPath = prevPath.substring(0, lastSlashPosition)
         Log.d(TAG, "prevPath: $prevPath")
         val file = File(prevPath)
-        if (file.isDirectory == false) {
+        if (!file.isDirectory) {
             showToast("Not Directory")
             return
         }
         val fileList = file.list()
         data.clear()
-        data.add(arrayOf("..", ".."))
+        data.add(arrayOf( "기본 저장 디렉토리로 이동", "이동할 디렉토리 주소"), )
+        data.add(arrayOf( "내부 저장소 루트 디렉토리로 이동", "이동할 디렉토리 주소"), )
+        data.add(arrayOf( "프로그램 저장 디렉토리로 이동", "이동할 디렉토리 주소"))
+        data.add(arrayOf( "SD카드 루트 디렉토리로 이동", "이동할 디렉토리 주소"))
+        data.add(arrayOf( "돌아가기", "go back!"))
         for (i in fileList.indices) {
             data.add(arrayOf(fileList[i], fileList[i] ))
         }
