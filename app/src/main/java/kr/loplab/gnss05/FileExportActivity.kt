@@ -27,7 +27,10 @@ class FileExportActivity : ActivityBase<ActivityFileExportBinding>(),  Filedirec
     private lateinit var adapter : FiledirectoryRecyclerViewAdapter
     //
 
-
+    override fun onBackPressed() {
+        println("hello222")
+    //super.onBackPressed()
+    }
 
     override fun init() {
         adapter  = FiledirectoryRecyclerViewAdapter(this, data)
