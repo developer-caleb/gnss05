@@ -59,6 +59,7 @@ class FileExportActivity : ActivityBase<ActivityFileExportBinding>(),  Filedirec
 
     override fun onItemClick(view: View?, position: Int) {
         Log.d(TAG, "Recyclerview onItemClick: $position 클릭했음")
+        
     }
 
     public fun initdirectory(rootPath : String) :Boolean   {
