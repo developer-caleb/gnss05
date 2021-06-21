@@ -25,7 +25,15 @@
 
         android:background="@color/grey_05">
 
-
+        <TextView
+            android:id="@+id/folder_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="0"
+            android:gravity="center"
+            android:paddingLeft="20dp"
+            android:text=" 123"
+            android:textColor="#000000" />
         <TextView
             android:id="@+id/str_directory"
             android:layout_width="wrap_content"

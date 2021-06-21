@@ -50,7 +50,7 @@ class FileExportActivity : ActivityBase<ActivityFileExportBinding>(),  Filedirec
             onBackPressed()
             println("hello")
         }
-        viewBinding.strDirectory.text = "\uD83D\uDDC2    Textview"
+        viewBinding.folderIcon.text = "\uD83D\uDDC2    "
     }
 
     override fun initDatabinding() {
@@ -62,7 +62,7 @@ class FileExportActivity : ActivityBase<ActivityFileExportBinding>(),  Filedirec
 
           Log.d("KJH_TEST",  "$position : " + data.get(position).toString());
                 currentPath = viewBinding.strDirectory.text.toString();
-                var path : String= data.get(position).toString();
+                var path : String= data[position][1].toString();
                 if (path.equals("..")) {
                     prevPath(path);
                 } else {
