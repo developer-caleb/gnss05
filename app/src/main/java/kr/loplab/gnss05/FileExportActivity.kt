@@ -6,6 +6,7 @@ import android.os.Environment
 import android.util.Log
 import android.view.View
 import android.widget.TextView
+import android.widget.Toast
 import io.reactivex.internal.util.ArrayListSupplier
 import kr.loplab.gnss02.ActivityBase
 import kr.loplab.gnss05.databinding.ActivityFileExportBinding
@@ -16,17 +17,22 @@ class FileExportActivity : ActivityBase<ActivityFileExportBinding>(),  Filedirec
         get() = R.layout.activity_file_export
         var backdirectory : String = "";
         //
-    private var items : ArrayList<String> = ArrayList();
+    //private var items : ArrayList<String> = ArrayList();
+    var data = ArrayList<Array<String>>()
     private var rootPath = "";
     private var nextPath = "";
     private var prevPath = "";
     private var currentPath = "";
     private lateinit var  messageView: TextView;
+    private lateinit var adapter : FiledirectoryRecyclerViewAdapter
     //
 
 
 
     override fun init() {
+        adapter  = FiledirectoryRecyclerViewAdapter(this, data)
+        adapter.setClickListener(this)
+        viewBinding.recyclerview.adapter = adapter
         rootPath = Environment.getExternalStorageDirectory().getAbsolutePath();
         var result : Boolean = initdirectory(rootPath);
 
@@ -34,18 +40,9 @@ class FileExportActivity : ActivityBase<ActivityFileExportBinding>(),  Filedirec
 
 
 
-        var data = ArrayList<Array<String>>()
-        data.add(arrayOf( "기본 저장 디렉토리로 이동", "이동할 디렉토리 주소"), )
-        data.add(arrayOf( "내부 저장소 루트 디렉토리로 이동", "이동할 디렉토리 주소"), )
-        data.add(arrayOf( "프로그램 저장 디렉토리로 이동", "이동할 디렉토리 주소"))
-        data.add(arrayOf( "SD카드 루트 디렉토리로 이동", "이동할 디렉토리 주소"))
-        data.add(arrayOf( "돌아가기", "이동할 디렉토리 주소"))
-        for(x in 0..5){
-            data.add(arrayOf("ddd", x.toString()))
-        }
-        val adapter = FiledirectoryRecyclerViewAdapter(this, data)
-        adapter.setClickListener(this)
-        viewBinding.recyclerview.adapter = adapter
+
+
+
     }
 
     override fun initListener() {
@@ -65,6 +62,7 @@ class FileExportActivity : ActivityBase<ActivityFileExportBinding>(),  Filedirec
     }
 
     public fun initdirectory(rootPath : String) :Boolean   {
+        Log.d(TAG, "initdirectory: $rootPath")
         // 파일 객체 생성
         var fileRoot: File =  File(rootPath);
         if(fileRoot.isDirectory() == false)        {
@@ -81,15 +79,73 @@ class FileExportActivity : ActivityBase<ActivityFileExportBinding>(),  Filedirec
         }
 
         // 아이템 리스트 전부 삭제
-        items.clear();
+        data.clear();
 
         // 리스트의 첫 항목은 뒤로가기 위해 ".." 세팅
-        items.add("..");
-        fileList.forEachIndexed { index, string ->  items.add(fileList[index]);}
+        ////items.add("..");
+        data.add(arrayOf( "기본 저장 디렉토리로 이동", "이동할 디렉토리 주소"), )
+        data.add(arrayOf( "내부 저장소 루트 디렉토리로 이동", "이동할 디렉토리 주소"), )
+        data.add(arrayOf( "프로그램 저장 디렉토리로 이동", "이동할 디렉토리 주소"))
+        data.add(arrayOf( "SD카드 루트 디렉토리로 이동", "이동할 디렉토리 주소"))
+        data.add(arrayOf( "돌아가기", "이동할 디렉토리 주소"))
+        for(x in 0..5){
+            data.add(arrayOf("ddd", x.toString()))
+        }
+
+
+
+
+        fileList.forEachIndexed { index, string ->  data.add(arrayOf(fileList[index].toString(), fileList[index].toString()));}
 
         // 리스트 뷰에 적용
-        listAdapter.notifyDataSetChanged();
+        adapter.notifyDataSetChanged();
         return true;
+    }
+
+
+    fun nextPath(str: String) {
+        prevPath = currentPath
+
+        // 현재 경로에서 / 와 다음 경로 붙이기
+        nextPath = "$currentPath/$str"
+        val file = File(nextPath)
+        if (file.isDirectory == false) {
+            showToast("Not Directory");
+            return
+        }
+        val fileList = file.list()
+        data.clear()
+        data.add(arrayOf("..", ",,"))
+        for (i in fileList.indices) {
+            data.add(arrayOf(fileList[i], fileList[i] ))
+        }
+        viewBinding.strDirectory.text = nextPath
+        adapter!!.notifyDataSetChanged()
+    }
+
+    fun prevPath(str: String?) {
+        nextPath = currentPath
+        prevPath = currentPath
+
+
+        // 마지막 / 의 위치 찾기
+        val lastSlashPosition = prevPath.lastIndexOf("/")
+
+        // 처음부터 마지막 / 까지의 문자열 가져오기
+        prevPath = prevPath.substring(0, lastSlashPosition)
+        val file = File(prevPath)
+        if (file.isDirectory == false) {
+            showToast("Not Directory")
+            return
+        }
+        val fileList = file.list()
+        data.clear()
+        data.add(arrayOf("..", ".."))
+        for (i in fileList.indices) {
+            data.add(arrayOf(fileList[i], fileList[i] ))
+        }
+        viewBinding.strDirectory.text = prevPath
+        adapter!!.notifyDataSetChanged()
     }
 
 

@@ -1,6 +1,7 @@
 package kr.loplab.gnss02
 
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
@@ -42,6 +43,7 @@ abstract class ActivityBase<T : ViewDataBinding>: AppCompatActivity() {
     }
 
     fun showToast(str:String){
+        Log.d(TAG, "showToast: str")
         Toast.makeText(applicationContext,str, Toast.LENGTH_LONG).show()
     }
 
