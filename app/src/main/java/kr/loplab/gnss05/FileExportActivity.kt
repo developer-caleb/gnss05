@@ -178,10 +178,17 @@ class FileExportActivity : ActivityBase<ActivityFileExportBinding>(),  Filedirec
            // data.add(arrayOf(fileList[index].toString(), fileList[index].toString()));}
 
             Log.d(TAG, "processpath: $index : ${filess.isDirectory} 와 ${filess.isFile} 와 ${filess.extension.lowercase()=="csv"}  : ${filess.name}")
-            if(filess.isDirectory ) {
-                data.add(arrayOf(filess.name, filess.name, "folder"));
-            }else if(file.extension.lowercase()=="csv") {
-                data.add(arrayOf(filess.name, filess.name, ".csv"));
+            when {
+                filess.isDirectory -> {
+                    data.add(arrayOf(filess.name, filess.name, "folder"));
+                }
+                filess.extension.lowercase()=="csv" -> {
+                    print("file.extension -> ${file.extension}")
+                    data.add(arrayOf(filess.name, filess.name, ".csv"));
+                }
+                else -> {
+                    print("file.extension -> ${file.extension}")
+                }
             }
             }
         adapter.notifyDataSetChanged()
