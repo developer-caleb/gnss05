@@ -178,15 +178,19 @@ class FileExportActivity : ActivityBase<ActivityFileExportBinding>(),  Filedirec
             Log.d(TAG, "processpath: csv 파일 클릭처리 할 것!")
             return
         }
-        val fileList = file.list { file, s -> file.isDirectory }
+
+        val fileList = file.listFiles()
         data.clear()
         data.addAll(initialdata)
-        fileList.forEachIndexed { index, string ->
+        fileList.forEachIndexed { index, filess ->
 
-            data.add(arrayOf(fileList[index].toString(), fileList[index].toString()));}
-            // val files = File(fileList[index])
-           // Log.d(TAG, "processpath: $index : ${files.isDirectory} 와 ${files.isFile} 와 ${files.extension.lowercase()=="csv"}  : ${files.name}")
-           // if(files.isDirectory || file.extension.lowercase()=="csv") {        }
+           // data.add(arrayOf(fileList[index].toString(), fileList[index].toString()));}
+
+            Log.d(TAG, "processpath: $index : ${filess.isDirectory} 와 ${filess.isFile} 와 ${filess.extension.lowercase()=="csv"}  : ${filess.name}")
+            if(filess.isDirectory || file.extension.lowercase()=="csv") {
+                data.add(arrayOf(filess.name, filess.name));
+            }
+            }
         adapter.notifyDataSetChanged()
     }
 
