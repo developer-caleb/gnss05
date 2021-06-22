@@ -1,5 +1,6 @@
 package kr.loplab.gnss05
 
+import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Environment
@@ -35,11 +36,12 @@ class FileExportActivity : ActivityBase<ActivityFileExportBinding>(),  Filedirec
     }
 
     override fun init() {
-        initialdata.add(arrayOf( "기본 저장 디렉토리로 이동", "0"), )
-        initialdata.add(arrayOf( "내부 저장소 루트 디렉토리로 이동", "1"), )
-        initialdata.add(arrayOf( "프로그램 저장 디렉토리로 이동", "2"))
-        initialdata.add(arrayOf( "SD카드 루트 디렉토리로 이동", "3"))
-        initialdata.add(arrayOf( "돌아가기", "go back!"))
+        //initialdata.add(arrayOf( "기본 저장 디렉토리로 이동", "0"), )
+        initialdata.add(arrayOf( "프로그램 폴더로 이동", Directorytype.storagedirectory.name))
+        initialdata.add(arrayOf( "다운로드 폴더로 이동", Directorytype.downloadfolders.name))
+        initialdata.add(arrayOf( "최상위 폴더로 이동", Directorytype.rootdirectory.name), )
+        //initialdata.add(arrayOf( "SD카드 루트 디렉토리로 이동", "SDCARD!"))
+        initialdata.add(arrayOf( "돌아가기", Directorytype.goBack.name))
         adapter  = FiledirectoryRecyclerViewAdapter(this, data)
         adapter.setClickListener(this)
         viewBinding.recyclerview.adapter = adapter
@@ -69,6 +71,15 @@ class FileExportActivity : ActivityBase<ActivityFileExportBinding>(),  Filedirec
     }
 
     override fun onItemClick(view: View?, position: Int) {
+
+        var sdPath = ""
+
+        Log.d(TAG, "onItemClick: sdpath : $sdPath")
+        Log.d(TAG, "onItemClick: 절대경로 : ${Environment.getExternalStorageDirectory().absolutePath}")
+        Log.d(TAG, "onItemClick: 다운로드 경로1 : ${Environment.getExternalStorageDirectory().absolutePath}")
+        Log.d(TAG, "onItemClick: 다운로드 경로2 : ${Environment.getDataDirectory().absolutePath}")
+        Log.d(TAG, "onItemClick: 다운로드 경로3 : ${Environment.getRootDirectory().absolutePath}")
+
         Log.d(TAG, "Recyclerview onItemClick: $position 클릭했음")
 
           Log.d("KJH_TEST",  "$position : " + data[position].toString());
@@ -77,11 +88,12 @@ class FileExportActivity : ActivityBase<ActivityFileExportBinding>(),  Filedirec
           Log.d(TAG, "path check $path ")
           Log.d(TAG, "path check root path : $rootPath ")
                  when (path) {
-                     "0"-> initdirectory(rootPath)
-                     "1"-> initdirectory(rootPath)
-                     "2"-> initdirectory(rootPath)
-                     "3"-> initdirectory(rootPath)
-                     "go back!"-> prevPath(path)
+                     "0"-> initdirectory(Environment.getExternalStorageDirectory().absolutePath)
+                     Directorytype.rootdirectory.name-> initdirectory(rootPath)
+                     Directorytype.downloadfolders.name-> initdirectory(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).absolutePath)
+                     Directorytype.SDCARDfolder.name-> initdirectory(rootPath)
+                     Directorytype.goBack.name -> prevPath(path)
+                     Directorytype.storagedirectory.name -> initdirectory(Environment.getDataDirectory().absolutePath)
                      else ->  nextPath(path);
                  }
     }
@@ -163,8 +175,11 @@ class FileExportActivity : ActivityBase<ActivityFileExportBinding>(),  Filedirec
         }
         viewBinding.strDirectory.text = prevPath
         adapter!!.notifyDataSetChanged()
+
     }
 
 
 
 }
+
+enum class Directorytype { downloadfolders, goBack, SDCARDfolder, rootdirectory, storagedirectory }
