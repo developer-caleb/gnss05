@@ -183,7 +183,11 @@ class FileExportActivity : ActivityBase<ActivityFileExportBinding>(),  Filedirec
         val fileList = file.list()
         data.clear()
         data.addAll(initialdata)
-        fileList.forEachIndexed { index, string ->  data.add(arrayOf(fileList[index].toString(), fileList[index].toString()));}
+        fileList.forEachIndexed { index, string ->
+            val file = File(fileList[index])
+            if(file.isDirectory || file.extension.lowercase()=="csv") {data.add(arrayOf(fileList[index].toString(), fileList[index].toString()));}
+
+        }
         adapter.notifyDataSetChanged()
     }
 
