@@ -4,6 +4,7 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
@@ -22,6 +23,14 @@ class FiledirectoryRecyclerViewAdapter internal constructor(context: Context?, d
     // binds the data to the TextView in each cell
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.myTextView.text = mData[position][0]
+        when(mData[position][2]){
+            "rightarrow" -> holder.imageView.setImageResource(R.drawable.ic_rightarrow2)
+            "back" -> holder.imageView.setImageResource(R.drawable.lefticon)
+            "folder" -> holder.imageView.setImageResource(R.drawable.foldericon)
+                ".csv" ->  holder.imageView.setImageResource(R.drawable.excelicon)
+            else -> holder.imageView.setImageResource(R.drawable.unknown_file)
+        }
+
     }
 
     // total number of cells
@@ -33,12 +42,14 @@ class FiledirectoryRecyclerViewAdapter internal constructor(context: Context?, d
     inner class ViewHolder internal constructor(itemView: View) : RecyclerView.ViewHolder(itemView),
         View.OnClickListener {
         var myTextView: TextView
+        var imageView: ImageView
         override fun onClick(view: View) {
             if (mClickListener != null) mClickListener!!.onItemClick(view, adapterPosition)
         }
 
         init {
             myTextView = itemView.findViewById(R.id.list_text2)
+            imageView = itemView.findViewById(R.id.recyclerview_icon)
             itemView.setOnClickListener(this)
         }
     }

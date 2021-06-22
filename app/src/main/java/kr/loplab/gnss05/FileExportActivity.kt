@@ -26,17 +26,18 @@ class FileExportActivity : ActivityBase<ActivityFileExportBinding>(),  Filedirec
 
     override fun onBackPressed() {
         println("hello222")
-
+        currentPath = viewBinding.strDirectory.text.toString();
+        prevPath(currentPath)
     //super.onBackPressed()
     }
 
     override fun init() {
         //initialdata.add(arrayOf( "기본 저장 디렉토리로 이동", "0"), )
-        initialdata.add(arrayOf( "프로그램 폴더로 이동", Directorytype.storagedirectory.name))
-        initialdata.add(arrayOf( "다운로드 폴더로 이동", Directorytype.downloadfolders.name))
-        initialdata.add(arrayOf("최상위 폴더로 이동", Directorytype.rootdirectory.name))
+        initialdata.add(arrayOf( "프로그램 폴더로 이동", Directorytype.storagedirectory.name, "rightarrow"))
+        initialdata.add(arrayOf( "다운로드 폴더로 이동", Directorytype.downloadfolders.name, "rightarrow"))
+        initialdata.add(arrayOf("최상위 폴더로 이동", Directorytype.rootdirectory.name, "rightarrow"))
         //initialdata.add(arrayOf( "SD카드 루트 디렉토리로 이동", "SDCARD!"))
-        initialdata.add(arrayOf( "돌아가기", Directorytype.goBack.name))
+        initialdata.add(arrayOf( "돌아가기", Directorytype.goBack.name, "back"))
         adapter  = FiledirectoryRecyclerViewAdapter(this, data)
         adapter.setClickListener(this)
         viewBinding.recyclerview.adapter = adapter
@@ -97,14 +98,6 @@ class FileExportActivity : ActivityBase<ActivityFileExportBinding>(),  Filedirec
                              var success = true
                              success = gnssfolder.mkdirs();
                          }
-                      /*   var  exportfolder = File(Environment.getExternalStorageDirectory().absolutePath +"/GNSS/EXPORT")
-                         if (!exportfolder.exists()) {
-                             Log.d(TAG, "onItemClick: Directory Does Not Exist, Create It ! /GNSS/EXPORT")
-                             //Toast.makeText(MainActivity.this, "Directory Does Not Exist, Create It", Toast.LENGTH_SHORT).show();
-                             var success = true
-                             success = exportfolder.mkdir();
-                         }*/
-
                          initdirectory(Environment.getExternalStorageDirectory().absolutePath +"/GNSS/EXPORT")
 
                      }
@@ -115,28 +108,6 @@ class FileExportActivity : ActivityBase<ActivityFileExportBinding>(),  Filedirec
     fun initdirectory(rootPath : String) :Boolean   {
         Log.d(TAG, "initdirectory: $rootPath")
         // 파일 객체 생성
-        viewBinding.strDirectory.setText(rootPath);
-       /* var fileRoot: File =  File(rootPath);
-        //디렉토리가 아님
-        if(!fileRoot.isDirectory())        {
-            showToast("Not Directory");
-            return false;
-        }
-
-
-        //파일 리스트 가져오기 ->//파일 리스트가 없음
-
-
-        var fileList  = fileRoot.list();
-        if ( fileList == null )        {
-            showToast("Could not find List");
-            return false;
-        }
-
-        // 아이템 리스트 전부 삭제
-        data.clear();
-        data.addAll(initialdata)
-        fileList.forEachIndexed { index, string ->  data.add(arrayOf(fileList[index].toString(), fileList[index].toString()));}*/
         processpath(rootPath)
         return true;
     }
@@ -144,13 +115,8 @@ class FileExportActivity : ActivityBase<ActivityFileExportBinding>(),  Filedirec
 
     fun nextPath(str: String) {
         prevPath = currentPath
-
         // 현재 경로에서 / 와 다음 경로 붙이기
         nextPath = "$currentPath/$str"
-        viewBinding.strDirectory.text = nextPath
-        Log.d(TAG, "nextPath: $nextPath")
-
-
         processpath(nextPath)
 
     }
@@ -158,20 +124,20 @@ class FileExportActivity : ActivityBase<ActivityFileExportBinding>(),  Filedirec
     fun prevPath(str: String?) {
         nextPath = currentPath
         prevPath = currentPath
-
-        if(currentPath == rootPath){return;}
+        if(currentPath == rootPath){
+            showToast("최상위 폴더입니다")
+            return;}
         // 마지막 / 의 위치 찾기
         val lastSlashPosition = prevPath.lastIndexOf("/")
 
         // 처음부터 마지막 / 까지의 문자열 가져오기
         prevPath = prevPath.substring(0, lastSlashPosition)
-        viewBinding.strDirectory.text = prevPath
-        Log.d(TAG, "prevPath: $prevPath")
-
+        
         processpath(prevPath)
 
     }
     fun processpath(path: String){
+        viewBinding.strDirectory.text = prevPath
         val file = File(path)
         if (!file.isDirectory) {
             //TODO: "processpath: csv 파일 클릭처리 할 것!"
@@ -187,8 +153,10 @@ class FileExportActivity : ActivityBase<ActivityFileExportBinding>(),  Filedirec
            // data.add(arrayOf(fileList[index].toString(), fileList[index].toString()));}
 
             Log.d(TAG, "processpath: $index : ${filess.isDirectory} 와 ${filess.isFile} 와 ${filess.extension.lowercase()=="csv"}  : ${filess.name}")
-            if(filess.isDirectory || file.extension.lowercase()=="csv") {
-                data.add(arrayOf(filess.name, filess.name));
+            if(filess.isDirectory ) {
+                data.add(arrayOf(filess.name, filess.name, "folder"));
+            }else if(file.extension.lowercase()=="csv") {
+                data.add(arrayOf(filess.name, filess.name, ".csv"));
             }
             }
         adapter.notifyDataSetChanged()
