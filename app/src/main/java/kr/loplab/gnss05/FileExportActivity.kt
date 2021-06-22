@@ -194,8 +194,6 @@ class FileExportActivity : ActivityBase<ActivityFileExportBinding>(),  Filedirec
             }
         adapter.notifyDataSetChanged()
     }
-
-
 }
 
 enum class Directorytype { downloadfolders, goBack, SDCARDfolder, rootdirectory, storagedirectory }
