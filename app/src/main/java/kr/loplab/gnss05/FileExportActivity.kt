@@ -1,14 +1,9 @@
 package kr.loplab.gnss05
 
-import android.content.Context
-import androidx.appcompat.app.AppCompatActivity
-import android.os.Bundle
 import android.os.Environment
 import android.util.Log
 import android.view.View
 import android.widget.TextView
-import android.widget.Toast
-import io.reactivex.internal.util.ArrayListSupplier
 import kr.loplab.gnss02.ActivityBase
 import kr.loplab.gnss05.databinding.ActivityFileExportBinding
 import java.io.File
@@ -39,7 +34,7 @@ class FileExportActivity : ActivityBase<ActivityFileExportBinding>(),  Filedirec
         //initialdata.add(arrayOf( "기본 저장 디렉토리로 이동", "0"), )
         initialdata.add(arrayOf( "프로그램 폴더로 이동", Directorytype.storagedirectory.name))
         initialdata.add(arrayOf( "다운로드 폴더로 이동", Directorytype.downloadfolders.name))
-        initialdata.add(arrayOf( "최상위 폴더로 이동", Directorytype.rootdirectory.name), )
+        initialdata.add(arrayOf("최상위 폴더로 이동", Directorytype.rootdirectory.name))
         //initialdata.add(arrayOf( "SD카드 루트 디렉토리로 이동", "SDCARD!"))
         initialdata.add(arrayOf( "돌아가기", Directorytype.goBack.name))
         adapter  = FiledirectoryRecyclerViewAdapter(this, data)
@@ -76,6 +71,7 @@ class FileExportActivity : ActivityBase<ActivityFileExportBinding>(),  Filedirec
 
         Log.d(TAG, "onItemClick: sdpath : $sdPath")
         Log.d(TAG, "onItemClick: 절대경로 : ${Environment.getExternalStorageDirectory().absolutePath}")
+        Log.d(TAG, "onItemClick: 상대경로 : ${Environment.getExternalStorageDirectory().canonicalPath}")
         Log.d(TAG, "onItemClick: 다운로드 경로1 : ${Environment.getExternalStorageDirectory().absolutePath}")
         Log.d(TAG, "onItemClick: 다운로드 경로2 : ${Environment.getDataDirectory().absolutePath}")
         Log.d(TAG, "onItemClick: 다운로드 경로3 : ${Environment.getRootDirectory().absolutePath}")
@@ -93,7 +89,28 @@ class FileExportActivity : ActivityBase<ActivityFileExportBinding>(),  Filedirec
                      Directorytype.downloadfolders.name-> initdirectory(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).absolutePath)
                      Directorytype.SDCARDfolder.name-> initdirectory(rootPath)
                      Directorytype.goBack.name -> prevPath(path)
-                     Directorytype.storagedirectory.name -> initdirectory(Environment.getDataDirectory().absolutePath)
+                     Directorytype.storagedirectory.name -> {
+                         var  gnssfolder = File(Environment.getExternalStorageDirectory().absolutePath +"/GNSS")
+                         if (!gnssfolder.exists()) {
+                             Log.d(TAG, "onItemClick: Directory Does Not Exist, Create It! /GNSS")
+                             //Toast.makeText(MainActivity.this, "Directory Does Not Exist, Create It", Toast.LENGTH_SHORT).show();
+                             var success = true
+                             success = gnssfolder.mkdir();
+                         }
+
+
+                         var  exportfolder = File(Environment.getExternalStorageDirectory().absolutePath +"/GNSS/EXPORT")
+
+                         if (!exportfolder.exists()) {
+                             Log.d(TAG, "onItemClick: Directory Does Not Exist, Create It ! /GNSS/EXPORT")
+                             //Toast.makeText(MainActivity.this, "Directory Does Not Exist, Create It", Toast.LENGTH_SHORT).show();
+                             var success = true
+                             success = exportfolder.mkdir();
+                         }
+
+                         initdirectory(Environment.getExternalStorageDirectory().absolutePath +"/GNSS/EXPORT")
+
+                     }
                      else ->  nextPath(path);
                  }
     }
@@ -101,15 +118,18 @@ class FileExportActivity : ActivityBase<ActivityFileExportBinding>(),  Filedirec
     fun initdirectory(rootPath : String) :Boolean   {
         Log.d(TAG, "initdirectory: $rootPath")
         // 파일 객체 생성
-        var fileRoot: File =  File(rootPath);
+        viewBinding.strDirectory.setText(rootPath);
+       /* var fileRoot: File =  File(rootPath);
         //디렉토리가 아님
         if(!fileRoot.isDirectory())        {
             showToast("Not Directory");
             return false;
         }
-        viewBinding.strDirectory.setText(rootPath);
+
 
         //파일 리스트 가져오기 ->//파일 리스트가 없음
+
+
         var fileList  = fileRoot.list();
         if ( fileList == null )        {
             showToast("Could not find List");
@@ -118,14 +138,9 @@ class FileExportActivity : ActivityBase<ActivityFileExportBinding>(),  Filedirec
 
         // 아이템 리스트 전부 삭제
         data.clear();
-
-        // 리스트의 첫 항목은 뒤로가기 위해 ".." 세팅
-        ////items.add("..");
         data.addAll(initialdata)
-        fileList.forEachIndexed { index, string ->  data.add(arrayOf(fileList[index].toString(), fileList[index].toString()));}
-
-        // 리스트 뷰에 적용
-        adapter.notifyDataSetChanged();
+        fileList.forEachIndexed { index, string ->  data.add(arrayOf(fileList[index].toString(), fileList[index].toString()));}*/
+        processpath(rootPath)
         return true;
     }
 
@@ -135,34 +150,32 @@ class FileExportActivity : ActivityBase<ActivityFileExportBinding>(),  Filedirec
 
         // 현재 경로에서 / 와 다음 경로 붙이기
         nextPath = "$currentPath/$str"
-        Log.d(TAG, "nextPath: $nextPath")
-        val file = File(nextPath)
-        if (!file.isDirectory) {
-            showToast("Not Directory");
-            return
-        }
-        val fileList = file.list()
-        data.clear()
-        data.addAll(initialdata)
-        for (i in fileList.indices) {
-            data.add(arrayOf(fileList[i], fileList[i] ))
-        }
         viewBinding.strDirectory.text = nextPath
-        adapter.notifyDataSetChanged()
+        Log.d(TAG, "nextPath: $nextPath")
+
+
+        processpath(nextPath)
+
     }
 
     fun prevPath(str: String?) {
         nextPath = currentPath
         prevPath = currentPath
 
-
+        if(currentPath == rootPath){return;}
         // 마지막 / 의 위치 찾기
         val lastSlashPosition = prevPath.lastIndexOf("/")
 
         // 처음부터 마지막 / 까지의 문자열 가져오기
         prevPath = prevPath.substring(0, lastSlashPosition)
+        viewBinding.strDirectory.text = prevPath
         Log.d(TAG, "prevPath: $prevPath")
-        val file = File(prevPath)
+
+        processpath(prevPath)
+
+    }
+    fun processpath(path: String){
+        val file = File(path)
         if (!file.isDirectory) {
             showToast("Not Directory")
             return
@@ -170,14 +183,9 @@ class FileExportActivity : ActivityBase<ActivityFileExportBinding>(),  Filedirec
         val fileList = file.list()
         data.clear()
         data.addAll(initialdata)
-        for (i in fileList.indices) {
-            data.add(arrayOf(fileList[i], fileList[i] ))
-        }
-        viewBinding.strDirectory.text = prevPath
-        adapter!!.notifyDataSetChanged()
-
+        fileList.forEachIndexed { index, string ->  data.add(arrayOf(fileList[index].toString(), fileList[index].toString()));}
+        adapter.notifyDataSetChanged()
     }
-
 
 
 }
