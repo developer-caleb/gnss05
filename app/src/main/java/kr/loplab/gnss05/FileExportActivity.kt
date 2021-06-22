@@ -16,6 +16,7 @@ class FileExportActivity : ActivityBase<ActivityFileExportBinding>(),  Filedirec
     //private var items : ArrayList<String> = ArrayList();
     var data = ArrayList<Array<String>>()
     private var rootPath = "";
+    private var rootPathname = "내장 메모리";
     private var nextPath = "";
     private var prevPath = "";
     private var currentPath = "";
@@ -25,7 +26,7 @@ class FileExportActivity : ActivityBase<ActivityFileExportBinding>(),  Filedirec
     //
 
     override fun onBackPressed() {
-        currentPath = viewBinding.strDirectory.text.toString();
+        currentPath = viewBinding.strDirectory.text.toString().replace( rootPathname, rootPath);
         prevPath(currentPath)
     //super.onBackPressed()
     }
@@ -79,7 +80,7 @@ class FileExportActivity : ActivityBase<ActivityFileExportBinding>(),  Filedirec
         Log.d(TAG, "Recyclerview onItemClick: $position 클릭했음")
 
           Log.d("KJH_TEST",  "$position : " + data[position].toString());
-                currentPath = viewBinding.strDirectory.text.toString();
+                currentPath = viewBinding.strDirectory.text.toString().replace( rootPathname, rootPath);
                 var path : String= data[position][1].toString();
           Log.d(TAG, "path check $path ")
           Log.d(TAG, "path check root path : $rootPath ")
@@ -162,7 +163,7 @@ class FileExportActivity : ActivityBase<ActivityFileExportBinding>(),  Filedirec
 
     }
     fun processpath(path: String){
-        viewBinding.strDirectory.text = path
+        viewBinding.strDirectory.text = path.replace(rootPath , rootPathname)
         val file = File(path)
         if (!file.isDirectory) {
             //TODO: "processpath: csv 파일 클릭처리 할 것!"
