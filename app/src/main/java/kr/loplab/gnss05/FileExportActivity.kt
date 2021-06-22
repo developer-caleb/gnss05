@@ -25,6 +25,7 @@ class FileExportActivity : ActivityBase<ActivityFileExportBinding>(),  Filedirec
     private var currentPath = "";
     private lateinit var  messageView: TextView;
     private lateinit var adapter : FiledirectoryRecyclerViewAdapter
+    private var initialdata = ArrayList<Array<String>>()
     //
 
     override fun onBackPressed() {
@@ -34,6 +35,11 @@ class FileExportActivity : ActivityBase<ActivityFileExportBinding>(),  Filedirec
     }
 
     override fun init() {
+        initialdata.add(arrayOf( "기본 저장 디렉토리로 이동", "0"), )
+        initialdata.add(arrayOf( "내부 저장소 루트 디렉토리로 이동", "1"), )
+        initialdata.add(arrayOf( "프로그램 저장 디렉토리로 이동", "2"))
+        initialdata.add(arrayOf( "SD카드 루트 디렉토리로 이동", "3"))
+        initialdata.add(arrayOf( "돌아가기", "go back!"))
         adapter  = FiledirectoryRecyclerViewAdapter(this, data)
         adapter.setClickListener(this)
         viewBinding.recyclerview.adapter = adapter
@@ -65,10 +71,11 @@ class FileExportActivity : ActivityBase<ActivityFileExportBinding>(),  Filedirec
     override fun onItemClick(view: View?, position: Int) {
         Log.d(TAG, "Recyclerview onItemClick: $position 클릭했음")
 
-          Log.d("KJH_TEST",  "$position : " + data.get(position).toString());
+          Log.d("KJH_TEST",  "$position : " + data[position].toString());
                 currentPath = viewBinding.strDirectory.text.toString();
                 var path : String= data[position][1].toString();
-
+          Log.d(TAG, "path check $path ")
+          Log.d(TAG, "path check root path : $rootPath ")
                  when (path) {
                      "0"-> initdirectory(rootPath)
                      "1"-> initdirectory(rootPath)
@@ -77,7 +84,6 @@ class FileExportActivity : ActivityBase<ActivityFileExportBinding>(),  Filedirec
                      "go back!"-> prevPath(path)
                      else ->  nextPath(path);
                  }
-
     }
 
     fun initdirectory(rootPath : String) :Boolean   {
@@ -103,11 +109,7 @@ class FileExportActivity : ActivityBase<ActivityFileExportBinding>(),  Filedirec
 
         // 리스트의 첫 항목은 뒤로가기 위해 ".." 세팅
         ////items.add("..");
-        data.add(arrayOf( "기본 저장 디렉토리로 이동", "이동할 디렉토리 주소"), )
-        data.add(arrayOf( "내부 저장소 루트 디렉토리로 이동", "이동할 디렉토리 주소"), )
-        data.add(arrayOf( "프로그램 저장 디렉토리로 이동", "이동할 디렉토리 주소"))
-        data.add(arrayOf( "SD카드 루트 디렉토리로 이동", "이동할 디렉토리 주소"))
-        data.add(arrayOf( "돌아가기", "go back!"))
+        data.addAll(initialdata)
         fileList.forEachIndexed { index, string ->  data.add(arrayOf(fileList[index].toString(), fileList[index].toString()));}
 
         // 리스트 뷰에 적용
@@ -129,11 +131,7 @@ class FileExportActivity : ActivityBase<ActivityFileExportBinding>(),  Filedirec
         }
         val fileList = file.list()
         data.clear()
-        data.add(arrayOf( "기본 저장 디렉토리로 이동", "이동할 디렉토리 주소"), )
-        data.add(arrayOf( "내부 저장소 루트 디렉토리로 이동", "이동할 디렉토리 주소"), )
-        data.add(arrayOf( "프로그램 저장 디렉토리로 이동", "이동할 디렉토리 주소"))
-        data.add(arrayOf( "SD카드 루트 디렉토리로 이동", "이동할 디렉토리 주소"))
-        data.add(arrayOf( "돌아가기", "go back!"))
+        data.addAll(initialdata)
         for (i in fileList.indices) {
             data.add(arrayOf(fileList[i], fileList[i] ))
         }
@@ -159,11 +157,7 @@ class FileExportActivity : ActivityBase<ActivityFileExportBinding>(),  Filedirec
         }
         val fileList = file.list()
         data.clear()
-        data.add(arrayOf( "기본 저장 디렉토리로 이동", "이동할 디렉토리 주소"), )
-        data.add(arrayOf( "내부 저장소 루트 디렉토리로 이동", "이동할 디렉토리 주소"),)
-        data.add(arrayOf( "프로그램 저장 디렉토리로 이동", "이동할 디렉토리 주소"))
-        data.add(arrayOf( "SD카드 루트 디렉토리로 이동", "이동할 디렉토리 주소"))
-        data.add(arrayOf( "돌아가기", "go back!"))
+        data.addAll(initialdata)
         for (i in fileList.indices) {
             data.add(arrayOf(fileList[i], fileList[i] ))
         }
