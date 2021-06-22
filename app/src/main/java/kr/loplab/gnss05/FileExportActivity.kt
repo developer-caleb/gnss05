@@ -90,23 +90,20 @@ class FileExportActivity : ActivityBase<ActivityFileExportBinding>(),  Filedirec
                      Directorytype.SDCARDfolder.name-> initdirectory(rootPath)
                      Directorytype.goBack.name -> prevPath(path)
                      Directorytype.storagedirectory.name -> {
-                         var  gnssfolder = File(Environment.getExternalStorageDirectory().absolutePath +"/GNSS")
+                         var  gnssfolder = File(Environment.getExternalStorageDirectory().absolutePath +"/GNSS/EXPORT")
                          if (!gnssfolder.exists()) {
                              Log.d(TAG, "onItemClick: Directory Does Not Exist, Create It! /GNSS")
                              //Toast.makeText(MainActivity.this, "Directory Does Not Exist, Create It", Toast.LENGTH_SHORT).show();
                              var success = true
-                             success = gnssfolder.mkdir();
+                             success = gnssfolder.mkdirs();
                          }
-
-
-                         var  exportfolder = File(Environment.getExternalStorageDirectory().absolutePath +"/GNSS/EXPORT")
-
+                      /*   var  exportfolder = File(Environment.getExternalStorageDirectory().absolutePath +"/GNSS/EXPORT")
                          if (!exportfolder.exists()) {
                              Log.d(TAG, "onItemClick: Directory Does Not Exist, Create It ! /GNSS/EXPORT")
                              //Toast.makeText(MainActivity.this, "Directory Does Not Exist, Create It", Toast.LENGTH_SHORT).show();
                              var success = true
                              success = exportfolder.mkdir();
-                         }
+                         }*/
 
                          initdirectory(Environment.getExternalStorageDirectory().absolutePath +"/GNSS/EXPORT")
 
@@ -177,17 +174,19 @@ class FileExportActivity : ActivityBase<ActivityFileExportBinding>(),  Filedirec
     fun processpath(path: String){
         val file = File(path)
         if (!file.isDirectory) {
-            showToast("Not Directory")
+            //TODO: "processpath: csv 파일 클릭처리 할 것!"
+            Log.d(TAG, "processpath: csv 파일 클릭처리 할 것!")
             return
         }
-        val fileList = file.list()
+        val fileList = file.list { file, s -> file.isDirectory }
         data.clear()
         data.addAll(initialdata)
         fileList.forEachIndexed { index, string ->
-            val file = File(fileList[index])
-            if(file.isDirectory || file.extension.lowercase()=="csv") {data.add(arrayOf(fileList[index].toString(), fileList[index].toString()));}
 
-        }
+            data.add(arrayOf(fileList[index].toString(), fileList[index].toString()));}
+            // val files = File(fileList[index])
+           // Log.d(TAG, "processpath: $index : ${files.isDirectory} 와 ${files.isFile} 와 ${files.extension.lowercase()=="csv"}  : ${files.name}")
+           // if(files.isDirectory || file.extension.lowercase()=="csv") {        }
         adapter.notifyDataSetChanged()
     }
 
