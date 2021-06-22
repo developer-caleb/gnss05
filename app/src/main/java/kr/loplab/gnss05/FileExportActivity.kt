@@ -25,7 +25,6 @@ class FileExportActivity : ActivityBase<ActivityFileExportBinding>(),  Filedirec
     //
 
     override fun onBackPressed() {
-        println("hello222")
         currentPath = viewBinding.strDirectory.text.toString();
         prevPath(currentPath)
     //super.onBackPressed()
@@ -106,8 +105,29 @@ class FileExportActivity : ActivityBase<ActivityFileExportBinding>(),  Filedirec
     }
 
     fun initdirectory(rootPath : String) :Boolean   {
-        Log.d(TAG, "initdirectory: $rootPath")
-        // 파일 객체 생성
+
+
+       /* var fileRoot: File =  File(rootPath);
+        //디렉토리가 아님
+        if(!fileRoot.isDirectory())        {
+            showToast("Not Directory");
+            return false;
+        }
+
+
+        //파일 리스트 가져오기 ->//파일 리스트가 없음
+
+
+        var fileList  = fileRoot.list();
+        if ( fileList == null )        {
+            showToast("Could not find List");
+            return false;
+        }
+
+        // 아이템 리스트 전부 삭제
+        data.clear();
+        data.addAll(initialdata)
+        fileList.forEachIndexed { index, string ->  data.add(arrayOf(fileList[index].toString(), fileList[index].toString()));}*/
         processpath(rootPath)
         return true;
     }
@@ -115,8 +135,10 @@ class FileExportActivity : ActivityBase<ActivityFileExportBinding>(),  Filedirec
 
     fun nextPath(str: String) {
         prevPath = currentPath
+
         // 현재 경로에서 / 와 다음 경로 붙이기
         nextPath = "$currentPath/$str"
+
         processpath(nextPath)
 
     }
@@ -124,6 +146,7 @@ class FileExportActivity : ActivityBase<ActivityFileExportBinding>(),  Filedirec
     fun prevPath(str: String?) {
         nextPath = currentPath
         prevPath = currentPath
+
         if(currentPath == rootPath){
             showToast("최상위 폴더입니다")
             return;}
@@ -132,12 +155,14 @@ class FileExportActivity : ActivityBase<ActivityFileExportBinding>(),  Filedirec
 
         // 처음부터 마지막 / 까지의 문자열 가져오기
         prevPath = prevPath.substring(0, lastSlashPosition)
-        
+
+
+
         processpath(prevPath)
 
     }
     fun processpath(path: String){
-        viewBinding.strDirectory.text = prevPath
+        viewBinding.strDirectory.text = path
         val file = File(path)
         if (!file.isDirectory) {
             //TODO: "processpath: csv 파일 클릭처리 할 것!"

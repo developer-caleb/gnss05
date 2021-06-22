@@ -11,7 +11,7 @@ import com.google.android.material.snackbar.Snackbar
 
 abstract class ActivityBase<T : ViewDataBinding>: AppCompatActivity() {
     val TAG = javaClass.simpleName
-
+    lateinit var mToast : Toast;
     abstract val layoutResourceId: Int
     lateinit var viewBinding: T
 
@@ -23,6 +23,7 @@ abstract class ActivityBase<T : ViewDataBinding>: AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
+        mToast =  Toast.makeText(applicationContext,"null", Toast.LENGTH_SHORT)
         viewBinding = DataBindingUtil.setContentView(this, layoutResourceId)
        // viewDataBinding.setVariable( BR.viewModel ,viewModel) viewmodel은 직접 넣어주자.. 어떻게 넣어주야하지?
         viewBinding.lifecycleOwner = this
@@ -44,7 +45,8 @@ abstract class ActivityBase<T : ViewDataBinding>: AppCompatActivity() {
 
     fun showToast(str:String){
         Log.d(TAG, "showToast: $str")
-        Toast.makeText(applicationContext,str, Toast.LENGTH_LONG).show()
+        mToast.setText(str);
+        mToast.show();
     }
 
 }
