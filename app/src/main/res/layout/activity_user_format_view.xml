@@ -28,7 +28,7 @@
         <com.evrencoskun.tableview.TableView
             android:id="@+id/content_container"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
 
             app:column_header_height="@dimen/column_header_height"
             app:row_header_width="@dimen/row_header_width"
