@@ -15,6 +15,7 @@ class UserFormatView : ActivityBase<ActivityUserFormatViewBinding>(){
     }
 
     override fun initListener() {
+        viewBinding.header05.setOnBackButtonClickListener{onBackPressed()}
     }
 
     override fun initDatabinding() {

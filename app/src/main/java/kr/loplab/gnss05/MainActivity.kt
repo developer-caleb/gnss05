@@ -30,7 +30,7 @@ class MainActivity : AppCompatActivity(),
         val adapter: MainpageRecyclerViewAdapter
         val data = arrayOf(
             "0",  "1", "2",
-            "3", "4", "5",
+            "3", "4", "5", "6",
         )
 
         // set up the RecyclerView
@@ -75,6 +75,10 @@ class MainActivity : AppCompatActivity(),
             }
             5 -> {
                 val nextIntent = Intent(this, UserFormatMake::class.java)
+                startActivity(nextIntent);
+            }
+            6 -> {
+                val nextIntent = Intent(this, UserFormatView::class.java)
                 startActivity(nextIntent);
             }
         }
