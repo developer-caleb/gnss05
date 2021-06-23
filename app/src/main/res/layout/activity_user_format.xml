@@ -76,28 +76,53 @@
                         android:text="Name" />
 
                     <View
-                        android:id="@+id/divider9"
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
                         android:background="?android:attr/listDivider" />
 
                     <TextView
-                        android:id="@+id/textView18"
+                        android:id="@+id/tv_sign"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="TextView"
+                        android:text="구분기호"
                         android:textColor="#000000" />
 
                     <Spinner
-                        android:id="@+id/spinner"
+                        android:id="@+id/spinner_sign"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" />
 
                     <View
-                        android:id="@+id/divider10"
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
                         android:background="?android:attr/listDivider" />
+                    <TextView
+                        android:id="@+id/tv_ext"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="확장명"
+                        android:textColor="#000000" />
+
+                    <Spinner
+                        android:id="@+id/spinner_ext"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="?android:attr/listDivider" />
+                    <TextView
+                        android:id="@+id/tv_fileheader"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="파일헤더"
+                        android:textColor="#000000" />
+
+                    <Spinner
+                        android:id="@+id/spinner_fileheader"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
                 </LinearLayout>
             </ScrollView>
 
