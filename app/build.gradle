@@ -78,4 +78,7 @@ dependencies {
 
     //permission 획득하는 library
     implementation 'com.karumi:dexter:6.1.0'
+
+    //Table layout
+    implementation 'com.evrencoskun.library:tableview:0.8.9.4'
 }

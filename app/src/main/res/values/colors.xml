@@ -18,4 +18,5 @@
     <color name="grey_05">#FFCCCCCC</color>
     <color name="dividercolor">#FF888888</color>
     <color name="main">#0454ff</color>
+    <color name="selected_background_color">#B292F8</color>
 </resources>

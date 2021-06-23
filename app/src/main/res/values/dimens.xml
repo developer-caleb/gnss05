@@ -20,4 +20,8 @@
     <dimen name="LIconsize">35dp</dimen>
     <dimen name="SIconsize">35dp</dimen>
     <dimen name="Backbuttonsize">20dp</dimen>
+
+    <!--   Table 레이아웃 사이즈 그룹 -->
+    <dimen name="column_header_height">35dp</dimen>
+    <dimen name="row_header_width">35dp</dimen>
 </resources>
