@@ -74,7 +74,7 @@ class MainActivity : AppCompatActivity(),
                 startActivity(nextIntent);
             }
             5 -> {
-                val nextIntent = Intent(this, UserFormat::class.java)
+                val nextIntent = Intent(this, UserFormatMake::class.java)
                 startActivity(nextIntent);
             }
         }

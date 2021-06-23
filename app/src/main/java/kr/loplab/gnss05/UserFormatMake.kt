@@ -9,7 +9,7 @@ import kr.loplab.gnss02.ActivityBase
 import kr.loplab.gnss05.databinding.ActivityStandardPointBinding
 import kr.loplab.gnss05.databinding.ActivityUserFormatBinding
 
-class UserFormat : ActivityBase<ActivityUserFormatBinding>(), UserFormatRecyclerViewAdapter.RecyclerItemClickListener  {
+class UserFormatMake : ActivityBase<ActivityUserFormatBinding>(), UserFormatRecyclerViewAdapter.RecyclerItemClickListener  {
     override val layoutResourceId: Int
         get() = R.layout.activity_user_format
     var optionitemlist  = arrayOf("이름", "코드", "위도", "경도", "고도", "X", "Y", "Z(레벨)", "X(공간)", "Y(공간)", "Z(공간)", "도로명", "측설점",
