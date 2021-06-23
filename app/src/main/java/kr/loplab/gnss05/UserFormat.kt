@@ -23,9 +23,8 @@ class UserFormat : ActivityBase<ActivityUserFormatBinding>(), UserFormatRecycler
             "공분산 Czx", "공분산 Czy", "공분산 Czz", "SD", "HD", "VD", "HA", "VA", "PPM", "참조각도", "알려진 방위각",
             "스테이션 좌표 북쪽", "스테이션 좌표 동쪽", "스테이션 좌표 높이", "반사경", "HI", "프리즘상수", "HT")
     private lateinit var adapter : UserFormatRecyclerViewAdapter
-
+    var data = ArrayList<Array<String>>()
     override fun init() {
-        var data = ArrayList<Array<String>>()
         optionitemlist.forEachIndexed { index, item ->data.add(arrayOf(item))}
         adapter  = UserFormatRecyclerViewAdapter(this, data)
         adapter.setClickListener(this)
@@ -37,6 +36,12 @@ class UserFormat : ActivityBase<ActivityUserFormatBinding>(), UserFormatRecycler
     override fun initListener() {
       //
         viewBinding.header04.setOnBackButtonClickListener{onBackPressed()}
+        viewBinding.btAdd.setOnClickListener { Log.d(TAG, "bt add clicked ${adapter.selectedPosition}")
+            data.removeAt(adapter.selectedPosition);
+            adapter.notifyDataSetChanged();
+        }
+        viewBinding.btDelete.setOnClickListener { Log.d(TAG, "bt delete clicked") }
+        viewBinding.btConfirm.setOnClickListener { Log.d(TAG, "bt confirm clicked") }
     }
 
     override fun initDatabinding() {

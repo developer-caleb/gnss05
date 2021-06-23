@@ -161,7 +161,7 @@
         app:layout_constraintStart_toStartOf="parent">
 
         <TextView
-            android:id="@+id/textView2"
+            android:id="@+id/bt_add"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -177,7 +177,7 @@
             android:background="@color/white" />
 
         <TextView
-            android:id="@+id/textView3"
+            android:id="@+id/bt_delete"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -192,7 +192,7 @@
             android:layout_weight="0"
             android:background="@color/white" />
         <TextView
-            android:id="@+id/textView"
+            android:id="@+id/bt_confirm"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
