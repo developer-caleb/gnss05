@@ -48,7 +48,7 @@ class UserFormatRecyclerViewAdapter internal constructor(context: Context?, data
         }
 
         init {
-            myTextView = itemView.findViewById(R.id.list_text2)
+            myTextView = itemView.findViewById(R.id.tv_customformat_recyclerviewitems)
             //imageView = itemView.findViewById(R.id.recyclerview_icon)
             itemView.setOnClickListener(this)
         }

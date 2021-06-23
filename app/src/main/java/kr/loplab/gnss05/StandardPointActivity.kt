@@ -17,11 +17,6 @@ class StandardPointActivity : ActivityBase<ActivityStandardPointBinding>() {
     override val layoutResourceId: Int
         get() = R.layout.activity_standard_point
     val viewModel : StandardPointViewModel by viewModel()
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-
-    }
 
     //액션버튼 메뉴 액션바에 집어 넣기
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
