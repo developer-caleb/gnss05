@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/recyclerview_layout"
     android:layout_width="match_parent"
     android:layout_height="40dp"
     android:orientation="vertical">
 
     <TextView
-        android:id="@+id/textView18"
+        android:id="@+id/tv_customformat_recyclerviewitems"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_weight="1"
@@ -16,7 +17,6 @@
         android:textSize="15dp" />
 
     <View
-        android:id="@+id/divider9"
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:layout_weight="0"
