@@ -1,6 +1,7 @@
 package kr.loplab.gnss05
 
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,6 +14,9 @@ class UserFormatRecyclerViewAdapter internal constructor(context: Context?, data
     private val mData: ArrayList<Array<String>>
     private val mInflater: LayoutInflater
     private var mClickListener: RecyclerItemClickListener? = null
+    var selectedPosition = 0;
+    var context : Context?
+    var TAG : String  = javaClass.simpleName;
 
     // inflates the cell layout from xml when needed
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -23,6 +27,8 @@ class UserFormatRecyclerViewAdapter internal constructor(context: Context?, data
     // binds the data to the TextView in each cell
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.myTextView.text = mData[position][0]
+        if(position == selectedPosition) {holder.itemView.setBackgroundColor(context!!.resources.getColor(R.color.grey_05))}
+        else{holder.itemView.setBackgroundColor(context!!.resources.getColor(R.color.white))}
         /*when(mData[position][2]){
            *//* "rightarrow" -> holder.imageView.setImageResource(R.drawable.ic_rightarrow2)
             "back" -> holder.imageView.setImageResource(R.drawable.lefticon)
@@ -45,6 +51,9 @@ class UserFormatRecyclerViewAdapter internal constructor(context: Context?, data
         //var imageView: ImageView
         override fun onClick(view: View) {
             if (mClickListener != null) mClickListener!!.onItemClick(view, adapterPosition)
+            selectedPosition = adapterPosition
+            Log.d(TAG, "onClick: recyclerview호출. $adapterPosition selected")
+            notifyDataSetChanged()
         }
 
         init {
@@ -73,5 +82,6 @@ class UserFormatRecyclerViewAdapter internal constructor(context: Context?, data
     init {
         mInflater = LayoutInflater.from(context)
         mData = data
+        this.context = context
     }
 }

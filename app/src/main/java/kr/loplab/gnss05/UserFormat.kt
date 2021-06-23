@@ -2,6 +2,7 @@ package kr.loplab.gnss05
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 import kr.loplab.gnss02.ActivityBase
@@ -43,6 +44,6 @@ class UserFormat : ActivityBase<ActivityUserFormatBinding>(), UserFormatRecycler
     }
 
     override fun onItemClick(view: View?, position: Int) {
-        TODO("Not yet implemented")
+        Log.d(TAG, "onItemClick: $position recyclerview 클릭 됨")
     }
 }
