@@ -12,6 +12,7 @@ class UserFormatView : ActivityBase<ActivityUserFormatViewBinding>(){
 
 
     override fun init() {
+
     }
 
     override fun initListener() {

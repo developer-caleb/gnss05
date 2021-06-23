@@ -18,7 +18,13 @@
     <color name="grey_05">#FFCCCCCC</color>
     <color name="dividercolor">#FF888888</color>
     <color name="main">#0454ff</color>
+
+    <!--table-->
     <color name="selected_background_color">#6636D1</color>
     <color name="shadow_background_color">#986FF1</color>
     <color name="unselected_background_color">#B292F8</color>
+    <color name="table_view_default_text_color">#595959</color>
+    <color name="header_line_color">#595959</color>
+    <color name="cell_background_color">#FFFFFF</color>
+    <!--table-->
 </resources>
