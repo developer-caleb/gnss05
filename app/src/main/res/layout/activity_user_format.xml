@@ -12,6 +12,7 @@
 
 
     <kr.loplab.gnss05.DefaultHeader
+        android:id="@+id/header_04"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     app:title="사용자 형식"></kr.loplab.gnss05.DefaultHeader>
