@@ -9,8 +9,8 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
-class UserFormatRecyclerViewAdapter internal constructor(context: Context?, data: ArrayList<Array<String>>) :
-    RecyclerView.Adapter<UserFormatRecyclerViewAdapter.ViewHolder>() {
+class UserFormatAddRecyclerViewAdapter internal constructor(context: Context?, data: ArrayList<Array<String>>) :
+    RecyclerView.Adapter<UserFormatAddRecyclerViewAdapter.ViewHolder>() {
     private val mData: ArrayList<Array<String>>
     private val mInflater: LayoutInflater
     private var mClickListener: RecyclerItemClickListener? = null
