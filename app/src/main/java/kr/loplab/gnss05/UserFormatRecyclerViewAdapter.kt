@@ -29,7 +29,8 @@ class UserFormatRecyclerViewAdapter internal constructor(context: Context?, data
         holder.myTextView.text = mData[position][0]
         if(position == selectedPosition) {holder.itemView.setBackgroundColor(context!!.resources.getColor(R.color.grey_05))}
         else{holder.itemView.setBackgroundColor(context!!.resources.getColor(R.color.white))}
-        if(mData[position][2].toBoolean()){holder.itemView.visibility= View.VISIBLE
+        if(mData[position][2].toBoolean()){
+            holder.itemView.visibility= View.VISIBLE
             holder.itemView.layoutParams =
                 RecyclerView.LayoutParams(
                     ViewGroup.LayoutParams.MATCH_PARENT,

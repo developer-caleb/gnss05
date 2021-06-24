@@ -33,8 +33,19 @@ class UserFormatMake : ActivityBase<ActivityUserFormatBinding>(), UserFormatRecy
     override fun initListener() {
       //
         viewBinding.header04.setOnBackButtonClickListener{onBackPressed()}
-        viewBinding.btAdd.setOnClickListener { Log.d(TAG, "bt add clicked ${adapter.selectedPosition}")
+        viewBinding.btAdd.setOnClickListener {
+            if(adapter.selectedPosition ==-1){
+                Log.d(TAG, "initListener")
+                return@setOnClickListener}
+            Log.d(TAG, "bt add clicked ${adapter.selectedPosition}")
+            listdata.add()
             itemdata[adapter.selectedPosition][2] = false.toString()
+            if(itemdata.indexOfFirst { element -> element[2]==true.toString() } !=-1)
+            {
+                adapter.selectedPosition = itemdata.indexOfFirst { element -> element[2]==true.toString() }
+            }else {
+                return@setOnClickListener
+            }
             adapter.notifyDataSetChanged();
         }
         viewBinding.btDelete.setOnClickListener { Log.d(TAG, "bt delete clicked") }
