@@ -2,12 +2,11 @@ package kr.loplab.gnss05
 
 import android.content.Context
 import android.util.Log
+import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import android.widget.TextView
-import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
 
 class UserFormatRecyclerViewAdapter internal constructor(context: Context?, data: ArrayList<Array<String>>) :
@@ -30,7 +29,19 @@ class UserFormatRecyclerViewAdapter internal constructor(context: Context?, data
         holder.myTextView.text = mData[position][0]
         if(position == selectedPosition) {holder.itemView.setBackgroundColor(context!!.resources.getColor(R.color.grey_05))}
         else{holder.itemView.setBackgroundColor(context!!.resources.getColor(R.color.white))}
-        holder.itemView.isVisible =mData[position][2].toBoolean()
+        if(mData[position][2].toBoolean()){holder.itemView.visibility= View.VISIBLE
+            holder.itemView.layoutParams =
+                RecyclerView.LayoutParams(
+                    ViewGroup.LayoutParams.MATCH_PARENT,
+                    dp2px(40f, context!!).toInt()
+                )
+        }
+        else{holder.itemView.visibility= View.GONE
+            holder.itemView.layoutParams = RecyclerView.LayoutParams(0, 0)
+            //holder.itemView.setBackgroundColor(context!!.resources.getColor(R.color.design_default_color_secondary))
+
+        }
+        Log.d(TAG, "onBindViewHolder:$position ${mData[position][2]}")
         /*when(mData[position][2]){
            *//* "rightarrow" -> holder.imageView.setImageResource(R.drawable.ic_rightarrow2)
             "back" -> holder.imageView.setImageResource(R.drawable.lefticon)
@@ -40,7 +51,8 @@ class UserFormatRecyclerViewAdapter internal constructor(context: Context?, data
         }*/
 
     }
-
+    fun dp2px(dp: Float, context: Context) = TypedValue.applyDimension(
+        TypedValue.COMPLEX_UNIT_DIP, dp, context.resources.displayMetrics)
     // total number of cells
     override fun getItemCount(): Int {
         return mData.size
@@ -86,4 +98,6 @@ class UserFormatRecyclerViewAdapter internal constructor(context: Context?, data
         mData = data
         this.context = context
     }
+
+
 }
