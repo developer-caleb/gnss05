@@ -39,13 +39,17 @@ class UserFormatMake : ActivityBase<ActivityUserFormatBinding>(), UserFormatAddR
       //
         viewBinding.header04.setOnBackButtonClickListener{onBackPressed()}
         viewBinding.btAdd.setOnClickListener {
+            //if (mode == USERFORMATMAKEMODE.ADD) return@setOnClickListener
             Log.d(TAG, "bt add clicked ${adapterAdd.selectedPosition}")
-            viewBinding.recyclerviewUserFormatSettings.adapter = adapterAdd
-            viewBinding.btAdd.setBackgroundColor(conte.resources.getColor(R.color.white))
+            selectmode(USERFORMATMAKEMODE.ADD)
+            //viewBinding.recyclerviewUserFormatSettings.adapter = adapterAdd
         }
         viewBinding.btDelete.setOnClickListener {
+            //if (mode == USERFORMATMAKEMODE.DELETE) return@setOnClickListener
             Log.d(TAG, "bt delete clicked")
-            viewBinding.recyclerviewUserFormatSettings.adapter = adapterDelete
+            selectmode(USERFORMATMAKEMODE.DELETE)
+           // viewBinding.recyclerviewUserFormatSettings.adapter = adapterDelete
+            //viewBinding.btAdd.setBackgroundColor(applicationContext.resources.getColor(R.color.design_default_color_secondary))
         }
         viewBinding.btConfirm.setOnClickListener {
             Log.d(TAG, "bt confirm clicked")
@@ -82,7 +86,29 @@ class UserFormatMake : ActivityBase<ActivityUserFormatBinding>(), UserFormatAddR
     override fun onItemDeleteClick(view: View?, position: Int) {
         Log.d(TAG, "onItemClick: $position delete recyclerview 클릭 됨")
     }
+    fun selectmode(inputmode : USERFORMATMAKEMODE){
 
+
+        when (inputmode){
+            USERFORMATMAKEMODE.ADD->{
+                viewBinding.btAdd.setBackgroundColor(applicationContext.resources.getColor(R.color.selected_button_color))
+                viewBinding.btDelete.setBackgroundColor(applicationContext.resources.getColor(R.color.unselected_button_color))
+                if (this.mode == inputmode) return
+                viewBinding.recyclerviewUserFormatSettings.adapter = adapterAdd
+
+            }
+            USERFORMATMAKEMODE.DELETE->{
+                viewBinding.btAdd.setBackgroundColor(applicationContext.resources.getColor(R.color.unselected_button_color))
+                viewBinding.btDelete.setBackgroundColor(applicationContext.resources.getColor(R.color.selected_button_color))
+                if (this.mode == inputmode) return
+                viewBinding.recyclerviewUserFormatSettings.adapter = adapterDelete
+
+            }
+        }
+        mode = inputmode;
+
+
+    }
 
 }
 enum class USERFORMATMAKEMODE{ ADD, DELETE}
