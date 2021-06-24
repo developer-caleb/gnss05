@@ -1,5 +1,6 @@
 package kr.loplab.gnss05
 
+import android.app.Activity
 import android.util.Log
 import android.view.View
 import kr.loplab.gnss02.ActivityBase
@@ -39,13 +40,18 @@ class UserFormatMake : ActivityBase<ActivityUserFormatBinding>(), UserFormatAddR
         viewBinding.header04.setOnBackButtonClickListener{onBackPressed()}
         viewBinding.btAdd.setOnClickListener {
             Log.d(TAG, "bt add clicked ${adapterAdd.selectedPosition}")
-
+            viewBinding.recyclerviewUserFormatSettings.adapter = adapterAdd
+            viewBinding.btAdd.setBackgroundColor(conte.resources.getColor(R.color.white))
         }
-        viewBinding.btDelete.setOnClickListener { Log.d(TAG, "bt delete clicked") }
+        viewBinding.btDelete.setOnClickListener {
+            Log.d(TAG, "bt delete clicked")
+            viewBinding.recyclerviewUserFormatSettings.adapter = adapterDelete
+        }
         viewBinding.btConfirm.setOnClickListener {
             Log.d(TAG, "bt confirm clicked")
         when(mode){
             USERFORMATMAKEMODE.ADD->{
+
                 if(adapterAdd.selectedPosition ==-1){
                     Log.d(TAG, "initListener")
                     return@setOnClickListener}
@@ -56,6 +62,9 @@ class UserFormatMake : ActivityBase<ActivityUserFormatBinding>(), UserFormatAddR
                 }else { return@setOnClickListener }
                 adapterAdd.notifyDataSetChanged();
                 viewBinding.tvUserformat.text = listdata[0].toString()
+            }
+            USERFORMATMAKEMODE.DELETE->{
+
             }
         }
 

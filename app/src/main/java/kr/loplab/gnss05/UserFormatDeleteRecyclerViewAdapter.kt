@@ -29,20 +29,8 @@ class UserFormatDeleteRecyclerViewAdapter internal constructor(context: Context?
         holder.myTextView.text = mData[position][0]
         if(position == selectedPosition) {holder.itemView.setBackgroundColor(context!!.resources.getColor(R.color.grey_05))}
         else{holder.itemView.setBackgroundColor(context!!.resources.getColor(R.color.white))}
-        if(mData[position][2].toBoolean()){
-            holder.itemView.visibility= View.VISIBLE
-            holder.itemView.layoutParams =
-                RecyclerView.LayoutParams(
-                    ViewGroup.LayoutParams.MATCH_PARENT,
-                    dp2px(40f, context!!).toInt()
-                )
-        }
-        else{holder.itemView.visibility= View.GONE
-            holder.itemView.layoutParams = RecyclerView.LayoutParams(0, 0)
-            //holder.itemView.setBackgroundColor(context!!.resources.getColor(R.color.design_default_color_secondary))
 
-        }
-        Log.d(TAG, "onBindViewHolder:$position ${mData[position][2]}")
+
         /*when(mData[position][2]){
            *//* "rightarrow" -> holder.imageView.setImageResource(R.drawable.ic_rightarrow2)
             "back" -> holder.imageView.setImageResource(R.drawable.lefticon)

@@ -18,6 +18,7 @@
     <color name="grey_05">#FFCCCCCC</color>
     <color name="dividercolor">#FF888888</color>
     <color name="main">#0454ff</color>
+    <color name="selected_button_color">#0066FF</color>
 
     <!--table-->
     <color name="selected_background_color">#6636D1</color>
