@@ -65,7 +65,7 @@ class UserFormatAddRecyclerViewAdapter internal constructor(context: Context?, d
         var myTextView: TextView
         //var imageView: ImageView
         override fun onClick(view: View) {
-            if (mClickListener != null) mClickListener!!.onItemClick(view, adapterPosition)
+            if (mClickListener != null) mClickListener!!.onItemAddClick(view, adapterPosition)
             selectedPosition = adapterPosition
             Log.d(TAG, "onClick: recyclerview호출. $adapterPosition selected")
             notifyDataSetChanged()
@@ -90,7 +90,7 @@ class UserFormatAddRecyclerViewAdapter internal constructor(context: Context?, d
 
     // parent activity will implement this method to respond to click events
     interface RecyclerItemClickListener {
-        fun onItemClick(view: View?, position: Int)
+        fun onItemAddClick(view: View?, position: Int)
     }
 
     // data is passed into the constructor

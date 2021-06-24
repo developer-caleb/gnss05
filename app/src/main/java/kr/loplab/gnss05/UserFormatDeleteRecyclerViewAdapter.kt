@@ -65,7 +65,7 @@ class UserFormatDeleteRecyclerViewAdapter internal constructor(context: Context?
         var myTextView: TextView
         //var imageView: ImageView
         override fun onClick(view: View) {
-            if (mClickListener != null) mClickListener!!.onItemClick(view, adapterPosition)
+            if (mClickListener != null) mClickListener!!.onItemDeleteClick(view, adapterPosition)
             selectedPosition = adapterPosition
             Log.d(TAG, "onClick: recyclerview호출. $adapterPosition selected")
             notifyDataSetChanged()
@@ -90,7 +90,7 @@ class UserFormatDeleteRecyclerViewAdapter internal constructor(context: Context?
 
     // parent activity will implement this method to respond to click events
     interface RecyclerItemClickListener {
-        fun onItemClick(view: View?, position: Int)
+        fun onItemDeleteClick(view: View?, position: Int)
     }
 
     // data is passed into the constructor

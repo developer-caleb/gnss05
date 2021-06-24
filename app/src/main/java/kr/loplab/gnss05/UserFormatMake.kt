@@ -5,7 +5,7 @@ import android.view.View
 import kr.loplab.gnss02.ActivityBase
 import kr.loplab.gnss05.databinding.ActivityUserFormatBinding
 
-class UserFormatMake : ActivityBase<ActivityUserFormatBinding>(), UserFormatAddRecyclerViewAdapter.RecyclerItemClickListener  {
+class UserFormatMake : ActivityBase<ActivityUserFormatBinding>(), UserFormatAddRecyclerViewAdapter.RecyclerItemClickListener, UserFormatDeleteRecyclerViewAdapter.RecyclerItemClickListener  {
     override val layoutResourceId: Int
         get() = R.layout.activity_user_format
     var optionitemlist  = arrayOf("이름", "코드", "위도", "경도", "고도", "X", "Y", "Z(레벨)", "X(공간)", "Y(공간)", "Z(공간)", "도로명", "측설점",
@@ -19,13 +19,16 @@ class UserFormatMake : ActivityBase<ActivityUserFormatBinding>(), UserFormatAddR
             "공분산 Czx", "공분산 Czy", "공분산 Czz", "SD", "HD", "VD", "HA", "VA", "PPM", "참조각도", "알려진 방위각",
             "스테이션 좌표 북쪽", "스테이션 좌표 동쪽", "스테이션 좌표 높이", "반사경", "HI", "프리즘상수", "HT")
     private lateinit var adapterAdd : UserFormatAddRecyclerViewAdapter
+    private lateinit var adapterDelete : UserFormatDeleteRecyclerViewAdapter
     var itemdata = ArrayList<Array<String>>()
     var listdata =  ArrayList<Array<String>>()
     var mode = USERFORMATMAKEMODE.ADD;
     override fun init() {
         optionitemlist.forEachIndexed { index, item ->itemdata.add(arrayOf(item, index.toString(), true.toString()))}
         adapterAdd  = UserFormatAddRecyclerViewAdapter(this, itemdata)
+        adapterDelete  = UserFormatDeleteRecyclerViewAdapter(this, listdata)
         adapterAdd.setClickListener(this)
+        adapterDelete.setClickListener(this)
         viewBinding.recyclerviewUserFormatSettings.adapter = adapterAdd
 
       //
@@ -49,11 +52,8 @@ class UserFormatMake : ActivityBase<ActivityUserFormatBinding>(), UserFormatAddR
                 listdata.add(arrayOf(itemdata[adapterAdd.selectedPosition][0], adapterAdd.selectedPosition.toString(), ))
                 itemdata[adapterAdd.selectedPosition][2] = false.toString()
                 if(itemdata.indexOfFirst { element -> element[2]==true.toString() } !=-1)
-                {
-                    adapterAdd.selectedPosition = itemdata.indexOfFirst { element -> element[2]==true.toString() }
-                }else {
-                    return@setOnClickListener
-                }
+                { adapterAdd.selectedPosition = itemdata.indexOfFirst { element -> element[2]==true.toString() }
+                }else { return@setOnClickListener }
                 adapterAdd.notifyDataSetChanged();
                 viewBinding.tvUserformat.text = listdata[0].toString()
             }
@@ -66,8 +66,12 @@ class UserFormatMake : ActivityBase<ActivityUserFormatBinding>(), UserFormatAddR
        //
     }
 
-    override fun onItemClick(view: View?, position: Int) {
-        Log.d(TAG, "onItemClick: $position recyclerview 클릭 됨")
+    override fun onItemAddClick(view: View?, position: Int) {
+        Log.d(TAG, "onItemClick: $position  add recyclerview 클릭 됨")
+    }
+
+    override fun onItemDeleteClick(view: View?, position: Int) {
+        Log.d(TAG, "onItemClick: $position delete recyclerview 클릭 됨")
     }
 
 
