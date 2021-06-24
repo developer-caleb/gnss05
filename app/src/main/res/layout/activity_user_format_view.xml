@@ -18,6 +18,7 @@
         android:layout_height="wrap_content"
         app:title="사용자 정의 형식"></kr.loplab.gnss05.DefaultHeader>
 
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -25,20 +26,7 @@
         android:orientation="horizontal">
 
 
-        <com.evrencoskun.tableview.TableView
-            android:id="@+id/content_container"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-
-            app:column_header_height="@dimen/column_header_height"
-            app:row_header_width="@dimen/row_header_width"
-            app:selected_color="@color/selected_background_color"
-            app:shadow_color="@color/shadow_background_color"
-            app:unselected_color="@color/unselected_background_color"
-            />
-
     </LinearLayout>
-
 
     <LinearLayout
         android:id="@+id/bottomButton"

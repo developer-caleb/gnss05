@@ -37,11 +37,11 @@
             android:background="?android:attr/listDivider" />
 
         <TextView
-            android:id="@+id/textView9"
+            android:id="@+id/tv_userformat"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="alkjsdfkahsdklfhaskjhfaklsjhfklasjhflaksjhfklasjhflkashflkasjhflkhjaleksjhfklehflkahwlkjhfawklhfklawhlkehfjlkwajhflkwajheflkajwhlkfjhelkfhawlkefjhawlkjefhalwkjehflwkaehflkwjehflkawhflakujhfkwlajhfalkjsdfkahsdklfhaskjhfaklsjhfklasjhflaksjhfklasjhflkashflkasjhflkhjaleksjhfklehflkahwlkjhfawklhfklawhlkehfjlkwajhflkwajheflkajwhlkfjhelkfhawlkefjhawlkjefhalwkjehflwkaehflkwjehflkawhflakujhfkwlajhf"
-            android:textColor="@color/black" />
+            android:text="형식 항목을 추가해주세요"
+            android:textColor="@color/grey_01" />
         <View
             android:id="@+id/divider8"
             android:layout_width="match_parent"
