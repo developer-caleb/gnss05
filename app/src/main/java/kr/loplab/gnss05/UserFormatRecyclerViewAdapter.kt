@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
 
 class UserFormatRecyclerViewAdapter internal constructor(context: Context?, data: ArrayList<Array<String>>) :
@@ -29,6 +30,7 @@ class UserFormatRecyclerViewAdapter internal constructor(context: Context?, data
         holder.myTextView.text = mData[position][0]
         if(position == selectedPosition) {holder.itemView.setBackgroundColor(context!!.resources.getColor(R.color.grey_05))}
         else{holder.itemView.setBackgroundColor(context!!.resources.getColor(R.color.white))}
+        holder.itemView.isVisible =mData[position][2].toBoolean()
         /*when(mData[position][2]){
            *//* "rightarrow" -> holder.imageView.setImageResource(R.drawable.ic_rightarrow2)
             "back" -> holder.imageView.setImageResource(R.drawable.lefticon)

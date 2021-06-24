@@ -1,12 +1,8 @@
 package kr.loplab.gnss05
 
-import androidx.appcompat.app.AppCompatActivity
-import android.os.Bundle
 import android.util.Log
 import android.view.View
-import androidx.recyclerview.widget.RecyclerView
 import kr.loplab.gnss02.ActivityBase
-import kr.loplab.gnss05.databinding.ActivityStandardPointBinding
 import kr.loplab.gnss05.databinding.ActivityUserFormatBinding
 
 class UserFormatMake : ActivityBase<ActivityUserFormatBinding>(), UserFormatRecyclerViewAdapter.RecyclerItemClickListener  {
@@ -23,10 +19,11 @@ class UserFormatMake : ActivityBase<ActivityUserFormatBinding>(), UserFormatRecy
             "공분산 Czx", "공분산 Czy", "공분산 Czz", "SD", "HD", "VD", "HA", "VA", "PPM", "참조각도", "알려진 방위각",
             "스테이션 좌표 북쪽", "스테이션 좌표 동쪽", "스테이션 좌표 높이", "반사경", "HI", "프리즘상수", "HT")
     private lateinit var adapter : UserFormatRecyclerViewAdapter
-    var data = ArrayList<Array<String>>()
+    var itemdata = ArrayList<Array<String>>()
+    var listdata = ArrayList<String>()
     override fun init() {
-        optionitemlist.forEachIndexed { index, item ->data.add(arrayOf(item))}
-        adapter  = UserFormatRecyclerViewAdapter(this, data)
+        optionitemlist.forEachIndexed { index, item ->itemdata.add(arrayOf(item, index.toString(), true.toString()))}
+        adapter  = UserFormatRecyclerViewAdapter(this, itemdata)
         adapter.setClickListener(this)
         viewBinding.recyclerviewUserFormatSettings.adapter = adapter
 
@@ -37,7 +34,7 @@ class UserFormatMake : ActivityBase<ActivityUserFormatBinding>(), UserFormatRecy
       //
         viewBinding.header04.setOnBackButtonClickListener{onBackPressed()}
         viewBinding.btAdd.setOnClickListener { Log.d(TAG, "bt add clicked ${adapter.selectedPosition}")
-            data.removeAt(adapter.selectedPosition);
+            itemdata[adapter.selectedPosition][2] = false.toString()
             adapter.notifyDataSetChanged();
         }
         viewBinding.btDelete.setOnClickListener { Log.d(TAG, "bt delete clicked") }
@@ -51,4 +48,6 @@ class UserFormatMake : ActivityBase<ActivityUserFormatBinding>(), UserFormatRecy
     override fun onItemClick(view: View?, position: Int) {
         Log.d(TAG, "onItemClick: $position recyclerview 클릭 됨")
     }
+
+
 }
