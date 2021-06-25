@@ -31,7 +31,7 @@ class UserFormatMake : ActivityBase<ActivityUserFormatBinding>(), UserFormatAddR
         adapterAdd.setClickListener(this)
         adapterDelete.setClickListener(this)
         viewBinding.recyclerviewUserFormatSettings.adapter = adapterAdd
-
+        selectmode(USERFORMATMAKEMODE.ADD)
       //
     }
 
@@ -87,8 +87,6 @@ class UserFormatMake : ActivityBase<ActivityUserFormatBinding>(), UserFormatAddR
         Log.d(TAG, "onItemClick: $position delete recyclerview 클릭 됨")
     }
     fun selectmode(inputmode : USERFORMATMAKEMODE){
-
-
         when (inputmode){
             USERFORMATMAKEMODE.ADD->{
                 viewBinding.btAdd.setBackgroundColor(applicationContext.resources.getColor(R.color.selected_button_color))
