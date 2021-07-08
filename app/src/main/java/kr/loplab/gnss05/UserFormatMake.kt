@@ -25,7 +25,7 @@ class UserFormatMake : ActivityBase<ActivityUserFormatBinding>(), UserFormatAddR
     var listdata =  ArrayList<Array<String>>()
     var mode = USERFORMATMAKEMODE.ADD;
     override fun init() {
-        optionitemlist.forEachIndexed { index, item ->itemdata.add(arrayOf(item, index.toString(), true.toString()))}
+        optionitemlist.forEachIndexed { index, item -> itemdata.add(arrayOf(item, index.toString(), true.toString()))}
         adapterAdd  = UserFormatAddRecyclerViewAdapter(this, itemdata)
         adapterDelete  = UserFormatDeleteRecyclerViewAdapter(this, listdata)
         adapterAdd.setClickListener(this)
@@ -51,26 +51,42 @@ class UserFormatMake : ActivityBase<ActivityUserFormatBinding>(), UserFormatAddR
            // viewBinding.recyclerviewUserFormatSettings.adapter = adapterDelete
             //viewBinding.btAdd.setBackgroundColor(applicationContext.resources.getColor(R.color.design_default_color_secondary))
         }
+
+        //confirm 버튼 눌렀을 때
         viewBinding.btConfirm.setOnClickListener {
             Log.d(TAG, "bt confirm clicked")
         when(mode){
             USERFORMATMAKEMODE.ADD->{
-
+                //선택 포지션이 없으면 return
                 if(adapterAdd.selectedPosition ==-1){
                     Log.d(TAG, "initListener")
                     return@setOnClickListener}
+                //리스트에 추가
                 listdata.add(arrayOf(itemdata[adapterAdd.selectedPosition][0], adapterAdd.selectedPosition.toString(), ))
+                //선택위치의 itemdata false로 만들기
                 itemdata[adapterAdd.selectedPosition][2] = false.toString()
+                //true인 녀석이 있으면 true인 첫번째 index가 selectposition이 되도록한다.
                 if(itemdata.indexOfFirst { element -> element[2]==true.toString() } !=-1)
                 { adapterAdd.selectedPosition = itemdata.indexOfFirst { element -> element[2]==true.toString() }
-                }else { return@setOnClickListener }
+                }else { return@setOnClickListener}
                 adapterAdd.notifyDataSetChanged();
                 viewBinding.tvUserformat.text = listdata[0].toString()
             }
             USERFORMATMAKEMODE.DELETE->{
-
+                //선택 포지션이 없으면 return
+                if(adapterDelete.selectedPosition ==-1){
+                    Log.d(TAG, "initListener")
+                    return@setOnClickListener}
+                listdata.removeAt(adapterDelete.selectedPosition)
+                itemdata[adapterDelete.selectedPosition][2] = true.toString()
+                if(itemdata.indexOfFirst { element -> element[2]==false.toString() } !=-1)
+                { adapterDelete.selectedPosition = itemdata.indexOfFirst { element -> element[2]==false.toString() }
+                }else { return@setOnClickListener }
+                adapterDelete.notifyDataSetChanged();
+                viewBinding.tvUserformat.text = listdata[0].toString()
             }
         }
+
 
         }
     }
@@ -104,8 +120,6 @@ class UserFormatMake : ActivityBase<ActivityUserFormatBinding>(), UserFormatAddR
             }
         }
         mode = inputmode;
-
-
     }
 
 }

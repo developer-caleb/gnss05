@@ -27,6 +27,7 @@
             android:id="@+id/textView8"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:paddingLeft="10dp"
             android:text="사용자정의 형식설명"
             android:textColor="@color/black" />
 
@@ -40,6 +41,9 @@
             android:id="@+id/tv_userformat"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:paddingLeft="10dp"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
             android:text="형식 항목을 추가해주세요"
             android:textColor="@color/grey_01" />
         <View
@@ -67,6 +71,7 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:paddingLeft="10dp"
                         android:text="형식명"
                         android:textColor="#000000" />
 
@@ -76,6 +81,7 @@
                         android:layout_height="wrap_content"
                         android:ems="10"
                         android:inputType="textPersonName"
+                        android:paddingLeft="10dp"
                         android:text="Name" />
 
                     <View
@@ -87,45 +93,53 @@
                         android:id="@+id/tv_sign"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:paddingLeft="10dp"
                         android:text="구분기호"
                         android:textColor="#000000" />
 
                     <Spinner
                         android:id="@+id/spinner_sign"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="10dp" />
 
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
                         android:background="?android:attr/listDivider" />
+
                     <TextView
                         android:id="@+id/tv_ext"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:paddingLeft="10dp"
                         android:text="확장명"
                         android:textColor="#000000" />
 
                     <Spinner
                         android:id="@+id/spinner_ext"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="10dp" />
 
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
                         android:background="?android:attr/listDivider" />
+
                     <TextView
                         android:id="@+id/tv_fileheader"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:paddingLeft="10dp"
                         android:text="파일헤더"
                         android:textColor="#000000" />
 
                     <Spinner
                         android:id="@+id/spinner_fileheader"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="10dp" />
                 </LinearLayout>
             </ScrollView>
 
