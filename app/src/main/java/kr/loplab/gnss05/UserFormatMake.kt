@@ -38,6 +38,8 @@ class UserFormatMake : ActivityBase<ActivityUserFormatBinding>(), UserFormatAddR
     override fun initListener() {
       //
         viewBinding.header04.setOnBackButtonClickListener{onBackPressed()}
+        viewBinding.header04.optionButtonText = "저장"
+        viewBinding.header04.setOnOptionButtonClickListener{ Log.d(TAG, "initListener: ")};
         viewBinding.btAdd.setOnClickListener {
             //if (mode == USERFORMATMAKEMODE.ADD) return@setOnClickListener
             Log.d(TAG, "bt add clicked ${adapterAdd.selectedPosition}")
@@ -50,6 +52,14 @@ class UserFormatMake : ActivityBase<ActivityUserFormatBinding>(), UserFormatAddR
             selectmode(USERFORMATMAKEMODE.DELETE)
            // viewBinding.recyclerviewUserFormatSettings.adapter = adapterDelete
             //viewBinding.btAdd.setBackgroundColor(applicationContext.resources.getColor(R.color.design_default_color_secondary))
+        }
+
+        viewBinding.headerSwitch.setOnCheckedChangeListener { compoundButton, bool ->
+            Log.d(TAG, "initListener: ${bool.toString()}")
+            when(bool){
+             true-> {viewBinding.checkTv.text = "예"}
+             false->  {viewBinding.checkTv.text = "아니오"}
+            }
         }
 
         //confirm 버튼 눌렀을 때
@@ -66,27 +76,34 @@ class UserFormatMake : ActivityBase<ActivityUserFormatBinding>(), UserFormatAddR
                 //선택위치의 itemdata false로 만들기
                 itemdata[adapterAdd.selectedPosition][2] = false.toString()
                 //true인 녀석이 있으면 true인 첫번째 index가 selectposition이 되도록한다.
-                if(itemdata.indexOfFirst { element -> element[2]==true.toString() } !=-1)
+                adapterAdd.selectedPosition = itemdata.indexOfFirst { element -> element[2]==true.toString()}
+                /*if(itemdata.indexOfFirst { element -> element[2]==true.toString() } !=-1)
                 { adapterAdd.selectedPosition = itemdata.indexOfFirst { element -> element[2]==true.toString() }
-                }else { return@setOnClickListener}
+                }else { return@setOnClickListener}*/
+                //데이터 새로고침
                 adapterAdd.notifyDataSetChanged();
+                adapterDelete.notifyDataSetChanged();
+                //텍스트를 listdata[0]으로 출력
                 viewBinding.tvUserformat.text = listdata[0].toString()
             }
             USERFORMATMAKEMODE.DELETE->{
                 //선택 포지션이 없으면 return
-                if(adapterDelete.selectedPosition ==-1){
-                    Log.d(TAG, "initListener")
+                if(adapterDelete.selectedPosition ==-1||listdata.size<1){
+                    Log.d(TAG, "not selected")
                     return@setOnClickListener}
+                itemdata[listdata[adapterDelete.selectedPosition][1].toInt()][2] = true.toString()
                 listdata.removeAt(adapterDelete.selectedPosition)
-                itemdata[adapterDelete.selectedPosition][2] = true.toString()
-                if(itemdata.indexOfFirst { element -> element[2]==false.toString() } !=-1)
-                { adapterDelete.selectedPosition = itemdata.indexOfFirst { element -> element[2]==false.toString() }
-                }else { return@setOnClickListener }
+                //itemdata[adapterDelete.selectedPosition][2] = true.toString()
+                adapterDelete.selectedPosition = 0;
+                //adapterDelete.selectedPosition = itemdata.indexOfFirst { element -> element[2]==false.toString()}
+                adapterAdd.notifyDataSetChanged();
                 adapterDelete.notifyDataSetChanged();
-                viewBinding.tvUserformat.text = listdata[0].toString()
-            }
-        }
 
+            //viewBinding.tvUserformat.text = listdata[0].toString()
+            }
+
+        }
+            setUserFormatText()
 
         }
     }
@@ -102,6 +119,14 @@ class UserFormatMake : ActivityBase<ActivityUserFormatBinding>(), UserFormatAddR
     override fun onItemDeleteClick(view: View?, position: Int) {
         Log.d(TAG, "onItemClick: $position delete recyclerview 클릭 됨")
     }
+
+    fun setUserFormatText(){
+        var text1 = "";
+         listdata.forEachIndexed { index, smalldata -> text1 += smalldata[0].toString() + ", " }
+
+        viewBinding.tvUserformat.text ="[$text1]"
+    }
+
     fun selectmode(inputmode : USERFORMATMAKEMODE){
         when (inputmode){
             USERFORMATMAKEMODE.ADD->{
@@ -120,6 +145,8 @@ class UserFormatMake : ActivityBase<ActivityUserFormatBinding>(), UserFormatAddR
             }
         }
         mode = inputmode;
+        adapterAdd.notifyDataSetChanged();
+        adapterDelete.notifyDataSetChanged();
     }
 
 }

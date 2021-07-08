@@ -80,9 +80,9 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:ems="10"
+                        android:hint="입력"
                         android:inputType="textPersonName"
-                        android:paddingLeft="10dp"
-                        android:text="Name" />
+                        android:paddingLeft="10dp" />
 
                     <View
                         android:layout_width="match_parent"
@@ -116,11 +116,13 @@
                         android:text="확장명"
                         android:textColor="#000000" />
 
-                    <Spinner
-                        android:id="@+id/spinner_ext"
+                    <TextView
+                        android:id="@+id/tv_ext2"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:paddingLeft="10dp" />
+                        android:paddingLeft="10dp"
+                        android:text=".csv"
+                        android:textColor="#000000" />
 
                     <View
                         android:layout_width="match_parent"
@@ -135,11 +137,24 @@
                         android:text="파일헤더"
                         android:textColor="#000000" />
 
-                    <Spinner
-                        android:id="@+id/spinner_fileheader"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:paddingLeft="10dp" />
+                   <LinearLayout
+                       android:layout_width="match_parent"
+                       android:layout_height="wrap_content">
+                       <TextView
+                           android:id="@+id/check_tv"
+                           android:layout_width="wrap_content"
+                           android:layout_height="wrap_content"
+                           android:textColor="@color/black"
+                           android:text="예"/>
+
+                       <Switch
+                           android:id="@+id/header_switch"
+                           android:layout_width="wrap_content"
+                           android:layout_height="wrap_content"
+
+                           android:checked="true" />
+
+                   </LinearLayout>
                 </LinearLayout>
             </ScrollView>
 
