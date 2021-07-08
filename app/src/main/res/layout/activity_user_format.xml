@@ -15,7 +15,7 @@
         android:id="@+id/header_04"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    app:title="사용자 형식"></kr.loplab.gnss05.DefaultHeader>
+    app:title="사용자 정의 파일 형식 만들기"></kr.loplab.gnss05.DefaultHeader>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -57,16 +57,15 @@
             android:orientation="horizontal">
 
 
-
             <ScrollView
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="10">
+                android:layout_weight="12">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical" >
+                    android:orientation="vertical">
 
                     <TextView
                         android:layout_width="match_parent"
@@ -79,6 +78,7 @@
                         android:id="@+id/editTextTextPersonName"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:background="@drawable/outlined2"
                         android:ems="10"
                         android:hint="입력"
                         android:inputType="textPersonName"
@@ -97,11 +97,26 @@
                         android:text="구분기호"
                         android:textColor="#000000" />
 
-                    <Spinner
-                        android:id="@+id/spinner_sign"
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:paddingLeft="10dp" />
+                        android:orientation="horizontal"
+                        android:background="@drawable/outlined2"
+                        >
+                        <TextView
+                            android:id="@+id/tv_seperate"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:paddingLeft="10dp"
+                            android:text="\@"
+                            android:textColor="#000000" />
+                        <ImageView
+                            android:layout_height="15dp"
+                            android:layout_width="15dp"
+                            app:srcCompat="@drawable/ic_downarrow"
+                           />
+                    </LinearLayout>
+
 
                     <View
                         android:layout_width="match_parent"
@@ -137,24 +152,25 @@
                         android:text="파일헤더"
                         android:textColor="#000000" />
 
-                   <LinearLayout
-                       android:layout_width="match_parent"
-                       android:layout_height="wrap_content">
-                       <TextView
-                           android:id="@+id/check_tv"
-                           android:layout_width="wrap_content"
-                           android:layout_height="wrap_content"
-                           android:textColor="@color/black"
-                           android:text="예"/>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
 
-                       <Switch
-                           android:id="@+id/header_switch"
-                           android:layout_width="wrap_content"
-                           android:layout_height="wrap_content"
+                        <TextView
+                            android:id="@+id/check_tv"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="예"
+                            android:textColor="@color/black" />
 
-                           android:checked="true" />
+                        <Switch
+                            android:id="@+id/header_switch"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
 
-                   </LinearLayout>
+                            android:checked="true" />
+
+                    </LinearLayout>
                 </LinearLayout>
             </ScrollView>
 
