@@ -11,7 +11,7 @@
         android:layout_height="50dp"
         android:gravity="center"
         android:padding="@dimen/dp_10"
-        android:text="测试数据"
+        android:text="recyclerview1"
         android:textColor="@color/textblack"
         android:textSize="@dimen/sp_14" />
 </LinearLayout>

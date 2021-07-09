@@ -18,7 +18,7 @@
         android:layout_height="match_parent"
         android:gravity="center"
         android:padding="@dimen/dp_10"
-        android:text="测试数据"
+        android:text="텍스트"
         android:textColor="@color/textblack"
         android:textSize="@dimen/sp_14" />
 

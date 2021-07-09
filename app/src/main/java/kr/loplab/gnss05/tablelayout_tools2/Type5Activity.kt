@@ -57,6 +57,7 @@ class Type5Activity : AppCompatActivity() {
         //TODO 这里如果设置了点击事件会与设置到RecycleView的OnTouchListener冲突
         mProductAdapter?.setOnItemClickListener { adapter, view, position ->
             Log.d(TAG, "position>>" + position)
+            view.setBackgroundResource(R.color.colorAccent)
         }
 
     }
