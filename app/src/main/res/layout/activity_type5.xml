@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="kr.loplab.gnss05.tablelayout_tools2.Type5Activity">
+
+    <include
+        android:id="@+id/layout_head"
+        layout="@layout/item_layout_type5" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_list_product"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:overScrollMode="never"
+        app:layoutManager="LinearLayoutManager"
+        tools:listitem="@layout/item_layout" />
+
+</LinearLayout>

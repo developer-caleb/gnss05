@@ -13,12 +13,12 @@ import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
+import kr.loplab.gnss05.tablelayout_tools2.Type5Activity
 import com.karumi.dexter.Dexter
 import com.karumi.dexter.MultiplePermissionsReport
 import com.karumi.dexter.PermissionToken
 import com.karumi.dexter.listener.PermissionRequest
 import com.karumi.dexter.listener.multi.MultiplePermissionsListener
-import kr.loplab.gnss05.tablelayout_tools.TableActivity
 
 
 class MainActivity : AppCompatActivity(),
@@ -82,7 +82,8 @@ class MainActivity : AppCompatActivity(),
                 startActivity(nextIntent);
             }
             7 -> {
-                val nextIntent = Intent(this, TableActivity::class.java)
+                //val nextIntent = Intent(this, TableActivity::class.java)
+                val nextIntent = Intent(this, Type5Activity::class.java)
                 startActivity(nextIntent);
             }
         }
