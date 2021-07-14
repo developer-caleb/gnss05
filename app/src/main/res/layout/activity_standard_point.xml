@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
     <data>
+        <import type="android.view.View"/>
         <variable
             name="viewModel"
             type="kr.loplab.gnss05.StandardPointViewModel" />
@@ -38,8 +39,8 @@
             <kr.loplab.gnss05.TextDivider
                 android:layout_width="match_parent"
                 app:title2="안녕하세요"
-                 android:layout_height="wrap_content">
-
+                 android:layout_height="wrap_content"
+                >
             </kr.loplab.gnss05.TextDivider>
             <LinearLayout
                 style="@style/ButtonLayout_STYLE01"
@@ -48,7 +49,9 @@
                 <TextView
                     android:id="@+id/textView4"
                     style="@style/TEXTVIEW_STYLE01"
-                    android:text="TextView" />
+                    android:text="하이"
+                    android:visibility="@{viewModel.onprogress? View.VISIBLE : View.GONE}"
+                    />
 
                 <TextView
                     android:id="@+id/textView5"
@@ -59,7 +62,7 @@
                     android:text="TextView" />
 
                 <ImageView
-                    android:id="@+id/imageView"
+                    android:id="@+id/bt_1"
                     android:layout_width="@dimen/rightArrowSize"
                     android:layout_height="@dimen/rightArrowSize"
                     android:layout_weight="0"

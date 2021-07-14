@@ -7,9 +7,14 @@ import androidx.lifecycle.ViewModel
 
 class StandardPointViewModel : ViewModel() {
     private var name = ""
+    var onprogress = MutableLiveData<Boolean>(false)
 
-    fun setName(newName: String) {
-        name = newName
+    init {
+
+    }
+
+    fun btclick() {
+        onprogress.value = !onprogress.value!!
     }
 
     fun getName() = name

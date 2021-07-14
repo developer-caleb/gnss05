@@ -49,6 +49,7 @@ class StandardPointActivity : ActivityBase<ActivityStandardPointBinding>() {
 
     override fun initListener() {
         viewBinding.header01.setOnBackButtonClickListener { onBackPressed();}
+        viewBinding.bt1.setOnClickListener { viewModel.btclick() }
     }
 
     override fun initDatabinding() {
