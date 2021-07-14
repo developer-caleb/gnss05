@@ -11,18 +11,18 @@ import kr.loplab.gnss05.R
 import kr.loplab.gnss05.tablelayout_tools2.view.SyncHScrollView
 
 /**
- * 每一行的股票信息，第一条是股票名称，之后的是价格信息
+ * 주식 정보의 각 줄은 첫 번째는 주식 이름이고 다음은 가격 정보입니다.
  * Created by kotlin on 18-1-29.
  */
 class RvType5Adapter(
-        //列表头部需要进行横向滑动关联
+        //목록의 헤더는 수평 슬라이딩과 연결되어야 합니다.
         var mHeadSyncRecyclerView: SyncHScrollView
 ) : BaseQuickAdapter<Type2Model, BaseViewHolder>(R.layout.item_layout_type5) {
     private var TAG = RvType5Adapter::class.java.name
 
 
     override fun convert(helper: BaseViewHolder, item: Type2Model) {
-        //当前的条目位置信息
+        //현재 아이템 위치 정보
         val productPosition = helper.adapterPosition
 
         helper.setText(R.id.tv_product_name, item.productName)
@@ -35,14 +35,15 @@ class RvType5Adapter(
             ll_item.addView(itemView)
         }
 
-        //右侧横向列表
+        //오른쪽의 가로 목록
         val itemSyncHScrollView = helper.getView<SyncHScrollView>(R.id.hsv_list_right)
 
-        //添加滑动观察者
+        //슬라이딩 관찰자 추가
         mHeadSyncRecyclerView.AddOnScrollChangedListener(OnScrollChangedListenerImp(itemSyncHScrollView))
 
 
-        //TODO 为了解决因为设置了Item的点击事件与RecycleView触摸事件冲突导致无法滑动，这里需要对item的触摸事件响应分发，但是效果还是不太好，没有使用ListView流畅
+        //TODO Item의 click 이벤트와 RecycleView의 터치 이벤트 간의 충돌로 인해 슬라이드가 되지 않는 현상을 해결하기 위해서는
+        // 해당 항목의 터치 이벤트에 대한 대응이 필요하지만 여전히 효과가 좋지 못하며, ListView가 원활하게 사용되지 않습니다.
         helper.itemView.setOnTouchListener(ListViewAndHeadViewTouchListener())
     }
 
@@ -58,7 +59,7 @@ class RvType5Adapter(
     internal inner class ListViewAndHeadViewTouchListener : View.OnTouchListener {
 
         override fun onTouch(arg0: View, event: MotionEvent): Boolean {
-            // 当在列头 和 listView控件上touch时，将这个touch的事件分发给 ScrollView
+            // 열 헤더와 listView 컨트롤을 터치할 때 터치 이벤트를 ScrollView에 배포합니다
             val headScrollView = mHeadSyncRecyclerView
             headScrollView.onTouchEvent(event)
             return false

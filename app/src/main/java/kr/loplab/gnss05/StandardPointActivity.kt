@@ -34,6 +34,7 @@ class StandardPointActivity : ActivityBase<ActivityStandardPointBinding>() {
                 //검색 버튼 눌렀을 때
                 return super.onOptionsItemSelected(item)
             }
+
             R.id.action_share -> {
                 //공유 버튼 눌렀을 때
                 return super.onOptionsItemSelected(item)

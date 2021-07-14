@@ -26,7 +26,7 @@ class Type5Activity : AppCompatActivity() {
 
         for (indexTitle in 0..5) {
             val titleView = LayoutInflater.from(this).inflate(R.layout.item_layout, null)
-            titleView.findViewById<TextView>(R.id.tv_data).text = "表头》${indexTitle}"
+            titleView.findViewById<TextView>(R.id.tv_data).text = "머리글》${indexTitle}"
             ll_item.addView(titleView)
         }
 
@@ -41,11 +41,11 @@ class Type5Activity : AppCompatActivity() {
         mProductDataList = mutableListOf()
         for (index in 0..40) {
             val productModel = Type2Model()
-            productModel.productName = "股票名称${index}"
+            productModel.productName = "주식명${index}"
             val priceList: MutableList<String> = mutableListOf()
 
             for (indexPrice in 0..5) {
-                priceList.add("股票${index}价格${indexPrice}")
+                priceList.add("스톡${index}가격${indexPrice}")
             }
             productModel.mPriceList = priceList
 
@@ -54,7 +54,7 @@ class Type5Activity : AppCompatActivity() {
         mProductAdapter!!.setNewData(mProductDataList)
         rv_list_product.adapter = mProductAdapter
 
-        //TODO 这里如果设置了点击事件会与设置到RecycleView的OnTouchListener冲突
+        //TODO 여기에서 click 이벤트가 설정되면 RecycleView로 설정된 OnTouchListener와 충돌합니다.
         mProductAdapter?.setOnItemClickListener { adapter, view, position ->
             Log.d(TAG, "position>>" + position)
             view.setBackgroundResource(R.color.colorAccent)
@@ -65,7 +65,7 @@ class Type5Activity : AppCompatActivity() {
     internal inner class ListViewAndHeadViewTouchListener : View.OnTouchListener {
 
         override fun onTouch(arg0: View, event: MotionEvent): Boolean {
-            // 当在列头 和 listView控件上touch时，将这个touch的事件分发给 ScrollView
+            // 열 헤더와 listView 컨트롤을 터치할 때 터치 이벤트를 ScrollView에 배포합니다.
             val headScrollView = hsv_list_right
             headScrollView.onTouchEvent(event)
             return false
