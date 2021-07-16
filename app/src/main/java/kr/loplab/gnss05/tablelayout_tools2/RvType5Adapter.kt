@@ -26,13 +26,19 @@ class RvType5Adapter(
         val productPosition = helper.adapterPosition
 
         helper.setText(R.id.tv_product_name, item.productName)
-        if(item.isPressed )helper.setBackgroundRes(R.id.tv_product_name, R.color.colorAccent)
+        if(item.isPressed )helper.setBackgroundRes(R.id.tv_product_name, R.color.colorAccent) else{
+            helper.setBackgroundRes(R.id.tv_product_name, R.color.white)
+        }
         val ll_item = helper.getView<LinearLayout>(R.id.ll_item)
         ll_item.removeAllViews()
 
         item.mPriceList?.forEach {
             val itemView = getItemView(R.layout.item_layout, null)
             itemView.findViewById<TextView>(R.id.tv_data).text = it
+            if(item.isPressed )itemView.setBackgroundResource( R.color.colorAccent) else{
+                itemView.setBackgroundResource( R.color.white)
+            }
+
             ll_item.addView(itemView)
         }
 
