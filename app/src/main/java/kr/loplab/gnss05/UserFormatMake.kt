@@ -168,7 +168,7 @@ class UserFormatMake : ActivityBase<ActivityUserFormatBinding>(),
     }
 
     override fun onItemClick2(view: View?, position: Int) {
-        Log.d(TAG, "onItemClick2: $position")
+        Log.d(TAG, "onItemClick2->: $position")
     }
 
 }

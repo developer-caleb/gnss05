@@ -23,13 +23,15 @@
             android:textColor="@color/black"
             android:textSize="18dp" />
 
-    <ImageView
+    <RadioButton
         android:id="@+id/recyclerview_icon"
         android:layout_width="60dp"
         android:layout_height="match_parent"
         android:layout_gravity="center"
         android:layout_weight="0"
-        app:srcCompat="@android:drawable/btn_star_big_on" />
+        android:buttonTint="@color/brightSky"
+        android:checked="false"
+        />
     </LinearLayout>
 
     <View
