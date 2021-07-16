@@ -53,6 +53,10 @@ class UserFormatMake : ActivityBase<ActivityUserFormatBinding>(), UserFormatAddR
            // viewBinding.recyclerviewUserFormatSettings.adapter = adapterDelete
             //viewBinding.btAdd.setBackgroundColor(applicationContext.resources.getColor(R.color.design_default_color_secondary))
         }
+        viewBinding.divisionLayout.setOnClickListener {
+            Log.d(TAG, "initListener: click! => dialog")
+        }
+
 
         viewBinding.headerSwitch.setOnCheckedChangeListener { compoundButton, bool ->
             Log.d(TAG, "initListener: ${bool.toString()}")
