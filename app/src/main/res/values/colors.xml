@@ -25,7 +25,7 @@
     <color name="grey_dd">#FFAAAAAA</color>
     <color name="dividercolor">#FF888888</color>
     <color name="main">#0051FF</color>
-    <color name="selected_button_color">#004FC5</color>
+    <color name="selected_button_color">@color/brightSky</color>
     <color name="unselected_button_color">#FF000000</color>
 
     <!--table-->

@@ -8,7 +8,7 @@ import kr.loplab.gnss05.enums.USERFORMATMAKEMODE
 
 class UserFormatMake : ActivityBase<ActivityUserFormatBinding>(),
     UserFormatAddRecyclerViewAdapter.RecyclerItemClickListener,
-    UserFormatDeleteRecyclerViewAdapter.RecyclerItemClickListener {
+    UserFormatDeleteRecyclerViewAdapter.RecyclerItemClickListener, DialogRecyclerviewAdapter.RecyclerItemClickListener {
     override val layoutResourceId: Int
         get() = R.layout.activity_user_format
     var optionitemlist  = arrayOf("이름", "코드", "위도", "경도", "고도", "X", "Y", "Z(레벨)", "X(공간)", "Y(공간)", "Z(공간)", "도로명", "측설점",
@@ -57,6 +57,14 @@ class UserFormatMake : ActivityBase<ActivityUserFormatBinding>(),
         }
         viewBinding.divisionLayout.setOnClickListener {
             Log.d(TAG, "initListener: click! => dialog")
+
+            val dlg = MyDialog(this)
+            dlg.setClickListener(this)
+            dlg.setOnOKClickedListener{ content ->
+                Log.d(TAG, "onItemClick: $content")
+            }
+            dlg.start("메인의 내용을 변경할까요?")
+
         }
 
 
@@ -128,7 +136,7 @@ class UserFormatMake : ActivityBase<ActivityUserFormatBinding>(),
 
     fun setUserFormatText(){
         var text1 = "";
-         listdata.forEachIndexed { index, smalldata -> text1 += smalldata[0].toString() + ", " }
+        listdata.forEachIndexed { index, smalldata -> text1 += smalldata[0].toString() + ", " }
 
         viewBinding.tvUserformat.text ="[$text1]"
     }
@@ -153,6 +161,10 @@ class UserFormatMake : ActivityBase<ActivityUserFormatBinding>(),
         mode = inputmode;
         adapterAdd.notifyDataSetChanged();
         adapterDelete.notifyDataSetChanged();
+    }
+
+    override fun onItemClick2(view: View?, position: Int) {
+        Log.d(TAG, "onItemClick2: $position")
     }
 
 }
