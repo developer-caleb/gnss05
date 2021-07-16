@@ -6,6 +6,7 @@ import android.view.View
 import android.widget.TextView
 import kr.loplab.gnss02.ActivityBase
 import kr.loplab.gnss05.databinding.ActivityFileExportBinding
+import kr.loplab.gnss05.enums.Directorytype
 import java.io.File
 
 class FileExportActivity : ActivityBase<ActivityFileExportBinding>(),  FiledirectoryRecyclerViewAdapter.RecyclerItemClickListener  {
@@ -196,4 +197,4 @@ class FileExportActivity : ActivityBase<ActivityFileExportBinding>(),  Filedirec
     }
 }
 
-enum class Directorytype { downloadfolders, goBack, SDCARDfolder, rootdirectory, storagedirectory }
+

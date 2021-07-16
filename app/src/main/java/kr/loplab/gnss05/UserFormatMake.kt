@@ -1,12 +1,14 @@
 package kr.loplab.gnss05
 
-import android.app.Activity
 import android.util.Log
 import android.view.View
 import kr.loplab.gnss02.ActivityBase
 import kr.loplab.gnss05.databinding.ActivityUserFormatBinding
+import kr.loplab.gnss05.enums.USERFORMATMAKEMODE
 
-class UserFormatMake : ActivityBase<ActivityUserFormatBinding>(), UserFormatAddRecyclerViewAdapter.RecyclerItemClickListener, UserFormatDeleteRecyclerViewAdapter.RecyclerItemClickListener  {
+class UserFormatMake : ActivityBase<ActivityUserFormatBinding>(),
+    UserFormatAddRecyclerViewAdapter.RecyclerItemClickListener,
+    UserFormatDeleteRecyclerViewAdapter.RecyclerItemClickListener {
     override val layoutResourceId: Int
         get() = R.layout.activity_user_format
     var optionitemlist  = arrayOf("이름", "코드", "위도", "경도", "고도", "X", "Y", "Z(레벨)", "X(공간)", "Y(공간)", "Z(공간)", "도로명", "측설점",
@@ -70,7 +72,7 @@ class UserFormatMake : ActivityBase<ActivityUserFormatBinding>(), UserFormatAddR
         viewBinding.btConfirm.setOnClickListener {
             Log.d(TAG, "bt confirm clicked")
         when(mode){
-            USERFORMATMAKEMODE.ADD->{
+            USERFORMATMAKEMODE.ADD ->{
                 //선택 포지션이 없으면 return
                 if(adapterAdd.selectedPosition ==-1){
                     Log.d(TAG, "initListener")
@@ -90,7 +92,7 @@ class UserFormatMake : ActivityBase<ActivityUserFormatBinding>(), UserFormatAddR
                 //텍스트를 listdata[0]으로 출력
                 viewBinding.tvUserformat.text = listdata[0].toString()
             }
-            USERFORMATMAKEMODE.DELETE->{
+            USERFORMATMAKEMODE.DELETE ->{
                 //선택 포지션이 없으면 return
                 if(adapterDelete.selectedPosition ==-1||listdata.size<1){
                     Log.d(TAG, "not selected")
@@ -133,14 +135,14 @@ class UserFormatMake : ActivityBase<ActivityUserFormatBinding>(), UserFormatAddR
 
     fun selectmode(inputmode : USERFORMATMAKEMODE){
         when (inputmode){
-            USERFORMATMAKEMODE.ADD->{
+            USERFORMATMAKEMODE.ADD ->{
                 viewBinding.btAdd.setBackgroundColor(applicationContext.resources.getColor(R.color.selected_button_color))
                 viewBinding.btDelete.setBackgroundColor(applicationContext.resources.getColor(R.color.unselected_button_color))
                 if (this.mode == inputmode) return
                 viewBinding.recyclerviewUserFormatSettings.adapter = adapterAdd
 
             }
-            USERFORMATMAKEMODE.DELETE->{
+            USERFORMATMAKEMODE.DELETE ->{
                 viewBinding.btAdd.setBackgroundColor(applicationContext.resources.getColor(R.color.unselected_button_color))
                 viewBinding.btDelete.setBackgroundColor(applicationContext.resources.getColor(R.color.selected_button_color))
                 if (this.mode == inputmode) return
@@ -154,4 +156,3 @@ class UserFormatMake : ActivityBase<ActivityUserFormatBinding>(), UserFormatAddR
     }
 
 }
-enum class USERFORMATMAKEMODE{ ADD, DELETE}
