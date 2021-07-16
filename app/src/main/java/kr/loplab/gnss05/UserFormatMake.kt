@@ -59,6 +59,7 @@ class UserFormatMake : ActivityBase<ActivityUserFormatBinding>(),
             Log.d(TAG, "initListener: click! => dialog")
 
             val dlg = MyDialog(this)
+            dlg.firstLayoutUse= false;
             dlg.setClickListener(this)
             dlg.setOnOKClickedListener{ content ->
                 Log.d(TAG, "onItemClick: $content")

@@ -7,6 +7,7 @@ import android.util.Log
 import android.view.View
 import android.view.Window
 import android.widget.Button
+import android.widget.LinearLayout
 import androidx.recyclerview.widget.RecyclerView
 
 
@@ -22,13 +23,15 @@ class MyDialog(context : Context) : DialogRecyclerviewAdapter.RecyclerItemClickL
     public var firstLayoutUse = true;
 
 
+
     fun start(content : String) {
 
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)   //타이틀바 제거
         dialog.setContentView(R.layout.dialog1)     //다이얼로그에 사용할 xml 파일을 불러옴
         dialog.setCancelable(true)    //다이얼로그의 바깥 화면을 눌렀을 때 다이얼로그가 닫히지 않도록 함
 
-
+        var firstLayout1  : LinearLayout = dialog.findViewById(R.id.first_layout);
+        firstLayout1.visibility = if(firstLayoutUse) View.VISIBLE else {View.GONE} ;
 
         // 리사이클러뷰에 표시할 데이터 리스트 생성.
         // 리사이클러뷰에 표시할 데이터 리스트 생성.
