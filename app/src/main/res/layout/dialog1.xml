@@ -31,10 +31,12 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/first_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="8dp"
-        android:orientation="vertical">
+        android:layout_weight="0"
+        android:orientation="vertical"
+        android:padding="8dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -89,19 +91,20 @@
     </LinearLayout>
 
     <View
-        android:id="@+id/divider2"
+        android:id="@+id/first_divider"
         android:layout_width="match_parent"
         android:layout_height="10dp"
+        android:layout_weight="0"
         android:background="?android:attr/listDivider" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:layout_width="match_parent"
         android:id="@+id/dialog_recyclerview"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_weight="1"
         android:background="#C6FFA8"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        tools:listitem="@layout/recyclerview_checkitem"
 
-        />
+        tools:listitem="@layout/recyclerview_checkitem" />
 
 </LinearLayout>
