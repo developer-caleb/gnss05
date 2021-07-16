@@ -26,6 +26,7 @@ class RvType5Adapter(
         val productPosition = helper.adapterPosition
 
         helper.setText(R.id.tv_product_name, item.productName)
+        if(item.isPressed )helper.setBackgroundRes(R.id.tv_product_name, R.color.colorAccent)
         val ll_item = helper.getView<LinearLayout>(R.id.ll_item)
         ll_item.removeAllViews()
 

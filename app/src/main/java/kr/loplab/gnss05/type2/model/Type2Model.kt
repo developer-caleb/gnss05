@@ -4,10 +4,10 @@ package kr.loplab.gnss05.type2.model
  * Created by xiaoyulaoshi on 2018/1/30.
  */
 class Type2Model {
-    //当前条目是否选中
+    //현재 항목이 선택되었는지 여부
     var isPressed = false
-    //产品名称
+    //상품명
     var productName: String? = null
-    //产品价格数据集合
+    //제품 가격 데이터 수집
     var mPriceList: MutableList<String>? = null
 }

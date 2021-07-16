@@ -57,7 +57,10 @@ class Type5Activity : AppCompatActivity() {
         //TODO 여기에서 click 이벤트가 설정되면 RecycleView로 설정된 OnTouchListener와 충돌합니다.
         mProductAdapter?.setOnItemClickListener { adapter, view, position ->
             Log.d(TAG, "position>>" + position)
-            view.setBackgroundResource(R.color.colorAccent)
+           // view.setBackgroundResource(R.color.colorAccent)
+            //recyclerView에서 position에 select로 바꿔주면 될 듯?
+            ( adapter.data[position] as Type2Model).isPressed =true;
+            adapter.notifyDataSetChanged()
         }
 
     }
