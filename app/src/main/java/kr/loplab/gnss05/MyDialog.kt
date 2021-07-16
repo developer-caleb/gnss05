@@ -96,8 +96,12 @@ class MyDialog(context : Context) : DialogRecyclerviewAdapter.RecyclerItemClickL
         fun onCancelClicked(content : String)
     }
 
-    override fun onItemClick2(view: View?, position: Int) {
-        Log.d(TAG, "onItemClick2: 음.. 일단 dialog에서는 가져와짐.. $position")
+    override fun onItemClickActivity(view: View?, position: Int) {
+        Log.d(TAG, "onItemClickActivity: -> dialog . $position")
+    }
+
+    override fun onItemClickDialog(view: View?, position: Int) {
+        Log.d(TAG, "onItemClickDialog -> dialog.. $position")
     }
 }
 

@@ -38,7 +38,7 @@ class DialogRecyclerviewAdapter internal constructor(context: Context?, data: Ar
         var myTextView: TextView
         override fun onClick(view: View) {
             Log.d(TAG, "onClick: recyclerview로 호출했을 경우 $adapterPosition ㅎㅎ")
-            if (mClickListener != null) mClickListener!!.onItemClick2(view, adapterPosition)else{
+            if (mClickListener != null) mClickListener!!.onItemClickDialog(view, adapterPosition)else{
                 Log.d(TAG, "onClick: recyclerview로 호출했을 경우인데 대신에 mClickListener가 null임")
             }
         }
@@ -61,7 +61,8 @@ class DialogRecyclerviewAdapter internal constructor(context: Context?, data: Ar
 
     // parent activity will implement this method to respond to click events
     interface RecyclerItemClickListener {
-        fun onItemClick2(view: View?, position: Int)
+        fun onItemClickActivity(view: View?, position: Int)
+        fun onItemClickDialog(view: View?, position: Int)
     }
 
     // data is passed into the constructor

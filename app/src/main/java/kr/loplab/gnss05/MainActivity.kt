@@ -89,7 +89,11 @@ class MainActivity : AppCompatActivity(),
         }
     }
 
-    override fun onItemClick2(view: View?, position: Int) {
+    override fun onItemClickActivity(view: View?, position: Int) {
+        //123
+    }
+
+    override fun onItemClickDialog(view: View?, position: Int) {
         Log.d(TAG, "onItemClick2: prrr $position")
         Log.d(TAG, "onClick: 메인액티비티에서 부른 logd+ $position")
     }

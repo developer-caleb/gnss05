@@ -167,8 +167,12 @@ class UserFormatMake : ActivityBase<ActivityUserFormatBinding>(),
         adapterDelete.notifyDataSetChanged();
     }
 
-    override fun onItemClick2(view: View?, position: Int) {
-        Log.d(TAG, "onItemClick2->: $position")
+    override fun onItemClickActivity(view: View?, position: Int) {
+        Log.d(TAG, "onItemClickActivity->액티비티: $position")
+    }
+
+    override fun onItemClickDialog(view: View?, position: Int) {
+        Log.d(TAG, "onItemClickDialog-> 액티비티: $position")
     }
 
 }
