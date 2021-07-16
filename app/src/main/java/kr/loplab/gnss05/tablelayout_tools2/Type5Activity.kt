@@ -60,7 +60,7 @@ class Type5Activity : AppCompatActivity() {
             Log.d(TAG, "position>>" + position)
            // view.setBackgroundResource(R.color.colorAccent)
             //recyclerView에서 position에 select로 바꿔주면 될 듯?
-            ( adapter.data[position] as Type2Model).isPressed =true;
+            ( adapter.data[position] as Type2Model).isPressed = !( adapter.data[position] as Type2Model).isPressed;
             adapter.notifyDataSetChanged()
         }
 
