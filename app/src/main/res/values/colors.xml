@@ -21,6 +21,7 @@
     <color name="grey_88">#FF888888</color>
     <color name="grey_aa">#FFAAAAAA</color>
     <color name="grey_cc">#FFCCCCCC</color>
+    <color name="grey_dd">#FFAAAAAA</color>
     <color name="dividercolor">#FF888888</color>
     <color name="main">#0051FF</color>
     <color name="selected_button_color">#004FC5</color>
