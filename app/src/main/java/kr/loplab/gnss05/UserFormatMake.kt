@@ -60,6 +60,9 @@ class UserFormatMake : ActivityBase<ActivityUserFormatBinding>(),
 
             val dlg = MyDialog(this)
             dlg.firstLayoutUse= false;
+            var arrays1 = ArrayList<String>();
+            arrays1.add("/");  arrays1.add("@"); arrays1.add("Space");
+            dlg.list = arrays1
             dlg.setClickListener(this)
             dlg.setOnOKClickedListener{ content ->
                 Log.d(TAG, "onItemClick: $content")

@@ -21,7 +21,7 @@ class MyDialog(context : Context) : DialogRecyclerviewAdapter.RecyclerItemClickL
     private lateinit var listrecyclerview : RecyclerView
     private var mClickListener: DialogRecyclerviewAdapter.RecyclerItemClickListener? = null
     public var firstLayoutUse = true;
-
+    public var list: ArrayList<String>? = null
 
 
     fun start(content : String) {
@@ -32,12 +32,16 @@ class MyDialog(context : Context) : DialogRecyclerviewAdapter.RecyclerItemClickL
 
         var firstLayout1  : LinearLayout = dialog.findViewById(R.id.first_layout);
         firstLayout1.visibility = if(firstLayoutUse) View.VISIBLE else {View.GONE} ;
-
+        var firstdivider  : View = dialog.findViewById(R.id.first_divider);
+        firstdivider.visibility = if(firstLayoutUse) View.VISIBLE else {View.GONE} ;
         // 리사이클러뷰에 표시할 데이터 리스트 생성.
         // 리사이클러뷰에 표시할 데이터 리스트 생성.
-        val list: ArrayList<String> = ArrayList()
+        if(list == null){
         for (i in 0..15) {
-            list.add(String.format("TEXT %d", i))
+            list = ArrayList()
+            list!!.add(String.format("TEXT %d", i))
+        }} else{
+
         }
 
         // 리사이클러뷰에 LinearLayoutManager 객체 지정.
@@ -48,7 +52,7 @@ class MyDialog(context : Context) : DialogRecyclerviewAdapter.RecyclerItemClickL
         // 리사이클러뷰에 SimpleTextAdapter 객체 지정.
 
         // 리사이클러뷰에 SimpleTextAdapter 객체 지정.
-        val adapter = DialogRecyclerviewAdapter(context2, list)
+        val adapter = DialogRecyclerviewAdapter(context2, list!!)
 
         listrecyclerview.adapter = adapter
         adapter.setClickListener(this)
