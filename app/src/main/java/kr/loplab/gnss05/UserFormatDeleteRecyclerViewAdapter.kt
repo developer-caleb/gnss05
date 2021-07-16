@@ -27,7 +27,7 @@ class UserFormatDeleteRecyclerViewAdapter internal constructor(context: Context?
     // binds the data to the TextView in each cell
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.myTextView.text = mData[position][0]
-        if(position == selectedPosition) {holder.itemView.setBackgroundColor(context!!.resources.getColor(R.color.grey_05))}
+        if(position == selectedPosition) {holder.itemView.setBackgroundColor(context!!.resources.getColor(R.color.grey_cc))}
         else{holder.itemView.setBackgroundColor(context!!.resources.getColor(R.color.white))}
 
 

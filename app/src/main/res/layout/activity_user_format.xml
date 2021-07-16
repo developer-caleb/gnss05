@@ -44,7 +44,7 @@
             android:paddingTop="10dp"
             android:paddingBottom="10dp"
             android:text="형식 항목을 추가해주세요"
-            android:textColor="@color/grey_01"
+            android:textColor="@color/grey_22"
             android:textSize="15dp" />
         <View
             android:layout_width="match_parent"

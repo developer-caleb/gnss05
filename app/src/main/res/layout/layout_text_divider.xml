@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/loHeader"
-    android:background="@color/grey_05"
+    android:background="@color/grey_cc"
     android:elevation="25dp"
     android:gravity="center|left" android:layout_height="30dp"
      android:layout_width="match_parent">
@@ -16,5 +16,5 @@
         android:layout_marginLeft="15dp"
 
         android:text="TextView"
-        android:textColor="@color/grey_01" />
+        android:textColor="@color/grey_22" />
 </LinearLayout>

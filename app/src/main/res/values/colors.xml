@@ -16,11 +16,11 @@
     <color name="textblack">#FF121212</color>
     <color name="headerblack">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="grey_01">#FF222222</color>
-    <color name="grey_02">#FF555555</color>
-    <color name="grey_03">#FF888888</color>
-    <color name="grey_04">#FFAAAAAA</color>
-    <color name="grey_05">#FFCCCCCC</color>
+    <color name="grey_22">#FF222222</color>
+    <color name="grey_55">#FF555555</color>
+    <color name="grey_88">#FF888888</color>
+    <color name="grey_aa">#FFAAAAAA</color>
+    <color name="grey_cc">#FFCCCCCC</color>
     <color name="dividercolor">#FF888888</color>
     <color name="main">#0051FF</color>
     <color name="selected_button_color">#004FC5</color>

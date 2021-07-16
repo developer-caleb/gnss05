@@ -27,6 +27,7 @@ class Type5Activity : AppCompatActivity() {
         for (indexTitle in 0..5) {
             val titleView = LayoutInflater.from(this).inflate(R.layout.item_layout, null)
             titleView.findViewById<TextView>(R.id.tv_data).text = "머리글》${indexTitle}"
+            titleView.setBackgroundResource(R.color.shadow_background_color)
             ll_item.addView(titleView)
         }
 

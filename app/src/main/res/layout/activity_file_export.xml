@@ -23,7 +23,7 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/defaultlayoutheight"
 
-        android:background="@color/grey_05">
+        android:background="@color/grey_cc">
 
         <TextView
             android:id="@+id/folder_icon"
@@ -124,7 +124,7 @@
             android:layout_weight="0"
             android:paddingRight="20dp"
             android:text="측량 점 데이터 형식(*.csv)"
-            android:textColor="@color/grey_02" />
+            android:textColor="@color/grey_55" />
     </LinearLayout>
     <View
         android:id="@+id/divider6"
