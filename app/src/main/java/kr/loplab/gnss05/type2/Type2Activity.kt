@@ -22,11 +22,11 @@ class Type2Activity : AppCompatActivity() {
         mProductDataList = mutableListOf()
         for (index in 0..40) {
             val productModel = Type2Model()
-            productModel.productName = "股票名称${index}"
+            productModel.productName = "주식명${index}"
             val priceList: MutableList<String> = mutableListOf()
 
             for (indexPrice in 0..5) {
-                priceList.add("股票${index}价格${indexPrice}")
+                priceList.add("스톡${index}가격${indexPrice}")
             }
             productModel.mPriceList = priceList
 

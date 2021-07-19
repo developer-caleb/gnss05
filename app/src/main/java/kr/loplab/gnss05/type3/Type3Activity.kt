@@ -29,11 +29,11 @@ class Type3Activity : AppCompatActivity() {
 
         for (produceIndex in 10..60) {
             val productModel = Type3ProductModel()
-            productModel.productName = "股票名称$produceIndex"
+            productModel.productName = "주식명$produceIndex"
 
             for (priceIndex in 1..4) {
                 val mainPriceModel = Type3PriceModel()
-                mainPriceModel.priceName = "股票${produceIndex}价格-${priceIndex}"
+                mainPriceModel.priceName = "스톡${produceIndex}가격-${priceIndex}"
                 productModel.mRightDataList.add(mainPriceModel)
             }
 
@@ -50,7 +50,7 @@ class Type3Activity : AppCompatActivity() {
         mLeftAdapter!!.mRvType3RightAdapter = mRightAdapter
         mRightAdapter!!.mRvType3LeftAdapter = mLeftAdapter
 
-        //注册条目点击监听
+        //등록 항목을 들으려면 클릭하십시오
         mLeftAdapter?.setOnItemClickListener { adapter, view, position ->
             Log.d(TAG, "mLeftAdapter click position >> " + position)
         }
@@ -59,8 +59,8 @@ class Type3Activity : AppCompatActivity() {
         }
 
 
-        //TODO 注意喽，要划重点了，要考的
-        //TODO 左侧的RecyclerView与右侧RecyclerView垂直方向的滑动相互监听，实现联动效果
+        //TODO 조심해, 우리는 시험에 집중해야 해
+        //TODO 왼쪽의 RecyclerView와 오른쪽의 RecyclerView의 수직 슬라이딩은 서로를 모니터링하여 연동 효과를 구현합니다.
         rv_list_left.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                 if (recyclerView.scrollState != RecyclerView.SCROLL_STATE_IDLE) {

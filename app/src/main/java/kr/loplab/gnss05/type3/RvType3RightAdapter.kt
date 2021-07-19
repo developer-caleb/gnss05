@@ -11,7 +11,7 @@ import kr.loplab.gnss05.type3.model.Type3ProductModel
 import kr.loplab.gnss05.R
 
 /**
- * 每一行的股票信息，第一条是股票名称，之后的是价格信息
+ * 주식 정보의 각 줄은 첫 번째는 주식 이름이고 다음은 가격 정보입니다.
  * Created by kotlin on 18-1-29.
  */
 class RvType3RightAdapter : BaseQuickAdapter<Type3ProductModel, BaseViewHolder>(R.layout.item_layout_type3) {

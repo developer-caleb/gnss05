@@ -15,7 +15,7 @@ class RvType2Adapter : BaseQuickAdapter<Type2Model, BaseViewHolder>(R.layout.ite
 
 
     override fun convert(helper: BaseViewHolder, item: Type2Model) {
-        //当前的条目位置信息
+        //현재 아이템 위치 정보
         val productPosition = helper.adapterPosition
 
         helper.setText(R.id.tv_product_name, item.productName)
