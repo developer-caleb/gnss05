@@ -89,7 +89,7 @@ class MainActivity : AppCompatActivity(),
         }
     }
 
-   
+
 
     override fun onItemClickDialog(view: View?, position: Int) {
         Log.d(TAG, "onItemClick2: prrr $position")
