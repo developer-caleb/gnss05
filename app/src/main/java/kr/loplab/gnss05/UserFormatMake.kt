@@ -30,7 +30,7 @@ class UserFormatMake : ActivityBase<ActivityUserFormatBinding>(),
     var itemdata = ArrayList<Array<String>>()
     var listdata =  ArrayList<Array<String>>()
     var mode = USERFORMATMAKEMODE.ADD;
-    var arrays1 = ArrayList<String>(Arrays.asList("/", "@", "Space")) //ArrayList<String>();
+    var arrays1 = ArrayList(Arrays.asList(listOf("/", "1"), listOf("@", "0"), listOf("Space", "0"))) //ArrayList<String>();
     override fun init() {
         optionitemlist.forEachIndexed { index, item -> itemdata.add(arrayOf(item, index.toString(), true.toString()))}
         adapterAdd  = UserFormatAddRecyclerViewAdapter(this, itemdata)
@@ -68,6 +68,7 @@ class UserFormatMake : ActivityBase<ActivityUserFormatBinding>(),
 
            // arrays1.add("/");  arrays1.add("@"); arrays1.add("Space");
             dlg.list = arrays1
+
             dlg.setOnOKClickedListener{ content ->
                 Log.d(TAG, "onItemClick: $content")
             }
@@ -77,8 +78,9 @@ class UserFormatMake : ActivityBase<ActivityUserFormatBinding>(),
             }
             dlg.setOnListClickedListener { view, i ->
                 Log.d(TAG, "initListener: 와 된다~ $i 된다~")
-                viewBinding.tvSeperate.text = arrays1[i]
+                viewBinding.tvSeperate.text = arrays1[i][0]
                 dlg.selectItem(i)
+                /*arrays1.forEachIndexed { index, list ->  }*/
                 dlg.refresh()
                 dlg.dismiss()
             }
@@ -140,7 +142,7 @@ class UserFormatMake : ActivityBase<ActivityUserFormatBinding>(),
     }
 
     override fun initDatabinding() {
-        viewBinding.tvSeperate.text = arrays1[0]
+        viewBinding.tvSeperate.text = arrays1[0][0]
     }
 
     override fun onItemAddClick(view: View?, position: Int) {

@@ -26,8 +26,8 @@ class MyDialog(context : Context)
     private lateinit var listrecyclerview : RecyclerView
     private var mClickListener: DialogRecyclerviewAdapter.RecyclerItemClickListener? = null
     public var firstLayoutUse = true;
-    public var list: ArrayList<String>? = null
-    val adapter = DialogRecyclerviewAdapter(context2, list!!)
+    public var list: ArrayList<List<String>>? = null
+    lateinit var adapter : DialogRecyclerviewAdapter
 
     fun start(content : String) {
 
@@ -44,7 +44,7 @@ class MyDialog(context : Context)
         if(list == null){
         for (i in 0..15) {
             list = ArrayList()
-            list!!.add(String.format("TEXT %d", i))
+            list!!.add(listOf("/", "1"))
         }} else{
 
         }
@@ -57,11 +57,11 @@ class MyDialog(context : Context)
         // 리사이클러뷰에 SimpleTextAdapter 객체 지정.
 
         // 리사이클러뷰에 SimpleTextAdapter 객체 지정.
-
+        adapter = DialogRecyclerviewAdapter(context2, list!!)
 
         listrecyclerview.adapter = adapter
         adapter.setClickListener(this)
-
+        selectItem(0)
 
         btnOK = dialog.findViewById(R.id.ok)
         btnOK.setOnClickListener {
@@ -140,8 +140,8 @@ class MyDialog(context : Context)
     fun refresh(){
        adapter.notifyDataSetChanged();
     }
-    fun selectItem(value : Int){
-        adapter.selectedItem = value;
+    public fun selectItem(value : Int){
+
     }
 }
 

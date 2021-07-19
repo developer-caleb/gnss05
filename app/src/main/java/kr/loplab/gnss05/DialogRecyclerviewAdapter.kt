@@ -10,13 +10,12 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import kotlin.collections.ArrayList
 
-class DialogRecyclerviewAdapter internal constructor(context: Context?, data: ArrayList<String>) :
+class DialogRecyclerviewAdapter internal constructor(context: Context?, data: ArrayList<List<String>>, ) :
     RecyclerView.Adapter<DialogRecyclerviewAdapter.ViewHolder>() {
-    private val mData: ArrayList<String>
+    private val mData: ArrayList<List<String>>
     private val mInflater: LayoutInflater
     private var mClickListener: RecyclerItemClickListener? = null
     private var TAG : String = javaClass.simpleName;
-    public var selectedItem = 0;
 
     // inflates the cell layout from xml when needed
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -26,8 +25,17 @@ class DialogRecyclerviewAdapter internal constructor(context: Context?, data: Ar
 
     // binds the data to the TextView in each cell
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.myTextView.text = mData[position]
-        holder.radioicon.isSelected = selectedItem == position
+        holder.myTextView.text = mData[position][0]
+        if (mData[position][1] == "1"){
+            holder.radioicon.isSelected =true
+            print("선택 됨");
+        }else {
+            holder.radioicon.isSelected =false
+            print("선택 안 됨");
+        }
+
+
+
     }
 
     // total number of cells
@@ -57,7 +65,7 @@ class DialogRecyclerviewAdapter internal constructor(context: Context?, data: Ar
 
     // convenience method for getting data at click position
     fun getItem(id: Int): String {
-        return mData[id]
+        return mData[id][0]
     }
 
     // allows clicks events to be caught
