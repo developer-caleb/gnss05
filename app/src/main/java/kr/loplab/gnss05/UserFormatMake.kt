@@ -2,9 +2,9 @@ package kr.loplab.gnss05
 
 import android.util.Log
 import android.view.View
-import android.widget.TextView
 import kotlinx.android.synthetic.main.activity_user_format.*
 import kr.loplab.gnss02.ActivityBase
+import kr.loplab.gnss05.common.PrefUtil
 import kr.loplab.gnss05.databinding.ActivityUserFormatBinding
 import kr.loplab.gnss05.enums.USERFORMATMAKEMODE
 import java.util.*
@@ -29,9 +29,11 @@ class UserFormatMake : ActivityBase<ActivityUserFormatBinding>(),
     private lateinit var adapterDelete : UserFormatDeleteRecyclerViewAdapter
     var itemdata = ArrayList<Array<String>>()
     var listdata =  ArrayList<Array<String>>()
+    var sperate_num = -1;
     var mode = USERFORMATMAKEMODE.ADD;
     var arrays1 = ArrayList(listOf(listOf("/", "1"), listOf("@", "0"), listOf("Space", "0"))) //ArrayList<String>();
     override fun init() {
+
         optionitemlist.forEachIndexed { index, item -> itemdata.add(arrayOf(item, index.toString(), true.toString()))}
         adapterAdd  = UserFormatAddRecyclerViewAdapter(this, itemdata)
         adapterDelete  = UserFormatDeleteRecyclerViewAdapter(this, listdata)
@@ -80,8 +82,9 @@ class UserFormatMake : ActivityBase<ActivityUserFormatBinding>(),
                 Log.d(TAG, "initListener: 와 된다~ $i 된다~")
                 viewBinding.tvSeperate.text = arrays1[i][0]
                 dlg.selectItem(i)
-                arrays1.forEachIndexed { index, element  -> (element as MutableList<String>)[1] = "0" }
-                (arrays1[i] as MutableList<String>)[1] = "1"
+                PrefUtil.setInt(applicationContext, getString(R.string.int_seperate_sign), i)
+               selectSeperateNum(i)
+                setUserFormatText()
                 dlg.refresh()
                 dlg.dismiss()
             }
@@ -91,10 +94,12 @@ class UserFormatMake : ActivityBase<ActivityUserFormatBinding>(),
         viewBinding.headerSwitch.setOnCheckedChangeListener { compoundButton, bool ->
             Log.d(TAG, "initListener: ${bool.toString()}")
             when(bool){
-             true-> {viewBinding.checkTv.text = "예"}
-             false->  {viewBinding.checkTv.text = "아니오"}
+             true-> {viewBinding.checkTv.text = "예"; PrefUtil.setBoolean(applicationContext, getString(R.string.boolfileheader), true)}
+             false->  {viewBinding.checkTv.text = "아니오"; PrefUtil.setBoolean(applicationContext, getString(R.string.boolfileheader), false)}
             }
         }
+
+
 
         //confirm 버튼 눌렀을 때
         viewBinding.btConfirm.setOnClickListener {
@@ -143,7 +148,10 @@ class UserFormatMake : ActivityBase<ActivityUserFormatBinding>(),
     }
 
     override fun initDatabinding() {
-        viewBinding.tvSeperate.text = arrays1[0][0]
+        setUserFormatText()
+
+        viewBinding.tvSeperate.text = arrays1[sperate_num][0]
+        viewBinding.headerSwitch.isChecked = PrefUtil.getBoolean(applicationContext, getString(R.string.boolfileheader))
     }
 
     override fun onItemAddClick(view: View?, position: Int) {
@@ -155,10 +163,20 @@ class UserFormatMake : ActivityBase<ActivityUserFormatBinding>(),
     }
 
     fun setUserFormatText(){
+        sperate_num = if(PrefUtil.getInt(applicationContext, getString(R.string.int_seperate_sign))<=0){
+            0 }else{ PrefUtil.getInt(applicationContext, getString(R.string.int_seperate_sign))}
+        selectSeperateNum(sperate_num)
         var text1 = "";
-        listdata.forEachIndexed { index, smalldata -> text1 += smalldata[0].toString() + ", " }
+        listdata.forEachIndexed { index, smalldata -> text1 += "[${smalldata[0]}]${
+            when(sperate_num)
+            {
+                2 -> " "
+                else -> arrays1[sperate_num][0]
+            }
+        } " }
 
-        viewBinding.tvUserformat.text ="[$text1]"
+        viewBinding.tvUserformat.text ="$text1"
+        //Space 로 나누는 것은 별로 좋지 못함.-> 원래 그냥 파일에도 SPACE 있음
     }
 
     fun selectmode(inputmode : USERFORMATMAKEMODE){
@@ -187,5 +205,10 @@ class UserFormatMake : ActivityBase<ActivityUserFormatBinding>(),
         Log.d(TAG, "onItemClickActivity->액티비티: $position")
     }*/
 
+
+    fun selectSeperateNum(num : Int){
+        arrays1.forEachIndexed { index, element  -> (element as MutableList<String>)[1] = "0" }
+        (arrays1[num] as MutableList<String>)[1] = "1"
+    }
 
 }

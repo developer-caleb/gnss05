@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">GNSS</string>
+
+
+    <!--SharedPreference Setting KeyValue-->
+    <string name="int_seperate_sign">sperateSign</string>
+    <string name="boolfileheader">fileHeader</string>
 </resources>
