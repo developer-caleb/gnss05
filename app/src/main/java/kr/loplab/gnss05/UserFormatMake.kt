@@ -77,7 +77,9 @@ class UserFormatMake : ActivityBase<ActivityUserFormatBinding>(),
             }
             dlg.setOnListClickedListener { view, i ->
                 Log.d(TAG, "initListener: 와 된다~ $i 된다~")
-
+                viewBinding.tvSeperate.text = arrays1[i]
+                dlg.selectItem(i)
+                dlg.refresh()
                 dlg.dismiss()
             }
         }

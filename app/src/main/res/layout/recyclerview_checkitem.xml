@@ -31,6 +31,8 @@
         android:layout_weight="0"
         android:buttonTint="@color/brightSky"
         android:checked="false"
+        android:clickable="false"
+        android:focusable="false"
         />
     </LinearLayout>
 

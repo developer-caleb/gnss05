@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.RadioButton
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import kotlin.collections.ArrayList
@@ -15,6 +16,7 @@ class DialogRecyclerviewAdapter internal constructor(context: Context?, data: Ar
     private val mInflater: LayoutInflater
     private var mClickListener: RecyclerItemClickListener? = null
     private var TAG : String = javaClass.simpleName;
+    public var selectedItem = 0;
 
     // inflates the cell layout from xml when needed
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -25,6 +27,7 @@ class DialogRecyclerviewAdapter internal constructor(context: Context?, data: Ar
     // binds the data to the TextView in each cell
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.myTextView.text = mData[position]
+        holder.radioicon.isSelected = selectedItem == position
     }
 
     // total number of cells
@@ -36,6 +39,7 @@ class DialogRecyclerviewAdapter internal constructor(context: Context?, data: Ar
     inner class ViewHolder internal constructor(itemView: View) : RecyclerView.ViewHolder(itemView),
         View.OnClickListener {
         var myTextView: TextView
+        var radioicon: RadioButton
         override fun onClick(view: View) {
             Log.d(TAG, "onClick: recyclerview로 호출했을 경우 $adapterPosition ㅎㅎ")
             if (mClickListener != null) mClickListener!!.onItemClickDialog(view, adapterPosition)else{
@@ -45,6 +49,8 @@ class DialogRecyclerviewAdapter internal constructor(context: Context?, data: Ar
 
         init {
             myTextView = itemView.findViewById(R.id.list_text2)
+            radioicon = itemView.findViewById(R.id.recyclerview_icon)
+
             itemView.setOnClickListener(this)
         }
     }
