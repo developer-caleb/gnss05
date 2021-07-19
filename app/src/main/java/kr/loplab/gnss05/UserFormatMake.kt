@@ -2,13 +2,17 @@ package kr.loplab.gnss05
 
 import android.util.Log
 import android.view.View
+import android.widget.TextView
+import kotlinx.android.synthetic.main.activity_user_format.*
 import kr.loplab.gnss02.ActivityBase
 import kr.loplab.gnss05.databinding.ActivityUserFormatBinding
 import kr.loplab.gnss05.enums.USERFORMATMAKEMODE
+import java.util.*
+import kotlin.collections.ArrayList
 
 class UserFormatMake : ActivityBase<ActivityUserFormatBinding>(),
     UserFormatAddRecyclerViewAdapter.RecyclerItemClickListener,
-    UserFormatDeleteRecyclerViewAdapter.RecyclerItemClickListener, DialogRecyclerviewAdapter.RecyclerItemClickListener {
+    UserFormatDeleteRecyclerViewAdapter.RecyclerItemClickListener {
     override val layoutResourceId: Int
         get() = R.layout.activity_user_format
     var optionitemlist  = arrayOf("이름", "코드", "위도", "경도", "고도", "X", "Y", "Z(레벨)", "X(공간)", "Y(공간)", "Z(공간)", "도로명", "측설점",
@@ -26,6 +30,7 @@ class UserFormatMake : ActivityBase<ActivityUserFormatBinding>(),
     var itemdata = ArrayList<Array<String>>()
     var listdata =  ArrayList<Array<String>>()
     var mode = USERFORMATMAKEMODE.ADD;
+    var arrays1 = ArrayList<String>(Arrays.asList("/", "@", "Space")) //ArrayList<String>();
     override fun init() {
         optionitemlist.forEachIndexed { index, item -> itemdata.add(arrayOf(item, index.toString(), true.toString()))}
         adapterAdd  = UserFormatAddRecyclerViewAdapter(this, itemdata)
@@ -60,16 +65,20 @@ class UserFormatMake : ActivityBase<ActivityUserFormatBinding>(),
 
             val dlg = MyDialog(this)
             dlg.firstLayoutUse= false;
-            var arrays1 = ArrayList<String>();
-            arrays1.add("/");  arrays1.add("@"); arrays1.add("Space");
+
+           // arrays1.add("/");  arrays1.add("@"); arrays1.add("Space");
             dlg.list = arrays1
-            dlg.setClickListener(this)
             dlg.setOnOKClickedListener{ content ->
                 Log.d(TAG, "onItemClick: $content")
             }
             dlg.start("메인의 내용을 변경할까요?")
             dlg.setOnCancelClickedListener { content ->
                 Log.d(TAG, "onItemClick: $content")
+            }
+            dlg.setOnListClickedListener { view, i ->
+                Log.d(TAG, "initListener: 와 된다~ $i 된다~")
+
+                dlg.dismiss()
             }
         }
 
@@ -129,7 +138,7 @@ class UserFormatMake : ActivityBase<ActivityUserFormatBinding>(),
     }
 
     override fun initDatabinding() {
-       //
+        viewBinding.tvSeperate.text = arrays1[0]
     }
 
     override fun onItemAddClick(view: View?, position: Int) {
@@ -173,8 +182,5 @@ class UserFormatMake : ActivityBase<ActivityUserFormatBinding>(),
         Log.d(TAG, "onItemClickActivity->액티비티: $position")
     }*/
 
-    override fun onItemClickDialog(view: View?, position: Int) {
-        Log.d(TAG, "onItemClickDialog-> 액티비티: $position")
-    }
 
 }

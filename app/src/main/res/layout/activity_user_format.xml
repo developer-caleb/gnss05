@@ -117,14 +117,15 @@
                         android:paddingLeft="10dp"
                         android:padding="5dp"
                         >
+
                         <TextView
                             android:id="@+id/tv_seperate"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:paddingLeft="10dp"
-                            android:text="\@"
                             android:gravity="center"
+                            android:paddingLeft="10dp"
+                            android:text="err"
                             android:textColor="#000000" />
                         <ImageView
                             android:layout_height="15dp"

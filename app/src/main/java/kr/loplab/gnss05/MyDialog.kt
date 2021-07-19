@@ -21,7 +21,8 @@ class MyDialog(context : Context)
     private lateinit var btnCancel : Button
     private lateinit var oklistener : MyDialogOKClickedListener
     private lateinit var cancellistener : MyDialogCancelClickedListener
-   // private lateinit var listlistener : MyDialogListClickedListener
+    //private lateinit var cancellistener : MyDialogCancelClickedListener
+    private lateinit var listlistener : MyDialogItemClickedListener
     private lateinit var listrecyclerview : RecyclerView
     private var mClickListener: DialogRecyclerviewAdapter.RecyclerItemClickListener? = null
     public var firstLayoutUse = true;
@@ -95,6 +96,15 @@ class MyDialog(context : Context)
         }
     }
 
+    fun setOnListClickedListener(listener: (View, Int) -> Unit) {
+
+        this.listlistener = object: MyDialogItemClickedListener {
+            override fun onItemClickDialog(view: View?, position: Int) {
+             listener(view!!, position)
+            }
+        }
+    }
+
 
 
     fun setClickListener(itemClickListener: DialogRecyclerviewAdapter.RecyclerItemClickListener?) {
@@ -108,12 +118,25 @@ class MyDialog(context : Context)
         fun onCancelClicked(content : String)
     }
 
+    interface MyDialogItemClickedListener {
+        fun onItemClickDialog(view: View?, position: Int)
+    }
 
     //fun onItemClickActivity(view: View?, position: Int)
 
 
+
+
+
     override fun onItemClickDialog(view: View?, position: Int) {
-        Log.d(TAG, "onItemClickDialog -> dialog.. $position")
+        listlistener.onItemClickDialog(view, position)
+        Log.d(TAG, "onItemClickDialog: dialog에서 호출 $position")
     }
+
+    fun dismiss(){
+        dialog.dismiss();
+    }
+
+
 }
 
