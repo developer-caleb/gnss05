@@ -61,7 +61,7 @@ class DialogRecyclerviewAdapter internal constructor(context: Context?, data: Ar
 
     // parent activity will implement this method to respond to click events
     interface RecyclerItemClickListener {
-        fun onItemClickActivity(view: View?, position: Int)
+        //fun onItemClickActivity(view: View?, position: Int)
         fun onItemClickDialog(view: View?, position: Int)
     }
 

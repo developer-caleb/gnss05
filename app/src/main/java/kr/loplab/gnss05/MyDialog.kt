@@ -11,13 +11,17 @@ import android.widget.LinearLayout
 import androidx.recyclerview.widget.RecyclerView
 
 
-class MyDialog(context : Context) : DialogRecyclerviewAdapter.RecyclerItemClickListener {
+class MyDialog(context : Context)
+    : DialogRecyclerviewAdapter.RecyclerItemClickListener
+{
     var TAG : String = javaClass.simpleName;
     private var context2  = context;
     private val dialog = Dialog(context)   //부모 액티비티의 context 가 들어감
     private lateinit var btnOK : Button
     private lateinit var btnCancel : Button
-    private lateinit var listener : MyDialogOKClickedListener
+    private lateinit var oklistener : MyDialogOKClickedListener
+    private lateinit var cancellistener : MyDialogCancelClickedListener
+   // private lateinit var listlistener : MyDialogListClickedListener
     private lateinit var listrecyclerview : RecyclerView
     private var mClickListener: DialogRecyclerviewAdapter.RecyclerItemClickListener? = null
     public var firstLayoutUse = true;
@@ -60,13 +64,13 @@ class MyDialog(context : Context) : DialogRecyclerviewAdapter.RecyclerItemClickL
 
         btnOK = dialog.findViewById(R.id.ok)
         btnOK.setOnClickListener {
-            listener.onOKClicked("확인을 눌렀습니다")
+            oklistener.onOKClicked("확인을 눌렀습니다")
             dialog.dismiss()
         }
 
         btnCancel = dialog.findViewById(R.id.cancel)
         btnCancel.setOnClickListener {
-            listener.onCancelClicked("취소를 눌렀습니다")
+            cancellistener.onCancelClicked("취소를 눌렀습니다")
             dialog.dismiss()
         }
 
@@ -76,16 +80,22 @@ class MyDialog(context : Context) : DialogRecyclerviewAdapter.RecyclerItemClickL
     }
 
     fun setOnOKClickedListener(listener: (String) -> Unit) {
-        this.listener = object: MyDialogOKClickedListener {
+        this.oklistener = object: MyDialogOKClickedListener {
             override fun onOKClicked(content: String) {
                 listener(content)
             }
+        }
+    }
 
+    fun setOnCancelClickedListener(listener: (String) -> Unit) {
+        this.cancellistener = object: MyDialogCancelClickedListener {
             override fun onCancelClicked(content: String) {
                 listener(content)
             }
         }
     }
+
+
 
     fun setClickListener(itemClickListener: DialogRecyclerviewAdapter.RecyclerItemClickListener?) {
         mClickListener = itemClickListener
@@ -93,12 +103,14 @@ class MyDialog(context : Context) : DialogRecyclerviewAdapter.RecyclerItemClickL
 
     interface MyDialogOKClickedListener {
         fun onOKClicked(content : String)
+    }
+    interface MyDialogCancelClickedListener {
         fun onCancelClicked(content : String)
     }
 
-    override fun onItemClickActivity(view: View?, position: Int) {
-        Log.d(TAG, "onItemClickActivity: -> dialog . $position")
-    }
+
+    //fun onItemClickActivity(view: View?, position: Int)
+
 
     override fun onItemClickDialog(view: View?, position: Int) {
         Log.d(TAG, "onItemClickDialog -> dialog.. $position")

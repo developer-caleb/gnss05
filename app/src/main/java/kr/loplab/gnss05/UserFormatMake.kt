@@ -68,7 +68,9 @@ class UserFormatMake : ActivityBase<ActivityUserFormatBinding>(),
                 Log.d(TAG, "onItemClick: $content")
             }
             dlg.start("메인의 내용을 변경할까요?")
-
+            dlg.setOnCancelClickedListener { content ->
+                Log.d(TAG, "onItemClick: $content")
+            }
         }
 
 
@@ -131,11 +133,11 @@ class UserFormatMake : ActivityBase<ActivityUserFormatBinding>(),
     }
 
     override fun onItemAddClick(view: View?, position: Int) {
-        Log.d(TAG, "onItemClick: $position  add recyclerview 클릭 됨")
+        Log.d(TAG, "onItemClickActivity: -> class . $position")
     }
 
     override fun onItemDeleteClick(view: View?, position: Int) {
-        Log.d(TAG, "onItemClick: $position delete recyclerview 클릭 됨")
+        Log.d(TAG, "onItemClickDialog -> class.. $position")
     }
 
     fun setUserFormatText(){
@@ -167,9 +169,9 @@ class UserFormatMake : ActivityBase<ActivityUserFormatBinding>(),
         adapterDelete.notifyDataSetChanged();
     }
 
-    override fun onItemClickActivity(view: View?, position: Int) {
+   /* override fun onItemClickActivity(view: View?, position: Int) {
         Log.d(TAG, "onItemClickActivity->액티비티: $position")
-    }
+    }*/
 
     override fun onItemClickDialog(view: View?, position: Int) {
         Log.d(TAG, "onItemClickDialog-> 액티비티: $position")
