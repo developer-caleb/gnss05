@@ -26,12 +26,13 @@ class DialogRecyclerviewAdapter internal constructor(context: Context?, data: Ar
     // binds the data to the TextView in each cell
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.myTextView.text = mData[position][0]
+
         if (mData[position][1] == "1"){
-            holder.radioicon.isSelected =true
-            print("선택 됨");
+            holder.radioicon.isChecked =true
+            Log.d(TAG, "onBindViewHolder: 선택 됨");
         }else {
-            holder.radioicon.isSelected =false
-            print("선택 안 됨");
+            holder.radioicon.isChecked =false
+            Log.d(TAG, "onBindViewHolder: 선택 안 됨");
         }
 
 
@@ -46,8 +47,9 @@ class DialogRecyclerviewAdapter internal constructor(context: Context?, data: Ar
     // stores and recycles views as they are scrolled off screen
     inner class ViewHolder internal constructor(itemView: View) : RecyclerView.ViewHolder(itemView),
         View.OnClickListener {
-        var myTextView: TextView
         var radioicon: RadioButton
+        var myTextView: TextView
+
         override fun onClick(view: View) {
             Log.d(TAG, "onClick: recyclerview로 호출했을 경우 $adapterPosition ㅎㅎ")
             if (mClickListener != null) mClickListener!!.onItemClickDialog(view, adapterPosition)else{
@@ -57,7 +59,7 @@ class DialogRecyclerviewAdapter internal constructor(context: Context?, data: Ar
 
         init {
             myTextView = itemView.findViewById(R.id.list_text2)
-            radioicon = itemView.findViewById(R.id.recyclerview_icon)
+            radioicon = itemView.findViewById(R.id.recyclerview_icon2)
 
             itemView.setOnClickListener(this)
         }
