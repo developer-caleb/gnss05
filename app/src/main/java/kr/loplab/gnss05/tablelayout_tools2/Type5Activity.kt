@@ -45,11 +45,11 @@ class Type5Activity : AppCompatActivity() {
         mProductDataList = mutableListOf()
         for (index in 0..numberOfRow) {
             val productModel = Type2Model()
-            productModel.productName = "주식명${index}"
+            productModel.productName = "주${index}"
             val priceList: MutableList<String> = mutableListOf()
 
             for (indexPrice in 0..numberOfColumn) {
-                priceList.add("스톡${index}가격${indexPrice}")
+                priceList.add("r${index}c${indexPrice}")
             }
             productModel.mPriceList = priceList
 

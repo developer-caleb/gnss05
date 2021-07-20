@@ -11,7 +11,6 @@ import android.widget.TextView
 import kotlinx.android.synthetic.main.activity_type5.*
 import kotlinx.android.synthetic.main.item_layout_type5.*
 import kr.loplab.gnss02.ActivityBase
-import kr.loplab.gnss05.databinding.ActivityUserFormatBinding
 import kr.loplab.gnss05.databinding.ActivityUserFormatViewBinding
 import kr.loplab.gnss05.tablelayout_tools2.RvType5Adapter
 import kr.loplab.gnss05.type2.model.Type2Model
@@ -45,11 +44,11 @@ class UserFormatView : ActivityBase<ActivityUserFormatViewBinding>(){
         mProductDataList = mutableListOf()
         for (index in 0..numberOfRow) {
             val productModel = Type2Model()
-            productModel.productName = "주식명${index}"
+            productModel.productName = "주${index}"
             val priceList: MutableList<String> = mutableListOf()
 
             for (indexPrice in 0..numberOfColumn) {
-                priceList.add("스톡${index}가격${indexPrice}")
+                priceList.add("r${index}c${indexPrice}")
             }
             productModel.mPriceList = priceList
 

@@ -35,14 +35,12 @@ class RvType5Adapter(
         item.mPriceList?.forEach {
             val itemView = getItemView(R.layout.item_layout, null)
             itemView.findViewById<TextView>(R.id.tv_data).text = it
-            if(item.isPressed )helper.setBackgroundRes(R.id.tv_product_name, R.color.brightSky) else{
-                helper.setBackgroundRes(R.id.tv_product_name, R.color.white)
-            }
+
 
             ll_item.addView(itemView)
 
-            ll_item.scrollBy(1,0)
-            ll_item.scrollBy(-1,0)
+            ll_item.scrollBy(10,0)
+            ll_item.scrollBy(-10,0)
 
         }
         //오른쪽의 가로 목록
