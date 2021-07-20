@@ -9,7 +9,8 @@ import kr.loplab.gnss05.databinding.ActivityUserFormatViewBinding
 class UserFormatView : ActivityBase<ActivityUserFormatViewBinding>(){
     override val layoutResourceId: Int
         get() = R.layout.activity_user_format_view
-
+    private var numberOfColumn = 4
+    private var numberOfRow = 3
 
     override fun init() {
 

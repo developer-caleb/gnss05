@@ -7,24 +7,26 @@ import android.view.MotionEvent
 import android.view.View
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import kr.loplab.gnss05.type2.model.Type2Model
 import kotlinx.android.synthetic.main.activity_type5.*
 import kotlinx.android.synthetic.main.item_layout_type5.*
 import kr.loplab.gnss05.R
+import kr.loplab.gnss05.type2.model.Type2Model
 
 
 class Type5Activity : AppCompatActivity() {
     private var TAG = Type5Activity::class.java.name
-
+    private var numberOfColumn = 10
+    private var numberOfRow = 40
 
     private var mProductAdapter: RvType5Adapter? = null
     private var mProductDataList: MutableList<Type2Model>? = null
+    private var lastposition = -1;
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_type5)
 
-        for (indexTitle in 0..5) {
+        for (indexTitle in 0..numberOfColumn) {
             val titleView = LayoutInflater.from(this).inflate(R.layout.item_layout, null)
             titleView.findViewById<TextView>(R.id.tv_data).text = "머리글》${indexTitle}"
             titleView.setBackgroundResource(R.color.shadow_background_color)
@@ -40,12 +42,12 @@ class Type5Activity : AppCompatActivity() {
 
         mProductAdapter = RvType5Adapter(hsv_list_right)
         mProductDataList = mutableListOf()
-        for (index in 0..40) {
+        for (index in 0..numberOfRow) {
             val productModel = Type2Model()
             productModel.productName = "주식명${index}"
             val priceList: MutableList<String> = mutableListOf()
 
-            for (indexPrice in 0..5) {
+            for (indexPrice in 0..numberOfColumn) {
                 priceList.add("스톡${index}가격${indexPrice}")
             }
             productModel.mPriceList = priceList
@@ -60,8 +62,14 @@ class Type5Activity : AppCompatActivity() {
             Log.d(TAG, "position>>" + position)
            // view.setBackgroundResource(R.color.colorAccent)
             //recyclerView에서 position에 select로 바꿔주면 될 듯?
-            ( adapter.data[position] as Type2Model).isPressed = !( adapter.data[position] as Type2Model).isPressed;
-            adapter.notifyDataSetChanged()
+            ( adapter.data[position] as Type2Model).isPressed = true;
+            if (lastposition!=position && lastposition!= -1){
+                ( adapter.data[lastposition] as Type2Model).isPressed = false;
+                adapter.notifyItemChanged(lastposition)
+            }
+            adapter.notifyItemChanged(position)
+            lastposition= position;
+           // runOnUiThread { adapter.notifyDataSetChanged() }
         }
 
     }

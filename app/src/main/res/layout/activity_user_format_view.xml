@@ -16,7 +16,7 @@
         android:id="@+id/header_05"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:title="사용자 정의 형식"></kr.loplab.gnss05.DefaultHeader>
+        app:title="사용자 정의 파일 형식"></kr.loplab.gnss05.DefaultHeader>
 
 
     <LinearLayout
@@ -38,12 +38,12 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
         <TextView
-            android:id="@+id/bt_new"
+            android:id="@+id/bt_add1"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="새작업"
+            android:text="추가"
             android:textColor="@color/white" />
         <View
             android:layout_width="1dp"
@@ -64,7 +64,7 @@
             android:layout_height="match_parent"
             android:layout_weight="0"
             android:background="@color/white" />
-
+<!--
         <TextView
             android:id="@+id/bt_load"
             android:layout_width="0dp"
@@ -79,6 +79,7 @@
             android:layout_height="match_parent"
             android:layout_weight="0"
             android:background="@color/white" />
+            -->
         <TextView
             android:id="@+id/bt_delete"
             android:layout_width="0dp"
