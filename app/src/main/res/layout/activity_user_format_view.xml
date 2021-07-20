@@ -19,14 +19,21 @@
         app:title="사용자 정의 파일 형식"></kr.loplab.gnss05.DefaultHeader>
 
 
-    <LinearLayout
+
+    <include
+        android:id="@+id/layout_head"
+        layout="@layout/item_layout_type5" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_list_product"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:orientation="horizontal">
+        android:overScrollMode="never"
+        app:layoutManager="LinearLayoutManager"
+        tools:listitem="@layout/item_layout" />
 
 
-    </LinearLayout>
 
     <LinearLayout
         android:id="@+id/bottomButton"

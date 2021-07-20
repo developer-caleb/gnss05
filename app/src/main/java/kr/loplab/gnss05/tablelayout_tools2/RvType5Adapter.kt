@@ -26,7 +26,7 @@ class RvType5Adapter(
         val productPosition = helper.adapterPosition
 
         helper.setText(R.id.tv_product_name, item.productName)
-        if(item.isPressed )helper.setBackgroundRes(R.id.tv_product_name, R.color.colorAccent) else{
+        if(item.isPressed )helper.setBackgroundRes(R.id.tv_product_name, R.color.brightSky) else{
             helper.setBackgroundRes(R.id.tv_product_name, R.color.white)
         }
         val ll_item = helper.getView<LinearLayout>(R.id.ll_item)
@@ -40,7 +40,6 @@ class RvType5Adapter(
             }
 
             ll_item.addView(itemView)
-        }
 
         //오른쪽의 가로 목록
         val itemSyncHScrollView = helper.getView<SyncHScrollView>(R.id.hsv_list_right)
@@ -54,7 +53,7 @@ class RvType5Adapter(
         helper.itemView.setOnTouchListener(ListViewAndHeadViewTouchListener())
     }
 
-    internal inner class OnScrollChangedListenerImp(var mScrollViewArg: SyncHScrollView) :
+    class OnScrollChangedListenerImp(var mScrollViewArg: SyncHScrollView) :
             SyncHScrollView.OnScrollChangedListener {
 
         override fun onScrollChanged(l: Int, t: Int, oldl: Int, oldt: Int) {
@@ -63,7 +62,7 @@ class RvType5Adapter(
     }
 
 
-    internal inner class ListViewAndHeadViewTouchListener : View.OnTouchListener {
+    class ListViewAndHeadViewTouchListener : View.OnTouchListener {
 
         override fun onTouch(arg0: View, event: MotionEvent): Boolean {
             // 열 헤더와 listView 컨트롤을 터치할 때 터치 이벤트를 ScrollView에 배포합니다
