@@ -15,7 +15,10 @@
         android:id="@+id/header_04"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    app:title="사용자 정의 파일 형식 만들기"></kr.loplab.gnss05.DefaultHeader>
+    app:title="사용자 정의 파일 형식 만들기"
+        app:optionButtonImageSource="@drawable/ic_save3"
+        app:optionButtonEnabled="true"
+        ></kr.loplab.gnss05.DefaultHeader>
 
     <LinearLayout
         android:layout_width="match_parent"

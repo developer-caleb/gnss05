@@ -47,8 +47,9 @@ class UserFormatMake : ActivityBase<ActivityUserFormatBinding>(),
     override fun initListener() {
       //
         viewBinding.header04.setOnBackButtonClickListener{onBackPressed()}
-        viewBinding.header04.optionButtonText = "저장"
+       // viewBinding.header04.optionButtonText = "저장"
         viewBinding.header04.setOnOptionButtonClickListener{ Log.d(TAG, "initListener: ")};
+
         viewBinding.btAdd.setOnClickListener {
             //if (mode == USERFORMATMAKEMODE.ADD) return@setOnClickListener
             Log.d(TAG, "bt add clicked ${adapterAdd.selectedPosition}")
@@ -64,13 +65,10 @@ class UserFormatMake : ActivityBase<ActivityUserFormatBinding>(),
         }
         viewBinding.divisionLayout.setOnClickListener {
             Log.d(TAG, "initListener: click! => dialog")
-
             val dlg = MyDialog(this)
             dlg.firstLayoutUse= false;
-
            // arrays1.add("/");  arrays1.add("@"); arrays1.add("Space");
             dlg.list = arrays1
-
             dlg.setOnOKClickedListener{ content ->
                 Log.d(TAG, "onItemClick: $content")
             }
@@ -122,6 +120,7 @@ class UserFormatMake : ActivityBase<ActivityUserFormatBinding>(),
                 //데이터 새로고침
                 adapterAdd.notifyDataSetChanged();
                 adapterDelete.notifyDataSetChanged();
+
                 //텍스트를 listdata[0]으로 출력
                 viewBinding.tvUserformat.text = listdata[0].toString()
             }
@@ -143,7 +142,7 @@ class UserFormatMake : ActivityBase<ActivityUserFormatBinding>(),
 
         }
             setUserFormatText()
-
+            viewBinding.recyclerviewUserFormatSettings.smoothScrollToPosition(0)
         }
     }
 
