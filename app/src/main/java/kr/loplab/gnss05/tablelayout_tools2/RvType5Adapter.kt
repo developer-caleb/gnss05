@@ -35,15 +35,22 @@ class RvType5Adapter(
         item.mPriceList?.forEach {
             val itemView = getItemView(R.layout.item_layout, null)
             itemView.findViewById<TextView>(R.id.tv_data).text = it
-            if(item.isPressed )itemView.setBackgroundResource( R.color.colorAccent) else{
-                itemView.setBackgroundResource( R.color.white)
+            if(item.isPressed )helper.setBackgroundRes(R.id.tv_product_name, R.color.brightSky) else{
+                helper.setBackgroundRes(R.id.tv_product_name, R.color.white)
             }
 
             ll_item.addView(itemView)
 
+            ll_item.scrollBy(1,0)
+            ll_item.scrollBy(-1,0)
+
+        }
         //오른쪽의 가로 목록
         val itemSyncHScrollView = helper.getView<SyncHScrollView>(R.id.hsv_list_right)
 
+        if (item.isPressed) helper.itemView.setBackgroundResource(R.color.grey_dd) else {
+            helper.itemView.setBackgroundResource(R.color.white)
+        }
         //슬라이딩 관찰자 추가
         mHeadSyncRecyclerView.AddOnScrollChangedListener(OnScrollChangedListenerImp(itemSyncHScrollView))
 
@@ -53,7 +60,7 @@ class RvType5Adapter(
         helper.itemView.setOnTouchListener(ListViewAndHeadViewTouchListener())
     }
 
-    class OnScrollChangedListenerImp(var mScrollViewArg: SyncHScrollView) :
+        internal inner  class OnScrollChangedListenerImp(var mScrollViewArg: SyncHScrollView) :
             SyncHScrollView.OnScrollChangedListener {
 
         override fun onScrollChanged(l: Int, t: Int, oldl: Int, oldt: Int) {
@@ -62,7 +69,7 @@ class RvType5Adapter(
     }
 
 
-    class ListViewAndHeadViewTouchListener : View.OnTouchListener {
+        internal inner  class ListViewAndHeadViewTouchListener : View.OnTouchListener {
 
         override fun onTouch(arg0: View, event: MotionEvent): Boolean {
             // 열 헤더와 listView 컨트롤을 터치할 때 터치 이벤트를 ScrollView에 배포합니다

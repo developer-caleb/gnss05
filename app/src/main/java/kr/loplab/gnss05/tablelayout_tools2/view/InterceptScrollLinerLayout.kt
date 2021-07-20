@@ -8,7 +8,7 @@ import android.widget.LinearLayout
 
 
 /**
- * 拦截触摸事件的容器
+ * 터치 이벤트를 가로채기 위한 컨테이너
  * Created by xiaoyulaoshi on 2018/1/31.
  */
 
@@ -19,7 +19,7 @@ class InterceptScrollLinerLayout : LinearLayout {
     constructor(context: Context) : super(context) {}
 
     /**
-     * 拦截TouchEvent
+     * 터치 이벤트 가로채기
      * @see android.view.ViewGroup#onInterceptTouchEvent(android.view.MotionEvent)
      */
     override fun onInterceptTouchEvent(ev: MotionEvent): Boolean {

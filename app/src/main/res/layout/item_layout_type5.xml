@@ -10,7 +10,6 @@
     android:layout_width="match_parent"
     android:layout_height="50dp"
     android:id="@+id/ll_item_content"
-    android:background="@drawable/selector_bg_white"
     android:descendantFocusability="blocksDescendants"
     android:gravity="center_vertical"
     android:orientation="horizontal">
@@ -19,7 +18,7 @@
         android:id="@+id/tv_product_name"
         android:layout_width="120dp"
         android:layout_height="match_parent"
-        android:background="#FF9595"
+        android:background="#FFF29E"
         android:gravity="center"
         android:padding="@dimen/dp_10"
         android:text="테이블1"

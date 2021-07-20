@@ -10,9 +10,10 @@ import java.util.List;
 
 /**
  * Created by xiaoyulaoshi on 2018/1/31.
- * 自定义的 滚动控件
- * 重载了 {@link SyncHScrollView#onScrollChanged}（滚动条变化）,监听每次的变化通知给观察(此变化的)观察者
- * 可使用 {@link SyncHScrollView#AddOnScrollChangedListener(OnScrollChangedListener) } 来订阅本控件的 滚动条变化
+ * 사용자 정의 스크롤 컨트롤
+ * 과부하 {@link SyncHScrollView#onScrollChanged}（스크롤바 변경）,모든 변경 사항을 모니터링하고 관찰자에게 알립니다.
+ * (이것은 변경)관찰자
+ * 사용할 수 있다 {@link SyncHScrollView#AddOnScrollChangedListener(OnScrollChangedListener) } 이 컨트롤의 스크롤 막대 변경 사항을 구독하려면
  */
 
 public class SyncHScrollView extends HorizontalScrollView {
@@ -38,7 +39,8 @@ public class SyncHScrollView extends HorizontalScrollView {
     @Override
     protected void onScrollChanged(int l, int t, int oldl, int oldt) {
         /*
-         * 当滚动条移动后，引发 滚动事件。通知给观察者，观察者会传达给其他的条目中的滚动视图。
+         *
+스크롤바가 움직이면 스크롤 이벤트가 발생합니다. 관찰자에게 알리면 관찰자는 이를 다른 항목의 스크롤 뷰에 전달합니다.
 		 */
         if (mScrollViewObserver != null) {
             mScrollViewObserver.NotifyOnScrollChanged(l, t, oldl, oldt);
@@ -47,28 +49,30 @@ public class SyncHScrollView extends HorizontalScrollView {
     }
 
     /*
-     * 订阅 本控件 的 滚动条变化事件
+     *
+이 컨트롤의 스크롤 막대 변경 이벤트를 구독합니다.
      * */
     public void AddOnScrollChangedListener(OnScrollChangedListener listener) {
         mScrollViewObserver.AddOnScrollChangedListener(listener);
     }
 
     /*
-     * 取消 订阅 本控件 的 滚动条变化事件
+     *
+이 컨트롤의 스크롤 막대 변경 이벤트 구독 취소
      * */
     public void RemoveOnScrollChangedListener(OnScrollChangedListener listener) {
         mScrollViewObserver.RemoveOnScrollChangedListener(listener);
     }
 
     /*
-     * 当发生了滚动事件时
+     * 스크롤 이벤트가 발생했을 때
      */
     public static interface OnScrollChangedListener {
         public void onScrollChanged(int l, int t, int oldl, int oldt);
     }
 
     /**
-     * 观察者
+     * 관찰자
      */
     public static class ScrollViewObserver {
         List<OnScrollChangedListener> mList;

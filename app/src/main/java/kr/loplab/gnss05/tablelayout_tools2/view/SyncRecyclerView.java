@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * 可以实现关联滑动的RecyclerView,实现方式为观察者机制
+ * 관련 슬라이딩을 실현할 수 있는 RecyclerView, 실현 방법은 옵저버 메커니즘
  * Created by xiaoyulaoshi on 2018/1/31.
  */
 
@@ -20,7 +20,7 @@ public class SyncRecyclerView extends RecyclerView {
 
     private final String TAG = SyncRecyclerView.class.getName();
 
-    //观察者
+    //관찰자
     private SyncRecyclerViewObserver mSyncRecyclerViewObserver = new SyncRecyclerViewObserver();
 
 
@@ -45,7 +45,8 @@ public class SyncRecyclerView extends RecyclerView {
     @Override
     public void onScrolled(int dx, int dy) {
         Log.i(TAG, "onScrolled >> dx=" + dx + "\tdy=" + dy);
-        //将发生的滑动改变通知到观察者中的每一个滑动监听
+        //
+        //발생하는 슬라이딩 변경을 관찰자의 모든 슬라이딩 모니터에 알립니다.
         if (mSyncRecyclerViewObserver != null) {
             mSyncRecyclerViewObserver.notifyOnScrollChange(dx, dy);
         }
@@ -58,7 +59,8 @@ public class SyncRecyclerView extends RecyclerView {
     }
 
     /**
-     * 向观察者中添加 当前控件的滑动事件监听
+     *
+     * 현재 컨트롤의 슬라이딩 이벤트 리스너를 관찰자에게 추가합니다.
      */
     public void addOnScrollChangeListener(OnScrollChangeListener onScrollChangeListener) {
         mSyncRecyclerViewObserver.addOnScrollChangeListener(onScrollChangeListener);
@@ -66,7 +68,8 @@ public class SyncRecyclerView extends RecyclerView {
 
 
     /**
-     * 移除观察者中 当前控件的滑动事件监听
+     *
+     * 관찰자에서 현재 컨트롤의 슬라이딩 이벤트 수신기를 제거합니다.
      */
     public void removeOnScrollChangeListener(OnScrollChangeListener onScrollChangeListener) {
         mSyncRecyclerViewObserver.removeOnScrollChangeListener(onScrollChangeListener);
@@ -74,17 +77,19 @@ public class SyncRecyclerView extends RecyclerView {
 
 
     /**
-     * 自定义滑动监听
+     * 맞춤형 슬라이딩 모니터
      */
     public interface OnScrollChangeListener {
         void onScrollChanged(int dx, int dy);
     }
 
     /**
-     * 滑动观察者，用来多个列表关联滑动的实现
+     *
+     * 슬라이딩과 관련된 여러 목록의 실현에 사용되는 슬라이딩 관찰자
      */
     public static class SyncRecyclerViewObserver {
-        //创建关联监听的集合，因为每一个列表都会设置监听器
+        //
+        //각 목록에는 리스너가 있으므로 연결된 리스너 모음을 만듭니다.
         List<OnScrollChangeListener> mList;
 
         public SyncRecyclerViewObserver() {
@@ -93,32 +98,33 @@ public class SyncRecyclerView extends RecyclerView {
         }
 
         /**
-         * 添加滑动监听器
+         * 슬라이딩 리스너 추가
          *
-         * @param onScrollChangeListener 滑动监听器
+         * @param onScrollChangeListener 슬라이딩 리스너
          */
         public void addOnScrollChangeListener(OnScrollChangeListener onScrollChangeListener) {
             mList.add(onScrollChangeListener);
         }
 
         /**
-         * 移除滑动监听器
+         * 슬라이딩 리스너 제거
          *
-         * @param onScrollChangeListener 要删除的滑动监听器
+         * @param onScrollChangeListener 리스너를 스와이프하여 삭제
          */
         public void removeOnScrollChangeListener(OnScrollChangeListener onScrollChangeListener) {
             mList.remove(onScrollChangeListener);
         }
 
         /**
-         * 广播滑动改变，通知到每一个滑动监听器
+         * 슬라이딩 변경 사항 브로드캐스트, 각 슬라이딩 수신기에 알림
          */
         public void notifyOnScrollChange(int dx, int dy) {
             if (mList == null || mList.size() == 0) {
                 return;
             }
 
-            //循环通知每一个滑动监听器
+            //
+            //루프의 모든 슬라이딩 리스너에게 알림
             for (int i = 0; i < mList.size(); i++) {
                 if (mList.get(i) != null) {
                     mList.get(i).onScrollChanged(dx, dy);

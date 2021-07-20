@@ -20,14 +20,14 @@ class UserFormatView : ActivityBase<ActivityUserFormatViewBinding>(){
     override val layoutResourceId: Int
         get() = R.layout.activity_user_format_view
     private var numberOfColumn = 10
-    private var numberOfRow = 5
+    private var numberOfRow = 30
 
     private var mProductAdapter: RvType5Adapter? = null
     private var mProductDataList: MutableList<Type2Model>? = null
     private var lastposition = -1;
 
     override fun init() {
-       /* for (indexTitle in 0..numberOfColumn) {
+        for (indexTitle in 0..numberOfColumn) {
             val titleView = LayoutInflater.from(this).inflate(R.layout.item_layout, null)
             titleView.findViewById<TextView>(R.id.tv_data).text = "머리글》${indexTitle}"
             titleView.setBackgroundResource(R.color.shadow_background_color)
@@ -58,6 +58,10 @@ class UserFormatView : ActivityBase<ActivityUserFormatViewBinding>(){
         mProductAdapter!!.setNewData(mProductDataList)
         rv_list_product.adapter = mProductAdapter
 
+
+
+
+
         //TODO 여기에서 click 이벤트가 설정되면 RecycleView로 설정된 OnTouchListener와 충돌합니다.
         mProductAdapter?.setOnItemClickListener { adapter, view, position ->
             Log.d(TAG, "position>>" + position)
@@ -71,7 +75,7 @@ class UserFormatView : ActivityBase<ActivityUserFormatViewBinding>(){
             adapter.notifyItemChanged(position)
             lastposition= position;
             // runOnUiThread { adapter.notifyDataSetChanged() }
-        }*/
+        }
     }
 
     override fun initListener() {
@@ -90,7 +94,7 @@ class UserFormatView : ActivityBase<ActivityUserFormatViewBinding>(){
     }
 
 
-   /* internal inner class ListViewAndHeadViewTouchListener : View.OnTouchListener {
+    internal inner class ListViewAndHeadViewTouchListener : View.OnTouchListener {
 
         override fun onTouch(arg0: View, event: MotionEvent): Boolean {
             // 열 헤더와 listView 컨트롤을 터치할 때 터치 이벤트를 ScrollView에 배포합니다.
@@ -98,5 +102,5 @@ class UserFormatView : ActivityBase<ActivityUserFormatViewBinding>(){
             headScrollView.onTouchEvent(event)
             return false
         }
-    }*/
+    }
 }

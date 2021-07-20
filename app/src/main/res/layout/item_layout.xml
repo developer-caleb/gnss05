@@ -3,7 +3,7 @@
     android:id="@+id/ll_item"
     android:layout_width="130dp"
     android:layout_height="50dp"
-    android:background="@drawable/selector_bg_white">
+    >
 
     <TextView
         android:id="@+id/tv_data"
