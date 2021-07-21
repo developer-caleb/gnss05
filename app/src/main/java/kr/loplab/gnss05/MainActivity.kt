@@ -19,6 +19,7 @@ import com.karumi.dexter.MultiplePermissionsReport
 import com.karumi.dexter.PermissionToken
 import com.karumi.dexter.listener.PermissionRequest
 import com.karumi.dexter.listener.multi.MultiplePermissionsListener
+import kr.loplab.gnss05.tablelayout_tools1.TableActivity
 
 
 class MainActivity : AppCompatActivity(),
@@ -30,7 +31,7 @@ class MainActivity : AppCompatActivity(),
         val adapter: MainpageRecyclerViewAdapter
         val data = arrayOf(
             "0",  "1", "2",
-            "3", "4", "5", "6","7"
+            "3", "4", "5", "6","7", "8"
         )
 
         // set up the RecyclerView
@@ -84,6 +85,11 @@ class MainActivity : AppCompatActivity(),
             7 -> {
                 //val nextIntent = Intent(this, TableActivity::class.java)
                 val nextIntent = Intent(this, Type5Activity::class.java)
+                startActivity(nextIntent);
+            }
+            8 -> {
+                //val nextIntent = Intent(this, TableActivity::class.java)
+                val nextIntent = Intent(this, TableActivity::class.java)
                 startActivity(nextIntent);
             }
         }

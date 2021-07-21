@@ -17,7 +17,8 @@ import android.widget.TextView;
 import kr.loplab.gnss05.R;
 
 public class TableActivity extends AppCompatActivity implements HorizontalScroll.ScrollViewListener, VerticalScroll.ScrollViewListener {
-
+    int numberOfRow= 30;
+    int numberOfColumn  = 10;
     private static int SCREEN_HEIGHT;
     private static int SCREEN_WIDTH;
     RelativeLayout relativeLayoutMain;
@@ -80,12 +81,12 @@ public class TableActivity extends AppCompatActivity implements HorizontalScroll
             createCompleteColumn();
             createCompleteRow();
         */
-        for(int i=0; i<9; i++){
-            addColumnsToTableB("Head" + i, i);
+        for(int i=0; i<numberOfColumn; i++){
+            addColumnsToTableB("Headasdfsdsssss" + i, i);
         }
-        for(int i=0; i<20; i++){
+        for(int i=0; i<numberOfRow; i++){
             initializeRowForTableD(i);
-            addRowToTableC("Row"+ i);
+            addRowToTableC("Rowsdfdddd"+ i);
             for(int j=0; j<tableColumnCountB; j++){
                 addColumnToTableAtD(i, "D "+ i + " " + j);
             }
@@ -223,7 +224,7 @@ public class TableActivity extends AppCompatActivity implements HorizontalScroll
         TableRow.LayoutParams layoutParamsTableRow= new TableRow.LayoutParams(SCREEN_WIDTH/5, SCREEN_HEIGHT/20);
         tableRow.setLayoutParams(layoutParamsTableRow);
         TextView label_date = new TextView(getApplicationContext());
-        label_date.setText("Item/ID");
+        label_date.setText("번호");
         tableRow.setGravity(Gravity.CENTER_HORIZONTAL|Gravity.CENTER_VERTICAL);
         label_date.setTextSize(getResources().getDimension(R.dimen.cell_text_size));
         tableRow.addView(label_date);

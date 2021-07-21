@@ -7,6 +7,7 @@
     android:orientation="vertical"
     tools:context=".ColorPickerdialog">
     <kr.loplab.gnss05.DefaultHeader
+        android:id="@+id/header_06"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:title="레이어 색상"
@@ -30,18 +31,24 @@
         <TextView
             android:id="@+id/confirmbt1"
             android:layout_width="wrap_content"
-            android:layout_height="30dp"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="#000000"
             android:gravity="center"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:textColor="@color/white"
             android:text="확인" />
 
         <TextView
             android:id="@+id/cancelbt1"
             android:layout_width="wrap_content"
-            android:layout_height="30dp"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="#000000"
+            android:textColor="@color/white"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
             android:gravity="center"
             android:text="취소" />
     </LinearLayout>
