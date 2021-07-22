@@ -31,7 +31,7 @@ class MainActivity : AppCompatActivity(),
         val adapter: MainpageRecyclerViewAdapter
         val data = arrayOf(
             "0",  "1", "2",
-            "3", "4", "5", "6","7", "8"
+            "3", "4", "5", "6","7", "8", "9"
         )
 
         // set up the RecyclerView
@@ -90,6 +90,11 @@ class MainActivity : AppCompatActivity(),
             8 -> {
                 //val nextIntent = Intent(this, TableActivity::class.java)
                 val nextIntent = Intent(this, TableActivity::class.java)
+                startActivity(nextIntent);
+            }
+            9 -> {
+                //val nextIntent = Intent(this, TableActivity::class.java)
+                val nextIntent = Intent(this, TableMainActivity::class.java)
                 startActivity(nextIntent);
             }
         }

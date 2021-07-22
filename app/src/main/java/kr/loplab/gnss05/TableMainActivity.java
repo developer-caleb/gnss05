@@ -29,7 +29,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class TableMainActivity extends AppCompatActivity {
     public TableMainActivity() {
-        super(R.layout.activity_main);
+        super(R.layout.activity_tablemain);
     }
 
 
