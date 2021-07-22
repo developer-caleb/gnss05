@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
+    <color name="bg_line">#E7E7E7</color>
     <color name="colorPrimaryDark">#1975d2</color>
     <color name="colorToGet">#00FF00</color>
     <color name="colorToPay">#ff0000</color>

@@ -23,7 +23,7 @@
         <activity android:name=".FileExportActivity" />
         <activity android:name=".ColorPickerdialog" />
         <activity android:name=".NaverMap" />
-
+        <activity android:name=".TableMainActivity"/>
         <meta-data
             android:name="com.naver.maps.map.CLIENT_ID"
             android:value="x3tscpw23x" />
