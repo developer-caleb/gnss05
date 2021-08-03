@@ -22,7 +22,7 @@
  * SOFTWARE.
  */
 
-package kr.loplab.gnss05;
+package kr.loplab.gnss05.tableview;
 
 import android.os.Bundle;
 import android.text.Editable;
@@ -45,6 +45,7 @@ import com.evrencoskun.tableview.TableView;
 import com.evrencoskun.tableview.filter.Filter;
 import com.evrencoskun.tableview.pagination.Pagination;
 
+import kr.loplab.gnss05.R;
 import kr.loplab.gnss05.tableview.TableViewAdapter;
 import kr.loplab.gnss05.tableview.TableViewListener;
 import kr.loplab.gnss05.tableview.TableViewModel;

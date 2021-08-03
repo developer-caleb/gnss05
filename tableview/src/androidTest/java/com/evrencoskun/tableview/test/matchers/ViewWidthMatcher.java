@@ -1,7 +1,7 @@
 /*
  * MIT License
  *
- * Copyright (c) 2021 Evren Coşkun
+ * Copyright (c) 2021 Andrew Beck
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -22,15 +22,31 @@
  * SOFTWARE.
  */
 
-package kr.loplab.gnss05;
+package com.evrencoskun.tableview.test.matchers;
 
-import androidx.appcompat.app.AppCompatActivity;
+import android.view.View;
 
+import org.hamcrest.Description;
+import org.hamcrest.TypeSafeMatcher;
 
-public class TableMainActivity extends AppCompatActivity {
-    public TableMainActivity() {
-        super(R.layout.activity_tablemain);
+public class ViewWidthMatcher extends TypeSafeMatcher<View> {
+    private final int expectedWidth;
+
+    public ViewWidthMatcher(int expectedWidth) {
+        super(View.class);
+        this.expectedWidth = expectedWidth;
     }
 
+    @Override
+    protected boolean matchesSafely(View target) {
+        int targetWidth = target.getWidth();
 
+        return targetWidth == expectedWidth;
+    }
+
+    @Override
+    public void describeTo(Description description) {
+        description.appendText("with WidthMatcher: ");
+        description.appendValue(expectedWidth);
+    }
 }
