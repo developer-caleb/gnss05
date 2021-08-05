@@ -49,9 +49,8 @@
                 <TextView
                     android:id="@+id/textView4"
                     style="@style/TEXTVIEW_STYLE01"
-                    android:text="하이"
-                    android:visibility="@{viewModel.onprogress? View.VISIBLE : View.GONE}"
-                    />
+                    android:text="하이222"
+                    android:visibility="@{viewModel.onprogress? View.VISIBLE : View.GONE}" />
 
                 <TextView
                     android:id="@+id/textView5"
