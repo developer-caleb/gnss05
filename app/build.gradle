@@ -6,13 +6,13 @@ plugins {
 }
 
 android {
-    compileSdkVersion 28
+    compileSdkVersion 30
     buildToolsVersion "30.0.3"
 
     defaultConfig {
         applicationId "kr.loplab.gnss05"
         minSdkVersion 21
-        targetSdkVersion 28
+        targetSdkVersion 30
         versionCode 1
         versionName "1.0"
 
@@ -37,13 +37,19 @@ android {
     }
 
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
     }
     kotlinOptions {
         jvmTarget = '1.8'
     }
 }
+repositories {
+    flatDir {
+        dirs 'libs'
+    }
+}
+
 
 dependencies {
 
@@ -83,4 +89,7 @@ dependencies {
     //Table layout
     //implementation 'com.evrencoskun.library:tableview:0.8.9.4'
     implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.34'
+
+    implementation name : 'sdk4a-release', ext: 'aar' //GNSS ARR
+  // implementation 'com.chc.gnss.sdk:sdk4a-release:1.0.2@aar' //GNSS ARR
 }

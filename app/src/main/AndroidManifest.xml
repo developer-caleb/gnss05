@@ -13,17 +13,22 @@
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+        android:requestLegacyExternalStorage="true"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Gnss05">
-        <activity android:name=".tablelayout_tools1.TableActivity"></activity>
+        <activity
+            android:name=".SplashActivity"
+            android:exported="true" />
+        <activity android:name=".tablelayout_tools1.TableActivity" />
         <activity android:name=".UserFormatView" />
         <activity android:name=".UserFormatMake" />
         <activity android:name=".tablelayout_tools2.Type5Activity" />
         <activity android:name=".FileExportActivity" />
         <activity android:name=".ColorPickerdialog" />
         <activity android:name=".NaverMap" />
-        <activity android:name=".tableview.TableMainActivity"/>
+        <activity android:name=".tableview.TableMainActivity" />
+
         <meta-data
             android:name="com.naver.maps.map.CLIENT_ID"
             android:value="x3tscpw23x" />

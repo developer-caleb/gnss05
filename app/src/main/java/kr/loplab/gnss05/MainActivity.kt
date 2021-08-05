@@ -21,6 +21,7 @@ import com.karumi.dexter.listener.PermissionRequest
 import com.karumi.dexter.listener.multi.MultiplePermissionsListener
 import kr.loplab.gnss05.tablelayout_tools1.TableActivity
 import kr.loplab.gnss05.tableview.TableMainActivity
+import java.io.InputStream
 
 
 class MainActivity : AppCompatActivity(),
@@ -32,7 +33,8 @@ class MainActivity : AppCompatActivity(),
         val adapter: MainpageRecyclerViewAdapter
         val data = arrayOf(
             "0",  "1", "2",
-            "3", "4", "5", "6","7", "8", "9"
+            "3", "4", "5", "6","7", "8", "9",
+            "10","11","12"
         )
 
         // set up the RecyclerView
@@ -97,6 +99,18 @@ class MainActivity : AppCompatActivity(),
                 //val nextIntent = Intent(this, TableActivity::class.java)
                 val nextIntent = Intent(this, TableMainActivity::class.java)
                 startActivity(nextIntent);
+            }
+            10 -> {
+                //val nextIntent = Intent(this, TableActivity::class.java)
+                val nextIntent = Intent(this, TableMainActivity::class.java)
+                startActivity(nextIntent);
+            }
+            11 -> {
+                //val nextIntent = Intent(this, TableActivity::class.java)
+                val nextIntent = Intent(this, TableMainActivity::class.java)
+                startActivity(nextIntent);
+                var inputStream : InputStream = resources.openRawResource(R.raw.features)
+
             }
         }
     }
