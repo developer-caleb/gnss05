@@ -50,7 +50,7 @@ public class CellRecyclerViewItemClickListener extends AbstractItemClickListener
 
     @Override
     protected boolean clickAction(@NonNull RecyclerView view, @NonNull MotionEvent e) {
-        
+        /*
         // Get interacted view from x,y coordinate.
         View childView = view.findChildViewUnder(e.getX(), e.getY());
 
@@ -71,13 +71,14 @@ public class CellRecyclerViewItemClickListener extends AbstractItemClickListener
 
             // Call ITableView listener for item click
             getTableViewListener().onRowHeaderClicked(holder, row);
+            adapter.notifyDataSetChanged(); // 이번에 바꿔본다!
             return true;
         }
         return false;
+*/
 
 
-
-    /* 원래 있던것 없앴음
+     //원래 있던것 없앴음
        // Get interacted view from x,y coordinate.
         View childView = view.findChildViewUnder(e.getX(), e.getY());
 
@@ -104,7 +105,7 @@ public class CellRecyclerViewItemClickListener extends AbstractItemClickListener
 
             return true;
         }
-        return false;*/
+        return false;
 
     }
 

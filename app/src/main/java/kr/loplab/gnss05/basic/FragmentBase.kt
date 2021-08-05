@@ -11,6 +11,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModel
+import kr.loplab.gnss05.GlobalApplication
 
 abstract class FragmentBase<T : ViewDataBinding,VM: ViewModelBasic> : Fragment() {
     val TAG = javaClass.simpleName
@@ -55,7 +56,11 @@ abstract class FragmentBase<T : ViewDataBinding,VM: ViewModelBasic> : Fragment()
     }
 
     fun showToast(str:String){
-        Toast.makeText(context,str,Toast.LENGTH_LONG).show()
+        if(GlobalApplication.mToast!=null){
+            GlobalApplication.mToast.cancel();
+        }
+        GlobalApplication.mToast = Toast.makeText(context,str,Toast.LENGTH_SHORT)
+        GlobalApplication.mToast.show();
         Log.d("TAG", "showToast: $str")
     }
 

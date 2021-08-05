@@ -42,8 +42,6 @@ public class SplashActivity extends AppCompatActivity {
 
 
 
-
-
         //Log.d(TAG, "onCreate: -> filepath" + gnssreceiver2.openrawfile() );
 
         PackageManager pm = getPackageManager();

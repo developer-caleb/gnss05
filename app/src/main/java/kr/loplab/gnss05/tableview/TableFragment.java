@@ -45,6 +45,7 @@ import com.evrencoskun.tableview.TableView;
 import com.evrencoskun.tableview.filter.Filter;
 import com.evrencoskun.tableview.pagination.Pagination;
 
+import kr.loplab.gnss05.GlobalApplication;
 import kr.loplab.gnss05.R;
 import kr.loplab.gnss05.tableview.TableViewAdapter;
 import kr.loplab.gnss05.tableview.TableViewListener;
@@ -354,7 +355,11 @@ public class TableFragment extends Fragment {
 
 
     void showToast(String str){
-        Toast.makeText(getContext(),str,Toast.LENGTH_LONG).show();
+        if(GlobalApplication.mToast!=null){
+            GlobalApplication.mToast.cancel();
+        }
+        GlobalApplication.mToast = Toast.makeText(getContext(),str,Toast.LENGTH_SHORT);
+        GlobalApplication.mToast.show();
         Log.d("TAG", "showToast: $str");
     }
 }

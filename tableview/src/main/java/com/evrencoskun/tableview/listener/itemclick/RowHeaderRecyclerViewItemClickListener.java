@@ -52,8 +52,7 @@ public class RowHeaderRecyclerViewItemClickListener extends AbstractItemClickLis
 
         if (childView != null) {
             // Find the view holder
-            AbstractViewHolder holder = (AbstractViewHolder) mRecyclerView.getChildViewHolder
-                    (childView);
+            AbstractViewHolder holder = (AbstractViewHolder) mRecyclerView.getChildViewHolder(childView);
 
             int row = holder.getAdapterPosition();
 
