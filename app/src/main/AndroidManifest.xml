@@ -19,7 +19,14 @@
         android:theme="@style/Theme.Gnss05">
         <activity
             android:name=".SplashActivity"
-            android:exported="true" />
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+        </activity>
         <activity android:name=".tablelayout_tools1.TableActivity" />
         <activity android:name=".UserFormatView" />
         <activity android:name=".UserFormatMake" />
@@ -37,11 +44,7 @@
             android:name=".StandardPointActivity"
             android:parentActivityName=".MainActivity" />
         <activity android:name=".MainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
     </application>
 

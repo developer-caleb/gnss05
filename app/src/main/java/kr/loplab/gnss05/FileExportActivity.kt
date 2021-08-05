@@ -190,6 +190,7 @@ class FileExportActivity : ActivityBase<ActivityFileExportBinding>(),  Filedirec
                 }
                 else -> {
                     print("file.extension -> ${file.extension}")
+                    data.add(arrayOf(filess.name, filess.name, ".csv"));
                 }
             }
             }

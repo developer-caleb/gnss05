@@ -47,6 +47,32 @@
                >
 
                 <TextView
+                    style="@style/TEXTVIEW_STYLE01"
+                    android:text="하이"
+                    android:visibility="@{viewModel.onprogress? View.VISIBLE : View.GONE}"
+                    />
+                <TextView
+                    style="@style/TEXTVIEW_STYLE02"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0"
+                    android:text="TextView" />
+
+             <CheckBox
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"/>
+
+            </LinearLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_weight="0"
+                android:background="@color/dividercolor" />
+            <LinearLayout
+                style="@style/ButtonLayout_STYLE01"
+                >
+
+                <TextView
                     android:id="@+id/textView4"
                     style="@style/TEXTVIEW_STYLE01"
                     android:text="하이"
@@ -73,7 +99,6 @@
             </LinearLayout>
 
             <View
-                android:id="@+id/divide3"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:layout_weight="0"
