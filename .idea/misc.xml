@@ -8,7 +8,37 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Users/USER/AndroidStudioProjects/gnss05/app/src/main/res/layout/activity_standard_point.xml" value="0.3302083333333333" />
+        <entry key="..\:/Users/USER/AndroidStudioProjects/gnss05/app/src/main/res/layout/activity_color_picker.xml" value="0.31521739130434784" />
+        <entry key="..\:/Users/USER/AndroidStudioProjects/gnss05/app/src/main/res/layout/activity_file_export.xml" value="0.31521739130434784" />
+        <entry key="..\:/Users/USER/AndroidStudioProjects/gnss05/app/src/main/res/layout/activity_main.xml" value="0.31521739130434784" />
+        <entry key="..\:/Users/USER/AndroidStudioProjects/gnss05/app/src/main/res/layout/activity_naver_map.xml" value="0.31521739130434784" />
+        <entry key="..\:/Users/USER/AndroidStudioProjects/gnss05/app/src/main/res/layout/activity_standard_point.xml" value="0.25" />
+        <entry key="..\:/Users/USER/AndroidStudioProjects/gnss05/app/src/main/res/layout/activity_table.xml" value="0.31521739130434784" />
+        <entry key="..\:/Users/USER/AndroidStudioProjects/gnss05/app/src/main/res/layout/activity_tablemain.xml" value="0.31521739130434784" />
+        <entry key="..\:/Users/USER/AndroidStudioProjects/gnss05/app/src/main/res/layout/activity_type2.xml" value="0.31521739130434784" />
+        <entry key="..\:/Users/USER/AndroidStudioProjects/gnss05/app/src/main/res/layout/activity_type3.xml" value="0.31521739130434784" />
+        <entry key="..\:/Users/USER/AndroidStudioProjects/gnss05/app/src/main/res/layout/activity_type5.xml" value="0.31567028985507245" />
+        <entry key="..\:/Users/USER/AndroidStudioProjects/gnss05/app/src/main/res/layout/activity_user_format.xml" value="0.31567028985507245" />
+        <entry key="..\:/Users/USER/AndroidStudioProjects/gnss05/app/src/main/res/layout/activity_user_format_view.xml" value="0.31521739130434784" />
+        <entry key="..\:/Users/USER/AndroidStudioProjects/gnss05/app/src/main/res/layout/file_directory.xml" value="0.34270833333333334" />
+        <entry key="..\:/Users/USER/AndroidStudioProjects/gnss05/app/src/main/res/layout/item_layout_type1.xml" value="0.31567028985507245" />
+        <entry key="..\:/Users/USER/AndroidStudioProjects/gnss05/app/src/main/res/layout/item_layout_type2.xml" value="0.31567028985507245" />
+        <entry key="..\:/Users/USER/AndroidStudioProjects/gnss05/app/src/main/res/layout/item_layout_type3.xml" value="0.31567028985507245" />
+        <entry key="..\:/Users/USER/AndroidStudioProjects/gnss05/app/src/main/res/layout/item_layout_type5.xml" value="0.31567028985507245" />
+        <entry key="..\:/Users/USER/AndroidStudioProjects/gnss05/app/src/main/res/layout/layout_default_header.xml" value="0.31567028985507245" />
+        <entry key="..\:/Users/USER/AndroidStudioProjects/gnss05/app/src/main/res/layout/layout_text_divider.xml" value="0.31567028985507245" />
+        <entry key="..\:/Users/USER/AndroidStudioProjects/gnss05/app/src/main/res/layout/recyclerview_checkitem.xml" value="0.31567028985507245" />
+        <entry key="..\:/Users/USER/AndroidStudioProjects/gnss05/app/src/main/res/layout/recyclerview_custom_format.xml" value="0.31567028985507245" />
+        <entry key="..\:/Users/USER/AndroidStudioProjects/gnss05/app/src/main/res/layout/recyclerview_item.xml" value="0.31567028985507245" />
+        <entry key="..\:/Users/USER/AndroidStudioProjects/gnss05/app/src/main/res/layout/recyclerview_listitem.xml" value="0.31567028985507245" />
+        <entry key="..\:/Users/USER/AndroidStudioProjects/gnss05/app/src/main/res/layout/table_fragment_main.xml" value="0.31567028985507245" />
+        <entry key="..\:/Users/USER/AndroidStudioProjects/gnss05/app/src/main/res/layout/table_view_cell_layout.xml" value="0.31567028985507245" />
+        <entry key="..\:/Users/USER/AndroidStudioProjects/gnss05/app/src/main/res/layout/table_view_column_header_layout.xml" value="0.31567028985507245" />
+        <entry key="..\:/Users/USER/AndroidStudioProjects/gnss05/app/src/main/res/layout/table_view_image_cell_layout.xml" value="0.31567028985507245" />
+        <entry key="..\:/Users/USER/AndroidStudioProjects/gnss05/app/src/main/res/layout/table_view_row_header_layout.xml" value="0.31567028985507245" />
+        <entry key="..\:/Users/USER/AndroidStudioProjects/gnss05/app/src/main/res/layout/work_sub1.xml" value="0.157321594068582" />
+        <entry key="..\:/Users/USER/AndroidStudioProjects/gnss05/app/src/main/res/layout/work_sub1_file_directory.xml" value="0.33" />
+        <entry key="..\:/Users/USER/AndroidStudioProjects/gnss05/app/src/main/res/layout/workgroup_sub1.xml" value="0.3302083333333333" />
       </map>
     </option>
   </component>
