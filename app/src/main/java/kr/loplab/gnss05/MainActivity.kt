@@ -13,13 +13,11 @@ import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
-import kr.loplab.gnss05.tablelayout_tools2.Type5Activity
 import com.karumi.dexter.Dexter
 import com.karumi.dexter.MultiplePermissionsReport
 import com.karumi.dexter.PermissionToken
 import com.karumi.dexter.listener.PermissionRequest
 import com.karumi.dexter.listener.multi.MultiplePermissionsListener
-import kr.loplab.gnss05.tablelayout_tools1.TableActivity
 import kr.loplab.gnss05.tableview.TableMainActivity
 import java.io.InputStream
 
@@ -34,7 +32,6 @@ class MainActivity : AppCompatActivity(),
         val data = arrayOf(
             "0",  "1", "2",
             "3", "4", "5", "6","7", "8", "9",
-            "10","11","12"
         )
 
         // set up the RecyclerView
@@ -81,31 +78,19 @@ class MainActivity : AppCompatActivity(),
                 val nextIntent = Intent(this, UserFormatMake::class.java)
                 startActivity(nextIntent);
             }
+
+
             6 -> {
-                val nextIntent = Intent(this, UserFormatView::class.java)
+                //val nextIntent = Intent(this, TableActivity::class.java)
+                val nextIntent = Intent(this, TableMainActivity::class.java)
                 startActivity(nextIntent);
             }
             7 -> {
                 //val nextIntent = Intent(this, TableActivity::class.java)
-                val nextIntent = Intent(this, Type5Activity::class.java)
+                val nextIntent = Intent(this, TableMainActivity::class.java)
                 startActivity(nextIntent);
             }
             8 -> {
-                //val nextIntent = Intent(this, TableActivity::class.java)
-                val nextIntent = Intent(this, TableActivity::class.java)
-                startActivity(nextIntent);
-            }
-            9 -> {
-                //val nextIntent = Intent(this, TableActivity::class.java)
-                val nextIntent = Intent(this, TableMainActivity::class.java)
-                startActivity(nextIntent);
-            }
-            10 -> {
-                //val nextIntent = Intent(this, TableActivity::class.java)
-                val nextIntent = Intent(this, TableMainActivity::class.java)
-                startActivity(nextIntent);
-            }
-            11 -> {
                 //val nextIntent = Intent(this, TableActivity::class.java)
                 val nextIntent = Intent(this, TableMainActivity::class.java)
                 startActivity(nextIntent);

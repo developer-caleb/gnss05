@@ -13,6 +13,9 @@
         <entry key="app/src/main/res/layout/activity_standard_point.xml" value="0.31614583333333335" />
         <entry key="app/src/main/res/layout/activity_type3.xml" value="0.31614583333333335" />
         <entry key="app/src/main/res/layout/activity_type5.xml" value="0.31614583333333335" />
+        <entry key="app/src/main/res/layout/activity_user_format.xml" value="0.18177083333333333" />
+        <entry key="app/src/main/res/layout/activity_user_format_view.xml" value="0.22" />
+        <entry key="app/src/main/res/layout/item_layout_type1.xml" value="0.15729166666666666" />
       </map>
     </option>
   </component>

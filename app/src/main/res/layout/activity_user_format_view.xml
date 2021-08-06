@@ -20,9 +20,6 @@
 
 
 
-    <include
-        android:id="@+id/layout_head"
-        layout="@layout/item_layout_type5" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_list_product"

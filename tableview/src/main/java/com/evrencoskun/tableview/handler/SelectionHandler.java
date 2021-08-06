@@ -116,6 +116,10 @@ public class SelectionHandler {
 
     public void setPreviousSelectedView(@Nullable AbstractViewHolder viewHolder) {
         restorePreviousSelectedView();
+        //완전똑같냐
+
+
+
 
         if (mPreviousSelectedViewHolder != null) {
             // Change color
@@ -135,7 +139,6 @@ public class SelectionHandler {
         }
 
         this.mPreviousSelectedViewHolder = viewHolder;
-
         // Change color
         mPreviousSelectedViewHolder.setBackgroundColor(mTableView.getSelectedColor());
         // Change state
@@ -143,25 +146,48 @@ public class SelectionHandler {
     }
 
     private void restorePreviousSelectedView() {
-        if (mSelectedColumnPosition != UNSELECTED_POSITION && mSelectedRowPosition !=
+        unselectedRowHeader();
+        unselectedRowHeader();
+        unselectedColumnHeader();
+        unselectedCellView();
+        /*if (mSelectedColumnPosition != UNSELECTED_POSITION && mSelectedRowPosition !=
                 UNSELECTED_POSITION) {
-            unselectedCellView();
+            unselectedRowHeader();
+            //unselectedCellView();
         } else if (mSelectedColumnPosition != UNSELECTED_POSITION) {
             unselectedColumnHeader();
         } else if (mSelectedRowPosition != UNSELECTED_POSITION) {
             unselectedRowHeader();
-        }
+        }*/
     }
 
     private void selectedRowHeader() {
+        /** 새로운 추가 시작*/
+        int shadowColor = mTableView.getShadowColor();
+
+        // Change background color of the row header which is located on Y Position of the cell
+        // view.
+        AbstractViewHolder rowHeader = (AbstractViewHolder) mRowHeaderRecyclerView
+                .findViewHolderForAdapterPosition(mSelectedRowPosition);
+
+        // If view is null, that means the row view holder was already recycled.
+        if (rowHeader != null) {
+            // Change color
+            rowHeader.setBackgroundColor(shadowColor);
+            // Change state
+            rowHeader.setSelected(SelectionState.SHADOWED);
+        }
+        /** 새로운 추가 끝*/
+
         // Change background color of the selected cell views
         changeVisibleCellViewsBackgroundForRow(mSelectedRowPosition, true);
 
         // Change background color of the column headers to be shown as a shadow.
-        if (shadowEnabled) {
+        //가장위에있는 column헤더 색깔 바꾸는 거임 안하는게 좋음
+     /*   if (shadowEnabled) {
             changeSelectionOfRecyclerView(mColumnHeaderRecyclerView, SelectionState.SHADOWED,
                     mTableView.getShadowColor());
-        }
+        }*/
     }
 
     private void unselectedRowHeader() {

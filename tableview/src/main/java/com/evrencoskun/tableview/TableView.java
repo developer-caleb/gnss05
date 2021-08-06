@@ -184,7 +184,7 @@ public class TableView extends FrameLayout implements ITableView {
         mUnSelectedColor = ContextCompat.getColor(getContext(), R.color
                 .table_view_default_unselected_background_color);
         mShadowColor = ContextCompat.getColor(getContext(), R.color
-                .table_view_default_shadow_background_color);
+                .table_view_default_selected_background_color);
 
         if (attrs == null) {
             // That means TableView is created programmatically.
