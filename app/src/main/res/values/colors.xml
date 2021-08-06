@@ -19,8 +19,11 @@
     <color name="white">#FFFFFFFF</color>
     <color name="white2">#FFEFEFEF</color>
     <color name="grey_22">#FF222222</color>
+    <color name="grey_33">#FF333333</color>
     <color name="grey_55">#FF555555</color>
+    <color name="grey_6D">#FF6d6d6d</color>
     <color name="grey_88">#FF888888</color>
+    <color name="grey_89">#FF898989</color>
     <color name="grey_aa">#FFAAAAAA</color>
     <color name="grey_cc">#FFCCCCCC</color>
     <color name="grey_dd">#FFAAAAAA</color>
@@ -37,4 +40,14 @@
     <color name="header_line_color">#595959</color>
     <color name="cell_background_color">#FFFFFF</color>
     <!--table-->
+
+    <!--Figma-->
+    <color name="main_blue">#1DB7FB</color>
+    <color name="blue">#0084CE</color>
+    <color name="deep_blue">#0160A7</color>
+    <color name="dark_gray">@color/grey_33</color>
+    <color name="deep_gray">@color/grey_6D</color>
+    <color name="gray">@color/grey_89</color>
+
+
 </resources>

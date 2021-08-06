@@ -83,9 +83,9 @@ public class ColumnHeaderRecyclerViewAdapter<CH> extends AbstractRecyclerViewAda
         // Control to ignore selection color
         if (!mTableView.isIgnoreSelectionColors()) {
 
-            // Change background color of the view considering it's selected state
+        /*    // Change background color of the view considering it's selected state
             mTableView.getSelectionHandler().changeColumnBackgroundColorBySelectionStatus
-                    (viewHolder, selectionState);
+                    (viewHolder, selectionState);*/
         }
 
         // Change selection status
