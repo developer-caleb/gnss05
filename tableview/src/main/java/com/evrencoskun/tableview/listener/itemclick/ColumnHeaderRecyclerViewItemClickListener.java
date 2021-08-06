@@ -77,7 +77,7 @@ public class ColumnHeaderRecyclerViewItemClickListener extends AbstractItemClick
 
     protected void longPressAction(@NonNull MotionEvent e) {
         // Consume the action for the time when the recyclerView is scrolling.
-        if (mRecyclerView.getScrollState() != RecyclerView.SCROLL_STATE_IDLE) {
+     /*   if (mRecyclerView.getScrollState() != RecyclerView.SCROLL_STATE_IDLE) {
             return;
         }
 
@@ -90,13 +90,13 @@ public class ColumnHeaderRecyclerViewItemClickListener extends AbstractItemClick
 
             // Call ITableView listener for long click
             getTableViewListener().onColumnHeaderLongPressed(holder, holder.getAdapterPosition());
-        }
+        }*/
     }
 
     @Override
     protected boolean doubleClickAction(@NonNull MotionEvent e) {
         // Get interacted view from x,y coordinate.
-        View childView = mRecyclerView.findChildViewUnder(e.getX(), e.getY());
+      /*  View childView = mRecyclerView.findChildViewUnder(e.getX(), e.getY());
 
         if (childView != null) {
             // Find the view holder
@@ -114,7 +114,7 @@ public class ColumnHeaderRecyclerViewItemClickListener extends AbstractItemClick
             getTableViewListener().onColumnHeaderDoubleClicked(holder, column);
 
             return true;
-        }
+        }*/
         return false;
     }
 }

@@ -109,7 +109,6 @@ class MainActivity : AppCompatActivity(),
                 //val nextIntent = Intent(this, TableActivity::class.java)
                 val nextIntent = Intent(this, TableMainActivity::class.java)
                 startActivity(nextIntent);
-                var inputStream : InputStream = resources.openRawResource(R.raw.features)
 
             }
         }
