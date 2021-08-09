@@ -17,7 +17,7 @@
         android:id="@+id/header_01"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:title="작업"
+        app:title="지역옵셋"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" >
@@ -38,26 +38,46 @@
 
             <LinearLayout
                 style="@style/ButtonLayout_STYLE01"
-               >
+                >
 
                 <TextView
                     style="@style/Sub_TEXTVIEW_STYLE1"
-                    android:text="작업경로"
-                    android:visibility="@{viewModel.onprogress? View.VISIBLE : View.GONE}" />
+                    android:text="입력 매개 변수 사용"
+                    android:visibility="@{viewModel.onprogress? View.VISIBLE : View.GONE}"/>
+
+                <Switch
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingRight="8dp"/>
+
+
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="4dp"
+                android:layout_weight="0"
+                android:background="@color/grey_cc" />
+
+            <LinearLayout
+                style="@style/ButtonLayout_STYLE01"
+                >
 
                 <TextView
-                    style="@style/Sub_TEXTVIEW_STYLE3"
+                    style="@style/Sub_TEXTVIEW_STYLE1"
+                    android:text="X"
+                    android:visibility="@{viewModel.onprogress? View.VISIBLE : View.GONE}" />
+
+
+                <TextView
+                    style="@style/Sub_TEXTVIEW_STYLE2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="0"
-                    android:text="내장 저장장치/Surpad/Project" />
+                    android:text="0" />
 
-                <ImageView
-                    android:layout_width="@dimen/rightArrowSize"
-                    android:layout_height="@dimen/rightArrowSize"
-                    android:layout_weight="0"
-                    android:padding="5dp"
-                    app:srcCompat="@drawable/ic_rightarrow" />
 
 
             </LinearLayout>
@@ -74,9 +94,8 @@
 
                 <TextView
                     style="@style/Sub_TEXTVIEW_STYLE1"
-                    android:text="디스크 정보"
+                    android:text="Y"
                     android:visibility="@{viewModel.onprogress? View.VISIBLE : View.GONE}" />
-
 
 
                 <TextView
@@ -84,8 +103,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="0"
-                    android:text="52.72GB/57.28GB"
-                    android:textColor="@color/grey_66"/>
+                    android:text="0" />
+
+
 
             </LinearLayout>
 
@@ -97,47 +117,35 @@
 
             <LinearLayout
                 style="@style/ButtonLayout_STYLE01"
-                android:background="@color/grey_cc"
                 >
 
                 <TextView
                     style="@style/Sub_TEXTVIEW_STYLE1"
-                    android:text="작업목록"
-                    android:visibility="@{viewModel.onprogress? View.VISIBLE : View.GONE}"
-                    android:textColor="@color/grey_66"/>
-
-            </LinearLayout>
-
-            <LinearLayout
-                style="@style/ButtonLayout_STYLE02"
-                android:background="@color/main_blue"
-                >
-                <ImageView
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:layout_weight="0"
-                    app:srcCompat="@drawable/file"
-                    android:layout_marginLeft="20dp"/>
-
-
-
-                <TextView
-                    style="@style/Sub_TEXTVIEW_STYLE1"
-                    android:paddingLeft="8dp"
-                    android:text="20210804"
-                    android:textColor="@color/grey_33"
+                    android:text="레벨"
                     android:visibility="@{viewModel.onprogress? View.VISIBLE : View.GONE}" />
+
 
                 <TextView
                     style="@style/Sub_TEXTVIEW_STYLE2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="0"
-                    android:text="20210804 13:26"
-                    android:textColor="@color/grey_cc"
-                    android:layout_marginTop="14dp"/>
+                    android:text="0" />
+
+
 
             </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_weight="0"
+                android:background="@color/grey_EC" />
+
+
+
+
+
         </LinearLayout>
 
     </ScrollView>
@@ -157,53 +165,11 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="새작업"
+            android:text="확인"
             android:textColor="@color/white"
             android:textSize="16dp" />
 
-        <View
-            android:layout_width="1dp"
-            android:layout_height="match_parent"
-            android:layout_weight="0"
-            android:background="@color/white" />
 
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:text="불러오기"
-            android:textColor="@color/white"
-            android:textSize="16dp" />
-
-        <View
-            android:layout_width="1dp"
-            android:layout_height="match_parent"
-            android:layout_weight="0"
-            android:background="@color/white" />
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:text="내보내기"
-            android:textColor="@color/white"
-            android:textSize="16dp" />
-        <View
-            android:layout_width="1dp"
-            android:layout_height="match_parent"
-            android:layout_weight="0"
-            android:background="@color/white" />
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:text="상세정보"
-            android:textColor="@color/white"
-            android:textSize="16dp" />
     </LinearLayout>
 
 
