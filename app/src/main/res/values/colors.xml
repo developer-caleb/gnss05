@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="bg_line">#E7E7E7</color>
+    <color name="transparent">#00FFFFFF</color>
     <color name="colorPrimaryDark">#1975d2</color>
     <color name="colorToGet">#00FF00</color>
     <color name="colorToPay">#ff0000</color>
@@ -14,20 +15,22 @@
     <color name="teal_200">#FF03DAC5</color>
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
+    <color name="ripple_color">#00f6f6</color>
     <color name="textblack">#FF121212</color>
     <color name="headerblack">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="white2">#FFEFEFEF</color>
+    <color name="white_grey">#FFEFEFEF</color>
     <color name="grey_22">#FF222222</color>
     <color name="grey_33">#FF333333</color>
     <color name="grey_55">#FF555555</color>
     <color name="grey_6D">#FF6d6d6d</color>
+    <color name="grey_E5">#FFE5E5E5</color>
     <color name="grey_88">#FF888888</color>
     <color name="grey_89">#FF898989</color>
     <color name="grey_aa">#FFAAAAAA</color>
     <color name="grey_cc">#FFCCCCCC</color>
     <color name="grey_dd">#FFAAAAAA</color>
-    <color name="dividercolor">#FF888888</color>
+    <color name="dividercolor">@color/grey_E5</color>
     <color name="main">@color/brightSky</color>
     <color name="selected_button_color">@color/brightSky</color>
     <color name="unselected_button_color">#FF000000</color>
@@ -48,6 +51,6 @@
     <color name="dark_gray">@color/grey_33</color>
     <color name="deep_gray">@color/grey_6D</color>
     <color name="gray">@color/grey_89</color>
-
+    <color name="text_gray_01">#595757</color>
 
 </resources>

@@ -6,10 +6,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import kr.loplab.gnss05.model.MainIcons
 
-class MainpageRecyclerViewAdapter internal constructor(context: Context?, data: Array<String>) :
+class MainpageRecyclerViewAdapter internal constructor(context: Context?, data: ArrayList<MainIcons>) :
     RecyclerView.Adapter<MainpageRecyclerViewAdapter.ViewHolder>() {
-    private val mData: Array<String>
+    private val mData: ArrayList<MainIcons>
     private val mInflater: LayoutInflater
     private var mClickListener: RecyclerItemClickListener? = null
 
@@ -21,7 +22,7 @@ class MainpageRecyclerViewAdapter internal constructor(context: Context?, data: 
 
     // binds the data to the TextView in each cell
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.myTextView.text = mData[position]
+        holder.myTextView.text = mData[position].decription
     }
 
     // total number of cells
@@ -45,7 +46,7 @@ class MainpageRecyclerViewAdapter internal constructor(context: Context?, data: 
 
     // convenience method for getting data at click position
     fun getItem(id: Int): String {
-        return mData[id]
+        return mData[id].decription
     }
 
     // allows clicks events to be caught

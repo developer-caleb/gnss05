@@ -6,6 +6,17 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+    <View
+        android:id="@+id/view"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:background="@color/blue"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/tabs" />
+
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView"
         android:layout_width="match_parent"
@@ -23,17 +34,37 @@
             android:orientation="horizontal">
 
             <ImageView
-                android:id="@+id/imageView11"
-                android:layout_width="40dp"
-                android:layout_height="wrap_content"
+                android:id="@+id/logo_img"
+                android:layout_width="65dp"
+                android:layout_height="35dp"
                 android:scaleType="fitCenter"
+                android:background="@drawable/ripple_circle"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@drawable/ic_small_logo" />
 
+            <Button
+                android:id="@+id/image_hamburger"
+                style="@style/Widget.App.Button.IconOnly"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_gravity="left"
+                android:layout_marginLeft="10dp"
+                android:layout_weight="1"
+                android:scaleType="center"
+                app:icon="@drawable/ic_hamburger"
+                app:iconTint="@color/dark_gray"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:rippleColor="@color/ripple_color"
+                app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.MyApp.Button.Circle" />
+
+            <!--
             <ImageView
+                style="@style/Widget.App.Button.IconOnly"
                 android:id="@+id/imageView6"
                 android:layout_width="45dp"
                 android:layout_height="45dp"
@@ -44,26 +75,31 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@drawable/ic_hamburger" />
-
+                -->
             <ImageView
-                android:id="@+id/imageView8"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="24dp"
+                android:id="@+id/bt_satellite"
+                android:layout_width="40dp"
+                android:layout_height="45dp"
+                android:layout_marginEnd="16dp"
+                android:background="@drawable/ripple_circle"
+                android:scaleType="center"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/excelicon" />
+                app:srcCompat="@drawable/ic_satellite" />
+
+
 
             <ImageView
-                android:id="@+id/imageView10"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="16dp"
+                android:id="@+id/bt_receiver"
+                android:layout_width="40dp"
+                android:layout_height="45dp"
+                android:background="@drawable/ripple_circle"
+                android:scaleType="center"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/imageView8"
+                app:layout_constraintEnd_toStartOf="@+id/bt_satellite"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/foldericon" />
+                app:srcCompat="@drawable/ic_receiver" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
 
@@ -91,8 +127,12 @@
                 android:layout_height="0dp"
                 android:layout_gravity="center"
                 android:layout_weight="1"
+                android:fontFamily="@font/noto_sans_cj_kkr_bold"
                 android:gravity="center"
-                android:text="1234567" />
+                android:text="1234567"
+                android:textColor="@color/main_blue"
+
+                android:textSize="14dp" />
 
             <View
                 android:id="@+id/divider2"
@@ -100,7 +140,7 @@
                 android:layout_height="2dp"
                 android:layout_marginLeft="11dp"
                 android:layout_marginRight="11dp"
-                android:background="?android:attr/listDivider" />
+                android:background="@color/dividercolor" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -112,7 +152,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    >
 
                     <Space
                         android:layout_width="wrap_content"
@@ -123,15 +165,21 @@
                         android:id="@+id/textView18"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginRight="5dp"
                         android:layout_weight="0"
-                        android:text="고정(Fixed)" />
+                        android:fontFamily="@font/noto_sans_cj_kkr_bold"
+                        android:text="고정(Fixed)"
+                        android:textColor="@color/text_gray_01"
+                        android:textSize="14dp" />
 
                     <TextView
                         android:id="@+id/textView20"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="0"
-                        android:text="0" />
+                        android:fontFamily="@font/noto_sans_cj_kkr_bold"
+                        android:text="0"
+                        android:textSize="14dp" />
 
                     <Space
                         android:layout_width="wrap_content"
@@ -147,13 +195,15 @@
                     android:layout_marginTop="8.5dp"
                     android:layout_marginBottom="8.5dp"
                     android:layout_weight="0"
-                    android:background="?android:attr/listDivider" />
+                    android:background="@color/dividercolor" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    >
 
                     <Space
                         android:layout_width="wrap_content"
@@ -164,15 +214,21 @@
                         android:id="@+id/textView19"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginRight="5dp"
                         android:layout_weight="0"
-                        android:text="지연" />
+                        android:fontFamily="@font/noto_sans_cj_kkr_bold"
+                        android:text="지연"
+                        android:textColor="@color/text_gray_01"
+                        android:textSize="14dp" />
 
                     <TextView
                         android:id="@+id/textView21"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="0"
-                        android:text="0" />
+                        android:fontFamily="@font/noto_sans_cj_kkr_bold"
+                        android:text="0"
+                        android:textSize="14dp" />
 
                     <Space
                         android:layout_width="wrap_content"
@@ -185,18 +241,25 @@
     </androidx.cardview.widget.CardView>
 
     <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tabs"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
         android:background="@color/blue"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:tabGravity="fill"
         app:tabIconTint="@color/white"
         app:tabIndicatorFullWidth="false"
         app:tabIndicatorGravity="center"
         app:tabIndicatorHeight="0dp"
         app:tabInlineLabel="false"
+        app:tabPaddingBottom="8dp"
+        app:tabPaddingTop="10dp"
         app:tabTextColor="#FFFFFF">
-
+        <!--
         <com.google.android.material.tabs.TabItem
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -205,7 +268,6 @@
             android:tint="#FFFFFF" />
 
         <com.google.android.material.tabs.TabItem
-            android:id="@+id/tabItem"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:icon="@drawable/ic_tab2"
@@ -222,18 +284,24 @@
             android:layout_height="wrap_content"
             android:icon="@drawable/ic_tab4"
             android:text="도구" />
+            -->
     </com.google.android.material.tabs.TabLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvNumbers"
         android:layout_width="match_parent"
-        android:layout_height="300dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="16dp"
         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/tabs"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cardView2"
-        app:spanCount="5"
+        app:layout_constraintVertical_bias="0.0"
+        app:spanCount="3"
         tools:listitem="@layout/recyclerview_item" />
 
 

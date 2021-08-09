@@ -18,6 +18,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Gnss05">
         <activity
+            android:name=".HamburgerActivity"
+            android:exported="true" />
+        <activity
             android:name=".SplashActivity"
             android:exported="true">
             <intent-filter>
@@ -25,7 +28,6 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
         <activity android:name=".tablelayout_tools1.TableActivity" />
         <activity android:name=".UserFormatView" />
@@ -43,9 +45,7 @@
         <activity
             android:name=".StandardPointActivity"
             android:parentActivityName=".MainActivity" />
-        <activity android:name=".MainActivity">
-
-        </activity>
+        <activity android:name=".MainActivity"></activity>
     </application>
 
 </manifest>

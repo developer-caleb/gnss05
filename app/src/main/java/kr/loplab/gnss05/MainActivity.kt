@@ -9,15 +9,20 @@ import android.os.Build
 import android.os.Bundle
 import android.provider.Settings
 import android.util.Log
+import android.view.LayoutInflater
 import android.view.View
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.tabs.TabLayout
 import com.karumi.dexter.Dexter
 import com.karumi.dexter.MultiplePermissionsReport
 import com.karumi.dexter.PermissionToken
 import com.karumi.dexter.listener.PermissionRequest
 import com.karumi.dexter.listener.multi.MultiplePermissionsListener
+import kr.loplab.gnss05.databinding.ActivityMainBinding
+import kr.loplab.gnss05.model.MainIcons
 import kr.loplab.gnss05.tableview.TableMainActivity
 import java.io.InputStream
 
@@ -25,14 +30,43 @@ import java.io.InputStream
 class MainActivity : AppCompatActivity(),
     MainpageRecyclerViewAdapter.RecyclerItemClickListener , DialogRecyclerviewAdapter.RecyclerItemClickListener {
     val TAG = javaClass.simpleName
+    private lateinit var binding : ActivityMainBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        //setContentView(R.layout.activity_qservice);
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+
+        initDefault()
+        init()
+        initListener()
+        initDatabinding()
+
+
+
+        
+
+
+
+    }
+
+
+    fun initDefault(){
+        tablayoutinitialize()
+        //setContentView(R.layout.activity_main)
         val adapter: MainpageRecyclerViewAdapter
-        val data = arrayOf(
-            "0",  "1", "2",
-            "3", "4", "5", "6","7", "8", "9",
-        )
+        var data = ArrayList<MainIcons>()
+        data.add(MainIcons(0, "작업"))
+        data.add(MainIcons(1, "작업그룹"))
+        data.add(MainIcons(2, "좌표계"))
+        data.add(MainIcons(3, "점 보정"))
+        data.add(MainIcons(4, "점저장소"))
+        data.add(MainIcons(5, "내보내기"))
+        data.add(MainIcons(6, "스캔"))
+        data.add(MainIcons(7, "클라우드"))
+        data.add(MainIcons(8, "설정"))
 
         // set up the RecyclerView
 
@@ -45,19 +79,84 @@ class MainActivity : AppCompatActivity(),
         adapter.setClickListener(this)
         recyclerView.adapter = adapter
         permissionchecking()
+    }
 
+    fun init(){
 
+    }
+
+    fun initListener(){
+        binding.imageHamburger.setOnClickListener { Log.d(TAG, "onCreate: hamburger")
+            intent = Intent(this, HamburgerActivity::class.java)
+            startActivity(intent);
+            overridePendingTransition(R.anim.slide_right_enter_fill_after, R.anim.hold)
+        }
+
+        binding.btReceiver.setOnClickListener {
+            Log.d(TAG, "onCreate: receiver click")
+        }
+        binding.btSatellite.setOnClickListener {
+            Log.d(TAG, "onCreate: satellite click")
+        }
+        binding.logoImg.setOnClickListener {
+            Log.d(TAG, "onCreate: logo click")
+        }
+    }
+
+    fun initDatabinding(){
+
+    }
+    fun tablayoutinitialize() {
+        //custom tab 구현시작
+        val tabtext0 = LayoutInflater.from(this).inflate(R.layout.tool_new_customtabtextview, null) as TextView
+        tabtext0.text = "작업"
+        tabtext0.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.ic_tab1, 0, 0)
+        val tabtext1 = LayoutInflater.from(this).inflate(R.layout.tool_new_customtabtextview, null) as TextView
+        tabtext1.text = "연결"
+        tabtext1.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.ic_tab2, 0, 0)
+        /*val tabtext2 = LayoutInflater.from(this).inflate(R.layout.tool_new_customtabtextview, null) as TextView
+        tabtext2.text = "위치"
+        tabtext2.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.ic_location, 0, 0)*/
+        val tabtext3 = LayoutInflater.from(this).inflate(R.layout.tool_new_customtabtextview, null) as TextView
+        tabtext3.text = "측정"
+        tabtext3.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.ic_tab3, 0, 0)
+        val tabtext4 = LayoutInflater.from(this).inflate(R.layout.tool_new_customtabtextview, null) as TextView
+        tabtext4.text = "도구"
+        tabtext4.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.ic_tab4, 0, 0)
+        binding.tabs.addTab(binding.tabs.newTab().setCustomView(tabtext0))
+        binding.tabs.addTab(binding.tabs.newTab().setCustomView(tabtext1))
+        //binding.tabs.addTab(binding.tabs.newTab().setCustomView(tabtext2))
+        binding.tabs.addTab(binding.tabs.newTab().setCustomView(tabtext3))
+        binding.tabs.addTab(binding.tabs.newTab().setCustomView(tabtext4))
+        //custom tab 완성
+        binding.tabs.getTabAt(0)!!.select()
+        binding.tabs.getTabAt(0)!!.view.setBackgroundColor(resources.getColor(R.color.black))
+
+        binding.tabs.setOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
+            override fun onTabSelected(tab: TabLayout.Tab) {
+                tab.view.setBackgroundColor(resources.getColor(R.color.black))
+            }
+            override fun onTabUnselected(tab: TabLayout.Tab) {
+                tab.view.setBackgroundColor(resources.getColor(R.color.blue))
+            }
+            override fun onTabReselected(tab: TabLayout.Tab) {
+                tab.view.setBackgroundColor(resources.getColor(R.color.black))
+            }
+
+        })
 
 
     }
 
+
+
     override fun onItemClick(view: View?, position: Int) {
         Log.d(TAG, "onItemClick: $position clicked!")
         when (position){
-            0 ->    { val nextIntent = Intent(this, StandardPointActivity::class.java)
-                startActivity(nextIntent);}
-            1 ->    { val nextIntent = Intent(this, NaverMap::class.java)
-                startActivity(nextIntent);}
+            0 ->    { intent = Intent(this, StandardPointActivity::class.java)
+                startActivity(intent);}
+            1 ->    { intent = Intent(this, NaverMap::class.java)
+                startActivity(intent);}
             2 -> {
                 val dlg = MyDialog(this)
                 dlg.setClickListener(this)
