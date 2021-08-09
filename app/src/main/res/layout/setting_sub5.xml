@@ -17,7 +17,7 @@
         android:id="@+id/header_01"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:title="설정"
+        app:title="컨트롤 측정"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" >
@@ -36,18 +36,6 @@
             android:layout_height="wrap_content"
             android:orientation="vertical" >
 
-            <LinearLayout
-                style="@style/ButtonLayout_STYLE01"
-                android:background="@color/grey_cc"
-                >
-
-                <TextView
-                    style="@style/Sub_TEXTVIEW_STYLE1"
-                    android:text="일반설정"
-                    android:textColor="@color/grey_33"
-                    android:visibility="@{viewModel.onprogress? View.VISIBLE : View.GONE}" />
-
-            </LinearLayout>
 
             <LinearLayout
                 style="@style/ButtonLayout_STYLE01"
@@ -55,298 +43,7 @@
 
                 <TextView
                     style="@style/Sub_TEXTVIEW_STYLE1"
-                    android:text="단축키 설정"
-                    android:visibility="@{viewModel.onprogress? View.VISIBLE : View.GONE}" />
-
-
-                <ImageView
-                    android:layout_width="@dimen/rightArrowSize"
-                    android:layout_height="@dimen/rightArrowSize"
-                    android:layout_weight="0"
-                    android:padding="5dp"
-                    android:layout_marginRight="8dp"
-                    app:srcCompat="@drawable/next_icon" />
-
-
-            </LinearLayout>
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_weight="0"
-                android:background="@color/grey_EC" />
-
-            <LinearLayout
-                style="@style/ButtonLayout_STYLE01"
-                >
-
-                <TextView
-                    style="@style/Sub_TEXTVIEW_STYLE1"
-                    android:text="정보"
-                    android:visibility="@{viewModel.onprogress? View.VISIBLE : View.GONE}" />
-
-
-                <ImageView
-                    android:layout_width="@dimen/rightArrowSize"
-                    android:layout_height="@dimen/rightArrowSize"
-                    android:layout_weight="0"
-                    android:padding="5dp"
-                    android:layout_marginRight="8dp"
-                    app:srcCompat="@drawable/next_icon" />
-
-
-            </LinearLayout>
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_weight="0"
-                android:background="@color/grey_EC" />
-
-            <LinearLayout
-                style="@style/ButtonLayout_STYLE01"
-                >
-
-                <TextView
-                    style="@style/Sub_TEXTVIEW_STYLE1"
-                    android:text="Voice prompt Settings"
-                    android:visibility="@{viewModel.onprogress? View.VISIBLE : View.GONE}" />
-
-
-                <ImageView
-                    android:layout_width="@dimen/rightArrowSize"
-                    android:layout_height="@dimen/rightArrowSize"
-                    android:layout_weight="0"
-                    android:padding="5dp"
-                    android:layout_marginRight="8dp"
-                    app:srcCompat="@drawable/next_icon" />
-
-
-            </LinearLayout>
-
-            <LinearLayout
-                style="@style/ButtonLayout_STYLE01"
-                android:background="@color/grey_cc"
-                >
-
-                <TextView
-                    style="@style/Sub_TEXTVIEW_STYLE1"
-                    android:text="저장설정"
-                    android:textColor="@color/grey_33"
-                    android:visibility="@{viewModel.onprogress? View.VISIBLE : View.GONE}" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                style="@style/ButtonLayout_STYLE01"
-                >
-
-                <TextView
-                    style="@style/Sub_TEXTVIEW_STYLE1"
-                    android:text="TOPO 설정"
-                    android:visibility="@{viewModel.onprogress? View.VISIBLE : View.GONE}" />
-
-
-                <ImageView
-                    android:layout_width="@dimen/rightArrowSize"
-                    android:layout_height="@dimen/rightArrowSize"
-                    android:layout_weight="0"
-                    android:padding="5dp"
-                    android:layout_marginRight="8dp"
-                    app:srcCompat="@drawable/next_icon" />
-
-
-
-            </LinearLayout>
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_weight="0"
-                android:background="@color/grey_EC" />
-
-            <LinearLayout
-                style="@style/ButtonLayout_STYLE01"
-                >
-
-                <TextView
-                    style="@style/Sub_TEXTVIEW_STYLE1"
-                    android:text="컨트롤점 설정"
-                    android:visibility="@{viewModel.onprogress? View.VISIBLE : View.GONE}" />
-
-
-                <ImageView
-                    android:layout_width="@dimen/rightArrowSize"
-                    android:layout_height="@dimen/rightArrowSize"
-                    android:layout_weight="0"
-                    android:padding="5dp"
-                    android:layout_marginRight="8dp"
-                    app:srcCompat="@drawable/next_icon" />
-
-
-
-            </LinearLayout>
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_weight="0"
-                android:background="@color/grey_EC" />
-
-            <LinearLayout
-                style="@style/ButtonLayout_STYLE01"
-                >
-
-                <TextView
-                    style="@style/Sub_TEXTVIEW_STYLE1"
-                    android:text="빠른 측정 설정"
-                    android:visibility="@{viewModel.onprogress? View.VISIBLE : View.GONE}" />
-
-
-                <ImageView
-                    android:layout_width="@dimen/rightArrowSize"
-                    android:layout_height="@dimen/rightArrowSize"
-                    android:layout_weight="0"
-                    android:padding="5dp"
-                    android:layout_marginRight="8dp"
-                    app:srcCompat="@drawable/next_icon" />
-
-
-
-            </LinearLayout>
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_weight="0"
-                android:background="@color/grey_EC" />
-
-            <LinearLayout
-                style="@style/ButtonLayout_STYLE01"
-                >
-
-                <TextView
-                    style="@style/Sub_TEXTVIEW_STYLE1"
-                    android:text="자동 측정 설정"
-                    android:visibility="@{viewModel.onprogress? View.VISIBLE : View.GONE}" />
-
-
-                <ImageView
-                    android:layout_width="@dimen/rightArrowSize"
-                    android:layout_height="@dimen/rightArrowSize"
-                    android:layout_weight="0"
-                    android:padding="5dp"
-                    android:layout_marginRight="8dp"
-                    app:srcCompat="@drawable/next_icon" />
-
-
-
-            </LinearLayout>
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_weight="0"
-                android:background="@color/grey_EC" />
-
-            <LinearLayout
-                style="@style/ButtonLayout_STYLE01"
-                >
-
-                <TextView
-                    style="@style/Sub_TEXTVIEW_STYLE1"
-                    android:text="모서리 측정 설정"
-                    android:visibility="@{viewModel.onprogress? View.VISIBLE : View.GONE}" />
-
-
-                <ImageView
-                    android:layout_width="@dimen/rightArrowSize"
-                    android:layout_height="@dimen/rightArrowSize"
-                    android:layout_weight="0"
-                    android:padding="5dp"
-                    android:layout_marginRight="8dp"
-                    app:srcCompat="@drawable/next_icon" />
-
-
-
-            </LinearLayout>
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_weight="0"
-                android:background="@color/grey_EC" />
-
-            <LinearLayout
-                style="@style/ButtonLayout_STYLE01"
-                >
-
-                <TextView
-                    style="@style/Sub_TEXTVIEW_STYLE1"
-                    android:text="Stop \u0026 Go 설정"
-                    android:visibility="@{viewModel.onprogress? View.VISIBLE : View.GONE}" />
-
-
-                <ImageView
-                    android:layout_width="@dimen/rightArrowSize"
-                    android:layout_height="@dimen/rightArrowSize"
-                    android:layout_weight="0"
-                    android:padding="5dp"
-                    android:layout_marginRight="8dp"
-                    app:srcCompat="@drawable/next_icon" />
-
-
-
-            </LinearLayout>
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_weight="0"
-                android:background="@color/grey_EC" />
-
-            <LinearLayout
-                style="@style/ButtonLayout_STYLE01"
-                >
-
-                <TextView
-                    style="@style/Sub_TEXTVIEW_STYLE1"
-                    android:text="틸트 설정"
-                    android:visibility="@{viewModel.onprogress? View.VISIBLE : View.GONE}" />
-
-
-                <ImageView
-                    android:layout_width="@dimen/rightArrowSize"
-                    android:layout_height="@dimen/rightArrowSize"
-                    android:layout_weight="0"
-                    android:padding="5dp"
-                    android:layout_marginRight="8dp"
-                    app:srcCompat="@drawable/next_icon" />
-
-
-
-            </LinearLayout>
-
-            <LinearLayout
-                style="@style/ButtonLayout_STYLE01"
-                android:background="@color/grey_cc"
-                >
-
-                <TextView
-                    style="@style/Sub_TEXTVIEW_STYLE1"
-                    android:text="시스템설정"
-                    android:textColor="@color/grey_33"
-                    android:visibility="@{viewModel.onprogress? View.VISIBLE : View.GONE}" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                style="@style/ButtonLayout_STYLE01"
-                >
-
-                <TextView
-                    style="@style/Sub_TEXTVIEW_STYLE1"
-                    android:text="거리단위"
+                    android:text="솔루션 한도"
                     android:visibility="@{viewModel.onprogress? View.VISIBLE : View.GONE}" />
 
                 <TextView
@@ -354,7 +51,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="0"
-                    android:text="미터" />
+                    android:text="고정(Fixed)" />
 
 
                 <ImageView
@@ -381,7 +78,7 @@
 
                 <TextView
                     style="@style/Sub_TEXTVIEW_STYLE1"
-                    android:text="거리 소수점 표기"
+                    android:text="수평오차한도"
                     android:visibility="@{viewModel.onprogress? View.VISIBLE : View.GONE}" />
 
                 <TextView
@@ -389,7 +86,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="0"
-                    android:text="3" />
+                    android:text="0.03" />
 
 
                 <ImageView
@@ -416,7 +113,7 @@
 
                 <TextView
                     style="@style/Sub_TEXTVIEW_STYLE1"
-                    android:text="각도 형식"
+                    android:text="수직오차한도"
                     android:visibility="@{viewModel.onprogress? View.VISIBLE : View.GONE}" />
 
                 <TextView
@@ -424,7 +121,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="0"
-                    android:text="ddºmm'ss.ssss”" />
+                    android:text="0.05" />
 
 
                 <ImageView
@@ -451,7 +148,7 @@
 
                 <TextView
                     style="@style/Sub_TEXTVIEW_STYLE1"
-                    android:text="각도 십진수"
+                    android:text="PDOP한도"
                     android:visibility="@{viewModel.onprogress? View.VISIBLE : View.GONE}" />
 
                 <TextView
@@ -459,7 +156,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="0"
-                    android:text="4”" />
+                    android:text="3.0" />
 
 
                 <ImageView
@@ -486,7 +183,7 @@
 
                 <TextView
                     style="@style/Sub_TEXTVIEW_STYLE1"
-                    android:text="스테이션 형식"
+                    android:text="지연한도"
                     android:visibility="@{viewModel.onprogress? View.VISIBLE : View.GONE}" />
 
                 <TextView
@@ -494,7 +191,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="0"
-                    android:text="0.000" />
+                    android:text="5" />
 
 
                 <ImageView
@@ -521,7 +218,7 @@
 
                 <TextView
                     style="@style/Sub_TEXTVIEW_STYLE1"
-                    android:text="언어"
+                    android:text="평면한도"
                     android:visibility="@{viewModel.onprogress? View.VISIBLE : View.GONE}" />
 
                 <TextView
@@ -529,7 +226,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="0"
-                    android:text="자동" />
+                    android:text="0.03" />
 
 
                 <ImageView
@@ -556,7 +253,7 @@
 
                 <TextView
                     style="@style/Sub_TEXTVIEW_STYLE1"
-                    android:text="문자표기방"
+                    android:text="레벨한도"
                     android:visibility="@{viewModel.onprogress? View.VISIBLE : View.GONE}" />
 
                 <TextView
@@ -564,7 +261,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="0"
-                    android:text="ANSI" />
+                    android:text="0.05" />
 
 
                 <ImageView
@@ -581,9 +278,9 @@
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="1dp"
+                android:layout_height="4dp"
                 android:layout_weight="0"
-                android:background="@color/grey_EC" />
+                android:background="@color/grey_cc" />
 
             <LinearLayout
                 style="@style/ButtonLayout_STYLE01"
@@ -591,92 +288,7 @@
 
                 <TextView
                     style="@style/Sub_TEXTVIEW_STYLE1"
-                    android:text="측량점 백업"
-                    android:visibility="@{viewModel.onprogress? View.VISIBLE : View.GONE}" />
-
-
-                <Switch
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:paddingRight="8dp"/>
-
-
-
-            </LinearLayout>
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_weight="0"
-                android:background="@color/grey_EC" />
-
-            <LinearLayout
-                style="@style/ButtonLayout_STYLE01"
-                >
-
-                <TextView
-                    style="@style/Sub_TEXTVIEW_STYLE1"
-                    android:text="Enable location services"
-                    android:visibility="@{viewModel.onprogress? View.VISIBLE : View.GONE}" />
-
-
-                <Switch
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:paddingRight="8dp"/>
-
-
-
-            </LinearLayout>
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_weight="0"
-                android:background="@color/grey_EC" />
-
-            <LinearLayout
-                style="@style/ButtonLayout_STYLE01"
-                >
-
-                <TextView
-                    style="@style/Sub_TEXTVIEW_STYLE1"
-                    android:text="Auto start at boot"
-                    android:visibility="@{viewModel.onprogress? View.VISIBLE : View.GONE}" />
-
-
-                <Switch
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:paddingRight="8dp"/>
-
-
-
-            </LinearLayout>
-
-            <LinearLayout
-                style="@style/ButtonLayout_STYLE01"
-                android:background="@color/grey_cc"
-                >
-
-                <TextView
-                    style="@style/Sub_TEXTVIEW_STYLE1"
-                    android:text="화면설정"
-                    android:textColor="@color/grey_33"
-                    android:visibility="@{viewModel.onprogress? View.VISIBLE : View.GONE}" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                style="@style/ButtonLayout_STYLE01"
-                >
-
-                <TextView
-                    style="@style/Sub_TEXTVIEW_STYLE1"
-                    android:text="CAD 화면 배경"
+                    android:text="기본 점명"
                     android:visibility="@{viewModel.onprogress? View.VISIBLE : View.GONE}" />
 
                 <TextView
@@ -684,7 +296,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="0"
-                    android:text="화이트" />
+                    android:text="Pt1" />
 
 
                 <ImageView
@@ -711,7 +323,7 @@
 
                 <TextView
                     style="@style/Sub_TEXTVIEW_STYLE1"
-                    android:text="좌표 표기방식"
+                    android:text="점명 증분"
                     android:visibility="@{viewModel.onprogress? View.VISIBLE : View.GONE}" />
 
                 <TextView
@@ -719,7 +331,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="0"
-                    android:text="이름" />
+                    android:text="1" />
 
 
                 <ImageView
@@ -746,7 +358,7 @@
 
                 <TextView
                     style="@style/Sub_TEXTVIEW_STYLE1"
-                    android:text="좌표 주문 방식"
+                    android:text="기본코드"
                     android:visibility="@{viewModel.onprogress? View.VISIBLE : View.GONE}" />
 
                 <TextView
@@ -754,7 +366,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="0"
-                    android:text="X-Y-Z(레벨)" />
+                    android:text="전점 코드 동일" />
 
 
                 <ImageView
@@ -771,9 +383,9 @@
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="1dp"
+                android:layout_height="4dp"
                 android:layout_weight="0"
-                android:background="@color/grey_EC" />
+                android:background="@color/grey_cc" />
 
             <LinearLayout
                 style="@style/ButtonLayout_STYLE01"
@@ -781,7 +393,7 @@
 
                 <TextView
                     style="@style/Sub_TEXTVIEW_STYLE1"
-                    android:text="유형표시"
+                    android:text="관측시간(초)"
                     android:visibility="@{viewModel.onprogress? View.VISIBLE : View.GONE}" />
 
                 <TextView
@@ -789,7 +401,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="0"
-                    android:text="마지막점(0~100)표시" />
+                    android:text="10" />
 
 
                 <ImageView
@@ -816,33 +428,7 @@
 
                 <TextView
                     style="@style/Sub_TEXTVIEW_STYLE1"
-                    android:text="마지막점(0~100)표시"
-                    android:visibility="@{viewModel.onprogress? View.VISIBLE : View.GONE}" />
-
-                <TextView
-                    style="@style/Sub_TEXTVIEW_STYLE2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0"
-                    android:text="100" />
-
-
-
-            </LinearLayout>
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_weight="0"
-                android:background="@color/grey_EC" />
-
-            <LinearLayout
-                style="@style/ButtonLayout_STYLE01"
-                >
-
-                <TextView
-                    style="@style/Sub_TEXTVIEW_STYLE1"
-                    android:text="화면 방향"
+                    android:text="평균 GPS 간격"
                     android:visibility="@{viewModel.onprogress? View.VISIBLE : View.GONE}" />
 
                 <TextView
@@ -850,7 +436,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="0"
-                    android:text="수직화면" />
+                    android:text="2" />
 
 
                 <ImageView
@@ -871,30 +457,6 @@
                 android:layout_weight="0"
                 android:background="@color/grey_EC" />
 
-            <LinearLayout
-                style="@style/ButtonLayout_STYLE01"
-                >
-
-                <TextView
-                    style="@style/Sub_TEXTVIEW_STYLE1"
-                    android:text="전체화면"
-                    android:visibility="@{viewModel.onprogress? View.VISIBLE : View.GONE}" />
-
-                <Switch
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:paddingRight="8dp"/>
-
-
-
-            </LinearLayout>
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_weight="0"
-                android:background="@color/grey_EC" />
 
             <LinearLayout
                 style="@style/ButtonLayout_STYLE01"
@@ -902,7 +464,7 @@
 
                 <TextView
                     style="@style/Sub_TEXTVIEW_STYLE1"
-                    android:text="지도보기"
+                    android:text="반복횟수"
                     android:visibility="@{viewModel.onprogress? View.VISIBLE : View.GONE}" />
 
                 <TextView
@@ -910,7 +472,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="0"
-                    android:text="No Map" />
+                    android:text="2" />
 
 
                 <ImageView
@@ -930,6 +492,46 @@
                 android:layout_height="1dp"
                 android:layout_weight="0"
                 android:background="@color/grey_EC" />
+
+            <LinearLayout
+                style="@style/ButtonLayout_STYLE01"
+                >
+
+                <TextView
+                    style="@style/Sub_TEXTVIEW_STYLE1"
+                    android:text="고정지연"
+                    android:visibility="@{viewModel.onprogress? View.VISIBLE : View.GONE}" />
+
+                <TextView
+                    style="@style/Sub_TEXTVIEW_STYLE3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0"
+                    android:text="15" />
+
+
+                <ImageView
+                    android:layout_width="@dimen/rightArrowSize"
+                    android:layout_height="@dimen/rightArrowSize"
+                    android:layout_weight="0"
+                    android:padding="5dp"
+                    android:layout_marginRight="8dp"
+                    app:srcCompat="@drawable/next_icon" />
+
+
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_weight="0"
+                android:background="@color/grey_EC" />
+
+
+
+
+
 
         </LinearLayout>
 
@@ -944,6 +546,21 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="기본 구성"
+            android:textColor="@color/white"
+            android:textSize="16dp" />
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0"
+            android:background="@color/white" />
 
         <TextView
             android:layout_width="match_parent"
