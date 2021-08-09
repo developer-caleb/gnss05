@@ -25,6 +25,7 @@
         <entry key="app/src/main/res/layout/activity_user_format_view.xml" value="0.22" />
         <entry key="app/src/main/res/layout/item_layout_type1.xml" value="0.15729166666666666" />
         <entry key="app/src/main/res/layout/recyclerview_item.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/recyclerview_item_vertical.xml" value="0.244140625" />
         <entry key="app/src/main/res/layout/tab_icon_cell.xml" value="0.5" />
         <entry key="app/src/main/res/layout/tool_new_customtabtextview.xml" value="0.238671875" />
       </map>

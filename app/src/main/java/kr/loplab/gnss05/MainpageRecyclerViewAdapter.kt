@@ -9,7 +9,6 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.cardview.widget.CardView
-import androidx.core.view.marginBottom
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.activity_main.view.*
 import kr.loplab.gnss05.model.MainIcons
@@ -24,7 +23,7 @@ class MainpageRecyclerViewAdapter internal constructor(context: Context?, data: 
 
     // inflates the cell layout from xml when needed
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = mInflater.inflate(R.layout.recyclerview_item, parent, false)
+        val view = mInflater.inflate(R.layout.recyclerview_item_grid, parent, false)
         return ViewHolder(view)
     }
 

@@ -79,7 +79,7 @@ public class SplashActivity extends AppCompatActivity {
             CHC_Receiver receiver = null;  //1
             filepath =  internalfileread(); //2
             initialize();
-            //processdata();
+            processdata();
 
         }
         // CHC_Receiver = null;
@@ -93,8 +93,8 @@ public class SplashActivity extends AppCompatActivity {
         void initialize(){
             CHC_RECEIVER_TYPE chc_receiver_type = CHC_RECEIVER_TYPE.CHC_RECEIVER_TYPE_SMART_GNSS; //3
             // The absolute path of the 'features.hcc'
-            CHC_OEM_TYPE oem_type = CHC_OEM_TYPE.CHC_OEM_TYPE_UNICORE;
-           // CHC_OEM_TYPE oem_type = CHC_OEM_TYPE.CHC_OEM_TYPE_AUTO; //안되면
+           // CHC_OEM_TYPE oem_type = CHC_OEM_TYPE.CHC_OEM_TYPE_UNICORE;
+            CHC_OEM_TYPE oem_type = CHC_OEM_TYPE.CHC_OEM_TYPE_AUTO; //안되면
 
             //config에 있는 파일 넣어놓고, resource로 부르기.
             receiveref = new CHC_ReceiverRef(filepath , chc_receiver_type, oem_type);

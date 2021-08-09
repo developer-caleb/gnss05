@@ -24,6 +24,7 @@
     <color name="grey_33">#FF333333</color>
     <color name="grey_55">#FF555555</color>
     <color name="grey_6D">#FF6d6d6d</color>
+    <color name="grey_EC">#FFECECEC</color>
     <color name="grey_E5">#FFE5E5E5</color>
     <color name="grey_88">#FF888888</color>
     <color name="grey_89">#FF898989</color>
@@ -31,6 +32,7 @@
     <color name="grey_cc">#FFCCCCCC</color>
     <color name="grey_dd">#FFAAAAAA</color>
     <color name="dividercolor">@color/grey_E5</color>
+    <color name="dividercolor2">@color/grey_EC</color>
     <color name="main">@color/brightSky</color>
     <color name="selected_button_color">@color/brightSky</color>
     <color name="unselected_button_color">#FF000000</color>

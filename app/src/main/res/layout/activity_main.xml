@@ -319,7 +319,7 @@
                 app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
 
                 app:spanCount="3"
-                tools:listitem="@layout/recyclerview_item" />
+                tools:listitem="@layout/recyclerview_item_grid" />
 
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
