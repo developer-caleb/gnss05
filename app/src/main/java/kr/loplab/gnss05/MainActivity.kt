@@ -14,7 +14,6 @@ import android.view.View
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.tabs.TabLayout
 import com.karumi.dexter.Dexter
 import com.karumi.dexter.MultiplePermissionsReport
@@ -24,13 +23,18 @@ import com.karumi.dexter.listener.multi.MultiplePermissionsListener
 import kr.loplab.gnss05.databinding.ActivityMainBinding
 import kr.loplab.gnss05.model.MainIcons
 import kr.loplab.gnss05.tableview.TableMainActivity
-import java.io.InputStream
 
 
 class MainActivity : AppCompatActivity(),
     MainpageRecyclerViewAdapter.RecyclerItemClickListener , DialogRecyclerviewAdapter.RecyclerItemClickListener {
     val TAG = javaClass.simpleName
     private lateinit var binding : ActivityMainBinding
+    lateinit var adapter: MainpageRecyclerViewAdapter
+    var selectdata = ArrayList<MainIcons>()
+    var data0 = ArrayList<MainIcons>()
+    var data1 = ArrayList<MainIcons>()
+    var data2 = ArrayList<MainIcons>()
+    var data3 = ArrayList<MainIcons>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -56,28 +60,80 @@ class MainActivity : AppCompatActivity(),
     fun initDefault(){
         tablayoutinitialize()
         //setContentView(R.layout.activity_main)
-        val adapter: MainpageRecyclerViewAdapter
-        var data = ArrayList<MainIcons>()
-        data.add(MainIcons(0, "작업"))
-        data.add(MainIcons(1, "작업그룹"))
-        data.add(MainIcons(2, "좌표계"))
-        data.add(MainIcons(3, "점 보정"))
-        data.add(MainIcons(4, "점저장소"))
-        data.add(MainIcons(5, "내보내기"))
-        data.add(MainIcons(6, "스캔"))
-        data.add(MainIcons(7, "클라우드"))
-        data.add(MainIcons(8, "설정"))
+
+
+        data0.add(MainIcons(R.drawable.ic_0_0_work, "작업"))
+        data0.add(MainIcons(R.drawable.ic_0_1_work_group, "작업그룹"))
+        data0.add(MainIcons(R.drawable.ic_0_2_coordinate, "좌표계"))
+        data0.add(MainIcons(R.drawable.ic_0_3_correction, "점 보정"))
+        data0.add(MainIcons(R.drawable.ic_0_4_pointsave, "점저장소"))
+        data0.add(MainIcons(R.drawable.ic_0_5_export, "내보내기"))
+        data0.add(MainIcons(R.drawable.ic_0_6_scan, "스캔"))
+        data0.add(MainIcons(R.drawable.ic_0_7_cloud, "클라우드"))
+        data0.add(MainIcons(R.drawable.ic_0_8_settings, "설정"))
+        data0.add(MainIcons(R.drawable.ic_0_9_information, "정보"))
+
+
+        data1.add(MainIcons(R.drawable.ic_1_0_connect_device, "장비연결"))
+        data1.add(MainIcons(R.drawable.ic_1_1_move_country, "이동국"))
+        data1.add(MainIcons(R.drawable.ic_1_2_reference_country, "기준국"))
+        data1.add(MainIcons(R.drawable.ic_1_3_stop_survey, "정지측량"))
+        data1.add(MainIcons(R.drawable.ic_1_4_connection_state, "연결상태"))
+        data1.add(MainIcons(R.drawable.ic_1_5_connection_save, "연결저장"))
+        data1.add(MainIcons(R.drawable.ic_1_6_connection_infomation, "연결정보"))
+        data1.add(MainIcons(R.drawable.ic_1_7_sensor_correction, "센서보정"))
+        data1.add(MainIcons(R.drawable.ic_1_8_setting_equipment, "장비설정"))
+        data1.add(MainIcons(R.drawable.ic_1_9_frequency_setting, "주파수 설정"))
+        data1.add(MainIcons(R.drawable.ic_1_10_change_location, "위치변경"))
+        data1.add(MainIcons(R.drawable.ic_1_11_enroll_equipment, "장비등록"))
+
+        data2.add(MainIcons(R.drawable.ic_2_0_status_work, "현황작업"))
+        data2.add(MainIcons(R.drawable.ic_2_1_detail_survey, "상세 측량"))
+        data2.add(MainIcons(R.drawable.ic_2_2_cad, "CAD (측설)"))
+        data2.add(MainIcons(R.drawable.ic_2_3_point_stack_out, "점측설"))
+        data2.add(MainIcons(R.drawable.ic_2_4_line_stack_out, "라인측설"))
+        data2.add(MainIcons(R.drawable.ic_2_5_gis, "GIS"))
+        data2.add(MainIcons(R.drawable.ic_2_6_road_stack_out, "도로측설"))
+        data2.add(MainIcons(R.drawable.ic_2_7_road_offset, "도로옵셋"))
+        data2.add(MainIcons(R.drawable.ic_2_8_cross_section_measurement, "횡단면 측정"))
+        data2.add(MainIcons(R.drawable.ic_2_9_cross_survey, "횡단측량"))
+        data2.add(MainIcons(R.drawable.ic_2_10_bridge_survey, "교량측량"))
+        data2.add(MainIcons(R.drawable.ic_2_11_conical_superelevation_stakeout, "원추형 편경사측설"))
+        data2.add(MainIcons(R.drawable.ic_2_12_wire_stakeout, "전선측설"))
+        data2.add(MainIcons(R.drawable.ic_2_13_electric_stakeout, "전기 측설"))
+        data2.add(MainIcons(R.drawable.ic_2_14_level_control, "레벨제어"))
+        data2.add(MainIcons(R.drawable.ic_2_15_curve_stakeout, "곡선측설"))
+        data2.add(MainIcons(R.drawable.ic_2_16_exist_measurement, "기존측정"))
+        data2.add(MainIcons(R.drawable.ic_2_17_railroad_stakeout, "철길측설"))
+        data2.add(MainIcons(R.drawable.ic_2_18_layer, "레이어"))
+        data2.add(MainIcons(R.drawable.ic_2_19_setting_measuring_range, "측정 범위 설정"))
+
+        data3.add(MainIcons(R.drawable.ic_3_0_calibration, "캘리브레이션"))
+        data3.add(MainIcons(R.drawable.ic_3_1_coordinate_inverse_calculation, "좌표역계산"))
+        data3.add(MainIcons(R.drawable.ic_3_2_angle_converter, "각도변환기"))
+        data3.add(MainIcons(R.drawable.ic_3_3_area_calculation, "면적계산"))
+        data3.add(MainIcons(R.drawable.ic_3_4_cogo_calculation, "COGO계산"))
+        data3.add(MainIcons(R.drawable.ic_3_5_calculation, "계산기"))
+        data3.add(MainIcons(R.drawable.ic_3_6_external_radio, "외장라디오"))
+        data3.add(MainIcons(R.drawable.ic_3_7_calculation_volumn, "볼륨계산"))
+        data3.add(MainIcons(R.drawable.ic_3_8_reset_location, "위치 재설정"))
+        data3.add(MainIcons(R.drawable.ic_3_9_ftp_share, "FTP 공유"))
+        data3.add(MainIcons(R.drawable.ic_3_10_share, "공유"))
+
+
+
+        selectdata.addAll(data0);
 
         // set up the RecyclerView
 
         // set up the RecyclerView
-        val recyclerView = findViewById<RecyclerView>(R.id.rvNumbers);
+
 
         val numberOfColumns = 6
 
-        adapter = MainpageRecyclerViewAdapter(this, data)
+        adapter = MainpageRecyclerViewAdapter(this, selectdata)
         adapter.setClickListener(this)
-        recyclerView.adapter = adapter
+        binding.recyclerviewMain.adapter = adapter
         permissionchecking()
     }
 
@@ -135,6 +191,7 @@ class MainActivity : AppCompatActivity(),
         binding.tabs.setOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
             override fun onTabSelected(tab: TabLayout.Tab) {
                 tab.view.setBackgroundColor(resources.getColor(R.color.black))
+                selecttab(tab.position)
             }
             override fun onTabUnselected(tab: TabLayout.Tab) {
                 tab.view.setBackgroundColor(resources.getColor(R.color.blue))
@@ -147,7 +204,26 @@ class MainActivity : AppCompatActivity(),
 
 
     }
+   fun selecttab(position : Int){
 
+       selectdata.clear()
+       Log.d(TAG, "selecttab: $position")
+       when (position){
+           0 ->{
+               selectdata.addAll(data0)
+           }
+               1->{
+                   selectdata.addAll(data1)
+               }
+           2->{
+               selectdata.addAll(data2)
+           }
+           3->{
+               selectdata.addAll(data3)
+           }
+       }
+       adapter.notifyDataSetChanged();
+   }
 
 
     override fun onItemClick(view: View?, position: Int) {
@@ -264,7 +340,14 @@ class MainActivity : AppCompatActivity(),
     } // openSettings()..
 
 
-
+    fun showToast(str:String){
+        if(GlobalApplication.mToast!=null){
+            GlobalApplication.mToast.cancel();
+        }
+        GlobalApplication.mToast = Toast.makeText(baseContext,str,Toast.LENGTH_SHORT)
+        GlobalApplication.mToast.show();
+        Log.d("TAG", "showToast: $str")
+    }
 
 
 

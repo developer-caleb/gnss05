@@ -48,8 +48,8 @@
             <Button
                 android:id="@+id/image_hamburger"
                 style="@style/Widget.App.Button.IconOnly"
-                android:layout_width="45dp"
-                android:layout_height="45dp"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
                 android:layout_gravity="left"
                 android:layout_marginLeft="10dp"
                 android:layout_weight="1"
@@ -288,12 +288,12 @@
     </com.google.android.material.tabs.TabLayout>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvNumbers"
+        android:id="@+id/recyclerview_main"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="12dp"
         android:layout_marginEnd="16dp"
+        android:paddingTop="12dp"
         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
         app:layout_constraintBottom_toTopOf="@+id/tabs"
         app:layout_constraintEnd_toEndOf="parent"
