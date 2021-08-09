@@ -49,11 +49,6 @@ class MainActivity : AppCompatActivity(),
         initDatabinding()
 
 
-
-        
-
-
-
     }
 
 
@@ -86,7 +81,6 @@ class MainActivity : AppCompatActivity(),
         data1.add(MainIcons(R.drawable.ic_1_9_frequency_setting, "주파수 설정"))
         data1.add(MainIcons(R.drawable.ic_1_10_change_location, "위치변경"))
         data1.add(MainIcons(R.drawable.ic_1_11_enroll_equipment, "장비등록"))
-
         data2.add(MainIcons(R.drawable.ic_2_0_status_work, "현황작업"))
         data2.add(MainIcons(R.drawable.ic_2_1_detail_survey, "상세 측량"))
         data2.add(MainIcons(R.drawable.ic_2_2_cad, "CAD (측설)"))
@@ -107,7 +101,6 @@ class MainActivity : AppCompatActivity(),
         data2.add(MainIcons(R.drawable.ic_2_17_railroad_stakeout, "철길측설"))
         data2.add(MainIcons(R.drawable.ic_2_18_layer, "레이어"))
         data2.add(MainIcons(R.drawable.ic_2_19_setting_measuring_range, "측정 범위 설정"))
-
         data3.add(MainIcons(R.drawable.ic_3_0_calibration, "캘리브레이션"))
         data3.add(MainIcons(R.drawable.ic_3_1_coordinate_inverse_calculation, "좌표역계산"))
         data3.add(MainIcons(R.drawable.ic_3_2_angle_converter, "각도변환기"))
@@ -149,6 +142,7 @@ class MainActivity : AppCompatActivity(),
         }
 
         binding.btReceiver.setOnClickListener {
+
             Log.d(TAG, "onCreate: receiver click")
         }
         binding.btSatellite.setOnClickListener {

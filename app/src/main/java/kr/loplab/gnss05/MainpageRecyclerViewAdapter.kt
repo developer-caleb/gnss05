@@ -1,6 +1,7 @@
 package kr.loplab.gnss05
 
 import android.content.Context
+import android.content.Intent
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -15,6 +16,7 @@ import kr.loplab.gnss05.model.MainIcons
 
 class MainpageRecyclerViewAdapter internal constructor(context: Context?, data: ArrayList<MainIcons>) :
     RecyclerView.Adapter<MainpageRecyclerViewAdapter.ViewHolder>() {
+    var TAG :String  = javaClass.simpleName;
     var context :Context? = context
     private val mData: ArrayList<MainIcons>
     private val mInflater: LayoutInflater
@@ -40,6 +42,12 @@ class MainpageRecyclerViewAdapter internal constructor(context: Context?, data: 
         holder.icon.setImageDrawable(context?.getDrawable(mData[position].icon))
         holder.cardView.setOnClickListener {
             if (mClickListener != null) mClickListener!!.onItemClick(holder.itemView, position)
+            Log.d(TAG, "onBindViewHolder: position -> $position ")
+            if(position==19){
+                val intent: Intent = Intent(context, mData[position].activityname)
+                context?.startActivity(intent)
+            }
+
         }
     }
 

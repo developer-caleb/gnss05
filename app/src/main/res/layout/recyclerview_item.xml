@@ -45,8 +45,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom|center_horizontal"
-
-                android:layout_marginBottom="4dp"
+                android:layout_marginBottom="6dp"
                 android:gravity="center_horizontal|top"
                 android:lineSpacingExtra="-5dp"
                 android:text="원추형\n편경사측설"
@@ -58,7 +57,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom|center_horizontal"
                 android:layout_marginTop="4dp"
-                android:layout_marginBottom="16dp"
+                android:layout_marginBottom="17dp"
                 android:gravity="center_horizontal|top"
                 android:lineSpacingExtra="-5dp"
                 android:text="원추형"
