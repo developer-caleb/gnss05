@@ -17,6 +17,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.viewpager.widget.ViewPager
 import com.chc.gnss.sdk.*
 import com.google.android.material.tabs.TabLayout
 import com.karumi.dexter.Dexter
@@ -24,6 +25,7 @@ import com.karumi.dexter.MultiplePermissionsReport
 import com.karumi.dexter.PermissionToken
 import com.karumi.dexter.listener.PermissionRequest
 import com.karumi.dexter.listener.multi.MultiplePermissionsListener
+import kotlinx.android.synthetic.main.activity_main.*
 import kr.loplab.gnss05.SplashActivity.Gnssreceiver2
 import kr.loplab.gnss05.adapter.AdapterViewpager
 import kr.loplab.gnss05.common.Define.REQUEST_SETTING
@@ -62,36 +64,33 @@ class MainActivity : AppCompatActivity(),
     fun initDefault(){
         tablayoutinitialize()
         //setContentView(R.layout.activity_main)
-
-
-
-
-
         permissionchecking()
-
-
         // set up the RecyclerView
-
-
 
     }
 
     fun init(){
-       // val gnssreceiver3 = Gnssreceiver3()
         adapterViewpager = AdapterViewpager(this)
         binding.pager1.adapter = adapterViewpager
     }
 
     fun initListener(){
+        binding.pager1.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
+            override fun onPageScrolled(i: Int, v: Float, i1: Int) {}
+            override fun onPageSelected(i: Int) {}
+            override fun onPageScrollStateChanged(i: Int) {
+                tabposition = binding.pager1.currentItem
+                tabs.selectTab(tabs.getTabAt(binding.pager1.currentItem))
+            }
+        })
+
         binding.imageHamburger.setOnClickListener { Log.d(TAG, "onCreate: hamburger")
             intent = Intent(this, HamburgerActivity::class.java)
             startActivity(intent);
-
             overridePendingTransition(R.anim.slide_right_enter_fill_after, R.anim.hold)
         }
 
         binding.btReceiver.setOnClickListener {
-
             Log.d(TAG, "onCreate: receiver click")
         }
         binding.btSatellite.setOnClickListener {
@@ -103,7 +102,7 @@ class MainActivity : AppCompatActivity(),
     }
 
     fun initDatabinding(){
-        settingRecyclerView(0);
+
     }
     fun tablayoutinitialize() {
         //custom tab 구현시작
@@ -147,23 +146,10 @@ class MainActivity : AppCompatActivity(),
         })
     }
 
-   fun settingRecyclerView(position :Int){
-     /*  binding.recyclerviewMain.layoutManager = LinearLayoutManager(this);
-       arrayadapter[position] = MainpageRecyclerViewAdapter(this, datasarray[position]!!, R.layout.recyclerview_item_vertical)
-       //binding.recyclerviewMain.layoutManager = GridLayoutManager(this, 3)
-       //adapter = MainpageRecyclerViewAdapter(this, selectdata, R.layout.recyclerview_item_grid)
-       arrayadapter[position]?.setClickListener(this)
-       binding.recyclerviewMain.adapter = arrayadapter[position]*/
-
-   }
 
    fun selecttab(position : Int){
        tabposition = position;
-       settingRecyclerView(position);
-      /* selectdata.clear()
-       Log.d(TAG, "selecttab: $position")
-       datasarray[position]?.let { selectdata.addAll(it) }
-       arrayadapter[0]?.notifyDataSetChanged();*/
+       if (binding.pager1.currentItem != position) {binding.pager1.currentItem = position}
    }
 
 

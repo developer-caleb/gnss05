@@ -16,7 +16,7 @@ import kr.loplab.gnss05.model.MainIcons
 
 class AdapterViewpager: PagerAdapter, MainpageRecyclerViewAdapter.RecyclerItemClickListener {
 
-    public var arrlist = arrayOf("국립환경인재개발원", "국립생물자원관", "환경산업연구단지", "국립환경과학원")
+    public var arrlist = arrayOf("작업", "연결", "측정", "도구")
     // LayoutInflater 서비스 사용을 위한 Context 참조 저장.
     private var mContext: Context? = null
     lateinit var binding : ToolViewpageradapterBinding
@@ -59,6 +59,11 @@ class AdapterViewpager: PagerAdapter, MainpageRecyclerViewAdapter.RecyclerItemCl
         return view === `object` as View
     }
     fun initDefault(){
+        data0.clear()
+        data1.clear()
+        data2.clear()
+        data3.clear()
+
         data0.add(MainIcons(R.drawable.ic_0_0_work, "작업"))
         data0.add(MainIcons(R.drawable.ic_0_1_work_group, "작업그룹"))
         data0.add(MainIcons(R.drawable.ic_0_2_coordinate, "좌표계"))
@@ -130,7 +135,10 @@ class AdapterViewpager: PagerAdapter, MainpageRecyclerViewAdapter.RecyclerItemCl
         arrayadapter[position]?.setClickListener(this)
         binding.recyclerviewMain.adapter = arrayadapter[position]
     }
-    fun initListener(position: Int){}
+    fun initListener(position: Int){
+
+
+    }
     fun initDatabinding(position: Int){}
     override fun onItemClick(view: View?, position: Int) {
         Log.d("TAG", "onItemClick: $position clicked!")
