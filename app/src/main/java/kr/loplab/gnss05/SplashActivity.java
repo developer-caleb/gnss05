@@ -39,7 +39,7 @@ public class SplashActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
-        Gnssreceiver2 gnssreceiver2 = new Gnssreceiver2();
+        //Gnssreceiver2 gnssreceiver2 = new Gnssreceiver2();
 
 
 
@@ -80,7 +80,6 @@ public class SplashActivity extends AppCompatActivity {
             filepath =  internalfileread(); //2
             initialize();
             processdata();
-
         }
         // CHC_Receiver = null;
         // CHC_Receiver receiver = new CHC_Receiver();

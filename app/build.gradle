@@ -88,4 +88,8 @@ dependencies {
 
     implementation name : 'sdk4a-release', ext: 'aar' //GNSS ARR
   // implementation 'com.chc.gnss.sdk:sdk4a-release:1.0.2@aar' //GNSS ARR
+
+
+    //코루틴(비동기처리)
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.4.1"
 }

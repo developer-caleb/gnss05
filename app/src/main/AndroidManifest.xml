@@ -18,6 +18,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Gnss05">
         <activity
+            android:name=".SettingActivity"
+            android:exported="true" />
+        <activity
             android:name=".HamburgerActivity"
             android:exported="true" />
         <activity
@@ -45,7 +48,7 @@
         <activity
             android:name=".StandardPointActivity"
             android:parentActivityName=".MainActivity" />
-        <activity android:name=".MainActivity"></activity>
+        <activity android:name=".MainActivity" />
     </application>
 
 </manifest>

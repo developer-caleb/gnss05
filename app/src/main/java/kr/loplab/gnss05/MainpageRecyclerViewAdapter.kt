@@ -12,18 +12,20 @@ import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.activity_main.view.*
 import kr.loplab.gnss05.model.MainIcons
+import java.lang.Exception
 
-class MainpageRecyclerViewAdapter internal constructor(context: Context?, data: ArrayList<MainIcons>) :
+class MainpageRecyclerViewAdapter internal constructor(context: Context?, data: ArrayList<MainIcons>,  resource : Int) :
     RecyclerView.Adapter<MainpageRecyclerViewAdapter.ViewHolder>() {
     var TAG :String  = javaClass.simpleName;
     var context :Context? = context
     private val mData: ArrayList<MainIcons>
     private val mInflater: LayoutInflater
     private var mClickListener: RecyclerItemClickListener? = null
+    var resource = resource;
 
     // inflates the cell layout from xml when needed
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = mInflater.inflate(R.layout.recyclerview_item_grid, parent, false)
+        val view = mInflater.inflate(resource, parent, false)
         return ViewHolder(view)
     }
 
@@ -39,7 +41,7 @@ class MainpageRecyclerViewAdapter internal constructor(context: Context?, data: 
 
         }
         holder.icon.setImageDrawable(context?.getDrawable(mData[position].icon))
-        holder.cardView.setOnClickListener {
+        holder.cardView?.setOnClickListener {
             if (mClickListener != null) mClickListener!!.onItemClick(holder.itemView, position)
             Log.d(TAG, "onBindViewHolder: position -> $position ")
             if(position==19){
@@ -61,7 +63,7 @@ class MainpageRecyclerViewAdapter internal constructor(context: Context?, data: 
         var myTextView: TextView
         var myTextView2: TextView
         var icon: ImageView
-        var cardView: CardView
+        var cardView: CardView?
         override fun onClick(view: View) {
             if (mClickListener != null) mClickListener!!.onItemClick(view, adapterPosition)
         }
@@ -70,7 +72,12 @@ class MainpageRecyclerViewAdapter internal constructor(context: Context?, data: 
             myTextView = itemView.findViewById(R.id.info_text)
             myTextView2 = itemView.findViewById(R.id.info_text2)
             icon  = itemView.findViewById(R.id.main_icon)
-            cardView = itemView.findViewById(R.id.cardview3)
+            try {
+                cardView = itemView.findViewById(R.id.cardview3)
+            } catch (e : Exception ){
+                cardView = null;
+            }
+
             itemView.setOnClickListener(this)
         }
     }

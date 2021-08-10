@@ -14,15 +14,22 @@ import android.view.View
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.chc.gnss.sdk.*
 import com.google.android.material.tabs.TabLayout
 import com.karumi.dexter.Dexter
 import com.karumi.dexter.MultiplePermissionsReport
 import com.karumi.dexter.PermissionToken
 import com.karumi.dexter.listener.PermissionRequest
 import com.karumi.dexter.listener.multi.MultiplePermissionsListener
+import kr.loplab.gnss05.SplashActivity.Gnssreceiver2
 import kr.loplab.gnss05.databinding.ActivityMainBinding
 import kr.loplab.gnss05.model.MainIcons
 import kr.loplab.gnss05.tableview.TableMainActivity
+import java.io.*
+import java.lang.Exception
+import kotlin.concurrent.thread
 
 
 class MainActivity : AppCompatActivity(),
@@ -65,9 +72,8 @@ class MainActivity : AppCompatActivity(),
         data0.add(MainIcons(R.drawable.ic_0_5_export, "내보내기"))
         data0.add(MainIcons(R.drawable.ic_0_6_scan, "스캔"))
         data0.add(MainIcons(R.drawable.ic_0_7_cloud, "클라우드"))
-        data0.add(MainIcons(R.drawable.ic_0_8_settings, "설정"))
+        data0.add(MainIcons(R.drawable.ic_0_8_settings, "설정", SettingActivity::class.java))
         data0.add(MainIcons(R.drawable.ic_0_9_information, "정보"))
-
 
         data1.add(MainIcons(R.drawable.ic_1_0_connect_device, "장비연결"))
         data1.add(MainIcons(R.drawable.ic_1_1_move_country, "이동국"))
@@ -123,14 +129,18 @@ class MainActivity : AppCompatActivity(),
 
 
         val numberOfColumns = 6
+        binding.recyclerviewMain.layoutManager = LinearLayoutManager(this);
+        //binding.recyclerviewMain.layoutManager = GridLayoutManager(this, 3)
 
-        adapter = MainpageRecyclerViewAdapter(this, selectdata)
+        adapter = MainpageRecyclerViewAdapter(this, selectdata, R.layout.recyclerview_item_vertical)
+        //adapter = MainpageRecyclerViewAdapter(this, selectdata, R.layout.recyclerview_item_grid)
         adapter.setClickListener(this)
         binding.recyclerviewMain.adapter = adapter
         permissionchecking()
     }
 
     fun init(){
+        val gnssreceiver3 = Gnssreceiver3()
 
     }
 
@@ -178,6 +188,7 @@ class MainActivity : AppCompatActivity(),
         //binding.tabs.addTab(binding.tabs.newTab().setCustomView(tabtext2))
         binding.tabs.addTab(binding.tabs.newTab().setCustomView(tabtext3))
         binding.tabs.addTab(binding.tabs.newTab().setCustomView(tabtext4))
+
         //custom tab 완성
         binding.tabs.getTabAt(0)!!.select()
         binding.tabs.getTabAt(0)!!.view.setBackgroundColor(resources.getColor(R.color.black))
@@ -223,7 +234,7 @@ class MainActivity : AppCompatActivity(),
     override fun onItemClick(view: View?, position: Int) {
         Log.d(TAG, "onItemClick: $position clicked!")
         when (position){
-            0 ->    { intent = Intent(this, StandardPointActivity::class.java)
+      /*      0 ->    { intent = Intent(this, StandardPointActivity::class.java)
                 startActivity(intent);}
             1 ->    { intent = Intent(this, NaverMap::class.java)
                 startActivity(intent);}
@@ -264,7 +275,7 @@ class MainActivity : AppCompatActivity(),
                 val nextIntent = Intent(this, TableMainActivity::class.java)
                 startActivity(nextIntent);
 
-            }
+            }*/
         }
     }
 
@@ -343,7 +354,144 @@ class MainActivity : AppCompatActivity(),
         Log.d("TAG", "showToast: $str")
     }
 
+    inner class Gnssreceiver3  {
+        var filepath = ""
+        var receiveref: CHC_ReceiverRef? = null
+        var cmdRef: CHC_CMDRef? = null
 
+        // CHC_Receiver = null;
+        // CHC_Receiver receiver = new CHC_Receiver();
+        fun initialize() {
+            val chc_receiver_type = CHC_RECEIVER_TYPE.CHC_RECEIVER_TYPE_SMART_GNSS //3
+            // The absolute path of the 'features.hcc'
+            // CHC_OEM_TYPE oem_type = CHC_OEM_TYPE.CHC_OEM_TYPE_UNICORE;
+            val oem_type = CHC_OEM_TYPE.CHC_OEM_TYPE_AUTO //안되면
+
+            //config에 있는 파일 넣어놓고, resource로 부르기.
+            receiveref = CHC_ReceiverRef(filepath, chc_receiver_type, oem_type)
+            val method = CHC_CONNECTION_METHOD.CHC_CONNECTION_METHOD_BT //4
+            CHC_Receiver.CHCUpdateConnectionMethod(receiveref, method) //5
+            cmdRef = CHC_CMDRef()
+            CHC_Receiver.CHCGetCmdInitConnection(receiveref, cmdRef)
+        }
+
+        fun processdata() {
+            Log.d(TAG, "processdata: --> test")
+            thread {
+                var i =0;
+                while (CHC_Receiver.CHCParseData(receiveref) == 0 && i < 50) {
+                    Log.d(TAG, "processdata: 시도횟수 : $i")
+                    Log.d(TAG, "CHC_Receiver.CHCParseData(receiveref): " + CHC_Receiver.CHCParseData(receiveref))
+                    val info = CHC_MessageInfo()
+                    CHC_Receiver.CHCGetMessageInfo(receiveref, info)
+                    Log.d(TAG, "processdata: ${info.msgType.toString()}")
+                  /*  when (info.msgType) {
+                        CHC_MESSAGE_TYPE.CHC_MESSAGE_TYPE_SYSTEM -> {
+                            Log.d(TAG, "processdata: CHC_MESSAGE_TYPE.CHC_MESSAGE_TYPE_SYSTEM")
+                            //Process system data
+                            //onSystemInfo(info.ulmsg)
+                        }
+                        CHC_MESSAGE_TYPE.CHC_MESSAGE_TYPE_GNSS -> {
+                            Log.d(TAG, "processdata: CHC_MESSAGE_TYPE.CHC_MESSAGE_TYPE_GNSS")
+                            //Process GNSS OEM board data
+                            //onGNSSInfo(info.ulmsg)
+                        }
+                        CHC_MESSAGE_TYPE.CHC_MESSAGE_TYPE_PDA -> {
+                            Log.d(TAG, "processdata: CHC_MESSAGE_TYPE.CHC_MESSAGE_TYPE_PDA")
+                            //Process WIFI or modem data
+                            //onPDAInfo(info.ulmsg)
+                        }
+                        CHC_MESSAGE_TYPE.CHC_MESSAGE_TYPE_DATALINK -> {
+                            Log.d(TAG, "processdata: CHC_MESSAGE_TYPE.CHC_MESSAGE_TYPE_DATALINK")
+                            //Process system data
+                          //  onDataLinkInfo(info.ulmsg)
+                        }
+                        else -> {
+                        }
+                    }
+*/
+
+                    Log.d(TAG, "processdata: 131${info.ulmsg}, 132${CHC_ReceiverConstants.CHC_MESSAGE_SYSTEM_INIT_CONNECTION.toLong()}")
+                    if (info.msgType == CHC_MESSAGE_TYPE.CHC_MESSAGE_TYPE_SYSTEM) {
+                        if (info.ulmsg == CHC_ReceiverConstants.CHC_MESSAGE_SYSTEM_INIT_CONNECTION.toLong()) {
+                            Log.d(TAG, "processdata: -> connection is successful")
+                            val size = 0
+                            CHC_Receiver.CHCGetCmdInitReceiver(receiveref, cmdRef)
+                        }
+                    }
+                    Thread.sleep(1000); i++
+                }
+            }
+
+        }
+
+        //작동 가능 확인
+        fun openrawfile(): String? {
+            val inputStream: InputStream = getResources().openRawResource(R.raw.features)
+            val byteArrayOutputStream = ByteArrayOutputStream()
+            var i: Int
+            try {
+                i = inputStream.read()
+                while (i != -1) {
+                    byteArrayOutputStream.write(i)
+                    i = inputStream.read()
+                }
+                inputStream.close()
+            } catch (e: IOException) {
+                return null
+            }
+            return byteArrayOutputStream.toString()
+        }
+
+        fun internalfilewrite() {
+            try {
+                val fos: FileOutputStream = openFileOutput("features.hcc", MODE_PRIVATE)
+                val dos = DataOutputStream(fos)
+                dos.writeUTF(openrawfile())
+                dos.flush()
+                dos.close()
+            } catch (e: Exception) {
+                Log.e(TAG, "internalfileopenwrite: error $e")
+            }
+        }
+
+        fun internalfileread(): String {
+            var returnstr = ""
+            try {
+                val file: File = getFileStreamPath("features.hcc")
+                val br = BufferedReader(FileReader(file))
+                var line: String
+                try{
+                while (br.readLine().also { line = it } != null) {
+                    Log.d(TAG, "internalfileread:--- $line")
+                }} catch (e1 : Exception) {
+                    Log.e(TAG, "internalfileread:---> $e1")
+                }
+                br.close()
+                Log.d(TAG, "internalfileread: filepath-> " + file.absolutePath)
+                Log.d(TAG, "internalfileread: file.tostring$file")
+
+                //FileInputStream fis = openFileInput(file.getAbsolutePath());
+                val fis: FileInputStream = openFileInput("features.hcc")
+                val dis = DataInputStream(fis)
+                Log.d(TAG, "internalfileread: -읽기" + dis.readUTF())
+                val path: String = getFileStreamPath("features.hcc").absolutePath
+                Log.d(TAG, "internalfileread:->>> $path")
+                returnstr = file.absolutePath
+            } catch (e: Exception) {
+                Log.e(TAG, "internalfileread: $e")
+            }
+            return returnstr
+        }
+
+        init {
+            internalfilewrite()
+            val receiver: CHC_Receiver? = null //1
+            filepath = internalfileread() //2
+            initialize()
+            processdata();
+        }
+    }
 
 }
 
