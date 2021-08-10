@@ -38,7 +38,7 @@ class MainActivity : AppCompatActivity(),
     MainpageRecyclerViewAdapter.RecyclerItemClickListener , DialogRecyclerviewAdapter.RecyclerItemClickListener {
     val TAG = javaClass.simpleName
     private lateinit var binding : ActivityMainBinding
-    lateinit var adapter: MainpageRecyclerViewAdapter
+    var arrayadapter : Array<MainpageRecyclerViewAdapter?> =  kotlin.arrayOfNulls(4)
     var selectdata = ArrayList<MainIcons>()
     var data0 = ArrayList<MainIcons>()
     var data1 = ArrayList<MainIcons>()
@@ -124,23 +124,20 @@ class MainActivity : AppCompatActivity(),
         data3.add(MainIcons(R.drawable.ic_3_10_share, "공유"))
 
 
-
+        permissionchecking()
         selectdata.addAll(data0);
 
         // set up the RecyclerView
 
 
-        binding.recyclerviewMain.layoutManager = LinearLayoutManager(this);
-        adapter = MainpageRecyclerViewAdapter(this, selectdata, R.layout.recyclerview_item_vertical)
-        //binding.recyclerviewMain.layoutManager = GridLayoutManager(this, 3)
-        //adapter = MainpageRecyclerViewAdapter(this, selectdata, R.layout.recyclerview_item_grid)
-        adapter.setClickListener(this)
-        binding.recyclerviewMain.adapter = adapter
-        permissionchecking()
+
     }
 
     fun init(){
        // val gnssreceiver3 = Gnssreceiver3()
+
+
+
 
     }
 
@@ -165,7 +162,7 @@ class MainActivity : AppCompatActivity(),
     }
 
     fun initDatabinding(){
-
+        settingRecyclerView(0);
     }
     fun tablayoutinitialize() {
         //custom tab 구현시작
@@ -210,8 +207,19 @@ class MainActivity : AppCompatActivity(),
 
 
     }
-   fun selecttab(position : Int){
 
+   fun settingRecyclerView(position :Int){
+       binding.recyclerviewMain.layoutManager = LinearLayoutManager(this);
+       arrayadapter[position] = MainpageRecyclerViewAdapter(this, selectdata, R.layout.recyclerview_item_vertical)
+       //binding.recyclerviewMain.layoutManager = GridLayoutManager(this, 3)
+       //adapter = MainpageRecyclerViewAdapter(this, selectdata, R.layout.recyclerview_item_grid)
+       arrayadapter[position]?.setClickListener(this)
+       binding.recyclerviewMain.adapter = arrayadapter[position]
+
+   }
+
+   fun selecttab(position : Int){
+        
        selectdata.clear()
        Log.d(TAG, "selecttab: $position")
        when (position){
@@ -228,7 +236,7 @@ class MainActivity : AppCompatActivity(),
                selectdata.addAll(data3)
            }
        }
-       adapter.notifyDataSetChanged();
+       arrayadapter[0]?.notifyDataSetChanged();
    }
 
 
