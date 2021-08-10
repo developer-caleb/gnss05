@@ -40,11 +40,12 @@ class MainActivity : AppCompatActivity(),
     private lateinit var binding : ActivityMainBinding
     var arrayadapter : Array<MainpageRecyclerViewAdapter?> =  kotlin.arrayOfNulls(4)
     var selectdata = ArrayList<MainIcons>()
+    var datasarray : Array<ArrayList<MainIcons>?> = kotlin.arrayOfNulls(4)
     var data0 = ArrayList<MainIcons>()
     var data1 = ArrayList<MainIcons>()
     var data2 = ArrayList<MainIcons>()
     var data3 = ArrayList<MainIcons>()
-
+    var tabposition =0;
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         //setContentView(R.layout.activity_qservice);
@@ -122,10 +123,14 @@ class MainActivity : AppCompatActivity(),
         data3.add(MainIcons(R.drawable.ic_3_8_reset_location, "위치 재설정"))
         data3.add(MainIcons(R.drawable.ic_3_9_ftp_share, "FTP 공유"))
         data3.add(MainIcons(R.drawable.ic_3_10_share, "공유"))
+        datasarray[0] = data0
+        datasarray[1] = data1
+        datasarray[2] = data2
+        datasarray[3] = data3
 
 
         permissionchecking()
-        selectdata.addAll(data0);
+        datasarray[0]?.let { selectdata.addAll(it) };
 
         // set up the RecyclerView
 
@@ -210,7 +215,7 @@ class MainActivity : AppCompatActivity(),
 
    fun settingRecyclerView(position :Int){
        binding.recyclerviewMain.layoutManager = LinearLayoutManager(this);
-       arrayadapter[position] = MainpageRecyclerViewAdapter(this, selectdata, R.layout.recyclerview_item_vertical)
+       arrayadapter[position] = MainpageRecyclerViewAdapter(this, datasarray[position]!!, R.layout.recyclerview_item_vertical)
        //binding.recyclerviewMain.layoutManager = GridLayoutManager(this, 3)
        //adapter = MainpageRecyclerViewAdapter(this, selectdata, R.layout.recyclerview_item_grid)
        arrayadapter[position]?.setClickListener(this)
@@ -219,24 +224,12 @@ class MainActivity : AppCompatActivity(),
    }
 
    fun selecttab(position : Int){
-        
-       selectdata.clear()
+       tabposition = position;
+       settingRecyclerView(position);
+      /* selectdata.clear()
        Log.d(TAG, "selecttab: $position")
-       when (position){
-           0 ->{
-               selectdata.addAll(data0)
-           }
-               1->{
-                   selectdata.addAll(data1)
-               }
-           2->{
-               selectdata.addAll(data2)
-           }
-           3->{
-               selectdata.addAll(data3)
-           }
-       }
-       arrayadapter[0]?.notifyDataSetChanged();
+       datasarray[position]?.let { selectdata.addAll(it) }
+       arrayadapter[0]?.notifyDataSetChanged();*/
    }
 
 
