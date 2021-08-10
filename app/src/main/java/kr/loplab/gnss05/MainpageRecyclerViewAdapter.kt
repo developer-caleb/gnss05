@@ -44,11 +44,8 @@ class MainpageRecyclerViewAdapter internal constructor(context: Context?, data: 
         holder.cardView?.setOnClickListener {
             if (mClickListener != null) mClickListener!!.onItemClick(holder.itemView, position)
             Log.d(TAG, "onBindViewHolder: position -> $position ")
-            if(position==19){
-                val intent: Intent = Intent(context, mData[position].activityname)
-                context?.startActivity(intent)
-            }
-
+            val intent: Intent = Intent(context, mData[position].activityname)
+            context?.startActivity(intent)
         }
     }
 
@@ -66,6 +63,9 @@ class MainpageRecyclerViewAdapter internal constructor(context: Context?, data: 
         var cardView: CardView?
         override fun onClick(view: View) {
             if (mClickListener != null) mClickListener!!.onItemClick(view, adapterPosition)
+            Log.d(TAG, "onBindViewHolder: position -> $position ")
+            val intent: Intent = Intent(context, mData[position].activityname)
+            context?.startActivity(intent)
         }
 
         init {

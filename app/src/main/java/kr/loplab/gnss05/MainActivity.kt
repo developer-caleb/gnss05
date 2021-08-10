@@ -1,6 +1,7 @@
 package kr.loplab.gnss05;
 
 import android.Manifest
+import android.app.Activity
 import android.app.AlertDialog
 import android.content.DialogInterface
 import android.content.Intent
@@ -24,6 +25,7 @@ import com.karumi.dexter.PermissionToken
 import com.karumi.dexter.listener.PermissionRequest
 import com.karumi.dexter.listener.multi.MultiplePermissionsListener
 import kr.loplab.gnss05.SplashActivity.Gnssreceiver2
+import kr.loplab.gnss05.common.Define.REQUEST_SETTING
 import kr.loplab.gnss05.databinding.ActivityMainBinding
 import kr.loplab.gnss05.model.MainIcons
 import kr.loplab.gnss05.tableview.TableMainActivity
@@ -69,7 +71,7 @@ class MainActivity : AppCompatActivity(),
         data0.add(MainIcons(R.drawable.ic_0_2_coordinate, "좌표계"))
         data0.add(MainIcons(R.drawable.ic_0_3_correction, "점 보정"))
         data0.add(MainIcons(R.drawable.ic_0_4_pointsave, "점저장소"))
-        data0.add(MainIcons(R.drawable.ic_0_5_export, "내보내기"))
+        data0.add(MainIcons(R.drawable.ic_0_5_export, "내보내기", UserFormatMake::class.java))
         data0.add(MainIcons(R.drawable.ic_0_6_scan, "스캔"))
         data0.add(MainIcons(R.drawable.ic_0_7_cloud, "클라우드"))
         data0.add(MainIcons(R.drawable.ic_0_8_settings, "설정", SettingActivity::class.java))
@@ -87,6 +89,7 @@ class MainActivity : AppCompatActivity(),
         data1.add(MainIcons(R.drawable.ic_1_9_frequency_setting, "주파수 설정"))
         data1.add(MainIcons(R.drawable.ic_1_10_change_location, "위치변경"))
         data1.add(MainIcons(R.drawable.ic_1_11_enroll_equipment, "장비등록"))
+
         data2.add(MainIcons(R.drawable.ic_2_0_status_work, "현황작업"))
         data2.add(MainIcons(R.drawable.ic_2_1_detail_survey, "상세 측량"))
         data2.add(MainIcons(R.drawable.ic_2_2_cad, "CAD (측설)"))
@@ -107,6 +110,7 @@ class MainActivity : AppCompatActivity(),
         data2.add(MainIcons(R.drawable.ic_2_17_railroad_stakeout, "철길측설"))
         data2.add(MainIcons(R.drawable.ic_2_18_layer, "레이어"))
         data2.add(MainIcons(R.drawable.ic_2_19_setting_measuring_range, "측정 범위 설정"))
+
         data3.add(MainIcons(R.drawable.ic_3_0_calibration, "캘리브레이션"))
         data3.add(MainIcons(R.drawable.ic_3_1_coordinate_inverse_calculation, "좌표역계산"))
         data3.add(MainIcons(R.drawable.ic_3_2_angle_converter, "각도변환기"))
@@ -125,14 +129,10 @@ class MainActivity : AppCompatActivity(),
 
         // set up the RecyclerView
 
-        // set up the RecyclerView
 
-
-        val numberOfColumns = 6
         binding.recyclerviewMain.layoutManager = LinearLayoutManager(this);
-        //binding.recyclerviewMain.layoutManager = GridLayoutManager(this, 3)
-
         adapter = MainpageRecyclerViewAdapter(this, selectdata, R.layout.recyclerview_item_vertical)
+        //binding.recyclerviewMain.layoutManager = GridLayoutManager(this, 3)
         //adapter = MainpageRecyclerViewAdapter(this, selectdata, R.layout.recyclerview_item_grid)
         adapter.setClickListener(this)
         binding.recyclerviewMain.adapter = adapter
@@ -140,7 +140,7 @@ class MainActivity : AppCompatActivity(),
     }
 
     fun init(){
-        val gnssreceiver3 = Gnssreceiver3()
+       // val gnssreceiver3 = Gnssreceiver3()
 
     }
 
@@ -148,6 +148,7 @@ class MainActivity : AppCompatActivity(),
         binding.imageHamburger.setOnClickListener { Log.d(TAG, "onCreate: hamburger")
             intent = Intent(this, HamburgerActivity::class.java)
             startActivity(intent);
+
             overridePendingTransition(R.anim.slide_right_enter_fill_after, R.anim.hold)
         }
 
@@ -492,6 +493,14 @@ class MainActivity : AppCompatActivity(),
             processdata();
         }
     }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (resultCode== Activity.RESULT_OK && requestCode==REQUEST_SETTING){
+            Log.d(TAG, "onActivityResult: ->")
+        }
+    }
+
 
 }
 
