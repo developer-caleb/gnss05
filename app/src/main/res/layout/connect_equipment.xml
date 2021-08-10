@@ -1,0 +1,474 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <import type="android.view.View"/>
+        <variable
+            name="viewModel"
+            type="kr.loplab.gnss05.StandardPointViewModel" />
+    </data>
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".StandardPointActivity">
+
+    <kr.loplab.gnss05.DefaultHeader
+        android:id="@+id/header_01"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:title="장비연결"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:backgroundTint="#0084CE">
+    </kr.loplab.gnss05.DefaultHeader>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/bottomButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/header_01">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <LinearLayout
+                style="@style/ButtonLayout_STYLE01"
+                >
+
+                <TextView
+                    style="@style/Sub_TEXTVIEW_STYLE1"
+                    android:text="장비제조사"
+                    android:visibility="@{viewModel.onprogress? View.VISIBLE : View.GONE}"/>
+
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="16dp"
+                    android:layout_weight="0"
+                    android:background="@color/grey_cc" />
+
+                <TextView
+                    style="@style/Sub_TEXTVIEW_STYLE2"
+                    android:layout_width="128dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:paddingRight="0dp"
+                    android:text="제조사명" />
+
+
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_weight="0"
+                android:background="@color/grey_EC" />
+
+
+            <LinearLayout
+                style="@style/ButtonLayout_STYLE01"
+                >
+
+                <TextView
+                    style="@style/Sub_TEXTVIEW_STYLE1"
+                    android:text="연결방식"
+                    android:visibility="@{viewModel.onprogress? View.VISIBLE : View.GONE}"/>
+
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="16dp"
+                    android:layout_weight="0"
+                    android:background="@color/grey_cc" />
+
+                <TextView
+                    style="@style/Sub_TEXTVIEW_STYLE2"
+                    android:layout_width="128dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:paddingRight="0dp"
+                    android:text="RTK" />
+
+
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="4dp"
+                android:layout_weight="0"
+                android:background="@color/grey_cc" />
+
+            <LinearLayout
+                style="@style/ButtonLayout_STYLE01"
+                >
+
+                <TextView
+                    style="@style/Sub_TEXTVIEW_STYLE1"
+                    android:text="연결모드"
+                    android:visibility="@{viewModel.onprogress? View.VISIBLE : View.GONE}" />
+
+
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="16dp"
+                    android:layout_weight="0"
+                    android:background="@color/grey_cc" />
+
+                <TextView
+                    style="@style/Sub_TEXTVIEW_STYLE2"
+                    android:layout_width="128dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:paddingRight="0dp"
+                    android:text="블루투스" />
+
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    style="@style/ButtonLayout_STYLE01"
+                    android:background="@color/grey_cc">
+
+                    <TextView
+                        style="@style/Sub_TEXTVIEW_STYLE1"
+                        android:text="블루투스 장치"
+                        android:textColor="@color/grey_33"
+                        android:visibility="@{viewModel.onprogress? View.VISIBLE : View.GONE}" />
+
+                </LinearLayout>
+
+                <LinearLayout style="@style/ButtonLayout_STYLE01">
+
+                    <TextView
+                        style="@style/Sub_TEXTVIEW_STYLE1"
+                        android:text="블루투스 연결 가능 장비명"
+                        android:visibility="@{viewModel.onprogress? View.VISIBLE : View.GONE}" />
+
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_weight="0"
+                    android:background="@color/grey_EC" />
+
+                <LinearLayout style="@style/ButtonLayout_STYLE01">
+
+                    <TextView
+                        style="@style/Sub_TEXTVIEW_STYLE1"
+                        android:text="블루투스 연결 가능 장비명"
+                        android:visibility="@{viewModel.onprogress? View.VISIBLE : View.GONE}" />
+
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_weight="0"
+                    android:background="@color/grey_EC" />
+
+            </LinearLayout>
+
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    style="@style/ButtonLayout_STYLE01"
+                    android:background="@color/grey_cc">
+
+                    <TextView
+                        style="@style/Sub_TEXTVIEW_STYLE1"
+                        android:text="WiFi 장치"
+                        android:textColor="@color/grey_33"
+                        android:visibility="@{viewModel.onprogress? View.VISIBLE : View.GONE}" />
+
+                </LinearLayout>
+
+                <LinearLayout style="@style/ButtonLayout_STYLE01">
+
+                    <TextView
+                        style="@style/Sub_TEXTVIEW_STYLE1"
+                        android:text="WiFi 연결 가능 장비명"
+                        android:visibility="@{viewModel.onprogress? View.VISIBLE : View.GONE}" />
+
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_weight="0"
+                    android:background="@color/grey_EC" />
+
+                <LinearLayout style="@style/ButtonLayout_STYLE01">
+
+                    <TextView
+                        style="@style/Sub_TEXTVIEW_STYLE1"
+                        android:text="WiFi 연결 가능 장비명"
+                        android:visibility="@{viewModel.onprogress? View.VISIBLE : View.GONE}" />
+
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_weight="0"
+                    android:background="@color/grey_EC" />
+
+            </LinearLayout>
+
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    style="@style/ButtonLayout_STYLE01"
+                    android:background="@color/grey_cc">
+
+                    <TextView
+                        style="@style/Sub_TEXTVIEW_STYLE1"
+                        android:text="시작 점 좌표"
+                        android:textColor="@color/grey_33"
+                        android:visibility="@{viewModel.onprogress? View.VISIBLE : View.GONE}" />
+
+                </LinearLayout>
+
+                <LinearLayout style="@style/ButtonLayout_STYLE01">
+
+                    <TextView
+                        style="@style/Sub_TEXTVIEW_STYLE1"
+                        android:text="위도"
+                        android:visibility="@{viewModel.onprogress? View.VISIBLE : View.GONE}" />
+
+                    <TextView
+                        style="@style/Sub_TEXTVIEW_STYLE2"
+                        android:layout_width="128dp"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:paddingRight="0dp"
+                        android:text="위도 값" />
+
+
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_weight="0"
+                    android:background="@color/grey_EC" />
+
+                <LinearLayout style="@style/ButtonLayout_STYLE01">
+
+                    <TextView
+                        style="@style/Sub_TEXTVIEW_STYLE1"
+                        android:text="경도"
+                        android:visibility="@{viewModel.onprogress? View.VISIBLE : View.GONE}" />
+
+                    <TextView
+                        style="@style/Sub_TEXTVIEW_STYLE2"
+                        android:layout_width="128dp"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:paddingRight="0dp"
+                        android:text="경도 값" />
+
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_weight="0"
+                    android:background="@color/grey_EC" />
+
+                <LinearLayout style="@style/ButtonLayout_STYLE01">
+
+                    <TextView
+                        style="@style/Sub_TEXTVIEW_STYLE1"
+                        android:text="Z"
+                        android:visibility="@{viewModel.onprogress? View.VISIBLE : View.GONE}" />
+
+                    <TextView
+                        style="@style/Sub_TEXTVIEW_STYLE2"
+                        android:layout_width="128dp"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:paddingRight="0dp"
+                        android:text="Z값" />
+
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_weight="0"
+                    android:background="@color/grey_EC" />
+
+            </LinearLayout>
+
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    style="@style/ButtonLayout_STYLE01"
+                    android:background="@color/grey_cc">
+
+                    <TextView
+                        style="@style/Sub_TEXTVIEW_STYLE1"
+                        android:text="옵션"
+                        android:textColor="@color/grey_33"
+                        android:visibility="@{viewModel.onprogress? View.VISIBLE : View.GONE}" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    style="@style/ButtonLayout_STYLE01"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        style="@style/Sub_TEXTVIEW_STYLE1"
+                        android:text="임의 방향"
+                        android:visibility="@{viewModel.onprogress? View.VISIBLE : View.GONE}" />
+
+                    <Switch
+                        android:layout_width="128dp"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:paddingRight="40dp"/>
+
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_weight="0"
+                    android:background="@color/grey_EC" />
+
+                <LinearLayout style="@style/ButtonLayout_STYLE01">
+
+                    <TextView
+                        style="@style/Sub_TEXTVIEW_STYLE1"
+                        android:text="방향"
+                        android:visibility="@{viewModel.onprogress? View.VISIBLE : View.GONE}" />
+
+
+                    <TextView
+                        style="@style/Sub_TEXTVIEW_STYLE2"
+                        android:layout_width="128dp"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:paddingRight="0dp"
+                        android:text="방향 값" />
+
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_weight="0"
+                    android:background="@color/grey_EC" />
+
+                <LinearLayout style="@style/ButtonLayout_STYLE01">
+
+                    <TextView
+                        style="@style/Sub_TEXTVIEW_STYLE1"
+                        android:text="속도"
+                        android:visibility="@{viewModel.onprogress? View.VISIBLE : View.GONE}" />
+
+
+                    <TextView
+                        style="@style/Sub_TEXTVIEW_STYLE2"
+                        android:layout_width="128dp"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:paddingRight="0dp"
+                        android:text="속도 값" />
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_weight="0"
+                    android:background="@color/grey_EC" />
+
+            </LinearLayout>
+
+
+
+
+        </LinearLayout>
+
+    </ScrollView>
+
+    <LinearLayout
+        android:id="@+id/bottomButton"
+        android:layout_width="match_parent"
+        android:layout_height="62dp"
+        android:background="#000000"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="검색"
+            android:textColor="@color/white"
+            android:textSize="16dp" />
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0"
+            android:background="@color/white" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="연결"
+            android:textColor="@color/white"
+            android:textSize="16dp" />
+
+
+    </LinearLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>
