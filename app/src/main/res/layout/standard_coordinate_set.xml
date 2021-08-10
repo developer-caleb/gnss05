@@ -229,7 +229,7 @@
 
 
 
-            <!------------삼각대, 폴대 값 설정정----------->
+            <!---삼각대, 폴대 값 설정정-->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -345,7 +345,7 @@
 
 
 
-            <!------------기준국 안테나 값 설정----------->
+            <!---기준국 안테나 값 설정-->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
