@@ -3,6 +3,7 @@ package kr.loplab.gnss05
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import kr.loplab.gnss05.common.Define
 import kr.loplab.gnss05.common.Define.RECYCLERVIEW_LIST_MODE
 import kr.loplab.gnss05.common.PrefUtil
 import kr.loplab.gnss05.databinding.ActivitySettingBinding
@@ -31,7 +32,7 @@ class SettingActivity : AppCompatActivity() {
     }
 
     override fun onBackPressed() {
+        finishActivity(Define.REQUEST_SETTING)
         super.onBackPressed()
-
     }
 }

@@ -5,12 +5,16 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.viewpager.widget.PagerAdapter
 import kr.loplab.gnss05.MainpageRecyclerViewAdapter
 import kr.loplab.gnss05.R
 import kr.loplab.gnss05.SettingActivity
 import kr.loplab.gnss05.UserFormatMake
+import kr.loplab.gnss05.common.Define
+import kr.loplab.gnss05.common.Define.REQUEST_SETTING
+import kr.loplab.gnss05.common.PrefUtil
 import kr.loplab.gnss05.databinding.ToolViewpageradapterBinding
 import kr.loplab.gnss05.model.MainIcons
 
@@ -20,7 +24,6 @@ class AdapterViewpager: PagerAdapter, MainpageRecyclerViewAdapter.RecyclerItemCl
     // LayoutInflater 서비스 사용을 위한 Context 참조 저장.
     private var mContext: Context? = null
     lateinit var binding : ToolViewpageradapterBinding
-    var selectdata = ArrayList<MainIcons>()
     var datasarray : Array<ArrayList<MainIcons>?> = kotlin.arrayOfNulls(4)
     var arrayadapter : Array<MainpageRecyclerViewAdapter?> =  kotlin.arrayOfNulls(4)
     var data0 = ArrayList<MainIcons>()
@@ -35,6 +38,7 @@ class AdapterViewpager: PagerAdapter, MainpageRecyclerViewAdapter.RecyclerItemCl
     override fun getCount(): Int {
         return arrlist.size
     }
+
 
     override fun instantiateItem(container: ViewGroup, position: Int): Any {
         if (mContext != null) {
@@ -72,7 +76,7 @@ class AdapterViewpager: PagerAdapter, MainpageRecyclerViewAdapter.RecyclerItemCl
         data0.add(MainIcons(R.drawable.ic_0_5_export, "내보내기", UserFormatMake::class.java))
         data0.add(MainIcons(R.drawable.ic_0_6_scan, "스캔"))
         data0.add(MainIcons(R.drawable.ic_0_7_cloud, "클라우드"))
-        data0.add(MainIcons(R.drawable.ic_0_8_settings, "설정", SettingActivity::class.java))
+        data0.add(MainIcons(R.drawable.ic_0_8_settings, "설정", SettingActivity::class.java, REQUEST_SETTING))
         data0.add(MainIcons(R.drawable.ic_0_9_information, "정보"))
 
         data1.add(MainIcons(R.drawable.ic_1_0_connect_device, "장비연결"))
@@ -120,8 +124,6 @@ class AdapterViewpager: PagerAdapter, MainpageRecyclerViewAdapter.RecyclerItemCl
         data3.add(MainIcons(R.drawable.ic_3_8_reset_location, "위치 재설정"))
         data3.add(MainIcons(R.drawable.ic_3_9_ftp_share, "FTP 공유"))
         data3.add(MainIcons(R.drawable.ic_3_10_share, "공유"))
-
-        datasarray[0]?.let { selectdata.addAll(it) };
         datasarray[0] = data0
         datasarray[1] = data1
         datasarray[2] = data2
@@ -129,11 +131,15 @@ class AdapterViewpager: PagerAdapter, MainpageRecyclerViewAdapter.RecyclerItemCl
     }
     fun init(position: Int){
         binding.recyclerviewMain.layoutManager = LinearLayoutManager(mContext);
-        arrayadapter[position] = MainpageRecyclerViewAdapter(mContext, datasarray[position]!!, R.layout.recyclerview_item_vertical)
-        //binding.recyclerviewMain.layoutManager = GridLayoutManager(this, 3)
-        //adapter = MainpageRecyclerViewAdapter(this, selectdata, R.layout.recyclerview_item_grid)
-        arrayadapter[position]?.setClickListener(this)
+        if(PrefUtil.getBoolean(mContext, Define.RECYCLERVIEW_LIST_MODE)){
+            arrayadapter[position] = MainpageRecyclerViewAdapter(mContext, datasarray[position]!!, R.layout.recyclerview_item_vertical)
+        }else{
+            binding.recyclerviewMain.layoutManager = GridLayoutManager(mContext, 3)
+            arrayadapter[position] = MainpageRecyclerViewAdapter(mContext, datasarray[position]!!, R.layout.recyclerview_item_grid)
+        }
         binding.recyclerviewMain.adapter = arrayadapter[position]
+        arrayadapter[position]?.setClickListener(this)
+
     }
     fun initListener(position: Int){
 
@@ -163,28 +169,7 @@ class AdapterViewpager: PagerAdapter, MainpageRecyclerViewAdapter.RecyclerItemCl
                       val nextIntent = Intent(this, FileExportActivity::class.java)
                       startActivity(nextIntent);
                   }
-                  5 -> {
-                      val nextIntent = Intent(this, UserFormatMake::class.java)
-                      startActivity(nextIntent);
-                  }
-
-
-                  6 -> {
-                      //val nextIntent = Intent(this, TableActivity::class.java)
-                      val nextIntent = Intent(this, TableMainActivity::class.java)
-                      startActivity(nextIntent);
-                  }
-                  7 -> {
-                      //val nextIntent = Intent(this, TableActivity::class.java)
-                      val nextIntent = Intent(this, TableMainActivity::class.java)
-                      startActivity(nextIntent);
-                  }
-                  8 -> {
-                      //val nextIntent = Intent(this, TableActivity::class.java)
-                      val nextIntent = Intent(this, TableMainActivity::class.java)
-                      startActivity(nextIntent);
-
-                  }*/
+            */
         }
     }
 

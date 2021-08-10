@@ -6,6 +6,7 @@ import kr.loplab.gnss05.HamburgerActivity
 data class MainIcons(
     var icon: Int = 0,
     var decription: String = "",
-    var activityname : Class<*> = HamburgerActivity::class.java
+    var activityname : Class<*> = HamburgerActivity::class.java,
+    var requestcode : Int = 0,
 ) {
 }

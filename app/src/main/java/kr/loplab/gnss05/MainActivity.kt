@@ -72,6 +72,7 @@ class MainActivity : AppCompatActivity(),
     fun init(){
         adapterViewpager = AdapterViewpager(this)
         binding.pager1.adapter = adapterViewpager
+
     }
 
     fun initListener(){
@@ -371,7 +372,7 @@ class MainActivity : AppCompatActivity(),
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (resultCode== Activity.RESULT_OK && requestCode==REQUEST_SETTING){
-            Log.d(TAG, "onActivityResult: ->")
+            Log.d(TAG, "onActivityResult: ->REQUEST_SETTING")
         }
     }
 

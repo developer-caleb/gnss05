@@ -1,5 +1,6 @@
 package kr.loplab.gnss05
 
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.util.Log
@@ -9,6 +10,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.cardview.widget.CardView
+import androidx.core.app.ActivityCompat.startActivityForResult
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.activity_main.view.*
 import kr.loplab.gnss05.model.MainIcons
@@ -65,7 +67,8 @@ class MainpageRecyclerViewAdapter internal constructor(context: Context?, data: 
             if (mClickListener != null) mClickListener!!.onItemClick(view, adapterPosition)
             Log.d(TAG, "onBindViewHolder: position -> $position ")
             val intent: Intent = Intent(context, mData[position].activityname)
-            context?.startActivity(intent)
+            startActivityForResult(context as Activity,intent, mData[position].requestcode,null)
+          //  context?.startActivity(intent)
         }
 
         init {
