@@ -18,6 +18,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Gnss05">
         <activity
+            android:name=".activities.ExportActivity"
+            android:exported="true" />
+        <activity
+            android:name=".activities.StopSurveyActivity"
+            android:exported="true" />
+        <activity
+            android:name=".activities.MobileStationActivity"
+            android:exported="true" />
+        <activity
             android:name=".activities.ReferenceCoordinateSetting"
             android:exported="true" />
         <activity
@@ -38,10 +47,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <!--
         <activity android:name=".tablelayout_tools1.TableActivity" />
         <activity android:name=".UserFormatView" />
-        <activity android:name=".UserFormatMake" />
         <activity android:name=".tablelayout_tools2.Type5Activity" />
+        -->
+        <activity android:name=".UserFormatMake" />
+
         <activity android:name=".FileExportActivity" />
         <activity android:name=".ColorPickerdialog" />
         <activity android:name=".NaverMap" />

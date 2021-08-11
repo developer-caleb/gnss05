@@ -9,9 +9,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.viewpager.widget.PagerAdapter
 import kr.loplab.gnss05.*
-import kr.loplab.gnss05.activities.ConnectEquipmentActivity
-import kr.loplab.gnss05.activities.SettingActivity
-import kr.loplab.gnss05.activities.ReferenceCountryActivity
+import kr.loplab.gnss05.activities.*
 import kr.loplab.gnss05.common.Define
 import kr.loplab.gnss05.common.Define.REQUEST_SETTING
 import kr.loplab.gnss05.common.PrefUtil
@@ -80,9 +78,9 @@ class AdapterViewpager: PagerAdapter, MainpageRecyclerViewAdapter.RecyclerItemCl
         data0.add(MainIcons(R.drawable.ic_0_9_information, "정보"))
 
         data1.add(MainIcons(R.drawable.ic_1_0_connect_device, "장비연결", ConnectEquipmentActivity::class.java))
-        data1.add(MainIcons(R.drawable.ic_1_1_move_country, "이동국"))
+        data1.add(MainIcons(R.drawable.ic_1_1_move_country, "이동국", MobileStationActivity::class.java))
         data1.add(MainIcons(R.drawable.ic_1_2_reference_country, "기준국", ReferenceCountryActivity::class.java))
-        data1.add(MainIcons(R.drawable.ic_1_3_stop_survey, "정지측량"))
+        data1.add(MainIcons(R.drawable.ic_1_3_stop_survey, "정지측량", StopSurveyActivity::class.java))
         data1.add(MainIcons(R.drawable.ic_1_4_connection_state, "연결상태"))
         data1.add(MainIcons(R.drawable.ic_1_5_connection_save, "연결저장"))
         data1.add(MainIcons(R.drawable.ic_1_6_connection_infomation, "연결정보"))

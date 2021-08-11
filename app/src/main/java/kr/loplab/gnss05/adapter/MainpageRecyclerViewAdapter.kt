@@ -1,4 +1,4 @@
-package kr.loplab.gnss05
+package kr.loplab.gnss05.adapter
 
 import android.app.Activity
 import android.content.Context
@@ -12,7 +12,8 @@ import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.core.app.ActivityCompat.startActivityForResult
 import androidx.recyclerview.widget.RecyclerView
-import kotlinx.android.synthetic.main.activity_main.view.*
+import kr.loplab.gnss05.HamburgerActivity
+import kr.loplab.gnss05.R
 import kr.loplab.gnss05.model.MainIcons
 import java.lang.Exception
 
@@ -34,7 +35,9 @@ class MainpageRecyclerViewAdapter internal constructor(context: Context?, data: 
     // binds the data to the TextView in each cell
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         if(mData[position].activityname != HamburgerActivity::class.java)
-        {holder.itemView.setBackgroundColor(context?.resources!!.getColor(R.color.brightSkyBlue))}
+        {holder.itemView.setBackgroundColor(context?.resources!!.getColor(R.color.brightSkyBlue))}else{
+            holder.itemView.setBackgroundColor(context?.resources!!.getColor(R.color.white))
+        }
         holder.myTextView.text = mData[position].decription
         if (holder.myTextView.text.equals("원추형 편경사측설")){
             holder.myTextView.visibility = View.GONE;
