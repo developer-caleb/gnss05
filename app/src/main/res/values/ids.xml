@@ -5,4 +5,6 @@
     <item name="relativeLayoutC" type="id" />
     <item name="relativeLayoutD" type="id" />
     <item name="tableLayoutB" type="id" />
+    <item name="linearLayout3" type="id" />
+    <item name="scrollView3" type="id" />
 </resources>
