@@ -50,7 +50,7 @@ class AdapterViewpager: PagerAdapter, MainpageRecyclerViewAdapter.RecyclerItemCl
             initDatabinding(position)
 
         }
-            binding.textView.text = arrlist[position]
+
         container.addView(binding.root)
         return binding.root
     }

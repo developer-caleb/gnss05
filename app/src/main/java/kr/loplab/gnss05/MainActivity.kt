@@ -371,6 +371,7 @@ class MainActivity : AppCompatActivity(),
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
+        Log.d(TAG, "onActivityResult:")
         if (resultCode== Activity.RESULT_OK && requestCode==REQUEST_SETTING){
             Log.d(TAG, "onActivityResult: ->REQUEST_SETTING")
         }

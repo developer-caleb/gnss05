@@ -32,7 +32,7 @@
         <entry key="app/src/main/res/layout/recyclerview_item_vertical.xml" value="0.244140625" />
         <entry key="app/src/main/res/layout/tab_icon_cell.xml" value="0.5" />
         <entry key="app/src/main/res/layout/tool_new_customtabtextview.xml" value="0.238671875" />
-        <entry key="app/src/main/res/layout/tool_viewpageradapter.xml" value="0.119921875" />
+        <entry key="app/src/main/res/layout/tool_viewpageradapter.xml" value="0.18" />
       </map>
     </option>
   </component>
