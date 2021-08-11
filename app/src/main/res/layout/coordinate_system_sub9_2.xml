@@ -17,7 +17,7 @@
         android:id="@+id/header_01"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:title="기준국설정"
+        app:title="지오이드 파일"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" >
@@ -36,63 +36,56 @@
             android:layout_height="wrap_content"
             android:orientation="vertical" >
 
-            <kr.loplab.gnss05.TextDivider
-                android:layout_width="match_parent"
-                app:title2="안녕하세요"
-                 android:layout_height="wrap_content"
-                >
-            </kr.loplab.gnss05.TextDivider>
             <LinearLayout
                 style="@style/ButtonLayout_STYLE01"
-               >
+                >
 
                 <TextView
-                    style="@style/TEXTVIEW_STYLE01"
-                    android:text="하이"
-                    android:visibility="@{viewModel.onprogress? View.VISIBLE : View.GONE}"
-                    />
-                <TextView
-                    style="@style/TEXTVIEW_STYLE02"
+                    style="@style/Sub_TEXTVIEW_STYLE1"
+                    android:text="사용 여부"
+                    android:visibility="@{viewModel.onprogress? View.VISIBLE : View.GONE}"/>
+
+                <Switch
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="0"
-                    android:text="TextView" />
+                    android:layout_weight="1"
+                    android:paddingRight="8dp"/>
 
-             <CheckBox
-                 android:layout_width="wrap_content"
-                 android:layout_height="wrap_content"/>
+
 
             </LinearLayout>
+
             <View
                 android:layout_width="match_parent"
-                android:layout_height="1dp"
+                android:layout_height="4dp"
                 android:layout_weight="0"
-                android:background="@color/dividercolor" />
+                android:background="@color/grey_cc" />
+
             <LinearLayout
                 style="@style/ButtonLayout_STYLE01"
                 >
 
                 <TextView
-                    android:id="@+id/textView4"
-                    style="@style/TEXTVIEW_STYLE01"
-                    android:text="하이222"
+                    style="@style/Sub_TEXTVIEW_STYLE1"
+                    android:text="모드"
                     android:visibility="@{viewModel.onprogress? View.VISIBLE : View.GONE}" />
 
                 <TextView
-                    android:id="@+id/textView5"
-                    style="@style/TEXTVIEW_STYLE02"
+                    style="@style/Sub_TEXTVIEW_STYLE3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="0"
-                    android:text="TextView" />
+                    android:text="Bilinear" />
+
 
                 <ImageView
-                    android:id="@+id/bt_1"
                     android:layout_width="@dimen/rightArrowSize"
                     android:layout_height="@dimen/rightArrowSize"
                     android:layout_weight="0"
                     android:padding="5dp"
-                    app:srcCompat="@drawable/ic_rightarrow" />
+                    android:layout_marginRight="8dp"
+                    app:srcCompat="@drawable/next_icon" />
+
 
 
             </LinearLayout>
@@ -101,8 +94,42 @@
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:layout_weight="0"
-                android:background="@color/dividercolor" />
+                android:background="@color/grey_EC" />
+
+            <LinearLayout
+                style="@style/ButtonLayout_STYLE01"
+                >
+
+                <TextView
+                    style="@style/Sub_TEXTVIEW_STYLE1"
+                    android:text="경로"
+                    android:visibility="@{viewModel.onprogress? View.VISIBLE : View.GONE}" />
+
+
+                <ImageView
+                    android:layout_width="@dimen/rightArrowSize"
+                    android:layout_height="@dimen/rightArrowSize"
+                    android:layout_weight="0"
+                    android:padding="5dp"
+                    android:layout_marginRight="8dp"
+                    app:srcCompat="@drawable/next_icon" />
+
+
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_weight="0"
+                android:background="@color/grey_EC" />
+
+
+
+
+
         </LinearLayout>
+
     </ScrollView>
 
     <LinearLayout
@@ -116,44 +143,15 @@
         app:layout_constraintStart_toStartOf="parent">
 
         <TextView
-            android:id="@+id/textView2"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="위성설정"
-            android:textColor="@color/white" />
+            android:text="확인"
+            android:textColor="@color/white"
+            android:textSize="16dp" />
 
-        <View
-            android:id="@+id/divider"
-            android:layout_width="1dp"
-            android:layout_height="match_parent"
-            android:layout_weight="0"
-            android:background="@color/white" />
 
-        <TextView
-            android:id="@+id/textView3"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:text="저장&amp;적용"
-            android:textColor="@color/white" />
-
-        <View
-            android:id="@+id/divide2"
-            android:layout_width="1dp"
-            android:layout_height="match_parent"
-            android:layout_weight="0"
-            android:background="@color/white" />
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:text="적용"
-            android:textColor="@color/white" />
     </LinearLayout>
 
 

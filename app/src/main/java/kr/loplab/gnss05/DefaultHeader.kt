@@ -84,7 +84,7 @@ class DefaultHeader : FrameLayout {
         ivBack!!.setImageResource(backResId)
         val backgroundcolor = typedArray.getColor(
             R.styleable.DefaultHeader_backgroundColor,
-            resources.getColor(R.color.headerblack)
+            resources.getColor(R.color.main_blue)
         )
         loHeader!!.setBackgroundColor(backgroundcolor)
         val backbuttoncolor = typedArray.getColor(

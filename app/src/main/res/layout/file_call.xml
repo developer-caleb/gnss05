@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <import type="android.view.View"/>
+        <variable
+            name="viewModel"
+            type="kr.loplab.gnss05.StandardPointViewModel" />
+    </data>
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".StandardPointActivity">
+
+    <kr.loplab.gnss05.DefaultHeader
+        android:id="@+id/header_01"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:title="파일 불러오기"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" >
+    </kr.loplab.gnss05.DefaultHeader>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout4"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/header_01">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                style="@style/ButtonLayout_STYLE01"
+                android:background="@color/grey_cc">
+
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_weight="0"
+                    app:srcCompat="@drawable/file" />
+
+
+                <TextView
+                    style="@style/Sub_TEXTVIEW_STYLE1"
+                    android:paddingLeft="8dp"
+                    android:text="내장 저장장치/Surpad/Project"
+                    android:textColor="@color/grey_33"
+                    android:visibility="@{viewModel.onprogress? View.VISIBLE : View.GONE}" />
+
+                <ImageView
+                    android:layout_width="@dimen/rightArrowSize"
+                    android:layout_height="@dimen/rightArrowSize"
+                    android:layout_marginRight="8dp"
+                    android:layout_weight="0"
+                    android:padding="5dp"
+                    app:srcCompat="@drawable/share" />
+
+            </LinearLayout>
+
+            <LinearLayout style="@style/ButtonLayout_STYLE01">
+
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_weight="0"
+                    app:srcCompat="@drawable/move" />
+
+
+                <TextView
+                    style="@style/Sub_TEXTVIEW_STYLE1"
+                    android:paddingLeft="8dp"
+                    android:text="내부 저장소 루트 디렉토리로 이동"
+                    android:textColor="@color/grey_33"
+                    android:visibility="@{viewModel.onprogress? View.VISIBLE : View.GONE}" />
+
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_weight="0"
+                android:background="@color/grey_EC" />
+
+            <LinearLayout style="@style/ButtonLayout_STYLE01">
+
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_weight="0"
+                    app:srcCompat="@drawable/move" />
+
+
+                <TextView
+                    style="@style/Sub_TEXTVIEW_STYLE1"
+                    android:paddingLeft="8dp"
+                    android:text="프로그램 저장 디렉토리로 이동"
+                    android:textColor="@color/grey_33"
+                    android:visibility="@{viewModel.onprogress? View.VISIBLE : View.GONE}" />
+
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_weight="0"
+                android:background="@color/grey_EC" />
+
+
+            <LinearLayout style="@style/ButtonLayout_STYLE01">
+
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_weight="0"
+                    app:srcCompat="@drawable/move_1" />
+
+
+                <TextView
+                    style="@style/Sub_TEXTVIEW_STYLE1"
+                    android:paddingLeft="8dp"
+                    android:text="돌아가기기"
+                    android:textColor="@color/grey_33"
+                    android:visibility="@{viewModel.onprogress? View.VISIBLE : View.GONE}" />
+
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_weight="0"
+                android:background="@color/grey_EC" />
+
+
+        </LinearLayout>
+
+    </ScrollView>
+
+    <LinearLayout
+        android:id="@+id/linearLayout4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@+id/bottomButton">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_weight="0"
+            android:background="@color/grey_EC" />
+
+        <LinearLayout
+            style="@style/ButtonLayout_STYLE01">
+
+            <EditText
+                style="@style/Sub_TEXTVIEW_STYLE1"
+                android:layout_weight="0"
+                android:gravity="s"
+                android:text="파일명"
+                android:visibility="@{viewModel.onprogress? View.VISIBLE : View.GONE}" />
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_weight="0"
+            android:background="@color/grey_EC" />
+
+        <LinearLayout
+            style="@style/ButtonLayout_STYLE01">
+
+            <TextView
+                style="@style/Sub_TEXTVIEW_STYLE1"
+                android:text="파일유형"
+                android:visibility="@{viewModel.onprogress? View.VISIBLE : View.GONE}" />
+
+
+            <TextView
+                style="@style/Sub_TEXTVIEW_STYLE3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0"
+                android:text="TextView"
+                android:textColor="@color/grey_66"/>
+
+            <ImageView
+                android:layout_width="@dimen/rightArrowSize"
+                android:layout_height="@dimen/rightArrowSize"
+                android:layout_weight="0"
+                android:padding="5dp"
+                android:layout_marginRight="8dp"
+                app:srcCompat="@drawable/next_icon" />
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+
+
+    <LinearLayout
+        android:id="@+id/bottomButton"
+        android:layout_width="match_parent"
+        android:layout_height="62dp"
+        android:background="#000000"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="확인"
+            android:textColor="@color/white"
+            android:textSize="16dp" />
+
+    </LinearLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>
