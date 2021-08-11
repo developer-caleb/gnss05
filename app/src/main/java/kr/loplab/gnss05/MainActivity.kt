@@ -374,6 +374,14 @@ class MainActivity : AppCompatActivity(),
         Log.d(TAG, "onActivityResult:")
         if (resultCode== Activity.RESULT_OK && requestCode==REQUEST_SETTING){
             Log.d(TAG, "onActivityResult: ->REQUEST_SETTING")
+            adapterViewpager = AdapterViewpager(this)
+            binding.pager1.adapter = adapterViewpager
+            adapterViewpager?.init(tabposition)
+
+
+
+        // adapterViewpager?.init(tabposition) //변경은 되는데 viewpager에서 변경이 안 됨. 다시 만들어져야함
+           // adapterViewpager?.notifyDataSetChanged()
         }
     }
 

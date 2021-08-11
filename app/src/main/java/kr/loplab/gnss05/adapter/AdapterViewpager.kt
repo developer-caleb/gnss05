@@ -19,7 +19,7 @@ import kr.loplab.gnss05.databinding.ToolViewpageradapterBinding
 import kr.loplab.gnss05.model.MainIcons
 
 class AdapterViewpager: PagerAdapter, MainpageRecyclerViewAdapter.RecyclerItemClickListener {
-
+    val TAG = javaClass.simpleName
     public var arrlist = arrayOf("작업", "연결", "측정", "도구")
     // LayoutInflater 서비스 사용을 위한 Context 참조 저장.
     private var mContext: Context? = null
@@ -130,16 +130,18 @@ class AdapterViewpager: PagerAdapter, MainpageRecyclerViewAdapter.RecyclerItemCl
         datasarray[3] = data3
     }
     fun init(position: Int){
-        binding.recyclerviewMain.layoutManager = LinearLayoutManager(mContext);
         if(PrefUtil.getBoolean(mContext, Define.RECYCLERVIEW_LIST_MODE)){
+            binding.recyclerviewMain.layoutManager = LinearLayoutManager(mContext);
+            Log.d(TAG, "init: listmode-> RECYCLERVIEW_LIST_MODE" )
             arrayadapter[position] = MainpageRecyclerViewAdapter(mContext, datasarray[position]!!, R.layout.recyclerview_item_vertical)
         }else{
+            Log.d(TAG, "init: listmode-> RECYCLERVIEW_GRID_MODE" )
             binding.recyclerviewMain.layoutManager = GridLayoutManager(mContext, 3)
             arrayadapter[position] = MainpageRecyclerViewAdapter(mContext, datasarray[position]!!, R.layout.recyclerview_item_grid)
         }
         binding.recyclerviewMain.adapter = arrayadapter[position]
         arrayadapter[position]?.setClickListener(this)
-
+        arrayadapter[position]?.notifyDataSetChanged()
     }
     fun initListener(position: Int){
 

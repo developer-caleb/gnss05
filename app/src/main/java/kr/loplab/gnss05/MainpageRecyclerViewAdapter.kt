@@ -67,7 +67,7 @@ class MainpageRecyclerViewAdapter internal constructor(context: Context?, data: 
             if (mClickListener != null) mClickListener!!.onItemClick(view, adapterPosition)
             Log.d(TAG, "onBindViewHolder: position -> $position ")
             val intent: Intent = Intent(context, mData[position].activityname)
-            startActivityForResult(context as Activity,intent, mData[position].requestcode,null)
+            startActivityForResult(context as Activity ,intent, mData[position].requestcode,null)
           //  context?.startActivity(intent)
         }
 

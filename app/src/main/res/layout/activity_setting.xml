@@ -27,7 +27,7 @@
     </RadioGroup>
 
     <TextView
-        android:id="@+id/textView24"
+        android:id="@+id/bt_back01"
         android:layout_width="0dp"
         android:layout_height="62dp"
         android:background="#2F2725"
