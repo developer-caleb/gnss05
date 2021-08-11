@@ -6,6 +6,7 @@
     <color name="colorToGet">#00FF00</color>
     <color name="colorToPay">#ff0000</color>
     <color name="colorSecondary">#64b5f6</color>
+    <color name="brightSkyBlue">#C1E3FF</color>
     <color name="brightSky">#15B4FE</color>
     <color name="colorPrimary">#FFFFFF</color>
     <color name="colorAccent">#0c77e4</color>
@@ -36,10 +37,8 @@
     <color name="main">@color/brightSky</color>
     <color name="selected_button_color">@color/brightSky</color>
     <color name="unselected_button_color">#FF000000</color>
-    <color name="grey_EC">#ECECEC</color>
+
     <color name="grey_66">#666666</color>
-    <color name="grey_33">#333333</color>
-    <color name="main_blue">#1DB7FB</color>
 
     <!--table-->
     <color name="selected_background_color">#6636D1</color>

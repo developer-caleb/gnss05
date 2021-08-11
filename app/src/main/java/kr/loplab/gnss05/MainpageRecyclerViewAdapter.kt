@@ -33,6 +33,8 @@ class MainpageRecyclerViewAdapter internal constructor(context: Context?, data: 
 
     // binds the data to the TextView in each cell
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        if(mData[position].activityname != HamburgerActivity::class.java)
+        {holder.itemView.setBackgroundColor(context?.resources!!.getColor(R.color.brightSkyBlue))}
         holder.myTextView.text = mData[position].decription
         if (holder.myTextView.text.equals("원추형 편경사측설")){
             holder.myTextView.visibility = View.GONE;
@@ -40,7 +42,6 @@ class MainpageRecyclerViewAdapter internal constructor(context: Context?, data: 
         }else{
             holder.myTextView.visibility = View.VISIBLE;
             holder.myTextView2.visibility = View.GONE;
-
         }
         holder.icon.setImageDrawable(context?.getDrawable(mData[position].icon))
         holder.cardView?.setOnClickListener {

@@ -1,10 +1,8 @@
-package kr.loplab.gnss05
+package kr.loplab.gnss05.activities
 
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import kr.loplab.gnss05.common.Define
 import kr.loplab.gnss05.common.Define.RECYCLERVIEW_LIST_MODE
 import kr.loplab.gnss05.common.PrefUtil
 import kr.loplab.gnss05.databinding.ActivitySettingBinding

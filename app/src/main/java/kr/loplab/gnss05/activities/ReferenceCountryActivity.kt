@@ -1,24 +1,19 @@
-package kr.loplab.gnss05
+package kr.loplab.gnss05.activities
 
-import android.os.Bundle
-import android.view.Menu
-import android.view.MenuItem
 import androidx.appcompat.app.ActionBar
 
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
-import kr.loplab.gnss05.databinding.ActivityStandardPointBinding
-import android.app.Activity
-import android.content.Intent
 import kr.loplab.gnss02.ActivityBase
+import kr.loplab.gnss05.R
+import kr.loplab.gnss05.activities.viewmodel.ReferenceContryViewModel
+import kr.loplab.gnss05.databinding.ActivityReferenceCountryBinding
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class StandardPointActivity : ActivityBase<ActivityStandardPointBinding>() {
+class ReferenceCountryActivity : ActivityBase<ActivityReferenceCountryBinding>() {
     override val layoutResourceId: Int
-        get() = R.layout.activity_standard_point
-    val viewModel : StandardPointViewModel by viewModel()
+        get() = R.layout.activity_reference_country
+    val viewModel : ReferenceContryViewModel by viewModel()
 
-    //액션버튼 메뉴 액션바에 집어 넣기
+  /*  //액션버튼 메뉴 액션바에 집어 넣기
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
        // menuInflater.inflate(R.menu.standard_point_menu, menu)
         return true
@@ -30,7 +25,7 @@ class StandardPointActivity : ActivityBase<ActivityStandardPointBinding>() {
                 onBackPressed()
                 return true
             }
-           /* R.id.action_search -> {
+           R.id.action_search -> {
                 //검색 버튼 눌렀을 때
                 return super.onOptionsItemSelected(item)
             }
@@ -38,11 +33,11 @@ class StandardPointActivity : ActivityBase<ActivityStandardPointBinding>() {
             R.id.action_share -> {
                 //공유 버튼 눌렀을 때
                 return super.onOptionsItemSelected(item)
-            }*/
+            }
             else -> return super.onOptionsItemSelected(item!!)
         }
     }
-
+*/
     override fun init() {
         val ab: ActionBar? = supportActionBar
         ab?.title ="기준국설정";
@@ -50,7 +45,7 @@ class StandardPointActivity : ActivityBase<ActivityStandardPointBinding>() {
 
     override fun initListener() {
         viewBinding.header01.setOnBackButtonClickListener { onBackPressed();}
-        viewBinding.bt1.setOnClickListener { viewModel.btclick() }
+       // viewBinding.bt1.setOnClickListener { viewModel.btclick() }
     }
 
     override fun initDatabinding() {

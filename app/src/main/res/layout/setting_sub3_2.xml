@@ -6,12 +6,12 @@
         <import type="android.view.View"/>
         <variable
             name="viewModel"
-            type="kr.loplab.gnss05.StandardPointViewModel" />
+            type="kr.loplab.gnss05.activities.viewmodel.ReferenceContryViewModel" />
     </data>
 <androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".StandardPointActivity">
+    tools:context=".activities.ReferenceCountryActivity">
 
     <kr.loplab.gnss05.DefaultHeader
         android:id="@+id/header_01"
@@ -102,7 +102,7 @@
                     android:visibility="@{viewModel.onprogress? View.VISIBLE : View.GONE}" />
 
                 <SeekBar
-                    android:id="@+id/seekBar"
+
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"

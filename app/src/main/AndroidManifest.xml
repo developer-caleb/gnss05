@@ -18,7 +18,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Gnss05">
         <activity
-            android:name=".SettingActivity"
+            android:name=".activities.ReferenceCoordinateSetting"
+            android:exported="true" />
+        <activity
+            android:name=".activities.ConnectEquipmentActivity"
+            android:exported="true" />
+        <activity
+            android:name=".activities.SettingActivity"
             android:exported="true" />
         <activity
             android:name=".HamburgerActivity"
@@ -46,7 +52,7 @@
             android:value="x3tscpw23x" />
 
         <activity
-            android:name=".StandardPointActivity"
+            android:name=".activities.ReferenceCountryActivity"
             android:parentActivityName=".MainActivity" />
         <activity android:name=".MainActivity" />
     </application>

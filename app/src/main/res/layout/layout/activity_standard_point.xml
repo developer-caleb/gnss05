@@ -5,7 +5,7 @@
     <data>
         <variable
             name="viewModel"
-            type="kr.loplab.gnss05.StandardPointViewModel" />
+            type="kr.loplab.gnss05.activities.viewmodel.ReferenceContryViewModel" />
     </data>
 <androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
