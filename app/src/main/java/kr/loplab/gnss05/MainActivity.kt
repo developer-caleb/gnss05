@@ -132,18 +132,17 @@ class MainActivity : AppCompatActivity(),
 
         //custom tab 완성
         binding.tabs.getTabAt(0)!!.select()
-        binding.tabs.getTabAt(0)!!.view.setBackgroundColor(resources.getColor(R.color.black))
 
         binding.tabs.setOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
             override fun onTabSelected(tab: TabLayout.Tab) {
-                tab.view.setBackgroundColor(resources.getColor(R.color.black))
+               // tab.view.setBackgroundColor(resources.getColor(R.color.black))
                 selecttab(tab.position)
             }
             override fun onTabUnselected(tab: TabLayout.Tab) {
-                tab.view.setBackgroundColor(resources.getColor(R.color.blue))
+              //  tab.view.setBackgroundColor(resources.getColor(R.color.blue))
             }
             override fun onTabReselected(tab: TabLayout.Tab) {
-                tab.view.setBackgroundColor(resources.getColor(R.color.black))
+              //  tab.view.setBackgroundColor(resources.getColor(R.color.black))
             }
 
         })

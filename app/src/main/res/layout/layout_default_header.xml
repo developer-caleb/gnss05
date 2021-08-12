@@ -5,7 +5,7 @@
     android:id="@+id/loHeader"
     style="@style/DefaultHeader"
     android:elevation="25dp"
-    android:background="@color/headerblack">
+    android:background="@color/blue">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/btnClose"
