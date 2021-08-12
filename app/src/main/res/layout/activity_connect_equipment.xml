@@ -105,6 +105,7 @@
                     android:background="@color/grey_cc" />
 
                 <LinearLayout
+                    android:id="@+id/connect_mode_bt"
                     style="@style/ButtonLayout_STYLE01"
                     >
 

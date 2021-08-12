@@ -25,14 +25,29 @@ class ConnectEquipmentActivity : ActivityBase<ActivityConnectEquipmentBinding>()
 
     override fun initListener() {
     viewBinding.header01.setOnBackButtonClickListener{onBackPressed()}
-        viewBinding.makerSelectBt.setOnClickListener {
+    viewBinding.makerSelectBt.setOnClickListener {
             val dlg = MyDialog(this)
+            dlg.firstLayoutUse = false
+            var list = ArrayList<List<String>>()
+            list.add(listOf("/", "1"))
             dlg.setClickListener(this)
             dlg.setOnOKClickedListener{ content ->
                 Log.d(TAG, "onItemClick: $content")
             }
             dlg.start("메인의 내용을 변경할까요?")
+        dlg.setHeader("장비제조사")
 
+    }
+        viewBinding.connectModeBt.setOnClickListener {
+            val dlg = MyDialog(this)
+            dlg.firstLayoutUse = false
+            var list = ArrayList<List<String>>()
+            list.add(listOf("/", "1"))
+            dlg.setClickListener(this)
+            dlg.setOnOKClickedListener{ content ->
+                Log.d(TAG, "onItemClick: $content")
+            }
+            dlg.start("메인의 내용을 변경할까요?")
         }
 
     }

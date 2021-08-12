@@ -8,12 +8,12 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/defaultHeaderHeight"
+        android:layout_height="@dimen/dialog_header_height"
         android:background="#000000"
         android:orientation="horizontal">
 
         <TextView
-            android:id="@+id/textView9"
+            android:id="@+id/title_dialog"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
@@ -30,6 +30,8 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             tools:srcCompat="@tools:sample/avatars" />
+
+
     </LinearLayout>
 
 
@@ -47,7 +49,7 @@
             >
 
             <TextView
-                android:id="@+id/list_text2"
+                android:id="@+id/list_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -57,17 +59,14 @@
                 android:textColor="@color/black"
                 android:textSize="18dp" />
 
-            <RadioButton
-                android:id="@+id/recyclerview_icon2"
+            <ImageView
+                android:id="@+id/recyclerview_icon"
                 android:layout_width="60dp"
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
                 android:layout_weight="0"
-                android:buttonTint="@color/brightSky"
-                android:checked="false"
-                android:clickable="false"
-                android:focusable="false"
-                />
+
+                app:srcCompat="@android:drawable/btn_star_big_on" />
         </LinearLayout>
 
         <View
@@ -79,68 +78,6 @@
 
     </LinearLayout>
 
-    <LinearLayout
-
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="0"
-        android:orientation="vertical"
-        android:padding="8dp">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="70dp"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/list_text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_weight="1"
-                android:paddingLeft="15dp"
-                android:text="TextView"
-                android:textColor="@color/black"
-                android:textSize="20dp" />
-
-            <ImageView
-                android:id="@+id/recyclerview_icon"
-                android:layout_width="60dp"
-                android:layout_height="match_parent"
-                android:layout_gravity="center"
-                android:layout_weight="0"
-                android:padding="10dp"
-                app:srcCompat="@android:drawable/btn_star_big_on" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:visibility="gone">
-
-            <Button
-                android:id="@+id/ok"
-                android:layout_width="0dp"
-                android:layout_height="40dp"
-                android:layout_weight="1"
-                android:text="확인" />
-
-            <Button
-                android:id="@+id/cancel"
-                android:layout_width="0dp"
-                android:layout_height="40dp"
-                android:layout_weight="1"
-                android:text="취소" />
-
-
-        </LinearLayout>
-
-
-    </LinearLayout>
-
-
-
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/dialog_recyclerview"
         android:layout_width="match_parent"
@@ -149,5 +86,28 @@
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
 
         tools:listitem="@layout/recyclerview_checkitem" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:visibility="gone">
+
+        <Button
+            android:id="@+id/ok"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_weight="1"
+            android:text="확인" />
+
+        <Button
+            android:id="@+id/cancel"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_weight="1"
+            android:text="취소" />
+
+
+    </LinearLayout>
 
 </LinearLayout>

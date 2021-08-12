@@ -9,6 +9,7 @@
     <!--    패딩, 마진 그룹 -->
     <dimen name="defaultButtonPadding">12dp</dimen>
     <dimen name="defaultLayoutPadding">24dp</dimen>
+    <dimen name="defaultHeaderPadding">24dp</dimen>
 
 
     <!--    레이아웃 사이즈 그룹 -->
@@ -39,4 +40,6 @@
 
     <!-- Dialog 사이즈 그룹-->
     <dimen name="dialog_text_size">14dp</dimen>
+    <dimen name="dialog_header_height">42dp</dimen>
+    <dimen name="dialog_recyclerview_height">45dp</dimen>
 </resources>

@@ -10,10 +10,11 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/btnClose"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_alignParentLeft="true"
-        android:paddingLeft="@dimen/defaultLayoutPadding"
-        android:paddingRight="@dimen/defaultLayoutPadding"
+        android:paddingLeft="@dimen/defaultHeaderPadding"
+        android:paddingRight="@dimen/defaultHeaderPadding"
+
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -22,8 +23,8 @@
             android:id="@+id/btn_back"
             android:layout_width="20dp"
             android:layout_height="20dp"
-            android:layout_centerInParent="true"
             android:background="@drawable/ripple_circle"
+            android:layout_centerInParent="true"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

@@ -2,15 +2,16 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="@dimen/dialog_recyclerview_height"
     android:orientation="vertical">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_weight="1"
         android:orientation="horizontal"
         android:paddingTop="10dp"
-        android:paddingBottom="10dp"
-        >
+        android:paddingBottom="10dp">
 
         <TextView
             android:id="@+id/list_text2"
@@ -18,28 +19,33 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_weight="1"
+            android:gravity="center_vertical"
             android:paddingLeft="15dp"
             android:text="TextView"
             android:textColor="@color/black"
             android:textSize="18dp" />
 
-    <RadioButton
-        android:id="@+id/recyclerview_icon2"
-        android:layout_width="60dp"
-        android:layout_height="match_parent"
-        android:layout_gravity="center"
-        android:layout_weight="0"
-        android:buttonTint="@color/brightSky"
-        android:checked="false"
-        android:clickable="false"
-        android:focusable="false"
-        />
+        <CheckBox
+            android:id="@+id/recyclerview_icon2"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_marginRight="10dp"
+            android:layout_weight="0"
+            android:buttonTint="@color/brightSky"
+            android:checked="false"
+            android:clickable="false"
+            android:focusable="false"
+            android:minWidth="0dp"
+            android:paddingEnd="0dp"
+            android:paddingRight="0dp" />
     </LinearLayout>
 
     <View
         android:id="@+id/divider3"
         android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="?android:attr/listDivider" />
+        android:layout_height="2dp"
+        android:layout_weight="0"
+        android:background="@color/dividercolor2" />
 
 </LinearLayout>

@@ -5,7 +5,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.RadioButton
+import android.widget.CheckBox
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import kotlin.collections.ArrayList
@@ -16,6 +16,7 @@ class DialogRecyclerviewAdapter internal constructor(context: Context?, data: Ar
     private val mInflater: LayoutInflater
     private var mClickListener: RecyclerItemClickListener? = null
     private var TAG : String = javaClass.simpleName;
+
 
     // inflates the cell layout from xml when needed
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -28,10 +29,10 @@ class DialogRecyclerviewAdapter internal constructor(context: Context?, data: Ar
         holder.myTextView.text = mData[position][0]
 
         if (mData[position][1] == "1"){
-            holder.radioicon.isChecked =true
+            holder.checkboxicon.isChecked =true
             Log.d(TAG, "onBindViewHolder: 선택 됨");
         }else {
-            holder.radioicon.isChecked =false
+            holder.checkboxicon.isChecked =false
             Log.d(TAG, "onBindViewHolder: 선택 안 됨");
         }
 
@@ -47,7 +48,7 @@ class DialogRecyclerviewAdapter internal constructor(context: Context?, data: Ar
     // stores and recycles views as they are scrolled off screen
     inner class ViewHolder internal constructor(itemView: View) : RecyclerView.ViewHolder(itemView),
         View.OnClickListener {
-        var radioicon: RadioButton
+        var checkboxicon: CheckBox
         var myTextView: TextView
 
         override fun onClick(view: View) {
@@ -59,7 +60,7 @@ class DialogRecyclerviewAdapter internal constructor(context: Context?, data: Ar
 
         init {
             myTextView = itemView.findViewById(R.id.list_text2)
-            radioicon = itemView.findViewById(R.id.recyclerview_icon2)
+            checkboxicon = itemView.findViewById(R.id.recyclerview_icon2)
 
             itemView.setOnClickListener(this)
         }
