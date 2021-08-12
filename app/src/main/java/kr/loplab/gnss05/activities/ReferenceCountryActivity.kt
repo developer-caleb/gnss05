@@ -1,5 +1,6 @@
 package kr.loplab.gnss05.activities
 
+import android.os.Bundle
 import androidx.appcompat.app.ActionBar
 
 import kr.loplab.gnss02.ActivityBase
@@ -11,7 +12,9 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 class ReferenceCountryActivity : ActivityBase<ActivityReferenceCountryBinding>() {
     override val layoutResourceId: Int
         get() = R.layout.activity_reference_country
-    val viewModel : ReferenceContryViewModel by viewModel()
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+    }
 
   /*  //액션버튼 메뉴 액션바에 집어 넣기
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {

@@ -24,6 +24,7 @@ class ExportActivity :  ActivityBase<ActivityExportBinding>() {
     }
 
     override fun initListener() {
+        viewBinding.header01.setOnBackButtonClickListener{onBackPressed()}
         viewBinding.btAddFileFormat.setOnClickListener {
             intent = Intent(this, TableMainActivity::class.java)
             startActivity(intent);

@@ -2,11 +2,26 @@ package kr.loplab.gnss05.activities
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import kr.loplab.gnss02.ActivityBase
 import kr.loplab.gnss05.R
+import kr.loplab.gnss05.databinding.ActivityStopSurveyBinding
 
-class StopSurveyActivity : AppCompatActivity() {
+class StopSurveyActivity : ActivityBase<ActivityStopSurveyBinding>() {
+    override val layoutResourceId: Int
+        get() = R.layout.activity_stop_survey
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_stop_survey)
+    }
+
+    override fun init() {
+
+    }
+
+    override fun initListener() {
+
+    }
+
+    override fun initDatabinding() {
+
     }
 }

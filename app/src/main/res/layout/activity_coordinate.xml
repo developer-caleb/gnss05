@@ -4,10 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
     <data>
         <import type="android.view.View"/>
-        <variable
-            name="viewModel"
-            type="kr.loplab.gnss05.activities.viewmodel.ReferenceContryViewModel" />
-    </data>
+         </data>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -43,7 +40,7 @@
                     <TextView
                         style="@style/Sub_TEXTVIEW_STYLE1"
                         android:text="좌표계"
-                        android:visibility="@{viewModel.onprogress? View.VISIBLE : View.GONE}" />
+                         />
 
                     <TextView
                         style="@style/Sub_TEXTVIEW_STYLE3"
@@ -86,7 +83,7 @@
                         android:paddingLeft="8dp"
                         android:text="타원체 매개변수"
                         android:textColor="@color/grey_33"
-                        android:visibility="@{viewModel.onprogress? View.VISIBLE : View.GONE}" />
+                         />
 
 
                 </LinearLayout>
@@ -114,7 +111,7 @@
                         android:paddingLeft="8dp"
                         android:text="투영법"
                         android:textColor="@color/grey_33"
-                        android:visibility="@{viewModel.onprogress? View.VISIBLE : View.GONE}" />
+                         />
 
 
                 </LinearLayout>
@@ -142,7 +139,7 @@
                         android:paddingLeft="8dp"
                         android:text="ITRF 파라미터"
                         android:textColor="@color/grey_33"
-                        android:visibility="@{viewModel.onprogress? View.VISIBLE : View.GONE}" />
+                         />
 
 
                 </LinearLayout>
@@ -170,7 +167,7 @@
                         android:paddingLeft="8dp"
                         android:text="7-매개변수"
                         android:textColor="@color/grey_33"
-                        android:visibility="@{viewModel.onprogress? View.VISIBLE : View.GONE}" />
+                         />
 
 
                 </LinearLayout>
@@ -198,7 +195,7 @@
                         android:paddingLeft="8dp"
                         android:text="4-매개변수/수평조정"
                         android:textColor="@color/grey_33"
-                        android:visibility="@{viewModel.onprogress? View.VISIBLE : View.GONE}" />
+                         />
 
 
                 </LinearLayout>
@@ -226,7 +223,7 @@
                         android:paddingLeft="8dp"
                         android:text="수직 제어 파라미터"
                         android:textColor="@color/grey_33"
-                        android:visibility="@{viewModel.onprogress? View.VISIBLE : View.GONE}" />
+                         />
 
 
                 </LinearLayout>
@@ -254,7 +251,7 @@
                         android:paddingLeft="8dp"
                         android:text="수직 조정 파라미터"
                         android:textColor="@color/grey_33"
-                        android:visibility="@{viewModel.onprogress? View.VISIBLE : View.GONE}" />
+                         />
 
 
                 </LinearLayout>
@@ -282,7 +279,7 @@
                         android:paddingLeft="8dp"
                         android:text="그리드 파일"
                         android:textColor="@color/grey_33"
-                        android:visibility="@{viewModel.onprogress? View.VISIBLE : View.GONE}" />
+                         />
 
 
                 </LinearLayout>
@@ -310,7 +307,7 @@
                         android:paddingLeft="8dp"
                         android:text="지오이드 파일"
                         android:textColor="@color/grey_33"
-                        android:visibility="@{viewModel.onprogress? View.VISIBLE : View.GONE}" />
+                         />
 
 
                 </LinearLayout>
@@ -338,7 +335,7 @@
                         android:paddingLeft="8dp"
                         android:text="지역옵셋"
                         android:textColor="@color/grey_33"
-                        android:visibility="@{viewModel.onprogress? View.VISIBLE : View.GONE}" />
+                         />
 
 
                 </LinearLayout>
