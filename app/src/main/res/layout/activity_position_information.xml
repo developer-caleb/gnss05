@@ -22,17 +22,24 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:tabBackground="@drawable/selector_bg_tabs"
         app:tabIndicatorColor="@color/transparent"
-        app:tabRippleColor="@color/ripple_color">
+        app:tabRippleColor="@color/ripple_color"
+        app:tabSelectedTextColor="@color/tab_text_color"
+        app:tabTextColor="@color/tab_text_color">
 
         <com.google.android.material.tabs.TabItem
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+
             android:text="상세정보" />
 
         <com.google.android.material.tabs.TabItem
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:background="@color/black"
             android:text="기준국" />
 
         <com.google.android.material.tabs.TabItem

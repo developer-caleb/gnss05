@@ -4,236 +4,742 @@
     xmlns:tools="http://schemas.android.com/tools">
     <data>
         <import type="android.view.View"/>
-        <variable
-            name="viewModel"
-            type="kr.loplab.gnss05.activities.viewmodel.ReferenceContryViewModel" />
+      
     </data>
-<androidx.constraintlayout.widget.ConstraintLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".activities.ReferenceCountryActivity">
-
-    <kr.loplab.gnss05.DefaultHeader
-        android:id="@+id/header_01"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:title="파일 출력"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" >
-    </kr.loplab.gnss05.DefaultHeader>
+        android:layout_height="match_parent"
+        tools:context=".StandardPointActivity">
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@+id/bottomButton"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/header_01">
-
-        <LinearLayout
+        <kr.loplab.gnss05.DefaultHeader
+            android:id="@+id/header_01"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical" >
+            app:title="파일 출력"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" >
+        </kr.loplab.gnss05.DefaultHeader>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toTopOf="@+id/bottomButton"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/header_01">
 
             <LinearLayout
-                style="@style/ButtonLayout_STYLE01"
-                >
-
-                <TextView
-                    style="@style/Sub_TEXTVIEW_STYLE1"
-                    android:text="작업 파일 선택"
-                    android:visibility="@{viewModel.onprogress? View.VISIBLE : View.GONE}" />
-
-                <TextView
-                    style="@style/Sub_TEXTVIEW_STYLE3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0"
-                    android:text="20210730.PD" />
-
-
-                <ImageView
-                    android:layout_width="@dimen/rightArrowSize"
-                    android:layout_height="@dimen/rightArrowSize"
-                    android:layout_weight="0"
-                    android:padding="5dp"
-                    android:layout_marginRight="8dp"
-                    app:srcCompat="@drawable/next_icon" />
-
-
-            </LinearLayout>
-
-            <View
                 android:layout_width="match_parent"
-                android:layout_height="4dp"
-                android:layout_weight="0"
-                android:background="@color/grey_cc" />
-
-            <LinearLayout
-                style="@style/ButtonLayout_STYLE01"
-                >
-
-                <TextView
-                    style="@style/Sub_TEXTVIEW_STYLE1"
-                    android:text="도로 횡단면 출력"
-                    android:visibility="@{viewModel.onprogress? View.VISIBLE : View.GONE}" />
-
-
-                <Switch
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:paddingRight="8dp"/>
-
-
-            </LinearLayout>
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="4dp"
-                android:layout_weight="0"
-                android:background="@color/grey_cc" />
-
-            <LinearLayout
-                style="@style/ButtonLayout_STYLE01"
-                >
-
-                <TextView
-                    style="@style/Sub_TEXTVIEW_STYLE1"
-                    android:text="파일형식"
-                    android:visibility="@{viewModel.onprogress? View.VISIBLE : View.GONE}" />
-
-                <TextView
-                    style="@style/Sub_TEXTVIEW_STYLE3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0"
-                    android:text="측량 점 데이터 형식(.csv)" />
-
-
-                <ImageView
-                    android:layout_width="@dimen/rightArrowSize"
-                    android:layout_height="@dimen/rightArrowSize"
-                    android:layout_weight="0"
-                    android:padding="5dp"
-                    android:layout_marginRight="8dp"
-                    app:srcCompat="@drawable/next_icon" />
-
-
-            </LinearLayout>
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="4dp"
-                android:layout_weight="0"
-                android:background="@color/grey_cc" />
-
-            <LinearLayout
-                style="@style/ButtonLayout_STYLE01"
                 android:layout_height="wrap_content"
-                android:paddingTop="5dp"
-                android:paddingBottom="5dp">
+                android:orientation="vertical" >
 
-                <TextView
-                    style="@style/Sub_TEXTVIEW_STYLE1"
+                <LinearLayout
+                    style="@style/ButtonLayout_STYLE01">
+
+                    <TextView
+                        style="@style/Sub_TEXTVIEW_STYLE1"
+                        android:text="작업 파일 선택"
+                         />
+
+                    <TextView
+                        style="@style/Sub_TEXTVIEW_STYLE3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0"
+                        android:text="20210730.PD" />
+
+
+                    <ImageView
+                        android:layout_width="@dimen/rightArrowSize"
+                        android:layout_height="@dimen/rightArrowSize"
+                        android:layout_weight="0"
+                        android:padding="5dp"
+                        android:layout_marginRight="8dp"
+                        app:srcCompat="@drawable/next_icon" />
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="4dp"
+                    android:layout_weight="0"
+                    android:background="@color/grey_cc" />
+
+
+
+                <LinearLayout
+                    style="@style/ButtonLayout_STYLE01">
+
+                    <TextView
+                        style="@style/Sub_TEXTVIEW_STYLE1"
+                        android:text="도로 횡단면 출력"
+                         />
+
+
+                    <Switch
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:paddingRight="8dp"
+                        tools:ignore="TouchTargetSizeCheck,TouchTargetSizeCheck" />
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="4dp"
+                    android:layout_weight="0"
+                    android:background="@color/grey_cc" />
+
+
+
+                <LinearLayout
+                    style="@style/ButtonLayout_STYLE01">
+
+                    <TextView
+                        style="@style/Sub_TEXTVIEW_STYLE1"
+                        android:text="파일형식"
+                         />
+
+                    <TextView
+                        style="@style/Sub_TEXTVIEW_STYLE3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0"
+                        android:text="측량 점 데이터 형식(.csv)" />
+
+
+                    <ImageView
+                        android:layout_width="@dimen/rightArrowSize"
+                        android:layout_height="@dimen/rightArrowSize"
+                        android:layout_weight="0"
+                        android:padding="5dp"
+                        android:layout_marginRight="8dp"
+                        app:srcCompat="@drawable/next_icon" />
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="4dp"
+                    android:layout_weight="0"
+                    android:background="@color/grey_cc" />
+
+
+
+                <LinearLayout
+                    style="@style/ButtonLayout_STYLE01"
                     android:layout_height="wrap_content"
-                    android:paddingRight="20dp"
-                    android:text="[이름],[코드],[원점 위도],[원점 경도],[원점 고도],[Station Correction x],
-[Station Correction y],[Station Correction h],[위도],[경도],[고도],[안테나 높이],[X],[Y],[Z(레벨)],[솔루션 정보],
-[위성연산],[위성 추적중],[PDOP],[수평오차],[수직오차,[지연],[현재날짜],[현재시간],[기준국 ID],[기준국 위도],[기준국 경도],[기준국 고도],
-[기준국과 거리],[경사 보정],[경사 각도],[투영 각도],[X보정],[Y보정],[측설점],[스테이션],[옵셋],[레벨편차],[시작거리],[타워명],[타워번호]"
-                    android:visibility="@{viewModel.onprogress? View.VISIBLE : View.GONE}" />
+                    android:paddingTop="5dp"
+                    android:paddingBottom="5dp">
+
+                    <TextView
+                        style="@style/Sub_TEXTVIEW_STYLE1"
+                        android:layout_height="wrap_content"
+                        android:paddingRight="20dp"
+                        android:text="[이름],[코드],[원점 위도],[원점 경도],[원점 고도],[Station Correction x],[Station Correction y],[Station Correction h],[위도],[경도],[고도],[안테나 높이],[X],[Y],[Z(레벨)],[솔루션 정보],[위성연산],[위성 추적중],[PDOP],[수평오차],[수직오차,[지연],[현재날짜],[현재시간],[기준국 ID],[기준국 위도],[기준국 경도],[기준국 고도],[기준국과 거리],[경사 보정],[경사 각도],[투영 각도],[X보정],[Y보정],[측설점],[스테이션],[옵셋],[레벨편차],[시작거리],[타워명],[타워번호]"
+                         />
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="4dp"
+                    android:layout_weight="0"
+                    android:background="@color/grey_cc" />
+
+
+
+                <LinearLayout
+                    style="@style/ButtonLayout_STYLE01">
+
+                    <TextView
+                        style="@style/Sub_TEXTVIEW_STYLE1"
+                        android:text="각도 형식"
+                         />
+
+                    <TextView
+                        style="@style/Sub_TEXTVIEW_STYLE3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0"
+                        android:text="ddºmm'ss.ssss”" />
+
+
+                    <ImageView
+                        android:layout_width="@dimen/rightArrowSize"
+                        android:layout_height="@dimen/rightArrowSize"
+                        android:layout_weight="0"
+                        android:padding="5dp"
+                        android:layout_marginRight="8dp"
+                        app:srcCompat="@drawable/next_icon" />
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="4dp"
+                    android:layout_weight="0"
+                    android:background="@color/grey_cc" />
+
+
+
+
+
+                <!--–(도로 횡단면 출력 OFF) – 파일형식(DOL 파일 형식(csv) (.csv)) 하위옵션-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        style="@style/ButtonLayout_STYLE01">
+
+                        <TextView
+                            style="@style/Sub_TEXTVIEW_STYLE1"
+                            android:text="점보조"
+                             />
+
+
+                        <Switch
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:paddingRight="8dp"
+                            tools:ignore="TouchTargetSizeCheck,TouchTargetSizeCheck" />
+
+
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_weight="0"
+                        android:background="@color/grey_EC" />
+
+
+                    <LinearLayout
+                        style="@style/ButtonLayout_STYLE01">
+
+                        <TextView
+                            style="@style/Sub_TEXTVIEW_STYLE1"
+                            android:text="점측정"
+                             />
+
+
+                        <Switch
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:paddingRight="8dp"
+                            tools:ignore="TouchTargetSizeCheck,TouchTargetSizeCheck" />
+
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_weight="0"
+                        android:background="@color/grey_EC" />
+
+                    <LinearLayout
+                        style="@style/ButtonLayout_STYLE01">
+
+                        <TextView
+                            style="@style/Sub_TEXTVIEW_STYLE1"
+                            android:text="컨트롤 측정"
+                             />
+
+
+                        <Switch
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:paddingRight="8dp"
+                            tools:ignore="TouchTargetSizeCheck,TouchTargetSizeCheck" />
+
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_weight="0"
+                        android:background="@color/grey_EC" />
+
+                    <LinearLayout
+                        style="@style/ButtonLayout_STYLE01">
+
+                        <TextView
+                            style="@style/Sub_TEXTVIEW_STYLE1"
+                            android:text="점입력"
+                             />
+
+
+                        <Switch
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:paddingRight="8dp"
+                            tools:ignore="TouchTargetSizeCheck,TouchTargetSizeCheck" />
+
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_weight="0"
+                        android:background="@color/grey_EC" />
+
+                    <LinearLayout
+                        style="@style/ButtonLayout_STYLE01">
+
+                        <TextView
+                            style="@style/Sub_TEXTVIEW_STYLE1"
+                            android:text="점계산"
+                             />
+
+
+                        <Switch
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:paddingRight="8dp"
+                            tools:ignore="TouchTargetSizeCheck,TouchTargetSizeCheck" />
+
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_weight="0"
+                        android:background="@color/grey_EC" />
+
+                    <LinearLayout
+                        style="@style/ButtonLayout_STYLE01">
+
+                        <TextView
+                            style="@style/Sub_TEXTVIEW_STYLE1"
+                            android:text="점측설"
+                             />
+
+
+                        <Switch
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:paddingRight="8dp"
+                            tools:ignore="TouchTargetSizeCheck,TouchTargetSizeCheck" />
+
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_weight="0"
+                        android:background="@color/grey_EC" />
+
+                    <LinearLayout
+                        style="@style/ButtonLayout_STYLE01">
+
+                        <TextView
+                            style="@style/Sub_TEXTVIEW_STYLE1"
+                            android:text="화면점"
+                             />
+
+
+                        <Switch
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:paddingRight="8dp"
+                            tools:ignore="TouchTargetSizeCheck,TouchTargetSizeCheck" />
+
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_weight="0"
+                        android:background="@color/grey_EC" />
+
+                    <LinearLayout
+                        style="@style/ButtonLayout_STYLE01">
+
+                        <TextView
+                            style="@style/Sub_TEXTVIEW_STYLE1"
+                            android:text="기준국 점"
+                             />
+
+
+                        <Switch
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:paddingRight="8dp"
+                            tools:ignore="TouchTargetSizeCheck,TouchTargetSizeCheck" />
+
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_weight="0"
+                        android:background="@color/grey_EC" />
+
+
+
+                </LinearLayout>
+
+
+                <!--–(도로 횡단면 출력 OFF) – 파일형식 (AutoCAD(이름) (.dxf)) 하위옵션-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        style="@style/ButtonLayout_STYLE01">
+
+                        <TextView
+                            style="@style/Sub_TEXTVIEW_STYLE1"
+                            android:text="선(Line)"
+                             />
+
+
+                        <Switch
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:paddingRight="8dp"
+                            tools:ignore="TouchTargetSizeCheck,TouchTargetSizeCheck" />
+
+
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_weight="0"
+                        android:background="@color/grey_EC" />
+
+
+                    <LinearLayout
+                        style="@style/ButtonLayout_STYLE01">
+
+                        <TextView
+                            style="@style/Sub_TEXTVIEW_STYLE1"
+                            android:text="점 저장소"
+                             />
+
+
+                        <Switch
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:paddingRight="8dp"
+                            tools:ignore="TouchTargetSizeCheck,TouchTargetSizeCheck" />
+
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_weight="0"
+                        android:background="@color/grey_EC" />
+
+                    <LinearLayout
+                        style="@style/ButtonLayout_STYLE01">
+
+                        <TextView
+                            style="@style/Sub_TEXTVIEW_STYLE1"
+                            android:text="이름"
+                             />
+
+
+                        <Switch
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:paddingRight="8dp"
+                            tools:ignore="TouchTargetSizeCheck,TouchTargetSizeCheck" />
+
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_weight="0"
+                        android:background="@color/grey_EC" />
+
+                    <LinearLayout
+                        style="@style/ButtonLayout_STYLE01">
+
+                        <TextView
+                            style="@style/Sub_TEXTVIEW_STYLE1"
+                            android:text="Z레벨"
+                             />
+
+
+                        <Switch
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:paddingRight="8dp"
+                            tools:ignore="TouchTargetSizeCheck,TouchTargetSizeCheck" />
+
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_weight="0"
+                        android:background="@color/grey_EC" />
+
+                    <LinearLayout
+                        style="@style/ButtonLayout_STYLE01">
+
+                        <TextView
+                            style="@style/Sub_TEXTVIEW_STYLE1"
+                            android:text="코드"
+                             />
+
+
+                        <Switch
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:paddingRight="8dp"
+                            tools:ignore="TouchTargetSizeCheck,TouchTargetSizeCheck" />
+
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="4dp"
+                        android:layout_weight="0"
+                        android:background="@color/grey_cc" />
+
+                    <LinearLayout
+                        style="@style/ButtonLayout_STYLE01">
+
+                        <TextView
+                            style="@style/Sub_TEXTVIEW_STYLE1"
+                            android:text="레이어 색상"
+                             />
+
+
+                        <View
+                            android:layout_width="150dp"
+                            android:layout_height="wrap_content"
+                            android:background="@color/main_blue"/>
+
+
+                        <ImageView
+                            android:layout_width="@dimen/rightArrowSize"
+                            android:layout_height="@dimen/rightArrowSize"
+                            android:layout_weight="0"
+                            android:padding="5dp"
+                            android:layout_marginRight="8dp"
+                            app:srcCompat="@drawable/next_icon" />
+
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="4dp"
+                        android:layout_weight="0"
+                        android:background="@color/grey_cc" />
+
+                    <LinearLayout
+                        style="@style/ButtonLayout_STYLE01">
+
+                        <TextView
+                            style="@style/Sub_TEXTVIEW_STYLE1"
+                            android:text="같은 코드 선 자동 연결"
+                             />
+
+
+                        <Switch
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:paddingRight="8dp"
+                            tools:ignore="TouchTargetSizeCheck,TouchTargetSizeCheck" />
+
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_weight="0"
+                        android:background="@color/grey_EC" />
+
+                    <LinearLayout
+                        style="@style/ButtonLayout_STYLE01">
+
+                        <TextView
+                            style="@style/Sub_TEXTVIEW_STYLE1"
+                            android:text="폴리 라인 사용 3D 타입"
+                             />
+
+
+                        <Switch
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:paddingRight="8dp"
+                            tools:ignore="TouchTargetSizeCheck,TouchTargetSizeCheck" />
+
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="4dp"
+                        android:layout_weight="0"
+                        android:background="@color/grey_cc" />
+
+
+                    <LinearLayout
+                        style="@style/ButtonLayout_STYLE01">
+
+                        <TextView
+                            style="@style/Sub_TEXTVIEW_STYLE1"
+                            android:text="레이어분리[이름,코드,레벨]"
+                             />
+
+
+                        <Switch
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:paddingRight="8dp"
+                            tools:ignore="TouchTargetSizeCheck,TouchTargetSizeCheck" />
+
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_weight="0"
+                        android:background="@color/grey_EC" />
+
+
+                    <LinearLayout
+                        style="@style/ButtonLayout_STYLE01">
+
+                        <TextView
+                            style="@style/Sub_TEXTVIEW_STYLE1"
+                            android:text="레벨표시"
+                             />
+
+
+                        <TextView
+                            style="@style/Sub_TEXTVIEW_STYLE3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0"
+                            android:text="3" />
+
+
+                        <ImageView
+                            android:layout_width="@dimen/rightArrowSize"
+                            android:layout_height="@dimen/rightArrowSize"
+                            android:layout_weight="0"
+                            android:padding="5dp"
+                            android:layout_marginRight="8dp"
+                            app:srcCompat="@drawable/next_icon" />
+
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_weight="0"
+                        android:background="@color/grey_EC" />
+
+
+                    <LinearLayout
+                        style="@style/ButtonLayout_STYLE01">
+
+                        <TextView
+                            style="@style/Sub_TEXTVIEW_STYLE1"
+                            android:text="문자크기"
+                             />
+
+
+                        <TextView
+                            style="@style/Sub_TEXTVIEW_STYLE3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0"
+                            android:text="0.5" />
+
+
+                        <ImageView
+                            android:layout_width="@dimen/rightArrowSize"
+                            android:layout_height="@dimen/rightArrowSize"
+                            android:layout_weight="0"
+                            android:padding="5dp"
+                            android:layout_marginRight="8dp"
+                            app:srcCompat="@drawable/next_icon" />
+
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_weight="0"
+                        android:background="@color/grey_EC" />
+
+
+
+
+                </LinearLayout>
+
 
 
             </LinearLayout>
+        </ScrollView>
+
+        <LinearLayout
+            android:id="@+id/bottomButton"
+            android:layout_width="match_parent"
+            android:layout_height="62dp"
+            android:background="#000000"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="사용자 파일 추가"
+                android:textColor="@color/white"
+                android:textSize="16dp" />
 
             <View
-                android:layout_width="match_parent"
-                android:layout_height="4dp"
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
                 android:layout_weight="0"
-                android:background="@color/grey_cc" />
+                android:background="@color/white" />
 
-            <LinearLayout
-                style="@style/ButtonLayout_STYLE01"
-                >
-
-                <TextView
-                    style="@style/Sub_TEXTVIEW_STYLE1"
-                    android:text="각도 형식"
-                    android:visibility="@{viewModel.onprogress? View.VISIBLE : View.GONE}" />
-
-                <TextView
-                    style="@style/Sub_TEXTVIEW_STYLE3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0"
-                    android:text="ddºmm'ss.ssss”" />
-
-
-                <ImageView
-                    android:layout_width="@dimen/rightArrowSize"
-                    android:layout_height="@dimen/rightArrowSize"
-                    android:layout_weight="0"
-                    android:padding="5dp"
-                    android:layout_marginRight="8dp"
-                    app:srcCompat="@drawable/next_icon" />
-
-
-            </LinearLayout>
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="4dp"
-                android:layout_weight="0"
-                android:background="@color/grey_cc" />
-
-
-
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="내보내기"
+                android:textColor="@color/white"
+                android:textSize="16dp" />
 
 
         </LinearLayout>
 
-    </ScrollView>
 
-    <LinearLayout
-        android:id="@+id/bottomButton"
-        android:layout_width="match_parent"
-        android:layout_height="62dp"
-        android:background="#000000"
-        android:orientation="horizontal"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:text="사용자 파일 추가"
-            android:textColor="@color/white"
-            android:textSize="16dp" />
-
-        <View
-            android:layout_width="1dp"
-            android:layout_height="match_parent"
-            android:layout_weight="0"
-            android:background="@color/white" />
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:text="내보내기"
-            android:textColor="@color/white"
-            android:textSize="16dp" />
-
-
-    </LinearLayout>
-
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>

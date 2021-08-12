@@ -2,8 +2,8 @@
     android:id="@+id/tab"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:drawableTint="@drawable/selector_click_tab"
+    android:drawableTint="@drawable/selector_click_tab_white"
     android:gravity="center_horizontal"
-    android:textColor="@drawable/selector_click_tab"
+    android:textColor="@drawable/selector_click_tab_white"
     android:textSize="14dp"
     android:textStyle="bold" />

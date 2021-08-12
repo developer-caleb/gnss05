@@ -9,6 +9,10 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="app/src/main/res/drawable-anydpi/selector_click_tab.xml" value="0.25078125" />
+        <entry key="app/src/main/res/drawable-anydpi/selector_click_tab_white.xml" value="0.25069444444444444" />
+        <entry key="app/src/main/res/drawable-hdpi/selector_bg_blue.xml" value="0.147265625" />
+        <entry key="app/src/main/res/drawable-hdpi/selector_bg_tabs.xml" value="0.117578125" />
+        <entry key="app/src/main/res/drawable-hdpi/selector_bg_white.xml" value="0.147265625" />
         <entry key="app/src/main/res/drawable-v24/ripple_circle.xml" value="0.35104166666666664" />
         <entry key="app/src/main/res/drawable-xxhdpi/ripple_rect.xml" value="0.253125" />
         <entry key="app/src/main/res/drawable/ic_recyclerview_right.xml" value="0.123828125" />
@@ -40,7 +44,7 @@
         <entry key="app/src/main/res/layout/activity_stop_survey.xml" value="0.246484375" />
         <entry key="app/src/main/res/layout/activity_type3.xml" value="0.31614583333333335" />
         <entry key="app/src/main/res/layout/activity_type5.xml" value="0.31614583333333335" />
-        <entry key="app/src/main/res/layout/activity_user_format.xml" value="0.18177083333333333" />
+        <entry key="app/src/main/res/layout/activity_user_format.xml" value="0.22" />
         <entry key="app/src/main/res/layout/activity_user_format_view.xml" value="0.22" />
         <entry key="app/src/main/res/layout/connect_equipment.xml" value="0.165625" />
         <entry key="app/src/main/res/layout/coordinate_system.xml" value="0.246484375" />

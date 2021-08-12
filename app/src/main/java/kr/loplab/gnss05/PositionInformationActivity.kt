@@ -21,6 +21,8 @@ class PositionInformationActivity : ActivityBase<ActivityPositionInformationBind
 
     override fun initListener() {
         viewBinding.header01.setOnBackButtonClickListener{onBackPressed()}
+
+
     }
 
     override fun initDatabinding() {

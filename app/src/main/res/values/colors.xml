@@ -58,4 +58,9 @@
     <color name="gray">@color/grey_89</color>
     <color name="text_gray_01">#595757</color>
 
+    <!--Tablayout-->
+    <color name="select_tab">@color/blue</color>
+    <color name="tab_text_color">@color/white</color>
+
+
 </resources>

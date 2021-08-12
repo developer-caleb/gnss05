@@ -241,7 +241,7 @@
     <LinearLayout
         android:id="@+id/bottomButton"
         android:layout_width="match_parent"
-        android:layout_height="40dp"
+        android:layout_height="wrap_content"
         android:background="#000000"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -251,11 +251,10 @@
         <TextView
             android:id="@+id/bt_add"
             android:layout_width="0dp"
-            android:layout_height="match_parent"
             android:layout_weight="1"
-            android:gravity="center"
             android:text="추가"
-            android:textColor="@color/white" />
+            style="@style/TextViewButton_STYLE01"
+            />
 
         <View
             android:id="@+id/divider"
@@ -267,11 +266,9 @@
         <TextView
             android:id="@+id/bt_delete"
             android:layout_width="0dp"
-            android:layout_height="match_parent"
             android:layout_weight="1"
-            android:gravity="center"
             android:text="삭제"
-            android:textColor="@color/white" />
+            style="@style/TextViewButton_STYLE01" />
 
         <View
             android:id="@+id/divide2"
@@ -282,11 +279,9 @@
         <TextView
             android:id="@+id/bt_confirm"
             android:layout_width="0dp"
-            android:layout_height="match_parent"
             android:layout_weight="1"
-            android:gravity="center"
             android:text="확인"
-            android:textColor="@color/white" />
+            style="@style/TextViewButton_STYLE01" />
     </LinearLayout>
 </LinearLayout>
 </layout>
