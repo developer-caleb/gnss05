@@ -18,7 +18,7 @@ class StopSurveyActivity : ActivityBase<ActivityStopSurveyBinding>() {
     }
 
     override fun initListener() {
-
+        viewBinding.header01.setOnBackButtonClickListener { onBackPressed();}
     }
 
     override fun initDatabinding() {
