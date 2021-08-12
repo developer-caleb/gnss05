@@ -18,6 +18,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Gnss05">
         <activity
+            android:name=".activities.CoordinateActivity"
+            android:exported="true" />
+        <activity
+            android:name=".PositionInformationActivity"
+            android:exported="true" />
+        <activity
             android:name=".activities.ExportActivity"
             android:exported="true" />
         <activity
@@ -53,7 +59,6 @@
         <activity android:name=".tablelayout_tools2.Type5Activity" />
         -->
         <activity android:name=".UserFormatMake" />
-
         <activity android:name=".FileExportActivity" />
         <activity android:name=".ColorPickerdialog" />
         <activity android:name=".NaverMap" />

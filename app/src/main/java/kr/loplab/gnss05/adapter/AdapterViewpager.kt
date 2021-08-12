@@ -68,10 +68,10 @@ class AdapterViewpager: PagerAdapter, MainpageRecyclerViewAdapter.RecyclerItemCl
 
         data0.add(MainIcons(R.drawable.ic_0_0_work, "작업"))
         data0.add(MainIcons(R.drawable.ic_0_1_work_group, "작업그룹"))
-        data0.add(MainIcons(R.drawable.ic_0_2_coordinate, "좌표계"))
+        data0.add(MainIcons(R.drawable.ic_0_2_coordinate, "좌표계", CoordinateActivity::class.java ))
         data0.add(MainIcons(R.drawable.ic_0_3_correction, "점 보정"))
         data0.add(MainIcons(R.drawable.ic_0_4_pointsave, "점저장소"))
-        data0.add(MainIcons(R.drawable.ic_0_5_export, "내보내기", UserFormatMake::class.java))
+        data0.add(MainIcons(R.drawable.ic_0_5_export, "내보내기", ExportActivity::class.java))
         data0.add(MainIcons(R.drawable.ic_0_6_scan, "스캔"))
         data0.add(MainIcons(R.drawable.ic_0_7_cloud, "클라우드"))
         data0.add(MainIcons(R.drawable.ic_0_8_settings, "설정", SettingActivity::class.java, REQUEST_SETTING))
@@ -90,7 +90,7 @@ class AdapterViewpager: PagerAdapter, MainpageRecyclerViewAdapter.RecyclerItemCl
         data1.add(MainIcons(R.drawable.ic_1_10_change_location, "위치변경"))
         data1.add(MainIcons(R.drawable.ic_1_11_enroll_equipment, "장비등록"))
 
-        data2.add(MainIcons(R.drawable.ic_2_0_status_work, "현황작업"))
+        data2.add(MainIcons(R.drawable.ic_2_0_status_work, "현황작업", NaverMap::class.java))
         data2.add(MainIcons(R.drawable.ic_2_1_detail_survey, "상세 측량"))
         data2.add(MainIcons(R.drawable.ic_2_2_cad, "CAD (측설)"))
         data2.add(MainIcons(R.drawable.ic_2_3_point_stack_out, "점측설"))

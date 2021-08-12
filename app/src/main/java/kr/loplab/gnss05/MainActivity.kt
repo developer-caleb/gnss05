@@ -96,6 +96,8 @@ class MainActivity : AppCompatActivity(),
         }
         binding.btSatellite.setOnClickListener {
             Log.d(TAG, "onCreate: satellite click")
+            intent = Intent(this, PositionInformationActivity::class.java)
+            startActivity(intent);
         }
         binding.logoImg.setOnClickListener {
             Log.d(TAG, "onCreate: logo click")
