@@ -15,6 +15,7 @@
     <dimen name="defaultHeaderHeight">50dp</dimen>
     <dimen name="defaultlayoutheight">50dp</dimen>
     <dimen name="defaultbuttonheight">60dp</dimen>
+    <dimen name="default_text_black_bt">62dp</dimen>
 
     <!--    아이콘 사이즈 그룹 -->
     <dimen name="rightArrowSize">35dp</dimen>

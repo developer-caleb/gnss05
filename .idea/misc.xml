@@ -26,7 +26,7 @@
         <entry key="app/src/main/res/layout/activity_connect_equipment2_deprecated.xml" value="0.135546875" />
         <entry key="app/src/main/res/layout/activity_coordinate.xml" value="0.21" />
         <entry key="app/src/main/res/layout/activity_export.xml" value="0.243359375" />
-        <entry key="app/src/main/res/layout/activity_file_export.xml" value="0.107421875" />
+        <entry key="app/src/main/res/layout/activity_file_export.xml" value="0.14713141752134903" />
         <entry key="app/src/main/res/layout/activity_hamburger.xml" value="0.238671875" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.2" />
         <entry key="app/src/main/res/layout/activity_mobile_station.xml" value="0.10078125" />
@@ -73,6 +73,7 @@
         <entry key="app/src/main/res/layout/standard_keyboard_popup.xml" value="0.2359375" />
         <entry key="app/src/main/res/layout/stop_set.xml" value="0.246484375" />
         <entry key="app/src/main/res/layout/tab_icon_cell.xml" value="0.5" />
+        <entry key="app/src/main/res/layout/table_fragment_main.xml" value="0.22" />
         <entry key="app/src/main/res/layout/tool_new_customtabtextview.xml" value="0.238671875" />
         <entry key="app/src/main/res/layout/tool_viewpageradapter.xml" value="0.18" />
         <entry key="app/src/main/res/layout/topo.xml" value="0.246484375" />

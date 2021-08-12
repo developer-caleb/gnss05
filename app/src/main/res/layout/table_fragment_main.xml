@@ -6,6 +6,14 @@
     android:orientation="vertical"
     >
 
+    <kr.loplab.gnss05.DefaultHeader
+        android:id="@+id/header_03"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0"
+        app:title="사용자 정의 형식"
+        />
+
     <LinearLayout
         android:id="@+id/fragment_container"
 
@@ -113,19 +121,17 @@
     <LinearLayout
         android:id="@+id/bottomButton"
         android:layout_width="match_parent"
-        android:layout_height="40dp"
+        android:layout_height="wrap_content"
         android:layout_weight="0"
         android:background="#000000"
         android:orientation="horizontal">
 
         <TextView
             android:id="@+id/bt_add1"
+            style="@style/TextViewButton_STYLE01"
             android:layout_width="0dp"
-            android:layout_height="match_parent"
             android:layout_weight="1"
-            android:gravity="center"
-            android:text="추가"
-            android:textColor="@color/white" />
+            android:text="추가" />
 
         <View
             android:layout_width="1dp"
@@ -135,12 +141,10 @@
 
         <TextView
             android:id="@+id/bt_modify"
+            style="@style/TextViewButton_STYLE01"
             android:layout_width="0dp"
-            android:layout_height="match_parent"
             android:layout_weight="1"
-            android:gravity="center"
-            android:text="편집"
-            android:textColor="@color/white" />
+            android:text="편집" />
 
         <View
             android:layout_width="1dp"
@@ -165,12 +169,10 @@
                     -->
         <TextView
             android:id="@+id/bt_delete"
+            style="@style/TextViewButton_STYLE01"
             android:layout_width="0dp"
-            android:layout_height="match_parent"
             android:layout_weight="1"
-            android:gravity="center"
-            android:text="삭제"
-            android:textColor="@color/white" />
+            android:text="삭제" />
     </LinearLayout>
 
 </LinearLayout>

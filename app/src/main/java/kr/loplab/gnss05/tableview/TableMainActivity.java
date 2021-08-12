@@ -34,5 +34,8 @@ public class TableMainActivity extends AppCompatActivity {
         super(R.layout.activity_tablemain);
     }
 
+    protected void backpressed(){
+        onBackPressed();
+    }
 
 }

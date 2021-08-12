@@ -8,6 +8,7 @@ import kr.loplab.gnss05.R
 import kr.loplab.gnss05.UserFormatMake
 import kr.loplab.gnss05.databinding.ActivityConnectEquipmentBinding
 import kr.loplab.gnss05.databinding.ActivityExportBinding
+import kr.loplab.gnss05.tableview.TableMainActivity
 
 class ExportActivity :  ActivityBase<ActivityExportBinding>() {
     override val layoutResourceId: Int
@@ -24,7 +25,7 @@ class ExportActivity :  ActivityBase<ActivityExportBinding>() {
 
     override fun initListener() {
         viewBinding.btAddFileFormat.setOnClickListener {
-            intent = Intent(this, UserFormatMake::class.java)
+            intent = Intent(this, TableMainActivity::class.java)
             startActivity(intent);
         }
         viewBinding.btExport.setOnClickListener {

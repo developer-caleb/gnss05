@@ -55,7 +55,7 @@ import kr.loplab.gnss05.UserFormatMake;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class TableFragment extends Fragment {
+public class TableFragmentExam extends Fragment {
     private Spinner moodFilter, genderFilter;
     private ImageButton previousButton, nextButton;
     private TextView tablePaginationDetails;
@@ -71,7 +71,7 @@ public class TableFragment extends Fragment {
 
     private boolean mPaginationEnabled = false;
 
-    public TableFragment() {
+    public TableFragmentExam() {
         super(R.layout.table_fragment_main);
     }
 
@@ -104,7 +104,7 @@ public class TableFragment extends Fragment {
         btAdd.setOnClickListener(v -> {
             //showToast("추가 클릭");
             Log.d(TAG, "add 선택 된 idx" +TableViewModel.selectedIndex );
-            Intent intent = new Intent(getContext(), UserFormatMake.class);
+           Intent intent = new Intent(getContext(), UserFormatMake.class);
             startActivity(intent);
         });
         btEdit.setOnClickListener(v -> {

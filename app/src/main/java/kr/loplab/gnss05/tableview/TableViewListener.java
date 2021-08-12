@@ -25,6 +25,7 @@
 package kr.loplab.gnss05.tableview;
 
 import android.content.Context;
+import android.util.Log;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -61,8 +62,7 @@ public class TableViewListener implements ITableViewListener {
     public void onCellClicked(@NonNull RecyclerView.ViewHolder cellView, int column, int row) {
 
         // Do what you want.
-        showToast("Cell " + column + " " + row + " has been clicked.");
-
+        Log.d("TAG", "Cell " + column + " " + row + " has been clicked.");
     }
 
     /**
@@ -145,7 +145,8 @@ public class TableViewListener implements ITableViewListener {
     @Override
     public void onRowHeaderClicked(@NonNull RecyclerView.ViewHolder rowHeaderView, int row) {
         // Do whatever you want.
-        showToast("Row header " + row + " has been clicked.");
+        Log.d("TAG", "Row header " + row + " has been clicked.");
+       // showToast("Row header " + row + " has been clicked.");
         TableViewModel.selectedIndex = row;
     }
 
