@@ -5,5 +5,5 @@
     android:drawableTint="@drawable/selector_click_tab"
     android:gravity="center_horizontal"
     android:textColor="@drawable/selector_click_tab"
-    android:textSize="14sp"
+    android:textSize="14dp"
     android:textStyle="bold" />

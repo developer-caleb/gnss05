@@ -880,7 +880,7 @@
                         style="@style/Sub_TEXTVIEW_STYLE1"
                         android:paddingRight="20dp"
                         android:text="참고: 4 매개변수만 사용하는 경우 Original Northing 및 Easting을 0으로 설정해야 합니다."
-                        android:textSize="12sp"
+                        android:textSize="12dp"
                         android:visibility="@{viewModel.onprogress? View.VISIBLE : View.GONE}"
                         android:textColor="@color/grey_66"/>
 

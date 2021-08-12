@@ -6,4 +6,48 @@
     android:layout_height="match_parent"
     tools:context=".PositionInformationActivity">
 
+    <kr.loplab.gnss05.DefaultHeader
+        android:id="@+id/header_01"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:title="포지션 정보"></kr.loplab.gnss05.DefaultHeader>
+
+    <com.google.android.material.tabs.TabLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:tabIndicatorColor="@color/transparent"
+        app:tabRippleColor="@color/ripple_color">
+
+        <com.google.android.material.tabs.TabItem
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="상세정보" />
+
+        <com.google.android.material.tabs.TabItem
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="기준국" />
+
+        <com.google.android.material.tabs.TabItem
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="위성 맵" />
+
+        <com.google.android.material.tabs.TabItem
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="위성 정보" />
+
+        <com.google.android.material.tabs.TabItem
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="위성 SNR" />
+    </com.google.android.material.tabs.TabLayout>
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

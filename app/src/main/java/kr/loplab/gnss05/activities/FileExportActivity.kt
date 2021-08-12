@@ -1,15 +1,18 @@
-package kr.loplab.gnss05
+package kr.loplab.gnss05.activities
 
 import android.os.Environment
 import android.util.Log
 import android.view.View
 import android.widget.TextView
 import kr.loplab.gnss02.ActivityBase
+import kr.loplab.gnss05.FiledirectoryRecyclerViewAdapter
+import kr.loplab.gnss05.R
 import kr.loplab.gnss05.databinding.ActivityFileExportBinding
 import kr.loplab.gnss05.enums.Directorytype
 import java.io.File
 
-class FileExportActivity : ActivityBase<ActivityFileExportBinding>(),  FiledirectoryRecyclerViewAdapter.RecyclerItemClickListener  {
+class FileExportActivity : ActivityBase<ActivityFileExportBinding>(),
+    FiledirectoryRecyclerViewAdapter.RecyclerItemClickListener {
     override val layoutResourceId: Int
         get() = R.layout.activity_file_export
         var backdirectory : String = "";
@@ -189,8 +192,8 @@ class FileExportActivity : ActivityBase<ActivityFileExportBinding>(),  Filedirec
                     data.add(arrayOf(filess.name, filess.name, ".csv"));
                 }
                 else -> {
-                    print("file.extension -> ${file.extension}")
-                    data.add(arrayOf(filess.name, filess.name, ".csv"));
+                   /* print("file.extension -> ${file.extension}")
+                    data.add(arrayOf(filess.name, filess.name, ".csv"));*/
                 }
             }
             }

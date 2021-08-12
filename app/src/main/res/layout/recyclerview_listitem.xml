@@ -27,7 +27,7 @@
             android:layout_weight="1"
             android:text="TextView"
             android:textColor="@color/black"
-            android:textSize="20sp" />
+            android:textSize="20dp" />
 
     </LinearLayout>
 

@@ -21,7 +21,7 @@
             android:paddingLeft="20dp"
             android:text="헤더제목"
             android:textColor="#FFFFFF"
-            android:textSize="16sp"
+            android:textSize="14dp"
             android:textStyle="bold" />
 
         <ImageView
@@ -32,8 +32,55 @@
             tools:srcCompat="@tools:sample/avatars" />
     </LinearLayout>
 
+
     <LinearLayout
         android:id="@+id/first_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            >
+
+            <TextView
+                android:id="@+id/list_text2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:paddingLeft="15dp"
+                android:text="TextView"
+                android:textColor="@color/black"
+                android:textSize="18dp" />
+
+            <RadioButton
+                android:id="@+id/recyclerview_icon2"
+                android:layout_width="60dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_weight="0"
+                android:buttonTint="@color/brightSky"
+                android:checked="false"
+                android:clickable="false"
+                android:focusable="false"
+                />
+        </LinearLayout>
+
+        <View
+            android:id="@+id/first_divider"
+            android:layout_width="match_parent"
+            android:layout_height="4dp"
+            android:layout_weight="0"
+            android:background="@color/dividercolor" />
+
+    </LinearLayout>
+
+    <LinearLayout
+
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="0"
@@ -54,7 +101,7 @@
                 android:paddingLeft="15dp"
                 android:text="TextView"
                 android:textColor="@color/black"
-                android:textSize="20sp" />
+                android:textSize="20dp" />
 
             <ImageView
                 android:id="@+id/recyclerview_icon"
@@ -92,12 +139,7 @@
 
     </LinearLayout>
 
-    <View
-        android:id="@+id/first_divider"
-        android:layout_width="match_parent"
-        android:layout_height="10dp"
-        android:layout_weight="0"
-        android:background="@color/colorAccent" />
+
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/dialog_recyclerview"

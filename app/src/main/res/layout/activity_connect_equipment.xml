@@ -37,6 +37,7 @@
                 android:orientation="vertical" >
 
                 <LinearLayout
+                    android:id="@+id/maker_select_bt"
                     style="@style/ButtonLayout_STYLE01"
                     >
 

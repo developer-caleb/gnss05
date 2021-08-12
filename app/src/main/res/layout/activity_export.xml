@@ -215,6 +215,7 @@
                 android:background="@color/white" />
 
             <TextView
+                android:id="@+id/bt_export"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"

@@ -7,5 +7,7 @@ class PositionInformationActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_position_information)
+
+
     }
 }

@@ -1158,7 +1158,7 @@
                         android:layout_height="40dp"
                         android:text="마운트 포인트 가져오기"
                         android:textColor="@color/grey_33"
-                        android:textSize="16sp"
+                        android:textSize="16dp"
                         android:backgroundTint="@color/grey_cc"
                         android:layout_marginLeft="5dp"
                         android:layout_marginRight="5dp"/>

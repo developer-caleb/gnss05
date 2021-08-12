@@ -18,19 +18,20 @@
         <entry key="app/src/main/res/drawable/ic_tab3.xml" value="0.35104166666666664" />
         <entry key="app/src/main/res/drawable/pencil.xml" value="0.12109375" />
         <entry key="app/src/main/res/drawable/share.xml" value="0.12109375" />
+        <entry key="app/src/main/res/drawable/tabbackground.xml" value="0.169921875" />
         <entry key="app/src/main/res/font/noto_sans.xml" value="0.3671875" />
         <entry key="app/src/main/res/layout/TOPO.xml" value="0.18064450207692165" />
         <entry key="app/src/main/res/layout/activity_color_picker.xml" value="0.107421875" />
-        <entry key="app/src/main/res/layout/activity_connect_equipment.xml" value="0.165625" />
+        <entry key="app/src/main/res/layout/activity_connect_equipment.xml" value="0.17393798466216692" />
         <entry key="app/src/main/res/layout/activity_connect_equipment2_deprecated.xml" value="0.135546875" />
-        <entry key="app/src/main/res/layout/activity_coordinate.xml" value="0.14375" />
+        <entry key="app/src/main/res/layout/activity_coordinate.xml" value="0.21" />
         <entry key="app/src/main/res/layout/activity_export.xml" value="0.243359375" />
         <entry key="app/src/main/res/layout/activity_file_export.xml" value="0.107421875" />
         <entry key="app/src/main/res/layout/activity_hamburger.xml" value="0.238671875" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.2" />
         <entry key="app/src/main/res/layout/activity_mobile_station.xml" value="0.10078125" />
         <entry key="app/src/main/res/layout/activity_naver_map.xml" value="0.1791457036498033" />
-        <entry key="app/src/main/res/layout/activity_position_information.xml" value="0.14375" />
+        <entry key="app/src/main/res/layout/activity_position_information.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_reference_coordinate_setting.xml" value="0.246484375" />
         <entry key="app/src/main/res/layout/activity_reference_country.xml" value="0.18" />
         <entry key="app/src/main/res/layout/activity_setting.xml" value="0.252734375" />
@@ -44,8 +45,10 @@
         <entry key="app/src/main/res/layout/connect_equipment.xml" value="0.165625" />
         <entry key="app/src/main/res/layout/coordinate_system.xml" value="0.246484375" />
         <entry key="app/src/main/res/layout/coordinate_system_1.xml" value="0.155078125" />
+        <entry key="app/src/main/res/layout/coordinate_system_deprecated.xml" value="0.1578125" />
         <entry key="app/src/main/res/layout/coordinate_system_sub1.xml" value="0.246484375" />
         <entry key="app/src/main/res/layout/coordinate_system_sub10.xml" value="0.246484375" />
+        <entry key="app/src/main/res/layout/dialog1.xml" value="0.2607808866065058" />
         <entry key="app/src/main/res/layout/file_call.xml" value="0.25" />
         <entry key="app/src/main/res/layout/file_out.xml" value="0.246484375" />
         <entry key="app/src/main/res/layout/item_layout.xml" value="0.107421875" />
@@ -56,6 +59,7 @@
         <entry key="app/src/main/res/layout/position_Reference_Station,.xml" value="0.165625" />
         <entry key="app/src/main/res/layout/position_data.xml" value="0.246484375" />
         <entry key="app/src/main/res/layout/position_reference_station.xml" value="0.39600747886691223" />
+        <entry key="app/src/main/res/layout/recyclerview_checkitem.xml" value="0.143359375" />
         <entry key="app/src/main/res/layout/recyclerview_item.xml" value="0.33" />
         <entry key="app/src/main/res/layout/recyclerview_item_grid.xml" value="0.31543940228400447" />
         <entry key="app/src/main/res/layout/recyclerview_item_vertical.xml" value="0.244140625" />

@@ -12,6 +12,7 @@
         <item name = "android:orientation">horizontal</item>
         <item name = "android:layout_width">match_parent</item>
         <item name = "android:gravity">center</item>
+        <item name = "android:background">@drawable/ripple_rect</item>
     </style>
 
     <style name = "ButtonLayout_STYLE02">

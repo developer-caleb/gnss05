@@ -27,7 +27,10 @@ class ExportActivity :  ActivityBase<ActivityExportBinding>() {
             intent = Intent(this, UserFormatMake::class.java)
             startActivity(intent);
         }
-
+        viewBinding.btExport.setOnClickListener {
+            intent = Intent(this, FileExportActivity::class.java)
+            startActivity(intent);
+        }
     }
 
     override fun initDatabinding() {

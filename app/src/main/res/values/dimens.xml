@@ -32,4 +32,7 @@
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="cell_text_size">7dp</dimen>
+
+    <!-- Dialog 사이즈 그룹-->
+    <dimen name="dialog_text_size">14dp</dimen>
 </resources>

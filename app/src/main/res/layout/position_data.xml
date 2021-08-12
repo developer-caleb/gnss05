@@ -17,11 +17,11 @@
         android:id="@+id/header_01"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:title="포지션 정보"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" >
-    </kr.loplab.gnss05.DefaultHeader>
+        app:layout_constraintTop_toTopOf="parent"
+        app:title="포지션 정보"></kr.loplab.gnss05.DefaultHeader>
 
     <ScrollView
         android:layout_width="match_parent"

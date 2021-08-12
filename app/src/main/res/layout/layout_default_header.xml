@@ -38,7 +38,7 @@
         android:letterSpacing="-0.02"
         android:lines="1"
         android:textColor="@color/white"
-        android:textSize="18sp"
+        android:textSize="18dp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
