@@ -1,4 +1,4 @@
-package kr.loplab.gnss05
+package kr.loplab.gnss05.adapter
 
 import android.content.Context
 import android.util.Log
@@ -8,9 +8,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import kr.loplab.gnss05.R
 
-class UserFormatAddRecyclerViewAdapter internal constructor(context: Context?, data: ArrayList<Array<String>>) :
-    RecyclerView.Adapter<UserFormatAddRecyclerViewAdapter.ViewHolder>() {
+class UserFormatDeleteRecyclerViewAdapter internal constructor(context: Context?, data: ArrayList<Array<String>>) :
+    RecyclerView.Adapter<UserFormatDeleteRecyclerViewAdapter.ViewHolder>() {
     private val mData: ArrayList<Array<String>>
     private val mInflater: LayoutInflater
     private var mClickListener: RecyclerItemClickListener? = null
@@ -27,22 +28,12 @@ class UserFormatAddRecyclerViewAdapter internal constructor(context: Context?, d
     // binds the data to the TextView in each cell
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.myTextView.text = mData[position][0]
-        if(position == selectedPosition) {holder.itemView.setBackgroundColor(context!!.resources.getColor(R.color.grey_cc))}
+        if(position == selectedPosition) {holder.itemView.setBackgroundColor(context!!.resources.getColor(
+            R.color.grey_cc
+        ))}
         else{holder.itemView.setBackgroundColor(context!!.resources.getColor(R.color.white))}
-        if(mData[position][2].toBoolean()){
-            holder.itemView.visibility= View.VISIBLE
-            holder.itemView.layoutParams =
-                RecyclerView.LayoutParams(
-                    ViewGroup.LayoutParams.MATCH_PARENT,
-                    dp2px(40f, context!!).toInt()
-                )
-        }
-        else{holder.itemView.visibility= View.GONE
-            holder.itemView.layoutParams = RecyclerView.LayoutParams(0, 0)
-            //holder.itemView.setBackgroundColor(context!!.resources.getColor(R.color.design_default_color_secondary))
 
-        }
-        Log.d(TAG, "onBindViewHolder:$position ${mData[position][2]}")
+
         /*when(mData[position][2]){
            *//* "rightarrow" -> holder.imageView.setImageResource(R.drawable.ic_rightarrow2)
             "back" -> holder.imageView.setImageResource(R.drawable.lefticon)
@@ -65,7 +56,7 @@ class UserFormatAddRecyclerViewAdapter internal constructor(context: Context?, d
         var myTextView: TextView
         //var imageView: ImageView
         override fun onClick(view: View) {
-            if (mClickListener != null) mClickListener!!.onItemAddClick(view, adapterPosition)
+            if (mClickListener != null) mClickListener!!.onItemDeleteClick(view, adapterPosition)
             selectedPosition = adapterPosition
             Log.d(TAG, "onClick: recyclerview호출. $adapterPosition selected")
             notifyDataSetChanged()
@@ -90,7 +81,7 @@ class UserFormatAddRecyclerViewAdapter internal constructor(context: Context?, d
 
     // parent activity will implement this method to respond to click events
     interface RecyclerItemClickListener {
-        fun onItemAddClick(view: View?, position: Int)
+        fun onItemDeleteClick(view: View?, position: Int)
     }
 
     // data is passed into the constructor

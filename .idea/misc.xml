@@ -53,6 +53,8 @@
         <entry key="app/src/main/res/layout/file_out.xml" value="0.246484375" />
         <entry key="app/src/main/res/layout/item_layout.xml" value="0.107421875" />
         <entry key="app/src/main/res/layout/item_layout_type1.xml" value="0.15729166666666666" />
+        <entry key="app/src/main/res/layout/layout_default_header.xml" value="0.124609375" />
+        <entry key="app/src/main/res/layout/layout_text_divider.xml" value="0.124609375" />
         <entry key="app/src/main/res/layout/mobile_station.xml" value="0.14635535307517084" />
         <entry key="app/src/main/res/layout/mobile_station_mountpoint.xml" value="0.246484375" />
         <entry key="app/src/main/res/layout/out.xml" value="0.246484375" />

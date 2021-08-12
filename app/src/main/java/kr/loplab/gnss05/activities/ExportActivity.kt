@@ -1,12 +1,9 @@
 package kr.loplab.gnss05.activities
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import kr.loplab.gnss02.ActivityBase
 import kr.loplab.gnss05.R
-import kr.loplab.gnss05.UserFormatMake
-import kr.loplab.gnss05.databinding.ActivityConnectEquipmentBinding
 import kr.loplab.gnss05.databinding.ActivityExportBinding
 import kr.loplab.gnss05.tableview.TableMainActivity
 

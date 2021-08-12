@@ -58,7 +58,7 @@
         <activity android:name=".UserFormatView" />
         <activity android:name=".tablelayout_tools2.Type5Activity" />
         -->
-        <activity android:name=".UserFormatMake" />
+        <activity android:name=".activities.UserFormatMake" />
         <activity android:name=".activities.FileExportActivity" />
         <activity android:name=".ColorPickerdialog" />
         <activity android:name=".NaverMap" />

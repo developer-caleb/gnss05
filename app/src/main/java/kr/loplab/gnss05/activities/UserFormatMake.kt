@@ -1,9 +1,13 @@
-package kr.loplab.gnss05
+package kr.loplab.gnss05.activities
 
 import android.util.Log
 import android.view.View
 import kotlinx.android.synthetic.main.activity_user_format.*
 import kr.loplab.gnss02.ActivityBase
+import kr.loplab.gnss05.MyDialog
+import kr.loplab.gnss05.R
+import kr.loplab.gnss05.adapter.UserFormatAddRecyclerViewAdapter
+import kr.loplab.gnss05.adapter.UserFormatDeleteRecyclerViewAdapter
 import kr.loplab.gnss05.common.PrefUtil
 import kr.loplab.gnss05.databinding.ActivityUserFormatBinding
 import kr.loplab.gnss05.enums.USERFORMATMAKEMODE
@@ -92,8 +96,12 @@ class UserFormatMake : ActivityBase<ActivityUserFormatBinding>(),
         viewBinding.headerSwitch.setOnCheckedChangeListener { compoundButton, bool ->
             Log.d(TAG, "initListener: ${bool.toString()}")
             when(bool){
-             true-> {viewBinding.checkTv.text = "예"; PrefUtil.setBoolean(applicationContext, getString(R.string.boolfileheader), true)}
-             false->  {viewBinding.checkTv.text = "아니오"; PrefUtil.setBoolean(applicationContext, getString(R.string.boolfileheader), false)}
+             true-> {viewBinding.checkTv.text = "예"; PrefUtil.setBoolean(applicationContext, getString(
+                 R.string.boolfileheader
+             ), true)}
+             false->  {viewBinding.checkTv.text = "아니오"; PrefUtil.setBoolean(applicationContext, getString(
+                 R.string.boolfileheader
+             ), false)}
             }
         }
 

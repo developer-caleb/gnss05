@@ -55,8 +55,8 @@ public class TableViewModel {
     public static final int GIRL = 2;
 
     // Constant size for dummy data sets
-    private static final int COLUMN_SIZE = 10;
-    private static final int ROW_SIZE = 30;
+    private static final int COLUMN_SIZE = 3;
+    private static final int ROW_SIZE = 5;
     private ArrayList<String> customFileFormat = new ArrayList<>(Arrays.asList("번호", "형식명", "확장명", "형식설명"));
 
 
@@ -131,9 +131,15 @@ public class TableViewModel {
 
                 final int random = new Random().nextInt();
                 if (j == 0) {
-                    text = i;
+                    //text = i;
+                    text= "형식명";
                 } else if (j == 1) {
-                    text = random;
+                    text= "csv";
+                    //text = random;
+                } else if (j == 2) {
+                    text= "[이름], [코드], [이름], [코드], [이름], [코드], [이름], [코드], [이름], [코드], [이름], [코드],  ";
+                    //text = random;
+
                 } else if (j == MOOD_COLUMN_INDEX) {
                     text = random % 2 == 0 ? HAPPY : SAD;
                 } else if (j == GENDER_COLUMN_INDEX) {
