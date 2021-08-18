@@ -63,6 +63,7 @@
 
 
                 <LinearLayout
+                    android:id="@+id/reference_country_id_layout"
                     style="@style/ButtonLayout_STYLE01"
                     >
 
@@ -72,20 +73,22 @@
                          />
 
                     <EditText
-                        style="@style/Sub_TEXTVIEW_STYLE3"
+                        android:id="@+id/reference_country_id"
+                        style="@style/Sub_TEXTVIEW_STYLE3_EditText"
+                        android:background="@color/transparent"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="0"
                         android:text="01" />
 
                     <ImageView
+                        android:id="@+id/delete_id"
                         android:layout_width="@dimen/rightArrowSize"
                         android:layout_height="@dimen/rightArrowSize"
+                        android:layout_marginRight="8dp"
                         android:layout_weight="0"
                         android:padding="5dp"
-                        android:layout_marginRight="8dp"
                         app:srcCompat="@drawable/subpage_close" />
-
 
 
                 </LinearLayout>
@@ -97,6 +100,7 @@
                     android:background="@color/grey_EC" />
 
                 <LinearLayout
+                    android:id="@+id/start_mode_layout"
                     style="@style/ButtonLayout_STYLE01"
                     >
 
@@ -106,6 +110,7 @@
                          />
 
                     <TextView
+                        android:id="@+id/tv_start_mode"
                         style="@style/Sub_TEXTVIEW_STYLE3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"

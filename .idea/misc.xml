@@ -33,11 +33,12 @@
         <entry key="app/src/main/res/layout/activity_file_export.xml" value="0.14713141752134903" />
         <entry key="app/src/main/res/layout/activity_hamburger.xml" value="0.238671875" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.2" />
+        <entry key="app/src/main/res/layout/activity_main2.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_mobile_station.xml" value="0.18" />
         <entry key="app/src/main/res/layout/activity_naver_map.xml" value="0.1791457036498033" />
         <entry key="app/src/main/res/layout/activity_position_information.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_reference_coordinate_setting.xml" value="0.246484375" />
-        <entry key="app/src/main/res/layout/activity_reference_country.xml" value="0.18" />
+        <entry key="app/src/main/res/layout/activity_reference_country.xml" value="0.2300424906216145" />
         <entry key="app/src/main/res/layout/activity_setting.xml" value="0.252734375" />
         <entry key="app/src/main/res/layout/activity_splash.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_standard_point.xml" value="0.31614583333333335" />
@@ -82,7 +83,9 @@
         <entry key="app/src/main/res/layout/setting_sub4.xml" value="0.1296875" />
         <entry key="app/src/main/res/layout/standard.xml" value="0.2359375" />
         <entry key="app/src/main/res/layout/standard_coordinate_set.xml" value="0.246484375" />
+        <entry key="app/src/main/res/layout/standard_coordinate_set_deprecated.xml" value="0.124609375" />
         <entry key="app/src/main/res/layout/standard_keyboard_popup.xml" value="0.2359375" />
+        <entry key="app/src/main/res/layout/standard_keyboard_popup_deprecated.xml" value="0.1703125" />
         <entry key="app/src/main/res/layout/stop_set.xml" value="0.246484375" />
         <entry key="app/src/main/res/layout/tab_icon_cell.xml" value="0.5" />
         <entry key="app/src/main/res/layout/table_fragment_main.xml" value="0.22" />
@@ -101,7 +104,7 @@
   <component name="VisualizationToolProject">
     <option name="state">
       <ProjectState>
-        <option name="scale" value="0.22" />
+        <option name="scale" value="0.1" />
       </ProjectState>
     </option>
   </component>

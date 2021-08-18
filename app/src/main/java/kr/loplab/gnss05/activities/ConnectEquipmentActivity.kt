@@ -23,10 +23,7 @@ class ConnectEquipmentActivity : ActivityBase<ActivityConnectEquipmentBinding>()
     }
 
     override fun init() {
-       viewBinding.tvEquipmentMaker.text = if(PrefUtil.getInt(applicationContext, EQUIPMENT_MAKER)==-1){"제조사명"}
-        else{EQUIPMENT_MAKER_LIST[PrefUtil.getInt(applicationContext, EQUIPMENT_MAKER)]}
-        viewBinding.tvConnectMode.text = if(PrefUtil.getInt(applicationContext, CONNECT_MODE)==-1){"연결모드"}
-        else {CONNECT_MODE_LIST[PrefUtil.getInt(applicationContext, CONNECT_MODE)]}
+
     }
 
     override fun initListener() {
@@ -53,6 +50,7 @@ class ConnectEquipmentActivity : ActivityBase<ActivityConnectEquipmentBinding>()
         dlg.setHeader("장비제조사")
 
     }
+
         viewBinding.connectModeBt.setOnClickListener {
             val dlg = MyDialog(this)
             //dlg.title_dialog
@@ -76,7 +74,10 @@ class ConnectEquipmentActivity : ActivityBase<ActivityConnectEquipmentBinding>()
     }
 
     override fun initDatabinding() {
-
+        viewBinding.tvEquipmentMaker.text = if(PrefUtil.getInt(applicationContext, EQUIPMENT_MAKER)==-1){"제조사명"}
+        else{EQUIPMENT_MAKER_LIST[PrefUtil.getInt(applicationContext, EQUIPMENT_MAKER)]}
+        viewBinding.tvConnectMode.text = if(PrefUtil.getInt(applicationContext, CONNECT_MODE)==-1){"연결모드"}
+        else {CONNECT_MODE_LIST[PrefUtil.getInt(applicationContext, CONNECT_MODE)]}
     }
 
 
