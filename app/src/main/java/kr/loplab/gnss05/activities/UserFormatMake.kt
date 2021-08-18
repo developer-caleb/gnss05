@@ -35,7 +35,8 @@ class UserFormatMake : ActivityBase<ActivityUserFormatBinding>(),
     var listdata =  ArrayList<Array<String>>()
     var sperate_num = -1;
     var mode = USERFORMATMAKEMODE.ADD;
-    var arrays1 = ArrayList(listOf(listOf("/", "1"), listOf("@", "0"), listOf("Space", "0"))) //ArrayList<String>();
+    var arrays1 = arrayListOf<String>("/", "@", "Space")
+        //ArrayList(listOf(listOf("/", "1"), listOf("@", "0"), listOf("Space", "0"))) //ArrayList<String>();
     override fun init() {
 
         optionitemlist.forEachIndexed { index, item -> itemdata.add(arrayOf(item, index.toString(), true.toString()))}
@@ -73,6 +74,7 @@ class UserFormatMake : ActivityBase<ActivityUserFormatBinding>(),
             dlg.firstLayoutUse= false;
            // arrays1.add("/");  arrays1.add("@"); arrays1.add("Space");
             dlg.list = arrays1
+            dlg.selectedposition= PrefUtil.getInt(applicationContext, getString(R.string.int_seperate_sign))
             dlg.setOnOKClickedListener{ content ->
                 Log.d(TAG, "onItemClick: $content")
             }
@@ -82,10 +84,10 @@ class UserFormatMake : ActivityBase<ActivityUserFormatBinding>(),
             }
             dlg.setOnListClickedListener { view, i ->
                 Log.d(TAG, "initListener: 와 된다~ $i 된다~")
-                viewBinding.tvSeperate.text = arrays1[i][0]
+                viewBinding.tvSeperate.text = arrays1[i]
                 dlg.selectItem(i)
                 PrefUtil.setInt(applicationContext, getString(R.string.int_seperate_sign), i)
-               selectSeperateNum(i)
+              // selectSeperateNum(i)
                 setUserFormatText()
                 dlg.refresh()
                 dlg.dismiss()
@@ -157,7 +159,7 @@ class UserFormatMake : ActivityBase<ActivityUserFormatBinding>(),
     override fun initDatabinding() {
         setUserFormatText()
 
-        viewBinding.tvSeperate.text = arrays1[sperate_num][0]
+        viewBinding.tvSeperate.text = arrays1[sperate_num]
         viewBinding.headerSwitch.isChecked = PrefUtil.getBoolean(applicationContext, getString(R.string.boolfileheader))
     }
 
@@ -172,7 +174,7 @@ class UserFormatMake : ActivityBase<ActivityUserFormatBinding>(),
     fun setUserFormatText(){
         sperate_num = if(PrefUtil.getInt(applicationContext, getString(R.string.int_seperate_sign))<=0){
             0 }else{ PrefUtil.getInt(applicationContext, getString(R.string.int_seperate_sign))}
-        selectSeperateNum(sperate_num)
+       //selectSeperateNum(sperate_num)
         var text1 = "";
         listdata.forEachIndexed { index, smalldata -> text1 += "[${smalldata[0]}]${
             when(sperate_num)

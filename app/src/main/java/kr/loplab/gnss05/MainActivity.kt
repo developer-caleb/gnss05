@@ -15,8 +15,6 @@ import android.view.View
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.viewpager.widget.ViewPager
 import com.chc.gnss.sdk.*
 import com.google.android.material.tabs.TabLayout
@@ -26,12 +24,10 @@ import com.karumi.dexter.PermissionToken
 import com.karumi.dexter.listener.PermissionRequest
 import com.karumi.dexter.listener.multi.MultiplePermissionsListener
 import kotlinx.android.synthetic.main.activity_main.*
-import kr.loplab.gnss05.SplashActivity.Gnssreceiver2
 import kr.loplab.gnss05.adapter.AdapterViewpager
+import kr.loplab.gnss05.adapter.DialogRecyclerviewAdapter
 import kr.loplab.gnss05.common.Define.REQUEST_SETTING
 import kr.loplab.gnss05.databinding.ActivityMainBinding
-import kr.loplab.gnss05.model.MainIcons
-import kr.loplab.gnss05.tableview.TableMainActivity
 import java.io.*
 import java.lang.Exception
 import kotlin.concurrent.thread

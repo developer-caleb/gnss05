@@ -1,4 +1,4 @@
-package kr.loplab.gnss05
+package kr.loplab.gnss05.adapter
 
 import android.content.Context
 import android.util.Log
@@ -8,11 +8,13 @@ import android.view.ViewGroup
 import android.widget.CheckBox
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import kr.loplab.gnss05.R
 import kotlin.collections.ArrayList
 
-class DialogRecyclerviewAdapter internal constructor(context: Context?, data: ArrayList<List<String>>, ) :
+class DialogRecyclerviewAdapter internal constructor(context: Context?, data: ArrayList<String>, selctedposition: Int ) :
     RecyclerView.Adapter<DialogRecyclerviewAdapter.ViewHolder>() {
-    private val mData: ArrayList<List<String>>
+    private var selctedposition = selctedposition
+    private val mData: ArrayList<String>
     private val mInflater: LayoutInflater
     private var mClickListener: RecyclerItemClickListener? = null
     private var TAG : String = javaClass.simpleName;
@@ -26,9 +28,9 @@ class DialogRecyclerviewAdapter internal constructor(context: Context?, data: Ar
 
     // binds the data to the TextView in each cell
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.myTextView.text = mData[position][0]
+        holder.myTextView.text = mData[position]
 
-        if (mData[position][1] == "1"){
+        if (position == selctedposition){
             holder.checkboxicon.isChecked =true
             Log.d(TAG, "onBindViewHolder: 선택 됨");
         }else {
@@ -68,7 +70,7 @@ class DialogRecyclerviewAdapter internal constructor(context: Context?, data: Ar
 
     // convenience method for getting data at click position
     fun getItem(id: Int): String {
-        return mData[id][0]
+        return mData[id]
     }
 
     // allows clicks events to be caught

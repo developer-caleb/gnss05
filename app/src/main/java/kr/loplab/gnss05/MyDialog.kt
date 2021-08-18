@@ -10,6 +10,7 @@ import android.widget.Button
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import kr.loplab.gnss05.adapter.DialogRecyclerviewAdapter
 
 
 class MyDialog(context : Context)
@@ -28,7 +29,9 @@ class MyDialog(context : Context)
     private var mClickListener: DialogRecyclerviewAdapter.RecyclerItemClickListener? = null
     lateinit var title_dialog: TextView;
     public var firstLayoutUse = true;
-    public var list: ArrayList<List<String>>? = null
+    public var list: ArrayList<String>? = null
+    var selectedposition = 0
+    var inputValue = ""  // ->>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>header에 넣을 값
     lateinit var adapter : DialogRecyclerviewAdapter
 
     fun start(content : String) {
@@ -46,7 +49,7 @@ class MyDialog(context : Context)
         if(list == null){
         for (i in 0..15) {
             list = ArrayList()
-            list!!.add(listOf("/", "1"))
+            list!!.add("/")
         }} else{
 
         }
@@ -59,7 +62,7 @@ class MyDialog(context : Context)
         // 리사이클러뷰에 SimpleTextAdapter 객체 지정.
 
         // 리사이클러뷰에 SimpleTextAdapter 객체 지정.
-        adapter = DialogRecyclerviewAdapter(context2, list!!)
+        adapter = DialogRecyclerviewAdapter(context2, list!!, selectedposition)
 
         listrecyclerview.adapter = adapter
         adapter.setClickListener(this)
