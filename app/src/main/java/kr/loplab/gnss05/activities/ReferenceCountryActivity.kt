@@ -14,6 +14,8 @@ import kr.loplab.gnss05.R
 import kr.loplab.gnss05.activities.viewmodel.ReferenceContryViewModel
 import kr.loplab.gnss05.common.Define
 import kr.loplab.gnss05.common.OptionList
+import kr.loplab.gnss05.common.OptionList.Companion.COLLECTION_INTERVAL_LIST
+import kr.loplab.gnss05.common.OptionList.Companion.DEPLACEMENT_MODE_LIST
 import kr.loplab.gnss05.common.PrefUtil
 import kr.loplab.gnss05.databinding.ActivityReferenceCountryBinding
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -48,14 +50,8 @@ class ReferenceCountryActivity : ActivityBase<ActivityReferenceCountryBinding>()
         viewBinding.startModeLayout.setOnClickListener {
             val dlg = MyDialog(this)
             dlg.firstLayoutUse = false
-            /* var list = arrayListOf<String>("GEO(GINTEC)", "South", "Kolida", "Ruide", "Sanding", "Stonex", "UniStrong",
-            "Hemisphere", "GINTEC", "GEOMAX", "Hi-Target", "HuaXing")*/
             dlg.list = OptionList.START_MODE_LIST
-
-            dlg.selectedposition= PrefUtil.getInt(applicationContext, Define.START_MODE)
-            /*dlg.setOnOKClickedListener{ content ->
-                Log.d(TAG, "onItemClick: $content")
-            }*/
+            dlg.selectedposition= PrefUtil.getInt2(applicationContext, Define.START_MODE)
             dlg.start("")
             dlg.setOnListClickedListener { view, i ->
                 Log.d(TAG, "initListener: $i")
@@ -72,12 +68,53 @@ class ReferenceCountryActivity : ActivityBase<ActivityReferenceCountryBinding>()
             }
             dlg.setHeader("시작 모드")
         }
-       // viewBinding.bt1.setOnClickListener { viewModel.btclick() }
+       viewBinding.layoutDisplacementMode.setOnClickListener {
+           val dlg = MyDialog(this)
+           var alist = DEPLACEMENT_MODE_LIST
+           var prefvalue = Define.DEPLACEMENT_MODE
+           dlg.firstLayoutUse = false
+           dlg.list = alist
+           dlg.selectedposition= PrefUtil.getInt2(applicationContext, prefvalue)
+           dlg.start("")
+           dlg.setOnListClickedListener { view, i ->
+               Log.d(TAG, "initListener: $i")
+               PrefUtil.setInt(applicationContext, prefvalue, i)
+               viewBinding.tvDisplacementMode.text = alist[PrefUtil.getInt2(applicationContext, prefvalue
+               )]
+               dlg.refresh()
+               dlg.dismiss()
+           }
+           dlg.setHeader("변위 모드")
+       }
+        viewBinding.layoutCollectionInterval.setOnClickListener {
+            val dlg = MyDialog(this)
+            var alist = COLLECTION_INTERVAL_LIST
+            var prefvalue = Define.COLLECTION_INTERVAL
+            dlg.firstLayoutUse = false
+            dlg.list = alist
+            dlg.selectedposition= PrefUtil.getInt2(applicationContext, prefvalue)
+            dlg.start("")
+            dlg.setOnListClickedListener { view, i ->
+                Log.d(TAG, "initListener: $i")
+                PrefUtil.setInt(applicationContext, prefvalue, i)
+                viewBinding.tvCollectionInterval.text = alist[PrefUtil.getInt2(applicationContext, prefvalue
+                )]
+                dlg.refresh()
+                dlg.dismiss()
+            }
+            dlg.setHeader("수집간격")
+        }
     }
 
     override fun initDatabinding() {
         viewBinding.tvStartMode.text = OptionList.START_MODE_LIST[PrefUtil.getInt2(applicationContext,
             Define.START_MODE
+        )]
+        viewBinding.tvDisplacementMode.text = DEPLACEMENT_MODE_LIST[PrefUtil.getInt2(applicationContext,
+            Define.DEPLACEMENT_MODE
+        )]
+        viewBinding.tvCollectionInterval.text = COLLECTION_INTERVAL_LIST[PrefUtil.getInt2(applicationContext,
+            Define.COLLECTION_INTERVAL
         )]
     }
 

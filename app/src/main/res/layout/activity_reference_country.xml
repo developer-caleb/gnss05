@@ -76,6 +76,7 @@
                         android:id="@+id/reference_country_id"
                         style="@style/Sub_TEXTVIEW_STYLE3_EditText"
                         android:background="@color/transparent"
+                        android:inputType="text"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="0"
@@ -135,6 +136,7 @@
                     android:background="@color/grey_EC" />
 
                 <LinearLayout
+                    android:id="@+id/layout_displacement_mode"
                     style="@style/ButtonLayout_STYLE01"
                     >
 
@@ -144,6 +146,7 @@
                          />
 
                     <TextView
+                        android:id="@+id/tv_displacement_mode"
                         style="@style/Sub_TEXTVIEW_STYLE3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -244,7 +247,9 @@
                         android:layout_weight="0"
                         android:background="@color/grey_EC" />
 
-                    <LinearLayout style="@style/ButtonLayout_STYLE01">
+                    <LinearLayout
+                        android:id="@+id/layout_collection_interval"
+                        style="@style/ButtonLayout_STYLE01">
 
                         <TextView
                             style="@style/Sub_TEXTVIEW_STYLE1"
@@ -252,6 +257,7 @@
                              />
 
                         <TextView
+                            android:id="@+id/tv_collection_interval"
                             style="@style/Sub_TEXTVIEW_STYLE3"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
