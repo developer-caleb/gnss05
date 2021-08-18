@@ -4,6 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools">
     <data>
         <import type="android.view.View"/>
+        <variable
+            name="referencecontryviewmodel"
+            type="kr.loplab.gnss05.activities.viewmodel.ReferenceContryViewModel"/>
      </data>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -199,6 +202,7 @@
                     android:background="@color/grey_EC" />
 
                 <LinearLayout
+                    android:id="@+id/layout_raw_data_save"
                     style="@style/ButtonLayout_STYLE01"
                     >
 
@@ -212,7 +216,8 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:paddingRight="8dp"
-                        tools:ignore="TouchTargetSizeCheck,TouchTargetSizeCheck" />
+                        android:checked="@{referencecontryviewmodel.bool_rawdatasave}"
+                         />
 
 
                 </LinearLayout>
@@ -586,7 +591,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:paddingRight="8dp"
-                        tools:ignore="TouchTargetSizeCheck,TouchTargetSizeCheck" />
+                         />
 
                 </LinearLayout>
 
@@ -697,7 +702,7 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:paddingRight="8dp"
-                            tools:ignore="TouchTargetSizeCheck,TouchTargetSizeCheck" />
+                             />
 
 
                     </LinearLayout>

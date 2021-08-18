@@ -14,6 +14,9 @@ public class Define {
     public static final String DEPLACEMENT_MODE = "deplacement_mode";
     public static final String COLLECTION_INTERVAL = "collection_interval";
     public static final String REFERENCE_COUNTRY_AUTO_PLAY = "reference_country_auto_play";
+    public static final String RAW_DATA_SAVE = "row_data_save";
+
+    //SharedPreference Code REFERENCE_COUNTRY_COORDINATE_SETTING
     public static final String REFERENCE_COUNTRY_COORDINATE_SETTING_NAME = "reference_country_coordinate_setting_name";
     public static final String REFERENCE_COUNTRY_COORDINATE_SETTING_CODE= "reference_country_coordinate_setting_code";
     public static final String REFERENCE_COUNTRY_COORDINATE_SETTING_COORDINATE_TYPE= "reference_country_coordinate_setting_coordinate_type";

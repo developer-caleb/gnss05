@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.inputmethod.InputMethodManager
 import androidx.appcompat.app.ActionBar
+import androidx.lifecycle.ViewModelProvider
 import kotlinx.android.synthetic.main.activity_main.*
 
 import kr.loplab.gnss02.ActivityBase
@@ -24,14 +25,18 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 class ReferenceCountryActivity : ActivityBase<ActivityReferenceCountryBinding>() {
     override val layoutResourceId: Int
         get() = R.layout.activity_reference_country
+    lateinit var viewModel1:ReferenceContryViewModel
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
 
     override fun init() {
+
         val ab: ActionBar? = supportActionBar
         ab?.title ="기준국설정";
-
+        //viewbinding
+        viewModel1 = ViewModelProvider(this).get(ReferenceContryViewModel::class.java)
+        viewBinding.referencecontryviewmodel = viewModel1
     }
 
     override fun initListener() {
@@ -109,6 +114,9 @@ class ReferenceCountryActivity : ActivityBase<ActivityReferenceCountryBinding>()
             viewBinding.swReferenceCountryAutoplay.isChecked = !viewBinding.swReferenceCountryAutoplay.isChecked
             PrefUtil.setBoolean(applicationContext, REFERENCE_COUNTRY_AUTO_PLAY, viewBinding.swReferenceCountryAutoplay.isChecked)
             //PrefUtil.setBoolean(applicationContext, REFERENCE_COUNTRY_AUTO_PLAY, true)
+        }
+        viewBinding.layoutRawDataSave.setOnClickListener {
+            viewModel1.setboolvalue(true)
         }
     }
 
