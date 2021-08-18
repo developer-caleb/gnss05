@@ -13,6 +13,7 @@ import kr.loplab.gnss05.PositionInformationActivity
 import kr.loplab.gnss05.R
 import kr.loplab.gnss05.activities.viewmodel.ReferenceContryViewModel
 import kr.loplab.gnss05.common.Define
+import kr.loplab.gnss05.common.Define.REFERENCE_COUNTRY_AUTO_PLAY
 import kr.loplab.gnss05.common.OptionList
 import kr.loplab.gnss05.common.OptionList.Companion.COLLECTION_INTERVAL_LIST
 import kr.loplab.gnss05.common.OptionList.Companion.DEPLACEMENT_MODE_LIST
@@ -106,6 +107,8 @@ class ReferenceCountryActivity : ActivityBase<ActivityReferenceCountryBinding>()
         }
         viewBinding.layoutReferenceCountryAutoplay.setOnClickListener {
             viewBinding.swReferenceCountryAutoplay.isChecked = !viewBinding.swReferenceCountryAutoplay.isChecked
+            PrefUtil.setBoolean(applicationContext, REFERENCE_COUNTRY_AUTO_PLAY, viewBinding.swReferenceCountryAutoplay.isChecked)
+
         }
     }
 
@@ -119,6 +122,7 @@ class ReferenceCountryActivity : ActivityBase<ActivityReferenceCountryBinding>()
         viewBinding.tvCollectionInterval.text = COLLECTION_INTERVAL_LIST[PrefUtil.getInt2(applicationContext,
             Define.COLLECTION_INTERVAL
         )]
+        viewBinding.swReferenceCountryAutoplay.isChecked =PrefUtil.getBoolean(applicationContext, REFERENCE_COUNTRY_AUTO_PLAY)
     }
 
 
