@@ -53,6 +53,7 @@
                         android:background="@color/grey_cc" />
 
                     <TextView
+                        android:id="@+id/tv_equipment_maker"
                         style="@style/Sub_TEXTVIEW_STYLE2"
                         android:layout_width="128dp"
                         android:layout_height="wrap_content"
@@ -122,6 +123,7 @@
                         android:background="@color/grey_cc" />
 
                     <TextView
+                        android:id="@+id/tv_connect_mode"
                         style="@style/Sub_TEXTVIEW_STYLE2"
                         android:layout_width="128dp"
                         android:layout_height="wrap_content"

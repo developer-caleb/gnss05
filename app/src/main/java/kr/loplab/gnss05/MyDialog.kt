@@ -35,7 +35,7 @@ class MyDialog(context : Context)
     lateinit var adapter : DialogRecyclerviewAdapter
 
     fun start(content : String) {
-
+        Log.d(TAG, "start: $content")
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)   //타이틀바 제거
         dialog.setContentView(R.layout.dialog1)     //다이얼로그에 사용할 xml 파일을 불러옴
         dialog.setCancelable(true)    //다이얼로그의 바깥 화면을 눌렀을 때 다이얼로그가 닫히지 않도록 함
@@ -63,9 +63,9 @@ class MyDialog(context : Context)
 
         // 리사이클러뷰에 SimpleTextAdapter 객체 지정.
         adapter = DialogRecyclerviewAdapter(context2, list!!, selectedposition)
-
         listrecyclerview.adapter = adapter
         adapter.setClickListener(this)
+        Log.d(TAG, "start: -> adapter initialize")
         selectItem(0)
 
         btnOK = dialog.findViewById(R.id.ok)

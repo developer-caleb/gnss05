@@ -9,6 +9,7 @@ import android.widget.CheckBox
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import kr.loplab.gnss05.R
+import java.lang.Exception
 import kotlin.collections.ArrayList
 
 class DialogRecyclerviewAdapter internal constructor(context: Context?, data: ArrayList<String>, selctedposition: Int ) :
@@ -55,9 +56,14 @@ class DialogRecyclerviewAdapter internal constructor(context: Context?, data: Ar
 
         override fun onClick(view: View) {
             Log.d(TAG, "onClick: recyclerview로 호출했을 경우 $adapterPosition ㅎㅎ")
-            if (mClickListener != null) mClickListener!!.onItemClickDialog(view, adapterPosition)else{
-                Log.d(TAG, "onClick: recyclerview로 호출했을 경우인데 대신에 mClickListener가 null임")
-            }
+            try {
+                if (mClickListener != null) mClickListener!!.onItemClickDialog(view, adapterPosition)else{
+                    Log.d(TAG, "onClick: recyclerview로 호출했을 경우인데 대신에 mClickListener가 null임")
+                }
+            }catch (e : Exception){
+                Log.e(TAG, "onClick: => $e", )
+             }
+
         }
 
         init {
