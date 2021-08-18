@@ -104,6 +104,9 @@ class ReferenceCountryActivity : ActivityBase<ActivityReferenceCountryBinding>()
             }
             dlg.setHeader("수집간격")
         }
+        viewBinding.layoutReferenceCountryAutoplay.setOnClickListener {
+            viewBinding.swReferenceCountryAutoplay.isChecked = !viewBinding.swReferenceCountryAutoplay.isChecked
+        }
     }
 
     override fun initDatabinding() {
