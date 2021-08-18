@@ -7,6 +7,8 @@ import kr.loplab.gnss02.ActivityBase
 import kr.loplab.gnss05.adapter.DialogRecyclerviewAdapter
 import kr.loplab.gnss05.MyDialog
 import kr.loplab.gnss05.R
+import kr.loplab.gnss05.common.Define.EQUIPMENT_MAKER
+import kr.loplab.gnss05.common.PrefUtil
 import kr.loplab.gnss05.databinding.ActivityConnectEquipmentBinding
 
 class ConnectEquipmentActivity : ActivityBase<ActivityConnectEquipmentBinding>(), DialogRecyclerviewAdapter.RecyclerItemClickListener {
@@ -26,8 +28,10 @@ class ConnectEquipmentActivity : ActivityBase<ActivityConnectEquipmentBinding>()
     viewBinding.makerSelectBt.setOnClickListener {
             val dlg = MyDialog(this)
             dlg.firstLayoutUse = false
-            var list = ArrayList<List<String>>()
-            list.add(listOf("/", "1"))
+        var list = arrayListOf<String>("GEO(GINTEC)", "South", "Kolida", "Ruide", "Sanding", "Stonex", "UniStrong",
+            "Hemisphere", "GINTEC", "GEOMAX", "Hi-Target", "HuaXing")
+        dlg.list = list
+        dlg.selectedposition= PrefUtil.getInt(applicationContext, EQUIPMENT_MAKER)
             //foreach써가지고 만약에 position이 preference의 int와 값이 같으면 1로하고 아니면 0으로 .. 내 생각엔 그냥 dilog 한개 더 만들고,
             //이걸 그냥 ArrayList<String>()으로 해가지고 position값만 받아와서 비교해도 괜찮을 듯?
             dlg.setClickListener(this)
@@ -41,16 +45,19 @@ class ConnectEquipmentActivity : ActivityBase<ActivityConnectEquipmentBinding>()
         viewBinding.connectModeBt.setOnClickListener {
             val dlg = MyDialog(this)
             dlg.firstLayoutUse = false
-            var list = ArrayList<String>()
-            list.add("/")
+            var list = arrayListOf<String>("GEO(GINTEC)", "South", "Kolida", "Ruide", "Sanding", "Stonex", "UniStrong",
+            "Hemisphere", "GINTEC", "GEOMAX", "Hi-Target", "HuaXing")
             //이걸 -> 옮기기
             dlg.list = list
-            dlg.selectedposition = 0
+            dlg.selectedposition= PrefUtil.getInt(applicationContext, EQUIPMENT_MAKER)
             dlg.setClickListener(this)
             dlg.setOnOKClickedListener{ content ->
                 Log.d(TAG, "onItemClick: $content")
             }
             dlg.start("메인의 내용을 변경할까요?")
+            dlg.setOnListClickedListener { view, i ->
+                Log.d(TAG, "initListener: $i")
+            }
         }
 
     }
@@ -61,5 +68,6 @@ class ConnectEquipmentActivity : ActivityBase<ActivityConnectEquipmentBinding>()
 
     override fun onItemClickDialog(view: View?, position: Int) {
         Log.d(TAG, "onItemClickDialog: position -> $position")
+       
     }
 }

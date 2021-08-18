@@ -104,7 +104,6 @@ class MyDialog(context : Context)
     }
 
     fun setOnListClickedListener(listener: (View, Int) -> Unit) {
-
         this.listlistener = object: MyDialogItemClickedListener {
             override fun onItemClickDialog(view: View?, position: Int) {
              listener(view!!, position)
