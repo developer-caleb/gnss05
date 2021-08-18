@@ -14,6 +14,7 @@ import kr.loplab.gnss05.PositionInformationActivity
 import kr.loplab.gnss05.R
 import kr.loplab.gnss05.activities.viewmodel.ReferenceContryViewModel
 import kr.loplab.gnss05.common.Define
+import kr.loplab.gnss05.common.Define.RAW_DATA_SAVE
 import kr.loplab.gnss05.common.Define.REFERENCE_COUNTRY_AUTO_PLAY
 import kr.loplab.gnss05.common.OptionList
 import kr.loplab.gnss05.common.OptionList.Companion.COLLECTION_INTERVAL_LIST
@@ -116,11 +117,14 @@ class ReferenceCountryActivity : ActivityBase<ActivityReferenceCountryBinding>()
             //PrefUtil.setBoolean(applicationContext, REFERENCE_COUNTRY_AUTO_PLAY, true)
         }
         viewBinding.layoutRawDataSave.setOnClickListener {
-            viewModel1.setboolvalue(true)
+            var bool = !viewModel1.bool_rawdatasave.value!!
+            viewModel1.setboolvalue(bool)
+            PrefUtil.setBoolean(this, RAW_DATA_SAVE, bool);
         }
     }
 
     override fun initDatabinding() {
+        viewModel1.bool_rawdatasave.postValue(PrefUtil.getBoolean(this, RAW_DATA_SAVE))
         viewBinding.tvStartMode.text = OptionList.START_MODE_LIST[PrefUtil.getInt2(applicationContext,
             Define.START_MODE
         )]
