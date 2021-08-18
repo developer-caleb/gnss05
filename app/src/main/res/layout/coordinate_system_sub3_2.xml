@@ -4,9 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
     <data>
         <import type="android.view.View"/>
-        <variable
-            name="viewModel"
-            type="kr.loplab.gnss05.activities.viewmodel.ReferenceContryViewModel" />
+
     </data>
 <androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
@@ -43,7 +41,7 @@
                 <TextView
                     style="@style/Sub_TEXTVIEW_STYLE1"
                     android:text="ITRF 변환 사용"
-                    android:visibility="@{viewModel.onprogress? View.VISIBLE : View.GONE}"/>
+                    />
 
                 <Switch
                     android:layout_width="wrap_content"
@@ -68,7 +66,7 @@
                 <TextView
                     style="@style/Sub_TEXTVIEW_STYLE1"
                     android:text="변환 유형"
-                    android:visibility="@{viewModel.onprogress? View.VISIBLE : View.GONE}" />
+                     />
 
                 <TextView
                     style="@style/Sub_TEXTVIEW_STYLE3"
@@ -103,7 +101,7 @@
                 <TextView
                     style="@style/Sub_TEXTVIEW_STYLE1"
                     android:text="새로운 타켓"
-                    android:visibility="@{viewModel.onprogress? View.VISIBLE : View.GONE}" />
+                     />
 
                 <TextView
                     style="@style/Sub_TEXTVIEW_STYLE3"
@@ -136,7 +134,7 @@
                 <TextView
                     style="@style/Sub_TEXTVIEW_STYLE1"
                     android:text="입력 속도"
-                    android:visibility="@{viewModel.onprogress? View.VISIBLE : View.GONE}" />
+                     />
 
 
                 <Switch

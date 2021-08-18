@@ -4,9 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
     <data>
         <import type="android.view.View"/>
-        <variable
-            name="viewModel"
-            type="kr.loplab.gnss05.activities.viewmodel.ReferenceContryViewModel" />
+
     </data>
 <androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
@@ -43,7 +41,7 @@
                 <TextView
                     style="@style/Sub_TEXTVIEW_STYLE1"
                     android:text="연결저장"
-                    android:visibility="@{viewModel.onprogress? View.VISIBLE : View.GONE}" />
+                     />
 
 
                 <ImageView
@@ -74,7 +72,7 @@
                 <TextView
                     style="@style/Sub_TEXTVIEW_STYLE1"
                     android:text="컷 각도"
-                    android:visibility="@{viewModel.onprogress? View.VISIBLE : View.GONE}" />
+                     />
 
                 <TextView
                     style="@style/Sub_TEXTVIEW_STYLE3"
@@ -109,7 +107,7 @@
                 <TextView
                     style="@style/Sub_TEXTVIEW_STYLE1"
                     android:text="RAW 데이터 저장"
-                    android:visibility="@{viewModel.onprogress? View.VISIBLE : View.GONE}" />
+                     />
 
                 <Switch
                     android:layout_width="wrap_content"
@@ -137,7 +135,7 @@
                     <TextView
                         style="@style/Sub_TEXTVIEW_STYLE1"
                         android:text="현재점명"
-                        android:visibility="@{viewModel.onprogress? View.VISIBLE : View.GONE}" />
+                         />
 
                     <EditText
                         style="@style/Sub_TEXTVIEW_STYLE2"
@@ -160,7 +158,7 @@
                     <TextView
                         style="@style/Sub_TEXTVIEW_STYLE1"
                         android:text="수집간격"
-                        android:visibility="@{viewModel.onprogress? View.VISIBLE : View.GONE}" />
+                         />
 
                     <TextView
                         style="@style/Sub_TEXTVIEW_STYLE3"
@@ -196,7 +194,7 @@
                 <TextView
                     style="@style/Sub_TEXTVIEW_STYLE1"
                     android:text="데이터 연결방식"
-                    android:visibility="@{viewModel.onprogress? View.VISIBLE : View.GONE}" />
+                     />
 
 
                 <TextView
@@ -229,7 +227,7 @@
                 <TextView
                     style="@style/Sub_TEXTVIEW_STYLE1"
                     android:text="연결모드"
-                    android:visibility="@{viewModel.onprogress? View.VISIBLE : View.GONE}" />
+                     />
 
                 <TextView
                     style="@style/Sub_TEXTVIEW_STYLE3"
@@ -268,7 +266,7 @@
                         style="@style/Sub_TEXTVIEW_STYLE1"
                         android:text="CORS 설정"
                         android:textColor="@color/grey_33"
-                        android:visibility="@{viewModel.onprogress? View.VISIBLE : View.GONE}" />
+                         />
 
                     <ImageView
                         android:layout_width="@dimen/rightArrowSize"
@@ -285,7 +283,7 @@
                     <TextView
                         style="@style/Sub_TEXTVIEW_STYLE1"
                         android:text="이름"
-                        android:visibility="@{viewModel.onprogress? View.VISIBLE : View.GONE}" />
+                         />
 
 
                     <ImageView
@@ -312,7 +310,7 @@
                     <TextView
                         style="@style/Sub_TEXTVIEW_STYLE1"
                         android:text="사용자"
-                        android:visibility="@{viewModel.onprogress? View.VISIBLE : View.GONE}" />
+                         />
 
                     <EditText
                         style="@style/Sub_TEXTVIEW_STYLE2"
@@ -335,7 +333,7 @@
                     <TextView
                         style="@style/Sub_TEXTVIEW_STYLE1"
                         android:text="암호"
-                        android:visibility="@{viewModel.onprogress? View.VISIBLE : View.GONE}" />
+                         />
 
                     <EditText
                         android:layout_width="160dp"
@@ -373,7 +371,7 @@
                         style="@style/Sub_TEXTVIEW_STYLE1"
                         android:text="마운트포인트 설정"
                         android:textColor="@color/grey_33"
-                        android:visibility="@{viewModel.onprogress? View.VISIBLE : View.GONE}" />
+                         />
 
 
                 </LinearLayout>
@@ -383,7 +381,7 @@
                     <TextView
                         style="@style/Sub_TEXTVIEW_STYLE1"
                         android:text="마운트포인트"
-                        android:visibility="@{viewModel.onprogress? View.VISIBLE : View.GONE}" />
+                         />
 
 
                     <TextView
@@ -430,7 +428,7 @@
                         style="@style/Sub_TEXTVIEW_STYLE1"
                         android:text="수신상태"
                         android:textColor="@color/grey_33"
-                        android:visibility="@{viewModel.onprogress? View.VISIBLE : View.GONE}" />
+                         />
 
 
                 </LinearLayout>
@@ -461,7 +459,7 @@
                     <TextView
                         style="@style/Sub_TEXTVIEW_STYLE1"
                         android:text="네트워크 자동연결"
-                        android:visibility="@{viewModel.onprogress? View.VISIBLE : View.GONE}" />
+                         />
 
                     <Switch
                         android:layout_width="wrap_content"

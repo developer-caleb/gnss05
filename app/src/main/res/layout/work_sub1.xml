@@ -4,9 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
     <data>
         <import type="android.view.View"/>
-        <variable
-            name="viewModel"
-            type="kr.loplab.gnss05.activities.viewmodel.ReferenceContryViewModel" />
+
     </data>
 <androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
@@ -43,7 +41,7 @@
                 <TextView
                     style="@style/Sub_TEXTVIEW_STYLE1"
                     android:text="작업경로"
-                    android:visibility="@{viewModel.onprogress? View.VISIBLE : View.GONE}" />
+                     />
 
                 <TextView
                     style="@style/Sub_TEXTVIEW_STYLE3"
@@ -75,7 +73,7 @@
                 <TextView
                     style="@style/Sub_TEXTVIEW_STYLE1"
                     android:text="디스크 정보"
-                    android:visibility="@{viewModel.onprogress? View.VISIBLE : View.GONE}" />
+                     />
 
 
 
@@ -103,7 +101,7 @@
                 <TextView
                     style="@style/Sub_TEXTVIEW_STYLE1"
                     android:text="작업목록"
-                    android:visibility="@{viewModel.onprogress? View.VISIBLE : View.GONE}"
+
                     android:textColor="@color/grey_66"/>
 
             </LinearLayout>
@@ -126,7 +124,7 @@
                     android:paddingLeft="8dp"
                     android:text="20210804"
                     android:textColor="@color/grey_33"
-                    android:visibility="@{viewModel.onprogress? View.VISIBLE : View.GONE}" />
+                     />
 
                 <TextView
                     style="@style/Sub_TEXTVIEW_STYLE2"

@@ -4,9 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
     <data>
         <import type="android.view.View"/>
-        <variable
-            name="viewModel"
-            type="kr.loplab.gnss05.activities.viewmodel.ReferenceContryViewModel" />
+
     </data>
 <androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
@@ -43,7 +41,7 @@
                 <TextView
                     style="@style/Sub_TEXTVIEW_STYLE1"
                     android:text="이름"
-                    android:visibility="@{viewModel.onprogress? View.VISIBLE : View.GONE}" />
+                     />
 
 
                 <EditText
@@ -71,7 +69,7 @@
                 <TextView
                     style="@style/Sub_TEXTVIEW_STYLE1"
                     android:text="코드"
-                    android:visibility="@{viewModel.onprogress? View.VISIBLE : View.GONE}" />
+                     />
 
                 <EditText
                     style="@style/Sub_TEXTVIEW_STYLE2"
@@ -95,7 +93,7 @@
                     style="@style/Sub_TEXTVIEW_STYLE1"
                     android:text="기준국 좌표 입력"
                     android:textColor="@color/grey_33"
-                    android:visibility="@{viewModel.onprogress? View.VISIBLE : View.GONE}" />
+                     />
 
                 <ImageView
                     android:layout_width="@dimen/rightArrowSize"
@@ -130,7 +128,7 @@
                 <TextView
                     style="@style/Sub_TEXTVIEW_STYLE1"
                     android:text="좌표유형"
-                    android:visibility="@{viewModel.onprogress? View.VISIBLE : View.GONE}"/>
+                    />
 
                 <TextView
                     style="@style/Sub_TEXTVIEW_STYLE3"
@@ -163,7 +161,7 @@
                 <TextView
                     style="@style/Sub_TEXTVIEW_STYLE1"
                     android:text="기준국 연결 포인트"
-                    android:visibility="@{viewModel.onprogress? View.VISIBLE : View.GONE}" />
+                     />
 
                 <TextView
                     style="@style/Sub_TEXTVIEW_STYLE2"
@@ -188,7 +186,7 @@
                 <TextView
                     style="@style/Sub_TEXTVIEW_STYLE1"
                     android:text="기준국 연결 포인트"
-                    android:visibility="@{viewModel.onprogress? View.VISIBLE : View.GONE}" />
+                     />
 
                 <TextView
                     style="@style/Sub_TEXTVIEW_STYLE2"
@@ -213,7 +211,7 @@
                 <TextView
                     style="@style/Sub_TEXTVIEW_STYLE1"
                     android:text="기준국 연결 포인트"
-                    android:visibility="@{viewModel.onprogress? View.VISIBLE : View.GONE}" />
+                     />
 
                 <TextView
                     style="@style/Sub_TEXTVIEW_STYLE2"
@@ -243,7 +241,7 @@
                         style="@style/Sub_TEXTVIEW_STYLE1"
                         android:text="삼각대, 폴대 값 설정"
                        android:textColor="@color/grey_33"
-                        android:visibility="@{viewModel.onprogress? View.VISIBLE : View.GONE}" />
+                         />
 
                     <ImageView
                         android:layout_width="@dimen/rightArrowSize"
@@ -268,7 +266,7 @@
                     <TextView
                         style="@style/Sub_TEXTVIEW_STYLE1"
                         android:text="폴대 높이 값(m)(m)"
-                        android:visibility="@{viewModel.onprogress? View.VISIBLE : View.GONE}" />
+                         />
 
                     <TextView
                         style="@style/Sub_TEXTVIEW_STYLE2"
@@ -290,7 +288,7 @@
                     <TextView
                         style="@style/Sub_TEXTVIEW_STYLE1"
                         android:text="높이 계산방법"
-                        android:visibility="@{viewModel.onprogress? View.VISIBLE : View.GONE}" />
+                         />
 
                     <TextView
                         style="@style/Sub_TEXTVIEW_STYLE3"
@@ -323,7 +321,7 @@
                     <TextView
                         style="@style/Sub_TEXTVIEW_STYLE1"
                         android:text="계산 후 높이"
-                        android:visibility="@{viewModel.onprogress? View.VISIBLE : View.GONE}" />
+                         />
 
 
                     <TextView
@@ -359,7 +357,7 @@
                         style="@style/Sub_TEXTVIEW_STYLE1"
                         android:text="기준국 안테나 값 설정"
                         android:textColor="@color/grey_33"
-                        android:visibility="@{viewModel.onprogress? View.VISIBLE : View.GONE}" />
+                         />
 
                     <ImageView
                         android:layout_width="@dimen/rightArrowSize"
@@ -384,7 +382,7 @@
                     <TextView
                         style="@style/Sub_TEXTVIEW_STYLE1"
                         android:text="안테나 유형"
-                        android:visibility="@{viewModel.onprogress? View.VISIBLE : View.GONE}" />
+                         />
 
                     <TextView
                         style="@style/Sub_TEXTVIEW_STYLE3"
@@ -418,7 +416,7 @@
                         <TextView
                             style="@style/Sub_TEXTVIEW_STYLE1"
                             android:text="R(mm)"
-                            android:visibility="@{viewModel.onprogress? View.VISIBLE : View.GONE}" />
+                             />
 
 
                         <TextView
@@ -432,7 +430,7 @@
                         <TextView
                             style="@style/Sub_TEXTVIEW_STYLE1"
                             android:text="H(mm)"
-                            android:visibility="@{viewModel.onprogress? View.VISIBLE : View.GONE}" />
+                             />
 
 
                         <TextView
@@ -462,7 +460,7 @@
                     <TextView
                         style="@style/Sub_TEXTVIEW_STYLE1"
                         android:text="HL1(mm)"
-                        android:visibility="@{viewModel.onprogress? View.VISIBLE : View.GONE}" />
+                         />
 
 
                     <TextView
@@ -477,7 +475,7 @@
                     <TextView
                         style="@style/Sub_TEXTVIEW_STYLE1"
                         android:text="HL2(mm)"
-                        android:visibility="@{viewModel.onprogress? View.VISIBLE : View.GONE}" />
+                         />
 
 
                     <TextView

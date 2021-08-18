@@ -4,9 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
     <data>
         <import type="android.view.View"/>
-        <variable
-            name="viewModel"
-            type="kr.loplab.gnss05.activities.viewmodel.ReferenceContryViewModel" />
+
     </data>
 <androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
@@ -43,7 +41,7 @@
                 <TextView
                     style="@style/Sub_TEXTVIEW_STYLE1"
                     android:text="사용 여부"
-                    android:visibility="@{viewModel.onprogress? View.VISIBLE : View.GONE}"/>
+                    />
 
                 <Switch
                     android:layout_width="wrap_content"
@@ -68,7 +66,7 @@
                 <TextView
                     style="@style/Sub_TEXTVIEW_STYLE1"
                     android:text="A0"
-                    android:visibility="@{viewModel.onprogress? View.VISIBLE : View.GONE}" />
+                     />
 
                 <TextView
                     style="@style/Sub_TEXTVIEW_STYLE2"
@@ -92,7 +90,7 @@
                 <TextView
                     style="@style/Sub_TEXTVIEW_STYLE1"
                     android:text="A1"
-                    android:visibility="@{viewModel.onprogress? View.VISIBLE : View.GONE}" />
+                     />
 
                 <TextView
                     style="@style/Sub_TEXTVIEW_STYLE2"
@@ -116,7 +114,7 @@
                 <TextView
                     style="@style/Sub_TEXTVIEW_STYLE1"
                     android:text="A2"
-                    android:visibility="@{viewModel.onprogress? View.VISIBLE : View.GONE}" />
+                     />
 
                 <TextView
                     style="@style/Sub_TEXTVIEW_STYLE2"
@@ -140,7 +138,7 @@
                 <TextView
                     style="@style/Sub_TEXTVIEW_STYLE1"
                     android:text="A3"
-                    android:visibility="@{viewModel.onprogress? View.VISIBLE : View.GONE}" />
+                     />
 
                 <TextView
                     style="@style/Sub_TEXTVIEW_STYLE2"
@@ -164,7 +162,7 @@
                 <TextView
                     style="@style/Sub_TEXTVIEW_STYLE1"
                     android:text="A4"
-                    android:visibility="@{viewModel.onprogress? View.VISIBLE : View.GONE}" />
+                     />
 
                 <TextView
                     style="@style/Sub_TEXTVIEW_STYLE2"
@@ -188,7 +186,7 @@
                 <TextView
                     style="@style/Sub_TEXTVIEW_STYLE1"
                     android:text="A5"
-                    android:visibility="@{viewModel.onprogress? View.VISIBLE : View.GONE}" />
+                     />
 
                 <TextView
                     style="@style/Sub_TEXTVIEW_STYLE2"
@@ -212,7 +210,7 @@
                 <TextView
                     style="@style/Sub_TEXTVIEW_STYLE1"
                     android:text="X0"
-                    android:visibility="@{viewModel.onprogress? View.VISIBLE : View.GONE}" />
+                     />
 
                 <TextView
                     style="@style/Sub_TEXTVIEW_STYLE2"
@@ -237,7 +235,7 @@
                 <TextView
                     style="@style/Sub_TEXTVIEW_STYLE1"
                     android:text="Y0"
-                    android:visibility="@{viewModel.onprogress? View.VISIBLE : View.GONE}" />
+                     />
 
                 <TextView
                     style="@style/Sub_TEXTVIEW_STYLE2"

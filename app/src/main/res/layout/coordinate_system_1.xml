@@ -4,9 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
     <data>
         <import type="android.view.View"/>
-        <variable
-            name="viewModel"
-            type="kr.loplab.gnss05.activities.viewmodel.ReferenceContryViewModel" />
+    
     </data>
 <androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
@@ -42,7 +40,7 @@
                 <TextView
                     style="@style/Sub_TEXTVIEW_STYLE1"
                     android:text="좌표계"
-                    android:visibility="@{viewModel.onprogress? View.VISIBLE : View.GONE}" />
+                     />
 
                 <EditText
                     style="@style/Sub_TEXTVIEW_STYLE3"
@@ -78,7 +76,7 @@
                         style="@style/Sub_TEXTVIEW_STYLE1"
                         android:text="타원체 매개변수"
                         android:textColor="@color/grey_33"
-                        android:visibility="@{viewModel.onprogress? View.VISIBLE : View.GONE}" />
+                         />
 
                 </LinearLayout>
 
@@ -88,7 +86,7 @@
                     <TextView
                         style="@style/Sub_TEXTVIEW_STYLE1"
                         android:text="타원체명"
-                        android:visibility="@{viewModel.onprogress? View.VISIBLE : View.GONE}" />
+                         />
 
                     <TextView
                         style="@style/Sub_TEXTVIEW_STYLE3"
@@ -120,7 +118,7 @@
                     <TextView
                         style="@style/Sub_TEXTVIEW_STYLE1"
                         android:text="반경축"
-                        android:visibility="@{viewModel.onprogress? View.VISIBLE : View.GONE}" />
+                         />
 
                     <TextView
                         style="@style/Sub_TEXTVIEW_STYLE2"
@@ -144,7 +142,7 @@
                     <TextView
                         style="@style/Sub_TEXTVIEW_STYLE1"
                         android:text="1/f"
-                        android:visibility="@{viewModel.onprogress? View.VISIBLE : View.GONE}" />
+                         />
 
                     <TextView
                         style="@style/Sub_TEXTVIEW_STYLE2"
@@ -176,7 +174,7 @@
                         style="@style/Sub_TEXTVIEW_STYLE1"
                         android:text="투영법"
                         android:textColor="@color/grey_33"
-                        android:visibility="@{viewModel.onprogress? View.VISIBLE : View.GONE}" />
+                         />
 
                 </LinearLayout>
 
@@ -187,7 +185,7 @@
                     <TextView
                         style="@style/Sub_TEXTVIEW_STYLE1"
                         android:text="투영법"
-                        android:visibility="@{viewModel.onprogress? View.VISIBLE : View.GONE}" />
+                         />
 
                     <TextView
                         style="@style/Sub_TEXTVIEW_STYLE3"
@@ -219,7 +217,7 @@
                     <TextView
                         style="@style/Sub_TEXTVIEW_STYLE1"
                         android:text="중앙 경선"
-                        android:visibility="@{viewModel.onprogress? View.VISIBLE : View.GONE}" />
+                         />
 
                     <TextView
                         style="@style/Sub_TEXTVIEW_STYLE3"
@@ -265,7 +263,7 @@
                         style="@style/Sub_TEXTVIEW_STYLE1"
                         android:text="ITRF 파라미터"
                         android:textColor="@color/grey_33"
-                        android:visibility="@{viewModel.onprogress? View.VISIBLE : View.GONE}" />
+                         />
 
                 </LinearLayout>
 
@@ -276,7 +274,7 @@
                     <TextView
                         style="@style/Sub_TEXTVIEW_STYLE1"
                         android:text="ITRF 변환 사용"
-                        android:visibility="@{viewModel.onprogress? View.VISIBLE : View.GONE}"/>
+                        />
 
                     <Switch
                         android:layout_width="wrap_content"
@@ -299,7 +297,7 @@
                     <TextView
                         style="@style/Sub_TEXTVIEW_STYLE1"
                         android:text="변환 유형"
-                        android:visibility="@{viewModel.onprogress? View.VISIBLE : View.GONE}" />
+                         />
 
                     <TextView
                         style="@style/Sub_TEXTVIEW_STYLE3"
@@ -332,7 +330,7 @@
                     <TextView
                         style="@style/Sub_TEXTVIEW_STYLE1"
                         android:text="새로운 타켓"
-                        android:visibility="@{viewModel.onprogress? View.VISIBLE : View.GONE}" />
+                         />
 
                     <EditText
                         style="@style/Sub_TEXTVIEW_STYLE2"
@@ -358,7 +356,7 @@
                     <TextView
                         style="@style/Sub_TEXTVIEW_STYLE1"
                         android:text="입력 속도"
-                        android:visibility="@{viewModel.onprogress? View.VISIBLE : View.GONE}"/>
+                        />
 
                     <Switch
                         android:layout_width="wrap_content"
@@ -381,7 +379,7 @@
                     <TextView
                         style="@style/Sub_TEXTVIEW_STYLE1"
                         android:text="Vx(mm)"
-                        android:visibility="@{viewModel.onprogress? View.VISIBLE : View.GONE}" />
+                         />
 
                     <EditText
                         style="@style/Sub_TEXTVIEW_STYLE2"
@@ -405,7 +403,7 @@
                     <TextView
                         style="@style/Sub_TEXTVIEW_STYLE1"
                         android:text="Vy(mm)"
-                        android:visibility="@{viewModel.onprogress? View.VISIBLE : View.GONE}" />
+                         />
 
                     <EditText
                         style="@style/Sub_TEXTVIEW_STYLE2"
@@ -429,7 +427,7 @@
                     <TextView
                         style="@style/Sub_TEXTVIEW_STYLE1"
                         android:text="Vz(mm)"
-                        android:visibility="@{viewModel.onprogress? View.VISIBLE : View.GONE}" />
+                         />
 
                     <EditText
                         style="@style/Sub_TEXTVIEW_STYLE2"
@@ -459,7 +457,7 @@
                         style="@style/Sub_TEXTVIEW_STYLE1"
                         android:text="7-매개변수"
                         android:textColor="@color/grey_33"
-                        android:visibility="@{viewModel.onprogress? View.VISIBLE : View.GONE}" />
+                         />
 
                 </LinearLayout>
 
@@ -470,7 +468,7 @@
                     <TextView
                         style="@style/Sub_TEXTVIEW_STYLE1"
                         android:text="사용 여부"
-                        android:visibility="@{viewModel.onprogress? View.VISIBLE : View.GONE}"/>
+                        />
 
                     <Switch
                         android:layout_width="wrap_content"
@@ -493,7 +491,7 @@
                     <TextView
                         style="@style/Sub_TEXTVIEW_STYLE1"
                         android:text="모드"
-                        android:visibility="@{viewModel.onprogress? View.VISIBLE : View.GONE}" />
+                         />
 
                     <TextView
                         style="@style/Sub_TEXTVIEW_STYLE3"
@@ -526,7 +524,7 @@
                     <TextView
                         style="@style/Sub_TEXTVIEW_STYLE1"
                         android:text="△X"
-                        android:visibility="@{viewModel.onprogress? View.VISIBLE : View.GONE}" />
+                         />
 
                     <EditText
                         style="@style/Sub_TEXTVIEW_STYLE2"
@@ -550,7 +548,7 @@
                     <TextView
                         style="@style/Sub_TEXTVIEW_STYLE1"
                         android:text="△Y"
-                        android:visibility="@{viewModel.onprogress? View.VISIBLE : View.GONE}" />
+                         />
 
                     <EditText
                         style="@style/Sub_TEXTVIEW_STYLE2"
@@ -574,7 +572,7 @@
                     <TextView
                         style="@style/Sub_TEXTVIEW_STYLE1"
                         android:text="△Z"
-                        android:visibility="@{viewModel.onprogress? View.VISIBLE : View.GONE}" />
+                         />
 
                     <EditText
                         style="@style/Sub_TEXTVIEW_STYLE2"
@@ -598,7 +596,7 @@
                     <TextView
                         style="@style/Sub_TEXTVIEW_STYLE1"
                         android:text="△α"
-                        android:visibility="@{viewModel.onprogress? View.VISIBLE : View.GONE}" />
+                         />
 
                     <EditText
                         style="@style/Sub_TEXTVIEW_STYLE2"
@@ -621,7 +619,7 @@
                     <TextView
                         style="@style/Sub_TEXTVIEW_STYLE1"
                         android:text="△β"
-                        android:visibility="@{viewModel.onprogress? View.VISIBLE : View.GONE}" />
+                         />
 
                     <EditText
                         style="@style/Sub_TEXTVIEW_STYLE2"
@@ -646,7 +644,7 @@
                     <TextView
                         style="@style/Sub_TEXTVIEW_STYLE1"
                         android:text="△γ"
-                        android:visibility="@{viewModel.onprogress? View.VISIBLE : View.GONE}" />
+                         />
 
                     <EditText
                         style="@style/Sub_TEXTVIEW_STYLE2"
@@ -669,7 +667,7 @@
                     <TextView
                         style="@style/Sub_TEXTVIEW_STYLE1"
                         android:text="스케일(ppm)"
-                        android:visibility="@{viewModel.onprogress? View.VISIBLE : View.GONE}" />
+                         />
 
                     <EditText
                         style="@style/Sub_TEXTVIEW_STYLE2"
@@ -699,7 +697,7 @@
                         style="@style/Sub_TEXTVIEW_STYLE1"
                         android:text="4-매개변수/수평조정"
                         android:textColor="@color/grey_33"
-                        android:visibility="@{viewModel.onprogress? View.VISIBLE : View.GONE}" />
+                         />
 
                 </LinearLayout>
 
@@ -711,7 +709,7 @@
                     <TextView
                         style="@style/Sub_TEXTVIEW_STYLE1"
                         android:text="사용 여부"
-                        android:visibility="@{viewModel.onprogress? View.VISIBLE : View.GONE}"/>
+                        />
 
                     <Switch
                         android:layout_width="wrap_content"
@@ -734,7 +732,7 @@
                 <TextView
                     style="@style/Sub_TEXTVIEW_STYLE1"
                     android:text="북방향이동"
-                    android:visibility="@{viewModel.onprogress? View.VISIBLE : View.GONE}" />
+                     />
 
                 <EditText
                     style="@style/Sub_TEXTVIEW_STYLE2"
@@ -758,7 +756,7 @@
                     <TextView
                         style="@style/Sub_TEXTVIEW_STYLE1"
                         android:text="동방향이동"
-                        android:visibility="@{viewModel.onprogress? View.VISIBLE : View.GONE}" />
+                         />
 
                     <EditText
                         style="@style/Sub_TEXTVIEW_STYLE2"
@@ -782,7 +780,7 @@
                     <TextView
                         style="@style/Sub_TEXTVIEW_STYLE1"
                         android:text="회전"
-                        android:visibility="@{viewModel.onprogress? View.VISIBLE : View.GONE}" />
+                         />
 
                     <EditText
                         style="@style/Sub_TEXTVIEW_STYLE2"
@@ -806,7 +804,7 @@
                     <TextView
                         style="@style/Sub_TEXTVIEW_STYLE1"
                         android:text="스케일"
-                        android:visibility="@{viewModel.onprogress? View.VISIBLE : View.GONE}" />
+                         />
 
                     <EditText
                         style="@style/Sub_TEXTVIEW_STYLE2"
@@ -831,7 +829,7 @@
                     <TextView
                         style="@style/Sub_TEXTVIEW_STYLE1"
                         android:text="원북뱡향"
-                        android:visibility="@{viewModel.onprogress? View.VISIBLE : View.GONE}" />
+                         />
 
                     <EditText
                         style="@style/Sub_TEXTVIEW_STYLE2"
@@ -855,7 +853,7 @@
                     <TextView
                         style="@style/Sub_TEXTVIEW_STYLE1"
                         android:text="원동방향"
-                        android:visibility="@{viewModel.onprogress? View.VISIBLE : View.GONE}" />
+                         />
 
                     <EditText
                         style="@style/Sub_TEXTVIEW_STYLE2"
@@ -881,7 +879,7 @@
                         android:paddingRight="20dp"
                         android:text="참고: 4 매개변수만 사용하는 경우 Original Northing 및 Easting을 0으로 설정해야 합니다."
                         android:textSize="12dp"
-                        android:visibility="@{viewModel.onprogress? View.VISIBLE : View.GONE}"
+                        
                         android:textColor="@color/grey_66"/>
 
                 </LinearLayout>
@@ -904,7 +902,7 @@
                         style="@style/Sub_TEXTVIEW_STYLE1"
                         android:text="수직 제어 파라미터"
                         android:textColor="@color/grey_33"
-                        android:visibility="@{viewModel.onprogress? View.VISIBLE : View.GONE}" />
+                         />
 
                 </LinearLayout>
 
@@ -915,7 +913,7 @@
                     <TextView
                         style="@style/Sub_TEXTVIEW_STYLE1"
                         android:text="사용 여부"
-                        android:visibility="@{viewModel.onprogress? View.VISIBLE : View.GONE}"/>
+                        />
 
                     <Switch
                         android:layout_width="wrap_content"
@@ -941,7 +939,7 @@
                 <TextView
                     style="@style/Sub_TEXTVIEW_STYLE1"
                     android:text="A0"
-                    android:visibility="@{viewModel.onprogress? View.VISIBLE : View.GONE}" />
+                     />
 
                 <EditText
                     style="@style/Sub_TEXTVIEW_STYLE2"
@@ -965,7 +963,7 @@
                 <TextView
                     style="@style/Sub_TEXTVIEW_STYLE1"
                     android:text="A1"
-                    android:visibility="@{viewModel.onprogress? View.VISIBLE : View.GONE}" />
+                     />
 
                 <EditText
                     style="@style/Sub_TEXTVIEW_STYLE2"
@@ -988,7 +986,7 @@
                 <TextView
                     style="@style/Sub_TEXTVIEW_STYLE1"
                     android:text="A2"
-                    android:visibility="@{viewModel.onprogress? View.VISIBLE : View.GONE}" />
+                     />
 
                 <EditText
                     style="@style/Sub_TEXTVIEW_STYLE2"
@@ -1011,7 +1009,7 @@
                 <TextView
                     style="@style/Sub_TEXTVIEW_STYLE1"
                     android:text="A3"
-                    android:visibility="@{viewModel.onprogress? View.VISIBLE : View.GONE}" />
+                     />
 
                 <EditText
                     style="@style/Sub_TEXTVIEW_STYLE2"
@@ -1034,7 +1032,7 @@
                 <TextView
                     style="@style/Sub_TEXTVIEW_STYLE1"
                     android:text="A4"
-                    android:visibility="@{viewModel.onprogress? View.VISIBLE : View.GONE}" />
+                     />
 
                 <EditText
                     style="@style/Sub_TEXTVIEW_STYLE2"
@@ -1057,7 +1055,7 @@
                 <TextView
                     style="@style/Sub_TEXTVIEW_STYLE1"
                     android:text="A5"
-                    android:visibility="@{viewModel.onprogress? View.VISIBLE : View.GONE}" />
+                     />
 
                 <EditText
                     style="@style/Sub_TEXTVIEW_STYLE2"
@@ -1080,7 +1078,7 @@
                 <TextView
                     style="@style/Sub_TEXTVIEW_STYLE1"
                     android:text="X0"
-                    android:visibility="@{viewModel.onprogress? View.VISIBLE : View.GONE}" />
+                     />
 
                 <EditText
                     style="@style/Sub_TEXTVIEW_STYLE2"
@@ -1104,7 +1102,7 @@
                 <TextView
                     style="@style/Sub_TEXTVIEW_STYLE1"
                     android:text="Y0"
-                    android:visibility="@{viewModel.onprogress? View.VISIBLE : View.GONE}" />
+                     />
 
                 <EditText
                     style="@style/Sub_TEXTVIEW_STYLE2"
@@ -1135,7 +1133,7 @@
                         style="@style/Sub_TEXTVIEW_STYLE1"
                         android:text="수직 조정 파라미터"
                         android:textColor="@color/grey_33"
-                        android:visibility="@{viewModel.onprogress? View.VISIBLE : View.GONE}" />
+                         />
 
                 </LinearLayout>
 
@@ -1146,7 +1144,7 @@
                     <TextView
                         style="@style/Sub_TEXTVIEW_STYLE1"
                         android:text="사용 여부"
-                        android:visibility="@{viewModel.onprogress? View.VISIBLE : View.GONE}"/>
+                        />
 
                     <Switch
                         android:layout_width="wrap_content"
@@ -1170,7 +1168,7 @@
                     <TextView
                         style="@style/Sub_TEXTVIEW_STYLE1"
                         android:text="조정 상수"
-                        android:visibility="@{viewModel.onprogress? View.VISIBLE : View.GONE}" />
+                         />
 
                     <EditText
                         style="@style/Sub_TEXTVIEW_STYLE2"
@@ -1194,7 +1192,7 @@
                     <TextView
                         style="@style/Sub_TEXTVIEW_STYLE1"
                         android:text="북 편경사(ppm)"
-                        android:visibility="@{viewModel.onprogress? View.VISIBLE : View.GONE}" />
+                         />
 
                     <EditText
                         style="@style/Sub_TEXTVIEW_STYLE2"
@@ -1218,7 +1216,7 @@
                     <TextView
                         style="@style/Sub_TEXTVIEW_STYLE1"
                         android:text="동 편경사(ppm)"
-                        android:visibility="@{viewModel.onprogress? View.VISIBLE : View.GONE}" />
+                         />
 
                     <EditText
                         style="@style/Sub_TEXTVIEW_STYLE2"
@@ -1242,7 +1240,7 @@
                     <TextView
                         style="@style/Sub_TEXTVIEW_STYLE1"
                         android:text="원북방향"
-                        android:visibility="@{viewModel.onprogress? View.VISIBLE : View.GONE}" />
+                         />
 
                     <EditText
                         style="@style/Sub_TEXTVIEW_STYLE2"
@@ -1266,7 +1264,7 @@
                     <TextView
                         style="@style/Sub_TEXTVIEW_STYLE1"
                         android:text="원동방향"
-                        android:visibility="@{viewModel.onprogress? View.VISIBLE : View.GONE}" />
+                         />
 
                     <EditText
                         style="@style/Sub_TEXTVIEW_STYLE2"
@@ -1296,7 +1294,7 @@
                         style="@style/Sub_TEXTVIEW_STYLE1"
                         android:text="그리드 파일"
                         android:textColor="@color/grey_33"
-                        android:visibility="@{viewModel.onprogress? View.VISIBLE : View.GONE}" />
+                         />
 
                 </LinearLayout>
 
@@ -1307,7 +1305,7 @@
                     <TextView
                         style="@style/Sub_TEXTVIEW_STYLE1"
                         android:text="사용 여부"
-                        android:visibility="@{viewModel.onprogress? View.VISIBLE : View.GONE}"/>
+                        />
 
                     <Switch
                         android:layout_width="wrap_content"
@@ -1331,7 +1329,7 @@
                     <TextView
                         style="@style/Sub_TEXTVIEW_STYLE1"
                         android:text="경로"
-                        android:visibility="@{viewModel.onprogress? View.VISIBLE : View.GONE}" />
+                         />
 
                     <ImageView
                         android:layout_width="@dimen/rightArrowSize"
@@ -1362,7 +1360,7 @@
                         style="@style/Sub_TEXTVIEW_STYLE1"
                         android:text="지역 옵셋"
                         android:textColor="@color/grey_33"
-                        android:visibility="@{viewModel.onprogress? View.VISIBLE : View.GONE}" />
+                         />
 
                 </LinearLayout>
 
@@ -1373,7 +1371,7 @@
                     <TextView
                         style="@style/Sub_TEXTVIEW_STYLE1"
                         android:text="입력 매개 변수 사용"
-                        android:visibility="@{viewModel.onprogress? View.VISIBLE : View.GONE}"/>
+                        />
 
                     <Switch
                         android:layout_width="wrap_content"
@@ -1397,7 +1395,7 @@
                     <TextView
                         style="@style/Sub_TEXTVIEW_STYLE1"
                         android:text="X"
-                        android:visibility="@{viewModel.onprogress? View.VISIBLE : View.GONE}" />
+                         />
 
                     <EditText
                         style="@style/Sub_TEXTVIEW_STYLE2"
@@ -1421,7 +1419,7 @@
                     <TextView
                         style="@style/Sub_TEXTVIEW_STYLE1"
                         android:text="Y"
-                        android:visibility="@{viewModel.onprogress? View.VISIBLE : View.GONE}" />
+                         />
 
                     <EditText
                         style="@style/Sub_TEXTVIEW_STYLE2"
@@ -1445,7 +1443,7 @@
                     <TextView
                         style="@style/Sub_TEXTVIEW_STYLE1"
                         android:text="레벨"
-                        android:visibility="@{viewModel.onprogress? View.VISIBLE : View.GONE}" />
+                         />
 
                     <EditText
                         style="@style/Sub_TEXTVIEW_STYLE2"

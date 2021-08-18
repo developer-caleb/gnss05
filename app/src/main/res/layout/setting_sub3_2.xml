@@ -4,9 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
     <data>
         <import type="android.view.View"/>
-        <variable
-            name="viewModel"
-            type="kr.loplab.gnss05.activities.viewmodel.ReferenceContryViewModel" />
+
     </data>
 <androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
@@ -44,7 +42,7 @@
                     style="@style/Sub_TEXTVIEW_STYLE1"
                     android:text="Prompt tone"
                     android:textColor="@color/grey_33"
-                    android:visibility="@{viewModel.onprogress? View.VISIBLE : View.GONE}" />
+                     />
 
             </LinearLayout>
 
@@ -53,7 +51,7 @@
                 <TextView
                     style="@style/Sub_TEXTVIEW_STYLE1"
                     android:text="수집 범위"
-                    android:visibility="@{viewModel.onprogress? View.VISIBLE : View.GONE}" />
+                     />
 
                 <Switch
                     android:layout_width="wrap_content"
@@ -75,7 +73,7 @@
                 <TextView
                     style="@style/Sub_TEXTVIEW_STYLE1"
                     android:text="Save Point"
-                    android:visibility="@{viewModel.onprogress? View.VISIBLE : View.GONE}" />
+                     />
 
                 <Switch
                     android:layout_width="wrap_content"
@@ -99,7 +97,7 @@
                     android:layout_width="100dp"
                     android:layout_weight="0"
                     android:text="Volume"
-                    android:visibility="@{viewModel.onprogress? View.VISIBLE : View.GONE}" />
+                     />
 
                 <SeekBar
 
@@ -122,7 +120,7 @@
                 <TextView
                     style="@style/Sub_TEXTVIEW_STYLE1"
                     android:text="음성 방송"
-                    android:visibility="@{viewModel.onprogress? View.VISIBLE : View.GONE}" />
+                     />
 
                 <Switch
                     android:layout_width="wrap_content"
@@ -144,7 +142,7 @@
                 <TextView
                     style="@style/Sub_TEXTVIEW_STYLE1"
                     android:text="TTS 설정"
-                    android:visibility="@{viewModel.onprogress? View.VISIBLE : View.GONE}" />
+                     />
 
                 <TextView
                     style="@style/Sub_TEXTVIEW_STYLE3"
@@ -178,7 +176,7 @@
                     android:layout_width="100dp"
                     android:layout_weight="0"
                     android:text="Volume"
-                    android:visibility="@{viewModel.onprogress? View.VISIBLE : View.GONE}" />
+                     />
 
                 <SeekBar
                     android:id="@+id/seekBar"
@@ -198,7 +196,7 @@
                     style="@style/Sub_TEXTVIEW_STYLE1"
                     android:text="옵션"
                     android:textColor="@color/grey_33"
-                    android:visibility="@{viewModel.onprogress? View.VISIBLE : View.GONE}" />
+                     />
 
             </LinearLayout>
 
@@ -207,7 +205,7 @@
                 <TextView
                     style="@style/Sub_TEXTVIEW_STYLE1"
                     android:text="작업모드"
-                    android:visibility="@{viewModel.onprogress? View.VISIBLE : View.GONE}" />
+                     />
 
                 <Switch
                     android:layout_width="wrap_content"
@@ -229,7 +227,7 @@
                 <TextView
                     style="@style/Sub_TEXTVIEW_STYLE1"
                     android:text="데이터 연결상태"
-                    android:visibility="@{viewModel.onprogress? View.VISIBLE : View.GONE}" />
+                     />
 
                 <Switch
                     android:layout_width="wrap_content"
@@ -251,7 +249,7 @@
                 <TextView
                     style="@style/Sub_TEXTVIEW_STYLE1"
                     android:text="솔루션 정보"
-                    android:visibility="@{viewModel.onprogress? View.VISIBLE : View.GONE}" />
+                     />
 
                 <Switch
                     android:layout_width="wrap_content"
@@ -273,7 +271,7 @@
                 <TextView
                     style="@style/Sub_TEXTVIEW_STYLE1"
                     android:text="Inertial Navigation State"
-                    android:visibility="@{viewModel.onprogress? View.VISIBLE : View.GONE}" />
+                     />
 
                 <Switch
                     android:layout_width="wrap_content"
@@ -295,7 +293,7 @@
                 <TextView
                     style="@style/Sub_TEXTVIEW_STYLE1"
                     android:text="측설"
-                    android:visibility="@{viewModel.onprogress? View.VISIBLE : View.GONE}" />
+                     />
 
                 <Switch
                     android:layout_width="wrap_content"

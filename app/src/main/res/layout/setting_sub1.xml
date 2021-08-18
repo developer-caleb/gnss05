@@ -4,9 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
     <data>
         <import type="android.view.View"/>
-        <variable
-            name="viewModel"
-            type="kr.loplab.gnss05.activities.viewmodel.ReferenceContryViewModel" />
+
     </data>
 <androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
@@ -43,7 +41,7 @@
                 <TextView
                     style="@style/Sub_TEXTVIEW_STYLE1"
                     android:text="점 저장소"
-                    android:visibility="@{viewModel.onprogress? View.VISIBLE : View.GONE}" />
+                     />
 
                 <TextView
                     style="@style/Sub_TEXTVIEW_STYLE3"
@@ -77,7 +75,7 @@
                 <TextView
                     style="@style/Sub_TEXTVIEW_STYLE1"
                     android:text="측정 키"
-                    android:visibility="@{viewModel.onprogress? View.VISIBLE : View.GONE}"/>
+                    />
 
                 <TextView
                     style="@style/Sub_TEXTVIEW_STYLE3"
@@ -112,7 +110,7 @@
                 <TextView
                     style="@style/Sub_TEXTVIEW_STYLE1"
                     android:text="TOPO 측정"
-                    android:visibility="@{viewModel.onprogress? View.VISIBLE : View.GONE}"/>
+                    />
 
                 <TextView
                     style="@style/Sub_TEXTVIEW_STYLE3"
@@ -147,7 +145,7 @@
                 <TextView
                     style="@style/Sub_TEXTVIEW_STYLE1"
                     android:text="컨트롤 측정"
-                    android:visibility="@{viewModel.onprogress? View.VISIBLE : View.GONE}"/>
+                    />
 
                 <TextView
                     style="@style/Sub_TEXTVIEW_STYLE3"
@@ -182,7 +180,7 @@
                 <TextView
                     style="@style/Sub_TEXTVIEW_STYLE1"
                     android:text="빠른 측정"
-                    android:visibility="@{viewModel.onprogress? View.VISIBLE : View.GONE}"/>
+                    />
 
                 <TextView
                     style="@style/Sub_TEXTVIEW_STYLE3"
@@ -217,7 +215,7 @@
                 <TextView
                     style="@style/Sub_TEXTVIEW_STYLE1"
                     android:text="자동 측정"
-                    android:visibility="@{viewModel.onprogress? View.VISIBLE : View.GONE}"/>
+                    />
 
                 <TextView
                     style="@style/Sub_TEXTVIEW_STYLE3"
@@ -252,7 +250,7 @@
                 <TextView
                     style="@style/Sub_TEXTVIEW_STYLE1"
                     android:text="모서리 측정"
-                    android:visibility="@{viewModel.onprogress? View.VISIBLE : View.GONE}"/>
+                    />
 
                 <TextView
                     style="@style/Sub_TEXTVIEW_STYLE3"
@@ -287,7 +285,7 @@
                 <TextView
                     style="@style/Sub_TEXTVIEW_STYLE1"
                     android:text="경사 측정"
-                    android:visibility="@{viewModel.onprogress? View.VISIBLE : View.GONE}"/>
+                    />
 
                 <TextView
                     style="@style/Sub_TEXTVIEW_STYLE3"
@@ -322,7 +320,7 @@
                 <TextView
                     style="@style/Sub_TEXTVIEW_STYLE1"
                     android:text="타워 점"
-                    android:visibility="@{viewModel.onprogress? View.VISIBLE : View.GONE}"/>
+                    />
 
                 <TextView
                     style="@style/Sub_TEXTVIEW_STYLE3"
@@ -357,7 +355,7 @@
                 <TextView
                     style="@style/Sub_TEXTVIEW_STYLE1"
                     android:text="근접점"
-                    android:visibility="@{viewModel.onprogress? View.VISIBLE : View.GONE}"/>
+                    />
 
                 <TextView
                     style="@style/Sub_TEXTVIEW_STYLE3"
@@ -392,7 +390,7 @@
                 <TextView
                     style="@style/Sub_TEXTVIEW_STYLE1"
                     android:text="먼점"
-                    android:visibility="@{viewModel.onprogress? View.VISIBLE : View.GONE}"/>
+                    />
 
                 <TextView
                     style="@style/Sub_TEXTVIEW_STYLE3"
@@ -427,7 +425,7 @@
                 <TextView
                     style="@style/Sub_TEXTVIEW_STYLE1"
                     android:text="마지막점"
-                    android:visibility="@{viewModel.onprogress? View.VISIBLE : View.GONE}"/>
+                    />
 
                 <TextView
                     style="@style/Sub_TEXTVIEW_STYLE3"
@@ -462,7 +460,7 @@
                 <TextView
                     style="@style/Sub_TEXTVIEW_STYLE1"
                     android:text="다음점"
-                    android:visibility="@{viewModel.onprogress? View.VISIBLE : View.GONE}"/>
+                    />
 
                 <TextView
                     style="@style/Sub_TEXTVIEW_STYLE3"
@@ -497,7 +495,7 @@
                 <TextView
                     style="@style/Sub_TEXTVIEW_STYLE1"
                     android:text="측설점 압축"
-                    android:visibility="@{viewModel.onprogress? View.VISIBLE : View.GONE}"/>
+                    />
 
                 <TextView
                     style="@style/Sub_TEXTVIEW_STYLE3"

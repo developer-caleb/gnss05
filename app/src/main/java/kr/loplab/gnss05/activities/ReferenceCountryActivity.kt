@@ -108,7 +108,7 @@ class ReferenceCountryActivity : ActivityBase<ActivityReferenceCountryBinding>()
         viewBinding.layoutReferenceCountryAutoplay.setOnClickListener {
             viewBinding.swReferenceCountryAutoplay.isChecked = !viewBinding.swReferenceCountryAutoplay.isChecked
             PrefUtil.setBoolean(applicationContext, REFERENCE_COUNTRY_AUTO_PLAY, viewBinding.swReferenceCountryAutoplay.isChecked)
-
+            //PrefUtil.setBoolean(applicationContext, REFERENCE_COUNTRY_AUTO_PLAY, true)
         }
     }
 

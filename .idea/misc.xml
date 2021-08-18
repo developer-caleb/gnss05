@@ -47,12 +47,15 @@
         <entry key="app/src/main/res/layout/activity_type5.xml" value="0.31614583333333335" />
         <entry key="app/src/main/res/layout/activity_user_format.xml" value="0.22" />
         <entry key="app/src/main/res/layout/activity_user_format_view.xml" value="0.22" />
+        <entry key="app/src/main/res/layout/cloud_set.xml" value="0.244140625" />
         <entry key="app/src/main/res/layout/connect_equipment.xml" value="0.165625" />
         <entry key="app/src/main/res/layout/coordinate_system.xml" value="0.246484375" />
         <entry key="app/src/main/res/layout/coordinate_system_1.xml" value="0.155078125" />
         <entry key="app/src/main/res/layout/coordinate_system_deprecated.xml" value="0.1578125" />
         <entry key="app/src/main/res/layout/coordinate_system_sub1.xml" value="0.246484375" />
         <entry key="app/src/main/res/layout/coordinate_system_sub10.xml" value="0.246484375" />
+        <entry key="app/src/main/res/layout/coordinate_system_sub2.xml" value="0.244140625" />
+        <entry key="app/src/main/res/layout/coordinate_system_sub7_2.xml" value="0.11953125" />
         <entry key="app/src/main/res/layout/dialog1.xml" value="0.22" />
         <entry key="app/src/main/res/layout/file_call.xml" value="0.25" />
         <entry key="app/src/main/res/layout/file_out.xml" value="0.246484375" />
@@ -92,6 +95,9 @@
         <entry key="app/src/main/res/layout/tool_new_customtabtextview.xml" value="0.238671875" />
         <entry key="app/src/main/res/layout/tool_viewpageradapter.xml" value="0.18" />
         <entry key="app/src/main/res/layout/topo.xml" value="0.246484375" />
+        <entry key="app/src/main/res/layout/work_sub1_file_directory.xml" value="0.244140625" />
+        <entry key="app/src/main/res/layout/worker.xml" value="0.244140625" />
+        <entry key="app/src/main/res/layout/workgroup_sub1.xml" value="0.244140625" />
       </map>
     </option>
   </component>

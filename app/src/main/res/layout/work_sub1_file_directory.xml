@@ -4,10 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
     <data>
         <import type="android.view.View"/>
-        <variable
-            name="viewModel"
-            type="kr.loplab.gnss05.activities.viewmodel.ReferenceContryViewModel" />
-    </data>
+         </data>
 <androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -54,7 +51,7 @@
                     android:paddingLeft="8dp"
                     android:text="내장 저장장치/Surpad/Project"
                     android:textColor="@color/grey_33"
-                    android:visibility="@{viewModel.onprogress? View.VISIBLE : View.GONE}" />
+                     />
 
             </LinearLayout>
 
@@ -75,7 +72,7 @@
                     android:paddingLeft="8dp"
                     android:text="내부 저장소 루트 디렉토리로 이동"
                     android:textColor="@color/grey_33"
-                    android:visibility="@{viewModel.onprogress? View.VISIBLE : View.GONE}" />
+                     />
 
 
             </LinearLayout>
@@ -103,7 +100,7 @@
                     android:paddingLeft="8dp"
                     android:text="프로그램 저장 디렉토리로 이동"
                     android:textColor="@color/grey_33"
-                    android:visibility="@{viewModel.onprogress? View.VISIBLE : View.GONE}" />
+                     />
 
 
             </LinearLayout>
@@ -131,7 +128,7 @@
                     android:paddingLeft="8dp"
                     android:text="SD카드 루트 디렉토리로 이동"
                     android:textColor="@color/grey_33"
-                    android:visibility="@{viewModel.onprogress? View.VISIBLE : View.GONE}" />
+                     />
 
 
             </LinearLayout>
@@ -159,7 +156,7 @@
                     android:paddingLeft="8dp"
                     android:text="돌아가기기"
                    android:textColor="@color/grey_33"
-                    android:visibility="@{viewModel.onprogress? View.VISIBLE : View.GONE}" />
+                     />
 
 
             </LinearLayout>
@@ -187,7 +184,7 @@
                     android:paddingLeft="8dp"
                     android:text="20210804"
                     android:textColor="@color/grey_33"
-                    android:visibility="@{viewModel.onprogress? View.VISIBLE : View.GONE}" />
+                     />
 
 
             </LinearLayout>

@@ -5,9 +5,7 @@
     tools:ignore="MissingDefaultResource">
     <data>
         <import type="android.view.View"/>
-        <variable
-            name="viewModel"
-            type="kr.loplab.gnss05.activities.viewmodel.ReferenceContryViewModel" />
+
     </data>
 <androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
@@ -325,7 +323,7 @@
         <TextView
             style="@style/Sub_TEXTVIEW_STYLE1"
             android:text="기준국 안테나 값이 기준국 시작점과 동일한 지 확인하십시오."
-            android:visibility="@{viewModel.onprogress? View.VISIBLE : View.GONE}" />
+             />
 
 
         <LinearLayout
