@@ -3,8 +3,11 @@ package kr.loplab.gnss05.activities.workmanager
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.lifecycle.lifecycleScope
 import androidx.room.Room
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import kr.loplab.gnss02.ActivityBase
 import kr.loplab.gnss05.R
 import kr.loplab.gnss05.common.Define.WORKERS_DB
@@ -22,7 +25,7 @@ class WorkManagerActivity : ActivityBase<ActivityWorkManagerBinding>() {
 
     override fun init() {
         db = Room.databaseBuilder(this, AppDatabase::class.java, WORKERS_DB)
-            .allowMainThreadQueries()
+            //.allowMainThreadQueries()
             .build()
         }
 
@@ -41,6 +44,7 @@ class WorkManagerActivity : ActivityBase<ActivityWorkManagerBinding>() {
     }
 
     override fun initDatabinding() {
-        viewBinding.dbText.text = db.workerDao().all.toString()
+        lifecycleScope.launch(Dispatchers.IO) {
+        viewBinding.dbText.text = db.workerDao().all.toString()}
     }
 }
