@@ -86,16 +86,14 @@ public class TableViewAdapter extends AbstractTableAdapter<ColumnHeader, RowHead
         View layout;
 
         switch (viewType) {
-            case MOOD_CELL_TYPE:
+           /* case MOOD_CELL_TYPE:
                 // Get image cell layout which has ImageView on the base instead of TextView.
                 layout = inflater.inflate(R.layout.table_view_image_cell_layout, parent, false);
-
                 return new MoodCellViewHolder(layout);
             case GENDER_CELL_TYPE:
                 // Get image cell layout which has ImageView instead of TextView.
                 layout = inflater.inflate(R.layout.table_view_image_cell_layout, parent, false);
-
-                return new GenderCellViewHolder(layout);
+                return new GenderCellViewHolder(layout);*/
             default:
                 // For cells that display a text
                 layout = inflater.inflate(R.layout.table_view_cell_layout, parent, false);
@@ -124,7 +122,7 @@ public class TableViewAdapter extends AbstractTableAdapter<ColumnHeader, RowHead
             columnPosition, int rowPosition) {
 
         switch (holder.getItemViewType()) {
-            case MOOD_CELL_TYPE:
+          /*  case MOOD_CELL_TYPE:
                 MoodCellViewHolder moodViewHolder = (MoodCellViewHolder) holder;
 
                 moodViewHolder.cell_image.setImageResource(mTableViewModel.getDrawable((int) cellItemModel
@@ -135,7 +133,7 @@ public class TableViewAdapter extends AbstractTableAdapter<ColumnHeader, RowHead
 
                 genderViewHolder.cell_image.setImageResource(mTableViewModel.getDrawable((int)
                         cellItemModel.getData(), true));
-                break;
+                break;*/
             default:
                 // Get the holder to update cell item text
                 CellViewHolder viewHolder = (CellViewHolder) holder;

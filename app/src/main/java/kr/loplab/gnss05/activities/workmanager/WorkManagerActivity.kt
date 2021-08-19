@@ -87,7 +87,7 @@ class WorkManagerActivity : ActivityBase<ActivityWorkManagerBinding>() {
 
      fun initializeTableView() {
         // Create TableView View model class  to group view models of TableView
-        tableViewModel = TableViewModel()
+        tableViewModel = TableWorkerViewModel()
 
         // Create TableView Adapter
         val tableViewAdapter = TableViewAdapter(tableViewModel)
