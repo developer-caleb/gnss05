@@ -29,7 +29,6 @@ import androidx.annotation.NonNull;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Random;
 
 import kr.loplab.gnss05.tableview.TableViewModel;
 import kr.loplab.gnss05.tableview.model.Cell;
@@ -37,11 +36,18 @@ import kr.loplab.gnss05.tableview.model.ColumnHeader;
 import kr.loplab.gnss05.tableview.model.RowHeader;
 
 public class TableWorkerViewModel extends TableViewModel {
-    
+
     // Constant size for dummy data sets
-    private static final int COLUMN_SIZE = 4;
-    private static final int ROW_SIZE = 5;
+    private static int COLUMN_SIZE = 4;
+    private static int ROW_SIZE = 5;
     private ArrayList<String> customFileFormat = new ArrayList<>(Arrays.asList("번호", "작업자", "이름", "사용자","암호"));
+    List<Worker> workerslist =null;
+
+     TableWorkerViewModel(){}
+     TableWorkerViewModel(List<Worker> workerslist){
+         ROW_SIZE = workerslist.size();
+        this.workerslist = workerslist;
+    }
 
 
     @NonNull
@@ -83,11 +89,21 @@ public class TableWorkerViewModel extends TableViewModel {
                 Object text = "";//"cell " + j + " " + i;
                 //final int random = new Random().nextInt();
                 if (j == 0) {
-                    text= "형식명";
+                    if(workerslist!=null && workerslist.size()!=0){
+                        text= workerslist.get(i).getWorker();
+                    }else text= "";
                 } else if (j == 1) {
-                    text= "csv";
+                    if(workerslist!=null && workerslist.size()!=0){
+                        text= workerslist.get(i).getName();
+                    }else text= "";
                 } else if (j == 2) {
-                    text= "[이름], [코드], [이름], [코드], [이름], [코드], [이름], [코드], [이름], [코드], [이름], [코드],  ";
+                    if(workerslist!=null && workerslist.size()!=0){
+                        text= workerslist.get(i).getUser();
+                    }else text= "";
+                }else if (j == 3) {
+                    if(workerslist!=null && workerslist.size()!=0){
+                        text= workerslist.get(i).getPassword();
+                    }else text= "";
                 }
                 // Create dummy id.
                 String id = j + "-" + i;

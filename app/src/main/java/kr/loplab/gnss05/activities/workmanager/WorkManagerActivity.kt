@@ -52,16 +52,16 @@ class WorkManagerActivity : ActivityBase<ActivityWorkManagerBinding>() {
     override fun initDatabinding() {
         lifecycleScope.launch(Dispatchers.IO) {
             viewBinding.dbText.text = db.workerDao().all.toString()
+            var  workerlist : List<Worker> = db.workerDao().all
+            initializeTableView(workerlist)
         }
         // Let's get TableView
         mTableView = findViewById(R.id.tableview2)
-
-        initializeTableView()
     }
 
-     fun initializeTableView() {
+     fun initializeTableView(workerlist : List<Worker>) {
         // Create TableView View model class  to group view models of TableView
-        tableWorkerViewModel = TableWorkerViewModel()
+        tableWorkerViewModel = TableWorkerViewModel(workerlist)
 
         // Create TableView Adapter
         val tableViewAdapter = TableViewAdapter(tableWorkerViewModel)

@@ -24,10 +24,9 @@
 
 package kr.loplab.gnss05.tableview;
 
-import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
 
-import kr.loplab.gnss05.R;
+import kr.loplab.gnss05.activities.workmanager.Worker;
 import kr.loplab.gnss05.tableview.model.Cell;
 import kr.loplab.gnss05.tableview.model.ColumnHeader;
 import kr.loplab.gnss05.tableview.model.RowHeader;
@@ -35,17 +34,22 @@ import kr.loplab.gnss05.tableview.model.RowHeader;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Random;
 
 
 public class TableViewModel {
     public static int selectedIndex = -1;
 
     // Constant size for dummy data sets
-    private static final int COLUMN_SIZE = 3;
-    private static final int ROW_SIZE = 5;
+    private static int COLUMN_SIZE = 3;
+    private static int ROW_SIZE = 5;
     private ArrayList<String> customFileFormat = new ArrayList<>(Arrays.asList("번호", "형식명", "확장명", "형식설명"));
 
+    public TableViewModel() {
+    }
+
+/*    public TableViewModel(List<Worker> workerList) {
+        ROW_SIZE = workerList.size();
+    }*/
 
     @NonNull
     private List<RowHeader> getSimpleRowHeaderList() {
