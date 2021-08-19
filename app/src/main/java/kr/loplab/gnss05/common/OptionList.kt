@@ -21,5 +21,8 @@ class OptionList {
       val DATA_CONNECTION_TYPE_List= arrayListOf<String>(
           "수신기 유심통신","내장 라디오","외장 라디오","듀얼"
       )
+      val NETWORK_MODE_List= arrayListOf<String>(
+          "GPRS","WIFI"
+      )
   }
 }

@@ -17,6 +17,7 @@ import kr.loplab.gnss05.common.OptionList
 import kr.loplab.gnss05.common.OptionList.Companion.COLLECTION_INTERVAL_LIST
 import kr.loplab.gnss05.common.OptionList.Companion.DATA_CONNECTION_TYPE_List
 import kr.loplab.gnss05.common.OptionList.Companion.DEPLACEMENT_MODE_LIST
+import kr.loplab.gnss05.common.OptionList.Companion.NETWORK_MODE_List
 import kr.loplab.gnss05.common.PrefUtil
 import kr.loplab.gnss05.databinding.ActivityReferenceCountryBinding
 
@@ -148,6 +149,25 @@ class ReferenceCountryActivity : ActivityBase<ActivityReferenceCountryBinding>()
             viewBinding.swNetworkAutoConnect.isChecked = !viewBinding.swNetworkAutoConnect.isChecked
             PrefUtil.setBoolean(applicationContext, NETWORK_AUTO_CONNECT, viewBinding.swNetworkAutoConnect.isChecked)
         }
+        viewBinding.layoutNetworkMode.setOnClickListener {
+            val dlg = MyDialog(this)
+            var alist = NETWORK_MODE_List
+            var prefvalue = Define.NETWORK_MODE
+            dlg.firstLayoutUse = false
+            dlg.list = alist
+            dlg.selectedposition= PrefUtil.getInt2(applicationContext, prefvalue)
+            dlg.start("")
+            dlg.setOnListClickedListener { view, i ->
+                Log.d(TAG, "initListener: $i")
+                viewModel1.setDataConnectionType(i)
+                PrefUtil.setInt(applicationContext, prefvalue, i)
+                viewBinding.tvNetworkMode.text = alist[PrefUtil.getInt2(applicationContext, prefvalue
+                )]
+                dlg.refresh()
+                dlg.dismiss()
+            }
+            dlg.setHeader("네트워크 모드")
+        }
     }
 
     override fun initDatabinding() {
@@ -165,6 +185,8 @@ class ReferenceCountryActivity : ActivityBase<ActivityReferenceCountryBinding>()
         viewBinding.swReferenceCountryAutoplay.isChecked =PrefUtil.getBoolean(applicationContext, REFERENCE_COUNTRY_AUTO_PLAY)
         viewBinding.swNetworkAutoConnect.isChecked =PrefUtil.getBoolean(applicationContext, NETWORK_AUTO_CONNECT)
         viewBinding.tvDataConnectionType.text = DATA_CONNECTION_TYPE_List[PrefUtil.getInt2(applicationContext, Define.DATA_CONNECTION_TYPE
+        )]
+        viewBinding.tvNetworkMode.text = NETWORK_MODE_List[PrefUtil.getInt2(applicationContext, NETWORK_MODE
         )]
 
     }

@@ -17,6 +17,7 @@ public class Define {
     public static final String REFERENCE_COUNTRY_AUTO_PLAY = "reference_country_auto_play";
     public static final String RAW_DATA_SAVE = "row_data_save";
     public static final String NETWORK_AUTO_CONNECT = "network_auto_connect";
+    public static final String NETWORK_MODE = "network_mode";
 
     //SharedPreference Code REFERENCE_COUNTRY_COORDINATE_SETTING
     public static final String REFERENCE_COUNTRY_COORDINATE_SETTING_NAME = "reference_country_coordinate_setting_name";

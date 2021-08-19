@@ -636,6 +636,7 @@
 
 
                 <LinearLayout
+                    android:id="@+id/layout_network_mode"
                     style="@style/ButtonLayout_STYLE01">
 
                     <TextView
@@ -645,6 +646,7 @@
 
 
                     <TextView
+                        android:id="@+id/tv_network_mode"
                         style="@style/Sub_TEXTVIEW_STYLE3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
