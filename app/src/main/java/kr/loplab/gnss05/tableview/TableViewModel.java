@@ -86,7 +86,7 @@ public class TableViewModel {
         for (int i = 0; i < ROW_SIZE; i++) {
             List<Cell> cellList = new ArrayList<>();
             for (int j = 0; j < COLUMN_SIZE; j++) {
-                Object text = "cell " + j + " " + i;
+                Object text = "";//"cell " + j + " " + i;
 
                 final int random = new Random().nextInt();
                 if (j == 0) {

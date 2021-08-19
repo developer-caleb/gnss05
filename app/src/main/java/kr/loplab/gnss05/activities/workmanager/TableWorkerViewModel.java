@@ -24,7 +24,6 @@
 
 package kr.loplab.gnss05.activities.workmanager;
 
-import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
 
 import java.util.ArrayList;
@@ -32,7 +31,6 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
-import kr.loplab.gnss05.R;
 import kr.loplab.gnss05.tableview.TableViewModel;
 import kr.loplab.gnss05.tableview.model.Cell;
 import kr.loplab.gnss05.tableview.model.ColumnHeader;
@@ -42,42 +40,14 @@ import kr.loplab.gnss05.tableview.model.RowHeader;
  * Created by evrencoskun on 4.02.2018.
  */
 
-public class TableWorkerViewModel extends TableViewModel{
+public class TableWorkerViewModel extends TableViewModel {
     public static int selectedIndex = -1;
 
-    // Columns indexes
-    public static final int MOOD_COLUMN_INDEX = 5;
-    public static final int GENDER_COLUMN_INDEX = 8;
-
-    // Constant values for icons
-    public static final int SAD = 1;
-    public static final int HAPPY = 2;
-    public static final int BOY = 1;
-    public static final int GIRL = 2;
-
     // Constant size for dummy data sets
-    private static final int COLUMN_SIZE = 3;
+    private static final int COLUMN_SIZE = 4;
     private static final int ROW_SIZE = 5;
-    private ArrayList<String> customFileFormat = new ArrayList<>(Arrays.asList("번호", "형식명", "확장명", "형식설명"));
+    private ArrayList<String> customFileFormat = new ArrayList<>(Arrays.asList("번호", "작업자", "이름", "사용자","암호"));
 
-
-    // Drawables
-    @DrawableRes
-    private final int mBoyDrawable;
-    @DrawableRes
-    private final int mGirlDrawable;
-    @DrawableRes
-    private final int mHappyDrawable;
-    @DrawableRes
-    private final int mSadDrawable;
-
-    public TableWorkerViewModel() {
-        // initialize drawables
-        mBoyDrawable = R.drawable.ic_male;
-        mGirlDrawable = R.drawable.ic_female;
-        mHappyDrawable = R.drawable.ic_happy;
-        mSadDrawable = R.drawable.ic_sad;
-    }
 
     @NonNull
     private List<RowHeader> getSimpleRowHeaderList() {
@@ -98,24 +68,11 @@ public class TableWorkerViewModel extends TableViewModel{
     @NonNull
     private List<ColumnHeader> getRandomColumnHeaderList() {
         List<ColumnHeader> list = new ArrayList<>();
-
         for (int i = 0; i < COLUMN_SIZE; i++) {
-            String title = "column " + i;
-            /*int nRandom = new Random().nextInt();
-            if (nRandom % 4 == 0 || nRandom % 3 == 0 || nRandom == i) {
-                title = "large column ㅣ너미ㅏ너ㅏ나나나나 " + i;
-            }*/
-            switch (i){
-                case 0 : title  = "형식명"; break;
-                case 1 : title  = "확장명"; break;
-                case 2 : title  = "형식설명"; break;
-
-            }
-
+            String title = customFileFormat.get(i + 1);
             ColumnHeader header = new ColumnHeader(String.valueOf(i), title);
             list.add(header);
         }
-
         return list;
     }
 
@@ -128,7 +85,7 @@ public class TableWorkerViewModel extends TableViewModel{
         for (int i = 0; i < ROW_SIZE; i++) {
             List<Cell> cellList = new ArrayList<>();
             for (int j = 0; j < COLUMN_SIZE; j++) {
-                Object text = "cell " + j + " " + i;
+                Object text = "";//"cell " + j + " " + i;
 
                 final int random = new Random().nextInt();
                 if (j == 0) {
@@ -140,10 +97,12 @@ public class TableWorkerViewModel extends TableViewModel{
                 } else if (j == 2) {
                     text= "[이름], [코드], [이름], [코드], [이름], [코드], [이름], [코드], [이름], [코드], [이름], [코드],  ";
                     //text = random;
+
                 }
 
                 // Create dummy id.
                 String id = j + "-" + i;
+
                 Cell cell;
                 cell = new Cell(id, text);
                 cellList.add(cell);
@@ -154,14 +113,6 @@ public class TableWorkerViewModel extends TableViewModel{
         return list;
     }
 
-    @DrawableRes
-    public int getDrawable(int value, boolean isGender) {
-        if (isGender) {
-            return value == BOY ? mBoyDrawable : mGirlDrawable;
-        } else {
-            return value == SAD ? mSadDrawable : mHappyDrawable;
-        }
-    }
 
     @NonNull
     public List<List<Cell>> getCellList() {

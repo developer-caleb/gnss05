@@ -38,8 +38,6 @@ import com.evrencoskun.tableview.sort.SortState;
 import kr.loplab.gnss05.R;
 import kr.loplab.gnss05.tableview.holder.CellViewHolder;
 import kr.loplab.gnss05.tableview.holder.ColumnHeaderViewHolder;
-import kr.loplab.gnss05.tableview.holder.GenderCellViewHolder;
-import kr.loplab.gnss05.tableview.holder.MoodCellViewHolder;
 import kr.loplab.gnss05.tableview.holder.RowHeaderViewHolder;
 import kr.loplab.gnss05.tableview.model.Cell;
 import kr.loplab.gnss05.tableview.model.ColumnHeader;
@@ -276,10 +274,10 @@ public class TableViewAdapter extends AbstractTableAdapter<ColumnHeader, RowHead
         // then you should fill this method to be able create different
         // type of CellViewHolder on "onCreateCellViewHolder"
         switch (column) {
-            case TableViewModel.MOOD_COLUMN_INDEX:
+           /* case TableViewModel.MOOD_COLUMN_INDEX:
                 return MOOD_CELL_TYPE;
             case TableViewModel.GENDER_COLUMN_INDEX:
-                return GENDER_CELL_TYPE;
+                return GENDER_CELL_TYPE;*/
             default:
                 // Default view type
                 return 0;
