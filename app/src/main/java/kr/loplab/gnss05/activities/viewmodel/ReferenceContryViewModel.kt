@@ -1,15 +1,15 @@
 package kr.loplab.gnss05.activities.viewmodel
 
-import android.app.Application
-import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import kr.loplab.gnss05.common.PrefUtil
+
 
 class ReferenceContryViewModel : ViewModel() {
     private var name = ""
     var onprogress = MutableLiveData<Boolean>(false)
     var bool_rawdatasave = MutableLiveData<Boolean>(false)
+    var data_connect_type = MutableLiveData<Int>(0)
+
     init {
 
     }
@@ -19,7 +19,10 @@ class ReferenceContryViewModel : ViewModel() {
     }
 
     fun getName() = name
-    fun setboolvalue(bool : Boolean){
+    public fun setRawDatavalue(bool : Boolean){
         bool_rawdatasave.postValue(bool);
+    }
+    fun setDataConnectionType(num : Int){
+      data_connect_type.postValue(num)
     }
 }

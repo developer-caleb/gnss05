@@ -18,5 +18,8 @@ class OptionList {
       val COLLECTION_INTERVAL_LIST = arrayListOf<String>(
           "60s","30s","15s","10s","5s","2s","1HZ","2HZ","5HZ"
       )
+      val DATA_CONNECTION_TYPE_List= arrayListOf<String>(
+          "수신기 유심통신","내장 라디오","외장 라디오","듀얼"
+      )
   }
 }

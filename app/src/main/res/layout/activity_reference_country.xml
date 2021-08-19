@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
     <data>
+
         <import type="android.view.View"/>
         <variable
             name="referencecontryviewmodel"
@@ -227,7 +228,9 @@
                     android:id="@+id/layout_option_raw_data_save"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:visibility="@{referencecontryviewmodel.bool_rawdatasave ? View.VISIBLE : View.GONE}"
+                    >
 
                     <View
                         android:layout_width="match_parent"
@@ -235,7 +238,9 @@
                         android:layout_weight="0"
                         android:background="@color/grey_EC" />
 
-                    <LinearLayout style="@style/ButtonLayout_STYLE01">
+                    <LinearLayout
+                        android:id="@+id/layout_current_point_name"
+                        style="@style/ButtonLayout_STYLE01">
 
                         <TextView
                             style="@style/Sub_TEXTVIEW_STYLE1"
@@ -243,11 +248,15 @@
                              />
 
                         <EditText
+                            android:id="@+id/et_current_point_name"
                             style="@style/Sub_TEXTVIEW_STYLE2"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="0"
-                            android:text="AAAA01" />
+                            android:text="AAAA01"
+                            android:inputType="text"
+                            android:background="@color/transparent"
+                            />
 
 
                     </LinearLayout>
@@ -296,6 +305,7 @@
                     android:background="@color/grey_cc" />
 
                 <LinearLayout
+                    android:id="@+id/layout_data_connection_type"
                     style="@style/ButtonLayout_STYLE01"
                     >
 
@@ -306,6 +316,7 @@
 
 
                     <TextView
+                        android:id="@+id/tv_data_connection_type"
                         style="@style/Sub_TEXTVIEW_STYLE3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -328,9 +339,12 @@
 
                 <!---데이터 연결방식[내장라디오] 하위 옵션-->
                 <LinearLayout
+                    android:id="@+id/layout_inner_radio"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:visibility="@{referencecontryviewmodel.data_connect_type == 1 ? View.VISIBLE : View.GONE }"
+                    >
 
                     <View
                         android:layout_width="match_parent"
@@ -495,7 +509,9 @@
                         android:background="@color/grey_EC" />
 
 
-                    <LinearLayout style="@style/ButtonLayout_STYLE01">
+                    <LinearLayout
+                        android:visibility="@{referencecontryviewmodel.data_connect_type == 2? View.VISIBLE : View.GONE}"
+                        style="@style/ButtonLayout_STYLE01">
 
                         <TextView
                             style="@style/Sub_TEXTVIEW_STYLE1"
@@ -534,6 +550,15 @@
 
                 <!---연결 옵션-->
                 <LinearLayout
+                    android:id="@+id/layout_connection_option"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:visibility=
+                    "@{referencecontryviewmodel.data_connect_type == 0 || referencecontryviewmodel.data_connect_type == 3? View.VISIBLE : View.GONE}"
+                    >
+                <LinearLayout
+
                     style="@style/ButtonLayout_STYLE01"
                     android:background="@color/grey_cc">
 
@@ -559,6 +584,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="0"
+                        android:textColor="@color/grey_66"
                         android:text="NTRIP" />
 
                     <ImageView
@@ -566,6 +592,7 @@
                         android:layout_height="@dimen/rightArrowSize"
                         android:layout_weight="0"
                         android:padding="5dp"
+                        android:visibility="invisible"
                         android:layout_marginRight="8dp"
                         app:srcCompat="@drawable/next_icon" />
 
@@ -630,9 +657,18 @@
                         app:srcCompat="@drawable/next_icon" />
 
                 </LinearLayout>
-
+                </LinearLayout>
 
                 <!---네트워크 모드가 GPRS모드 일때만 활성화-->
+               <LinearLayout
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:orientation="vertical">
+                   <View
+                       android:layout_width="match_parent"
+                       android:layout_height="1dp"
+                       android:layout_weight="0"
+                       android:background="@color/grey_EC" />
                 <LinearLayout
                     style="@style/ButtonLayout_STYLE01">
 
@@ -659,7 +695,7 @@
                         app:srcCompat="@drawable/next_icon" />
 
                 </LinearLayout>
-
+            </LinearLayout>
 
 
 

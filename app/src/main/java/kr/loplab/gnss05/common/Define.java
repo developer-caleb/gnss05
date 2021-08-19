@@ -13,6 +13,7 @@ public class Define {
     public static final String START_MODE = "start_mode";
     public static final String DEPLACEMENT_MODE = "deplacement_mode";
     public static final String COLLECTION_INTERVAL = "collection_interval";
+    public static final String DATA_CONNECTION_TYPE = "data_connection_type";
     public static final String REFERENCE_COUNTRY_AUTO_PLAY = "reference_country_auto_play";
     public static final String RAW_DATA_SAVE = "row_data_save";
 

@@ -6,22 +6,19 @@ import android.util.Log
 import android.view.inputmethod.InputMethodManager
 import androidx.appcompat.app.ActionBar
 import androidx.lifecycle.ViewModelProvider
-import kotlinx.android.synthetic.main.activity_main.*
 
 import kr.loplab.gnss02.ActivityBase
 import kr.loplab.gnss05.MyDialog
-import kr.loplab.gnss05.PositionInformationActivity
 import kr.loplab.gnss05.R
 import kr.loplab.gnss05.activities.viewmodel.ReferenceContryViewModel
 import kr.loplab.gnss05.common.Define
-import kr.loplab.gnss05.common.Define.RAW_DATA_SAVE
-import kr.loplab.gnss05.common.Define.REFERENCE_COUNTRY_AUTO_PLAY
+import kr.loplab.gnss05.common.Define.*
 import kr.loplab.gnss05.common.OptionList
 import kr.loplab.gnss05.common.OptionList.Companion.COLLECTION_INTERVAL_LIST
+import kr.loplab.gnss05.common.OptionList.Companion.DATA_CONNECTION_TYPE_List
 import kr.loplab.gnss05.common.OptionList.Companion.DEPLACEMENT_MODE_LIST
 import kr.loplab.gnss05.common.PrefUtil
 import kr.loplab.gnss05.databinding.ActivityReferenceCountryBinding
-import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class ReferenceCountryActivity : ActivityBase<ActivityReferenceCountryBinding>() {
     override val layoutResourceId: Int
@@ -111,6 +108,25 @@ class ReferenceCountryActivity : ActivityBase<ActivityReferenceCountryBinding>()
             }
             dlg.setHeader("수집간격")
         }
+        viewBinding.layoutDataConnectionType.setOnClickListener {
+            val dlg = MyDialog(this)
+            var alist = DATA_CONNECTION_TYPE_List
+            var prefvalue = Define.DATA_CONNECTION_TYPE
+            dlg.firstLayoutUse = false
+            dlg.list = alist
+            dlg.selectedposition= PrefUtil.getInt2(applicationContext, prefvalue)
+            dlg.start("")
+            dlg.setOnListClickedListener { view, i ->
+                Log.d(TAG, "initListener: $i")
+                viewModel1.setDataConnectionType(i)
+                PrefUtil.setInt(applicationContext, prefvalue, i)
+                viewBinding.tvDataConnectionType.text = alist[PrefUtil.getInt2(applicationContext, prefvalue
+                )]
+                dlg.refresh()
+                dlg.dismiss()
+            }
+            dlg.setHeader("데이터 연결방식")
+        }
         viewBinding.layoutReferenceCountryAutoplay.setOnClickListener {
             viewBinding.swReferenceCountryAutoplay.isChecked = !viewBinding.swReferenceCountryAutoplay.isChecked
             PrefUtil.setBoolean(applicationContext, REFERENCE_COUNTRY_AUTO_PLAY, viewBinding.swReferenceCountryAutoplay.isChecked)
@@ -118,13 +134,21 @@ class ReferenceCountryActivity : ActivityBase<ActivityReferenceCountryBinding>()
         }
         viewBinding.layoutRawDataSave.setOnClickListener {
             var bool = !viewModel1.bool_rawdatasave.value!!
-            viewModel1.setboolvalue(bool)
+            viewModel1.setRawDatavalue(bool)
             PrefUtil.setBoolean(this, RAW_DATA_SAVE, bool);
+        }
+        viewBinding.layoutCurrentPointName.setOnClickListener {
+            Log.d(TAG, "initListener: layoutCurrentPointName Clicked!")
+            viewBinding.etCurrentPointName.requestFocus()
+            val imm: InputMethodManager =
+                getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
+            imm.showSoftInput(viewBinding.etCurrentPointName,0)
         }
     }
 
     override fun initDatabinding() {
-        viewModel1.bool_rawdatasave.postValue(PrefUtil.getBoolean(this, RAW_DATA_SAVE))
+        viewModel1.setRawDatavalue(PrefUtil.getBoolean(this, RAW_DATA_SAVE))
+        viewModel1.setDataConnectionType(PrefUtil.getInt2(this, DATA_CONNECTION_TYPE))
         viewBinding.tvStartMode.text = OptionList.START_MODE_LIST[PrefUtil.getInt2(applicationContext,
             Define.START_MODE
         )]
@@ -135,6 +159,9 @@ class ReferenceCountryActivity : ActivityBase<ActivityReferenceCountryBinding>()
             Define.COLLECTION_INTERVAL
         )]
         viewBinding.swReferenceCountryAutoplay.isChecked =PrefUtil.getBoolean(applicationContext, REFERENCE_COUNTRY_AUTO_PLAY)
+        viewBinding.tvDataConnectionType.text = DATA_CONNECTION_TYPE_List[PrefUtil.getInt2(applicationContext, Define.DATA_CONNECTION_TYPE
+        )]
+
     }
 
 
