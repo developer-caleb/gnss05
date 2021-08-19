@@ -24,8 +24,8 @@
   -->
 
 <resources>
-    <color name="table_view_default_separator_color">#E7E7E7</color>
+    <color name="table_view_default_separator_color">#888888</color>
     <color name="table_view_default_unselected_background_color">#ffffff</color>
-    <color name="table_view_default_selected_background_color">#fada65</color>
+    <color name="table_view_default_selected_background_color">#FFFF00</color>
     <color name="table_view_default_shadow_background_color">#f2f2f2</color>
 </resources>

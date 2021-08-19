@@ -36,13 +36,8 @@ import kr.loplab.gnss05.tableview.model.Cell;
 import kr.loplab.gnss05.tableview.model.ColumnHeader;
 import kr.loplab.gnss05.tableview.model.RowHeader;
 
-/**
- * Created by evrencoskun on 4.02.2018.
- */
-
 public class TableWorkerViewModel extends TableViewModel {
-    public static int selectedIndex = -1;
-
+    
     // Constant size for dummy data sets
     private static final int COLUMN_SIZE = 4;
     private static final int ROW_SIZE = 5;

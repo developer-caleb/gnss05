@@ -37,9 +37,6 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
-/**
- * Created by evrencoskun on 4.02.2018.
- */
 
 public class TableViewModel {
     public static int selectedIndex = -1;
@@ -88,17 +85,13 @@ public class TableViewModel {
             for (int j = 0; j < COLUMN_SIZE; j++) {
                 Object text = "";//"cell " + j + " " + i;
 
-                final int random = new Random().nextInt();
+                //final int random = new Random().nextInt();
                 if (j == 0) {
-                    //text = i;
-                    text= "형식명";
+                   text= "형식명";
                 } else if (j == 1) {
                     text= "csv";
-                    //text = random;
                 } else if (j == 2) {
                     text= "[이름], [코드], [이름], [코드], [이름], [코드], [이름], [코드], [이름], [코드], [이름], [코드],  ";
-                    //text = random;
-
                 }
 
                 // Create dummy id.
