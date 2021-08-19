@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.*
+import androidx.core.view.get
 import androidx.lifecycle.lifecycleScope
 import androidx.room.Room
 import com.evrencoskun.tableview.TableView
@@ -50,9 +51,11 @@ class WorkManagerActivity : ActivityBase<ActivityWorkManagerBinding>() {
             startActivity(intent);*/
         }
         viewBinding.btDelete.setOnClickListener {
-            
+           // mTableView.
         }
-        viewBinding.btConfirm.setOnClickListener {  }
+        viewBinding.btConfirm.setOnClickListener {
+
+        }
     }
 
     override fun onResume() {
