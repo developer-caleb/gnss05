@@ -2,6 +2,7 @@ package kr.loplab.gnss05.activities.workmanager
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.*
 import androidx.lifecycle.lifecycleScope
 import androidx.room.Room
@@ -24,6 +25,7 @@ class WorkManagerActivity : ActivityBase<ActivityWorkManagerBinding>() {
     lateinit var db : AppDatabase
     private lateinit var mTableView: TableView
     lateinit var tableWorkerViewModel: TableViewModel
+    lateinit var tableViewAdapter : TableViewAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,6 +35,7 @@ class WorkManagerActivity : ActivityBase<ActivityWorkManagerBinding>() {
         db = Room.databaseBuilder(this, AppDatabase::class.java, WORKERS_DB)
             //.allowMainThreadQueries() //메인쓰레드에서 작동시킬 때 사용
             .build()
+        mTableView = findViewById(R.id.tableview2)
         }
 
     override fun initListener() {
@@ -42,13 +45,20 @@ class WorkManagerActivity : ActivityBase<ActivityWorkManagerBinding>() {
             startActivity(intent);
         }
         viewBinding.btEdit.setOnClickListener {
-            intent = Intent(this, WorkerActivity::class.java)
-            startActivity(intent);
+            Log.d(TAG, "initListener: edit ${TableViewModel.selectedIndex}")
+            /*intent = Intent(this, WorkerActivity::class.java)
+            startActivity(intent);*/
         }
-        viewBinding.btDelete.setOnClickListener {  }
+        viewBinding.btDelete.setOnClickListener {
+            
+        }
         viewBinding.btConfirm.setOnClickListener {  }
     }
 
+    override fun onResume() {
+        super.onResume()
+        //initDatabinding()
+    }
     override fun initDatabinding() {
         lifecycleScope.launch(Dispatchers.IO) {
             viewBinding.dbText.text = db.workerDao().all.toString()
@@ -56,7 +66,7 @@ class WorkManagerActivity : ActivityBase<ActivityWorkManagerBinding>() {
             initializeTableView(workerlist)
         }
         // Let's get TableView
-        mTableView = findViewById(R.id.tableview2)
+
     }
 
      fun initializeTableView(workerlist : List<Worker>) {

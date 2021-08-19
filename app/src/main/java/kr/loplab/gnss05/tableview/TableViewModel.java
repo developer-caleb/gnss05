@@ -45,6 +45,7 @@ public class TableViewModel {
     private ArrayList<String> customFileFormat = new ArrayList<>(Arrays.asList("번호", "형식명", "확장명", "형식설명"));
 
     public TableViewModel() {
+        selectedIndex = -1;
     }
 
 /*    public TableViewModel(List<Worker> workerList) {
