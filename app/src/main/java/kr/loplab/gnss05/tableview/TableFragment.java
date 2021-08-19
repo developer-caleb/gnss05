@@ -192,7 +192,7 @@ public class TableFragment extends Fragment {
         }
     }
 
-    public void filterTableForMood(@NonNull String filter) {
+/*    public void filterTableForMood(@NonNull String filter) {
         // Sets a filter to the table, this will only filter a specific column.
         // In the example data, this will filter the mood column.
         if (mTableFilter != null) {
@@ -206,7 +206,7 @@ public class TableFragment extends Fragment {
         if (mTableFilter != null) {
             mTableFilter.set(TableViewModel.GENDER_COLUMN_INDEX, filter);
         }
-    }
+    }*/
 
     // The following four methods below: nextTablePage(), previousTablePage(),
     // goToTablePage(int page) and setTableItemsPerPage(int itemsPerPage)
@@ -275,11 +275,11 @@ public class TableFragment extends Fragment {
 
                 String filter = Integer.toString(position);
 
-                if (parent == moodFilter) {
+               /* if (parent == moodFilter) {
                     filterTableForMood(filter);
                 } else if (parent == genderFilter) {
                     filterTableForGender(filter);
-                }
+                }*/
             }
         }
 
