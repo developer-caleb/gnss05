@@ -25,7 +25,7 @@ class WorkManagerActivity : ActivityBase<ActivityWorkManagerBinding>() {
 
     override fun init() {
         db = Room.databaseBuilder(this, AppDatabase::class.java, WORKERS_DB)
-            //.allowMainThreadQueries()
+            //.allowMainThreadQueries() //메인쓰레드에서 작동시킬 때 사용
             .build()
         }
 
