@@ -22,21 +22,8 @@ class WorkManagerActivity : ActivityBase<ActivityWorkManagerBinding>() {
     override val layoutResourceId: Int
         get() = R.layout.activity_work_manager
     lateinit var db : AppDatabase
-
-
-    private var moodFilter: Spinner? = null
-    private  var genderFilter:android.widget.Spinner? = null
-    private var previousButton: ImageButton? = null
-    private  var nextButton:android.widget.ImageButton? = null
-    private var tablePaginationDetails: TextView? = null
     private lateinit var mTableView: TableView
     lateinit var tableWorkerViewModel: TableViewModel
-    private var mTableFilter // This is used for filtering the table.
-            : Filter? = null
-    private var mPagination // This is used for paginating the table.
-            : Pagination? = null
-
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

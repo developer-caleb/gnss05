@@ -86,30 +86,22 @@ public class TableWorkerViewModel extends TableViewModel {
             List<Cell> cellList = new ArrayList<>();
             for (int j = 0; j < COLUMN_SIZE; j++) {
                 Object text = "";//"cell " + j + " " + i;
-
-                final int random = new Random().nextInt();
+                //final int random = new Random().nextInt();
                 if (j == 0) {
-                    //text = i;
                     text= "형식명";
                 } else if (j == 1) {
                     text= "csv";
-                    //text = random;
                 } else if (j == 2) {
                     text= "[이름], [코드], [이름], [코드], [이름], [코드], [이름], [코드], [이름], [코드], [이름], [코드],  ";
-                    //text = random;
-
                 }
-
                 // Create dummy id.
                 String id = j + "-" + i;
-
                 Cell cell;
                 cell = new Cell(id, text);
                 cellList.add(cell);
             }
             list.add(cellList);
         }
-
         return list;
     }
 
