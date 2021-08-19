@@ -37,7 +37,7 @@
     <color name="main">@color/brightSky</color>
     <color name="selected_button_color">@color/brightSky</color>
     <color name="unselected_button_color">#FF000000</color>
-
+    <color name="table_header">@color/grey_cc</color>
     <color name="grey_66">#666666</color>
 
     <!--table-->
