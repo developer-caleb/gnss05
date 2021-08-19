@@ -52,6 +52,16 @@ class WorkManagerActivity : ActivityBase<ActivityWorkManagerBinding>() {
         }
         viewBinding.btDelete.setOnClickListener {
            // mTableView.
+            Log.d(TAG, "initListener: delete ${TableViewModel.selectedIndex}")
+            if(TableViewModel.selectedIndex>-1){
+                tableWorkerViewModel.removePosition(TableViewModel.selectedIndex)
+
+                tableViewAdapter.setAllItems(
+                    tableWorkerViewModel.getColumnHeaderList(), tableWorkerViewModel
+                        .getRowHeaderList(), tableWorkerViewModel.getCellList()
+                )
+                //tableWorkerViewModel
+            }
         }
         viewBinding.btConfirm.setOnClickListener {
 
@@ -77,7 +87,7 @@ class WorkManagerActivity : ActivityBase<ActivityWorkManagerBinding>() {
         tableWorkerViewModel = TableWorkerViewModel(workerlist)
 
         // Create TableView Adapter
-        val tableViewAdapter = TableViewAdapter(tableWorkerViewModel)
+        tableViewAdapter = TableViewAdapter(tableWorkerViewModel)
         mTableView.setAdapter(tableViewAdapter)
         mTableView.setTableViewListener(TableViewListener(mTableView))
 

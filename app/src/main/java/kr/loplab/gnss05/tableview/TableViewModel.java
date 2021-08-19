@@ -24,6 +24,8 @@
 
 package kr.loplab.gnss05.tableview;
 
+import android.util.Log;
+
 import androidx.annotation.NonNull;
 
 import kr.loplab.gnss05.activities.workmanager.Worker;
@@ -38,7 +40,7 @@ import java.util.List;
 
 public class TableViewModel {
     public static int selectedIndex = -1;
-
+    String TAG = TableViewModel.class.getSimpleName();
     // Constant size for dummy data sets
     private static int COLUMN_SIZE = 3;
     private static int ROW_SIZE = 5;
@@ -48,6 +50,10 @@ public class TableViewModel {
         selectedIndex = -1;
     }
 
+
+    public void removePosition(int position){
+        Log.d(TAG, "removePosition: ");
+    }
 /*    public TableViewModel(List<Worker> workerList) {
         ROW_SIZE = workerList.size();
     }*/
