@@ -144,6 +144,10 @@ class ReferenceCountryActivity : ActivityBase<ActivityReferenceCountryBinding>()
                 getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
             imm.showSoftInput(viewBinding.etCurrentPointName,0)
         }
+        viewBinding.layoutNetworkAutoConnect.setOnClickListener {
+            viewBinding.swNetworkAutoConnect.isChecked = !viewBinding.swNetworkAutoConnect.isChecked
+            PrefUtil.setBoolean(applicationContext, NETWORK_AUTO_CONNECT, viewBinding.swNetworkAutoConnect.isChecked)
+        }
     }
 
     override fun initDatabinding() {
@@ -159,6 +163,7 @@ class ReferenceCountryActivity : ActivityBase<ActivityReferenceCountryBinding>()
             Define.COLLECTION_INTERVAL
         )]
         viewBinding.swReferenceCountryAutoplay.isChecked =PrefUtil.getBoolean(applicationContext, REFERENCE_COUNTRY_AUTO_PLAY)
+        viewBinding.swNetworkAutoConnect.isChecked =PrefUtil.getBoolean(applicationContext, NETWORK_AUTO_CONNECT)
         viewBinding.tvDataConnectionType.text = DATA_CONNECTION_TYPE_List[PrefUtil.getInt2(applicationContext, Define.DATA_CONNECTION_TYPE
         )]
 

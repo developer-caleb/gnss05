@@ -499,7 +499,9 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:visibility="@{referencecontryviewmodel.data_connect_type == 2 || referencecontryviewmodel.data_connect_type == 3 ? View.VISIBLE : View.GONE}"
+                    >
 
 
                     <View
@@ -510,8 +512,7 @@
 
 
                     <LinearLayout
-                        android:visibility="@{referencecontryviewmodel.data_connect_type == 2? View.VISIBLE : View.GONE}"
-                        style="@style/ButtonLayout_STYLE01">
+                         style="@style/ButtonLayout_STYLE01">
 
                         <TextView
                             style="@style/Sub_TEXTVIEW_STYLE1"
@@ -607,6 +608,7 @@
 
 
                 <LinearLayout
+                    android:id="@+id/layout_network_auto_connect"
                     style="@style/ButtonLayout_STYLE01">
 
                     <TextView
@@ -615,10 +617,12 @@
                          />
 
                     <Switch
+                        android:id="@+id/sw_network_auto_connect"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:paddingRight="8dp"
+                        android:clickable="false"
                          />
 
                 </LinearLayout>
@@ -657,7 +661,7 @@
                         app:srcCompat="@drawable/next_icon" />
 
                 </LinearLayout>
-                </LinearLayout>
+
 
                 <!---네트워크 모드가 GPRS모드 일때만 활성화-->
                <LinearLayout
@@ -1054,7 +1058,7 @@
 
                 </LinearLayout>
 
-
+                </LinearLayout>
 
 
 
