@@ -48,6 +48,7 @@
         <entry key="app/src/main/res/layout/activity_user_format.xml" value="0.22" />
         <entry key="app/src/main/res/layout/activity_user_format_view.xml" value="0.22" />
         <entry key="app/src/main/res/layout/activity_work_manager.xml" value="0.23828125" />
+        <entry key="app/src/main/res/layout/activity_worker.xml" value="0.23828125" />
         <entry key="app/src/main/res/layout/cloud_set.xml" value="0.244140625" />
         <entry key="app/src/main/res/layout/connect_equipment.xml" value="0.165625" />
         <entry key="app/src/main/res/layout/coordinate_system.xml" value="0.246484375" />
@@ -95,7 +96,9 @@
         <entry key="app/src/main/res/layout/table_fragment_main.xml" value="0.22" />
         <entry key="app/src/main/res/layout/tool_new_customtabtextview.xml" value="0.238671875" />
         <entry key="app/src/main/res/layout/tool_viewpageradapter.xml" value="0.18" />
+        <entry key="app/src/main/res/layout/toolbar1.xml" value="0.2484375" />
         <entry key="app/src/main/res/layout/topo.xml" value="0.246484375" />
+        <entry key="app/src/main/res/layout/work_sub1.xml" value="0.2484375" />
         <entry key="app/src/main/res/layout/work_sub1_file_directory.xml" value="0.244140625" />
         <entry key="app/src/main/res/layout/worker.xml" value="0.244140625" />
         <entry key="app/src/main/res/layout/workgroup_sub1.xml" value="0.244140625" />
