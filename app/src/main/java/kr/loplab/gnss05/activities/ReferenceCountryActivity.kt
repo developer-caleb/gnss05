@@ -40,6 +40,10 @@ class ReferenceCountryActivity : ActivityBase<ActivityReferenceCountryBinding>()
 
     override fun initListener() {
         viewBinding.header01.setOnBackButtonClickListener { onBackPressed();}
+        viewBinding.btOpenWorkManager.setOnClickListener {
+            intent = Intent(this, WorkManagerActivity::class.java)
+            startActivity(intent);
+        }
         viewBinding.referenceCountryIdLayout.setOnClickListener {
             viewBinding.referenceCountryId.requestFocus()
             val imm: InputMethodManager =

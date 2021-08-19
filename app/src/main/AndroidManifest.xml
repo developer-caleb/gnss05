@@ -18,6 +18,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Gnss05">
         <activity
+            android:name=".activities.WorkManagerActivity"
+            android:exported="true" />
+        <activity
             android:name=".activities.CoordinateActivity"
             android:exported="true" />
         <activity
