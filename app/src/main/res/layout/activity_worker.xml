@@ -44,6 +44,7 @@
 
 
                     <EditText
+                        android:id="@+id/et_worker"
                         style="@style/Sub_TEXTVIEW_STYLE2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -74,6 +75,7 @@
                         />
 
                     <EditText
+                        android:id="@+id/et_name"
                         style="@style/Sub_TEXTVIEW_STYLE2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -104,6 +106,7 @@
                         />
 
                     <EditText
+                        android:id="@+id/et_user"
                         style="@style/Sub_TEXTVIEW_STYLE2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -132,6 +135,7 @@
                         />
 
                     <EditText
+                        android:id="@+id/et_password"
                         android:layout_width="160dp"
                         android:layout_height="wrap_content"
                         android:ems="10"

@@ -15,12 +15,13 @@ import kr.loplab.gnss05.tableview.TableMainActivity
 class WorkManagerActivity : ActivityBase<ActivityWorkManagerBinding>() {
     override val layoutResourceId: Int
         get() = R.layout.activity_work_manager
+    lateinit var db : AppDatabase
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
 
     override fun init() {
-        var db : AppDatabase = Room.databaseBuilder(this, AppDatabase::class.java, WORKERS_DB)
+        db = Room.databaseBuilder(this, AppDatabase::class.java, WORKERS_DB)
             .allowMainThreadQueries()
             .build()
         }
@@ -40,6 +41,6 @@ class WorkManagerActivity : ActivityBase<ActivityWorkManagerBinding>() {
     }
 
     override fun initDatabinding() {
-
+        viewBinding.dbText.text = db.workerDao().all.toString()
     }
 }

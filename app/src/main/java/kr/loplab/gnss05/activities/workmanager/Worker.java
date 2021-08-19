@@ -19,6 +19,14 @@ public class Worker {
         this.password = password;
     }
 
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public int getId() {
+        return id;
+    }
+
     public String getWorker() {
         return worker;
     }
