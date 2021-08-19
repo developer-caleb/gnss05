@@ -161,6 +161,7 @@ class ReferenceCountryActivity : ActivityBase<ActivityReferenceCountryBinding>()
                 Log.d(TAG, "initListener: $i")
                 viewModel1.setDataConnectionType(i)
                 PrefUtil.setInt(applicationContext, prefvalue, i)
+                viewModel1.setNetworkMode(PrefUtil.getInt2(this, NETWORK_MODE))
                 viewBinding.tvNetworkMode.text = alist[PrefUtil.getInt2(applicationContext, prefvalue
                 )]
                 dlg.refresh()
@@ -173,6 +174,7 @@ class ReferenceCountryActivity : ActivityBase<ActivityReferenceCountryBinding>()
     override fun initDatabinding() {
         viewModel1.setRawDatavalue(PrefUtil.getBoolean(this, RAW_DATA_SAVE))
         viewModel1.setDataConnectionType(PrefUtil.getInt2(this, DATA_CONNECTION_TYPE))
+        viewModel1.setNetworkMode(PrefUtil.getInt2(this, NETWORK_MODE))
         viewBinding.tvStartMode.text = OptionList.START_MODE_LIST[PrefUtil.getInt2(applicationContext,
             Define.START_MODE
         )]
