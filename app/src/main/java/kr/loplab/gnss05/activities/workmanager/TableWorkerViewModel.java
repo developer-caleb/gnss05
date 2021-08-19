@@ -54,9 +54,11 @@ public class TableWorkerViewModel extends TableViewModel {
     @Override
     public void removePosition(int position){
         Log.d(TAG, "removePosition: override.. 삭제");
+        if(position>= workerslist.size()||position<0) return;
         if(workerslist!=null && workerslist.size()>0){
             workerslist.remove(position);
-        }
+            ROW_SIZE = workerslist.size();
+        }else{return;}
     }
 
 
