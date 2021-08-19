@@ -35,4 +35,7 @@ public class Define {
     public static final String REFERENCE_COUNTRY_COORDINATE_SETTING_HL1= "reference_country_coordinate_setting_hl1";
     public static final String REFERENCE_COUNTRY_COORDINATE_SETTING_HL2= "reference_country_coordinate_setting_hl2";
 
+
+    //ROOM
+    public static final String WORKERS_DB = "workers-db";
 }
