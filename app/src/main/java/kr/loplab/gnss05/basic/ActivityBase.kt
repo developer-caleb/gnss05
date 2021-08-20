@@ -1,5 +1,6 @@
 package kr.loplab.gnss02
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
@@ -51,5 +52,14 @@ abstract class ActivityBase<T : ViewDataBinding>: AppCompatActivity() {
         GlobalApplication.mToast.show();
         Log.d("TAG", "showToast: $str")
     }
+    override fun startActivityForResult(intent: Intent?, requestCode: Int) {
+        intent!!.putExtra("requestCode", requestCode);
+        super.startActivityForResult(intent, requestCode)
+    }
 
+    override fun startActivityForResult(intent: Intent?, requestCode: Int, options: Bundle?) {
+        intent!!.putExtra("requestCode", requestCode);
+        super.startActivityForResult(intent, requestCode, options)
+    }
 }
+

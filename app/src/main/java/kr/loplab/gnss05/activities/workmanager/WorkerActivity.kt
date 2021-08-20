@@ -1,5 +1,6 @@
 package kr.loplab.gnss05.activities.workmanager
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -31,6 +32,7 @@ class WorkerActivity :  ActivityBase<ActivityWorkerBinding>()  {
     override fun initListener() {
         viewBinding.header01.setOnBackButtonClickListener { onBackPressed();}
         viewBinding.btConfirm.setOnClickListener {
+
             lifecycleScope.launch(Dispatchers.IO) {
                 Log.d(TAG, "initListener: bt confirm")
                 db.workerDao().insert(
@@ -38,11 +40,14 @@ class WorkerActivity :  ActivityBase<ActivityWorkerBinding>()  {
                     viewBinding.etWorker.text.toString(),
                     viewBinding.etUser.text.toString(),
                     viewBinding.etPassword.text.toString()))
+
             }
+            setResult(RESULT_OK)
+            finish()
         }
     }
 
     override fun initDatabinding() {
-
     }
+
 }

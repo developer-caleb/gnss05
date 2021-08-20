@@ -4,7 +4,9 @@ import java.util.ArrayList;
 
 public class Define {
     //Request Code
-    public static final int REQUEST_SETTING = 1300;
+    public static final int REQUEST_SETTING = 1001;
+    public static final int REQUEST_WORKER_MANAGE_ADD = 1002;
+    public static final int REQUEST_WORKER_MANAGE_EDIT = 1003;
 
     //SharedPreference Code
     public static final String RECYCLERVIEW_LIST_MODE = "recyclerview_mode";

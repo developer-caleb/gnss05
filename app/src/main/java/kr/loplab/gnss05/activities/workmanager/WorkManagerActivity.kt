@@ -3,18 +3,15 @@ package kr.loplab.gnss05.activities.workmanager
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import android.widget.*
-import androidx.core.view.get
+import androidx.core.app.ActivityCompat
 import androidx.lifecycle.lifecycleScope
 import androidx.room.Room
 import com.evrencoskun.tableview.TableView
-import com.evrencoskun.tableview.filter.Filter
-import com.evrencoskun.tableview.pagination.Pagination
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kr.loplab.gnss02.ActivityBase
 import kr.loplab.gnss05.R
-import kr.loplab.gnss05.common.Define.WORKERS_DB
+import kr.loplab.gnss05.common.Define.*
 import kr.loplab.gnss05.databinding.ActivityWorkManagerBinding
 import kr.loplab.gnss05.tableview.TableViewAdapter
 import kr.loplab.gnss05.tableview.TableViewListener
@@ -34,7 +31,7 @@ class WorkManagerActivity : ActivityBase<ActivityWorkManagerBinding>() {
 
     override fun init() {
         db = Room.databaseBuilder(this, AppDatabase::class.java, WORKERS_DB)
-            //.allowMainThreadQueries() //메인쓰레드에서 작동시킬 때 사용
+            .allowMainThreadQueries() //메인쓰레드에서 작동시킬 때 사용
             .build()
         mTableView = findViewById(R.id.tableview2)
         }
@@ -43,19 +40,30 @@ class WorkManagerActivity : ActivityBase<ActivityWorkManagerBinding>() {
         viewBinding.header01.setOnBackButtonClickListener { onBackPressed();}
         viewBinding.btAdd.setOnClickListener {
             intent = Intent(this, WorkerActivity::class.java)
-            startActivity(intent);
+            ActivityCompat.startActivityForResult(this, intent, REQUEST_WORKER_MANAGE_ADD, null)
         }
         viewBinding.btEdit.setOnClickListener {
+            if(TableViewModel.selectedIndex<=-1 || TableViewModel.selectedIndex>=tableWorkerViewModel.rowHeaderList.size){
+                showToast("수정할 행을 선택해주세요."); return@setOnClickListener
+            }
             Log.d(TAG, "initListener: edit ${TableViewModel.selectedIndex}")
+            intent = Intent(this, WorkerActivity::class.java)
+            intent.putExtra("selectPosition", TableViewModel.selectedIndex);
+            ActivityCompat.startActivityForResult(this, intent, REQUEST_WORKER_MANAGE_EDIT, null)
             /*intent = Intent(this, WorkerActivity::class.java)
             startActivity(intent);*/
         }
         viewBinding.btDelete.setOnClickListener {
            // mTableView.
+            if(TableViewModel.selectedIndex>-1 || TableViewModel.selectedIndex>=tableWorkerViewModel.rowHeaderList.size){
+                showToast("삭제할 행을 선택해주세요."); return@setOnClickListener
+            }
             Log.d(TAG, "initListener: delete ${TableViewModel.selectedIndex}")
             if(TableViewModel.selectedIndex>-1){
+                lifecycleScope.launch(Dispatchers.IO) {
+                    db.workerDao().delete(db.workerDao().all[TableViewModel.selectedIndex])
+                }
                 tableWorkerViewModel.removePosition(TableViewModel.selectedIndex)
-
                 tableViewAdapter.setAllItems(
                     tableWorkerViewModel.getColumnHeaderList(), tableWorkerViewModel
                         .getRowHeaderList(), tableWorkerViewModel.getCellList()
@@ -68,10 +76,10 @@ class WorkManagerActivity : ActivityBase<ActivityWorkManagerBinding>() {
         }
     }
 
-    override fun onResume() {
+   /* override fun onResume() {
         super.onResume()
-        //initDatabinding()
-    }
+        //initDatabinding() //오류남 리사이클러뷰 데이터 옵저버러를 이미 등록했습니다..
+    }*/
     override fun initDatabinding() {
         lifecycleScope.launch(Dispatchers.IO) {
             viewBinding.dbText.text = db.workerDao().all.toString()
@@ -102,9 +110,23 @@ class WorkManagerActivity : ActivityBase<ActivityWorkManagerBinding>() {
 
     }
 
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        if(resultCode== RESULT_OK && requestCode == REQUEST_WORKER_MANAGE_ADD)
+        {
+            Log.d(TAG, "onActivityResult: 축하합니다")
+            //lifecycleScope.launch(Dispatchers.IO) { }
+                var  workerlist : List<Worker> = db.workerDao().all
+                tableWorkerViewModel = TableWorkerViewModel(workerlist)
+                refresh()
+        }
+    }
 
-
-
+    fun refresh(){
+        tableViewAdapter.setAllItems(
+            tableWorkerViewModel.getColumnHeaderList(), tableWorkerViewModel
+                .getRowHeaderList(), tableWorkerViewModel.getCellList()
+        )
+    }
 
 
 
