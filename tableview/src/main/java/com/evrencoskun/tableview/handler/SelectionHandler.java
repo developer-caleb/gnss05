@@ -122,10 +122,10 @@ public class SelectionHandler {
         int selectedColor = mTableView.getSelectedColor();
         int unselectedColor = mTableView.getUnSelectedColor();
         int shadowColor = mTableView.getShadowColor();
-        Log.d(TAG, "setPreviousSelectedView: getSelectedColor" + selectedColor);
-        Log.d(TAG, "setPreviousSelectedView: getUnSelectedColor" + unselectedColor);
-        Log.d(TAG, "setPreviousSelectedView: getShadowColor" + shadowColor);
-        Log.d(TAG, "setPreviousSelectedView: viewHolder" + viewHolder.toString());
+       // Log.d(TAG, "setPreviousSelectedView: getSelectedColor" + selectedColor);
+       // Log.d(TAG, "setPreviousSelectedView: getUnSelectedColor" + unselectedColor);
+       // Log.d(TAG, "setPreviousSelectedView: getShadowColor" + shadowColor);
+       // Log.d(TAG, "setPreviousSelectedView: viewHolder" + viewHolder.toString());
         restorePreviousSelectedView();
 
         if (mPreviousSelectedViewHolder != null) {
