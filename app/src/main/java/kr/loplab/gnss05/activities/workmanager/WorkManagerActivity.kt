@@ -61,18 +61,12 @@ class WorkManagerActivity : ActivityBase<ActivityWorkManagerBinding>() {
                 showToast("삭제할 행을 선택해주세요."); return@setOnClickListener
             }
             Log.d(TAG, "initListener: delete ${TableViewModel.selectedIndex}")
-
-                lifecycleScope.launch(Dispatchers.IO) {
-                    db.workerDao().delete(db.workerDao().all[TableViewModel.selectedIndex])
-                }
-                tableWorkerViewModel.removePosition(TableViewModel.selectedIndex)
-                tableViewAdapter.setAllItems(
-                    tableWorkerViewModel.getColumnHeaderList(), tableWorkerViewModel
-                        .getRowHeaderList(), tableWorkerViewModel.getCellList()
-                )
+             db.workerDao().delete(db.workerDao().all[TableViewModel.selectedIndex])
+            refresh()
             if(tableWorkerViewModel.rowHeaderList.size>0){
                 mTableView.selectedRow = 0
                 TableViewModel.selectedIndex = 0}else{
+                mTableView.selectedRow = -1
                 TableViewModel.selectedIndex = -1
                 //mTableView.set
                 }
@@ -118,22 +112,21 @@ class WorkManagerActivity : ActivityBase<ActivityWorkManagerBinding>() {
         {
             Log.d(TAG, "onActivityResult: 축하합니다_추가")
             //lifecycleScope.launch(Dispatchers.IO) { }
-                var  workerlist : List<Worker> = db.workerDao().all
-                tableWorkerViewModel = TableWorkerViewModel(workerlist)
+
                 refresh()
         }
 
         if(resultCode== RESULT_OK && requestCode == REQUEST_WORKER_MANAGE_EDIT)
         {
-            Log.d(TAG, "onActivityResult: 축하합니다_편집")
-            //lifecycleScope.launch(Dispatchers.IO) { }
-            var  workerlist : List<Worker> = db.workerDao().all
-            tableWorkerViewModel = TableWorkerViewModel(workerlist)
+
+
             refresh()
         }
     }
 
     fun refresh(){
+        var  workerlist : List<Worker> = db.workerDao().all
+        tableWorkerViewModel = TableWorkerViewModel(workerlist)
         tableViewAdapter.setAllItems(
             tableWorkerViewModel.getColumnHeaderList(), tableWorkerViewModel
                 .getRowHeaderList(), tableWorkerViewModel.getCellList()
