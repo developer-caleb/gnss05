@@ -22,7 +22,7 @@
  * SOFTWARE.
  */
 
-package kr.loplab.gnss05.activities.workmanager;
+package kr.loplab.gnss05.activities.cors_servermanager;
 
 import android.util.Log;
 
@@ -32,21 +32,22 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import kr.loplab.gnss05.activities.workmanager.Worker;
 import kr.loplab.gnss05.tableview.TableViewModel;
 import kr.loplab.gnss05.tableview.model.Cell;
 import kr.loplab.gnss05.tableview.model.ColumnHeader;
 import kr.loplab.gnss05.tableview.model.RowHeader;
 
-public class TableWorkerViewModel extends TableViewModel {
-    String TAG = TableWorkerViewModel.class.getSimpleName();
+public class TableServerViewModel extends TableViewModel {
+    String TAG = TableServerViewModel.class.getSimpleName();
     // Constant size for dummy data sets
-    private static int COLUMN_SIZE = 4;
+    private static int COLUMN_SIZE = 5;
     private static int ROW_SIZE = 5;
-    private ArrayList<String> customFileFormat = new ArrayList<>(Arrays.asList("번호", "작업자", "이름", "사용자","암호"));
+    private ArrayList<String> customFileFormat = new ArrayList<>(Arrays.asList("번호", "이름", "IP", "포트","사용자","암호"));
     List<Worker> workerslist =null;
 
-     TableWorkerViewModel(){}
-     TableWorkerViewModel(List<Worker> workerslist){
+     TableServerViewModel(){}
+     TableServerViewModel(List<Worker> workerslist){
          ROW_SIZE = workerslist.size();
         this.workerslist = workerslist;
     }
