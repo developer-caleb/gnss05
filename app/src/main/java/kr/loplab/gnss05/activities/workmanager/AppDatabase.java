@@ -6,7 +6,8 @@ import androidx.room.RoomDatabase;
 import kr.loplab.gnss05.activities.cors_servermanager.Server;
 import kr.loplab.gnss05.activities.cors_servermanager.ServerDao;
 
-@Database(entities = {Worker.class}, version = 1)
-public abstract class AppDatabase1 extends RoomDatabase {
+@Database(entities = {Worker.class, Server.class}, version = 1)
+public abstract class AppDatabase extends RoomDatabase {
      public abstract WorkerDao workerDao();
+     public abstract ServerDao serverDao();
 }

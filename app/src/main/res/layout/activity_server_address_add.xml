@@ -34,6 +34,7 @@
                 android:orientation="vertical" >
 
                 <LinearLayout
+                    android:id="@+id/layout_name"
                     style="@style/ButtonLayout_STYLE01"
                     >
 
@@ -44,6 +45,7 @@
 
 
                     <EditText
+                        android:id="@+id/et_name"
                         style="@style/Sub_TEXTVIEW_STYLE2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -62,6 +64,7 @@
                     android:background="@color/grey_cc" />
 
                 <LinearLayout
+                    android:id="@+id/layout_ip"
                     style="@style/ButtonLayout_STYLE01"
                     >
 
@@ -72,6 +75,7 @@
 
 
                     <EditText
+                        android:id="@+id/et_ip"
                         style="@style/Sub_TEXTVIEW_STYLE2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -91,6 +95,7 @@
 
 
                 <LinearLayout
+                    android:id="@+id/layout_port"
                     style="@style/ButtonLayout_STYLE01"
                     >
 
@@ -100,6 +105,7 @@
                         />
 
                     <EditText
+                        android:id="@+id/et_port"
                         style="@style/Sub_TEXTVIEW_STYLE2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -120,6 +126,7 @@
 
 
                 <LinearLayout
+                    android:id="@+id/layout_user"
                     style="@style/ButtonLayout_STYLE01"
                     >
 
@@ -129,6 +136,7 @@
                         />
 
                     <EditText
+                        android:id="@+id/et_user"
                         style="@style/Sub_TEXTVIEW_STYLE2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -148,7 +156,9 @@
                     android:background="@color/grey_cc" />
 
 
-                <LinearLayout style="@style/ButtonLayout_STYLE01">
+                <LinearLayout
+                    android:id="@+id/layout_password"
+                    style="@style/ButtonLayout_STYLE01">
 
                     <TextView
                         style="@style/Sub_TEXTVIEW_STYLE1"
@@ -156,6 +166,7 @@
                         />
 
                     <EditText
+                        android:id="@+id/et_password"
                         android:layout_width="160dp"
                         android:layout_height="wrap_content"
                         android:ems="10"
@@ -198,6 +209,7 @@
 
 
             <TextView
+                android:id="@+id/bt_confirm"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"

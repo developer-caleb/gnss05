@@ -10,6 +10,8 @@ public class Define {
     public static final int REQUEST_SETTING = 1001;
     public static final int REQUEST_WORKER_MANAGE_ADD = 1002;
     public static final int REQUEST_WORKER_MANAGE_EDIT = 1003;
+    public static final int REQUEST_SERVER_MANAGE_ADD = 1004;
+    public static final int REQUEST_SERVER_MANAGE_EDIT = 1005;
 
     //SharedPreference Code
     public static final String RECYCLERVIEW_LIST_MODE = "recyclerview_mode";

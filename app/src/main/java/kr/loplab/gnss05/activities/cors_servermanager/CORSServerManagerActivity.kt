@@ -11,6 +11,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kr.loplab.gnss02.ActivityBase
 import kr.loplab.gnss05.R
+import kr.loplab.gnss05.activities.workmanager.AppDatabase
 import kr.loplab.gnss05.common.Define
 import kr.loplab.gnss05.databinding.ActivityCorsServerManagerBinding
 import kr.loplab.gnss05.tableview.TableViewAdapter
@@ -20,9 +21,9 @@ import kr.loplab.gnss05.tableview.TableViewModel
 class CORSServerManagerActivity : ActivityBase<ActivityCorsServerManagerBinding>() {
     override val layoutResourceId: Int
         get() = R.layout.activity_cors_server_manager
-    lateinit var db : AppDatabase2
+    lateinit var db : AppDatabase
     private lateinit var mTableView: TableView
-    lateinit var tableWorkerViewModel: TableViewModel
+    lateinit var tableServerViewModel: TableViewModel
     lateinit var tableViewAdapter : TableViewAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -31,7 +32,7 @@ class CORSServerManagerActivity : ActivityBase<ActivityCorsServerManagerBinding>
     }
 
     override fun init() {
-        db = Room.databaseBuilder(this, AppDatabase2::class.java, Define.SERVERS_DB)
+        db = Room.databaseBuilder(this, AppDatabase::class.java, Define.SERVERS_DB)
             .fallbackToDestructiveMigration()
             .allowMainThreadQueries() //메인쓰레드에서 작동시킬 때 사용
             .build()
@@ -43,23 +44,23 @@ class CORSServerManagerActivity : ActivityBase<ActivityCorsServerManagerBinding>
         viewBinding.btAdd.setOnClickListener {
             intent = Intent(this, ServerAddressAddActivity::class.java)
             ActivityCompat.startActivityForResult(this, intent,
-                Define.REQUEST_WORKER_MANAGE_ADD, null)
+                Define.REQUEST_SERVER_MANAGE_ADD, null)
         }
         viewBinding.btEdit.setOnClickListener {
-            if(TableViewModel.selectedIndex<=-1 || TableViewModel.selectedIndex>=tableWorkerViewModel.rowHeaderList.size){
+            if(TableViewModel.selectedIndex<=-1 || TableViewModel.selectedIndex>=tableServerViewModel.rowHeaderList.size){
                 showToast("수정할 행을 선택해주세요."); return@setOnClickListener
             }
             Log.d(TAG, "initListener: edit ${TableViewModel.selectedIndex}")
             intent = Intent(this, ServerAddressAddActivity::class.java)
             intent.putExtra("selectPosition", TableViewModel.selectedIndex);
             ActivityCompat.startActivityForResult(this, intent,
-                Define.REQUEST_WORKER_MANAGE_EDIT, null)
+                Define.REQUEST_SERVER_MANAGE_EDIT, null)
             /*intent = Intent(this, WorkerActivity::class.java)
             startActivity(intent);*/
         }
         viewBinding.btDelete.setOnClickListener {
             // mTableView.
-            if(TableViewModel.selectedIndex<=-1 || TableViewModel.selectedIndex>= tableWorkerViewModel.rowHeaderList.size){
+            if(TableViewModel.selectedIndex<=-1 || TableViewModel.selectedIndex>= tableServerViewModel.rowHeaderList.size){
                 showToast("삭제할 행을 선택해주세요."); return@setOnClickListener
             }
             Log.d(TAG, "initListener: delete ${TableViewModel.selectedIndex}")
@@ -67,10 +68,10 @@ class CORSServerManagerActivity : ActivityBase<ActivityCorsServerManagerBinding>
             lifecycleScope.launch(Dispatchers.IO) {
                 db.serverDao().delete(db.serverDao().all[TableViewModel.selectedIndex])
             }
-            tableWorkerViewModel.removePosition(TableViewModel.selectedIndex)
+            tableServerViewModel.removePosition(TableViewModel.selectedIndex)
             tableViewAdapter.setAllItems(
-                tableWorkerViewModel.getColumnHeaderList(), tableWorkerViewModel
-                    .getRowHeaderList(), tableWorkerViewModel.getCellList()
+                tableServerViewModel.getColumnHeaderList(), tableServerViewModel
+                    .getRowHeaderList(), tableServerViewModel.getCellList()
             )
             mTableView.selectedRow = 0
             TableViewModel.selectedIndex = 0
@@ -87,10 +88,10 @@ class CORSServerManagerActivity : ActivityBase<ActivityCorsServerManagerBinding>
     }
     fun initializeTableView(serverlist : List<Server>) {
         // Create TableView View model class  to group view models of TableView
-        tableWorkerViewModel = TableServerViewModel(serverlist)
+        tableServerViewModel = TableServerViewModel(serverlist)
 
         // Create TableView Adapter
-        tableViewAdapter = TableViewAdapter(tableWorkerViewModel)
+        tableViewAdapter = TableViewAdapter(tableServerViewModel)
         mTableView.setAdapter(tableViewAdapter)
         mTableView.setTableViewListener(TableViewListener(mTableView))
 
@@ -99,36 +100,36 @@ class CORSServerManagerActivity : ActivityBase<ActivityCorsServerManagerBinding>
 
         // Load the dummy data to the TableView
         tableViewAdapter.setAllItems(
-            tableWorkerViewModel.getColumnHeaderList(), tableWorkerViewModel
-                .getRowHeaderList(), tableWorkerViewModel.getCellList()
+            tableServerViewModel.getColumnHeaderList(), tableServerViewModel
+                .getRowHeaderList(), tableServerViewModel.getCellList()
         )
 
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        if(resultCode== RESULT_OK && requestCode == Define.REQUEST_WORKER_MANAGE_ADD)
+        if(resultCode== RESULT_OK && requestCode == Define.REQUEST_SERVER_MANAGE_ADD)
         {
             Log.d(TAG, "onActivityResult: 축하합니다_추가")
             //lifecycleScope.launch(Dispatchers.IO) { }
             var  serverlist : List<Server> = db.serverDao().all
-            tableWorkerViewModel = TableServerViewModel(serverlist)
+            tableServerViewModel = TableServerViewModel(serverlist)
             refresh()
         }
 
-        if(resultCode== RESULT_OK && requestCode == Define.REQUEST_WORKER_MANAGE_EDIT)
+        if(resultCode== RESULT_OK && requestCode == Define.REQUEST_SERVER_MANAGE_EDIT)
         {
             Log.d(TAG, "onActivityResult: 축하합니다_편집")
             //lifecycleScope.launch(Dispatchers.IO) { }
             var  serverlist : List<Server> = db.serverDao().all
-            tableWorkerViewModel = TableServerViewModel(serverlist)
+            tableServerViewModel = TableServerViewModel(serverlist)
             refresh()
         }
     }
 
     fun refresh(){
         tableViewAdapter.setAllItems(
-            tableWorkerViewModel.getColumnHeaderList(), tableWorkerViewModel
-                .getRowHeaderList(), tableWorkerViewModel.getCellList()
+            tableServerViewModel.getColumnHeaderList(), tableServerViewModel
+                .getRowHeaderList(), tableServerViewModel.getCellList()
         )
     }
 }

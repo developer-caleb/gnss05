@@ -20,7 +20,7 @@ import kr.loplab.gnss05.tableview.TableViewModel
 class WorkManagerActivity : ActivityBase<ActivityWorkManagerBinding>() {
     override val layoutResourceId: Int
         get() = R.layout.activity_work_manager
-    lateinit var db : AppDatabase1
+    lateinit var db : AppDatabase
     private lateinit var mTableView: TableView
     lateinit var tableWorkerViewModel: TableViewModel
     lateinit var tableViewAdapter : TableViewAdapter
@@ -31,7 +31,7 @@ class WorkManagerActivity : ActivityBase<ActivityWorkManagerBinding>() {
     }
 
     override fun init() {
-        db = Room.databaseBuilder(this, AppDatabase1::class.java, WORKERS_DB)
+        db = Room.databaseBuilder(this, AppDatabase::class.java, WORKERS_DB)
             .allowMainThreadQueries() //메인쓰레드에서 작동시킬 때 사용
             .fallbackToDestructiveMigration()
             .build()

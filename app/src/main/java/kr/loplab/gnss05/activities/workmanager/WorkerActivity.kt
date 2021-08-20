@@ -1,14 +1,10 @@
 package kr.loplab.gnss05.activities.workmanager
 
-import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.inputmethod.InputMethodManager
 import androidx.lifecycle.lifecycleScope
 import androidx.room.Room
-import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.activity_worker.view.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kr.loplab.gnss02.ActivityBase
@@ -16,14 +12,13 @@ import kr.loplab.gnss05.R
 import kr.loplab.gnss05.common.Define
 import kr.loplab.gnss05.common.Define.REQUEST_WORKER_MANAGE_ADD
 import kr.loplab.gnss05.common.Define.REQUEST_WORKER_MANAGE_EDIT
-import kr.loplab.gnss05.databinding.ActivityStopSurveyBinding
 import kr.loplab.gnss05.databinding.ActivityWorkerBinding
 import java.lang.Exception
 
 class WorkerActivity :  ActivityBase<ActivityWorkerBinding>()  {
     override val layoutResourceId: Int
         get() = R.layout.activity_worker
-    lateinit var db : AppDatabase1
+    lateinit var db : AppDatabase
     var requestCode= 0;
     var selectedPosition = -1;
      var workerslist : MutableList<Worker>? = null
@@ -32,7 +27,7 @@ class WorkerActivity :  ActivityBase<ActivityWorkerBinding>()  {
     }
 
     override fun init() {
-        db = Room.databaseBuilder(this, AppDatabase1::class.java, Define.WORKERS_DB)
+        db = Room.databaseBuilder(this, AppDatabase::class.java, Define.WORKERS_DB)
             .allowMainThreadQueries() //메인쓰레드에서 작동시킬 때 사용
             .fallbackToDestructiveMigration()
             .build()
@@ -106,7 +101,7 @@ class WorkerActivity :  ActivityBase<ActivityWorkerBinding>()  {
         }
         }
     }
-    fun keyboardup(){
+    fun keyboardtoggle(){
         val imm: InputMethodManager =
             getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
         imm.toggleSoftInput(InputMethodManager.SHOW_FORCED,0)
