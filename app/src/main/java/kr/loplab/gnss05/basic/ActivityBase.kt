@@ -9,6 +9,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import com.google.android.material.snackbar.Snackbar
 import kr.loplab.gnss05.GlobalApplication
+import kr.loplab.gnss05.common.Define.REQUEST_CODE_STRING
 
 
 abstract class ActivityBase<T : ViewDataBinding>: AppCompatActivity() {
@@ -58,7 +59,7 @@ abstract class ActivityBase<T : ViewDataBinding>: AppCompatActivity() {
     }
 
     override fun startActivityForResult(intent: Intent?, requestCode: Int, options: Bundle?) {
-        intent!!.putExtra("requestCode", requestCode);
+        intent!!.putExtra(REQUEST_CODE_STRING, requestCode);
         super.startActivityForResult(intent, requestCode, options)
     }
 }
