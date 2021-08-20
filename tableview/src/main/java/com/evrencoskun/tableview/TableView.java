@@ -669,8 +669,6 @@ public class TableView extends FrameLayout implements ITableView {
         // Find the row header view holder which is located on row position.
         AbstractViewHolder rowViewHolder = (AbstractViewHolder) getRowHeaderRecyclerView()
                 .findViewHolderForAdapterPosition(row);
-
-
         mSelectionHandler.setSelectedRowPosition(rowViewHolder, row);
     }
 

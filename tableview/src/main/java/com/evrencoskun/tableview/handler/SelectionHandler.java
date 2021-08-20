@@ -24,6 +24,8 @@
 
 package com.evrencoskun.tableview.handler;
 
+import android.util.Log;
+
 import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -42,6 +44,7 @@ import com.evrencoskun.tableview.layoutmanager.CellLayoutManager;
 public class SelectionHandler {
 
     public static final int UNSELECTED_POSITION = -1;
+    private static final String TAG = SelectionHandler.class.getSimpleName();
     private int mSelectedRowPosition = UNSELECTED_POSITION;
     private int mSelectedColumnPosition = UNSELECTED_POSITION;
 
@@ -115,11 +118,15 @@ public class SelectionHandler {
     }
 
     public void setPreviousSelectedView(@Nullable AbstractViewHolder viewHolder) {
+        try{
+        int selectedColor = mTableView.getSelectedColor();
+        int unselectedColor = mTableView.getUnSelectedColor();
+        int shadowColor = mTableView.getShadowColor();
+        Log.d(TAG, "setPreviousSelectedView: getSelectedColor" + selectedColor);
+        Log.d(TAG, "setPreviousSelectedView: getUnSelectedColor" + unselectedColor);
+        Log.d(TAG, "setPreviousSelectedView: getShadowColor" + shadowColor);
+        Log.d(TAG, "setPreviousSelectedView: viewHolder" + viewHolder.toString());
         restorePreviousSelectedView();
-        //완전똑같냐
-
-
-
 
         if (mPreviousSelectedViewHolder != null) {
             // Change color
@@ -142,7 +149,9 @@ public class SelectionHandler {
         // Change color
         mPreviousSelectedViewHolder.setBackgroundColor(mTableView.getSelectedColor());
         // Change state
-        mPreviousSelectedViewHolder.setSelected(SelectionState.SELECTED);
+        mPreviousSelectedViewHolder.setSelected(SelectionState.SELECTED);}catch (Exception e){
+            Log.e(TAG, "setPreviousSelectedView: 오류발생", e);
+        }
     }
 
     private void restorePreviousSelectedView() {

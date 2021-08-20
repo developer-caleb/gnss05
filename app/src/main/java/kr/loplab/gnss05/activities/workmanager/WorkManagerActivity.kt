@@ -55,11 +55,11 @@ class WorkManagerActivity : ActivityBase<ActivityWorkManagerBinding>() {
         }
         viewBinding.btDelete.setOnClickListener {
            // mTableView.
-            if(TableViewModel.selectedIndex>-1 || TableViewModel.selectedIndex>=tableWorkerViewModel.rowHeaderList.size){
+            if(TableViewModel.selectedIndex<=-1 || TableViewModel.selectedIndex>=tableWorkerViewModel.rowHeaderList.size){
                 showToast("삭제할 행을 선택해주세요."); return@setOnClickListener
             }
             Log.d(TAG, "initListener: delete ${TableViewModel.selectedIndex}")
-            if(TableViewModel.selectedIndex>-1){
+
                 lifecycleScope.launch(Dispatchers.IO) {
                     db.workerDao().delete(db.workerDao().all[TableViewModel.selectedIndex])
                 }
@@ -68,8 +68,9 @@ class WorkManagerActivity : ActivityBase<ActivityWorkManagerBinding>() {
                     tableWorkerViewModel.getColumnHeaderList(), tableWorkerViewModel
                         .getRowHeaderList(), tableWorkerViewModel.getCellList()
                 )
-                //tableWorkerViewModel
-            }
+                mTableView.selectedRow = 0
+            TableViewModel.selectedIndex = 0
+
         }
         viewBinding.btConfirm.setOnClickListener {
 
