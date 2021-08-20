@@ -40,8 +40,7 @@
 
                     <TextView
                         style="@style/Sub_TEXTVIEW_STYLE1"
-                        android:text="작업자"
-                        />
+                        android:text="작업자" />
 
 
                     <EditText
@@ -52,6 +51,7 @@
                         android:layout_weight="0"
                         android:background="@color/transparent"
                         android:clickable="false"
+                        android:hint="작업자 입력"
                         android:inputType="text"
                         android:text=""
                         tools:ignore="TouchTargetSizeCheck" />
@@ -85,6 +85,7 @@
                         android:layout_weight="0"
                         android:background="@color/transparent"
                         android:clickable="false"
+                        android:hint="이름 입력"
                         android:inputType="text"
                         android:text=""
                         tools:ignore="TouchTargetSizeCheck" />
@@ -119,6 +120,7 @@
                         android:layout_weight="0"
                         android:background="@color/transparent"
                         android:clickable="false"
+                        android:hint="사용자 입력"
                         android:inputType="text"
                         android:text=""
                         tools:ignore="TouchTargetSizeCheck" />
@@ -141,22 +143,22 @@
 
                     <TextView
                         style="@style/Sub_TEXTVIEW_STYLE1"
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_weight="1"
-                        android:text="암호"
-                        />
+                        android:text="암호" />
 
                     <EditText
                         android:id="@+id/et_password"
-                        android:layout_width="0dp"
+                        style="@style/Sub_TEXTVIEW_STYLE2"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="0"
-                        android:ems="10"
-                        android:inputType="textPassword"
-                        tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck"
                         android:background="@color/transparent"
                         android:clickable="false"
-                        />
+                        android:hint="암호 입력"
+                        android:layout_marginRight="5dp"
+                        android:inputType="textPassword"
+                        tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
                     <ImageView
                         android:layout_width="@dimen/rightArrowSize"

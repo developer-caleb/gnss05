@@ -51,25 +51,26 @@ class WorkerActivity :  ActivityBase<ActivityWorkerBinding>()  {
 
     override fun initListener() {
         viewBinding.header01.setOnBackButtonClickListener { onBackPressed();}
-        viewBinding.layoutName.setOnClickListener { viewBinding.etName.requestFocus()
+        viewBinding.layoutName.setOnClickListener {
+            viewBinding.etName.requestFocus()
             val imm: InputMethodManager =
                 getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
-            imm.showSoftInput(viewBinding.etName,0)
+            imm.toggleSoftInput(InputMethodManager.SHOW_FORCED,0)
         }
         viewBinding.layoutPassword.setOnClickListener { viewBinding.etPassword.requestFocus()
             val imm: InputMethodManager =
                 getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
-            imm.showSoftInput(viewBinding.etPassword,0)
+            imm.toggleSoftInput(InputMethodManager.SHOW_FORCED,0)
         }
         viewBinding.layoutWorker.setOnClickListener { viewBinding.etWorker.requestFocus()
             val imm: InputMethodManager =
                 getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
-            imm.showSoftInput(viewBinding.etWorker,0)
+            imm.toggleSoftInput(InputMethodManager.SHOW_FORCED,0)
         }
         viewBinding.layoutUser.setOnClickListener {viewBinding.etUser.requestFocus()
             val imm: InputMethodManager =
                 getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
-            imm.showSoftInput(viewBinding.etUser,0)
+            imm.toggleSoftInput(InputMethodManager.SHOW_FORCED,0)
         }
 
         viewBinding.btConfirm.setOnClickListener {
@@ -105,7 +106,11 @@ class WorkerActivity :  ActivityBase<ActivityWorkerBinding>()  {
         }
         }
     }
-
+    fun keyboardup(){
+        val imm: InputMethodManager =
+            getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
+        imm.toggleSoftInput(InputMethodManager.SHOW_FORCED,0)
+    }
     override fun initDatabinding() {
         if(requestCode == REQUEST_WORKER_MANAGE_EDIT) {
             lifecycleScope.launch(Dispatchers.IO) {

@@ -8,6 +8,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="../../../../layout/custom_preview.xml" value="0.35625" />
         <entry key="app/src/main/res/drawable-anydpi/selector_click_tab.xml" value="0.25078125" />
         <entry key="app/src/main/res/drawable-anydpi/selector_click_tab_white.xml" value="0.25069444444444444" />
         <entry key="app/src/main/res/drawable-hdpi/selector_bg_blue.xml" value="0.147265625" />
