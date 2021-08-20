@@ -70,13 +70,9 @@ class WorkManagerActivity : ActivityBase<ActivityWorkManagerBinding>() {
                     tableWorkerViewModel.getColumnHeaderList(), tableWorkerViewModel
                         .getRowHeaderList(), tableWorkerViewModel.getCellList()
                 )
-            if(tableWorkerViewModel.rowHeaderList.size!=0){
+            if(tableWorkerViewModel.rowHeaderList.size>0){
                 mTableView.selectedRow = 0
-                TableViewModel.selectedIndex = 0}else{
-                mTableView.selectedRow = -1
-                TableViewModel.selectedIndex = -1
-            }
-
+                TableViewModel.selectedIndex = 0}
         }
         viewBinding.btConfirm.setOnClickListener {
 

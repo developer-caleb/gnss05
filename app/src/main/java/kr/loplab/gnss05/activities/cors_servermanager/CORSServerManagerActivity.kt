@@ -73,13 +73,11 @@ class CORSServerManagerActivity : ActivityBase<ActivityCorsServerManagerBinding>
                 tableServerViewModel.getColumnHeaderList(), tableServerViewModel
                     .getRowHeaderList(), tableServerViewModel.getCellList()
             )
-            if(tableServerViewModel.rowHeaderList.size!=0){
-            mTableView.selectedRow = 0
-            TableViewModel.selectedIndex = 0}else{
-                mTableView.selectedRow = -1
-                TableViewModel.selectedIndex = -1
+            if(tableServerViewModel.rowHeaderList.size>0){
+                /
+            mTableView.isSelected
+            TableViewModel.selectedIndex = 0
             }
-
         }
         viewBinding.btConfirm.setOnClickListener {
 
