@@ -26,6 +26,7 @@ class WorkManagerActivity : ActivityBase<ActivityWorkManagerBinding>() {
     lateinit var tableViewAdapter : TableViewAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        TableViewModel.selectedIndex = -1
         super.onCreate(savedInstanceState)
     }
 

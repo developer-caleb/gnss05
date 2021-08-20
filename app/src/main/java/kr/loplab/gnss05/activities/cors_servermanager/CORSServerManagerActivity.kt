@@ -32,6 +32,7 @@ class CORSServerManagerActivity : ActivityBase<ActivityCorsServerManagerBinding>
     lateinit var tableViewAdapter : TableViewAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        TableViewModel.selectedIndex = -1
         super.onCreate(savedInstanceState)
     }
 
@@ -45,7 +46,7 @@ class CORSServerManagerActivity : ActivityBase<ActivityCorsServerManagerBinding>
     override fun initListener() {
         viewBinding.header01.setOnBackButtonClickListener { onBackPressed();}
         viewBinding.btAdd.setOnClickListener {
-            intent = Intent(this, WorkerActivity::class.java)
+            intent = Intent(this, ServerAddressAddActivity::class.java)
             ActivityCompat.startActivityForResult(this, intent,
                 Define.REQUEST_WORKER_MANAGE_ADD, null)
         }
@@ -54,7 +55,7 @@ class CORSServerManagerActivity : ActivityBase<ActivityCorsServerManagerBinding>
                 showToast("수정할 행을 선택해주세요."); return@setOnClickListener
             }
             Log.d(TAG, "initListener: edit ${TableViewModel.selectedIndex}")
-            intent = Intent(this, WorkerActivity::class.java)
+            intent = Intent(this, ServerAddressAddActivity::class.java)
             intent.putExtra("selectPosition", TableViewModel.selectedIndex);
             ActivityCompat.startActivityForResult(this, intent,
                 Define.REQUEST_WORKER_MANAGE_EDIT, null)
