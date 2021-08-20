@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    >
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activities.cors_servermanager.CORSServerManagerActivity">
+
+    <kr.loplab.gnss05.DefaultHeader
+        android:id="@+id/header01"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:title="CORS 서버 관리자" />
+
+    <com.evrencoskun.tableview.TableView
+        android:id="@+id/tableview2"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:allow_click_inside_cell="true"
+        app:allow_click_inside_column_header="true"
+        app:allow_click_inside_row_header="true"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout5"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/header01">
+
+    </com.evrencoskun.tableview.TableView>
+    <LinearLayout
+        android:id="@+id/linearLayout5"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <TextView
+            android:id="@+id/bt_add"
+            style="@style/TextViewButton_STYLE01"
+            android:layout_width="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="추가"
+
+            />
+
+        <TextView
+            android:id="@+id/bt_edit"
+            style="@style/TextViewButton_STYLE01"
+            android:layout_width="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="편집"
+
+            />
+
+        <TextView
+            android:id="@+id/bt_delete"
+            style="@style/TextViewButton_STYLE01"
+            android:layout_width="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="삭제"
+
+            />
+
+        <TextView
+            android:id="@+id/bt_confirm"
+            style="@style/TextViewButton_STYLE01"
+            android:layout_width="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="확인"
+
+            />
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

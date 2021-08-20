@@ -18,10 +18,20 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Gnss05">
         <activity
-            android:name=".activities.workmanager.WorkManagerActivity"
+            android:name=".activities.cors_servermanager.ServerAddressAddActivity"
+            android:exported="true" />
+        <activity
+            android:name=".activities.cors_servermanager.CORSServerManagerActivity"
             android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
+        <activity
+            android:name=".activities.workmanager.WorkManagerActivity"
+            android:exported="true" />
         <activity
             android:name=".activities.workmanager.WorkerActivity"
             android:exported="true" />
@@ -54,14 +64,7 @@
             android:exported="true" />
         <activity
             android:name=".SplashActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-
-        </activity>
+            android:exported="true"></activity>
         <!--
         <activity android:name=".tablelayout_tools1.TableActivity" />
         <activity android:name=".UserFormatView" />
