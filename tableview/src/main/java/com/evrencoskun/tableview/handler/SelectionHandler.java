@@ -134,7 +134,7 @@ public class SelectionHandler {
             // Change state
             mPreviousSelectedViewHolder.setSelected(SelectionState.UNSELECTED);
         }
-
+        //
         AbstractViewHolder oldViewHolder = mCellLayoutManager.getCellViewHolder
                 (getSelectedColumnPosition(), getSelectedRowPosition());
 
