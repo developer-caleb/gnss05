@@ -1,7 +1,6 @@
 package kr.loplab.gnss05.activities.cors_servermanager
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import androidx.core.app.ActivityCompat
@@ -12,13 +11,8 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kr.loplab.gnss02.ActivityBase
 import kr.loplab.gnss05.R
-import kr.loplab.gnss05.activities.workmanager.AppDatabase
-import kr.loplab.gnss05.activities.workmanager.TableWorkerViewModel
-import kr.loplab.gnss05.activities.workmanager.Worker
-import kr.loplab.gnss05.activities.workmanager.WorkerActivity
 import kr.loplab.gnss05.common.Define
 import kr.loplab.gnss05.databinding.ActivityCorsServerManagerBinding
-import kr.loplab.gnss05.databinding.ActivityStopSurveyBinding
 import kr.loplab.gnss05.tableview.TableViewAdapter
 import kr.loplab.gnss05.tableview.TableViewListener
 import kr.loplab.gnss05.tableview.TableViewModel
@@ -26,7 +20,7 @@ import kr.loplab.gnss05.tableview.TableViewModel
 class CORSServerManagerActivity : ActivityBase<ActivityCorsServerManagerBinding>() {
     override val layoutResourceId: Int
         get() = R.layout.activity_cors_server_manager
-    lateinit var db : AppDatabase
+    lateinit var db : AppDatabase2
     private lateinit var mTableView: TableView
     lateinit var tableWorkerViewModel: TableViewModel
     lateinit var tableViewAdapter : TableViewAdapter
@@ -37,7 +31,7 @@ class CORSServerManagerActivity : ActivityBase<ActivityCorsServerManagerBinding>
     }
 
     override fun init() {
-        db = Room.databaseBuilder(this, AppDatabase::class.java, Define.WORKERS_DB)
+        db = Room.databaseBuilder(this, AppDatabase2::class.java, Define.WORKERS_DB)
             .allowMainThreadQueries() //메인쓰레드에서 작동시킬 때 사용
             .build()
         mTableView = findViewById(R.id.tableview2)
@@ -70,7 +64,7 @@ class CORSServerManagerActivity : ActivityBase<ActivityCorsServerManagerBinding>
             Log.d(TAG, "initListener: delete ${TableViewModel.selectedIndex}")
 
             lifecycleScope.launch(Dispatchers.IO) {
-                db.workerDao().delete(db.workerDao().all[TableViewModel.selectedIndex])
+                db.serverDao().delete(db.serverDao().all[TableViewModel.selectedIndex])
             }
             tableWorkerViewModel.removePosition(TableViewModel.selectedIndex)
             tableViewAdapter.setAllItems(
@@ -88,13 +82,13 @@ class CORSServerManagerActivity : ActivityBase<ActivityCorsServerManagerBinding>
 
     override fun initDatabinding() {
         lifecycleScope.launch(Dispatchers.IO) {
-            var  workerlist : List<Worker> = db.workerDao().all
-            initializeTableView(workerlist)
+            var  serverlist : List<Server> = db.serverDao().all
+            initializeTableView(serverlist)
         }
     }
-    fun initializeTableView(workerlist : List<Worker>) {
+    fun initializeTableView(serverlist : List<Server>) {
         // Create TableView View model class  to group view models of TableView
-        tableWorkerViewModel = TableServerViewModel(workerlist)
+        tableWorkerViewModel = TableServerViewModel(serverlist)
 
         // Create TableView Adapter
         tableViewAdapter = TableViewAdapter(tableWorkerViewModel)
@@ -117,8 +111,8 @@ class CORSServerManagerActivity : ActivityBase<ActivityCorsServerManagerBinding>
         {
             Log.d(TAG, "onActivityResult: 축하합니다_추가")
             //lifecycleScope.launch(Dispatchers.IO) { }
-            var  workerlist : List<Worker> = db.workerDao().all
-            tableWorkerViewModel = TableServerViewModel(workerlist)
+            var  serverlist : List<Server> = db.serverDao().all
+            tableWorkerViewModel = TableServerViewModel(serverlist)
             refresh()
         }
 
@@ -126,8 +120,8 @@ class CORSServerManagerActivity : ActivityBase<ActivityCorsServerManagerBinding>
         {
             Log.d(TAG, "onActivityResult: 축하합니다_편집")
             //lifecycleScope.launch(Dispatchers.IO) { }
-            var  workerlist : List<Worker> = db.workerDao().all
-            tableWorkerViewModel = TableServerViewModel(workerlist)
+            var  serverlist : List<Server> = db.serverDao().all
+            tableWorkerViewModel = TableServerViewModel(serverlist)
             refresh()
         }
     }

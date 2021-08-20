@@ -32,7 +32,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import kr.loplab.gnss05.activities.workmanager.Worker;
 import kr.loplab.gnss05.tableview.TableViewModel;
 import kr.loplab.gnss05.tableview.model.Cell;
 import kr.loplab.gnss05.tableview.model.ColumnHeader;
@@ -44,21 +43,21 @@ public class TableServerViewModel extends TableViewModel {
     private static int COLUMN_SIZE = 5;
     private static int ROW_SIZE = 5;
     private ArrayList<String> customFileFormat = new ArrayList<>(Arrays.asList("번호", "이름", "IP", "포트","사용자","암호"));
-    List<Worker> workerslist =null;
+    List<Server> serverList =null;
 
      TableServerViewModel(){}
-     TableServerViewModel(List<Worker> workerslist){
-         ROW_SIZE = workerslist.size();
-        this.workerslist = workerslist;
+     TableServerViewModel(List<Server> serverList){
+         ROW_SIZE = serverList.size();
+        this.serverList = serverList;
     }
 
     @Override
     public void removePosition(int position){
         Log.d(TAG, "removePosition: override.. 삭제");
-        if(position>= workerslist.size()||position<0) return;
-        if(workerslist!=null && workerslist.size()>0){
-            workerslist.remove(position);
-            ROW_SIZE = workerslist.size();
+        if(position>= serverList.size()||position<0) return;
+        if(serverList !=null && serverList.size()>0){
+            serverList.remove(position);
+            ROW_SIZE = serverList.size();
         }else{return;}
     }
 
@@ -102,20 +101,24 @@ public class TableServerViewModel extends TableViewModel {
                 Object text = "";//"cell " + j + " " + i;
                 //final int random = new Random().nextInt();
                 if (j == 0) {
-                    if(workerslist!=null && workerslist.size()!=0){
-                        text= workerslist.get(i).getWorker();
+                    if(serverList !=null && serverList.size()!=0){
+                        text= serverList.get(i).getName();
                     }else text= "";
                 } else if (j == 1) {
-                    if(workerslist!=null && workerslist.size()!=0){
-                        text= workerslist.get(i).getName();
+                    if(serverList !=null && serverList.size()!=0){
+                        text= serverList.get(i).getId();
                     }else text= "";
                 } else if (j == 2) {
-                    if(workerslist!=null && workerslist.size()!=0){
-                        text= workerslist.get(i).getUser();
+                    if(serverList !=null && serverList.size()!=0){
+                        text= serverList.get(i).getPort();
                     }else text= "";
                 }else if (j == 3) {
-                    if(workerslist!=null && workerslist.size()!=0){
-                        text= workerslist.get(i).getPassword();
+                    if(serverList !=null && serverList.size()!=0){
+                        text= serverList.get(i).getUser();
+                    }else text= "";
+                }else if (j == 4) {
+                    if(serverList !=null && serverList.size()!=0){
+                        text= serverList.get(i).getPassword();
                     }else text= "";
                 }
                 // Create dummy id.
