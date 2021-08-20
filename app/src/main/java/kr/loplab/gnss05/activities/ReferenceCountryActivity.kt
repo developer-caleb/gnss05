@@ -163,9 +163,8 @@ class ReferenceCountryActivity : ActivityBase<ActivityReferenceCountryBinding>()
             dlg.start("")
             dlg.setOnListClickedListener { view, i ->
                 Log.d(TAG, "initListener: $i")
-                viewModel1.setDataConnectionType(i)
                 PrefUtil.setInt(applicationContext, prefvalue, i)
-                viewModel1.setNetworkMode(PrefUtil.getInt2(this, NETWORK_MODE))
+                viewModel1.setNetworkMode(i)
                 viewBinding.tvNetworkMode.text = alist[PrefUtil.getInt2(applicationContext, prefvalue
                 )]
                 dlg.refresh()

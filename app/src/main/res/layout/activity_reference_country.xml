@@ -669,7 +669,9 @@
                <LinearLayout
                    android:layout_width="match_parent"
                    android:layout_height="wrap_content"
-                   android:orientation="vertical">
+                   android:orientation="vertical"
+                   android:visibility="@{referencecontryviewmodel.network_mode == 0 ? View.VISIBLE : View.GONE }"
+                   >
                    <View
                        android:layout_width="match_parent"
                        android:layout_height="1dp"
@@ -707,6 +709,7 @@
 
                 <!---APN 설정-->
                 <LinearLayout
+                    android:id="@+id/layout_apn_settings"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:orientation="vertical"
@@ -871,9 +874,12 @@
 
                 <!---WiFi 설정-->
                 <LinearLayout
+                    android:id="@+id/layout_wifi_settings"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:visibility="@{referencecontryviewmodel.network_mode == 0 ? View.GONE : View.VISIBLE }"
+                    >
 
                     <LinearLayout
                         style="@style/ButtonLayout_STYLE01"
