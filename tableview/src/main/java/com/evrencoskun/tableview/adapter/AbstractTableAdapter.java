@@ -142,7 +142,7 @@ public abstract class AbstractTableAdapter<CH, RH, C> implements ITableAdapter<C
         boolean hasColumnHeaders = columnHeaderItems != null && !columnHeaderItems.isEmpty();
         boolean hasRowHeaders = rowHeaderItems != null && !rowHeaderItems.isEmpty();
         boolean showCornerView = mTableView != null && mTableView.getShowCornerView();
-        boolean needCornerSpace = hasColumnHeaders && (hasRowHeaders || showCornerView);
+        boolean needCornerSpace = true; //cornerSpace는 항상 필요하지! //hasColumnHeaders && (hasRowHeaders || showCornerView);
 
         // Create the corner view if we need it
         if (mCornerView == null && needCornerSpace) {
@@ -172,7 +172,8 @@ public abstract class AbstractTableAdapter<CH, RH, C> implements ITableAdapter<C
         if (needCornerSpace) {
             mCornerView.setVisibility(View.VISIBLE);
         } else {
-            mCornerView.setVisibility(View.GONE);
+            mCornerView.setVisibility(View.VISIBLE);
+           // mCornerView.setVisibility(View.GONE);
         }
     }
 
