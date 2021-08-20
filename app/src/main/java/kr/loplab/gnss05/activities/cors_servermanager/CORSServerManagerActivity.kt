@@ -74,7 +74,10 @@ class CORSServerManagerActivity : ActivityBase<ActivityCorsServerManagerBinding>
                     .getRowHeaderList(), tableServerViewModel.getCellList()
             )
             if(tableServerViewModel.rowHeaderList.size>0){
-                /
+                /*TODO
+                /표에 두가지 문제점이 있음
+                        /1 아무것도 넣지 않았을 때 첫번째 헤더가 없음
+                        /2 1번째 행을 지웠다가 다시 만들면? setrow -1 했을 때 좀 이상해지는 것 같기도하고? //방법을 강구해봐야함*/
             mTableView.isSelected
             TableViewModel.selectedIndex = 0
             }
