@@ -33,6 +33,7 @@ class CORSServerManagerActivity : ActivityBase<ActivityCorsServerManagerBinding>
     override fun init() {
         db = Room.databaseBuilder(this, AppDatabase2::class.java, Define.WORKERS_DB)
             .allowMainThreadQueries() //메인쓰레드에서 작동시킬 때 사용
+            .fallbackToDestructiveMigration()
             .build()
         mTableView = findViewById(R.id.tableview2)
     }
@@ -81,10 +82,8 @@ class CORSServerManagerActivity : ActivityBase<ActivityCorsServerManagerBinding>
     }
 
     override fun initDatabinding() {
-        lifecycleScope.launch(Dispatchers.IO) {
             var  serverlist : List<Server> = db.serverDao().all
             initializeTableView(serverlist)
-        }
     }
     fun initializeTableView(serverlist : List<Server>) {
         // Create TableView View model class  to group view models of TableView

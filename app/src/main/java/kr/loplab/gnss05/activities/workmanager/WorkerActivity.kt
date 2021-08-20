@@ -23,7 +23,7 @@ import java.lang.Exception
 class WorkerActivity :  ActivityBase<ActivityWorkerBinding>()  {
     override val layoutResourceId: Int
         get() = R.layout.activity_worker
-    lateinit var db : AppDatabase
+    lateinit var db : AppDatabase1
     var requestCode= 0;
     var selectedPosition = -1;
      var workerslist : MutableList<Worker>? = null
@@ -32,8 +32,9 @@ class WorkerActivity :  ActivityBase<ActivityWorkerBinding>()  {
     }
 
     override fun init() {
-        db = Room.databaseBuilder(this, AppDatabase::class.java, Define.WORKERS_DB)
+        db = Room.databaseBuilder(this, AppDatabase1::class.java, Define.WORKERS_DB)
             .allowMainThreadQueries() //메인쓰레드에서 작동시킬 때 사용
+            .fallbackToDestructiveMigration()
             .build()
 
         if (intent.hasExtra(Define.REQUEST_CODE_STRING) )

@@ -971,6 +971,7 @@
                              />
 
                         <ImageView
+                            android:id="@+id/cors_setting_bt"
                             android:layout_width="@dimen/rightArrowSize"
                             android:layout_height="@dimen/rightArrowSize"
                             android:layout_weight="0"

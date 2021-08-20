@@ -10,6 +10,7 @@ import androidx.lifecycle.ViewModelProvider
 import kr.loplab.gnss02.ActivityBase
 import kr.loplab.gnss05.MyDialog
 import kr.loplab.gnss05.R
+import kr.loplab.gnss05.activities.cors_servermanager.CORSServerManagerActivity
 import kr.loplab.gnss05.activities.viewmodel.ReferenceContryViewModel
 import kr.loplab.gnss05.activities.workmanager.WorkManagerActivity
 import kr.loplab.gnss05.common.Define
@@ -40,6 +41,10 @@ class ReferenceCountryActivity : ActivityBase<ActivityReferenceCountryBinding>()
 
     override fun initListener() {
         viewBinding.header01.setOnBackButtonClickListener { onBackPressed();}
+        viewBinding.corsSettingBt.setOnClickListener {
+            intent = Intent(this, CORSServerManagerActivity::class.java)
+            startActivity(intent);
+        }
         viewBinding.btOpenWorkManager.setOnClickListener {
             intent = Intent(this, WorkManagerActivity::class.java)
             startActivity(intent);
