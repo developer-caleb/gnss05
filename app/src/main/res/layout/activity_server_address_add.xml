@@ -50,7 +50,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="0"
-                        android:text="000"
+                        android:backgroundTint="@color/transparent"
+                        android:hint="이름 입력"
                         tools:ignore="TouchTargetSizeCheck" />
 
 
@@ -80,7 +81,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="0"
-                        android:text="000"
+                        android:backgroundTint="@color/transparent"
+                        android:hint="IP 입력"
                         tools:ignore="TouchTargetSizeCheck" />
 
 
@@ -110,7 +112,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="0"
-                        android:text="000"
+                        android:backgroundTint="@color/transparent"
+                        android:hint="포트 입력"
                         tools:ignore="TouchTargetSizeCheck" />
 
 
@@ -141,7 +144,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="0"
-                        android:text="000"
+
+                        android:backgroundTint="@color/transparent"
+                        android:hint="사용자 입력"
                         tools:ignore="TouchTargetSizeCheck" />
 
 
@@ -167,9 +172,12 @@
 
                     <EditText
                         android:id="@+id/et_password"
-                        android:layout_width="160dp"
+                        android:layout_width="wrap_content"
+                        style="@style/Sub_TEXTVIEW_STYLE2"
                         android:layout_height="wrap_content"
-                        android:ems="10"
+                        android:backgroundTint="@color/transparent"
+                        android:layout_marginRight="5dp"
+                        android:hint="암호 입력"
                         android:inputType="textPassword"
                         tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
