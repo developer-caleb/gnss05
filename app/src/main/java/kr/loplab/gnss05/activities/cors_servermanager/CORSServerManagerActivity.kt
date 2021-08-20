@@ -31,9 +31,9 @@ class CORSServerManagerActivity : ActivityBase<ActivityCorsServerManagerBinding>
     }
 
     override fun init() {
-        db = Room.databaseBuilder(this, AppDatabase2::class.java, Define.WORKERS_DB)
-            .allowMainThreadQueries() //메인쓰레드에서 작동시킬 때 사용
+        db = Room.databaseBuilder(this, AppDatabase2::class.java, Define.SERVERS_DB)
             .fallbackToDestructiveMigration()
+            .allowMainThreadQueries() //메인쓰레드에서 작동시킬 때 사용
             .build()
         mTableView = findViewById(R.id.tableview2)
     }

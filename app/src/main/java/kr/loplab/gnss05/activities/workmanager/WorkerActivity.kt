@@ -55,22 +55,22 @@ class WorkerActivity :  ActivityBase<ActivityWorkerBinding>()  {
             viewBinding.etName.requestFocus()
             val imm: InputMethodManager =
                 getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
-            imm.toggleSoftInput(InputMethodManager.SHOW_FORCED,0)
+            imm.showSoftInput(viewBinding.etName,0)
         }
         viewBinding.layoutPassword.setOnClickListener { viewBinding.etPassword.requestFocus()
             val imm: InputMethodManager =
                 getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
-            imm.toggleSoftInput(InputMethodManager.SHOW_FORCED,0)
+            imm.showSoftInput(viewBinding.etPassword,0)
         }
         viewBinding.layoutWorker.setOnClickListener { viewBinding.etWorker.requestFocus()
             val imm: InputMethodManager =
                 getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
-            imm.toggleSoftInput(InputMethodManager.SHOW_FORCED,0)
+            imm.showSoftInput(viewBinding.etWorker,0)
         }
         viewBinding.layoutUser.setOnClickListener {viewBinding.etUser.requestFocus()
             val imm: InputMethodManager =
                 getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
-            imm.toggleSoftInput(InputMethodManager.SHOW_FORCED,0)
+            imm.showSoftInput(viewBinding.etUser,0)
         }
 
         viewBinding.btConfirm.setOnClickListener {
