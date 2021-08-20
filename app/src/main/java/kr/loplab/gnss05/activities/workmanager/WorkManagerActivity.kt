@@ -82,8 +82,7 @@ class WorkManagerActivity : ActivityBase<ActivityWorkManagerBinding>() {
     }*/
     override fun initDatabinding() {
             viewBinding.dbText.text = db.workerDao().all.toString()
-            var  workerlist : List<Worker> = db.workerDao().all
-            initializeTableView(workerlist)
+           refresh()
 
     }
 
@@ -127,6 +126,11 @@ class WorkManagerActivity : ActivityBase<ActivityWorkManagerBinding>() {
     fun refresh(){
         var  workerlist : List<Worker> = db.workerDao().all
         tableWorkerViewModel = TableWorkerViewModel(workerlist)
+        //추가 시작
+        tableViewAdapter = TableViewAdapter(tableWorkerViewModel)
+        mTableView.setAdapter(tableViewAdapter)
+        //추가 끝
+        mTableView.setTableViewListener(TableViewListener(mTableView))
         tableViewAdapter.setAllItems(
             tableWorkerViewModel.getColumnHeaderList(), tableWorkerViewModel
                 .getRowHeaderList(), tableWorkerViewModel.getCellList()
