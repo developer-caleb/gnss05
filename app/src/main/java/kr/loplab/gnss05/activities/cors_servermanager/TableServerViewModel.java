@@ -106,7 +106,7 @@ public class TableServerViewModel extends TableViewModel {
                     }else text= "";
                 } else if (j == 1) {
                     if(serverList !=null && serverList.size()!=0){
-                        text= serverList.get(i).getId();
+                        text= serverList.get(i).getIp();
                     }else text= "";
                 } else if (j == 2) {
                     if(serverList !=null && serverList.size()!=0){
