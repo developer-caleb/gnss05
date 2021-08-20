@@ -114,11 +114,20 @@ class WorkManagerActivity : ActivityBase<ActivityWorkManagerBinding>() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         if(resultCode== RESULT_OK && requestCode == REQUEST_WORKER_MANAGE_ADD)
         {
-            Log.d(TAG, "onActivityResult: 축하합니다")
+            Log.d(TAG, "onActivityResult: 축하합니다_추가")
             //lifecycleScope.launch(Dispatchers.IO) { }
                 var  workerlist : List<Worker> = db.workerDao().all
                 tableWorkerViewModel = TableWorkerViewModel(workerlist)
                 refresh()
+        }
+
+        if(resultCode== RESULT_OK && requestCode == REQUEST_WORKER_MANAGE_EDIT)
+        {
+            Log.d(TAG, "onActivityResult: 축하합니다_편집")
+            //lifecycleScope.launch(Dispatchers.IO) { }
+            var  workerlist : List<Worker> = db.workerDao().all
+            tableWorkerViewModel = TableWorkerViewModel(workerlist)
+            refresh()
         }
     }
 

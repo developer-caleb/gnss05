@@ -63,6 +63,14 @@ class WorkerActivity :  ActivityBase<ActivityWorkerBinding>()  {
             finish()}
              REQUEST_WORKER_MANAGE_EDIT ->{
                  Log.d(TAG, "initListener: edit! confirm")
+                 lifecycleScope.launch(Dispatchers.IO) {
+                     var workermodel =  db.workerDao().all[selectedPosition]
+                     workermodel.worker = viewBinding.etWorker.text.toString()
+                     workermodel.name = viewBinding.etName.text.toString()
+                     workermodel.user = viewBinding.etUser.text.toString()
+                     workermodel.password = viewBinding.etPassword.text.toString()
+                     db.workerDao().update(workermodel)
+                 }
              }
             else ->{
                 Log.d(TAG, "initListener: requestcode else $requestCode")
