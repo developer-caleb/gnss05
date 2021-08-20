@@ -26,7 +26,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:background="@color/cell_background_color"
-    android:layout_width="@dimen/default_row_header_width"
+    android:layout_width="wrap_content"
     android:layout_height="@dimen/cell_height">
 
     <LinearLayout

@@ -116,6 +116,7 @@
         <entry key="app/src/main/res/layout/worker.xml" value="0.244140625" />
         <entry key="app/src/main/res/layout/workgroup_sub1.xml" value="0.244140625" />
         <entry key="tableview/src/androidTest/res/layout/corner_layout.xml" value="0.2484375" />
+        <entry key="tableview/src/androidTest/res/layout/row_layout.xml" value="0.137109375" />
         <entry key="tableview/src/main/res/drawable/cell_line_divider.xml" value="0.148046875" />
       </map>
     </option>
