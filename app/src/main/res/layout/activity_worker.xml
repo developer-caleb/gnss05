@@ -34,6 +34,7 @@
                 android:orientation="vertical" >
 
                 <LinearLayout
+                    android:id="@+id/layout_worker"
                     style="@style/ButtonLayout_STYLE01"
                     >
 
@@ -49,10 +50,11 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="0"
-                        android:text="000"
-                        tools:ignore="TouchTargetSizeCheck"
                         android:background="@color/transparent"
-                        />
+                        android:clickable="false"
+                        android:inputType="text"
+                        android:text=""
+                        tools:ignore="TouchTargetSizeCheck" />
 
 
 
@@ -66,6 +68,7 @@
 
 
                 <LinearLayout
+                    android:id="@+id/layout_name"
                     style="@style/ButtonLayout_STYLE01"
                     >
 
@@ -80,8 +83,10 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="0"
-                        android:text="000"
                         android:background="@color/transparent"
+                        android:clickable="false"
+                        android:inputType="text"
+                        android:text=""
                         tools:ignore="TouchTargetSizeCheck" />
 
 
@@ -97,6 +102,7 @@
 
 
                 <LinearLayout
+                    android:id="@+id/layout_user"
                     style="@style/ButtonLayout_STYLE01"
                     >
 
@@ -111,8 +117,10 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="0"
-                        android:text="000"
                         android:background="@color/transparent"
+                        android:clickable="false"
+                        android:inputType="text"
+                        android:text=""
                         tools:ignore="TouchTargetSizeCheck" />
 
 
@@ -127,21 +135,27 @@
                     android:background="@color/grey_cc" />
 
 
-                <LinearLayout style="@style/ButtonLayout_STYLE01">
+                <LinearLayout
+                    android:id="@+id/layout_password"
+                    style="@style/ButtonLayout_STYLE01">
 
                     <TextView
                         style="@style/Sub_TEXTVIEW_STYLE1"
+                        android:layout_width="match_parent"
+                        android:layout_weight="1"
                         android:text="암호"
                         />
 
                     <EditText
                         android:id="@+id/et_password"
-                        android:layout_width="160dp"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:layout_weight="0"
                         android:ems="10"
                         android:inputType="textPassword"
                         tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck"
                         android:background="@color/transparent"
+                        android:clickable="false"
                         />
 
                     <ImageView

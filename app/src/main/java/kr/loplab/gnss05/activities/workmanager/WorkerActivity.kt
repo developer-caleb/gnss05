@@ -4,8 +4,10 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.inputmethod.InputMethodManager
 import androidx.lifecycle.lifecycleScope
 import androidx.room.Room
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_worker.view.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -48,6 +50,27 @@ class WorkerActivity :  ActivityBase<ActivityWorkerBinding>()  {
 
     override fun initListener() {
         viewBinding.header01.setOnBackButtonClickListener { onBackPressed();}
+        viewBinding.layoutName.setOnClickListener { viewBinding.etName.requestFocus()
+            val imm: InputMethodManager =
+                getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
+            imm.showSoftInput(viewBinding.etName,0)
+        }
+        viewBinding.layoutPassword.setOnClickListener { viewBinding.etPassword.requestFocus()
+            val imm: InputMethodManager =
+                getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
+            imm.showSoftInput(viewBinding.etPassword,0)
+        }
+        viewBinding.layoutWorker.setOnClickListener { viewBinding.etWorker.requestFocus()
+            val imm: InputMethodManager =
+                getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
+            imm.showSoftInput(viewBinding.etWorker,0)
+        }
+        viewBinding.layoutUser.setOnClickListener {viewBinding.etUser.requestFocus()
+            val imm: InputMethodManager =
+                getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
+            imm.showSoftInput(viewBinding.etUser,0)
+        }
+
         viewBinding.btConfirm.setOnClickListener {
             when(requestCode){
                 REQUEST_WORKER_MANAGE_ADD->{
@@ -71,6 +94,8 @@ class WorkerActivity :  ActivityBase<ActivityWorkerBinding>()  {
                      workermodel.password = viewBinding.etPassword.text.toString()
                      db.workerDao().update(workermodel)
                  }
+                 setResult(RESULT_OK)
+                 finish()
              }
             else ->{
                 Log.d(TAG, "initListener: requestcode else $requestCode")
