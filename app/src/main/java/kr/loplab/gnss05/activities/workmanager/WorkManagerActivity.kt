@@ -95,10 +95,7 @@ class WorkManagerActivity : ActivityBase<ActivityWorkManagerBinding>() {
         mTableView.setAdapter(tableViewAdapter)
         mTableView.setTableViewListener(TableViewListener(mTableView))
 
-        // Create an instance of a Filter and pass the TableView.
-        //mTableFilter = new Filter(mTableView);
-
-        // Load the dummy data to the TableView
+         // Load the dummy data to the TableView
         tableViewAdapter.setAllItems(
             tableWorkerViewModel.getColumnHeaderList(), tableWorkerViewModel
                 .getRowHeaderList(), tableWorkerViewModel.getCellList()
@@ -110,15 +107,11 @@ class WorkManagerActivity : ActivityBase<ActivityWorkManagerBinding>() {
         if(resultCode== RESULT_OK && requestCode == REQUEST_WORKER_MANAGE_ADD)
         {
             Log.d(TAG, "onActivityResult: 축하합니다_추가")
-            //lifecycleScope.launch(Dispatchers.IO) { }
-
-                refresh()
+            refresh()
         }
 
         if(resultCode== RESULT_OK && requestCode == REQUEST_WORKER_MANAGE_EDIT)
         {
-
-
             refresh()
         }
     }
