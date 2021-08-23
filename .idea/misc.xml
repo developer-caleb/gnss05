@@ -14,6 +14,10 @@
         <entry key="app/src/main/res/drawable-hdpi/selector_bg_blue.xml" value="0.147265625" />
         <entry key="app/src/main/res/drawable-hdpi/selector_bg_tabs.xml" value="0.117578125" />
         <entry key="app/src/main/res/drawable-hdpi/selector_bg_white.xml" value="0.147265625" />
+        <entry key="app/src/main/res/drawable-mdpi/switch_thumb.xml" value="0.30277777777777776" />
+        <entry key="app/src/main/res/drawable-mdpi/switch_track_off.xml" value="0.30277777777777776" />
+        <entry key="app/src/main/res/drawable-mdpi/switch_track_on.xml" value="0.30277777777777776" />
+        <entry key="app/src/main/res/drawable-mdpi/switch_track_selector.xml" value="0.30277777777777776" />
         <entry key="app/src/main/res/drawable-v24/ripple_circle.xml" value="0.35104166666666664" />
         <entry key="app/src/main/res/drawable-xxhdpi/ripple_rect.xml" value="0.253125" />
         <entry key="app/src/main/res/drawable/bt_background_black.xml" value="0.260546875" />
@@ -24,8 +28,11 @@
         <entry key="app/src/main/res/drawable/ic_tab1.xml" value="0.35104166666666664" />
         <entry key="app/src/main/res/drawable/ic_tab2.xml" value="0.35104166666666664" />
         <entry key="app/src/main/res/drawable/ic_tab3.xml" value="0.35104166666666664" />
+        <entry key="app/src/main/res/drawable/outline01.xml" value="0.30277777777777776" />
+        <entry key="app/src/main/res/drawable/outlined2.xml" value="0.30277777777777776" />
         <entry key="app/src/main/res/drawable/password_icon.xml" value="0.260546875" />
         <entry key="app/src/main/res/drawable/pencil.xml" value="0.12109375" />
+        <entry key="app/src/main/res/drawable/point.xml" value="0.30277777777777776" />
         <entry key="app/src/main/res/drawable/ripple_circle.xml" value="0.113671875" />
         <entry key="app/src/main/res/drawable/share.xml" value="0.12109375" />
         <entry key="app/src/main/res/drawable/tabbackground.xml" value="0.169921875" />
@@ -54,7 +61,7 @@
         <entry key="app/src/main/res/layout/activity_tablemain.xml" value="0.141015625" />
         <entry key="app/src/main/res/layout/activity_type3.xml" value="0.31614583333333335" />
         <entry key="app/src/main/res/layout/activity_type5.xml" value="0.31614583333333335" />
-        <entry key="app/src/main/res/layout/activity_user_format.xml" value="0.22" />
+        <entry key="app/src/main/res/layout/activity_user_format.xml" value="1.8286713286713288" />
         <entry key="app/src/main/res/layout/activity_user_format_view.xml" value="0.22" />
         <entry key="app/src/main/res/layout/activity_work_manager.xml" value="0.23828125" />
         <entry key="app/src/main/res/layout/activity_worker.xml" value="0.23828125" />
