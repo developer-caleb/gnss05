@@ -6,23 +6,23 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:shape="rectangle" >
     <corners
-        android:radius="18dp" />
+        android:radius="@dimen/switch_height" />
     <size
-        android:width="32dp"
-        android:height="18dp"/>
+        android:width="@dimen/switch_width"
+        android:height="@dimen/switch_height"/>
     <solid
         android:color="@color/brightSky" />
 </shape>
     </item>
-    <item  android:left="10dp"
+    <item  android:left="13dp"
         android:gravity="center_vertical|left"
-        android:width="3dp"
-        android:height="8dp"
+        android:width="2dp"
+        android:height="10dp"
         >
         <shape
             android:shape="rectangle">
             <stroke
-                android:width="2dp"
+                android:width="1dp"
                 android:color="#FFFFFF"/>
 
         </shape>

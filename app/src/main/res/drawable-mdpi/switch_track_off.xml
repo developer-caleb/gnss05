@@ -5,10 +5,10 @@
 <shape
     android:shape="rectangle" >
     <corners
-        android:radius="18dp" />
+        android:radius="@dimen/switch_height" />
     <size
-        android:width="32dp"
-        android:height="18dp"/>
+        android:width="@dimen/switch_width"
+        android:height="@dimen/switch_height"/>
     <solid
         android:color="@color/grey_dd" />
 </shape>
