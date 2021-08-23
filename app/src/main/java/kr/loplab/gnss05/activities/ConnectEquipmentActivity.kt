@@ -3,10 +3,14 @@ package kr.loplab.gnss05.activities
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import androidx.lifecycle.ViewModelProvider
 import kr.loplab.gnss02.ActivityBase
 import kr.loplab.gnss05.adapter.DialogRecyclerviewAdapter
 import kr.loplab.gnss05.MyDialog
 import kr.loplab.gnss05.R
+import kr.loplab.gnss05.activities.viewmodel.ConnectEquipmentViewModel
+import kr.loplab.gnss05.activities.viewmodel.ReferenceContryViewModel
+import kr.loplab.gnss05.common.Define
 import kr.loplab.gnss05.common.Define.CONNECT_MODE
 import kr.loplab.gnss05.common.Define.EQUIPMENT_MAKER
 import kr.loplab.gnss05.common.OptionList.Companion.CONNECT_MODE_LIST
@@ -17,13 +21,15 @@ import kr.loplab.gnss05.databinding.ActivityConnectEquipmentBinding
 class ConnectEquipmentActivity : ActivityBase<ActivityConnectEquipmentBinding>() {
     override val layoutResourceId: Int
         get() = R.layout.activity_connect_equipment
+    lateinit var viewModel1: ConnectEquipmentViewModel
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
     }
 
     override fun init() {
-
+        viewModel1 = ViewModelProvider(this).get(ConnectEquipmentViewModel::class.java)
+        viewBinding.connectionequpmentviewmodel = viewModel1
     }
 
     override fun initListener() {
@@ -74,10 +80,11 @@ class ConnectEquipmentActivity : ActivityBase<ActivityConnectEquipmentBinding>()
     }
 
     override fun initDatabinding() {
+        viewModel1.setConnectMode(PrefUtil.getInt2(applicationContext, CONNECT_MODE))
         viewBinding.tvEquipmentMaker.text = if(PrefUtil.getInt(applicationContext, EQUIPMENT_MAKER)==-1){"제조사명"}
         else{EQUIPMENT_MAKER_LIST[PrefUtil.getInt(applicationContext, EQUIPMENT_MAKER)]}
-        viewBinding.tvConnectMode.text = if(PrefUtil.getInt(applicationContext, CONNECT_MODE)==-1){"연결모드"}
-        else {CONNECT_MODE_LIST[PrefUtil.getInt(applicationContext, CONNECT_MODE)]}
+        viewBinding.tvConnectMode.text = CONNECT_MODE_LIST[PrefUtil.getInt2(applicationContext, CONNECT_MODE)]
+
     }
 
 

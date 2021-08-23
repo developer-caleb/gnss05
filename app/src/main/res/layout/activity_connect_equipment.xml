@@ -5,6 +5,9 @@
     >
     <data>
         <import type="android.view.View"/>
+        <variable
+            name="connectionequpmentviewmodel"
+            type="kr.loplab.gnss05.activities.viewmodel.ConnectEquipmentViewModel"/>
 
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout

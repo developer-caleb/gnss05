@@ -39,12 +39,13 @@
             android:layout_gravity="center"
             android:layout_weight="0"
             android:autoText="false"
-            android:fontFamily="@font/noto_sans_cj_kkr_bold"
+            android:fontFamily="@font/noto_sans_cj_kkr_medium"
             android:gravity="center|center_horizontal|top"
             android:lineSpacingExtra="-5dp"
             android:text="원추형\n편경사측설"
             android:textColor="@color/dark_gray"
             android:textSize="17dp"
+            android:textStyle="normal"
             app:layout_constraintBottom_toBottomOf="parent" />
 
         <TextView
@@ -54,12 +55,13 @@
             android:layout_gravity="center"
             android:layout_weight="0"
             android:autoText="false"
-            android:fontFamily="@font/noto_sans_cj_kkr_bold"
+            android:fontFamily="@font/noto_sans_cj_kkr_medium"
             android:gravity="center"
             android:lineSpacingExtra="-5dp"
             android:text="원추형"
             android:textColor="@color/dark_gray"
             android:textSize="19dp"
+            android:textStyle="normal"
             app:layout_constraintBottom_toTopOf="@+id/info_text2" />
     </LinearLayout>
 
