@@ -47,12 +47,12 @@ class MainpageRecyclerViewAdapter internal constructor(context: Context?, data: 
             holder.myTextView2.visibility = View.GONE;
         }
         holder.icon.setImageDrawable(context?.getDrawable(mData[position].icon))
-        holder.cardView?.setOnClickListener {
+        /*holder.cardView?.setOnClickListener {
             if (mClickListener != null) mClickListener!!.onItemClick(holder.itemView, position)
             Log.d(TAG, "onBindViewHolder: position -> $position ")
             val intent: Intent = Intent(context, mData[position].activityname)
             startActivityForResult(context as Activity ,intent, mData[position].requestcode,null)
-        }
+        }*/
     }
 
     // total number of cells
@@ -66,7 +66,6 @@ class MainpageRecyclerViewAdapter internal constructor(context: Context?, data: 
         var myTextView: TextView
         var myTextView2: TextView
         var icon: ImageView
-        var cardView: CardView?
         override fun onClick(view: View) {
             if (mClickListener != null) mClickListener!!.onItemClick(view, adapterPosition)
             Log.d(TAG, "onBindViewHolder: position -> $position , request code : ${mData[position].requestcode}")
@@ -79,11 +78,7 @@ class MainpageRecyclerViewAdapter internal constructor(context: Context?, data: 
             myTextView = itemView.findViewById(R.id.info_text)
             myTextView2 = itemView.findViewById(R.id.info_text2)
             icon  = itemView.findViewById(R.id.main_icon)
-            try {
-                cardView = itemView.findViewById(R.id.cardview3)
-            } catch (e : Exception ){
-                cardView = null;
-            }
+
 
             itemView.setOnClickListener(this)
         }
