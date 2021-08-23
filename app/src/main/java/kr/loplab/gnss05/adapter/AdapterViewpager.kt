@@ -66,7 +66,7 @@ class AdapterViewpager: PagerAdapter, MainpageRecyclerViewAdapter.RecyclerItemCl
         data2.clear()
         data3.clear()
 
-        data0.add(MainIcons(R.drawable.ic_0_0_work, "작업"))
+        data0.add(MainIcons(R.drawable.ic_0_0_work2, "작업"))
         data0.add(MainIcons(R.drawable.ic_0_1_work_group, "작업그룹"))
         data0.add(MainIcons(R.drawable.ic_0_2_coordinate, "좌표계", CoordinateActivity::class.java ))
         data0.add(MainIcons(R.drawable.ic_0_3_correction, "점 보정"))

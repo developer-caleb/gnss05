@@ -28,7 +28,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <LinearLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="bottom"
@@ -37,9 +37,13 @@
             <ImageView
                 android:id="@+id/main_icon"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="0dp"
                 android:layout_gravity="bottom|center_horizontal"
                 android:layout_weight="1"
+                app:layout_constraintBottom_toTopOf="@+id/info_text"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
                 tools:srcCompat="@tools:sample/avatars" />
 
             <TextView
@@ -47,28 +51,31 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom|center_horizontal"
-                android:layout_marginBottom="6dp"
                 android:layout_weight="0"
                 android:gravity="center_horizontal|top"
                 android:lineSpacingExtra="-5dp"
                 android:text="원추형\n편경사측설"
                 android:textColor="@color/dark_gray"
-                android:textSize="19sp" />
+                android:textSize="19sp"
+                app:autoSizeMaxTextSize="30sp"
+                app:autoSizeMinTextSize="17sp"
+                app:layout_constraintBottom_toBottomOf="parent" />
 
             <TextView
                 android:id="@+id/info_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom|center_horizontal"
-                android:layout_marginTop="4dp"
-                android:layout_marginBottom="17dp"
                 android:layout_weight="0"
                 android:gravity="center_horizontal|top"
                 android:lineSpacingExtra="-5dp"
                 android:text="원추형"
                 android:textColor="@color/dark_gray"
-                android:textSize="19sp" />
-        </LinearLayout>
+                android:textSize="19sp"
+                app:autoSizeMaxTextSize="30sp"
+                app:autoSizeMinTextSize="17sp"
+                app:layout_constraintBottom_toTopOf="@+id/info_text2" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </com.google.android.material.card.MaterialCardView>
 
