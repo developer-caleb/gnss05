@@ -52,7 +52,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_gravity="center"
-                android:layout_weight="1"
+                android:layout_weight="1.5"
                 android:autoText="false"
                 android:fontFamily="@font/noto_sans_cj_kkr_bold"
                 android:gravity="center|center_horizontal|top"
@@ -60,7 +60,7 @@
                 android:text="원추형\n편경사측설"
                 android:textColor="@color/dark_gray"
                 app:autoSizeMaxTextSize="30sp"
-                app:autoSizeMinTextSize="13sp"
+                app:autoSizeMinTextSize="11sp"
                 app:autoSizeStepGranularity="2sp"
                 app:autoSizeTextType="uniform"
                 app:layout_constraintBottom_toBottomOf="parent" />
