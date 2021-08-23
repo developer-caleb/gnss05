@@ -81,27 +81,11 @@ class WorkManagerActivity : ActivityBase<ActivityWorkManagerBinding>() {
         //initDatabinding() //오류남 리사이클러뷰 데이터 옵저버러를 이미 등록했습니다..
     }*/
     override fun initDatabinding() {
-            viewBinding.dbText.text = db.workerDao().all.toString()
+            //viewBinding.dbText.text = db.workerDao().all.toString()
            refresh()
 
     }
 
-     fun initializeTableView(workerlist : List<Worker>) {
-        // Create TableView View model class  to group view models of TableView
-        tableWorkerViewModel = TableWorkerViewModel(workerlist)
-
-        // Create TableView Adapter
-        tableViewAdapter = TableViewAdapter(tableWorkerViewModel)
-        mTableView.setAdapter(tableViewAdapter)
-        mTableView.setTableViewListener(TableViewListener(mTableView))
-
-         // Load the dummy data to the TableView
-        tableViewAdapter.setAllItems(
-            tableWorkerViewModel.getColumnHeaderList(), tableWorkerViewModel
-                .getRowHeaderList(), tableWorkerViewModel.getCellList()
-        )
-
-    }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         if(resultCode== RESULT_OK && requestCode == REQUEST_WORKER_MANAGE_ADD)

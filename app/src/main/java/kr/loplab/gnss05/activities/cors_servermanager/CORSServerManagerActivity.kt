@@ -12,6 +12,8 @@ import kotlinx.coroutines.launch
 import kr.loplab.gnss02.ActivityBase
 import kr.loplab.gnss05.R
 import kr.loplab.gnss05.activities.workmanager.AppDatabase
+import kr.loplab.gnss05.activities.workmanager.TableWorkerViewModel
+import kr.loplab.gnss05.activities.workmanager.Worker
 import kr.loplab.gnss05.common.Define
 import kr.loplab.gnss05.databinding.ActivityCorsServerManagerBinding
 import kr.loplab.gnss05.tableview.TableViewAdapter
@@ -60,26 +62,18 @@ class CORSServerManagerActivity : ActivityBase<ActivityCorsServerManagerBinding>
         }
         viewBinding.btDelete.setOnClickListener {
             // mTableView.
-            if(TableViewModel.selectedIndex<=-1 || TableViewModel.selectedIndex>= tableServerViewModel.rowHeaderList.size){
+            if(TableViewModel.selectedIndex<=-1 || TableViewModel.selectedIndex>=tableServerViewModel.rowHeaderList.size){
                 showToast("삭제할 행을 선택해주세요."); return@setOnClickListener
             }
             Log.d(TAG, "initListener: delete ${TableViewModel.selectedIndex}")
-
-            lifecycleScope.launch(Dispatchers.IO) {
-                db.serverDao().delete(db.serverDao().all[TableViewModel.selectedIndex])
-            }
-            tableServerViewModel.removePosition(TableViewModel.selectedIndex)
-            tableViewAdapter.setAllItems(
-                tableServerViewModel.getColumnHeaderList(), tableServerViewModel
-                    .getRowHeaderList(), tableServerViewModel.getCellList()
-            )
+            db.workerDao().delete(db.workerDao().all[TableViewModel.selectedIndex])
+            refresh()
             if(tableServerViewModel.rowHeaderList.size>0){
-                /*TODO
-                /표에 두가지 문제점이 있음
-                        /1 아무것도 넣지 않았을 때 첫번째 헤더가 없음
-                        /2 1번째 행을 지웠다가 다시 만들면? setrow -1 했을 때 좀 이상해지는 것 같기도하고? //방법을 강구해봐야함*/
-            mTableView.isSelected
-            TableViewModel.selectedIndex = 0
+                mTableView.selectedRow = 0
+                TableViewModel.selectedIndex = 0}else{
+                mTableView.selectedRow = -1
+                TableViewModel.selectedIndex = -1
+                //mTableView.set
             }
         }
         viewBinding.btConfirm.setOnClickListener {
@@ -88,50 +82,32 @@ class CORSServerManagerActivity : ActivityBase<ActivityCorsServerManagerBinding>
     }
 
     override fun initDatabinding() {
-            var  serverlist : List<Server> = db.serverDao().all
-            initializeTableView(serverlist)
+            //var  serverlist : List<Server> = db.serverDao().all
+        refresh()
     }
-    fun initializeTableView(serverlist : List<Server>) {
-        // Create TableView View model class  to group view models of TableView
-        tableServerViewModel = TableServerViewModel(serverlist)
 
-        // Create TableView Adapter
-        tableViewAdapter = TableViewAdapter(tableServerViewModel)
-        mTableView.setAdapter(tableViewAdapter)
-        mTableView.setTableViewListener(TableViewListener(mTableView))
-
-        // Create an instance of a Filter and pass the TableView.
-        //mTableFilter = new Filter(mTableView);
-
-        // Load the dummy data to the TableView
-        tableViewAdapter.setAllItems(
-            tableServerViewModel.getColumnHeaderList(), tableServerViewModel
-                .getRowHeaderList(), tableServerViewModel.getCellList()
-        )
-
-    }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         if(resultCode== RESULT_OK && requestCode == Define.REQUEST_SERVER_MANAGE_ADD)
         {
             Log.d(TAG, "onActivityResult: 축하합니다_추가")
-            //lifecycleScope.launch(Dispatchers.IO) { }
-            var  serverlist : List<Server> = db.serverDao().all
-            tableServerViewModel = TableServerViewModel(serverlist)
             refresh()
         }
 
         if(resultCode== RESULT_OK && requestCode == Define.REQUEST_SERVER_MANAGE_EDIT)
         {
             Log.d(TAG, "onActivityResult: 축하합니다_편집")
-            //lifecycleScope.launch(Dispatchers.IO) { }
-            var  serverlist : List<Server> = db.serverDao().all
-            tableServerViewModel = TableServerViewModel(serverlist)
             refresh()
         }
     }
 
     fun refresh(){
+        var  serverlist : List<Server> = db.serverDao().all
+        tableServerViewModel = TableServerViewModel(serverlist)
+        // Create TableView Adapter
+        tableViewAdapter = TableViewAdapter(tableServerViewModel)
+        mTableView.setAdapter(tableViewAdapter)
+        mTableView.setTableViewListener(TableViewListener(mTableView))
         tableViewAdapter.setAllItems(
             tableServerViewModel.getColumnHeaderList(), tableServerViewModel
                 .getRowHeaderList(), tableServerViewModel.getCellList()
