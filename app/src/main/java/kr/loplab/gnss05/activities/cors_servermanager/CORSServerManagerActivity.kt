@@ -66,7 +66,7 @@ class CORSServerManagerActivity : ActivityBase<ActivityCorsServerManagerBinding>
                 showToast("삭제할 행을 선택해주세요."); return@setOnClickListener
             }
             Log.d(TAG, "initListener: delete ${TableViewModel.selectedIndex}")
-            db.workerDao().delete(db.workerDao().all[TableViewModel.selectedIndex])
+            db.serverDao().delete(db.serverDao().all[TableViewModel.selectedIndex])
             refresh()
             if(tableServerViewModel.rowHeaderList.size>0){
                 mTableView.selectedRow = 0

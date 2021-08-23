@@ -361,8 +361,8 @@ class MainActivity : AppCompatActivity(),
             internalfilewrite()
             val receiver: CHC_Receiver? = null //1
             filepath = internalfileread() //2
-            initialize()
-            processdata();
+            //initialize()
+            //processdata();
         }
     }
 
