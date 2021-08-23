@@ -64,11 +64,9 @@ class ConnectEquipmentActivity : ActivityBase<ActivityConnectEquipmentBinding>()
             dlg.list = CONNECT_MODE_LIST
             dlg.selectedposition= PrefUtil.getInt(applicationContext, CONNECT_MODE)
             dlg.start("1123");
-            dlg.setOnOKClickedListener{ content ->
-                Log.d(TAG, "onItemClick: $content")
-            }
             dlg.setOnListClickedListener { view, i ->
                 Log.d(TAG, "initListener: $i")
+                viewModel1.setConnectMode(i)
                 PrefUtil.setInt(applicationContext, CONNECT_MODE, i)
                 viewBinding.tvConnectMode.text = CONNECT_MODE_LIST[PrefUtil.getInt(applicationContext, CONNECT_MODE)]
                 dlg.refresh()
