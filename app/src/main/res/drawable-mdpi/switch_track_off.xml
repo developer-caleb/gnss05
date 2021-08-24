@@ -5,7 +5,7 @@
 <shape
     android:shape="rectangle" >
     <corners
-        android:radius="@dimen/switch_height" />
+        android:radius="@dimen/switch_radius" />
     <size
         android:width="@dimen/switch_width"
         android:height="@dimen/switch_height"/>
@@ -13,7 +13,8 @@
         android:color="@color/grey_dd" />
 </shape>
     </item>
-    <item  android:right="10dp"
+
+    <item  android:right="9dp"
         android:gravity="center_vertical|right"
         android:width="8dp"
         android:height="8dp"

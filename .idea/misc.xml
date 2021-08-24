@@ -23,6 +23,9 @@
         <entry key="app/src/main/res/drawable/bt_background_black.xml" value="0.260546875" />
         <entry key="app/src/main/res/drawable/ic_0_0_work2.xml" value="0.22" />
         <entry key="app/src/main/res/drawable/ic_down.xml" value="0.260546875" />
+        <entry key="app/src/main/res/drawable/ic_happy.xml" value="0.17546296296296296" />
+        <entry key="app/src/main/res/drawable/ic_male.xml" value="0.17546296296296296" />
+        <entry key="app/src/main/res/drawable/ic_next.xml" value="0.17546296296296296" />
         <entry key="app/src/main/res/drawable/ic_recyclerview_right.xml" value="0.123828125" />
         <entry key="app/src/main/res/drawable/ic_small_logo.xml" value="0.259375" />
         <entry key="app/src/main/res/drawable/ic_tab1.xml" value="0.35104166666666664" />
@@ -55,7 +58,7 @@
         <entry key="app/src/main/res/layout/activity_reference_country.xml" value="0.33" />
         <entry key="app/src/main/res/layout/activity_server_address_add.xml" value="0.2484375" />
         <entry key="app/src/main/res/layout/activity_setting.xml" value="0.252734375" />
-        <entry key="app/src/main/res/layout/activity_setting_satellite.xml" value="0.2791666666666667" />
+        <entry key="app/src/main/res/layout/activity_setting_satellite.xml" value="0.33" />
         <entry key="app/src/main/res/layout/activity_splash.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_standard_point.xml" value="0.31614583333333335" />
         <entry key="app/src/main/res/layout/activity_stop_survey.xml" value="0.246484375" />

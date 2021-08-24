@@ -4,12 +4,14 @@
     android:shape="oval">
 
     <size
-        android:width="26dp"
-        android:height="26dp" />
+        android:width="@dimen/switch_thumb_diameter"
+        android:height="@dimen/switch_thumb_diameter" />
 
     <solid
         android:color="@color/white" />
+
     <stroke
-        android:width="3dp"
+        android:width="2dp"
         android:color="#00FF0000" />
+
 </shape>
