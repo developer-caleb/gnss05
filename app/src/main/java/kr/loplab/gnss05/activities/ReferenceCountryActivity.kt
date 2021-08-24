@@ -43,6 +43,7 @@ class ReferenceCountryActivity : ActivityBase<ActivityReferenceCountryBinding>()
         viewBinding.settingSatelliteBt.setOnClickListener {
             Log.d(TAG, "initListener: settingSatelliteBt clicked")
             intent = Intent(this, SettingSatelliteActivity::class.java)
+            startActivity(intent);
         }
         viewBinding.saveAndApplyBt.setOnClickListener {
             Log.d(TAG, "initListener: saveAndApplyBt clicked")

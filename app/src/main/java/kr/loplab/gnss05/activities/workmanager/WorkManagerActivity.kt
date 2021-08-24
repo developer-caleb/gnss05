@@ -112,6 +112,8 @@ class WorkManagerActivity : ActivityBase<ActivityWorkManagerBinding>() {
             tableWorkerViewModel.getColumnHeaderList(), tableWorkerViewModel
                 .getRowHeaderList(), tableWorkerViewModel.getCellList()
         )
+        mTableView.selectedRow = -1
+        TableViewModel.selectedIndex = -1
     }
 
 

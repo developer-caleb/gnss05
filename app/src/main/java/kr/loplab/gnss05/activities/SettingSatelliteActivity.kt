@@ -2,6 +2,7 @@ package kr.loplab.gnss05.activities
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.InputType
 import android.util.Log
 import android.widget.Switch
 import kotlinx.android.synthetic.main.activity_main.*
@@ -55,14 +56,13 @@ class SettingSatelliteActivity : ActivityBase<ActivitySettingSatelliteBinding>()
             Log.d(TAG, "initListener: cutangle")
             val dlg = MyDialog(this)
             var alist = OptionList.CUT_ANGLE_List
-            var prefvalue = Define.REFERENCE_COUNTRY_SATELLITE_CUT_ANGLE
             dlg.firstLayoutUse = true
             dlg.list = alist
             dlg.input_text_str = viewBinding.tvCutAngle.text.toString()
-            dlg.selectedposition= OptionList.CUT_ANGLE_List.indexOf(viewBinding.tvCutAngle.text.toString())
+            dlg.selectedposition= alist.indexOf(viewBinding.tvCutAngle.text.toString())
             dlg.start("")
             dlg.setOnListClickedListener { view, i ->
-                viewBinding.tvCutAngle.setText(OptionList.CUT_ANGLE_List[i])
+                viewBinding.tvCutAngle.setText(alist[i])
                 dlg.dismiss()
             }
             dlg.setOnCheckClickedListener{ str ->
@@ -74,16 +74,21 @@ class SettingSatelliteActivity : ActivityBase<ActivitySettingSatelliteBinding>()
         viewBinding.layoutPdopLimit.setOnClickListener { Log.d(TAG, "initListener: pdoplimit")
             val dlg = MyDialog(this)
             var alist = OptionList.PDOP_LIMIT_LIST
-            var prefvalue = Define.REFERENCE_COUNTRY_SATELLITE_PDOP_LIMIT
             dlg.firstLayoutUse = true
             dlg.list = alist
-            dlg.selectedposition= PrefUtil.getInt2(applicationContext, prefvalue)
+            dlg.input_text_str = viewBinding.tvPdopLimit.text.toString()
+            dlg.selectedposition= alist.indexOf(viewBinding.tvPdopLimit.text.toString())
             dlg.start("")
+            dlg.input_text.setInputType(InputType.TYPE_CLASS_NUMBER + InputType.TYPE_NUMBER_FLAG_DECIMAL
+            +InputType.TYPE_NUMBER_FLAG_SIGNED)
+
+
             dlg.setOnListClickedListener { view, i ->
-                Log.d(TAG, "initListener: $i")
-                PrefUtil.setInt(applicationContext, prefvalue, i)
-                //viewBinding.tvDisplacementMode.text = alist[PrefUtil.getInt2(applicationContext, prefvalue )]
-                dlg.refresh()
+                viewBinding.tvPdopLimit.setText(alist[i])
+                dlg.dismiss()
+            }
+            dlg.setOnCheckClickedListener{ str ->
+                viewBinding.tvPdopLimit.setText(str)
                 dlg.dismiss()
             }
             dlg.setHeader("PDOP한계")
@@ -91,19 +96,22 @@ class SettingSatelliteActivity : ActivityBase<ActivitySettingSatelliteBinding>()
         viewBinding.layoutDelay.setOnClickListener { Log.d(TAG, "initListener: delay")
             val dlg = MyDialog(this)
             var alist = OptionList.DELAY_LIST
-            var prefvalue = Define.REFERENCE_COUNTRY_SATELLITE_DELAY
             dlg.firstLayoutUse = true
             dlg.list = alist
-            dlg.selectedposition= PrefUtil.getInt2(applicationContext, prefvalue)
+            dlg.input_text_str = viewBinding.tvDelay.text.toString()
+            dlg.selectedposition= alist.indexOf(viewBinding.tvDelay.text.toString())
             dlg.start("")
             dlg.setOnListClickedListener { view, i ->
-                Log.d(TAG, "initListener: $i")
-                PrefUtil.setInt(applicationContext, prefvalue, i)
-                //viewBinding.tvDisplacementMode.text = alist[PrefUtil.getInt2(applicationContext, prefvalue )]
-                dlg.refresh()
+                viewBinding.tvDelay.setText(alist[i])
+                dlg.dismiss()
+            }
+            dlg.setOnCheckClickedListener{ str ->
+                viewBinding.tvDelay.setText(str)
                 dlg.dismiss()
             }
             dlg.setHeader("지연(S)")
+
+
         }
 
 
@@ -150,7 +158,10 @@ class SettingSatelliteActivity : ActivityBase<ActivitySettingSatelliteBinding>()
     }
 
     override fun initDatabinding() {
-        viewBinding.swGps.isChecked = PrefUtil.getBoolean(this, REFERENCE_COUNTRY_SATELLITE_GPS)
+        viewBinding.tvCutAngle.text =PrefUtil.getInt(this, REFERENCE_COUNTRY_SATELLITE_CUT_ANGLE).toString()
+            viewBinding.tvPdopLimit.text =PrefUtil.getFloat(this, REFERENCE_COUNTRY_SATELLITE_PDOP_LIMIT).toString()
+            viewBinding.tvDelay.text =PrefUtil.getInt(this, REFERENCE_COUNTRY_SATELLITE_DELAY).toString()
+            viewBinding.swGps.isChecked = PrefUtil.getBoolean(this, REFERENCE_COUNTRY_SATELLITE_GPS)
         viewBinding.swGlonass.isChecked = PrefUtil.getBoolean(this, REFERENCE_COUNTRY_SATELLITE_GLONASS)
         viewBinding.swBeidou.isChecked = PrefUtil.getBoolean(this, REFERENCE_COUNTRY_SATELLITE_BEIDOU)
         viewBinding.swGalieo.isChecked = PrefUtil.getBoolean(this, REFERENCE_COUNTRY_SATELLITE_GALILEO)

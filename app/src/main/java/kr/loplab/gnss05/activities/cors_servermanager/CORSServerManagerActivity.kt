@@ -108,9 +108,9 @@ class CORSServerManagerActivity : ActivityBase<ActivityCorsServerManagerBinding>
         tableViewAdapter = TableViewAdapter(tableServerViewModel)
         mTableView.setAdapter(tableViewAdapter)
         mTableView.setTableViewListener(TableViewListener(mTableView))
-        tableViewAdapter.setAllItems(
-            tableServerViewModel.getColumnHeaderList(), tableServerViewModel
-                .getRowHeaderList(), tableServerViewModel.getCellList()
+        tableViewAdapter.setAllItems(tableServerViewModel.getColumnHeaderList(), tableServerViewModel.getRowHeaderList(), tableServerViewModel.getCellList()
         )
+        mTableView.selectedRow = -1
+        TableViewModel.selectedIndex = -1
     }
 }
