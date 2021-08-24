@@ -29,6 +29,16 @@ class SettingSatelliteActivity : ActivityBase<ActivitySettingSatelliteBinding>()
         viewBinding.btConfirm.setOnClickListener {
             Log.d(TAG, "initListener: confirmbt_clicked-> 저장하기")
             //save
+            PrefUtil.setBoolean(this, REFERENCE_COUNTRY_SATELLITE_GPS , viewBinding.swGps.isChecked )
+            PrefUtil.setBoolean(this, REFERENCE_COUNTRY_SATELLITE_GLONASS, viewBinding.swGlonass.isChecked)
+            PrefUtil.setBoolean(this, REFERENCE_COUNTRY_SATELLITE_BEIDOU, viewBinding.swBeidou.isChecked)
+            PrefUtil.setBoolean(this, REFERENCE_COUNTRY_SATELLITE_GALILEO, viewBinding.swGalieo.isChecked)
+            PrefUtil.setBoolean(this, REFERENCE_COUNTRY_SATELLITE_SBAS, viewBinding.swSbas.isChecked)
+            PrefUtil.setBoolean(this, REFERENCE_COUNTRY_SATELLITE_QZSS, viewBinding.swQzss.isChecked)
+            PrefUtil.setBoolean(this, REFERENCE_COUNTRY_SATELLITE_LBAND, viewBinding.swLband.isChecked)
+            
+
+
             onBackPressed()
         }
         viewBinding.layoutGps.setOnClickListener {
@@ -59,8 +69,12 @@ class SettingSatelliteActivity : ActivityBase<ActivitySettingSatelliteBinding>()
             Log.d(TAG, "initListener: clicked")
             swchange2(viewBinding.swLband)
         }
+        viewBinding.layoutCutAngle.setOnClickListener {
+            Log.d(TAG, "initListener: cutangle")
+        }
+        viewBinding.layoutPdopLimit.setOnClickListener { Log.d(TAG, "initListener: pdoplimit") }
+        viewBinding.layoutDelay.setOnClickListener { Log.d(TAG, "initListener: delay") }
 
-        
 
     }
     fun swchange(sw : Switch){
