@@ -78,11 +78,13 @@
 
 
                     <Switch
+                        style="@style/switchbutton"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:paddingRight="8dp"
-                         />
+                        android:thumb="@drawable/switch_thumb"
+                        android:track="@drawable/switch_track_selector" />
 
                 </LinearLayout>
 
@@ -203,6 +205,7 @@
 
 
                         <Switch
+                            style="@style/switchbutton"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
@@ -229,11 +232,11 @@
 
 
                         <Switch
+                            style="@style/switchbutton"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:paddingRight="8dp"
-                             />
+                            android:paddingRight="8dp" />
 
                     </LinearLayout>
 
@@ -253,11 +256,11 @@
 
 
                         <Switch
+                            style="@style/switchbutton"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:paddingRight="8dp"
-                             />
+                            android:paddingRight="8dp" />
 
                     </LinearLayout>
 
@@ -277,11 +280,11 @@
 
 
                         <Switch
+                            style="@style/switchbutton"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:paddingRight="8dp"
-                             />
+                            android:paddingRight="8dp" />
 
                     </LinearLayout>
 
@@ -301,11 +304,11 @@
 
 
                         <Switch
+                            style="@style/switchbutton"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:paddingRight="8dp"
-                             />
+                            android:paddingRight="8dp" />
 
                     </LinearLayout>
 
@@ -325,11 +328,11 @@
 
 
                         <Switch
+                            style="@style/switchbutton"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:paddingRight="8dp"
-                             />
+                            android:paddingRight="8dp" />
 
                     </LinearLayout>
 
@@ -349,11 +352,11 @@
 
 
                         <Switch
+                            style="@style/switchbutton"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:paddingRight="8dp"
-                             />
+                            android:paddingRight="8dp" />
 
                     </LinearLayout>
 
@@ -373,11 +376,11 @@
 
 
                         <Switch
+                            style="@style/switchbutton"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:paddingRight="8dp"
-                             />
+                            android:paddingRight="8dp" />
 
                     </LinearLayout>
 
@@ -408,11 +411,11 @@
 
 
                         <Switch
+                            style="@style/switchbutton"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:paddingRight="8dp"
-                             />
+                            android:paddingRight="8dp" />
 
 
                     </LinearLayout>
@@ -434,11 +437,11 @@
 
 
                         <Switch
+                            style="@style/switchbutton"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:paddingRight="8dp"
-                             />
+                            android:paddingRight="8dp" />
 
                     </LinearLayout>
 
@@ -458,11 +461,11 @@
 
 
                         <Switch
+                            style="@style/switchbutton"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:paddingRight="8dp"
-                             />
+                            android:paddingRight="8dp" />
 
                     </LinearLayout>
 
@@ -482,11 +485,11 @@
 
 
                         <Switch
+                            style="@style/switchbutton"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:paddingRight="8dp"
-                             />
+                            android:paddingRight="8dp" />
 
                     </LinearLayout>
 
@@ -506,11 +509,11 @@
 
 
                         <Switch
+                            style="@style/switchbutton"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:paddingRight="8dp"
-                             />
+                            android:paddingRight="8dp" />
 
                     </LinearLayout>
 
@@ -561,11 +564,11 @@
 
 
                         <Switch
+                            style="@style/switchbutton"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:paddingRight="8dp"
-                             />
+                            android:paddingRight="8dp" />
 
                     </LinearLayout>
 
@@ -585,11 +588,11 @@
 
 
                         <Switch
+                            style="@style/switchbutton"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:paddingRight="8dp"
-                             />
+                            android:paddingRight="8dp" />
 
                     </LinearLayout>
 
@@ -610,11 +613,11 @@
 
 
                         <Switch
+                            style="@style/switchbutton"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:paddingRight="8dp"
-                             />
+                            android:paddingRight="8dp" />
 
                     </LinearLayout>
 

@@ -2,15 +2,11 @@ package kr.loplab.gnss05.activities
 
 import android.os.Bundle
 import android.util.Log
-import android.view.View
 import androidx.lifecycle.ViewModelProvider
 import kr.loplab.gnss02.ActivityBase
-import kr.loplab.gnss05.adapter.DialogRecyclerviewAdapter
 import kr.loplab.gnss05.MyDialog
 import kr.loplab.gnss05.R
 import kr.loplab.gnss05.activities.viewmodel.ConnectEquipmentViewModel
-import kr.loplab.gnss05.activities.viewmodel.ReferenceContryViewModel
-import kr.loplab.gnss05.common.Define
 import kr.loplab.gnss05.common.Define.CONNECT_MODE
 import kr.loplab.gnss05.common.Define.EQUIPMENT_MAKER
 import kr.loplab.gnss05.common.OptionList.Companion.CONNECT_MODE_LIST

@@ -16,6 +16,10 @@
         <item name="android:includeFontPadding">false</item>
         <item name="android:textSize">@dimen/defaultTextsize</item>
         <item name="android:fontFamily">@font/noto_sans_cj_kkr_regular</item>
+        <item name="android:switchStyle">@style/switchbutton</item>
+
         <!-- Customize your theme here. -->
+
+
     </style>
 </resources>

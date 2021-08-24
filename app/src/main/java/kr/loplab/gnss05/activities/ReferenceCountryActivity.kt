@@ -11,7 +11,7 @@ import kr.loplab.gnss02.ActivityBase
 import kr.loplab.gnss05.MyDialog
 import kr.loplab.gnss05.R
 import kr.loplab.gnss05.activities.cors_servermanager.CORSServerManagerActivity
-import kr.loplab.gnss05.activities.viewmodel.ReferenceContryViewModel
+import kr.loplab.gnss05.activities.viewmodel.ReferenceCountryViewModel
 import kr.loplab.gnss05.activities.workmanager.WorkManagerActivity
 import kr.loplab.gnss05.common.Define
 import kr.loplab.gnss05.common.Define.*
@@ -26,7 +26,7 @@ import kr.loplab.gnss05.databinding.ActivityReferenceCountryBinding
 class ReferenceCountryActivity : ActivityBase<ActivityReferenceCountryBinding>() {
     override val layoutResourceId: Int
         get() = R.layout.activity_reference_country
-    lateinit var viewModel1:ReferenceContryViewModel
+    lateinit var viewModel1:ReferenceCountryViewModel
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
@@ -35,7 +35,7 @@ class ReferenceCountryActivity : ActivityBase<ActivityReferenceCountryBinding>()
         val ab: ActionBar? = supportActionBar
         ab?.title ="기준국설정";
         //viewbinding
-        viewModel1 = ViewModelProvider(this).get(ReferenceContryViewModel::class.java)
+        viewModel1 = ViewModelProvider(this).get(ReferenceCountryViewModel::class.java)
         viewBinding.referencecontryviewmodel = viewModel1
     }
 
@@ -183,6 +183,7 @@ class ReferenceCountryActivity : ActivityBase<ActivityReferenceCountryBinding>()
         viewModel1.setRawDatavalue(PrefUtil.getBoolean(this, RAW_DATA_SAVE))
         viewModel1.setDataConnectionType(PrefUtil.getInt2(this, DATA_CONNECTION_TYPE))
         viewModel1.setNetworkMode(PrefUtil.getInt2(this, NETWORK_MODE))
+        viewModel1.setAutoApn(PrefUtil.getBoolean(this, AUTO_APN))
         viewBinding.tvStartMode.text = OptionList.START_MODE_LIST[PrefUtil.getInt2(applicationContext,
             Define.START_MODE
         )]
@@ -199,6 +200,20 @@ class ReferenceCountryActivity : ActivityBase<ActivityReferenceCountryBinding>()
         viewBinding.tvNetworkMode.text = NETWORK_MODE_List[PrefUtil.getInt2(applicationContext, NETWORK_MODE
         )]
 
+    }
+
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        if(resultCode== RESULT_OK && requestCode == REQUEST_WORKMANAGER)
+        {
+            initDatabinding()
+
+        }
+
+        if(resultCode== RESULT_OK && requestCode == REQUEST_CORS_SERVER_MANAGER)
+        {
+            initDatabinding()
+        }
     }
 
 

@@ -7,7 +7,7 @@
         <import type="android.view.View"/>
         <variable
             name="referencecontryviewmodel"
-            type="kr.loplab.gnss05.activities.viewmodel.ReferenceContryViewModel"/>
+            type="kr.loplab.gnss05.activities.viewmodel.ReferenceCountryViewModel"/>
      </data>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -762,6 +762,13 @@
                         android:layout_weight="0"
                         android:background="@color/grey_EC" />
 
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:visibility="@{referencecontryviewmodel.auto_apn ? View.GONE: View.VISIBLE}"
+                        >
+
                     <LinearLayout style="@style/ButtonLayout_STYLE01">
 
                         <TextView
@@ -865,7 +872,7 @@
 
 
                     </LinearLayout>
-
+                    </LinearLayout>
                 </LinearLayout>
 
 

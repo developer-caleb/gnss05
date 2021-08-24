@@ -379,7 +379,10 @@
                             android:layout_width="128dp"
                             android:layout_height="wrap_content"
                             android:gravity="center"
-                            android:paddingRight="40dp"/>
+                            android:paddingRight="40dp"
+                            android:track="@drawable/switch_track_selector"
+                            android:thumb="@drawable/switch_thumb"
+                            />
 
 
                     </LinearLayout>

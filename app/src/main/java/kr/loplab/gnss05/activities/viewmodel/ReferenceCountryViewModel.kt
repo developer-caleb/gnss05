@@ -4,12 +4,13 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
 
-class ReferenceContryViewModel : ViewModel() {
+class ReferenceCountryViewModel : ViewModel() {
     private var name = ""
     var onprogress = MutableLiveData<Boolean>(false)
     var bool_rawdatasave = MutableLiveData<Boolean>(false)
     var data_connect_type = MutableLiveData<Int>(0)
     var network_mode = MutableLiveData<Int>(0)
+    var auto_apn = MutableLiveData<Boolean>(false)
     init {
 
     }
@@ -27,5 +28,8 @@ class ReferenceContryViewModel : ViewModel() {
     }
     fun setNetworkMode(num : Int){
         network_mode.postValue(num)
+    }
+    fun setAutoApn(bool : Boolean){
+        auto_apn.postValue(bool)
     }
 }
