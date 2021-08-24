@@ -100,6 +100,8 @@ class CORSServerManagerActivity : ActivityBase<ActivityCorsServerManagerBinding>
         {
             Log.d(TAG, "onActivityResult: 축하합니다_편집2")
             refresh()
+            mTableView.selectedRow = -1
+            TableViewModel.selectedIndex = -1
         }
     }
 
