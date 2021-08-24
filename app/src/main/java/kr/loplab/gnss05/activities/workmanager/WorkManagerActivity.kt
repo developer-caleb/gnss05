@@ -75,7 +75,7 @@ class WorkManagerActivity : ActivityBase<ActivityWorkManagerBinding>() {
     }
 
     override fun initDatabinding() {
-       initialsettting()
+        refresh()
 
     }
 
@@ -85,6 +85,8 @@ class WorkManagerActivity : ActivityBase<ActivityWorkManagerBinding>() {
         {
             Log.d(TAG, "onActivityResult: 축하합니다_추가1")
             refresh()
+            mTableView.selectedRow = -1
+            TableViewModel.selectedIndex = -1
         }
 
         if(resultCode== RESULT_OK && requestCode == REQUEST_WORKER_MANAGE_EDIT)
@@ -94,26 +96,14 @@ class WorkManagerActivity : ActivityBase<ActivityWorkManagerBinding>() {
         }
     }
 
-    fun initialsettting(){
-        var  workerlist : List<Worker> = db.workerDao().all
-        tableWorkerViewModel = TableWorkerViewModel(workerlist)
-        //추가 시작
-        tableViewAdapter = TableViewAdapter(tableWorkerViewModel)
-        mTableView.setAdapter(tableViewAdapter)
-        //추가 끝
-        mTableView.setTableViewListener(TableViewListener(mTableView))
-        tableViewAdapter.setAllItems(
-            tableWorkerViewModel.getColumnHeaderList(), tableWorkerViewModel
-                .getRowHeaderList(), tableWorkerViewModel.getCellList()
-        )
 
-    }
 
     fun refresh(){
         var  workerlist : List<Worker> = db.workerDao().all
         mTableView = findViewById(R.id.tableview2)
         tableWorkerViewModel = TableWorkerViewModel(workerlist)
         //추가 시작
+
         tableViewAdapter = TableViewAdapter(tableWorkerViewModel)
         mTableView.setTableViewListener(TableViewListener(mTableView))
         mTableView.setAdapter(tableViewAdapter)

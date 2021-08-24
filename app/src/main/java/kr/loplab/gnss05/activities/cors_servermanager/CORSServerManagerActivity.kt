@@ -92,6 +92,8 @@ class CORSServerManagerActivity : ActivityBase<ActivityCorsServerManagerBinding>
         {
             Log.d(TAG, "onActivityResult: 축하합니다_추가2")
             refresh()
+            mTableView.selectedRow = -1
+            TableViewModel.selectedIndex = -1
         }
 
         if(resultCode== RESULT_OK && requestCode == Define.REQUEST_SERVER_MANAGE_EDIT)

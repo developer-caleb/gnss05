@@ -65,7 +65,7 @@ public class CellRecyclerViewAdapter<C> extends AbstractRecyclerViewAdapter<C> {
         // Create view pool to share Views between multiple RecyclerViews.
         mRecycledViewPool = new RecyclerView.RecycledViewPool();
         //TODO set the right value.
-        //mRecycledViewPool.setMaxRecycledViews(0, 110);
+        mRecycledViewPool.setMaxRecycledViews(0, 110);
     }
 
     @NonNull
