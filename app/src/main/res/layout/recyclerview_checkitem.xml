@@ -30,7 +30,7 @@
             android:layout_width="18dp"
             android:layout_height="18dp"
             android:layout_gravity="center"
-            android:layout_marginRight="10dp"
+            android:layout_marginRight="16dp"
             android:layout_weight="0"
             android:button="@null"
             android:background="@drawable/checkbox_bg"

@@ -26,10 +26,11 @@
 
         <ImageView
             android:id="@+id/dialog_checkicon2"
-            android:layout_width="wrap_content"
+            android:layout_width="40dp"
             android:layout_height="match_parent"
-            android:layout_weight="1"
-            tools:srcCompat="@tools:sample/avatars" />
+            android:layout_weight="0"
+            android:scaleType="center"
+            android:src="@drawable/ic_check_bt" />
 
 
     </LinearLayout>
@@ -42,10 +43,9 @@
         android:orientation="vertical">
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="45dp"
             android:orientation="horizontal"
-            android:paddingTop="10dp"
-            android:paddingBottom="10dp"
+
             >
 
             <EditText
@@ -55,18 +55,23 @@
                 android:layout_gravity="center"
                 android:layout_weight="1"
                 android:paddingLeft="15dp"
+                android:background="@color/transparent"
                 android:text="TextView"
                 android:textColor="@color/black"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
                 android:textSize="18dp" />
 
             <ImageView
                 android:id="@+id/recyclerview_icon"
-                android:layout_width="60dp"
+                android:layout_width="50dp"
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
                 android:layout_weight="0"
-
-                app:srcCompat="@android:drawable/btn_star_big_on" />
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:scaleType="center"
+                app:srcCompat="@drawable/ic_close" />
         </LinearLayout>
 
         <View
