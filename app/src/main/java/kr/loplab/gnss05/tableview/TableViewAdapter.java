@@ -213,37 +213,16 @@ public class TableViewAdapter extends AbstractTableAdapter<ColumnHeader, RowHead
 
     @Override
     public int getColumnHeaderItemViewType(int position) {
-        // The unique ID for this type of column header item
-        // If you have different items for Cell View by X (Column) position,
-        // then you should fill this method to be able create different
-        // type of CellViewHolder on "onCreateCellViewHolder"
         return 0;
     }
 
     @Override
     public int getRowHeaderItemViewType(int position) {
-        // The unique ID for this type of row header item
-        // If you have different items for Row Header View by Y (Row) position,
-        // then you should fill this method to be able create different
-        // type of RowHeaderViewHolder on "onCreateRowHeaderViewHolder"
         return 0;
     }
 
     @Override
     public int getCellItemViewType(int column) {
-
-        // The unique ID for this type of cell item
-        // If you have different items for Cell View by X (Column) position,
-        // then you should fill this method to be able create different
-        // type of CellViewHolder on "onCreateCellViewHolder"
-        switch (column) {
-           /* case TableViewModel.MOOD_COLUMN_INDEX:
-                return MOOD_CELL_TYPE;
-            case TableViewModel.GENDER_COLUMN_INDEX:
-                return GENDER_CELL_TYPE;*/
-            default:
-                // Default view type
                 return 0;
-        }
     }
 }

@@ -52,8 +52,6 @@ class WorkManagerActivity : ActivityBase<ActivityWorkManagerBinding>() {
             intent = Intent(this, WorkerActivity::class.java)
             intent.putExtra("selectPosition", TableViewModel.selectedIndex);
             ActivityCompat.startActivityForResult(this, intent, REQUEST_WORKER_MANAGE_EDIT, null)
-            /*intent = Intent(this, WorkerActivity::class.java)
-            startActivity(intent);*/
         }
         viewBinding.btDelete.setOnClickListener {
            // mTableView.
@@ -76,13 +74,8 @@ class WorkManagerActivity : ActivityBase<ActivityWorkManagerBinding>() {
         }
     }
 
-   /* override fun onResume() {
-        super.onResume()
-        //initDatabinding() //오류남 리사이클러뷰 데이터 옵저버러를 이미 등록했습니다..
-    }*/
     override fun initDatabinding() {
-            //viewBinding.dbText.text = db.workerDao().all.toString()
-           refresh()
+       initialsettting()
 
     }
 
@@ -118,9 +111,11 @@ class WorkManagerActivity : ActivityBase<ActivityWorkManagerBinding>() {
 
     fun refresh(){
         var  workerlist : List<Worker> = db.workerDao().all
+        mTableView = findViewById(R.id.tableview2)
         tableWorkerViewModel = TableWorkerViewModel(workerlist)
         //추가 시작
         tableViewAdapter = TableViewAdapter(tableWorkerViewModel)
+        mTableView.setTableViewListener(TableViewListener(mTableView))
         mTableView.setAdapter(tableViewAdapter)
         //추가 끝
         tableViewAdapter.setAllItems(
