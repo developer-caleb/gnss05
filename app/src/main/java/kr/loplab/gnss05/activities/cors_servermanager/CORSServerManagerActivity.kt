@@ -90,13 +90,13 @@ class CORSServerManagerActivity : ActivityBase<ActivityCorsServerManagerBinding>
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         if(resultCode== RESULT_OK && requestCode == Define.REQUEST_SERVER_MANAGE_ADD)
         {
-            Log.d(TAG, "onActivityResult: 축하합니다_추가")
+            Log.d(TAG, "onActivityResult: 축하합니다_추가2")
             refresh()
         }
 
         if(resultCode== RESULT_OK && requestCode == Define.REQUEST_SERVER_MANAGE_EDIT)
         {
-            Log.d(TAG, "onActivityResult: 축하합니다_편집")
+            Log.d(TAG, "onActivityResult: 축하합니다_편집2")
             refresh()
         }
     }
@@ -110,7 +110,6 @@ class CORSServerManagerActivity : ActivityBase<ActivityCorsServerManagerBinding>
         mTableView.setTableViewListener(TableViewListener(mTableView))
         tableViewAdapter.setAllItems(tableServerViewModel.getColumnHeaderList(), tableServerViewModel.getRowHeaderList(), tableServerViewModel.getCellList()
         )
-        mTableView.selectedRow = -1
-        TableViewModel.selectedIndex = -1
+
     }
 }

@@ -90,17 +90,18 @@ class WorkManagerActivity : ActivityBase<ActivityWorkManagerBinding>() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         if(resultCode== RESULT_OK && requestCode == REQUEST_WORKER_MANAGE_ADD)
         {
-            Log.d(TAG, "onActivityResult: 축하합니다_추가")
+            Log.d(TAG, "onActivityResult: 축하합니다_추가1")
             refresh()
         }
 
         if(resultCode== RESULT_OK && requestCode == REQUEST_WORKER_MANAGE_EDIT)
         {
+            Log.d(TAG, "onActivityResult: 축하합니다_수정1")
             refresh()
         }
     }
 
-    fun refresh(){
+    fun initialsettting(){
         var  workerlist : List<Worker> = db.workerDao().all
         tableWorkerViewModel = TableWorkerViewModel(workerlist)
         //추가 시작
@@ -112,8 +113,21 @@ class WorkManagerActivity : ActivityBase<ActivityWorkManagerBinding>() {
             tableWorkerViewModel.getColumnHeaderList(), tableWorkerViewModel
                 .getRowHeaderList(), tableWorkerViewModel.getCellList()
         )
-        mTableView.selectedRow = -1
-        TableViewModel.selectedIndex = -1
+
+    }
+
+    fun refresh(){
+        var  workerlist : List<Worker> = db.workerDao().all
+        tableWorkerViewModel = TableWorkerViewModel(workerlist)
+        //추가 시작
+        tableViewAdapter = TableViewAdapter(tableWorkerViewModel)
+        mTableView.setAdapter(tableViewAdapter)
+        //추가 끝
+        tableViewAdapter.setAllItems(
+            tableWorkerViewModel.getColumnHeaderList(), tableWorkerViewModel
+                .getRowHeaderList(), tableWorkerViewModel.getCellList()
+        )
+
     }
 
 
