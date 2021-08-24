@@ -141,6 +141,7 @@
 
 
                 <LinearLayout
+                    android:id="@+id/layout_gps"
                     style="@style/ButtonLayout_STYLE01"
                     >
 
@@ -154,7 +155,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:paddingRight="8dp"
                         tools:ignore="TouchTargetSizeCheck" />
 
 
@@ -167,6 +167,7 @@
                     android:background="@color/grey_EC" />
 
                 <LinearLayout
+                    android:id="@+id/layout_glonass"
                     style="@style/ButtonLayout_STYLE01"
                     >
 
@@ -180,7 +181,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:paddingRight="8dp"
                         tools:ignore="TouchTargetSizeCheck" />
 
 
@@ -193,6 +193,7 @@
                     android:background="@color/grey_EC" />
 
                 <LinearLayout
+                    android:id="@+id/layout_beidou"
                     style="@style/ButtonLayout_STYLE01"
                     >
 
@@ -206,7 +207,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:paddingRight="8dp"
                         tools:ignore="TouchTargetSizeCheck" />
 
 
@@ -220,6 +220,7 @@
 
 
                 <LinearLayout
+                    android:id="@+id/layout_galilieo"
                     style="@style/ButtonLayout_STYLE01"
                     >
 
@@ -233,7 +234,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:paddingRight="8dp"
                         tools:ignore="TouchTargetSizeCheck" />
 
 
@@ -247,6 +247,7 @@
 
 
                 <LinearLayout
+                    android:id="@+id/layout_sbas"
                     style="@style/ButtonLayout_STYLE01"
                     >
 
@@ -260,7 +261,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:paddingRight="8dp"
                         tools:ignore="TouchTargetSizeCheck" />
 
 
@@ -273,6 +273,7 @@
                     android:background="@color/grey_EC" />
 
                 <LinearLayout
+                    android:id="@+id/layout_qzss"
                     style="@style/ButtonLayout_STYLE01"
                     >
 
@@ -286,7 +287,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:paddingRight="8dp"
                         tools:ignore="TouchTargetSizeCheck" />
 
 
@@ -300,6 +300,7 @@
 
 
                 <LinearLayout
+                    android:id="@+id/layout_lband"
                     style="@style/ButtonLayout_STYLE01"
                     >
 
@@ -313,7 +314,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:paddingRight="8dp"
                         tools:ignore="TouchTargetSizeCheck" />
 
 
