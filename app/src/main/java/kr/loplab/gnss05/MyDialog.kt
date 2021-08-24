@@ -7,6 +7,7 @@ import android.util.Log
 import android.view.View
 import android.view.Window
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
@@ -23,11 +24,14 @@ class MyDialog(context : Context)
     private lateinit var btnCancel : Button
     private lateinit var oklistener : MyDialogOKClickedListener
     private lateinit var cancellistener : MyDialogCancelClickedListener
+    private lateinit var checklistener : MyDialogCheckClickedListener
     //private lateinit var cancellistener : MyDialogCancelClickedListener
     private lateinit var listlistener : MyDialogItemClickedListener
     private lateinit var listrecyclerview : RecyclerView
     private var mClickListener: DialogRecyclerviewAdapter.RecyclerItemClickListener? = null
     lateinit var title_dialog: TextView;
+    lateinit var input_text: TextView;
+    lateinit var title_button : ImageView;
     public var firstLayoutUse = true;
     public var list: ArrayList<String>? = null
     var selectedposition = 0
@@ -42,8 +46,11 @@ class MyDialog(context : Context)
 
         var firstLayout1  : LinearLayout = dialog.findViewById(R.id.first_layout);
         firstLayout1.visibility = if(firstLayoutUse) View.VISIBLE else {View.GONE} ;
+        title_button = dialog.findViewById(R.id.title_button);
+        title_button.visibility = if(firstLayoutUse) View.VISIBLE else {View.GONE} ;
         var firstdivider  : View = dialog.findViewById(R.id.first_divider);
         firstdivider.visibility = if(firstLayoutUse) View.VISIBLE else {View.GONE} ;
+        input_text = dialog.findViewById(R.id.input_text);
         // 리사이클러뷰에 표시할 데이터 리스트 생성.
         // 리사이클러뷰에 표시할 데이터 리스트 생성.
         if(list == null){
@@ -79,7 +86,9 @@ class MyDialog(context : Context)
             cancellistener.onCancelClicked("취소를 눌렀습니다")
             dialog.dismiss()
         }
-
+        title_button.setOnClickListener {
+            checklistener.onCheckClicked(input_text.text.toString())
+        }
         dialog.show()
     }
 
@@ -90,6 +99,13 @@ class MyDialog(context : Context)
     fun setOnOKClickedListener(listener: (String) -> Unit) {
         this.oklistener = object: MyDialogOKClickedListener {
             override fun onOKClicked(content: String) {
+                listener(content)
+            }
+        }
+    }
+    fun setOnCheckClickedListener(listener: (String) -> Unit) {
+        this.checklistener = object: MyDialogCheckClickedListener {
+            override fun onCheckClicked(content: String) {
                 listener(content)
             }
         }
@@ -119,6 +135,9 @@ class MyDialog(context : Context)
 
     interface MyDialogOKClickedListener {
         fun onOKClicked(content : String)
+    }
+    interface MyDialogCheckClickedListener {
+        fun onCheckClicked(content : String)
     }
     interface MyDialogCancelClickedListener {
         fun onCancelClicked(content : String)

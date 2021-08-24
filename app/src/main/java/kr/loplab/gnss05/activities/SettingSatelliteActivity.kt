@@ -58,13 +58,14 @@ class SettingSatelliteActivity : ActivityBase<ActivitySettingSatelliteBinding>()
             var prefvalue = Define.REFERENCE_COUNTRY_SATELLITE_CUT_ANGLE
             dlg.firstLayoutUse = true
             dlg.list = alist
-            dlg.selectedposition= PrefUtil.getInt2(applicationContext, prefvalue)
+            dlg.selectedposition= OptionList.CUT_ANGLE_List.indexOf(viewBinding.tvCutAngle.text.toString())
             dlg.start("")
             dlg.setOnListClickedListener { view, i ->
-                Log.d(TAG, "initListener: $i")
-                PrefUtil.setInt(applicationContext, prefvalue, i)
-                //viewBinding.tvDisplacementMode.text = alist[PrefUtil.getInt2(applicationContext, prefvalue )]
-                dlg.refresh()
+                viewBinding.tvCutAngle.setText(OptionList.CUT_ANGLE_List[i])
+                dlg.dismiss()
+            }
+            dlg.setOnCheckClickedListener{ str ->
+                    viewBinding.tvCutAngle.setText(str)
                 dlg.dismiss()
             }
             dlg.setHeader("컷 각도")

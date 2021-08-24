@@ -25,7 +25,7 @@
             android:textStyle="bold" />
 
         <ImageView
-            android:id="@+id/dialog_checkicon2"
+            android:id="@+id/title_button"
             android:layout_width="40dp"
             android:layout_height="match_parent"
             android:layout_weight="0"
@@ -49,7 +49,7 @@
             >
 
             <EditText
-                android:id="@+id/list_text"
+                android:id="@+id/input_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
