@@ -56,14 +56,15 @@
                 android:layout_weight="1"
                 android:paddingLeft="15dp"
                 android:background="@color/transparent"
-                android:text="TextView"
                 android:textColor="@color/black"
                 android:paddingTop="10dp"
                 android:paddingBottom="10dp"
-                android:textSize="18dp" />
+                android:textSize="18dp"
+                android:inputType="number"
+                />
 
             <ImageView
-                android:id="@+id/recyclerview_icon"
+                android:id="@+id/first_layout_icon"
                 android:layout_width="50dp"
                 android:layout_height="match_parent"
                 android:layout_gravity="center"

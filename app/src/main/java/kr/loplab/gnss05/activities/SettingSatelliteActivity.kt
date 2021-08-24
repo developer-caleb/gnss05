@@ -58,6 +58,7 @@ class SettingSatelliteActivity : ActivityBase<ActivitySettingSatelliteBinding>()
             var prefvalue = Define.REFERENCE_COUNTRY_SATELLITE_CUT_ANGLE
             dlg.firstLayoutUse = true
             dlg.list = alist
+            dlg.input_text_str = viewBinding.tvCutAngle.text.toString()
             dlg.selectedposition= OptionList.CUT_ANGLE_List.indexOf(viewBinding.tvCutAngle.text.toString())
             dlg.start("")
             dlg.setOnListClickedListener { view, i ->

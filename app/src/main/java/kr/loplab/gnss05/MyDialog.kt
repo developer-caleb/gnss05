@@ -6,10 +6,10 @@ import android.content.Context
 import android.util.Log
 import android.view.View
 import android.view.Window
-import android.widget.Button
-import android.widget.ImageView
-import android.widget.LinearLayout
-import android.widget.TextView
+import android.view.inputmethod.InputMethodManager
+import android.widget.*
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat.getSystemService
 import androidx.recyclerview.widget.RecyclerView
 import kr.loplab.gnss05.adapter.DialogRecyclerviewAdapter
 
@@ -30,8 +30,10 @@ class MyDialog(context : Context)
     private lateinit var listrecyclerview : RecyclerView
     private var mClickListener: DialogRecyclerviewAdapter.RecyclerItemClickListener? = null
     lateinit var title_dialog: TextView;
-    lateinit var input_text: TextView;
+    lateinit var input_text: EditText;
+    var input_text_str = "";
     lateinit var title_button : ImageView;
+    lateinit var first_layout_icon : ImageView;
     public var firstLayoutUse = true;
     public var list: ArrayList<String>? = null
     var selectedposition = 0
@@ -51,6 +53,7 @@ class MyDialog(context : Context)
         var firstdivider  : View = dialog.findViewById(R.id.first_divider);
         firstdivider.visibility = if(firstLayoutUse) View.VISIBLE else {View.GONE} ;
         input_text = dialog.findViewById(R.id.input_text);
+        first_layout_icon = dialog.findViewById(R.id.first_layout_icon);
         // 리사이클러뷰에 표시할 데이터 리스트 생성.
         // 리사이클러뷰에 표시할 데이터 리스트 생성.
         if(list == null){
@@ -60,6 +63,13 @@ class MyDialog(context : Context)
         }} else{
 
         }
+        first_layout_icon.setOnClickListener {
+            input_text.setText("")
+            input_text.requestFocus()
+            val imm: InputMethodManager = context2.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            imm.showSoftInput(input_text,0)
+        }
+
 
         // 리사이클러뷰에 LinearLayoutManager 객체 지정.
 
@@ -89,6 +99,8 @@ class MyDialog(context : Context)
         title_button.setOnClickListener {
             checklistener.onCheckClicked(input_text.text.toString())
         }
+
+        if (input_text_str.isNotEmpty()) {input_text.setText(input_text_str)}
         dialog.show()
     }
 
