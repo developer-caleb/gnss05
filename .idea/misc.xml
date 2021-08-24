@@ -21,7 +21,9 @@
         <entry key="app/src/main/res/drawable-v24/ripple_circle.xml" value="0.35104166666666664" />
         <entry key="app/src/main/res/drawable-xxhdpi/ripple_rect.xml" value="0.253125" />
         <entry key="app/src/main/res/drawable/bt_background_black.xml" value="0.260546875" />
+        <entry key="app/src/main/res/drawable/checkbox_custom.xml" value="0.17546296296296296" />
         <entry key="app/src/main/res/drawable/ic_0_0_work2.xml" value="0.22" />
+        <entry key="app/src/main/res/drawable/ic_check_yes.xml" value="0.17546296296296296" />
         <entry key="app/src/main/res/drawable/ic_down.xml" value="0.260546875" />
         <entry key="app/src/main/res/drawable/ic_happy.xml" value="0.17546296296296296" />
         <entry key="app/src/main/res/drawable/ic_male.xml" value="0.17546296296296296" />
@@ -78,7 +80,7 @@
         <entry key="app/src/main/res/layout/coordinate_system_sub10.xml" value="0.246484375" />
         <entry key="app/src/main/res/layout/coordinate_system_sub2.xml" value="0.244140625" />
         <entry key="app/src/main/res/layout/coordinate_system_sub7_2.xml" value="0.11953125" />
-        <entry key="app/src/main/res/layout/dialog1.xml" value="0.22" />
+        <entry key="app/src/main/res/layout/dialog1.xml" value="0.25" />
         <entry key="app/src/main/res/layout/file_call.xml" value="0.25" />
         <entry key="app/src/main/res/layout/file_out.xml" value="0.246484375" />
         <entry key="app/src/main/res/layout/fragment_position_detail_info.xml" value="0.2361111111111111" />
@@ -97,7 +99,7 @@
         <entry key="app/src/main/res/layout/position_data.xml" value="0.246484375" />
         <entry key="app/src/main/res/layout/position_reference_station.xml" value="0.2872655478775913" />
         <entry key="app/src/main/res/layout/position_reference_station_deprecated.xml" value="0.1359375" />
-        <entry key="app/src/main/res/layout/recyclerview_checkitem.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/recyclerview_checkitem.xml" value="0.5" />
         <entry key="app/src/main/res/layout/recyclerview_item.xml" value="0.33" />
         <entry key="app/src/main/res/layout/recyclerview_item_grid.xml" value="0.18" />
         <entry key="app/src/main/res/layout/recyclerview_item_vertical.xml" value="0.244140625" />
