@@ -35,6 +35,7 @@
                 android:orientation="vertical" >
 
                 <LinearLayout
+                    android:id="@+id/layout_cut_angle"
                     style="@style/ButtonLayout_STYLE01"
                     >
 
@@ -44,6 +45,7 @@
                         />
 
                     <TextView
+                        android:id="@+id/tv_cut_angle"
                         style="@style/Sub_TEXTVIEW_STYLE3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -68,6 +70,7 @@
                     android:background="@color/grey_EC" />
 
                 <LinearLayout
+                    android:id="@+id/layout_pdop_limit"
                     style="@style/ButtonLayout_STYLE01"
                     >
 
@@ -77,6 +80,7 @@
                         />
 
                     <TextView
+                        android:id="@+id/tv_pdop_limit"
                         style="@style/Sub_TEXTVIEW_STYLE3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -101,6 +105,7 @@
                     android:background="@color/grey_EC" />
 
                 <LinearLayout
+                    android:id="@+id/layout_delay"
                     style="@style/ButtonLayout_STYLE01"
                     >
 
@@ -110,6 +115,7 @@
                         />
 
                     <TextView
+                        android:id="@+id/tv_delay"
                         style="@style/Sub_TEXTVIEW_STYLE3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -144,6 +150,7 @@
                         />
 
                     <Switch
+                        android:id="@+id/sw_gps"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -169,6 +176,7 @@
                         />
 
                     <Switch
+                        android:id="@+id/sw_glonass"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -194,6 +202,7 @@
                         />
 
                     <Switch
+                        android:id="@+id/sw_beidou"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -220,6 +229,7 @@
                         />
 
                     <Switch
+                        android:id="@+id/sw_galieo"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -246,6 +256,7 @@
                         />
 
                     <Switch
+                        android:id="@+id/sw_sbas"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -271,6 +282,7 @@
                         />
 
                     <Switch
+                        android:id="@+id/sw_qzss"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -297,6 +309,7 @@
                         />
 
                     <Switch
+                        android:id="@+id/sw_lband"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -328,6 +341,7 @@
             app:layout_constraintStart_toStartOf="parent">
 
             <TextView
+                android:id="@+id/bt_confirm"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"

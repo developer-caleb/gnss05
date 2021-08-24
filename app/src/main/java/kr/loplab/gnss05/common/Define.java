@@ -45,6 +45,18 @@ public class Define {
     public static final String REFERENCE_COUNTRY_COORDINATE_SETTING_HL1= "reference_country_coordinate_setting_hl1";
     public static final String REFERENCE_COUNTRY_COORDINATE_SETTING_HL2= "reference_country_coordinate_setting_hl2";
 
+    //SharedPreference Code REFERENCE_COUNTRY_SATELLITE
+    public static final String REFERENCE_COUNTRY_SATELLITE_CUT_ANGLE= "reference_country_satellite_cut_angle";
+    public static final String REFERENCE_COUNTRY_SATELLITE_PDOP_LIMIT= "reference_country_satellite_pdop_limit";
+    public static final String REFERENCE_COUNTRY_SATELLITE_DELAY= "reference_country_satellite_delay";
+    public static final String REFERENCE_COUNTRY_SATELLITE_GPS= "reference_country_satellite_gps";
+    public static final String REFERENCE_COUNTRY_SATELLITE_GLONASS= "reference_country_satellite_glonass";
+    public static final String REFERENCE_COUNTRY_SATELLITE_BEIDOU= "reference_country_satellite_beidou";
+    public static final String REFERENCE_COUNTRY_SATELLITE_GALILEO= "reference_country_satellite_galileo";
+    public static final String REFERENCE_COUNTRY_SATELLITE_SBAS= "reference_country_satellite_sbas";
+    public static final String REFERENCE_COUNTRY_SATELLITE_QZSS= "reference_country_satellite_qzss";
+    public static final String REFERENCE_COUNTRY_SATELLITE_LBAND= "reference_country_satellite_lband";
+
 
     //ROOM
     public static final String WORKERS_DB = "workers-db";

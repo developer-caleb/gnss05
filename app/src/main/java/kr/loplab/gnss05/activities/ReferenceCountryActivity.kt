@@ -40,6 +40,16 @@ class ReferenceCountryActivity : ActivityBase<ActivityReferenceCountryBinding>()
     }
 
     override fun initListener() {
+        viewBinding.settingSatelliteBt.setOnClickListener {
+            Log.d(TAG, "initListener: settingSatelliteBt clicked")
+            intent = Intent(this, SettingSatelliteActivity::class.java)
+        }
+        viewBinding.saveAndApplyBt.setOnClickListener {
+            Log.d(TAG, "initListener: saveAndApplyBt clicked")
+        }
+        viewBinding.applyBt.setOnClickListener {
+            Log.d(TAG, "initListener: applyBt clicked")
+        }
         viewBinding.header01.setOnBackButtonClickListener { onBackPressed();}
         viewBinding.corsSettingBt.setOnClickListener {
             intent = Intent(this, CORSServerManagerActivity::class.java)
