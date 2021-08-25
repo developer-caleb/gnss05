@@ -22,6 +22,8 @@ import kr.loplab.gnss05.common.OptionList
 import kr.loplab.gnss05.common.OptionList.Companion.COLLECTION_INTERVAL_LIST
 import kr.loplab.gnss05.common.OptionList.Companion.DATA_CONNECTION_TYPE_List
 import kr.loplab.gnss05.common.OptionList.Companion.DEPLACEMENT_MODE_LIST
+import kr.loplab.gnss05.common.OptionList.Companion.INNER_RADIO_CHANNEL_LIST
+import kr.loplab.gnss05.common.OptionList.Companion.INNER_RADIO_PROTOCOL_LIST
 import kr.loplab.gnss05.common.OptionList.Companion.NETWORK_MODE_List
 import kr.loplab.gnss05.common.OptionList.Companion.NETWORK_SYSTEM_List
 import kr.loplab.gnss05.common.PrefUtil
@@ -34,10 +36,10 @@ class ReferenceCountryActivity : ActivityBase<ActivityReferenceCountryBinding>()
     var startModeNum = 0;
     var deplaceModeNum = 0;
     var collectionModeNum = 0;
-     var dataConnectionTypeNum = 0;
-    var networkModeNum = 0;
     var wifiPasswordView = false;
     var networkSystemNum = 0;
+    var innerRadioChannelNum = 0;
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
@@ -147,14 +149,12 @@ class ReferenceCountryActivity : ActivityBase<ActivityReferenceCountryBinding>()
             var prefvalue = Define.DATA_CONNECTION_TYPE
             dlg.firstLayoutUse = false
             dlg.list = alist
-            dlg.selectedposition= dataConnectionTypeNum
+            dlg.selectedposition= viewModel1.data_connect_type.value!!
             dlg.start("")
             dlg.setOnListClickedListener { view, i ->
                 Log.d(TAG, "initListener: $i")
                 viewModel1.setDataConnectionType(i)
-                dataConnectionTypeNum = i
-
-                viewBinding.tvDataConnectionType.text = alist[dataConnectionTypeNum]
+                viewBinding.tvDataConnectionType.text = alist[i]
                 dlg.refresh()
                 dlg.dismiss()
             }
@@ -202,19 +202,35 @@ class ReferenceCountryActivity : ActivityBase<ActivityReferenceCountryBinding>()
             var prefvalue = Define.NETWORK_MODE
             dlg.firstLayoutUse = false
             dlg.list = alist
-            dlg.selectedposition= networkModeNum
+            dlg.selectedposition= viewModel1.network_mode.value!!
             dlg.start("")
             dlg.setOnListClickedListener { view, i ->
                 Log.d(TAG, "initListener: $i")
-                networkModeNum = i
-
                 viewModel1.setNetworkMode(i)
-                viewBinding.tvNetworkMode.text = alist[PrefUtil.getInt2(applicationContext, prefvalue
-                )]
+                viewBinding.tvNetworkMode.text = alist[i]
                 dlg.refresh()
                 dlg.dismiss()
             }
             dlg.setHeader("네트워크 모드")
+        }
+
+        viewBinding.layoutInnerRadioChannel.setOnClickListener {
+            val dlg = MyDialog(this)
+            var alist = INNER_RADIO_CHANNEL_LIST
+            var prefvalue = Define.INNER_RADIO_CHANNEL
+            dlg.firstLayoutUse = false
+            dlg.list = alist
+            dlg.selectedposition= innerRadioChannelNum
+            dlg.start("")
+            dlg.setOnListClickedListener { view, i ->
+                Log.d(TAG, "initListener: $i")
+                innerRadioChannelNum = i
+                viewModel1.setNetworkMode(i)
+                viewBinding.tvInnerRadioChannel.text = alist[i]
+                dlg.refresh()
+                dlg.dismiss()
+            }
+            dlg.setHeader("채널")
         }
         viewBinding.layoutAutoApn.setOnClickListener {
            viewModel1.setAutoApn(!viewModel1.auto_apn.value!!)
@@ -238,32 +254,40 @@ class ReferenceCountryActivity : ActivityBase<ActivityReferenceCountryBinding>()
         startModeNum = PrefUtil.getInt2(applicationContext, Define.START_MODE)
         deplaceModeNum = PrefUtil.getInt2(applicationContext, Define.DEPLACEMENT_MODE)
         collectionModeNum = PrefUtil.getInt2(applicationContext, Define.COLLECTION_INTERVAL)
-        dataConnectionTypeNum = PrefUtil.getInt2(applicationContext, Define.DATA_CONNECTION_TYPE)
-        networkModeNum = PrefUtil.getInt2(applicationContext, NETWORK_MODE)
         networkSystemNum = PrefUtil.getInt2(applicationContext, NETWORK_SYSTEM)
+        innerRadioChannelNum = PrefUtil.getInt2(applicationContext, INNER_RADIO_CHANNEL)
+        //TODO
+
 
         viewModel1.setRawDatavalue(PrefUtil.getBoolean(this, RAW_DATA_SAVE))
         viewModel1.setDataConnectionType(PrefUtil.getInt2(this, DATA_CONNECTION_TYPE))
         viewModel1.setNetworkMode(PrefUtil.getInt2(this, NETWORK_MODE))
         viewModel1.setAutoApn(PrefUtil.getBoolean(this, AUTO_APN))
+        viewModel1.setInnerRadioProtocol(PrefUtil.getInt2(this, INNER_RADIO_PROTOCOL))
 
         viewBinding.tvStartMode.text = OptionList.START_MODE_LIST[startModeNum]
         viewBinding.tvDisplacementMode.text = DEPLACEMENT_MODE_LIST[deplaceModeNum]
         viewBinding.tvCollectionInterval.text = COLLECTION_INTERVAL_LIST[collectionModeNum]
-        viewBinding.tvDataConnectionType.text = DATA_CONNECTION_TYPE_List[dataConnectionTypeNum]
-        viewBinding.tvNetworkMode.text = NETWORK_MODE_List[networkModeNum]
-        viewBinding.tvNetworkSystem.text = NETWORK_MODE_List[networkSystemNum]
+        viewBinding.tvDataConnectionType.text = DATA_CONNECTION_TYPE_List[viewModel1.data_connect_type.value!!]
+        viewBinding.tvNetworkMode.text = NETWORK_MODE_List[viewModel1.network_mode.value!!]
+        viewBinding.tvNetworkSystem.text = NETWORK_SYSTEM_List[networkSystemNum]
+        viewBinding.tvInnerRadioChannel.text = INNER_RADIO_CHANNEL_LIST[innerRadioChannelNum]
+        viewBinding.tvInnerRadioProtocol.text = INNER_RADIO_PROTOCOL_LIST[viewModel1.innerRadioProtocolNum.value!!]
+
+
         viewBinding.swReferenceCountryAutoplay.isChecked =PrefUtil.getBoolean(applicationContext, REFERENCE_COUNTRY_AUTO_PLAY)
         viewBinding.swNetworkAutoConnect.isChecked =PrefUtil.getBoolean(applicationContext, NETWORK_AUTO_CONNECT)
 
+
     }
     fun savesettings(){
-        PrefUtil.setInt(applicationContext, Define.NETWORK_MODE, networkModeNum)
+        PrefUtil.setInt(applicationContext, Define.NETWORK_MODE, viewModel1.network_mode.value!!)
         PrefUtil.setInt(applicationContext, Define.START_MODE, startModeNum)
         PrefUtil.setInt(applicationContext, Define.DEPLACEMENT_MODE, deplaceModeNum)
         PrefUtil.setInt(applicationContext, Define.COLLECTION_INTERVAL, collectionModeNum)
-        PrefUtil.setInt(applicationContext, Define.DATA_CONNECTION_TYPE, dataConnectionTypeNum)
+        PrefUtil.setInt(applicationContext, Define.DATA_CONNECTION_TYPE, viewModel1.data_connect_type.value!!)
         PrefUtil.setInt(applicationContext, Define.NETWORK_SYSTEM, networkSystemNum)
+        PrefUtil.setInt(applicationContext, Define.INNER_RADIO_CHANNEL, innerRadioChannelNum)
         PrefUtil.setBoolean(applicationContext, REFERENCE_COUNTRY_AUTO_PLAY, viewBinding.swReferenceCountryAutoplay.isChecked)
         PrefUtil.setBoolean(applicationContext, NETWORK_AUTO_CONNECT, viewBinding.swNetworkAutoConnect.isChecked)
         PrefUtil.setBoolean(this, RAW_DATA_SAVE, viewModel1.bool_rawdatasave.value!!);

@@ -24,6 +24,12 @@ class OptionList {
       val NETWORK_MODE_List= arrayListOf<String>(
           "GPRS","WIFI"
       )
+      val INNER_RADIO_CHANNEL_LIST= arrayListOf<String>(
+          "1","2","3","4","5", "6", "7","8"
+      )
+      val INNER_RADIO_PROTOCOL_LIST= arrayListOf<String>(
+          "Satel","PCC_GMSK","TrimTalk 450S","South 9600","TrimMask III", "South 19200", "900M Hopping",
+      )
       val NETWORK_SYSTEM_List= arrayListOf<String>(
           "자동","GSM", "CDMA1x"
       )

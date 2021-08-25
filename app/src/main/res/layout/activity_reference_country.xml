@@ -349,7 +349,9 @@
                         android:background="@color/grey_EC" />
 
 
-                    <LinearLayout style="@style/ButtonLayout_STYLE01">
+                    <LinearLayout style="@style/ButtonLayout_STYLE01"
+                        android:id="@+id/layout_inner_radio_channel"
+                        >
 
                         <TextView
                             style="@style/Sub_TEXTVIEW_STYLE1"
@@ -357,6 +359,7 @@
                              />
 
                         <TextView
+                            android:id="@+id/tv_inner_radio_channel"
                             style="@style/Sub_TEXTVIEW_STYLE3"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -404,7 +407,9 @@
                         android:background="@color/grey_EC" />
 
 
-                    <LinearLayout style="@style/ButtonLayout_STYLE01">
+                    <LinearLayout style="@style/ButtonLayout_STYLE01"
+                        android:id="@+id/layout_inner_radio_protocol"
+                        >
 
                         <TextView
                             style="@style/Sub_TEXTVIEW_STYLE1"
@@ -412,6 +417,7 @@
                              />
 
                         <TextView
+                            android:id="@+id/tv_inner_radio_protocol"
                             style="@style/Sub_TEXTVIEW_STYLE3"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -441,8 +447,72 @@
 
                         <TextView
                             style="@style/Sub_TEXTVIEW_STYLE1"
-                            android:text="전원"
+                            android:text="간"
                              />
+
+                        <TextView
+                            style="@style/Sub_TEXTVIEW_STYLE3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0"
+                            android:text="25.0" />
+
+                        <ImageView
+                            android:layout_width="@dimen/rightArrowSize"
+                            android:layout_height="@dimen/rightArrowSize"
+                            android:layout_weight="0"
+                            android:padding="5dp"
+                            android:layout_marginRight="8dp"
+                            app:srcCompat="@drawable/next_icon" />
+
+
+                    </LinearLayout>
+
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_weight="0"
+                        android:background="@color/grey_EC" />
+
+                    <LinearLayout style="@style/ButtonLayout_STYLE01">
+
+                        <TextView
+                            style="@style/Sub_TEXTVIEW_STYLE1"
+                            android:text="Fec"
+                            />
+
+                        <TextView
+                            style="@style/Sub_TEXTVIEW_STYLE3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0"
+                            android:text="OFF" />
+
+                        <ImageView
+                            android:layout_width="@dimen/rightArrowSize"
+                            android:layout_height="@dimen/rightArrowSize"
+                            android:layout_weight="0"
+                            android:padding="5dp"
+                            android:layout_marginRight="8dp"
+                            app:srcCompat="@drawable/next_icon" />
+
+
+                    </LinearLayout>
+
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_weight="0"
+                        android:background="@color/grey_EC" />
+
+                    <LinearLayout style="@style/ButtonLayout_STYLE01">
+
+                        <TextView
+                            style="@style/Sub_TEXTVIEW_STYLE1"
+                            android:text="전원"
+                            />
 
                         <TextView
                             style="@style/Sub_TEXTVIEW_STYLE3"
@@ -468,6 +538,8 @@
                         android:layout_height="1dp"
                         android:layout_weight="0"
                         android:background="@color/grey_EC" />
+
+
 
                     <LinearLayout
                         style="@style/ButtonLayout_STYLE01"

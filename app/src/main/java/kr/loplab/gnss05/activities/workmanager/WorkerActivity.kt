@@ -69,6 +69,9 @@ class WorkerActivity :  ActivityBase<ActivityWorkerBinding>()  {
         }
 
         viewBinding.btConfirm.setOnClickListener {
+            if (viewBinding.etWorker.text.toString().isEmpty()){
+                showToast("작업자 이름은 반드시 포함되어야 합니다.")
+                return@setOnClickListener}
             when(requestCode){
                 REQUEST_WORKER_MANAGE_ADD->{
             lifecycleScope.launch(Dispatchers.IO) {

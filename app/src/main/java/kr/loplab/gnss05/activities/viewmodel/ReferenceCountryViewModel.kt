@@ -10,6 +10,7 @@ class ReferenceCountryViewModel : ViewModel() {
     var bool_rawdatasave = MutableLiveData<Boolean>(false)
     var data_connect_type = MutableLiveData<Int>(0)
     var network_mode = MutableLiveData<Int>(0)
+    var innerRadioProtocolNum = MutableLiveData<Int>(0)
     var auto_apn = MutableLiveData<Boolean>(false)
     init {
 
@@ -31,5 +32,8 @@ class ReferenceCountryViewModel : ViewModel() {
     }
     fun setAutoApn(bool : Boolean){
         auto_apn.postValue(bool)
+    }
+    fun setInnerRadioProtocol(num : Int){
+        innerRadioProtocolNum.postValue(num)
     }
 }
