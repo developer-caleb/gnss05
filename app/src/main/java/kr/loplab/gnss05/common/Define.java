@@ -30,6 +30,7 @@ public class Define {
     public static final String NETWORK_SYSTEM = "network_system";
     public static final String INNER_RADIO_CHANNEL = "inner_radio_channel";
     public static final String INNER_RADIO_PROTOCOL = "inner_radio_protocol";
+    public static final String INNER_RADIO_INTERVAL = "inner_radio_interval";
     public static final String AUTO_APN = "auto_apn";
 
     //SharedPreference Code REFERENCE_COUNTRY_COORDINATE_SETTING

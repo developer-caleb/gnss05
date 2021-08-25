@@ -8,7 +8,6 @@ import android.util.Log
 import android.view.inputmethod.InputMethodManager
 import androidx.appcompat.app.ActionBar
 import androidx.lifecycle.ViewModelProvider
-import kotlinx.android.synthetic.main.activity_reference_country.*
 
 import kr.loplab.gnss02.ActivityBase
 import kr.loplab.gnss05.MyDialog
@@ -23,6 +22,7 @@ import kr.loplab.gnss05.common.OptionList.Companion.COLLECTION_INTERVAL_LIST
 import kr.loplab.gnss05.common.OptionList.Companion.DATA_CONNECTION_TYPE_List
 import kr.loplab.gnss05.common.OptionList.Companion.DEPLACEMENT_MODE_LIST
 import kr.loplab.gnss05.common.OptionList.Companion.INNER_RADIO_CHANNEL_LIST
+import kr.loplab.gnss05.common.OptionList.Companion.INNER_RADIO_INTERVAL_LIST
 import kr.loplab.gnss05.common.OptionList.Companion.INNER_RADIO_PROTOCOL_LIST
 import kr.loplab.gnss05.common.OptionList.Companion.NETWORK_MODE_List
 import kr.loplab.gnss05.common.OptionList.Companion.NETWORK_SYSTEM_List
@@ -35,10 +35,11 @@ class ReferenceCountryActivity : ActivityBase<ActivityReferenceCountryBinding>()
     lateinit var viewModel1:ReferenceCountryViewModel
     var startModeNum = 0;
     var deplaceModeNum = 0;
-    var collectionModeNum = 0;
+    var collectionIntervalNum = 0;
     var wifiPasswordView = false;
     var networkSystemNum = 0;
     var innerRadioChannelNum = 0;
+    var innerRadioIntervalNum = 0;
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -117,7 +118,6 @@ class ReferenceCountryActivity : ActivityBase<ActivityReferenceCountryBinding>()
            dlg.start("")
            dlg.setOnListClickedListener { view, i ->
                Log.d(TAG, "initListener: $i")
-
                deplaceModeNum = i
                viewBinding.tvDisplacementMode.text = alist[deplaceModeNum]
                dlg.refresh()
@@ -131,13 +131,12 @@ class ReferenceCountryActivity : ActivityBase<ActivityReferenceCountryBinding>()
             var prefvalue = Define.COLLECTION_INTERVAL
             dlg.firstLayoutUse = false
             dlg.list = alist
-            dlg.selectedposition= collectionModeNum
+            dlg.selectedposition= collectionIntervalNum
             dlg.start("")
             dlg.setOnListClickedListener { view, i ->
                 Log.d(TAG, "initListener: $i")
-                collectionModeNum = i
-
-                viewBinding.tvCollectionInterval.text = alist[collectionModeNum]
+                collectionIntervalNum = i
+                viewBinding.tvCollectionInterval.text = alist[collectionIntervalNum]
                 dlg.refresh()
                 dlg.dismiss()
             }
@@ -229,7 +228,7 @@ class ReferenceCountryActivity : ActivityBase<ActivityReferenceCountryBinding>()
                 dlg.refresh()
                 dlg.dismiss()
             }
-            dlg.setHeader("네트워크 모드")
+            dlg.setHeader("프로토콜")
         }
 
         viewBinding.layoutInnerRadioChannel.setOnClickListener {
@@ -243,12 +242,29 @@ class ReferenceCountryActivity : ActivityBase<ActivityReferenceCountryBinding>()
             dlg.setOnListClickedListener { view, i ->
                 Log.d(TAG, "initListener: $i")
                 innerRadioChannelNum = i
-                viewModel1.setNetworkMode(i)
                 viewBinding.tvInnerRadioChannel.text = alist[i]
                 dlg.refresh()
                 dlg.dismiss()
             }
             dlg.setHeader("채널")
+        }
+
+        viewBinding.layoutInnerRadioInterval.setOnClickListener {
+            val dlg = MyDialog(this)
+            var alist = INNER_RADIO_INTERVAL_LIST
+            var prefvalue = Define.INNER_RADIO_INTERVAL
+            dlg.firstLayoutUse = false
+            dlg.list = alist
+            dlg.selectedposition= innerRadioIntervalNum
+            dlg.start("")
+            dlg.setOnListClickedListener { view, i ->
+                Log.d(TAG, "initListener: $i")
+                innerRadioIntervalNum = i
+                viewBinding.tvInnerRadioInterval.text = alist[i]
+                dlg.refresh()
+                dlg.dismiss()
+            }
+            dlg.setHeader("간격")
         }
         viewBinding.layoutAutoApn.setOnClickListener {
            viewModel1.setAutoApn(!viewModel1.auto_apn.value!!)
@@ -269,46 +285,51 @@ class ReferenceCountryActivity : ActivityBase<ActivityReferenceCountryBinding>()
     }
 
     override fun initDatabinding() {
-        startModeNum = PrefUtil.getInt2(applicationContext, Define.START_MODE)
-        deplaceModeNum = PrefUtil.getInt2(applicationContext, Define.DEPLACEMENT_MODE)
-        collectionModeNum = PrefUtil.getInt2(applicationContext, Define.COLLECTION_INTERVAL)
-        networkSystemNum = PrefUtil.getInt2(applicationContext, NETWORK_SYSTEM)
-        innerRadioChannelNum = PrefUtil.getInt2(applicationContext, INNER_RADIO_CHANNEL)
-        //TODO
+        startModeNum = PrefUtil.getInt2(applicationContext, Define.START_MODE)  //0
+        deplaceModeNum = PrefUtil.getInt2(applicationContext, Define.DEPLACEMENT_MODE) //1
+        collectionIntervalNum = PrefUtil.getInt2(applicationContext, Define.COLLECTION_INTERVAL) //2
+        networkSystemNum = PrefUtil.getInt2(applicationContext, NETWORK_SYSTEM) //6
+        innerRadioChannelNum = PrefUtil.getInt2(applicationContext, INNER_RADIO_CHANNEL) //7
+        innerRadioIntervalNum = PrefUtil.getInt2(applicationContext, INNER_RADIO_INTERVAL) //8
+
+        viewModel1.setDataConnectionType(PrefUtil.getInt2(this, DATA_CONNECTION_TYPE)) //3
+        viewModel1.setNetworkMode(PrefUtil.getInt2(this, NETWORK_MODE)) //4
+        viewModel1.setInnerRadioProtocol(PrefUtil.getInt2(this, INNER_RADIO_PROTOCOL)) //5
+        viewModel1.setRawDatavalue(PrefUtil.getBoolean(this, RAW_DATA_SAVE)) //9 -> data, Viewbinding통합
+        viewModel1.setAutoApn(PrefUtil.getBoolean(this, AUTO_APN)) //10 -> data, viewbinding통합
 
 
-        viewModel1.setRawDatavalue(PrefUtil.getBoolean(this, RAW_DATA_SAVE))
-        viewModel1.setDataConnectionType(PrefUtil.getInt2(this, DATA_CONNECTION_TYPE))
-        viewModel1.setNetworkMode(PrefUtil.getInt2(this, NETWORK_MODE))
-        viewModel1.setAutoApn(PrefUtil.getBoolean(this, AUTO_APN))
-        viewModel1.setInnerRadioProtocol(PrefUtil.getInt2(this, INNER_RADIO_PROTOCOL))
 
-        viewBinding.tvStartMode.text = OptionList.START_MODE_LIST[startModeNum]
-        viewBinding.tvDisplacementMode.text = DEPLACEMENT_MODE_LIST[deplaceModeNum]
-        viewBinding.tvCollectionInterval.text = COLLECTION_INTERVAL_LIST[collectionModeNum]
-        viewBinding.tvDataConnectionType.text = DATA_CONNECTION_TYPE_List[viewModel1.data_connect_type.value!!]
-        viewBinding.tvNetworkMode.text = NETWORK_MODE_List[viewModel1.network_mode.value!!]
-        viewBinding.tvNetworkSystem.text = NETWORK_SYSTEM_List[networkSystemNum]
-        viewBinding.tvInnerRadioChannel.text = INNER_RADIO_CHANNEL_LIST[innerRadioChannelNum]
-        viewBinding.tvInnerRadioProtocol.text = INNER_RADIO_PROTOCOL_LIST[viewModel1.innerRadioProtocolNum.value!!]
+        viewBinding.tvStartMode.text = OptionList.START_MODE_LIST[startModeNum] //0
+        viewBinding.tvDisplacementMode.text = DEPLACEMENT_MODE_LIST[deplaceModeNum] //1
+        viewBinding.tvCollectionInterval.text = COLLECTION_INTERVAL_LIST[collectionIntervalNum] //2
+        viewBinding.tvDataConnectionType.text = DATA_CONNECTION_TYPE_List[viewModel1.data_connect_type.value!!] //3
+        viewBinding.tvNetworkMode.text = NETWORK_MODE_List[viewModel1.network_mode.value!!] //4
+        viewBinding.tvNetworkSystem.text = NETWORK_SYSTEM_List[networkSystemNum] //6
+        viewBinding.tvInnerRadioChannel.text = INNER_RADIO_CHANNEL_LIST[innerRadioChannelNum] //7
+        viewBinding.tvInnerRadioInterval.text = INNER_RADIO_INTERVAL_LIST[innerRadioIntervalNum] //8
+        viewBinding.tvInnerRadioProtocol.text = INNER_RADIO_PROTOCOL_LIST[viewModel1.innerRadioProtocolNum.value!!] //5
+        //9, //10 불필요
+        viewBinding.swReferenceCountryAutoplay.isChecked =PrefUtil.getBoolean(applicationContext, REFERENCE_COUNTRY_AUTO_PLAY) //11
+        viewBinding.swNetworkAutoConnect.isChecked =PrefUtil.getBoolean(applicationContext, NETWORK_AUTO_CONNECT) //12
 
-
-        viewBinding.swReferenceCountryAutoplay.isChecked =PrefUtil.getBoolean(applicationContext, REFERENCE_COUNTRY_AUTO_PLAY)
-        viewBinding.swNetworkAutoConnect.isChecked =PrefUtil.getBoolean(applicationContext, NETWORK_AUTO_CONNECT)
 
 
     }
     fun savesettings(){
-        PrefUtil.setInt(applicationContext, Define.NETWORK_MODE, viewModel1.network_mode.value!!)
-        PrefUtil.setInt(applicationContext, Define.START_MODE, startModeNum)
-        PrefUtil.setInt(applicationContext, Define.DEPLACEMENT_MODE, deplaceModeNum)
-        PrefUtil.setInt(applicationContext, Define.COLLECTION_INTERVAL, collectionModeNum)
-        PrefUtil.setInt(applicationContext, Define.DATA_CONNECTION_TYPE, viewModel1.data_connect_type.value!!)
-        PrefUtil.setInt(applicationContext, Define.NETWORK_SYSTEM, networkSystemNum)
-        PrefUtil.setInt(applicationContext, Define.INNER_RADIO_CHANNEL, innerRadioChannelNum)
-        PrefUtil.setBoolean(applicationContext, REFERENCE_COUNTRY_AUTO_PLAY, viewBinding.swReferenceCountryAutoplay.isChecked)
-        PrefUtil.setBoolean(applicationContext, NETWORK_AUTO_CONNECT, viewBinding.swNetworkAutoConnect.isChecked)
-        PrefUtil.setBoolean(this, RAW_DATA_SAVE, viewModel1.bool_rawdatasave.value!!);
+        PrefUtil.setInt(applicationContext, Define.NETWORK_MODE, viewModel1.network_mode.value!!) //4
+        PrefUtil.setInt(applicationContext, Define.START_MODE, startModeNum) //0
+        PrefUtil.setInt(applicationContext, Define.DEPLACEMENT_MODE, deplaceModeNum) //1
+        PrefUtil.setInt(applicationContext, Define.COLLECTION_INTERVAL, collectionIntervalNum) //2
+        PrefUtil.setInt(applicationContext, Define.DATA_CONNECTION_TYPE, viewModel1.data_connect_type.value!!) //3
+        PrefUtil.setInt(applicationContext, Define.NETWORK_SYSTEM, networkSystemNum) //6
+        PrefUtil.setInt(applicationContext, Define.INNER_RADIO_CHANNEL, innerRadioChannelNum) //7
+        PrefUtil.setInt(applicationContext, Define.INNER_RADIO_INTERVAL, innerRadioIntervalNum) //8
+        PrefUtil.setBoolean(applicationContext, REFERENCE_COUNTRY_AUTO_PLAY, viewBinding.swReferenceCountryAutoplay.isChecked) //11
+        PrefUtil.setBoolean(applicationContext, NETWORK_AUTO_CONNECT, viewBinding.swNetworkAutoConnect.isChecked) //12
+        PrefUtil.setBoolean(applicationContext, RAW_DATA_SAVE, viewModel1.bool_rawdatasave.value!!) //9
+        PrefUtil.setBoolean(applicationContext, AUTO_APN, viewModel1.auto_apn.value!!) //10
+
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

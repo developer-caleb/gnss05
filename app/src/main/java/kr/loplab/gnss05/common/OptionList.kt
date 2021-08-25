@@ -30,6 +30,9 @@ class OptionList {
       val INNER_RADIO_PROTOCOL_LIST= arrayListOf<String>(
           "Satel","PCC_GMSK","TrimTalk 450S","South 9600","TrimMask III", "South 19200", "900M Hopping",
       )
+      val INNER_RADIO_INTERVAL_LIST= arrayListOf<String>(
+          "12.5","25.0",
+      )
       val NETWORK_SYSTEM_List= arrayListOf<String>(
           "자동","GSM", "CDMA1x"
       )
