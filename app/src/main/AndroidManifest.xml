@@ -32,11 +32,7 @@
         <activity
             android:name=".activities.workmanager.WorkManagerActivity"
             android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name=".activities.workmanager.WorkerActivity"
@@ -71,14 +67,13 @@
         <activity
             android:name=".SplashActivity"
             android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
 
         </activity>
-        <!--
-        <activity android:name=".tablelayout_tools1.TableActivity" />
-        <activity android:name=".UserFormatView" />
-        <activity android:name=".tablelayout_tools2.Type5Activity" />
-        -->
         <activity android:name=".activities.UserFormatMake"></activity>
         <activity android:name=".activities.FileExportActivity" />
         <activity android:name=".ColorPickerdialog" />

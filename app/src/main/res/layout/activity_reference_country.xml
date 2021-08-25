@@ -189,9 +189,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:paddingRight="8dp"
-                        android:clickable="false"
-                        />
+                        android:clickable="false" />
 
 
                 </LinearLayout>
@@ -216,10 +214,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:paddingRight="8dp"
-                        android:clickable="false"
                         android:checked="@{referencecontryviewmodel.bool_rawdatasave}"
-                         />
+                        android:clickable="false" />
 
 
                 </LinearLayout>
@@ -621,9 +617,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:paddingRight="8dp"
-                        android:clickable="false"
-                         />
+                        android:clickable="false" />
 
                 </LinearLayout>
 
@@ -752,9 +746,7 @@
                             android:id="@+id/sw_auto_apn"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:paddingRight="8dp"
-                             />
+                            android:layout_weight="1" />
 
 
                     </LinearLayout>

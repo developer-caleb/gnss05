@@ -27,6 +27,11 @@ class ReferenceCountryActivity : ActivityBase<ActivityReferenceCountryBinding>()
     override val layoutResourceId: Int
         get() = R.layout.activity_reference_country
     lateinit var viewModel1:ReferenceCountryViewModel
+    var startModeNum = 0;
+    var deplaceModeNum = 0;
+    var collectionModeNum = 0;
+     var dataConnectionTypeNum = 0;
+    var networkModeNum = 0;
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
@@ -46,6 +51,9 @@ class ReferenceCountryActivity : ActivityBase<ActivityReferenceCountryBinding>()
             startActivity(intent);
         }
         viewBinding.saveAndApplyBt.setOnClickListener {
+            savesettings()
+
+
             Log.d(TAG, "initListener: saveAndApplyBt clicked")
         }
         viewBinding.applyBt.setOnClickListener {
@@ -76,11 +84,11 @@ class ReferenceCountryActivity : ActivityBase<ActivityReferenceCountryBinding>()
             val dlg = MyDialog(this)
             dlg.firstLayoutUse = false
             dlg.list = OptionList.START_MODE_LIST
-            dlg.selectedposition= PrefUtil.getInt2(applicationContext, Define.START_MODE)
+            dlg.selectedposition= startModeNum
             dlg.start("")
             dlg.setOnListClickedListener { view, i ->
                 Log.d(TAG, "initListener: $i")
-                PrefUtil.setInt(applicationContext, Define.START_MODE, i)
+                startModeNum = i
                 viewBinding.tvStartMode.text = OptionList.START_MODE_LIST[PrefUtil.getInt2(applicationContext,
                     Define.START_MODE
                 )]
@@ -99,11 +107,12 @@ class ReferenceCountryActivity : ActivityBase<ActivityReferenceCountryBinding>()
            var prefvalue = Define.DEPLACEMENT_MODE
            dlg.firstLayoutUse = false
            dlg.list = alist
-           dlg.selectedposition= PrefUtil.getInt2(applicationContext, prefvalue)
+           dlg.selectedposition= deplaceModeNum
            dlg.start("")
            dlg.setOnListClickedListener { view, i ->
                Log.d(TAG, "initListener: $i")
-               PrefUtil.setInt(applicationContext, prefvalue, i)
+
+               deplaceModeNum = i
                viewBinding.tvDisplacementMode.text = alist[PrefUtil.getInt2(applicationContext, prefvalue
                )]
                dlg.refresh()
@@ -117,11 +126,12 @@ class ReferenceCountryActivity : ActivityBase<ActivityReferenceCountryBinding>()
             var prefvalue = Define.COLLECTION_INTERVAL
             dlg.firstLayoutUse = false
             dlg.list = alist
-            dlg.selectedposition= PrefUtil.getInt2(applicationContext, prefvalue)
+            dlg.selectedposition= collectionModeNum
             dlg.start("")
             dlg.setOnListClickedListener { view, i ->
                 Log.d(TAG, "initListener: $i")
-                PrefUtil.setInt(applicationContext, prefvalue, i)
+                collectionModeNum = i
+
                 viewBinding.tvCollectionInterval.text = alist[PrefUtil.getInt2(applicationContext, prefvalue
                 )]
                 dlg.refresh()
@@ -135,12 +145,13 @@ class ReferenceCountryActivity : ActivityBase<ActivityReferenceCountryBinding>()
             var prefvalue = Define.DATA_CONNECTION_TYPE
             dlg.firstLayoutUse = false
             dlg.list = alist
-            dlg.selectedposition= PrefUtil.getInt2(applicationContext, prefvalue)
+            dlg.selectedposition= dataConnectionTypeNum
             dlg.start("")
             dlg.setOnListClickedListener { view, i ->
                 Log.d(TAG, "initListener: $i")
                 viewModel1.setDataConnectionType(i)
-                PrefUtil.setInt(applicationContext, prefvalue, i)
+                dataConnectionTypeNum = i
+
                 viewBinding.tvDataConnectionType.text = alist[PrefUtil.getInt2(applicationContext, prefvalue
                 )]
                 dlg.refresh()
@@ -150,13 +161,11 @@ class ReferenceCountryActivity : ActivityBase<ActivityReferenceCountryBinding>()
         }
         viewBinding.layoutReferenceCountryAutoplay.setOnClickListener {
             viewBinding.swReferenceCountryAutoplay.isChecked = !viewBinding.swReferenceCountryAutoplay.isChecked
-            PrefUtil.setBoolean(applicationContext, REFERENCE_COUNTRY_AUTO_PLAY, viewBinding.swReferenceCountryAutoplay.isChecked)
-            //PrefUtil.setBoolean(applicationContext, REFERENCE_COUNTRY_AUTO_PLAY, true)
         }
         viewBinding.layoutRawDataSave.setOnClickListener {
             var bool = !viewModel1.bool_rawdatasave.value!!
             viewModel1.setRawDatavalue(bool)
-            PrefUtil.setBoolean(this, RAW_DATA_SAVE, bool);
+
         }
         viewBinding.layoutCurrentPointName.setOnClickListener {
             Log.d(TAG, "initListener: layoutCurrentPointName Clicked!")
@@ -167,7 +176,7 @@ class ReferenceCountryActivity : ActivityBase<ActivityReferenceCountryBinding>()
         }
         viewBinding.layoutNetworkAutoConnect.setOnClickListener {
             viewBinding.swNetworkAutoConnect.isChecked = !viewBinding.swNetworkAutoConnect.isChecked
-            PrefUtil.setBoolean(applicationContext, NETWORK_AUTO_CONNECT, viewBinding.swNetworkAutoConnect.isChecked)
+
         }
         viewBinding.layoutNetworkMode.setOnClickListener {
             val dlg = MyDialog(this)
@@ -175,11 +184,12 @@ class ReferenceCountryActivity : ActivityBase<ActivityReferenceCountryBinding>()
             var prefvalue = Define.NETWORK_MODE
             dlg.firstLayoutUse = false
             dlg.list = alist
-            dlg.selectedposition= PrefUtil.getInt2(applicationContext, prefvalue)
+            dlg.selectedposition= networkModeNum
             dlg.start("")
             dlg.setOnListClickedListener { view, i ->
                 Log.d(TAG, "initListener: $i")
-                PrefUtil.setInt(applicationContext, prefvalue, i)
+                networkModeNum = i
+
                 viewModel1.setNetworkMode(i)
                 viewBinding.tvNetworkMode.text = alist[PrefUtil.getInt2(applicationContext, prefvalue
                 )]
@@ -191,34 +201,42 @@ class ReferenceCountryActivity : ActivityBase<ActivityReferenceCountryBinding>()
     }
 
     override fun initDatabinding() {
+        startModeNum = PrefUtil.getInt2(applicationContext, Define.START_MODE)
+        deplaceModeNum = PrefUtil.getInt2(applicationContext, Define.DEPLACEMENT_MODE)
+        collectionModeNum = PrefUtil.getInt2(applicationContext, Define.COLLECTION_INTERVAL)
+        dataConnectionTypeNum = PrefUtil.getInt2(applicationContext, Define.DATA_CONNECTION_TYPE)
+        networkModeNum = PrefUtil.getInt2(applicationContext, NETWORK_MODE)
+
         viewModel1.setRawDatavalue(PrefUtil.getBoolean(this, RAW_DATA_SAVE))
         viewModel1.setDataConnectionType(PrefUtil.getInt2(this, DATA_CONNECTION_TYPE))
         viewModel1.setNetworkMode(PrefUtil.getInt2(this, NETWORK_MODE))
         viewModel1.setAutoApn(PrefUtil.getBoolean(this, AUTO_APN))
-        viewBinding.tvStartMode.text = OptionList.START_MODE_LIST[PrefUtil.getInt2(applicationContext,
-            Define.START_MODE
-        )]
-        viewBinding.tvDisplacementMode.text = DEPLACEMENT_MODE_LIST[PrefUtil.getInt2(applicationContext,
-            Define.DEPLACEMENT_MODE
-        )]
-        viewBinding.tvCollectionInterval.text = COLLECTION_INTERVAL_LIST[PrefUtil.getInt2(applicationContext,
-            Define.COLLECTION_INTERVAL
-        )]
+
+        viewBinding.tvStartMode.text = OptionList.START_MODE_LIST[startModeNum]
+        viewBinding.tvDisplacementMode.text = DEPLACEMENT_MODE_LIST[deplaceModeNum]
+        viewBinding.tvCollectionInterval.text = COLLECTION_INTERVAL_LIST[collectionModeNum]
+        viewBinding.tvDataConnectionType.text = DATA_CONNECTION_TYPE_List[dataConnectionTypeNum]
+        viewBinding.tvNetworkMode.text = NETWORK_MODE_List[networkModeNum]
         viewBinding.swReferenceCountryAutoplay.isChecked =PrefUtil.getBoolean(applicationContext, REFERENCE_COUNTRY_AUTO_PLAY)
         viewBinding.swNetworkAutoConnect.isChecked =PrefUtil.getBoolean(applicationContext, NETWORK_AUTO_CONNECT)
-        viewBinding.tvDataConnectionType.text = DATA_CONNECTION_TYPE_List[PrefUtil.getInt2(applicationContext, Define.DATA_CONNECTION_TYPE
-        )]
-        viewBinding.tvNetworkMode.text = NETWORK_MODE_List[PrefUtil.getInt2(applicationContext, NETWORK_MODE
-        )]
 
     }
-
+    fun savesettings(){
+        PrefUtil.setInt(applicationContext, Define.NETWORK_MODE, networkModeNum)
+        PrefUtil.setInt(applicationContext, Define.START_MODE, startModeNum)
+        PrefUtil.setInt(applicationContext, Define.DEPLACEMENT_MODE, deplaceModeNum)
+        PrefUtil.setInt(applicationContext, Define.COLLECTION_INTERVAL, collectionModeNum)
+        PrefUtil.setInt(applicationContext, Define.DATA_CONNECTION_TYPE, dataConnectionTypeNum)
+        PrefUtil.setBoolean(applicationContext, REFERENCE_COUNTRY_AUTO_PLAY, viewBinding.swReferenceCountryAutoplay.isChecked)
+        PrefUtil.setBoolean(applicationContext, NETWORK_AUTO_CONNECT, viewBinding.swNetworkAutoConnect.isChecked)
+        PrefUtil.setBoolean(this, RAW_DATA_SAVE, viewModel1.bool_rawdatasave.value!!);
+    }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         if(resultCode== RESULT_OK && requestCode == REQUEST_WORKMANAGER)
         {
-            initDatabinding()
 
+            initDatabinding()
         }
 
         if(resultCode== RESULT_OK && requestCode == REQUEST_CORS_SERVER_MANAGER)
