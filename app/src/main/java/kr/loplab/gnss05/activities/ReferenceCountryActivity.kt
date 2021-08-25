@@ -2,10 +2,13 @@ package kr.loplab.gnss05.activities
 
 import android.content.Intent
 import android.os.Bundle
+import android.text.method.HideReturnsTransformationMethod
+import android.text.method.PasswordTransformationMethod
 import android.util.Log
 import android.view.inputmethod.InputMethodManager
 import androidx.appcompat.app.ActionBar
 import androidx.lifecycle.ViewModelProvider
+import kotlinx.android.synthetic.main.activity_reference_country.*
 
 import kr.loplab.gnss02.ActivityBase
 import kr.loplab.gnss05.MyDialog
@@ -32,6 +35,7 @@ class ReferenceCountryActivity : ActivityBase<ActivityReferenceCountryBinding>()
     var collectionModeNum = 0;
      var dataConnectionTypeNum = 0;
     var networkModeNum = 0;
+    var wifiPasswordView = false;
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
@@ -199,6 +203,19 @@ class ReferenceCountryActivity : ActivityBase<ActivityReferenceCountryBinding>()
         }
         viewBinding.layoutAutoApn.setOnClickListener {
            viewModel1.setAutoApn(!viewModel1.auto_apn.value!!)
+        }
+        viewBinding.layoutWifiPassword.setOnClickListener {
+            viewBinding.etWifiPassword.requestFocus()
+            val imm: InputMethodManager =
+                getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
+            imm.showSoftInput( viewBinding.etWifiPassword,0)
+        }
+        viewBinding.btWifiPasswordView.setOnClickListener {
+            Log.d(TAG, "initListener: passwordview clicked")
+            wifiPasswordView = !wifiPasswordView;
+            viewBinding.etWifiPassword.transformationMethod =
+                if (wifiPasswordView) PasswordTransformationMethod.getInstance() else HideReturnsTransformationMethod.getInstance()
+            if (wifiPasswordView)  viewBinding.btWifiPasswordView.setImageResource(R.drawable.ic_eye_yes) else viewBinding.btWifiPasswordView.setImageResource(R.drawable.ic_eye_no)
         }
     }
 

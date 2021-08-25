@@ -672,6 +672,7 @@
                        android:layout_weight="0"
                        android:background="@color/grey_EC" />
                 <LinearLayout
+                    android:id="@+id/layout_network_system"
                     style="@style/ButtonLayout_STYLE01">
 
                     <TextView
@@ -681,6 +682,7 @@
 
 
                     <TextView
+                        android:id="@+id/tv_network_system"
                         style="@style/Sub_TEXTVIEW_STYLE3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -766,7 +768,9 @@
                         android:visibility="@{referencecontryviewmodel.auto_apn ? View.GONE: View.VISIBLE}"
                         >
 
-                    <LinearLayout style="@style/ButtonLayout_STYLE01">
+                    <LinearLayout style="@style/ButtonLayout_STYLE01"
+                        android:id="@+id/layout_apn_worker"
+                        >
 
                         <TextView
                             style="@style/Sub_TEXTVIEW_STYLE1"
@@ -774,9 +778,11 @@
                              />
 
                         <EditText
+                            android:id="@+id/et_apn_worker"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="0"
+                            android:background="@color/transparent"
                             android:text="" />
 
                         <ImageView
@@ -797,7 +803,10 @@
                         android:background="@color/grey_EC" />
 
 
-                    <LinearLayout style="@style/ButtonLayout_STYLE01">
+                    <LinearLayout
+                        android:id="@+id/layout_apn_name"
+                        style="@style/ButtonLayout_STYLE01"
+                        >
 
                         <TextView
                             style="@style/Sub_TEXTVIEW_STYLE1"
@@ -805,11 +814,11 @@
                              />
 
                         <EditText
-                            style="@style/Sub_TEXTVIEW_STYLE2"
+                            android:id="@+id/et_apn_name"
+                            style="@style/edittextStyle"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_weight="0"
-                            android:text="cmnet" />
+                            android:layout_weight="0" />
 
 
                     </LinearLayout>
@@ -822,7 +831,8 @@
                         android:background="@color/grey_EC" />
 
 
-                    <LinearLayout style="@style/ButtonLayout_STYLE01">
+                    <LinearLayout style="@style/ButtonLayout_STYLE01"
+                        android:id="@+id/layout_apn_user">
 
                         <TextView
                             style="@style/Sub_TEXTVIEW_STYLE1"
@@ -830,11 +840,11 @@
                              />
 
                         <EditText
-                            style="@style/Sub_TEXTVIEW_STYLE2"
+                            android:id="@+id/et_apn_user"
+                            style="@style/edittextStyle"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_weight="0"
-                            android:text="user" />
+                            android:layout_weight="0" />
 
 
                     </LinearLayout>
@@ -845,7 +855,9 @@
                         android:layout_weight="0"
                         android:background="@color/grey_EC" />
 
-                    <LinearLayout style="@style/ButtonLayout_STYLE01">
+                    <LinearLayout
+                        android:id="@+id/layout_apn_pw"
+                        style="@style/ButtonLayout_STYLE01">
 
                         <TextView
                             style="@style/Sub_TEXTVIEW_STYLE1"
@@ -853,6 +865,8 @@
                              />
 
                         <EditText
+                            android:id="@+id/et_apn_pw"
+                            style="@style/edittextStyle"
                             android:layout_width="160dp"
                             android:layout_height="wrap_content"
                             android:ems="10"
@@ -921,7 +935,9 @@
                         android:layout_weight="0"
                         android:background="@color/grey_EC" />
 
-                    <LinearLayout style="@style/ButtonLayout_STYLE01">
+                    <LinearLayout style="@style/ButtonLayout_STYLE01"
+                        android:id="@+id/layout_wifi_password"
+                        >
 
                         <TextView
                             style="@style/Sub_TEXTVIEW_STYLE1"
@@ -929,6 +945,8 @@
                              />
 
                         <EditText
+                            android:id="@+id/et_wifi_password"
+                            style="@style/edittextStyle"
                             android:layout_width="160dp"
                             android:layout_height="wrap_content"
                             android:ems="10"
@@ -936,12 +954,13 @@
                             tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
                         <ImageView
+                            android:id="@+id/bt_wifi_password_view"
                             android:layout_width="@dimen/rightArrowSize"
                             android:layout_height="@dimen/rightArrowSize"
                             android:layout_weight="0"
                             android:padding="5dp"
                             android:layout_marginRight="8dp"
-                            app:srcCompat="@drawable/password_icon" />
+                            android:src="@drawable/password_icon" />
 
 
                     </LinearLayout>

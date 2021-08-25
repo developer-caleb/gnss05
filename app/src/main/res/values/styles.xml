@@ -99,6 +99,7 @@
         <item name = "android:gravity">center_vertical</item>
         <item name = "android:layout_weight">0</item>
         <item name="android:layout_marginRight">20dp</item>
+
     </style>
 
     <style name = "Sub_TEXTVIEW_STYLE3">
@@ -141,8 +142,9 @@
 
     </style>
 
-    <style name = "edittextStyle" parent= "Widget.AppCompat.EditText" >
+    <style name = "edittextStyle" parent= "Widget.AppCompat.EditText">
         <item name="android:background">@color/transparent</item>
+        <item name="android:clickable">false</item>
     </style>
 
 </resources>
