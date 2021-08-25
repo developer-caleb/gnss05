@@ -40,6 +40,7 @@ class ReferenceCountryActivity : ActivityBase<ActivityReferenceCountryBinding>()
     var networkSystemNum = 0;
     var innerRadioChannelNum = 0;
     var innerRadioIntervalNum = 0;
+    var innerRadioPower = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -293,6 +294,7 @@ class ReferenceCountryActivity : ActivityBase<ActivityReferenceCountryBinding>()
         networkSystemNum = PrefUtil.getInt2(applicationContext, NETWORK_SYSTEM) //6
         innerRadioChannelNum = PrefUtil.getInt2(applicationContext, INNER_RADIO_CHANNEL) //7
         innerRadioIntervalNum = PrefUtil.getInt2(applicationContext, INNER_RADIO_INTERVAL) //8
+        innerRadioPower = PrefUtil.getInt2(applicationContext, INNER_RADIO_POWER) //14
 
         viewModel1.setDataConnectionType(PrefUtil.getInt2(this, DATA_CONNECTION_TYPE)) //3
         viewModel1.setNetworkMode(PrefUtil.getInt2(this, NETWORK_MODE)) //4

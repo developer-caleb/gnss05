@@ -515,7 +515,9 @@
                         android:layout_weight="0"
                         android:background="@color/grey_EC" />
                     </LinearLayout>
-                    <LinearLayout style="@style/ButtonLayout_STYLE01">
+                    <LinearLayout
+                        android:id="@+id/layout_inner_radio_power"
+                        style="@style/ButtonLayout_STYLE01">
 
                         <TextView
                             style="@style/Sub_TEXTVIEW_STYLE1"
@@ -523,6 +525,7 @@
                             />
 
                         <TextView
+                            android:id="@+id/tv_inner_radio_power"
                             style="@style/Sub_TEXTVIEW_STYLE3"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
