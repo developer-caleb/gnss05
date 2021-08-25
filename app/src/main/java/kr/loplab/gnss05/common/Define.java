@@ -27,6 +27,7 @@ public class Define {
     public static final String RAW_DATA_SAVE = "row_data_save";
     public static final String NETWORK_AUTO_CONNECT = "network_auto_connect";
     public static final String NETWORK_MODE = "network_mode";
+    public static final String NETWORK_SYSTEM = "network_system";
     public static final String AUTO_APN = "auto_apn";
 
     //SharedPreference Code REFERENCE_COUNTRY_COORDINATE_SETTING

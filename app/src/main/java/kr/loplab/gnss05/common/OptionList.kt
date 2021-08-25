@@ -24,6 +24,9 @@ class OptionList {
       val NETWORK_MODE_List= arrayListOf<String>(
           "GPRS","WIFI"
       )
+      val NETWORK_SYSTEM_List= arrayListOf<String>(
+          "자동","GSM", "CDMA1x"
+      )
       val CUT_ANGLE_List= arrayListOf<String>(
           "1","2","3","5","10","15","20","25","30","35","40","45",
       )

@@ -23,6 +23,7 @@ import kr.loplab.gnss05.common.OptionList.Companion.COLLECTION_INTERVAL_LIST
 import kr.loplab.gnss05.common.OptionList.Companion.DATA_CONNECTION_TYPE_List
 import kr.loplab.gnss05.common.OptionList.Companion.DEPLACEMENT_MODE_LIST
 import kr.loplab.gnss05.common.OptionList.Companion.NETWORK_MODE_List
+import kr.loplab.gnss05.common.OptionList.Companion.NETWORK_SYSTEM_List
 import kr.loplab.gnss05.common.PrefUtil
 import kr.loplab.gnss05.databinding.ActivityReferenceCountryBinding
 
@@ -36,6 +37,7 @@ class ReferenceCountryActivity : ActivityBase<ActivityReferenceCountryBinding>()
      var dataConnectionTypeNum = 0;
     var networkModeNum = 0;
     var wifiPasswordView = false;
+    var networkSystemNum = 0;
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
@@ -93,9 +95,7 @@ class ReferenceCountryActivity : ActivityBase<ActivityReferenceCountryBinding>()
             dlg.setOnListClickedListener { view, i ->
                 Log.d(TAG, "initListener: $i")
                 startModeNum = i
-                viewBinding.tvStartMode.text = OptionList.START_MODE_LIST[PrefUtil.getInt2(applicationContext,
-                    Define.START_MODE
-                )]
+                viewBinding.tvStartMode.text = OptionList.START_MODE_LIST[startModeNum]
                 dlg.refresh()
                 dlg.dismiss()
                 if(i==1){
@@ -117,8 +117,7 @@ class ReferenceCountryActivity : ActivityBase<ActivityReferenceCountryBinding>()
                Log.d(TAG, "initListener: $i")
 
                deplaceModeNum = i
-               viewBinding.tvDisplacementMode.text = alist[PrefUtil.getInt2(applicationContext, prefvalue
-               )]
+               viewBinding.tvDisplacementMode.text = alist[deplaceModeNum]
                dlg.refresh()
                dlg.dismiss()
            }
@@ -136,8 +135,7 @@ class ReferenceCountryActivity : ActivityBase<ActivityReferenceCountryBinding>()
                 Log.d(TAG, "initListener: $i")
                 collectionModeNum = i
 
-                viewBinding.tvCollectionInterval.text = alist[PrefUtil.getInt2(applicationContext, prefvalue
-                )]
+                viewBinding.tvCollectionInterval.text = alist[collectionModeNum]
                 dlg.refresh()
                 dlg.dismiss()
             }
@@ -156,13 +154,30 @@ class ReferenceCountryActivity : ActivityBase<ActivityReferenceCountryBinding>()
                 viewModel1.setDataConnectionType(i)
                 dataConnectionTypeNum = i
 
-                viewBinding.tvDataConnectionType.text = alist[PrefUtil.getInt2(applicationContext, prefvalue
-                )]
+                viewBinding.tvDataConnectionType.text = alist[dataConnectionTypeNum]
                 dlg.refresh()
                 dlg.dismiss()
             }
             dlg.setHeader("데이터 연결방식")
         }
+        viewBinding.layoutNetworkSystem.setOnClickListener {
+            val dlg = MyDialog(this)
+            var alist = NETWORK_SYSTEM_List
+            var prefvalue = Define.NETWORK_SYSTEM
+            dlg.firstLayoutUse = false
+            dlg.list = alist
+            dlg.selectedposition= networkSystemNum
+            dlg.start("")
+            dlg.setOnListClickedListener { view, i ->
+                Log.d(TAG, "initListener: $i")
+                networkSystemNum = i
+                viewBinding.tvNetworkSystem.text = alist[networkSystemNum]
+                dlg.refresh()
+                dlg.dismiss()
+            }
+            dlg.setHeader("네트워크 시스템")
+        }
+
         viewBinding.layoutReferenceCountryAutoplay.setOnClickListener {
             viewBinding.swReferenceCountryAutoplay.isChecked = !viewBinding.swReferenceCountryAutoplay.isChecked
         }
@@ -225,6 +240,7 @@ class ReferenceCountryActivity : ActivityBase<ActivityReferenceCountryBinding>()
         collectionModeNum = PrefUtil.getInt2(applicationContext, Define.COLLECTION_INTERVAL)
         dataConnectionTypeNum = PrefUtil.getInt2(applicationContext, Define.DATA_CONNECTION_TYPE)
         networkModeNum = PrefUtil.getInt2(applicationContext, NETWORK_MODE)
+        networkSystemNum = PrefUtil.getInt2(applicationContext, NETWORK_SYSTEM)
 
         viewModel1.setRawDatavalue(PrefUtil.getBoolean(this, RAW_DATA_SAVE))
         viewModel1.setDataConnectionType(PrefUtil.getInt2(this, DATA_CONNECTION_TYPE))
@@ -236,6 +252,7 @@ class ReferenceCountryActivity : ActivityBase<ActivityReferenceCountryBinding>()
         viewBinding.tvCollectionInterval.text = COLLECTION_INTERVAL_LIST[collectionModeNum]
         viewBinding.tvDataConnectionType.text = DATA_CONNECTION_TYPE_List[dataConnectionTypeNum]
         viewBinding.tvNetworkMode.text = NETWORK_MODE_List[networkModeNum]
+        viewBinding.tvNetworkSystem.text = NETWORK_MODE_List[networkSystemNum]
         viewBinding.swReferenceCountryAutoplay.isChecked =PrefUtil.getBoolean(applicationContext, REFERENCE_COUNTRY_AUTO_PLAY)
         viewBinding.swNetworkAutoConnect.isChecked =PrefUtil.getBoolean(applicationContext, NETWORK_AUTO_CONNECT)
 
@@ -246,6 +263,7 @@ class ReferenceCountryActivity : ActivityBase<ActivityReferenceCountryBinding>()
         PrefUtil.setInt(applicationContext, Define.DEPLACEMENT_MODE, deplaceModeNum)
         PrefUtil.setInt(applicationContext, Define.COLLECTION_INTERVAL, collectionModeNum)
         PrefUtil.setInt(applicationContext, Define.DATA_CONNECTION_TYPE, dataConnectionTypeNum)
+        PrefUtil.setInt(applicationContext, Define.NETWORK_SYSTEM, networkSystemNum)
         PrefUtil.setBoolean(applicationContext, REFERENCE_COUNTRY_AUTO_PLAY, viewBinding.swReferenceCountryAutoplay.isChecked)
         PrefUtil.setBoolean(applicationContext, NETWORK_AUTO_CONNECT, viewBinding.swNetworkAutoConnect.isChecked)
         PrefUtil.setBoolean(this, RAW_DATA_SAVE, viewModel1.bool_rawdatasave.value!!);
