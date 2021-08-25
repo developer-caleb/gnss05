@@ -442,15 +442,24 @@
                         android:layout_weight="0"
                         android:background="@color/grey_EC" />
 
-
-                    <LinearLayout style="@style/ButtonLayout_STYLE01">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:visibility="@{referencecontryviewmodel.innerRadioProtocolNum == 0 ? View.VISIBLE : View.GONE }"
+                        >
+                    <LinearLayout
+                        android:id="@+id/layout_inner_radio_interval"
+                        style="@style/ButtonLayout_STYLE01"
+                        >
 
                         <TextView
                             style="@style/Sub_TEXTVIEW_STYLE1"
-                            android:text="간"
+                            android:text="간격"
                              />
 
                         <TextView
+                            android:id="@+id/tv_inner_radio_interval"
                             style="@style/Sub_TEXTVIEW_STYLE3"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -506,7 +515,7 @@
                         android:layout_height="1dp"
                         android:layout_weight="0"
                         android:background="@color/grey_EC" />
-
+                    </LinearLayout>
                     <LinearLayout style="@style/ButtonLayout_STYLE01">
 
                         <TextView

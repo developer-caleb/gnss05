@@ -214,6 +214,24 @@ class ReferenceCountryActivity : ActivityBase<ActivityReferenceCountryBinding>()
             dlg.setHeader("네트워크 모드")
         }
 
+        viewBinding.layoutInnerRadioProtocol.setOnClickListener {
+            val dlg = MyDialog(this)
+            var alist = INNER_RADIO_PROTOCOL_LIST
+            var prefvalue = Define.INNER_RADIO_PROTOCOL
+            dlg.firstLayoutUse = false
+            dlg.list = alist
+            dlg.selectedposition= viewModel1.innerRadioProtocolNum.value!!
+            dlg.start("")
+            dlg.setOnListClickedListener { view, i ->
+                Log.d(TAG, "initListener: $i")
+                viewModel1.setInnerRadioProtocol(i)
+                viewBinding.tvInnerRadioProtocol.text = alist[i]
+                dlg.refresh()
+                dlg.dismiss()
+            }
+            dlg.setHeader("네트워크 모드")
+        }
+
         viewBinding.layoutInnerRadioChannel.setOnClickListener {
             val dlg = MyDialog(this)
             var alist = INNER_RADIO_CHANNEL_LIST
