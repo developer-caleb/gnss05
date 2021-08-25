@@ -14,7 +14,7 @@
         android:color="@color/brightSky" />
 </shape>
     </item>
-
+    <!--
     <item  android:left="13dp"
         android:gravity="center_vertical|left"
         android:width="2dp"
@@ -28,5 +28,5 @@
 
         </shape>
     </item>
-
+    -->
 </layer-list>

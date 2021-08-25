@@ -13,7 +13,7 @@
         android:color="@color/grey_dd" />
 </shape>
     </item>
-
+    <!--
     <item  android:right="9dp"
         android:gravity="center_vertical|right"
         android:width="8dp"
@@ -27,5 +27,5 @@
 
         </shape>
     </item>
-
+    -->
 </layer-list>

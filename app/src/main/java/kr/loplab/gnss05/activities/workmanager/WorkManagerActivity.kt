@@ -93,6 +93,8 @@ class WorkManagerActivity : ActivityBase<ActivityWorkManagerBinding>() {
         {
             Log.d(TAG, "onActivityResult: 축하합니다_수정1")
             refresh()
+            mTableView.selectedRow = -1
+            TableViewModel.selectedIndex = -1
         }
     }
 
