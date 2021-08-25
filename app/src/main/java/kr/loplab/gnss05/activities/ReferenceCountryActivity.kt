@@ -176,7 +176,6 @@ class ReferenceCountryActivity : ActivityBase<ActivityReferenceCountryBinding>()
         }
         viewBinding.layoutNetworkAutoConnect.setOnClickListener {
             viewBinding.swNetworkAutoConnect.isChecked = !viewBinding.swNetworkAutoConnect.isChecked
-
         }
         viewBinding.layoutNetworkMode.setOnClickListener {
             val dlg = MyDialog(this)
@@ -197,6 +196,9 @@ class ReferenceCountryActivity : ActivityBase<ActivityReferenceCountryBinding>()
                 dlg.dismiss()
             }
             dlg.setHeader("네트워크 모드")
+        }
+        viewBinding.layoutAutoApn.setOnClickListener {
+           viewModel1.setAutoApn(!viewModel1.auto_apn.value!!)
         }
     }
 
@@ -236,7 +238,7 @@ class ReferenceCountryActivity : ActivityBase<ActivityReferenceCountryBinding>()
         if(resultCode== RESULT_OK && requestCode == REQUEST_WORKMANAGER)
         {
 
-            initDatabinding()
+
         }
 
         if(resultCode== RESULT_OK && requestCode == REQUEST_CORS_SERVER_MANAGER)

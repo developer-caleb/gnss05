@@ -141,5 +141,8 @@
 
     </style>
 
+    <style name = "edittextStyle" parent= "Widget.AppCompat.EditText" >
+        <item name="android:background">@color/transparent</item>
+    </style>
 
 </resources>
