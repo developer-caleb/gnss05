@@ -61,10 +61,9 @@ class ReferenceCountryActivity : ActivityBase<ActivityReferenceCountryBinding>()
         }
         viewBinding.saveAndApplyBt.setOnClickListener {
             savesettings()
-
-
             Log.d(TAG, "initListener: saveAndApplyBt clicked")
         }
+
         viewBinding.applyBt.setOnClickListener {
             Log.d(TAG, "initListener: applyBt clicked")
         }
@@ -179,7 +178,7 @@ class ReferenceCountryActivity : ActivityBase<ActivityReferenceCountryBinding>()
 
         viewBinding.layoutReferenceCountryAutoplay.setOnClickListener {
             viewBinding.swReferenceCountryAutoplay.isChecked = !viewBinding.swReferenceCountryAutoplay.isChecked
-        }
+        } //11
         viewBinding.layoutRawDataSave.setOnClickListener {
             var bool = !viewModel1.bool_rawdatasave.value!!
             viewModel1.setRawDatavalue(bool)
@@ -194,7 +193,10 @@ class ReferenceCountryActivity : ActivityBase<ActivityReferenceCountryBinding>()
         }
         viewBinding.layoutNetworkAutoConnect.setOnClickListener {
             viewBinding.swNetworkAutoConnect.isChecked = !viewBinding.swNetworkAutoConnect.isChecked
-        }
+        } //12
+        viewBinding.layoutInnerRadioFec.setOnClickListener {
+            viewBinding.swInnerRadioFec.isChecked = !viewBinding.swInnerRadioFec.isChecked
+        } //13
         viewBinding.layoutNetworkMode.setOnClickListener {
             val dlg = MyDialog(this)
             var alist = NETWORK_MODE_List
@@ -298,12 +300,12 @@ class ReferenceCountryActivity : ActivityBase<ActivityReferenceCountryBinding>()
         viewModel1.setRawDatavalue(PrefUtil.getBoolean(this, RAW_DATA_SAVE)) //9 -> data, Viewbinding통합
         viewModel1.setAutoApn(PrefUtil.getBoolean(this, AUTO_APN)) //10 -> data, viewbinding통합
 
-
+            //setvalue?
 
         viewBinding.tvStartMode.text = OptionList.START_MODE_LIST[startModeNum] //0
         viewBinding.tvDisplacementMode.text = DEPLACEMENT_MODE_LIST[deplaceModeNum] //1
         viewBinding.tvCollectionInterval.text = COLLECTION_INTERVAL_LIST[collectionIntervalNum] //2
-        viewBinding.tvDataConnectionType.text = DATA_CONNECTION_TYPE_List[viewModel1.data_connect_type.value!!] //3
+        viewBinding.tvDataConnectionType.text = DATA_CONNECTION_TYPE_List[viewModel1.data_connect_type.value!!] //3 viewmodel로 하는건 다 못받아옴.. 별도로 해줘야함.
         viewBinding.tvNetworkMode.text = NETWORK_MODE_List[viewModel1.network_mode.value!!] //4
         viewBinding.tvNetworkSystem.text = NETWORK_SYSTEM_List[networkSystemNum] //6
         viewBinding.tvInnerRadioChannel.text = INNER_RADIO_CHANNEL_LIST[innerRadioChannelNum] //7
@@ -312,6 +314,7 @@ class ReferenceCountryActivity : ActivityBase<ActivityReferenceCountryBinding>()
         //9, //10 불필요
         viewBinding.swReferenceCountryAutoplay.isChecked =PrefUtil.getBoolean(applicationContext, REFERENCE_COUNTRY_AUTO_PLAY) //11
         viewBinding.swNetworkAutoConnect.isChecked =PrefUtil.getBoolean(applicationContext, NETWORK_AUTO_CONNECT) //12
+        viewBinding.swInnerRadioFec.isChecked =PrefUtil.getBoolean(applicationContext, INNER_RADIO_FEC) //13
 
 
 
@@ -327,6 +330,7 @@ class ReferenceCountryActivity : ActivityBase<ActivityReferenceCountryBinding>()
         PrefUtil.setInt(applicationContext, Define.INNER_RADIO_INTERVAL, innerRadioIntervalNum) //8
         PrefUtil.setBoolean(applicationContext, REFERENCE_COUNTRY_AUTO_PLAY, viewBinding.swReferenceCountryAutoplay.isChecked) //11
         PrefUtil.setBoolean(applicationContext, NETWORK_AUTO_CONNECT, viewBinding.swNetworkAutoConnect.isChecked) //12
+        PrefUtil.setBoolean(applicationContext, INNER_RADIO_FEC, viewBinding.swInnerRadioFec.isChecked) //13
         PrefUtil.setBoolean(applicationContext, RAW_DATA_SAVE, viewModel1.bool_rawdatasave.value!!) //9
         PrefUtil.setBoolean(applicationContext, AUTO_APN, viewModel1.auto_apn.value!!) //10
 

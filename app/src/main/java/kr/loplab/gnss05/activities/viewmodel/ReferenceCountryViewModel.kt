@@ -22,18 +22,18 @@ class ReferenceCountryViewModel : ViewModel() {
 
     fun getName() = name
     fun setRawDatavalue(bool : Boolean){
-        bool_rawdatasave.postValue(bool);
+        bool_rawdatasave.value = bool
     }
     fun setDataConnectionType(num : Int){
-      data_connect_type.postValue(num)
+      data_connect_type.value = num
     }
     fun setNetworkMode(num : Int){
-        network_mode.postValue(num)
+        network_mode.value = num
     }
     fun setAutoApn(bool : Boolean){
-        auto_apn.postValue(bool)
+        auto_apn.value = bool
     }
     fun setInnerRadioProtocol(num : Int){
-        innerRadioProtocolNum.postValue(num)
+        innerRadioProtocolNum.value = num
     }
 }
