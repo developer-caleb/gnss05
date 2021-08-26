@@ -154,6 +154,12 @@ public class PrefUtil {
         if(value == -1) value =0;
         return value;
     }
+    public static int getInt2(Context context, String key, int initialvalue) {
+        SharedPreferences prefs = getPreferences(context);
+        int value = prefs.getInt(key, DEFAULT_VALUE_INT);
+        if(value == -1) value =initialvalue;
+        return value;
+    }
 
     /**
      * long 값 로드

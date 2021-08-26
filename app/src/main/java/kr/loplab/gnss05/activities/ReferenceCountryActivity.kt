@@ -265,13 +265,16 @@ class ReferenceCountryActivity : ActivityBase<ActivityReferenceCountryBinding>()
         viewBinding.layoutCommunicationSpeed.setOnClickListener {
             val dlg = MyDialog(this)
             var alist = COMMUNICATION_SPEED_LIST
-            dlg.firstLayoutUse = false
+            dlg.firstLayoutUse = true
             dlg.list = alist
-            dlg.selectedposition= viewModel1.communicationSpeedNum.value!!
+            dlg.selectedposition= alist.indexOf(viewModel1.communicationSpeedNum.value.toString()!!)
             dlg.start("")
             dlg.setOnListClickedListener { view, i ->
-                viewModel1.communicationSpeedNum.value = i
+                viewModel1.communicationSpeedNum.value = alist[i].toInt()
                 dlg.dismiss()
+            }
+            dlg.setOnCheckClickedListener { str ->
+                viewModel1.communicationSpeedNum.value = str.toInt()
             }
             dlg.setHeader("통신 속도")
         }
@@ -343,7 +346,7 @@ class ReferenceCountryActivity : ActivityBase<ActivityReferenceCountryBinding>()
         viewModel1.setIntvalue(viewModel1.innerRadioChannelNum, PrefUtil.getInt2(applicationContext, Define.INNER_RADIO_CHANNEL))  //7
         viewModel1.setIntvalue(viewModel1.innerRadioIntervalNum, PrefUtil.getInt2(applicationContext, Define.INNER_RADIO_INTERVAL))  //8
         viewModel1.setIntvalue(viewModel1.innerRadioPowerNum, PrefUtil.getInt2(applicationContext, Define.INNER_RADIO_POWER))  //14
-        viewModel1.setIntvalue(viewModel1.communicationSpeedNum, PrefUtil.getInt2(applicationContext, Define.COMMUNICATION_SPEED))  //14
+        viewModel1.setIntvalue(viewModel1.communicationSpeedNum, PrefUtil.getInt2(applicationContext, Define.COMMUNICATION_SPEED, 9600))  //14
         viewModel1.setIntvalue(viewModel1.apnIndex, PrefUtil.getInt2(applicationContext, Define.APN_INDEX_NUM))  //14
         viewModel1.setIntvalue(viewModel1.corsIndex, PrefUtil.getInt2(applicationContext, Define.CORS_INDEX_NUM))  //14
 
