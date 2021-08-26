@@ -9,10 +9,6 @@
         <import type="java.util.ArrayList"/>
         <import type="java.util.Arrays"/>
         <variable
-            name = "OptionList"
-            type="kr.loplab.gnss05.common.OptionList"/>
-
-        <variable
             name="referencecontryviewmodel"
             type="kr.loplab.gnss05.activities.viewmodel.ReferenceCountryViewModel"/>
      </data>
