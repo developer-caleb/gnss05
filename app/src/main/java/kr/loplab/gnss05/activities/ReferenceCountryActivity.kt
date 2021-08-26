@@ -412,9 +412,11 @@ class ReferenceCountryActivity : ActivityBase<ActivityReferenceCountryBinding>()
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        Log.d(TAG, "onActivityResult: , requestCode : $requestCode, resultCode: $resultCode")
         dbsetting()
         if(requestCode == REQUEST_WORKMANAGER)
         {
+            Log.d(TAG, "onActivityResult: REQUEST_WORKMANAGER")
           when(resultCode)
           {
               RESULT_OK -> ApnSettings(data!!.getIntExtra(APNS_SELECTED_INDEX, 0))
@@ -429,10 +431,9 @@ class ReferenceCountryActivity : ActivityBase<ActivityReferenceCountryBinding>()
 
         if( requestCode == REQUEST_CORS_SERVER_MANAGER)
         {
-            dbsetting()
-            if(requestCode == REQUEST_WORKMANAGER)
-            {
-                when(resultCode)
+            Log.d(TAG, "onActivityResult: REQUEST_CORS_SERVER_MANAGER")
+
+            when(resultCode)
                 {
                     RESULT_OK ->CorsSettings(data!!.getIntExtra(APNS_SELECTED_INDEX, 0))
                         RESULT_CANCELED -> try {
@@ -440,7 +441,7 @@ class ReferenceCountryActivity : ActivityBase<ActivityReferenceCountryBinding>()
                         } catch (e:Exception){
                             Log.e(TAG, "onActivityResult: ", e)
                             CorsSettings(0)
-                } } }
+                } }
         }
     }
 

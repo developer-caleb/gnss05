@@ -114,7 +114,7 @@ class ServerAddressAddActivity : ActivityBase<ActivityServerAddressAddBinding>()
     }
 
     override fun initDatabinding() {
-        if(requestCode == Define.REQUEST_WORKER_MANAGE_EDIT) {
+        if(requestCode == Define.REQUEST_SERVER_MANAGE_EDIT) {
             lifecycleScope.launch(Dispatchers.IO) {
                 try {
                     serverslist = db.serverDao().all
