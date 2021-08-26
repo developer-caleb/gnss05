@@ -34,6 +34,7 @@ public class Define {
     public static final String INNER_RADIO_FEC = "inner_radio_fec";
     public static final String INNER_RADIO_POWER = "inner_radio_power";
     public static final String AUTO_APN = "auto_apn";
+    public static final String APN_WORKER_NUM = "auto_worker_num";
 
     //SharedPreference Code REFERENCE_COUNTRY_COORDINATE_SETTING
     public static final String REFERENCE_COUNTRY_COORDINATE_SETTING_NAME = "reference_country_coordinate_setting_name";

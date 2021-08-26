@@ -23,8 +23,8 @@ class ReferenceCountryViewModel : ViewModel() {
     var innerRadioPowerNum =  MutableLiveData<Int>(0)
     var auto_apn = MutableLiveData<Boolean>(false)
     var apnWorkerNum = MutableLiveData<Int>(0)
-    var apn_list = ArrayList<Worker>()
-    var cors_list = ArrayList<Server>()
+    var apn_list = MutableLiveData<ArrayList<Worker>>()
+    var cors_list = MutableLiveData<ArrayList<Server>>()
 
     init {  }
 

@@ -45,7 +45,6 @@
                 <LinearLayout
                     style="@style/ButtonLayout_STYLE01"
                     >
-
                     <TextView
                         style="@style/Sub_TEXTVIEW_STYLE1"
                         android:text="연결저장"
@@ -865,7 +864,8 @@
                              />
 
                         <TextView
-                            android:id="@+id/et_apn_worker"
+                            android:id="@+id/tv_apn_worker"
+                            style="@style/Sub_TEXTVIEW_STYLE2"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="0"
@@ -1092,19 +1092,23 @@
 
                     </LinearLayout>
 
-                    <LinearLayout style="@style/ButtonLayout_STYLE01">
+
+                    <LinearLayout
+                        android:id="@+id/layout_cors_name"
+                    style="@style/ButtonLayout_STYLE01">
 
                         <TextView
                             style="@style/Sub_TEXTVIEW_STYLE1"
                             android:text="이름"
-                             />
+                            />
 
                         <TextView
-                            style="@style/Sub_TEXTVIEW_STYLE3"
+                            android:id="@+id/tv_cors_name"
+                            style="@style/Sub_TEXTVIEW_STYLE2"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="0"
-                            android:text="GNSS통합센터" />
+                            android:text="" />
 
                         <ImageView
                             android:layout_width="@dimen/rightArrowSize"
@@ -1123,7 +1127,81 @@
                         android:layout_weight="0"
                         android:background="@color/grey_EC" />
 
+
+
+
                     <LinearLayout
+                        android:id="@+id/layout_cors_ip"
+                        style="@style/ButtonLayout_STYLE01">
+
+                        <TextView
+                            style="@style/Sub_TEXTVIEW_STYLE1"
+                            android:text="IP"
+                             />
+
+                        <TextView
+                            android:id="@+id/tv_cors_ip"
+                            style="@style/Sub_TEXTVIEW_STYLE2"
+                            android:textColor="@color/grey_66"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0"
+                            android:text="" />
+
+                        <ImageView
+                            android:layout_width="@dimen/rightArrowSize"
+                            android:layout_height="@dimen/rightArrowSize"
+                            android:layout_weight="0"
+                            android:padding="5dp"
+                            android:layout_marginRight="8dp"
+                            app:srcCompat="@drawable/next_icon" />
+
+
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_weight="0"
+                        android:background="@color/grey_EC" />
+                    <LinearLayout
+                        android:id="@+id/layout_cors_port"
+                        style="@style/ButtonLayout_STYLE01">
+
+                        <TextView
+                            style="@style/Sub_TEXTVIEW_STYLE1"
+                            android:text="포트"
+                            />
+
+                        <TextView
+                            android:id="@+id/tv_cors_port"
+                            style="@style/Sub_TEXTVIEW_STYLE2"
+                            android:textColor="@color/grey_66"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0"
+                            android:text="" />
+
+                        <ImageView
+                            android:layout_width="@dimen/rightArrowSize"
+                            android:layout_height="@dimen/rightArrowSize"
+                            android:layout_weight="0"
+                            android:padding="5dp"
+                            android:layout_marginRight="8dp"
+                            app:srcCompat="@drawable/next_icon" />
+
+
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_weight="0"
+                        android:background="@color/grey_EC" />
+
+
+                    <LinearLayout
+                        android:id="@+id/layout_cors_connection_point"
                         style="@style/ButtonLayout_STYLE01"
                         >
 
@@ -1133,11 +1211,12 @@
                              />
 
                         <TextView
-                            style="@style/Sub_TEXTVIEW_STYLE2"
+                            android:id="@+id/et_cors_connection_point"
+                            style="@style/edittextStyle"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="0"
-                            android:text="RTCM30"/>
+                            android:text=""/>
 
 
                     </LinearLayout>
@@ -1155,12 +1234,10 @@
                             android:text="암호"
                              />
 
-                        <EditText
+                        <TextView
                             android:layout_width="160dp"
                             android:layout_height="wrap_content"
-                            android:ems="10"
-                            android:inputType="textPassword"
-                            tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck,TouchTargetSizeCheck" />
+                            />
 
                         <ImageView
                             android:layout_width="@dimen/rightArrowSize"

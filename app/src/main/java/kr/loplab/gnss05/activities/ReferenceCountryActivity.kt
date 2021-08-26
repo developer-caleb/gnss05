@@ -41,7 +41,6 @@ class ReferenceCountryActivity : ActivityBase<ActivityReferenceCountryBinding>()
     lateinit var viewModel1:ReferenceCountryViewModel
     var wifiPasswordView = false;
 
-
     override fun init() {
         val ab: ActionBar? = supportActionBar
         ab?.title ="기준국설정";
@@ -277,6 +276,9 @@ class ReferenceCountryActivity : ActivityBase<ActivityReferenceCountryBinding>()
                 if (wifiPasswordView) PasswordTransformationMethod.getInstance() else HideReturnsTransformationMethod.getInstance()
             if (wifiPasswordView)  viewBinding.btWifiPasswordView.setImageResource(R.drawable.ic_eye_yes) else viewBinding.btWifiPasswordView.setImageResource(R.drawable.ic_eye_no)
         }
+        viewBinding.layoutApnWorker.setOnClickListener {
+            Log.d(TAG, "initListener: 1123")
+        }
     }
 
     override fun initDatabinding() {
@@ -298,6 +300,27 @@ class ReferenceCountryActivity : ActivityBase<ActivityReferenceCountryBinding>()
         viewBinding.swNetworkAutoConnect.isChecked =PrefUtil.getBoolean(applicationContext, NETWORK_AUTO_CONNECT) //12
         viewBinding.swInnerRadioFec.isChecked =PrefUtil.getBoolean(applicationContext, INNER_RADIO_FEC) //13
 
+        viewModel1.apn_list.observe(this, {
+        if(it.size>0){
+            viewBinding.tvApnWorker.text = viewModel1.apn_list.value!![0].worker
+            viewBinding.tvApnName.text = viewModel1.apn_list.value!![0].name
+            viewBinding.tvApnUser.text = viewModel1.apn_list.value!![0].user
+            viewBinding.tvApnPw.text = viewModel1.apn_list.value!![0].password
+
+        }
+        });
+        viewModel1.cors_list.observe(this, {
+            if(it.size>0){
+                viewBinding.tvCorsName.text = viewModel1.cors_list.value!![0].name
+                viewBinding.tvCorsIp.text = viewModel1.cors_list.value!![0].ip
+                viewBinding.tvCorsPort.text = viewModel1.cors_list.value!![0].port
+                //기준국 연결 포인트->
+                viewBinding.tvApnPw.text = viewModel1.cors_list.value!![0].password
+
+            }
+        });
+
+
     }
 
     fun savesettings(){
@@ -311,6 +334,8 @@ class ReferenceCountryActivity : ActivityBase<ActivityReferenceCountryBinding>()
         PrefUtil.setInt(applicationContext, Define.INNER_RADIO_CHANNEL, viewModel1.innerRadioChannelNum.value!!) //7
         PrefUtil.setInt(applicationContext, Define.INNER_RADIO_INTERVAL, viewModel1.innerRadioIntervalNum.value!!) //8
         PrefUtil.setInt(applicationContext, Define.INNER_RADIO_POWER, viewModel1.innerRadioPowerNum.value!!) //14
+        PrefUtil.setInt(applicationContext, APN_WORKER_NUM, viewModel1.apnWorkerNum.value!!) //??
+
         PrefUtil.setBoolean(applicationContext, REFERENCE_COUNTRY_AUTO_PLAY, viewBinding.swReferenceCountryAutoplay.isChecked) //11
         PrefUtil.setBoolean(applicationContext, NETWORK_AUTO_CONNECT, viewBinding.swNetworkAutoConnect.isChecked) //12
         PrefUtil.setBoolean(applicationContext, INNER_RADIO_FEC, viewBinding.swInnerRadioFec.isChecked) //13
@@ -338,7 +363,7 @@ class ReferenceCountryActivity : ActivityBase<ActivityReferenceCountryBinding>()
             .fallbackToDestructiveMigration()
             .build()
         lifecycleScope.launch(Dispatchers.IO){
-            viewModel1.apn_list = ArrayList(dbApn.workerDao().all)
+            viewModel1.apn_list.value = ArrayList(dbApn.workerDao().all)
             Log.d(TAG, "onResume: ${viewModel1.apn_list}")
         }
 
@@ -347,7 +372,7 @@ class ReferenceCountryActivity : ActivityBase<ActivityReferenceCountryBinding>()
             //.allowMainThreadQueries() //메인쓰레드에서 작동시킬 때 사용
             .build()
         lifecycleScope.launch(Dispatchers.IO){
-            viewModel1.cors_list = ArrayList(dbCors.serverDao().all)
+            viewModel1.cors_list.value = ArrayList(dbCors.serverDao().all)
             Log.d(TAG, "onResume: ${viewModel1.cors_list}")
         }
 
