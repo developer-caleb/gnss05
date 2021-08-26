@@ -15,6 +15,7 @@ class ReferenceCountryViewModel : ViewModel() {
     var innerRadioProtocolNum = MutableLiveData<Int>(0)
     var startModeNum = MutableLiveData<Int>(0)
     var deplaceModeNum = MutableLiveData<Int>(0)
+    var collectionIntervalNum = MutableLiveData<Int>(0)
     var auto_apn = MutableLiveData<Boolean>(false)
     init {  }
 

@@ -36,7 +36,7 @@ class ReferenceCountryActivity : ActivityBase<ActivityReferenceCountryBinding>()
     lateinit var viewModel1:ReferenceCountryViewModel
     var wifiPasswordView = false;
 
-    var collectionIntervalNum = 0;
+
     var innerRadioChannelNum = 0;
     var innerRadioIntervalNum = 0;
     var innerRadioPowerNum = 0;
@@ -123,16 +123,12 @@ class ReferenceCountryActivity : ActivityBase<ActivityReferenceCountryBinding>()
         viewBinding.layoutCollectionInterval.setOnClickListener {
             val dlg = MyDialog(this)
             var alist = COLLECTION_INTERVAL_LIST
-            var prefvalue = Define.COLLECTION_INTERVAL
             dlg.firstLayoutUse = false
             dlg.list = alist
-            dlg.selectedposition= collectionIntervalNum
+            dlg.selectedposition= viewModel1.collectionIntervalNum.value!!
             dlg.start("")
             dlg.setOnListClickedListener { view, i ->
-                Log.d(TAG, "initListener: $i")
-                collectionIntervalNum = i
-                viewBinding.tvCollectionInterval.text = alist[collectionIntervalNum]
-                dlg.refresh()
+                viewModel1.collectionIntervalNum.value = i
                 dlg.dismiss()
             }
             dlg.setHeader("수집간격")
@@ -140,7 +136,6 @@ class ReferenceCountryActivity : ActivityBase<ActivityReferenceCountryBinding>()
         viewBinding.layoutDataConnectionType.setOnClickListener {
             val dlg = MyDialog(this)
             var alist = DATA_CONNECTION_TYPE_List
-            var prefvalue = Define.DATA_CONNECTION_TYPE
             dlg.firstLayoutUse = false
             dlg.list = alist
             dlg.selectedposition= viewModel1.data_connect_type.value!!
@@ -303,7 +298,8 @@ class ReferenceCountryActivity : ActivityBase<ActivityReferenceCountryBinding>()
     override fun initDatabinding() {
         viewModel1.setIntvalue(viewModel1.startModeNum, PrefUtil.getInt2(applicationContext, Define.START_MODE))  //0
         viewModel1.setIntvalue(viewModel1.deplaceModeNum, PrefUtil.getInt2(applicationContext, Define.DEPLACEMENT_MODE))  //1
-        collectionIntervalNum = PrefUtil.getInt2(applicationContext, Define.COLLECTION_INTERVAL) //2
+        viewModel1.setIntvalue(viewModel1.collectionIntervalNum, PrefUtil.getInt2(applicationContext, Define.COLLECTION_INTERVAL))  //2
+
 
         innerRadioChannelNum = PrefUtil.getInt2(applicationContext, INNER_RADIO_CHANNEL) //7
         innerRadioIntervalNum = PrefUtil.getInt2(applicationContext, INNER_RADIO_INTERVAL) //8
@@ -317,7 +313,6 @@ class ReferenceCountryActivity : ActivityBase<ActivityReferenceCountryBinding>()
         viewModel1.setAutoApn(PrefUtil.getBoolean(this, AUTO_APN)) //10 -> data, viewbinding통합
 
         //setvalue?
-        viewBinding.tvCollectionInterval.text = COLLECTION_INTERVAL_LIST[collectionIntervalNum] //2
         viewBinding.tvDataConnectionType.text = DATA_CONNECTION_TYPE_List[viewModel1.data_connect_type.value!!] //3 viewmodel로 하는건 다 못받아옴.. 별도로 해줘야함.
         viewBinding.tvNetworkMode.text = NETWORK_MODE_List[viewModel1.network_mode.value!!] //4
         viewBinding.tvNetworkSystem.text = NETWORK_SYSTEM_List[viewModel1.networkSystemNum.value!!] //6
@@ -336,7 +331,7 @@ class ReferenceCountryActivity : ActivityBase<ActivityReferenceCountryBinding>()
     fun savesettings(){
         PrefUtil.setInt(applicationContext, Define.START_MODE, viewModel1.startModeNum.value!!) //0
         PrefUtil.setInt(applicationContext, Define.DEPLACEMENT_MODE, viewModel1.deplaceModeNum.value!!) //1
-        PrefUtil.setInt(applicationContext, Define.COLLECTION_INTERVAL, collectionIntervalNum) //2
+        PrefUtil.setInt(applicationContext, Define.COLLECTION_INTERVAL, viewModel1.collectionIntervalNum.value!!) //2
         PrefUtil.setInt(applicationContext, Define.DATA_CONNECTION_TYPE, viewModel1.data_connect_type.value!!) //3
         PrefUtil.setInt(applicationContext, Define.NETWORK_MODE, viewModel1.network_mode.value!!) //4
         PrefUtil.setInt(applicationContext, Define.INNER_RADIO_PROTOCOL, viewModel1.innerRadioProtocolNum.value!!) //5
