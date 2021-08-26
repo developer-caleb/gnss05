@@ -21,6 +21,7 @@ class ReferenceCountryViewModel : ViewModel() {
     var innerRadioChannelNum = MutableLiveData<Int>(0)
     var innerRadioIntervalNum =  MutableLiveData<Int>(0)
     var innerRadioPowerNum =  MutableLiveData<Int>(0)
+    var communicationSpeedNum =  MutableLiveData<Int>(0)
     var auto_apn = MutableLiveData<Boolean>(false)
     var apnIndex = MutableLiveData<Int>(0)
     var corsIndex = MutableLiveData<Int>(0)

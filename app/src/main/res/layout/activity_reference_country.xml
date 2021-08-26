@@ -605,7 +605,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="0"
-                            android:text="" />
+                            android:text="@{Optionlist.Companion.COMMUNICATION_SPEED_LIST.get(viewModel.communicationSpeedNum)}" />
 
                         <ImageView
                             android:layout_width="@dimen/rightArrowSize"

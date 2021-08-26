@@ -20,5 +20,7 @@ class OptionList {
       val CUT_ANGLE_List= arrayListOf<String>("1","2","3","5","10","15","20","25","30","35","40","45",)
       val PDOP_LIMIT_LIST= arrayListOf<String>("0.5","1.0","2.0","3.0","5.0","10.0","15.0","20.0","50.0","99.9",)
       val DELAY_LIST= arrayListOf<String>("1","2","3","5","10","15","20","25","30","60","120","180")
+      val COMMUNICATION_SPEED_LIST= arrayListOf<String>("9600","19200","38400","57600","115200")
+
   }
 }
