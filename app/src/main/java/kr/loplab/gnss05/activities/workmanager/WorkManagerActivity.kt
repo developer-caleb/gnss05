@@ -35,6 +35,10 @@ class WorkManagerActivity : ActivityBase<ActivityWorkManagerBinding>() {
         mTableView = findViewById(R.id.tableview2)
         }
 
+    override fun onBackPressed() {
+        setResult(RESULT_CANCELED, intent)
+        finish()
+    }
     override fun initListener() {
         viewBinding.header01.setOnBackButtonClickListener { onBackPressed();}
         viewBinding.btAdd.setOnClickListener {
@@ -67,6 +71,9 @@ class WorkManagerActivity : ActivityBase<ActivityWorkManagerBinding>() {
                 }
         }
         viewBinding.btConfirm.setOnClickListener {
+            if(TableViewModel.selectedIndex<=-1 || TableViewModel.selectedIndex>=tableWorkerViewModel.rowHeaderList.size){
+                showToast("행을 선택해주세요."); return@setOnClickListener
+            }
             intent.putExtra(APNS_SELECTED_INDEX, TableViewModel.selectedIndex)
             setResult(RESULT_OK, intent)
             finish()

@@ -31,6 +31,7 @@ import kr.loplab.gnss05.common.OptionList.Companion.NETWORK_MODE_List
 import kr.loplab.gnss05.common.OptionList.Companion.NETWORK_SYSTEM_List
 import kr.loplab.gnss05.common.PrefUtil
 import kr.loplab.gnss05.databinding.ActivityReferenceCountryBinding
+import java.lang.Exception
 
 class ReferenceCountryActivity : ActivityBase<ActivityReferenceCountryBinding>() {
     override val layoutResourceId: Int
@@ -338,21 +339,14 @@ class ReferenceCountryActivity : ActivityBase<ActivityReferenceCountryBinding>()
         viewBinding.swReferenceCountryAutoplay.isChecked =PrefUtil.getBoolean(applicationContext, REFERENCE_COUNTRY_AUTO_PLAY) //11
         viewBinding.swNetworkAutoConnect.isChecked =PrefUtil.getBoolean(applicationContext, NETWORK_AUTO_CONNECT) //12
         viewBinding.swInnerRadioFec.isChecked =PrefUtil.getBoolean(applicationContext, INNER_RADIO_FEC) //13
-
-        viewModel1.apn_list.observe(this, {
-        if(it.size>0){
-            ApnSettings(intent.getIntExtra(APNS_SELECTED_INDEX, 0))
-        }
-        });
-        viewModel1.cors_list.observe(this, {
-            if(it.size>0){
-                CorsSettings(intent.getIntExtra(CORS_SELECTED_INDEX, 0))
-            }
-        });
-
+        dbsetting()
+        ApnSettings(0)
+        CorsSettings(0)
 
     }
     fun ApnSettings(  idx : Int){
+        if(viewModel1.apn_list.value!!.size <= 0  ) return
+        Log.d(TAG, "ApnSettings: $idx")
         viewModel1.apnIndex.value = idx
 
         viewBinding.tvApnWorker.text = viewModel1.apn_list.value!![idx].worker
@@ -362,6 +356,9 @@ class ReferenceCountryActivity : ActivityBase<ActivityReferenceCountryBinding>()
     }
 
     fun CorsSettings(  idx : Int){
+        if(viewModel1.cors_list.value!!.size <= 0  ) return
+        Log.d(TAG, "CorsSettings: $idx")
+
         viewModel1.corsIndex.value = idx
 
         viewBinding.tvCorsName.text = viewModel1.cors_list.value!![idx].name
@@ -392,37 +389,46 @@ class ReferenceCountryActivity : ActivityBase<ActivityReferenceCountryBinding>()
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        if(resultCode== RESULT_OK && requestCode == REQUEST_WORKMANAGER)
+        dbsetting()
+        if(requestCode == REQUEST_WORKMANAGER)
         {
-            onResume()
-            Log.d(TAG, "onActivityResult: -> selected index -> ${data?.getIntExtra(APNS_SELECTED_INDEX, 0)}")
-            ApnSettings(data!!.getIntExtra(APNS_SELECTED_INDEX, 0))
+          when(resultCode)
+          {
+              RESULT_OK -> ApnSettings(data!!.getIntExtra(APNS_SELECTED_INDEX, 0))
+              RESULT_CANCELED -> try {
+                  ApnSettings(viewModel1.apnIndex.value!!)
+              } catch (e:Exception){
+                  Log.e(TAG, "onActivityResult: ", e)
+                 ApnSettings(0)
+              }
+          }
         }
 
-        if(resultCode== RESULT_OK && requestCode == REQUEST_CORS_SERVER_MANAGER)
+        if( requestCode == REQUEST_CORS_SERVER_MANAGER)
         {
-            onResume()
-            Log.d(TAG, "onActivityResult: -> selected index -> ${data?.getIntExtra(CORS_SELECTED_INDEX, 0)}")
-            CorsSettings(data!!.getIntExtra(APNS_SELECTED_INDEX, 0))
-        }
-        if(resultCode== RESULT_CANCELED)
-        {
-
+            dbsetting()
+            if(requestCode == REQUEST_WORKMANAGER)
+            {
+                when(resultCode)
+                {
+                    RESULT_OK ->CorsSettings(data!!.getIntExtra(APNS_SELECTED_INDEX, 0))
+                        RESULT_CANCELED -> try {
+                            CorsSettings(viewModel1.corsIndex.value!!)
+                        } catch (e:Exception){
+                            Log.e(TAG, "onActivityResult: ", e)
+                            CorsSettings(0)
+                } } }
         }
     }
 
+    fun dbsetting() {
 
-
-    override fun onResume() {
-        super.onResume()
         var dbApn = Room.databaseBuilder(this, AppDatabase::class.java, WORKERS_DB)
             .allowMainThreadQueries() //메인쓰레드에서 작동시킬 때 사용 -> viewmodel에서 mainthread로 넣어줘야해서,
             .fallbackToDestructiveMigration()
             .build()
-
             viewModel1.apn_list.value = ArrayList(dbApn.workerDao().all)
             Log.d(TAG, "onResume: ${viewModel1.apn_list}")
-
 
         var dbCors =  Room.databaseBuilder(this, AppDatabase::class.java, Define.SERVERS_DB)
             .fallbackToDestructiveMigration()

@@ -27,7 +27,10 @@ class CORSServerManagerActivity : ActivityBase<ActivityCorsServerManagerBinding>
         TableViewModel.selectedIndex = -1
         super.onCreate(savedInstanceState)
     }
-
+    override fun onBackPressed() {
+        setResult(RESULT_CANCELED, intent)
+        finish()
+    }
     override fun init() {
         db = Room.databaseBuilder(this, AppDatabase::class.java, Define.SERVERS_DB)
             .fallbackToDestructiveMigration()
@@ -72,6 +75,9 @@ class CORSServerManagerActivity : ActivityBase<ActivityCorsServerManagerBinding>
             }
         }
         viewBinding.btConfirm.setOnClickListener {
+            if(TableViewModel.selectedIndex<=-1 || TableViewModel.selectedIndex>=tableServerViewModel.rowHeaderList.size){
+                showToast("행을 선택해주세요."); return@setOnClickListener
+            }
             intent.putExtra(Define.CORS_SELECTED_INDEX, TableViewModel.selectedIndex)
             setResult(RESULT_OK, intent)
             finish()
