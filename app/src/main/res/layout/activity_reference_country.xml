@@ -574,59 +574,6 @@
                 </LinearLayout>
 
 
-                <!---데이터 연결방식[외장라디오] 하위 옵션-->
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical"
-                    android:visibility="@{viewModel.data_connect_type == 2 ? View.VISIBLE : View.GONE}"
-                    >
-
-
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:layout_weight="0"
-                        android:background="@color/grey_EC" />
-
-
-                    <LinearLayout
-                        android:id="@+id/layout_outer_radio_communication_speed"
-                         style="@style/ButtonLayout_STYLE01">
-
-                        <TextView
-                            style="@style/Sub_TEXTVIEW_STYLE1"
-                            android:text="통신 속도"
-                             />
-
-                        <TextView
-                            android:id="@+id/tv_communication_speed"
-                            style="@style/Sub_TEXTVIEW_STYLE3"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="0"
-                            android:text="@{viewModel.outerRadioCommunicationSpeedNum.toString()}" />
-
-                        <ImageView
-                            android:layout_width="@dimen/rightArrowSize"
-                            android:layout_height="@dimen/rightArrowSize"
-                            android:layout_weight="0"
-                            android:padding="5dp"
-                            android:layout_marginRight="8dp"
-                            app:srcCompat="@drawable/next_icon" />
-
-                    </LinearLayout>
-
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:layout_weight="0"
-                        android:background="@color/grey_EC" />
-
-
-
-                </LinearLayout>
-
 
 
 
@@ -1266,7 +1213,83 @@
 
                 </LinearLayout>
 
+
+
+
+
+                    </LinearLayout>
+
+   <!---데이터 연결방식[외장라디오] 하위 옵션-->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:visibility="@{viewModel.data_connect_type == 2 || viewModel.data_connect_type == 3 ? View.VISIBLE : View.GONE}"
+                        >
+
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:layout_weight="0"
+                            android:visibility="@{viewModel.data_connect_type == 2 ? View.VISIBLE : View.GONE}"
+                            android:background="@color/grey_EC" />
+
+                        <LinearLayout
+                            style="@style/ButtonLayout_STYLE01"
+                            android:background="@color/grey_cc"
+                            android:visibility="@{viewModel.data_connect_type == 3 ? View.VISIBLE : View.GONE}"
+                            >
+
+                            <TextView
+                                style="@style/Sub_TEXTVIEW_STYLE1"
+                                android:text="외장 라디오 포트 설정"
+                                android:textColor="@color/grey_33"
+
+
+                                />
+
+                        </LinearLayout>
+
+
+                        <LinearLayout
+                            android:id="@+id/layout_outer_radio_communication_speed"
+                            style="@style/ButtonLayout_STYLE01">
+
+                            <TextView
+                                style="@style/Sub_TEXTVIEW_STYLE1"
+                                android:text="통신 속도"
+                                />
+
+                            <TextView
+                                android:id="@+id/tv_communication_speed"
+                                style="@style/Sub_TEXTVIEW_STYLE3"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="0"
+                                android:text="@{viewModel.outerRadioCommunicationSpeedNum.toString()}" />
+
+                            <ImageView
+                                android:layout_width="@dimen/rightArrowSize"
+                                android:layout_height="@dimen/rightArrowSize"
+                                android:layout_weight="0"
+                                android:padding="5dp"
+                                android:layout_marginRight="8dp"
+                                app:srcCompat="@drawable/next_icon" />
+
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:layout_weight="0"
+                            android:background="@color/grey_EC" />
+
+
+
+
                 </LinearLayout>
+
 
 
 
