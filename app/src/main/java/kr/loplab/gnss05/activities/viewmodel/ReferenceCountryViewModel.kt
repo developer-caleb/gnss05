@@ -13,8 +13,11 @@ class ReferenceCountryViewModel : ViewModel() {
     var data_connect_type = MutableLiveData<Int>(0)
     var network_mode = MutableLiveData<Int>(0)
     var innerRadioProtocolNum = MutableLiveData<Int>(0)
+    var startModeNum = MutableLiveData<Int>(0)
     var auto_apn = MutableLiveData<Boolean>(false)
     val networksystem = OptionList.NETWORK_SYSTEM_List
+    val startModeList = OptionList.START_MODE_LIST
+    val deplaceModeList = OptionList.DEPLACEMENT_MODE_LIST
     init {  }
 
     fun btclick() {
@@ -39,5 +42,8 @@ class ReferenceCountryViewModel : ViewModel() {
     }
     fun setInnerRadioProtocol(num : Int){
         innerRadioProtocolNum.value = num
+    }
+    fun setIntvalue(data : MutableLiveData<Int>, num : Int){
+        data.value = num
     }
 }

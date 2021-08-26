@@ -34,7 +34,7 @@ class ReferenceCountryActivity : ActivityBase<ActivityReferenceCountryBinding>()
     override val layoutResourceId: Int
         get() = R.layout.activity_reference_country
     lateinit var viewModel1:ReferenceCountryViewModel
-    var startModeNum = 0;
+    //var startModeNum = 0;
     var deplaceModeNum = 0;
     var collectionIntervalNum = 0;
     var wifiPasswordView = false;
@@ -94,12 +94,12 @@ class ReferenceCountryActivity : ActivityBase<ActivityReferenceCountryBinding>()
             val dlg = MyDialog(this)
             dlg.firstLayoutUse = false
             dlg.list = OptionList.START_MODE_LIST
-            dlg.selectedposition= startModeNum
+            dlg.selectedposition= viewModel1.startModeNum.value!!
             dlg.start("")
             dlg.setOnListClickedListener { view, i ->
                 Log.d(TAG, "initListener: $i")
-                startModeNum = i
-                viewBinding.tvStartMode.text = OptionList.START_MODE_LIST[startModeNum]
+                viewModel1.startModeNum.value = i
+               // viewBinding.tvStartMode.text = OptionList.START_MODE_LIST[startModeNum]
                 dlg.refresh()
                 dlg.dismiss()
                 if(i==1){
@@ -307,7 +307,7 @@ class ReferenceCountryActivity : ActivityBase<ActivityReferenceCountryBinding>()
     }
 
     override fun initDatabinding() {
-        startModeNum = PrefUtil.getInt2(applicationContext, Define.START_MODE)  //0
+        viewModel1.setIntvalue(viewModel1.startModeNum, PrefUtil.getInt2(applicationContext, Define.START_MODE))  //0
         deplaceModeNum = PrefUtil.getInt2(applicationContext, Define.DEPLACEMENT_MODE) //1
         collectionIntervalNum = PrefUtil.getInt2(applicationContext, Define.COLLECTION_INTERVAL) //2
 
@@ -323,8 +323,6 @@ class ReferenceCountryActivity : ActivityBase<ActivityReferenceCountryBinding>()
         viewModel1.setAutoApn(PrefUtil.getBoolean(this, AUTO_APN)) //10 -> data, viewbinding통합
 
             //setvalue?
-
-        viewBinding.tvStartMode.text = OptionList.START_MODE_LIST[startModeNum] //0
         viewBinding.tvDisplacementMode.text = DEPLACEMENT_MODE_LIST[deplaceModeNum] //1
         viewBinding.tvCollectionInterval.text = COLLECTION_INTERVAL_LIST[collectionIntervalNum] //2
         viewBinding.tvDataConnectionType.text = DATA_CONNECTION_TYPE_List[viewModel1.data_connect_type.value!!] //3 viewmodel로 하는건 다 못받아옴.. 별도로 해줘야함.
@@ -343,7 +341,7 @@ class ReferenceCountryActivity : ActivityBase<ActivityReferenceCountryBinding>()
 
     }
     fun savesettings(){
-        PrefUtil.setInt(applicationContext, Define.START_MODE, startModeNum) //0
+        PrefUtil.setInt(applicationContext, Define.START_MODE, viewModel1.startModeNum.value!!) //0
         PrefUtil.setInt(applicationContext, Define.DEPLACEMENT_MODE, deplaceModeNum) //1
         PrefUtil.setInt(applicationContext, Define.COLLECTION_INTERVAL, collectionIntervalNum) //2
         PrefUtil.setInt(applicationContext, Define.DATA_CONNECTION_TYPE, viewModel1.data_connect_type.value!!) //3
