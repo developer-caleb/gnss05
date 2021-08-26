@@ -2,16 +2,19 @@ package kr.loplab.gnss05.activities.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import kr.loplab.gnss05.common.OptionList
 
 
 class ReferenceCountryViewModel : ViewModel() {
     private var name = ""
     var onprogress = MutableLiveData<Boolean>(false)
     var bool_rawdatasave = MutableLiveData<Boolean>(false)
+    var networkSystemNum = MutableLiveData<Int>(0)  //TODO
     var data_connect_type = MutableLiveData<Int>(0)
     var network_mode = MutableLiveData<Int>(0)
     var innerRadioProtocolNum = MutableLiveData<Int>(0)
     var auto_apn = MutableLiveData<Boolean>(false)
+    val networksystem = OptionList.NETWORK_SYSTEM_List
     init {  }
 
     fun btclick() {
@@ -27,6 +30,9 @@ class ReferenceCountryViewModel : ViewModel() {
     }
     fun setNetworkMode(num : Int){
         network_mode.value = num
+    }
+    fun setNetworkSystemNum(num : Int){
+        networkSystemNum.value = num
     }
     fun setAutoApn(bool : Boolean){
         auto_apn.value = bool

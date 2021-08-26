@@ -38,7 +38,7 @@ class ReferenceCountryActivity : ActivityBase<ActivityReferenceCountryBinding>()
     var deplaceModeNum = 0;
     var collectionIntervalNum = 0;
     var wifiPasswordView = false;
-    var networkSystemNum = 0;
+    //var networkSystemNum = 0;
     var innerRadioChannelNum = 0;
     var innerRadioIntervalNum = 0;
     var innerRadioPowerNum = 0;
@@ -166,12 +166,12 @@ class ReferenceCountryActivity : ActivityBase<ActivityReferenceCountryBinding>()
             var prefvalue = Define.NETWORK_SYSTEM
             dlg.firstLayoutUse = false
             dlg.list = alist
-            dlg.selectedposition= networkSystemNum
+            dlg.selectedposition= viewModel1.networkSystemNum.value!!
             dlg.start("")
             dlg.setOnListClickedListener { view, i ->
                 Log.d(TAG, "initListener: $i")
-                networkSystemNum = i
-                viewBinding.tvNetworkSystem.text = alist[networkSystemNum]
+                viewModel1.networkSystemNum.value = i
+                //viewBinding.tvNetworkSystem.text = alist[viewModel1.networkSystemNum.value!!]
                 dlg.refresh()
                 dlg.dismiss()
             }
@@ -310,7 +310,7 @@ class ReferenceCountryActivity : ActivityBase<ActivityReferenceCountryBinding>()
         startModeNum = PrefUtil.getInt2(applicationContext, Define.START_MODE)  //0
         deplaceModeNum = PrefUtil.getInt2(applicationContext, Define.DEPLACEMENT_MODE) //1
         collectionIntervalNum = PrefUtil.getInt2(applicationContext, Define.COLLECTION_INTERVAL) //2
-        networkSystemNum = PrefUtil.getInt2(applicationContext, NETWORK_SYSTEM) //6
+
         innerRadioChannelNum = PrefUtil.getInt2(applicationContext, INNER_RADIO_CHANNEL) //7
         innerRadioIntervalNum = PrefUtil.getInt2(applicationContext, INNER_RADIO_INTERVAL) //8
         innerRadioPowerNum = PrefUtil.getInt2(applicationContext, INNER_RADIO_POWER) //14
@@ -318,6 +318,7 @@ class ReferenceCountryActivity : ActivityBase<ActivityReferenceCountryBinding>()
         viewModel1.setDataConnectionType(PrefUtil.getInt2(this, DATA_CONNECTION_TYPE)) //3
         viewModel1.setNetworkMode(PrefUtil.getInt2(this, NETWORK_MODE)) //4
         viewModel1.setInnerRadioProtocol(PrefUtil.getInt2(this, INNER_RADIO_PROTOCOL)) //5
+        viewModel1.setNetworkSystemNum(PrefUtil.getInt2(applicationContext, NETWORK_SYSTEM))  //6
         viewModel1.setRawDatavalue(PrefUtil.getBoolean(this, RAW_DATA_SAVE)) //9 -> data, Viewbinding통합
         viewModel1.setAutoApn(PrefUtil.getBoolean(this, AUTO_APN)) //10 -> data, viewbinding통합
 
@@ -328,7 +329,7 @@ class ReferenceCountryActivity : ActivityBase<ActivityReferenceCountryBinding>()
         viewBinding.tvCollectionInterval.text = COLLECTION_INTERVAL_LIST[collectionIntervalNum] //2
         viewBinding.tvDataConnectionType.text = DATA_CONNECTION_TYPE_List[viewModel1.data_connect_type.value!!] //3 viewmodel로 하는건 다 못받아옴.. 별도로 해줘야함.
         viewBinding.tvNetworkMode.text = NETWORK_MODE_List[viewModel1.network_mode.value!!] //4
-        viewBinding.tvNetworkSystem.text = NETWORK_SYSTEM_List[networkSystemNum] //6
+        viewBinding.tvNetworkSystem.text = NETWORK_SYSTEM_List[viewModel1.networkSystemNum.value!!] //6
         viewBinding.tvInnerRadioChannel.text = INNER_RADIO_CHANNEL_LIST[innerRadioChannelNum] //7
         viewBinding.tvInnerRadioInterval.text = INNER_RADIO_INTERVAL_LIST[innerRadioIntervalNum] //8
         viewBinding.tvInnerRadioProtocol.text = INNER_RADIO_PROTOCOL_LIST[viewModel1.innerRadioProtocolNum.value!!] //5
@@ -348,7 +349,7 @@ class ReferenceCountryActivity : ActivityBase<ActivityReferenceCountryBinding>()
         PrefUtil.setInt(applicationContext, Define.DATA_CONNECTION_TYPE, viewModel1.data_connect_type.value!!) //3
         PrefUtil.setInt(applicationContext, Define.NETWORK_MODE, viewModel1.network_mode.value!!) //4
         PrefUtil.setInt(applicationContext, Define.INNER_RADIO_PROTOCOL, viewModel1.innerRadioProtocolNum.value!!) //5
-        PrefUtil.setInt(applicationContext, Define.NETWORK_SYSTEM, networkSystemNum) //6
+        PrefUtil.setInt(applicationContext, Define.NETWORK_SYSTEM, viewModel1.networkSystemNum.value!!) //6
         PrefUtil.setInt(applicationContext, Define.INNER_RADIO_CHANNEL, innerRadioChannelNum) //7
         PrefUtil.setInt(applicationContext, Define.INNER_RADIO_INTERVAL, innerRadioIntervalNum) //8
         PrefUtil.setInt(applicationContext, Define.INNER_RADIO_POWER, innerRadioPowerNum) //14
