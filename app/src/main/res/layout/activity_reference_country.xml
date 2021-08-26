@@ -396,11 +396,12 @@
 
                         <TextView
                             style="@style/Sub_TEXTVIEW_STYLE2"
+                            android:textColor="@color/grey_66"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="0"
                             android:text="444.125"
-                            android:textColor="@color/grey_66"/>
+                            />
 
 
                     </LinearLayout>
@@ -899,9 +900,10 @@
                             android:text="이름"
                              />
 
-                        <EditText
-                            android:id="@+id/et_apn_name"
-                            style="@style/edittextStyle"
+                        <TextView
+                            android:id="@+id/tv_apn_name"
+                            style="@style/Sub_TEXTVIEW_STYLE2"
+                            android:textColor="@color/grey_66"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="0" />
@@ -925,9 +927,10 @@
                             android:text="사용자"
                              />
 
-                        <EditText
-                            android:id="@+id/et_apn_user"
-                            style="@style/edittextStyle"
+                        <TextView
+                            android:id="@+id/tv_apn_user"
+                            style="@style/Sub_TEXTVIEW_STYLE2"
+                            android:textColor="@color/grey_66"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="0" />
@@ -950,14 +953,13 @@
                             android:text="암호"
                              />
 
-                        <EditText
-                            android:id="@+id/et_apn_pw"
-                            style="@style/edittextStyle"
+                        <TextView
+                            android:id="@+id/tv_apn_pw"
+                            style="@style/Sub_TEXTVIEW_STYLE2"
+                            android:textColor="@color/grey_66"
                             android:layout_width="160dp"
                             android:layout_height="wrap_content"
-                            android:ems="10"
-                            android:inputType="textPassword"
-                            tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+                            android:inputType="textPassword" />
 
                         <ImageView
                             android:layout_width="@dimen/rightArrowSize"

@@ -318,7 +318,7 @@ class ReferenceCountryActivity : ActivityBase<ActivityReferenceCountryBinding>()
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         if(resultCode== RESULT_OK && requestCode == REQUEST_WORKMANAGER)
         {
-
+            data?.getIntExtra("selectIndex", 0)?.let { selectWorkManager(it) }
 
         }
 
@@ -327,6 +327,8 @@ class ReferenceCountryActivity : ActivityBase<ActivityReferenceCountryBinding>()
             initDatabinding()
         }
     }
+    fun selectWorkManager(index : Int){
 
+    }
 
 }
