@@ -70,7 +70,9 @@ class WorkManagerActivity : ActivityBase<ActivityWorkManagerBinding>() {
                 }
         }
         viewBinding.btConfirm.setOnClickListener {
-
+            intent.putExtra(SELECTED_INDEX,TableViewModel.selectedIndex)
+            setResult(RESULT_OK)
+            finish()
         }
     }
 

@@ -957,17 +957,19 @@
                             android:id="@+id/tv_apn_pw"
                             style="@style/Sub_TEXTVIEW_STYLE2"
                             android:textColor="@color/grey_66"
-                            android:layout_width="160dp"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:inputType="textPassword" />
+                            android:text="123456"
+                            />
 
                         <ImageView
+                            android:id="@+id/apn_pw_eye"
                             android:layout_width="@dimen/rightArrowSize"
                             android:layout_height="@dimen/rightArrowSize"
                             android:layout_weight="0"
                             android:padding="5dp"
-                            android:layout_marginRight="8dp"
-                            app:srcCompat="@drawable/password_icon" />
+                            android:layout_marginRight="15dp"
+                            app:srcCompat="@drawable/ic_eye_no" />
 
 
                     </LinearLayout>
@@ -1045,10 +1047,10 @@
                             android:id="@+id/bt_wifi_password_view"
                             android:layout_width="@dimen/rightArrowSize"
                             android:layout_height="@dimen/rightArrowSize"
+                            android:layout_marginRight="15dp"
                             android:layout_weight="0"
                             android:padding="5dp"
-                            android:layout_marginRight="8dp"
-                            android:src="@drawable/password_icon" />
+                            android:src="@drawable/ic_eye_no" />
 
 
                     </LinearLayout>
@@ -1227,7 +1229,9 @@
                         android:layout_weight="0"
                         android:background="@color/grey_EC" />
 
-                    <LinearLayout style="@style/ButtonLayout_STYLE01">
+                    <LinearLayout
+                        android:id="@+id/layout_cors_pw"
+                        style="@style/ButtonLayout_STYLE01">
 
                         <TextView
                             style="@style/Sub_TEXTVIEW_STYLE1"
@@ -1235,17 +1239,19 @@
                              />
 
                         <TextView
+                            android:id="@+id/tv_cors_pw"
                             android:layout_width="160dp"
                             android:layout_height="wrap_content"
                             />
 
                         <ImageView
+                            android:id="@+id/cors_pw_eye"
                             android:layout_width="@dimen/rightArrowSize"
                             android:layout_height="@dimen/rightArrowSize"
+                            android:layout_marginRight="15dp"
                             android:layout_weight="0"
                             android:padding="5dp"
-                            android:layout_marginRight="8dp"
-                            app:srcCompat="@drawable/password_icon" />
+                            app:srcCompat="@drawable/ic_eye_no" />
 
 
                     </LinearLayout>

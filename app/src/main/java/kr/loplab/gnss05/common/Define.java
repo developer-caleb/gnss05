@@ -5,6 +5,7 @@ import java.util.ArrayList;
 public class Define {
     //Common String
     public static final String REQUEST_CODE_STRING = "requestCode";
+    public static final String SELECTED_INDEX = "selected_index";
 
     //Request Code
     public static final int REQUEST_SETTING = 1001;

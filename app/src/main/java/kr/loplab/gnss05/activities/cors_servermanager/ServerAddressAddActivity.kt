@@ -89,7 +89,8 @@ class ServerAddressAddActivity : ActivityBase<ActivityServerAddressAddBinding>()
                                 viewBinding.etPassword.text.toString()))
                     }
                     setResult(RESULT_OK)
-                    finish()}
+                    finish()
+                }
                 Define.REQUEST_SERVER_MANAGE_EDIT ->{
                     Log.d(TAG, "initListener: edit! confirm")
                     lifecycleScope.launch(Dispatchers.IO) {

@@ -1,17 +1,13 @@
 package kr.loplab.gnss05.activities
 
 import android.content.Intent
-import android.os.Bundle
 import android.text.method.HideReturnsTransformationMethod
 import android.text.method.PasswordTransformationMethod
 import android.util.Log
 import android.view.inputmethod.InputMethodManager
 import androidx.appcompat.app.ActionBar
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.lifecycleScope
 import androidx.room.Room
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 
 import kr.loplab.gnss02.ActivityBase
 import kr.loplab.gnss05.MyDialog
@@ -40,6 +36,8 @@ class ReferenceCountryActivity : ActivityBase<ActivityReferenceCountryBinding>()
         get() = R.layout.activity_reference_country
     lateinit var viewModel1:ReferenceCountryViewModel
     var wifiPasswordView = false;
+    var apnsPwView = false;
+    var corsPwView = false;
 
     override fun init() {
         val ab: ActionBar? = supportActionBar
@@ -276,8 +274,47 @@ class ReferenceCountryActivity : ActivityBase<ActivityReferenceCountryBinding>()
                 if (wifiPasswordView) PasswordTransformationMethod.getInstance() else HideReturnsTransformationMethod.getInstance()
             if (wifiPasswordView)  viewBinding.btWifiPasswordView.setImageResource(R.drawable.ic_eye_yes) else viewBinding.btWifiPasswordView.setImageResource(R.drawable.ic_eye_no)
         }
+        viewBinding.apnPwEye.setOnClickListener {
+            Log.d(TAG, "initListener: passwordview clicked")
+            apnsPwView = !apnsPwView;
+            viewBinding.tvApnPw.transformationMethod =
+                if (apnsPwView) PasswordTransformationMethod.getInstance() else HideReturnsTransformationMethod.getInstance()
+            if (apnsPwView)  viewBinding.apnPwEye.setImageResource(R.drawable.ic_eye_yes) else viewBinding.apnPwEye.setImageResource(R.drawable.ic_eye_no)
+        }
+        viewBinding.corsPwEye.setOnClickListener {
+            Log.d(TAG, "initListener: passwordview clicked")
+            corsPwView = !corsPwView;
+            viewBinding.tvCorsPw.transformationMethod =
+                if (corsPwView) PasswordTransformationMethod.getInstance() else HideReturnsTransformationMethod.getInstance()
+            if (corsPwView)  viewBinding.corsPwEye.setImageResource(R.drawable.ic_eye_yes) else viewBinding.corsPwEye.setImageResource(R.drawable.ic_eye_no)
+        }
         viewBinding.layoutApnWorker.setOnClickListener {
-            Log.d(TAG, "initListener: 1123")
+            val dlg = MyDialog(this)
+            var alist = ArrayList<String>();
+                viewModel1.apn_list.value!!.forEach { worker -> alist.add(worker.worker)  }
+            dlg.firstLayoutUse = false
+            dlg.list = alist
+            dlg.selectedposition= viewModel1.apnIndex.value!!
+            dlg.start("")
+            dlg.setOnListClickedListener { view, i ->
+                ApnSettings(i)
+                dlg.dismiss()
+            }
+            dlg.setHeader("작업자")
+        }
+        viewBinding.layoutCorsName.setOnClickListener {
+            val dlg = MyDialog(this)
+            var alist = ArrayList<String>();
+            viewModel1.cors_list.value!!.forEach { server -> alist.add(server.name)  }
+            dlg.firstLayoutUse = false
+            dlg.list = alist
+            dlg.selectedposition= viewModel1.corsIndex.value!!
+            dlg.start("")
+            dlg.setOnListClickedListener { view, i ->
+                CorsSettings(i)
+                dlg.dismiss()
+            }
+            dlg.setHeader("이름")
         }
     }
 
@@ -302,25 +339,34 @@ class ReferenceCountryActivity : ActivityBase<ActivityReferenceCountryBinding>()
 
         viewModel1.apn_list.observe(this, {
         if(it.size>0){
-            viewBinding.tvApnWorker.text = viewModel1.apn_list.value!![0].worker
-            viewBinding.tvApnName.text = viewModel1.apn_list.value!![0].name
-            viewBinding.tvApnUser.text = viewModel1.apn_list.value!![0].user
-            viewBinding.tvApnPw.text = viewModel1.apn_list.value!![0].password
-
+            ApnSettings( 0)
         }
         });
         viewModel1.cors_list.observe(this, {
             if(it.size>0){
-                viewBinding.tvCorsName.text = viewModel1.cors_list.value!![0].name
-                viewBinding.tvCorsIp.text = viewModel1.cors_list.value!![0].ip
-                viewBinding.tvCorsPort.text = viewModel1.cors_list.value!![0].port
-                //기준국 연결 포인트->
-                viewBinding.tvApnPw.text = viewModel1.cors_list.value!![0].password
-
+                CorsSettings(0)
             }
         });
 
 
+    }
+    fun ApnSettings(  idx : Int){
+        viewModel1.apnIndex.value = idx
+
+        viewBinding.tvApnWorker.text = viewModel1.apn_list.value!![idx].worker
+        viewBinding.tvApnName.text = viewModel1.apn_list.value!![idx].name
+        viewBinding.tvApnUser.text = viewModel1.apn_list.value!![idx].user
+        viewBinding.tvApnPw.text = viewModel1.apn_list.value!![idx].password
+    }
+
+    fun CorsSettings(  idx : Int){
+        viewModel1.corsIndex.value = idx
+
+        viewBinding.tvCorsName.text = viewModel1.cors_list.value!![idx].name
+        viewBinding.tvCorsIp.text = viewModel1.cors_list.value!![idx].ip
+        viewBinding.tvCorsPort.text = viewModel1.cors_list.value!![idx].port
+        //기준국 연결 포인트->
+        viewBinding.tvCorsPw.text = viewModel1.cors_list.value!![idx].password
     }
 
     fun savesettings(){
@@ -334,7 +380,7 @@ class ReferenceCountryActivity : ActivityBase<ActivityReferenceCountryBinding>()
         PrefUtil.setInt(applicationContext, Define.INNER_RADIO_CHANNEL, viewModel1.innerRadioChannelNum.value!!) //7
         PrefUtil.setInt(applicationContext, Define.INNER_RADIO_INTERVAL, viewModel1.innerRadioIntervalNum.value!!) //8
         PrefUtil.setInt(applicationContext, Define.INNER_RADIO_POWER, viewModel1.innerRadioPowerNum.value!!) //14
-        PrefUtil.setInt(applicationContext, APN_WORKER_NUM, viewModel1.apnWorkerNum.value!!) //??
+        PrefUtil.setInt(applicationContext, APN_WORKER_NUM, viewModel1.apnIndex.value!!) //??
 
         PrefUtil.setBoolean(applicationContext, REFERENCE_COUNTRY_AUTO_PLAY, viewBinding.swReferenceCountryAutoplay.isChecked) //11
         PrefUtil.setBoolean(applicationContext, NETWORK_AUTO_CONNECT, viewBinding.swNetworkAutoConnect.isChecked) //12
@@ -345,36 +391,43 @@ class ReferenceCountryActivity : ActivityBase<ActivityReferenceCountryBinding>()
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         if(resultCode== RESULT_OK && requestCode == REQUEST_WORKMANAGER)
-        { selectWorkManager(data!!.getIntExtra("selectIndex", 0)) }
+        {
+            onResume()
+            Log.d(TAG, "onActivityResult: -> selected index -> ${data!!.getIntExtra(SELECTED_INDEX, 0)}")
+            ApnSettings(data!!.getIntExtra(SELECTED_INDEX, 0))
+        }
 
         if(resultCode== RESULT_OK && requestCode == REQUEST_CORS_SERVER_MANAGER)
-        { initDatabinding() }
+        {
+            onResume()
+            Log.d(TAG, "onActivityResult: -> selected index -> ${data!!.getIntExtra(SELECTED_INDEX, 0)}")
+            CorsSettings(data!!.getIntExtra(SELECTED_INDEX, 0))
+        }
+        if(resultCode== RESULT_CANCELED)
+        {
 
+        }
     }
-    fun selectWorkManager(index : Int){
 
-    }
 
 
     override fun onResume() {
         super.onResume()
         var dbApn = Room.databaseBuilder(this, AppDatabase::class.java, WORKERS_DB)
-            //.allowMainThreadQueries() //메인쓰레드에서 작동시킬 때 사용
+            .allowMainThreadQueries() //메인쓰레드에서 작동시킬 때 사용 -> viewmodel에서 mainthread로 넣어줘야해서,
             .fallbackToDestructiveMigration()
             .build()
-        lifecycleScope.launch(Dispatchers.IO){
+
             viewModel1.apn_list.value = ArrayList(dbApn.workerDao().all)
             Log.d(TAG, "onResume: ${viewModel1.apn_list}")
-        }
+
 
         var dbCors =  Room.databaseBuilder(this, AppDatabase::class.java, Define.SERVERS_DB)
             .fallbackToDestructiveMigration()
-            //.allowMainThreadQueries() //메인쓰레드에서 작동시킬 때 사용
+            .allowMainThreadQueries() //메인쓰레드에서 작동시킬 때 사용 -> viewmodel에서 mainthread로 넣어줘야해서,
             .build()
-        lifecycleScope.launch(Dispatchers.IO){
-            viewModel1.cors_list.value = ArrayList(dbCors.serverDao().all)
-            Log.d(TAG, "onResume: ${viewModel1.cors_list}")
-        }
+        viewModel1.cors_list.value = ArrayList(dbCors.serverDao().all)
+        Log.d(TAG, "onResume: ${viewModel1.cors_list}")
 
     }
 }
