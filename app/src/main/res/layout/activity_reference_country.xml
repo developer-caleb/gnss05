@@ -851,7 +851,8 @@
                         android:visibility="@{referencecontryviewmodel.auto_apn ? View.GONE: View.VISIBLE}"
                         >
 
-                    <LinearLayout style="@style/ButtonLayout_STYLE01"
+                    <LinearLayout
+                        style="@style/ButtonLayout_STYLE01"
                         android:id="@+id/layout_apn_worker"
                         >
 
@@ -860,7 +861,7 @@
                             android:text="작업자"
                              />
 
-                        <EditText
+                        <TextView
                             android:id="@+id/et_apn_worker"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"

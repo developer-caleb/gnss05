@@ -12,9 +12,7 @@ class ReferenceCountryViewModel : ViewModel() {
     var network_mode = MutableLiveData<Int>(0)
     var innerRadioProtocolNum = MutableLiveData<Int>(0)
     var auto_apn = MutableLiveData<Boolean>(false)
-    init {
-
-    }
+    init {  }
 
     fun btclick() {
         onprogress.value = !onprogress.value!!
