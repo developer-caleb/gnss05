@@ -50,7 +50,12 @@ class ReferenceCountryActivity : ActivityBase<ActivityReferenceCountryBinding>()
         viewBinding.viewModel = viewModel1
 
     }
-
+    /
+    /*TODO
+    * COrs server
+표에서 선택해서 확인해도 업데이트가 안됨
+리스트에서 선택했을 때는 업데이트가 됨
+    * */
     override fun initListener() {
         viewBinding.settingSatelliteBt.setOnClickListener {
             Log.d(TAG, "initListener: settingSatelliteBt clicked")
