@@ -5,11 +5,13 @@
     <data>
 
         <import type="android.view.View"/>
-
         <import type="java.util.ArrayList"/>
         <import type="java.util.Arrays"/>
         <variable
-            name="referencecontryviewmodel"
+            name="Optionlist"
+            type="kr.loplab.gnss05.common.OptionList"/>
+        <variable
+            name="viewModel"
             type="kr.loplab.gnss05.activities.viewmodel.ReferenceCountryViewModel"/>
      </data>
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -123,7 +125,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="0"
-                        android:text="@{referencecontryviewmodel.startModeList.get(referencecontryviewmodel.startModeNum)}" />
+                        android:text="@{Optionlist.Companion.START_MODE_LIST.get(viewModel.startModeNum)}" />
 
                     <ImageView
                         android:layout_width="@dimen/rightArrowSize"
@@ -143,7 +145,7 @@
                     android:background="@color/grey_EC" />
 
                 <LinearLayout
-                    android:id="@+id/layout_displacement_mode"
+                    android:id="@+id/layout_deplacement_mode"
                     style="@style/ButtonLayout_STYLE01"
                     >
 
@@ -153,12 +155,12 @@
                          />
 
                     <TextView
-                        android:id="@+id/tv_displacement_mode"
+                        android:id="@+id/tv_deplacement_mode"
                         style="@style/Sub_TEXTVIEW_STYLE3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="0"
-                        android:text="RTCM3.2" />
+                        android:text="@{Optionlist.Companion.DEPLACEMENT_MODE_LIST.get(viewModel.deplaceModeNum)}" />
 
                     <ImageView
                         android:layout_width="@dimen/rightArrowSize"
@@ -217,7 +219,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:checked="@{referencecontryviewmodel.bool_rawdatasave}"
+                        android:checked="@{viewModel.bool_rawdatasave}"
                         android:clickable="false" />
 
 
@@ -228,7 +230,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:orientation="vertical"
-                    android:visibility="@{referencecontryviewmodel.bool_rawdatasave ? View.VISIBLE : View.GONE}"
+                    android:visibility="@{viewModel.bool_rawdatasave ? View.VISIBLE : View.GONE}"
                     >
 
                     <View
@@ -342,7 +344,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:orientation="vertical"
-                    android:visibility="@{referencecontryviewmodel.data_connect_type == 1 ? View.VISIBLE : View.GONE }"
+                    android:visibility="@{viewModel.data_connect_type == 1 ? View.VISIBLE : View.GONE }"
                     >
 
                     <View
@@ -449,7 +451,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
-                        android:visibility="@{referencecontryviewmodel.innerRadioProtocolNum == 0 ? View.VISIBLE : View.GONE }"
+                        android:visibility="@{viewModel.innerRadioProtocolNum == 0 ? View.VISIBLE : View.GONE }"
                         >
                     <LinearLayout
                         android:id="@+id/layout_inner_radio_interval"
@@ -577,7 +579,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:orientation="vertical"
-                    android:visibility="@{referencecontryviewmodel.data_connect_type == 2 || referencecontryviewmodel.data_connect_type == 3 ? View.VISIBLE : View.GONE}"
+                    android:visibility="@{viewModel.data_connect_type == 2 || viewModel.data_connect_type == 3 ? View.VISIBLE : View.GONE}"
                     >
 
 
@@ -633,7 +635,7 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
                     android:visibility=
-                    "@{referencecontryviewmodel.data_connect_type == 0 || referencecontryviewmodel.data_connect_type == 3? View.VISIBLE : View.GONE}"
+                    "@{viewModel.data_connect_type == 0 || viewModel.data_connect_type == 3? View.VISIBLE : View.GONE}"
                     >
                 <LinearLayout
 
@@ -745,7 +747,7 @@
                    android:layout_width="match_parent"
                    android:layout_height="wrap_content"
                    android:orientation="vertical"
-                   android:visibility="@{referencecontryviewmodel.network_mode == 0 ? View.VISIBLE : View.GONE }"
+                   android:visibility="@{viewModel.network_mode == 0 ? View.VISIBLE : View.GONE }"
                    >
                    <View
                        android:layout_width="match_parent"
@@ -768,7 +770,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="0"
-                        android:text="@{referencecontryviewmodel.networksystem.get(referencecontryviewmodel.networkSystemNum)}"
+                        android:text="@{Optionlist.Companion.NETWORK_SYSTEM_List.get(viewModel.networkSystemNum)}"
                         />
 
 
@@ -792,7 +794,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:orientation="vertical"
-                    android:visibility="@{referencecontryviewmodel.network_mode == 0 ? View.VISIBLE : View.GONE }"
+                    android:visibility="@{viewModel.network_mode == 0 ? View.VISIBLE : View.GONE }"
                     >
 
                     <LinearLayout
@@ -832,7 +834,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:checked="@{referencecontryviewmodel.auto_apn}"
+                            android:checked="@{viewModel.auto_apn}"
                             />
 
 
@@ -848,7 +850,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
-                        android:visibility="@{referencecontryviewmodel.auto_apn ? View.GONE: View.VISIBLE}"
+                        android:visibility="@{viewModel.auto_apn ? View.GONE: View.VISIBLE}"
                         >
 
                     <LinearLayout
@@ -980,7 +982,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:orientation="vertical"
-                    android:visibility="@{referencecontryviewmodel.network_mode == 0 ? View.GONE : View.VISIBLE }"
+                    android:visibility="@{viewModel.network_mode == 0 ? View.GONE : View.VISIBLE }"
                     >
 
                     <LinearLayout

@@ -34,11 +34,9 @@ class ReferenceCountryActivity : ActivityBase<ActivityReferenceCountryBinding>()
     override val layoutResourceId: Int
         get() = R.layout.activity_reference_country
     lateinit var viewModel1:ReferenceCountryViewModel
-    //var startModeNum = 0;
-    var deplaceModeNum = 0;
-    var collectionIntervalNum = 0;
     var wifiPasswordView = false;
-    //var networkSystemNum = 0;
+
+    var collectionIntervalNum = 0;
     var innerRadioChannelNum = 0;
     var innerRadioIntervalNum = 0;
     var innerRadioPowerNum = 0;
@@ -52,7 +50,7 @@ class ReferenceCountryActivity : ActivityBase<ActivityReferenceCountryBinding>()
         ab?.title ="기준국설정";
         //viewbinding
         viewModel1 = ViewModelProvider(this).get(ReferenceCountryViewModel::class.java)
-        viewBinding.referencecontryviewmodel = viewModel1
+        viewBinding.viewModel = viewModel1
     }
 
     override fun initListener() {
@@ -109,19 +107,15 @@ class ReferenceCountryActivity : ActivityBase<ActivityReferenceCountryBinding>()
             }
             dlg.setHeader("시작 모드")
         }
-       viewBinding.layoutDisplacementMode.setOnClickListener {
+       viewBinding.layoutDeplacementMode.setOnClickListener {
            val dlg = MyDialog(this)
            var alist = DEPLACEMENT_MODE_LIST
-           var prefvalue = Define.DEPLACEMENT_MODE
            dlg.firstLayoutUse = false
            dlg.list = alist
-           dlg.selectedposition= deplaceModeNum
+           dlg.selectedposition= viewModel1.deplaceModeNum.value!!
            dlg.start("")
            dlg.setOnListClickedListener { view, i ->
-               Log.d(TAG, "initListener: $i")
-               deplaceModeNum = i
-               viewBinding.tvDisplacementMode.text = alist[deplaceModeNum]
-               dlg.refresh()
+               viewModel1.deplaceModeNum.value = i
                dlg.dismiss()
            }
            dlg.setHeader("변위 모드")
@@ -308,7 +302,7 @@ class ReferenceCountryActivity : ActivityBase<ActivityReferenceCountryBinding>()
 
     override fun initDatabinding() {
         viewModel1.setIntvalue(viewModel1.startModeNum, PrefUtil.getInt2(applicationContext, Define.START_MODE))  //0
-        deplaceModeNum = PrefUtil.getInt2(applicationContext, Define.DEPLACEMENT_MODE) //1
+        viewModel1.setIntvalue(viewModel1.deplaceModeNum, PrefUtil.getInt2(applicationContext, Define.DEPLACEMENT_MODE))  //1
         collectionIntervalNum = PrefUtil.getInt2(applicationContext, Define.COLLECTION_INTERVAL) //2
 
         innerRadioChannelNum = PrefUtil.getInt2(applicationContext, INNER_RADIO_CHANNEL) //7
@@ -322,8 +316,7 @@ class ReferenceCountryActivity : ActivityBase<ActivityReferenceCountryBinding>()
         viewModel1.setRawDatavalue(PrefUtil.getBoolean(this, RAW_DATA_SAVE)) //9 -> data, Viewbinding통합
         viewModel1.setAutoApn(PrefUtil.getBoolean(this, AUTO_APN)) //10 -> data, viewbinding통합
 
-            //setvalue?
-        viewBinding.tvDisplacementMode.text = DEPLACEMENT_MODE_LIST[deplaceModeNum] //1
+        //setvalue?
         viewBinding.tvCollectionInterval.text = COLLECTION_INTERVAL_LIST[collectionIntervalNum] //2
         viewBinding.tvDataConnectionType.text = DATA_CONNECTION_TYPE_List[viewModel1.data_connect_type.value!!] //3 viewmodel로 하는건 다 못받아옴.. 별도로 해줘야함.
         viewBinding.tvNetworkMode.text = NETWORK_MODE_List[viewModel1.network_mode.value!!] //4
@@ -342,7 +335,7 @@ class ReferenceCountryActivity : ActivityBase<ActivityReferenceCountryBinding>()
     }
     fun savesettings(){
         PrefUtil.setInt(applicationContext, Define.START_MODE, viewModel1.startModeNum.value!!) //0
-        PrefUtil.setInt(applicationContext, Define.DEPLACEMENT_MODE, deplaceModeNum) //1
+        PrefUtil.setInt(applicationContext, Define.DEPLACEMENT_MODE, viewModel1.deplaceModeNum.value!!) //1
         PrefUtil.setInt(applicationContext, Define.COLLECTION_INTERVAL, collectionIntervalNum) //2
         PrefUtil.setInt(applicationContext, Define.DATA_CONNECTION_TYPE, viewModel1.data_connect_type.value!!) //3
         PrefUtil.setInt(applicationContext, Define.NETWORK_MODE, viewModel1.network_mode.value!!) //4

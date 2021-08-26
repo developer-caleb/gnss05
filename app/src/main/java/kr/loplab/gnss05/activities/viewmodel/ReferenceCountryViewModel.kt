@@ -14,10 +14,8 @@ class ReferenceCountryViewModel : ViewModel() {
     var network_mode = MutableLiveData<Int>(0)
     var innerRadioProtocolNum = MutableLiveData<Int>(0)
     var startModeNum = MutableLiveData<Int>(0)
+    var deplaceModeNum = MutableLiveData<Int>(0)
     var auto_apn = MutableLiveData<Boolean>(false)
-    val networksystem = OptionList.NETWORK_SYSTEM_List
-    val startModeList = OptionList.START_MODE_LIST
-    val deplaceModeList = OptionList.DEPLACEMENT_MODE_LIST
     init {  }
 
     fun btclick() {
