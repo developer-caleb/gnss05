@@ -298,9 +298,6 @@ class ReferenceCountryActivity : ActivityBase<ActivityReferenceCountryBinding>()
         viewBinding.swNetworkAutoConnect.isChecked =PrefUtil.getBoolean(applicationContext, NETWORK_AUTO_CONNECT) //12
         viewBinding.swInnerRadioFec.isChecked =PrefUtil.getBoolean(applicationContext, INNER_RADIO_FEC) //13
 
-
-
-
     }
 
     fun savesettings(){
@@ -319,20 +316,14 @@ class ReferenceCountryActivity : ActivityBase<ActivityReferenceCountryBinding>()
         PrefUtil.setBoolean(applicationContext, INNER_RADIO_FEC, viewBinding.swInnerRadioFec.isChecked) //13
         PrefUtil.setBoolean(applicationContext, RAW_DATA_SAVE, viewModel1.bool_rawdatasave.value!!) //9
         PrefUtil.setBoolean(applicationContext, AUTO_APN, viewModel1.auto_apn.value!!) //10
-
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         if(resultCode== RESULT_OK && requestCode == REQUEST_WORKMANAGER)
-        {
-            selectWorkManager(data!!.getIntExtra("selectIndex", 0))
-
-        }
+        { selectWorkManager(data!!.getIntExtra("selectIndex", 0)) }
 
         if(resultCode== RESULT_OK && requestCode == REQUEST_CORS_SERVER_MANAGER)
-        {
-            initDatabinding()
-        }
+        { initDatabinding() }
 
     }
     fun selectWorkManager(index : Int){
