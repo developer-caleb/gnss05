@@ -262,19 +262,19 @@ class ReferenceCountryActivity : ActivityBase<ActivityReferenceCountryBinding>()
             dlg.setHeader("전원")
         }
 
-        viewBinding.layoutCommunicationSpeed.setOnClickListener {
+        viewBinding.layoutOuterRadioCommunicationSpeed.setOnClickListener {
             val dlg = MyDialog(this)
             var alist = COMMUNICATION_SPEED_LIST
             dlg.firstLayoutUse = true
             dlg.list = alist
-            dlg.selectedposition= alist.indexOf(viewModel1.communicationSpeedNum.value.toString()!!)
+            dlg.selectedposition= alist.indexOf(viewModel1.outerRadioCommunicationSpeedNum.value.toString()!!)
             dlg.start("")
             dlg.setOnListClickedListener { view, i ->
-                viewModel1.communicationSpeedNum.value = alist[i].toInt()
+                viewModel1.outerRadioCommunicationSpeedNum.value = alist[i].toInt()
                 dlg.dismiss()
             }
             dlg.setOnCheckClickedListener { str ->
-                viewModel1.communicationSpeedNum.value = str.toInt()
+                viewModel1.outerRadioCommunicationSpeedNum.value = str.toInt()
             }
             dlg.setHeader("통신 속도")
         }
@@ -346,7 +346,7 @@ class ReferenceCountryActivity : ActivityBase<ActivityReferenceCountryBinding>()
         viewModel1.setIntvalue(viewModel1.innerRadioChannelNum, PrefUtil.getInt2(applicationContext, Define.INNER_RADIO_CHANNEL))  //7
         viewModel1.setIntvalue(viewModel1.innerRadioIntervalNum, PrefUtil.getInt2(applicationContext, Define.INNER_RADIO_INTERVAL))  //8
         viewModel1.setIntvalue(viewModel1.innerRadioPowerNum, PrefUtil.getInt2(applicationContext, Define.INNER_RADIO_POWER))  //14
-        viewModel1.setIntvalue(viewModel1.communicationSpeedNum, PrefUtil.getInt2(applicationContext, Define.COMMUNICATION_SPEED, 9600))  //14
+        viewModel1.setIntvalue(viewModel1.outerRadioCommunicationSpeedNum, PrefUtil.getInt2(applicationContext, Define.OUTERRADIOCOMMUNICATION_SPEED, 9600))  //14
         viewModel1.setIntvalue(viewModel1.apnIndex, PrefUtil.getInt2(applicationContext, Define.APN_INDEX_NUM))  //14
         viewModel1.setIntvalue(viewModel1.corsIndex, PrefUtil.getInt2(applicationContext, Define.CORS_INDEX_NUM))  //14
 
@@ -402,7 +402,7 @@ class ReferenceCountryActivity : ActivityBase<ActivityReferenceCountryBinding>()
         PrefUtil.setInt(applicationContext, Define.INNER_RADIO_POWER, viewModel1.innerRadioPowerNum.value!!) //14
         PrefUtil.setInt(applicationContext, APN_INDEX_NUM, viewModel1.apnIndex.value!!) //??
         PrefUtil.setInt(applicationContext, CORS_INDEX_NUM, viewModel1.corsIndex.value!!) //??
-        PrefUtil.setInt(applicationContext, COMMUNICATION_SPEED, viewModel1.communicationSpeedNum.value!!) //??
+        PrefUtil.setInt(applicationContext, OUTERRADIOCOMMUNICATION_SPEED, viewModel1.outerRadioCommunicationSpeedNum.value!!) //??
 
         PrefUtil.setBoolean(applicationContext, REFERENCE_COUNTRY_AUTO_PLAY, viewBinding.swReferenceCountryAutoplay.isChecked) //11
         PrefUtil.setBoolean(applicationContext, NETWORK_AUTO_CONNECT, viewBinding.swNetworkAutoConnect.isChecked) //12

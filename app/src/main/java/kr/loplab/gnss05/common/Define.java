@@ -34,7 +34,8 @@ public class Define {
     public static final String INNER_RADIO_INTERVAL = "inner_radio_interval";
     public static final String INNER_RADIO_FEC = "inner_radio_fec";
     public static final String INNER_RADIO_POWER = "inner_radio_power";
-    public static final String COMMUNICATION_SPEED = "communication_speed";
+    public static final String OUTERRADIOCOMMUNICATION_SPEED = "outer_radio_communication_speed";
+    public static final String DUALCOMMUNICATION_SPEED = "dual_communication_speed";
     public static final String AUTO_APN = "auto_apn";
     public static final String APN_INDEX_NUM = "apn_index_num";
     public static final String CORS_INDEX_NUM = "cors_index_num";
