@@ -37,14 +37,6 @@ class ReferenceCountryActivity : ActivityBase<ActivityReferenceCountryBinding>()
     var wifiPasswordView = false;
 
 
-    var innerRadioChannelNum = 0;
-    var innerRadioIntervalNum = 0;
-    var innerRadioPowerNum = 0;
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
-
     override fun init() {
         val ab: ActionBar? = supportActionBar
         ab?.title ="기준국설정";
@@ -95,10 +87,7 @@ class ReferenceCountryActivity : ActivityBase<ActivityReferenceCountryBinding>()
             dlg.selectedposition= viewModel1.startModeNum.value!!
             dlg.start("")
             dlg.setOnListClickedListener { view, i ->
-                Log.d(TAG, "initListener: $i")
                 viewModel1.startModeNum.value = i
-               // viewBinding.tvStartMode.text = OptionList.START_MODE_LIST[startModeNum]
-                dlg.refresh()
                 dlg.dismiss()
                 if(i==1){
                     intent = Intent(this, ReferenceCoordinateSetting::class.java)
@@ -230,13 +219,10 @@ class ReferenceCountryActivity : ActivityBase<ActivityReferenceCountryBinding>()
             var prefvalue = Define.INNER_RADIO_CHANNEL
             dlg.firstLayoutUse = false
             dlg.list = alist
-            dlg.selectedposition= innerRadioChannelNum
+            dlg.selectedposition= viewModel1.innerRadioChannelNum.value!!
             dlg.start("")
             dlg.setOnListClickedListener { view, i ->
-                Log.d(TAG, "initListener: $i")
-                innerRadioChannelNum = i
-                viewBinding.tvInnerRadioChannel.text = alist[i]
-                dlg.refresh()
+                viewModel1.innerRadioChannelNum.value = i
                 dlg.dismiss()
             }
             dlg.setHeader("채널")
@@ -245,16 +231,12 @@ class ReferenceCountryActivity : ActivityBase<ActivityReferenceCountryBinding>()
         viewBinding.layoutInnerRadioInterval.setOnClickListener {
             val dlg = MyDialog(this)
             var alist = INNER_RADIO_INTERVAL_LIST
-            var prefvalue = Define.INNER_RADIO_INTERVAL
             dlg.firstLayoutUse = false
             dlg.list = alist
-            dlg.selectedposition= innerRadioIntervalNum
+            dlg.selectedposition= viewModel1.innerRadioIntervalNum.value!!
             dlg.start("")
             dlg.setOnListClickedListener { view, i ->
-                Log.d(TAG, "initListener: $i")
-                innerRadioIntervalNum = i
-                viewBinding.tvInnerRadioInterval.text = alist[i]
-                dlg.refresh()
+                viewModel1.innerRadioIntervalNum.value = i
                 dlg.dismiss()
             }
             dlg.setHeader("간격")
@@ -262,16 +244,12 @@ class ReferenceCountryActivity : ActivityBase<ActivityReferenceCountryBinding>()
         viewBinding.layoutInnerRadioPower.setOnClickListener {
             val dlg = MyDialog(this)
             var alist = INNER_RADIO_POWER_LIST
-            var prefvalue = Define.INNER_RADIO_POWER
             dlg.firstLayoutUse = false
             dlg.list = alist
-            dlg.selectedposition= innerRadioPowerNum
+            dlg.selectedposition= viewModel1.innerRadioPowerNum.value!!
             dlg.start("")
             dlg.setOnListClickedListener { view, i ->
-                Log.d(TAG, "initListener: $i")
-                innerRadioPowerNum = i
-                viewBinding.tvInnerRadioPower.text = alist[i]
-                dlg.refresh()
+                viewModel1.innerRadioPowerNum.value = i
                 dlg.dismiss()
             }
             dlg.setHeader("전원")
@@ -299,11 +277,9 @@ class ReferenceCountryActivity : ActivityBase<ActivityReferenceCountryBinding>()
         viewModel1.setIntvalue(viewModel1.startModeNum, PrefUtil.getInt2(applicationContext, Define.START_MODE))  //0
         viewModel1.setIntvalue(viewModel1.deplaceModeNum, PrefUtil.getInt2(applicationContext, Define.DEPLACEMENT_MODE))  //1
         viewModel1.setIntvalue(viewModel1.collectionIntervalNum, PrefUtil.getInt2(applicationContext, Define.COLLECTION_INTERVAL))  //2
-
-
-        innerRadioChannelNum = PrefUtil.getInt2(applicationContext, INNER_RADIO_CHANNEL) //7
-        innerRadioIntervalNum = PrefUtil.getInt2(applicationContext, INNER_RADIO_INTERVAL) //8
-        innerRadioPowerNum = PrefUtil.getInt2(applicationContext, INNER_RADIO_POWER) //14
+        viewModel1.setIntvalue(viewModel1.innerRadioChannelNum, PrefUtil.getInt2(applicationContext, Define.INNER_RADIO_CHANNEL))  //7
+        viewModel1.setIntvalue(viewModel1.innerRadioIntervalNum, PrefUtil.getInt2(applicationContext, Define.INNER_RADIO_INTERVAL))  //8
+        viewModel1.setIntvalue(viewModel1.innerRadioPowerNum, PrefUtil.getInt2(applicationContext, Define.INNER_RADIO_POWER))  //14
 
         viewModel1.setDataConnectionType(PrefUtil.getInt2(this, DATA_CONNECTION_TYPE)) //3
         viewModel1.setNetworkMode(PrefUtil.getInt2(this, NETWORK_MODE)) //4
@@ -312,22 +288,14 @@ class ReferenceCountryActivity : ActivityBase<ActivityReferenceCountryBinding>()
         viewModel1.setRawDatavalue(PrefUtil.getBoolean(this, RAW_DATA_SAVE)) //9 -> data, Viewbinding통합
         viewModel1.setAutoApn(PrefUtil.getBoolean(this, AUTO_APN)) //10 -> data, viewbinding통합
 
-        //setvalue?
-        viewBinding.tvDataConnectionType.text = DATA_CONNECTION_TYPE_List[viewModel1.data_connect_type.value!!] //3 viewmodel로 하는건 다 못받아옴.. 별도로 해줘야함.
-        viewBinding.tvNetworkMode.text = NETWORK_MODE_List[viewModel1.network_mode.value!!] //4
-        viewBinding.tvNetworkSystem.text = NETWORK_SYSTEM_List[viewModel1.networkSystemNum.value!!] //6
-        viewBinding.tvInnerRadioChannel.text = INNER_RADIO_CHANNEL_LIST[innerRadioChannelNum] //7
-        viewBinding.tvInnerRadioInterval.text = INNER_RADIO_INTERVAL_LIST[innerRadioIntervalNum] //8
-        viewBinding.tvInnerRadioProtocol.text = INNER_RADIO_PROTOCOL_LIST[viewModel1.innerRadioProtocolNum.value!!] //5
-        viewBinding.tvInnerRadioPower.text = INNER_RADIO_POWER_LIST[innerRadioPowerNum]  //14
-        //9, //10 불필요
+
+
+
         viewBinding.swReferenceCountryAutoplay.isChecked =PrefUtil.getBoolean(applicationContext, REFERENCE_COUNTRY_AUTO_PLAY) //11
         viewBinding.swNetworkAutoConnect.isChecked =PrefUtil.getBoolean(applicationContext, NETWORK_AUTO_CONNECT) //12
         viewBinding.swInnerRadioFec.isChecked =PrefUtil.getBoolean(applicationContext, INNER_RADIO_FEC) //13
-
-
-
     }
+
     fun savesettings(){
         PrefUtil.setInt(applicationContext, Define.START_MODE, viewModel1.startModeNum.value!!) //0
         PrefUtil.setInt(applicationContext, Define.DEPLACEMENT_MODE, viewModel1.deplaceModeNum.value!!) //1
@@ -336,9 +304,9 @@ class ReferenceCountryActivity : ActivityBase<ActivityReferenceCountryBinding>()
         PrefUtil.setInt(applicationContext, Define.NETWORK_MODE, viewModel1.network_mode.value!!) //4
         PrefUtil.setInt(applicationContext, Define.INNER_RADIO_PROTOCOL, viewModel1.innerRadioProtocolNum.value!!) //5
         PrefUtil.setInt(applicationContext, Define.NETWORK_SYSTEM, viewModel1.networkSystemNum.value!!) //6
-        PrefUtil.setInt(applicationContext, Define.INNER_RADIO_CHANNEL, innerRadioChannelNum) //7
-        PrefUtil.setInt(applicationContext, Define.INNER_RADIO_INTERVAL, innerRadioIntervalNum) //8
-        PrefUtil.setInt(applicationContext, Define.INNER_RADIO_POWER, innerRadioPowerNum) //14
+        PrefUtil.setInt(applicationContext, Define.INNER_RADIO_CHANNEL, viewModel1.innerRadioChannelNum.value!!) //7
+        PrefUtil.setInt(applicationContext, Define.INNER_RADIO_INTERVAL, viewModel1.innerRadioIntervalNum.value!!) //8
+        PrefUtil.setInt(applicationContext, Define.INNER_RADIO_POWER, viewModel1.innerRadioPowerNum.value!!) //14
         PrefUtil.setBoolean(applicationContext, REFERENCE_COUNTRY_AUTO_PLAY, viewBinding.swReferenceCountryAutoplay.isChecked) //11
         PrefUtil.setBoolean(applicationContext, NETWORK_AUTO_CONNECT, viewBinding.swNetworkAutoConnect.isChecked) //12
         PrefUtil.setBoolean(applicationContext, INNER_RADIO_FEC, viewBinding.swInnerRadioFec.isChecked) //13

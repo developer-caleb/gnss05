@@ -283,7 +283,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="0"
-                            android:text="1HZ" />
+                            android:text="@{Optionlist.Companion.COLLECTION_INTERVAL_LIST.get(viewModel.collectionIntervalNum)}" />
 
                         <ImageView
                             android:layout_width="@dimen/rightArrowSize"
@@ -322,7 +322,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="0"
-                        android:text="" />
+                        android:text="@{Optionlist.Companion.DATA_CONNECTION_TYPE_List.get(viewModel.data_connect_type)}" />
 
                     <ImageView
                         android:layout_width="@dimen/rightArrowSize"
@@ -369,7 +369,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="0"
-                            android:text="3" />
+                            android:text="@{Optionlist.Companion.INNER_RADIO_CHANNEL_LIST.get(viewModel.innerRadioChannelNum)}" />
 
                         <ImageView
                             android:layout_width="@dimen/rightArrowSize"
@@ -427,7 +427,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="0"
-                            android:text="TrimMask Ⅲ" />
+                            android:text="@{Optionlist.Companion.INNER_RADIO_PROTOCOL_LIST.get(viewModel.innerRadioProtocolNum)}" />
 
                         <ImageView
                             android:layout_width="@dimen/rightArrowSize"
@@ -469,7 +469,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="0"
-                            android:text="25.0" />
+                            android:text="@{Optionlist.Companion.INNER_RADIO_INTERVAL_LIST.get(viewModel.innerRadioIntervalNum)}" />
 
                         <ImageView
                             android:layout_width="@dimen/rightArrowSize"
@@ -530,7 +530,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="0"
-                            android:text="고" />
+                            android:text="@{Optionlist.Companion.INNER_RADIO_POWER_LIST.get(viewModel.innerRadioPowerNum)}" />
 
                         <ImageView
                             android:layout_width="@dimen/rightArrowSize"
@@ -728,7 +728,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="0"
-                        android:text="GPRS" />
+                        android:text="@{Optionlist.Companion.NETWORK_MODE_List.get(viewModel.network_mode)}" />
 
 
                     <ImageView
