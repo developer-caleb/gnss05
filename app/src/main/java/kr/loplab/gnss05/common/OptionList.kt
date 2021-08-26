@@ -33,6 +33,9 @@ class OptionList {
       val INNER_RADIO_INTERVAL_LIST= arrayListOf<String>(
           "12.5","25.0",
       )
+      val INNER_RADIO_POWER_LIST= arrayListOf<String>(
+          "약","고",
+      )
       val NETWORK_SYSTEM_List= arrayListOf<String>(
           "자동","GSM", "CDMA1x"
       )
