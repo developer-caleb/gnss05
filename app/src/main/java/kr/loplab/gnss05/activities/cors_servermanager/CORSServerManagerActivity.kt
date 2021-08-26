@@ -4,16 +4,11 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.core.app.ActivityCompat
-import androidx.lifecycle.lifecycleScope
 import androidx.room.Room
 import com.evrencoskun.tableview.TableView
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 import kr.loplab.gnss02.ActivityBase
 import kr.loplab.gnss05.R
 import kr.loplab.gnss05.activities.workmanager.AppDatabase
-import kr.loplab.gnss05.activities.workmanager.TableWorkerViewModel
-import kr.loplab.gnss05.activities.workmanager.Worker
 import kr.loplab.gnss05.common.Define
 import kr.loplab.gnss05.databinding.ActivityCorsServerManagerBinding
 import kr.loplab.gnss05.tableview.TableViewAdapter
@@ -77,7 +72,9 @@ class CORSServerManagerActivity : ActivityBase<ActivityCorsServerManagerBinding>
             }
         }
         viewBinding.btConfirm.setOnClickListener {
-
+            intent.putExtra(Define.CORS_SELECTED_INDEX, TableViewModel.selectedIndex)
+            setResult(RESULT_OK, intent)
+            finish()
         }
     }
 

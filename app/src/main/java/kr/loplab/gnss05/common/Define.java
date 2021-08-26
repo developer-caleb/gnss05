@@ -5,8 +5,8 @@ import java.util.ArrayList;
 public class Define {
     //Common String
     public static final String REQUEST_CODE_STRING = "requestCode";
-    public static final String SELECTED_INDEX = "selected_index";
-
+    public static final String APNS_SELECTED_INDEX = "apns_selected_index";
+    public static final String CORS_SELECTED_INDEX = "cors_selected_index";
     //Request Code
     public static final int REQUEST_SETTING = 1001;
     public static final int REQUEST_WORKER_MANAGE_ADD = 1002;

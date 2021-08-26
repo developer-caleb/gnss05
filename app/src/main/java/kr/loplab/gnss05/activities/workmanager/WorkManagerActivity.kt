@@ -4,11 +4,8 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.core.app.ActivityCompat
-import androidx.lifecycle.lifecycleScope
 import androidx.room.Room
 import com.evrencoskun.tableview.TableView
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 import kr.loplab.gnss02.ActivityBase
 import kr.loplab.gnss05.R
 import kr.loplab.gnss05.common.Define.*
@@ -70,8 +67,8 @@ class WorkManagerActivity : ActivityBase<ActivityWorkManagerBinding>() {
                 }
         }
         viewBinding.btConfirm.setOnClickListener {
-            intent.putExtra(SELECTED_INDEX,TableViewModel.selectedIndex)
-            setResult(RESULT_OK)
+            intent.putExtra(APNS_SELECTED_INDEX, TableViewModel.selectedIndex)
+            setResult(RESULT_OK, intent)
             finish()
         }
     }

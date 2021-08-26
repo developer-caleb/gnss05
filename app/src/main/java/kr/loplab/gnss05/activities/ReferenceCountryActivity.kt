@@ -6,6 +6,7 @@ import android.text.method.PasswordTransformationMethod
 import android.util.Log
 import android.view.inputmethod.InputMethodManager
 import androidx.appcompat.app.ActionBar
+import androidx.core.app.ActivityCompat
 import androidx.lifecycle.ViewModelProvider
 import androidx.room.Room
 
@@ -63,13 +64,14 @@ class ReferenceCountryActivity : ActivityBase<ActivityReferenceCountryBinding>()
             Log.d(TAG, "initListener: applyBt clicked")
         }
         viewBinding.header01.setOnBackButtonClickListener { onBackPressed();}
-        viewBinding.corsSettingBt.setOnClickListener {
-            intent = Intent(this, CORSServerManagerActivity::class.java)
-            startActivity(intent);
-        }
+
         viewBinding.btOpenWorkManager.setOnClickListener {
             intent = Intent(this, WorkManagerActivity::class.java)
-            startActivity(intent);
+            ActivityCompat.startActivityForResult(this, intent, REQUEST_WORKMANAGER, null)
+        }
+        viewBinding.corsSettingBt.setOnClickListener {
+            intent = Intent(this, CORSServerManagerActivity::class.java)
+            ActivityCompat.startActivityForResult(this, intent, REQUEST_CORS_SERVER_MANAGER, null)
         }
         viewBinding.referenceCountryIdLayout.setOnClickListener {
             viewBinding.referenceCountryId.requestFocus()
@@ -339,12 +341,12 @@ class ReferenceCountryActivity : ActivityBase<ActivityReferenceCountryBinding>()
 
         viewModel1.apn_list.observe(this, {
         if(it.size>0){
-            ApnSettings( 0)
+            ApnSettings(intent.getIntExtra(APNS_SELECTED_INDEX, 0))
         }
         });
         viewModel1.cors_list.observe(this, {
             if(it.size>0){
-                CorsSettings(0)
+                CorsSettings(intent.getIntExtra(CORS_SELECTED_INDEX, 0))
             }
         });
 
@@ -393,15 +395,15 @@ class ReferenceCountryActivity : ActivityBase<ActivityReferenceCountryBinding>()
         if(resultCode== RESULT_OK && requestCode == REQUEST_WORKMANAGER)
         {
             onResume()
-            Log.d(TAG, "onActivityResult: -> selected index -> ${data!!.getIntExtra(SELECTED_INDEX, 0)}")
-            ApnSettings(data!!.getIntExtra(SELECTED_INDEX, 0))
+            Log.d(TAG, "onActivityResult: -> selected index -> ${data?.getIntExtra(APNS_SELECTED_INDEX, 0)}")
+            ApnSettings(data!!.getIntExtra(APNS_SELECTED_INDEX, 0))
         }
 
         if(resultCode== RESULT_OK && requestCode == REQUEST_CORS_SERVER_MANAGER)
         {
             onResume()
-            Log.d(TAG, "onActivityResult: -> selected index -> ${data!!.getIntExtra(SELECTED_INDEX, 0)}")
-            CorsSettings(data!!.getIntExtra(SELECTED_INDEX, 0))
+            Log.d(TAG, "onActivityResult: -> selected index -> ${data?.getIntExtra(CORS_SELECTED_INDEX, 0)}")
+            CorsSettings(data!!.getIntExtra(APNS_SELECTED_INDEX, 0))
         }
         if(resultCode== RESULT_CANCELED)
         {
