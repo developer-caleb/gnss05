@@ -8,12 +8,17 @@ import android.util.Log
 import android.view.inputmethod.InputMethodManager
 import androidx.appcompat.app.ActionBar
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
+import androidx.room.Room
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 import kr.loplab.gnss02.ActivityBase
 import kr.loplab.gnss05.MyDialog
 import kr.loplab.gnss05.R
 import kr.loplab.gnss05.activities.cors_servermanager.CORSServerManagerActivity
 import kr.loplab.gnss05.activities.viewmodel.ReferenceCountryViewModel
+import kr.loplab.gnss05.activities.workmanager.AppDatabase
 import kr.loplab.gnss05.activities.workmanager.WorkManagerActivity
 import kr.loplab.gnss05.common.Define
 import kr.loplab.gnss05.common.Define.*
@@ -43,6 +48,7 @@ class ReferenceCountryActivity : ActivityBase<ActivityReferenceCountryBinding>()
         //viewbinding
         viewModel1 = ViewModelProvider(this).get(ReferenceCountryViewModel::class.java)
         viewBinding.viewModel = viewModel1
+
     }
 
     override fun initListener() {
@@ -288,12 +294,13 @@ class ReferenceCountryActivity : ActivityBase<ActivityReferenceCountryBinding>()
         viewModel1.setRawDatavalue(PrefUtil.getBoolean(this, RAW_DATA_SAVE)) //9 -> data, Viewbinding통합
         viewModel1.setAutoApn(PrefUtil.getBoolean(this, AUTO_APN)) //10 -> data, viewbinding통합
 
-
-
-
         viewBinding.swReferenceCountryAutoplay.isChecked =PrefUtil.getBoolean(applicationContext, REFERENCE_COUNTRY_AUTO_PLAY) //11
         viewBinding.swNetworkAutoConnect.isChecked =PrefUtil.getBoolean(applicationContext, NETWORK_AUTO_CONNECT) //12
         viewBinding.swInnerRadioFec.isChecked =PrefUtil.getBoolean(applicationContext, INNER_RADIO_FEC) //13
+
+
+
+
     }
 
     fun savesettings(){
@@ -318,7 +325,7 @@ class ReferenceCountryActivity : ActivityBase<ActivityReferenceCountryBinding>()
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         if(resultCode== RESULT_OK && requestCode == REQUEST_WORKMANAGER)
         {
-            data?.getIntExtra("selectIndex", 0)?.let { selectWorkManager(it) }
+            selectWorkManager(data!!.getIntExtra("selectIndex", 0))
 
         }
 
@@ -326,9 +333,32 @@ class ReferenceCountryActivity : ActivityBase<ActivityReferenceCountryBinding>()
         {
             initDatabinding()
         }
+
     }
     fun selectWorkManager(index : Int){
 
     }
 
+
+    override fun onResume() {
+        super.onResume()
+        var dbApn = Room.databaseBuilder(this, AppDatabase::class.java, WORKERS_DB)
+            //.allowMainThreadQueries() //메인쓰레드에서 작동시킬 때 사용
+            .fallbackToDestructiveMigration()
+            .build()
+        lifecycleScope.launch(Dispatchers.IO){
+            viewModel1.apn_list = ArrayList(dbApn.workerDao().all)
+            Log.d(TAG, "onResume: ${viewModel1.apn_list}")
+        }
+
+        var dbCors =  Room.databaseBuilder(this, AppDatabase::class.java, Define.SERVERS_DB)
+            .fallbackToDestructiveMigration()
+            //.allowMainThreadQueries() //메인쓰레드에서 작동시킬 때 사용
+            .build()
+        lifecycleScope.launch(Dispatchers.IO){
+            viewModel1.cors_list = ArrayList(dbCors.serverDao().all)
+            Log.d(TAG, "onResume: ${viewModel1.cors_list}")
+        }
+
+    }
 }

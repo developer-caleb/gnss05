@@ -2,6 +2,8 @@ package kr.loplab.gnss05.activities.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import kr.loplab.gnss05.activities.cors_servermanager.Server
+import kr.loplab.gnss05.activities.workmanager.Worker
 import kr.loplab.gnss05.common.OptionList
 
 
@@ -20,6 +22,10 @@ class ReferenceCountryViewModel : ViewModel() {
     var innerRadioIntervalNum =  MutableLiveData<Int>(0)
     var innerRadioPowerNum =  MutableLiveData<Int>(0)
     var auto_apn = MutableLiveData<Boolean>(false)
+    var apnWorkerNum = MutableLiveData<Int>(0)
+    var apn_list = ArrayList<Worker>()
+    var cors_list = ArrayList<Server>()
+
     init {  }
 
     fun btclick() {
