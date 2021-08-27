@@ -79,6 +79,8 @@ public class Define {
     public static final String MOBILE_STATION_RAW_DATA_SAVE = "mobile_station_row_data_save";
     public static final String MOBILE_STATION_DATA_CONNECTION_TYPE = "mobile_station_data_connection_type";
     public static final String MOBILE_STATION_INNER_RADIO_CHANNEL = "mobile_station_inner_radio_channel";
+    public static final String MOBILE_STATION_RADIO_MODE_CHANNEL = "mobile_station_radio_mode_channel";
+
     public static final String MOBILE_STATION_INNER_RADIO_PROTOCOL = "mobile_station_inner_radio_protocol";
     public static final String MOBILE_STATION_INNER_RADIO_INTERVAL = "mobile_station_inner_radio_interval";
     public static final String MOBILE_STATION_INNER_RADIO_FEC = "mobile_station_inner_radio_fec";
@@ -87,6 +89,7 @@ public class Define {
     public static final String MOBILE_STATION_GGA_UPLOAD_INTERVAL = "mobile_station_gga_upload_interval";
     public static final String MOBILE_STATION_NETWORK_AUTO_CONNECT = "mobile_station_network_auto_connect";
     public static final String MOBILE_STATION_NETWORK_SYSTEM = "mobile_station_network_system";
+    public static final String MOBILE_STATION_NETWORK_TRANSFER = "mobile_station_network_transfer";
 
 
     //ROOM

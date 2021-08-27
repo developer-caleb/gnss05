@@ -106,6 +106,19 @@ class MobileStationActivity : ActivityBase<ActivityMobileStationBinding>() {
             }
             dlg.setHeader("채널")
         }
+        viewBinding.layoutRadioModeChannel.setOnClickListener {
+            val dlg = MyDialog(this)
+            var alist = OptionList.INNER_RADIO_CHANNEL_LIST
+            dlg.firstLayoutUse = false
+            dlg.list = alist
+            dlg.selectedposition= viewModel1.radioModeChannelNum.value!!
+            dlg.start("")
+            dlg.setOnListClickedListener { view, i ->
+                viewModel1.radioModeChannelNum.value = i
+                dlg.dismiss()
+            }
+            dlg.setHeader("채널")
+        }
         viewBinding.layoutInnerRadioProtocol.setOnClickListener {
             val dlg = MyDialog(this)
             var alist = OptionList.INNER_RADIO_PROTOCOL_LIST
@@ -204,6 +217,9 @@ class MobileStationActivity : ActivityBase<ActivityMobileStationBinding>() {
             }
             dlg.setHeader("네트워크 시스템")
         }
+        viewBinding.layoutNetworkTransfer.setOnClickListener {
+            viewBinding.swNetworkTransfer.isChecked = !viewBinding.swNetworkTransfer.isChecked
+        } //12
     }
 
     override fun initDatabinding() {
@@ -212,6 +228,8 @@ class MobileStationActivity : ActivityBase<ActivityMobileStationBinding>() {
         viewModel1.setIntvalue(viewModel1.data_connection_type, PrefUtil.getInt2(applicationContext, Define.MOBILE_STATION_DATA_CONNECTION_TYPE))  //2
         viewModel1.setBoolvalue(viewModel1.bool_rawdatasave, PrefUtil.getBoolean(applicationContext, Define.MOBILE_STATION_RAW_DATA_SAVE))  //2
         viewModel1.setIntvalue(viewModel1.innerRadioChannelNum, PrefUtil.getInt2(applicationContext, Define.MOBILE_STATION_INNER_RADIO_CHANNEL))  //7
+        viewModel1.setIntvalue(viewModel1.radioModeChannelNum, PrefUtil.getInt2(applicationContext, Define.MOBILE_STATION_RADIO_MODE_CHANNEL))  //7
+
         viewModel1.setIntvalue(viewModel1.innerRadioProtocolNum, PrefUtil.getInt2(this, MOBILE_STATION_INNER_RADIO_PROTOCOL)) //5
         viewModel1.setIntvalue(viewModel1.innerRadioIntervalNum, PrefUtil.getInt2(applicationContext, Define.MOBILE_STATION_INNER_RADIO_INTERVAL))  //8
         viewBinding.swInnerRadioFec.isChecked =PrefUtil.getBoolean(applicationContext, MOBILE_STATION_INNER_RADIO_FEC) //13
@@ -219,15 +237,18 @@ class MobileStationActivity : ActivityBase<ActivityMobileStationBinding>() {
         viewModel1.setIntvalue(viewModel1.outerRadioCommunicationSpeedNum, PrefUtil.getInt2(applicationContext, Define.MOBILE_STATION_OUTERRADIOCOMMUNICATION_SPEED, 9600))  //14
         viewModel1.setIntvalue(viewModel1.ggaUploadIntervalNum, PrefUtil.getInt2(applicationContext, Define.MOBILE_STATION_GGA_UPLOAD_INTERVAL, 1))  //8
         viewBinding.swNetworkAutoConnect.isChecked =PrefUtil.getBoolean(applicationContext, MOBILE_STATION_NETWORK_AUTO_CONNECT) //12
-        viewModel1.setIntvalue(viewModel1.networkSystemNum, PrefUtil.getInt2(applicationContext, REFERENCE_COUNTRY_NETWORK_SYSTEM))  //6
-
+        viewBinding.swNetworkTransfer.isChecked =PrefUtil.getBoolean(applicationContext, MOBILE_STATION_NETWORK_TRANSFER) //12
+        viewModel1.setIntvalue(viewModel1.networkSystemNum, PrefUtil.getInt2(applicationContext, MOBILE_STATION_NETWORK_SYSTEM))  //6
     }
+
     fun savesettings(){
         PrefUtil.setInt(applicationContext, Define.MOBILE_STATION_CUT_ANGLE, viewModel1.cutAngleNum.value!!)
         PrefUtil.setInt(applicationContext, Define.MOBILE_STATION_COLLECTION_INTERVAL, viewModel1.collectionIntervalNum.value!!) //2
         PrefUtil.setInt(applicationContext, Define.MOBILE_STATION_DATA_CONNECTION_TYPE, viewModel1.data_connection_type.value!!) //2
         PrefUtil.setBoolean(applicationContext, Define.MOBILE_STATION_RAW_DATA_SAVE, viewModel1.bool_rawdatasave.value!!) //9
         PrefUtil.setInt(applicationContext, Define.MOBILE_STATION_INNER_RADIO_CHANNEL, viewModel1.innerRadioChannelNum.value!!) //7
+        PrefUtil.setInt(applicationContext, Define.MOBILE_STATION_RADIO_MODE_CHANNEL, viewModel1.radioModeChannelNum.value!!) //7
+
         PrefUtil.setInt(applicationContext, Define.MOBILE_STATION_INNER_RADIO_PROTOCOL, viewModel1.innerRadioProtocolNum.value!!) //5
         PrefUtil.setInt(applicationContext, Define.MOBILE_STATION_INNER_RADIO_INTERVAL, viewModel1.innerRadioIntervalNum.value!!) //8
         PrefUtil.setBoolean(applicationContext, MOBILE_STATION_INNER_RADIO_FEC, viewBinding.swInnerRadioFec.isChecked) //13
@@ -235,7 +256,8 @@ class MobileStationActivity : ActivityBase<ActivityMobileStationBinding>() {
         PrefUtil.setInt(applicationContext, MOBILE_STATION_OUTERRADIOCOMMUNICATION_SPEED, viewModel1.outerRadioCommunicationSpeedNum.value!!) //??
         PrefUtil.setInt(applicationContext, MOBILE_STATION_GGA_UPLOAD_INTERVAL, viewModel1.ggaUploadIntervalNum.value!!) //??
         PrefUtil.setBoolean(applicationContext, MOBILE_STATION_NETWORK_AUTO_CONNECT, viewBinding.swNetworkAutoConnect.isChecked) //12
-        PrefUtil.setInt(applicationContext, Define.REFERENCE_COUNTRY_NETWORK_SYSTEM, viewModel1.networkSystemNum.value!!) //6
+        PrefUtil.setInt(applicationContext, Define.MOBILE_STATION_NETWORK_SYSTEM, viewModel1.networkSystemNum.value!!) //6
+        PrefUtil.setBoolean(applicationContext, MOBILE_STATION_NETWORK_TRANSFER, viewBinding.swNetworkTransfer.isChecked) //12
 
     }
 

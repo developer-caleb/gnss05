@@ -14,6 +14,7 @@ class MobileStationViewModel : ViewModel() {
     var collectionIntervalNum = MutableLiveData<Int>(0)
     var data_connection_type = MutableLiveData<Int>(0)
     var innerRadioChannelNum = MutableLiveData<Int>(0)
+    var radioModeChannelNum = MutableLiveData<Int>(0)
     var innerRadioProtocolNum = MutableLiveData<Int>(0)
     var innerRadioIntervalNum =  MutableLiveData<Int>(0)
     var innerRadioPowerNum =  MutableLiveData<Int>(0)

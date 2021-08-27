@@ -727,7 +727,9 @@
                         android:layout_weight="0"
                         android:background="@color/grey_EC" />
 
-                    <LinearLayout style="@style/ButtonLayout_STYLE01">
+                    <LinearLayout
+                        android:id="@+id/layout_network_transfer"
+                        style="@style/ButtonLayout_STYLE01">
 
                         <TextView
                             style="@style/Sub_TEXTVIEW_STYLE1"
@@ -735,6 +737,7 @@
                              />
 
                         <Switch
+                            android:id="@+id/sw_network_transfer"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
@@ -769,34 +772,37 @@
 
                     </LinearLayout>
 
-                    <LinearLayout style="@style/ButtonLayout_STYLE01">
 
-                        <LinearLayout style="@style/ButtonLayout_STYLE01">
+                    <!--채널-->
+                    <LinearLayout style="@style/ButtonLayout_STYLE01"
+                        android:id="@+id/layout_radio_mode_channel"
+                        >
 
-                            <TextView
-                                style="@style/Sub_TEXTVIEW_STYLE1"
-                                android:text="채널"
-                                 />
+                        <TextView
+                            style="@style/Sub_TEXTVIEW_STYLE1"
+                            android:text="채널"
+                            />
 
-                            <TextView
-                                style="@style/Sub_TEXTVIEW_STYLE3"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="0"
-                                android:text="5" />
+                        <TextView
+                            android:id="@+id/tv_radio_mode_channel"
+                            style="@style/Sub_TEXTVIEW_STYLE3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0"
+                            android:text="@{Optionlist.Companion.INNER_RADIO_CHANNEL_LIST.get(viewModel.radioModeChannelNum)}" />
+                        />
 
-                            <ImageView
-                                android:layout_width="@dimen/rightArrowSize"
-                                android:layout_height="@dimen/rightArrowSize"
-                                android:layout_weight="0"
-                                android:padding="5dp"
-                                android:layout_marginRight="8dp"
-                                app:srcCompat="@drawable/next_icon" />
-
-
-                        </LinearLayout>
+                        <ImageView
+                            android:layout_width="@dimen/rightArrowSize"
+                            android:layout_height="@dimen/rightArrowSize"
+                            android:layout_weight="0"
+                            android:padding="5dp"
+                            android:layout_marginRight="8dp"
+                            app:srcCompat="@drawable/next_icon" />
 
                     </LinearLayout>
+
+
 
                     <View
                         android:layout_width="match_parent"
