@@ -33,7 +33,7 @@ class MobileStationActivity : ActivityBase<ActivityMobileStationBinding>() {
         viewBinding.layoutConnectSave.setOnClickListener {  }
         viewBinding.layoutCutAngle.setOnClickListener {
             val dlg = MyDialog(this)
-            var alist = OptionList.CUT_ANGLE_List
+            var alist = OptionList.CUT_ANGLE_LIST
             dlg.firstLayoutUse = true
             dlg.list = alist
             dlg.input_text_str = viewBinding.tvCutAngle.text.toString()
@@ -68,7 +68,7 @@ class MobileStationActivity : ActivityBase<ActivityMobileStationBinding>() {
 
         viewBinding.layoutDataConnectionType.setOnClickListener {
             val dlg = MyDialog(this)
-            var alist = OptionList.REFERENCE_COUNTRY_DATA_CONNECTION_TYPE_List
+            var alist = OptionList.MOBILESTATION_DATA_CONNECTION_TYPE_LIST
             dlg.firstLayoutUse = false
             dlg.list = alist
             dlg.selectedposition= viewModel1.data_connection_type.value!!

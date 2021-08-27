@@ -238,7 +238,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="0"
-                        android:text="@{Optionlist.Companion.MOBILESTATION_DATA_CONNECTION_TYPE_List.get(viewModel.data_connect_type)}" />
+                        android:text="@{Optionlist.Companion.MOBILESTATION_DATA_CONNECTION_TYPE_LIST.get(viewModel.data_connect_type)}" />
 
                     <ImageView
                         android:layout_width="@dimen/rightArrowSize"

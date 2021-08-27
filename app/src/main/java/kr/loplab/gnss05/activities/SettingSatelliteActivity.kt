@@ -1,21 +1,16 @@
 package kr.loplab.gnss05.activities
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.InputType
 import android.util.Log
 import android.widget.Switch
-import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.activity_setting_satellite.*
 import kr.loplab.gnss02.ActivityBase
 import kr.loplab.gnss05.MyDialog
 import kr.loplab.gnss05.R
-import kr.loplab.gnss05.common.Define
 import kr.loplab.gnss05.common.Define.*
 import kr.loplab.gnss05.common.OptionList
 import kr.loplab.gnss05.common.PrefUtil
 import kr.loplab.gnss05.databinding.ActivitySettingSatelliteBinding
-import kr.loplab.gnss05.databinding.ActivityStopSurveyBinding
 
 class SettingSatelliteActivity : ActivityBase<ActivitySettingSatelliteBinding>() {
     override val layoutResourceId: Int
@@ -55,7 +50,7 @@ class SettingSatelliteActivity : ActivityBase<ActivitySettingSatelliteBinding>()
         viewBinding.layoutCutAngle.setOnClickListener {
             Log.d(TAG, "initListener: cutangle")
             val dlg = MyDialog(this)
-            var alist = OptionList.CUT_ANGLE_List
+            var alist = OptionList.CUT_ANGLE_LIST
             dlg.firstLayoutUse = true
             dlg.list = alist
             dlg.input_text_str = viewBinding.tvCutAngle.text.toString()

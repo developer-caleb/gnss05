@@ -21,7 +21,7 @@ import kr.loplab.gnss05.common.Define.*
 import kr.loplab.gnss05.common.OptionList
 import kr.loplab.gnss05.common.OptionList.Companion.COLLECTION_INTERVAL_LIST
 import kr.loplab.gnss05.common.OptionList.Companion.COMMUNICATION_SPEED_LIST
-import kr.loplab.gnss05.common.OptionList.Companion.REFERENCE_COUNTRY_DATA_CONNECTION_TYPE_List
+import kr.loplab.gnss05.common.OptionList.Companion.REFERENCE_COUNTRY_DATA_CONNECTION_TYPE_LIST
 import kr.loplab.gnss05.common.OptionList.Companion.DEPLACEMENT_MODE_LIST
 import kr.loplab.gnss05.common.OptionList.Companion.INNER_RADIO_CHANNEL_LIST
 import kr.loplab.gnss05.common.OptionList.Companion.INNER_RADIO_INTERVAL_LIST
@@ -124,7 +124,7 @@ class ReferenceCountryActivity : ActivityBase<ActivityReferenceCountryBinding>()
         }
         viewBinding.layoutDataConnectionType.setOnClickListener {
             val dlg = MyDialog(this)
-            var alist = REFERENCE_COUNTRY_DATA_CONNECTION_TYPE_List
+            var alist = REFERENCE_COUNTRY_DATA_CONNECTION_TYPE_LIST
             dlg.firstLayoutUse = false
             dlg.list = alist
             dlg.selectedposition= viewModel1.data_connection_type.value!!
