@@ -20,6 +20,7 @@
         <entry key="app/src/main/res/drawable-mdpi/switch_track_selector.xml" value="0.30277777777777776" />
         <entry key="app/src/main/res/drawable-v24/ripple_circle.xml" value="0.35104166666666664" />
         <entry key="app/src/main/res/drawable-xxhdpi/ripple_rect.xml" value="0.253125" />
+        <entry key="app/src/main/res/drawable-xxhdpi/ripple_rect_white.xml" value="0.31203703703703706" />
         <entry key="app/src/main/res/drawable/bt_background_black.xml" value="0.260546875" />
         <entry key="app/src/main/res/drawable/checkbox_custom.xml" value="0.17546296296296296" />
         <entry key="app/src/main/res/drawable/ic_0_0_work2.xml" value="0.22" />
@@ -55,7 +56,7 @@
         <entry key="app/src/main/res/layout/activity_hamburger.xml" value="0.238671875" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.2" />
         <entry key="app/src/main/res/layout/activity_main2.xml" value="0.1" />
-        <entry key="app/src/main/res/layout/activity_mobile_station.xml" value="0.20846730975348338" />
+        <entry key="app/src/main/res/layout/activity_mobile_station.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_naver_map.xml" value="0.1791457036498033" />
         <entry key="app/src/main/res/layout/activity_position_information.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_reference_coordinate_setting.xml" value="0.246484375" />

@@ -13,6 +13,7 @@ class MobileStationViewModel : ViewModel() {
     var bool_rawdatasave = MutableLiveData<Boolean>(false)
     var collectionIntervalNum = MutableLiveData<Int>(0)
     var data_connection_type = MutableLiveData<Int>(0)
+    var innerRadioChannelNum = MutableLiveData<Int>(0)
    /* var onprogress = MutableLiveData<Boolean>(false)
 
     var networkSystemNum = MutableLiveData<Int>(0)
@@ -21,7 +22,7 @@ class MobileStationViewModel : ViewModel() {
     var startModeNum = MutableLiveData<Int>(0)
     var deplaceModeNum = MutableLiveData<Int>(0)
 
-    var innerRadioChannelNum = MutableLiveData<Int>(0)
+
     var innerRadioIntervalNum =  MutableLiveData<Int>(0)
     var innerRadioPowerNum =  MutableLiveData<Int>(0)
     var outerRadioCommunicationSpeedNum =  MutableLiveData<Int>(0)

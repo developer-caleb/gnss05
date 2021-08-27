@@ -16,7 +16,8 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".activities.ReferenceCountryActivity">
+        tools:context=".activities.ReferenceCountryActivity"
+        >
 
         <kr.loplab.gnss05.DefaultHeader
             android:id="@+id/header_01"
@@ -238,7 +239,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="0"
-                        android:text="@{Optionlist.Companion.MOBILESTATION_DATA_CONNECTION_TYPE_LIST.get(viewModel.data_connect_type)}" />
+                        android:text="@{Optionlist.Companion.MOBILESTATION_DATA_CONNECTION_TYPE_LIST.get(viewModel.data_connection_type)}" />
 
                     <ImageView
                         android:layout_width="@dimen/rightArrowSize"
@@ -257,7 +258,9 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:visibility="@{viewModel.data_connection_type == 2 ? View.VISIBLE : View.GONE}"
+                    >
 
                     <View
                         android:layout_width="match_parent"
@@ -265,8 +268,10 @@
                         android:layout_weight="0"
                         android:background="@color/grey_EC" />
 
-
-                    <LinearLayout style="@style/ButtonLayout_STYLE01">
+                    <!--채널-->
+                    <LinearLayout style="@style/ButtonLayout_STYLE01"
+                        android:id="@+id/layout_inner_radio_channel"
+                        >
 
                         <TextView
                             style="@style/Sub_TEXTVIEW_STYLE1"
@@ -274,11 +279,13 @@
                              />
 
                         <TextView
+                            android:id="@+id/tv_inner_radio_channel"
                             style="@style/Sub_TEXTVIEW_STYLE3"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="0"
-                            android:text="3" />
+                            android:text="@{Optionlist.Companion.INNER_RADIO_CHANNEL_LIST.get(viewModel.innerRadioChannelNum)}" />
+                        />
 
                         <ImageView
                             android:layout_width="@dimen/rightArrowSize"
@@ -295,7 +302,7 @@
                         android:layout_height="1dp"
                         android:layout_weight="0"
                         android:background="@color/grey_EC" />
-
+                    <!--주파수-->
                     <LinearLayout style="@style/ButtonLayout_STYLE01">
 
                         <TextView
@@ -320,7 +327,7 @@
                         android:layout_weight="0"
                         android:background="@color/grey_EC" />
 
-
+                    <!--프로토콜-->
                     <LinearLayout style="@style/ButtonLayout_STYLE01">
 
                         <TextView
@@ -347,7 +354,7 @@
                     </LinearLayout>
 
 
-                </LinearLayout>
+
 
 
                 <!---데이터 연결방식[내장 라디오] – 프로토콜 팝업 – Satel 하위옵션-->
@@ -362,7 +369,7 @@
                         android:layout_weight="0"
                         android:background="@color/grey_EC" />
 
-
+                    <!--간격-->
                     <LinearLayout style="@style/ButtonLayout_STYLE01">
 
                         <TextView
@@ -394,7 +401,7 @@
                         android:background="@color/grey_EC" />
 
 
-
+                    <!--FEC-->
                     <LinearLayout style="@style/ButtonLayout_STYLE01">
 
                         <TextView
@@ -431,7 +438,9 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+
+                    >
 
                     <View
                         android:layout_width="match_parent"
@@ -469,12 +478,13 @@
                 </LinearLayout>
 
 
-
+                </LinearLayout>
 
                 <!---데이터 연결방식[외장 라디오] 하위옵션-->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:visibility="@{viewModel.data_connection_type == 3 ? View.VISIBLE : View.GONE}"
                     android:orientation="vertical">
 
                     <View
@@ -521,7 +531,9 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:visibility="@{viewModel.data_connection_type == 1 ? View.VISIBLE : View.GONE}"
+                    >
 
                     <LinearLayout
                         style="@style/ButtonLayout_STYLE01"
@@ -682,7 +694,10 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:visibility="@{viewModel.data_connection_type == 1 ? View.VISIBLE : View.GONE}"
+
+                    >
 
                     <LinearLayout
                         style="@style/ButtonLayout_STYLE01"
@@ -825,7 +840,10 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:visibility="@{viewModel.data_connection_type == 1 ? View.VISIBLE : View.GONE}"
+
+                    >
 
                     <LinearLayout
                         style="@style/ButtonLayout_STYLE01"
@@ -984,7 +1002,10 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:visibility="@{viewModel.data_connection_type == 1 ? View.VISIBLE : View.GONE}"
+
+                    >
 
                     <LinearLayout
                         style="@style/ButtonLayout_STYLE01"
@@ -1139,7 +1160,10 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:visibility="@{viewModel.data_connection_type == 1 ? View.VISIBLE : View.GONE}"
+
+                    >
 
                     <LinearLayout
                         style="@style/ButtonLayout_STYLE01"
@@ -1253,14 +1277,12 @@
                 </LinearLayout>
 
 
-
-
-
-
-
-
-
-
+                <!--마지막에 선-->
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_weight="0"
+                    android:background="@color/grey_EC" />
 
 
 
