@@ -55,7 +55,7 @@
         <entry key="app/src/main/res/layout/activity_hamburger.xml" value="0.238671875" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.2" />
         <entry key="app/src/main/res/layout/activity_main2.xml" value="0.1" />
-        <entry key="app/src/main/res/layout/activity_mobile_station.xml" value="0.29263657957244654" />
+        <entry key="app/src/main/res/layout/activity_mobile_station.xml" value="0.33" />
         <entry key="app/src/main/res/layout/activity_naver_map.xml" value="0.1791457036498033" />
         <entry key="app/src/main/res/layout/activity_position_information.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_reference_coordinate_setting.xml" value="0.246484375" />
@@ -82,7 +82,7 @@
         <entry key="app/src/main/res/layout/coordinate_system_sub10.xml" value="0.246484375" />
         <entry key="app/src/main/res/layout/coordinate_system_sub2.xml" value="0.244140625" />
         <entry key="app/src/main/res/layout/coordinate_system_sub7_2.xml" value="0.11953125" />
-        <entry key="app/src/main/res/layout/dialog1.xml" value="0.22" />
+        <entry key="app/src/main/res/layout/dialog1.xml" value="0.45" />
         <entry key="app/src/main/res/layout/file_call.xml" value="0.25" />
         <entry key="app/src/main/res/layout/file_out.xml" value="0.246484375" />
         <entry key="app/src/main/res/layout/fragment_position_detail_info.xml" value="0.2361111111111111" />

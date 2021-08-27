@@ -33,7 +33,7 @@ class MyDialog(context : Context)
     lateinit var input_text: EditText;
     var input_text_str = "";
     lateinit var title_button : ImageView;
-    lateinit var first_layout_icon : ImageView;
+
     public var firstLayoutUse = true;
     public var list: ArrayList<String>? = null
     var selectedposition = 0
@@ -53,7 +53,7 @@ class MyDialog(context : Context)
         var firstdivider  : View = dialog.findViewById(R.id.first_divider);
         firstdivider.visibility = if(firstLayoutUse) View.VISIBLE else {View.GONE} ;
         input_text = dialog.findViewById(R.id.input_text);
-        first_layout_icon = dialog.findViewById(R.id.first_layout_icon);
+
         // 리사이클러뷰에 표시할 데이터 리스트 생성.
         // 리사이클러뷰에 표시할 데이터 리스트 생성.
         if(list == null){
@@ -63,12 +63,7 @@ class MyDialog(context : Context)
         }} else{
 
         }
-        first_layout_icon.setOnClickListener {
-            input_text.setText("")
-            input_text.requestFocus()
-            val imm: InputMethodManager = context2.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-            imm.showSoftInput(input_text,0)
-        }
+
 
 
         // 리사이클러뷰에 LinearLayoutManager 객체 지정.

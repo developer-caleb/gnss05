@@ -10,8 +10,9 @@ import kr.loplab.gnss05.common.OptionList
 class MobileStationViewModel : ViewModel() {
     private var name = ""
     var cutAngleNum = MutableLiveData<Int>(0)
-   /* var onprogress = MutableLiveData<Boolean>(false)
     var bool_rawdatasave = MutableLiveData<Boolean>(false)
+   /* var onprogress = MutableLiveData<Boolean>(false)
+
     var networkSystemNum = MutableLiveData<Int>(0)
     var data_connect_type = MutableLiveData<Int>(0)
     var network_mode = MutableLiveData<Int>(0)
@@ -56,5 +57,8 @@ class MobileStationViewModel : ViewModel() {
     }*/
     fun setIntvalue(data : MutableLiveData<Int>, num : Int){
         data.value = num
+    }
+    fun setBoolvalue(data : MutableLiveData<Boolean>, boolvalue : Boolean){
+        data.value = boolvalue
     }
 }

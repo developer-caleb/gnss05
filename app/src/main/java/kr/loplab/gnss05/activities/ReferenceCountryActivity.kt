@@ -75,12 +75,13 @@ class ReferenceCountryActivity : ActivityBase<ActivityReferenceCountryBinding>()
                 getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
             imm.showSoftInput(viewBinding.referenceCountryId,0)
         }
-        viewBinding.deleteId.setOnClickListener {
+        //deprecated
+        /*viewBinding.deleteId.setOnClickListener {
             viewBinding.referenceCountryId.setText("")
             val imm: InputMethodManager =
                 getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
             imm.hideSoftInputFromWindow(viewBinding.referenceCountryId.windowToken,0)
-        }
+        }*/
         viewBinding.startModeLayout.setOnClickListener {
             val dlg = MyDialog(this)
             dlg.firstLayoutUse = false
