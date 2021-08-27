@@ -16,8 +16,13 @@ class MobileStationViewModel : ViewModel() {
     var innerRadioChannelNum = MutableLiveData<Int>(0)
     var radioModeChannelNum = MutableLiveData<Int>(0)
     var innerRadioProtocolNum = MutableLiveData<Int>(0)
+    var radioModeProtocolNum = MutableLiveData<Int>(0)
+
+
     var innerRadioIntervalNum =  MutableLiveData<Int>(0)
     var innerRadioPowerNum =  MutableLiveData<Int>(0)
+    var radioModePowerNum = MutableLiveData<Int>(0)
+
     var outerRadioCommunicationSpeedNum =  MutableLiveData<Int>(0)
     var ggaUploadIntervalNum =  MutableLiveData<Int>(0)
     var networkSystemNum = MutableLiveData<Int>(0)
