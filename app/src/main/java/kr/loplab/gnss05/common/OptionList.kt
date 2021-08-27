@@ -23,5 +23,7 @@ class OptionList {
       val DELAY_LIST= arrayListOf<String>("1","2","3","5","10","15","20","25","30","60","120","180")
       val COMMUNICATION_SPEED_LIST= arrayListOf<String>("9600","19200","38400","57600","115200")
 
+      //이동국
+      val MOBILESTATION_DATA_CONNECTION_TYPE_List= arrayListOf<String>("없음","수신기 유심통신","내장 라디오","외장 라디오","단말기 유심통신", "L-band")
   }
 }

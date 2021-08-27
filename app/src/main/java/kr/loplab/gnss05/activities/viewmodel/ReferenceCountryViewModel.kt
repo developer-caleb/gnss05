@@ -4,7 +4,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import kr.loplab.gnss05.activities.cors_servermanager.Server
 import kr.loplab.gnss05.activities.workmanager.Worker
-import kr.loplab.gnss05.common.OptionList
 
 
 class ReferenceCountryViewModel : ViewModel() {
@@ -12,7 +11,7 @@ class ReferenceCountryViewModel : ViewModel() {
     var onprogress = MutableLiveData<Boolean>(false)
     var bool_rawdatasave = MutableLiveData<Boolean>(false)
     var networkSystemNum = MutableLiveData<Int>(0)
-    var data_connect_type = MutableLiveData<Int>(0)
+    var data_connection_type = MutableLiveData<Int>(0)
     var network_mode = MutableLiveData<Int>(0)
     var innerRadioProtocolNum = MutableLiveData<Int>(0)
     var startModeNum = MutableLiveData<Int>(0)
@@ -39,7 +38,7 @@ class ReferenceCountryViewModel : ViewModel() {
         bool_rawdatasave.value = bool
     }
     fun setDataConnectionType(num : Int){
-      data_connect_type.value = num
+      data_connection_type.value = num
     }
     fun setNetworkMode(num : Int){
         network_mode.value = num

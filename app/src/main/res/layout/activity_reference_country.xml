@@ -361,7 +361,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="0"
-                        android:text="@{Optionlist.Companion.REFERENCE_COUNTRY_DATA_CONNECTION_TYPE_List.get(viewModel.data_connect_type)}" />
+                        android:text="@{Optionlist.Companion.REFERENCE_COUNTRY_DATA_CONNECTION_TYPE_List.get(viewModel.data_connection_type)}" />
 
                     <ImageView
                         android:layout_width="@dimen/rightArrowSize"
@@ -383,7 +383,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:orientation="vertical"
-                    android:visibility="@{viewModel.data_connect_type == 0 ? View.VISIBLE : View.GONE }"
+                    android:visibility="@{viewModel.data_connection_type == 0 ? View.VISIBLE : View.GONE }"
                     >
 
                     <View
@@ -1269,7 +1269,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:orientation="vertical"
-                        android:visibility="@{viewModel.data_connect_type == 1  ? View.VISIBLE : View.GONE}"
+                        android:visibility="@{viewModel.data_connection_type == 1  ? View.VISIBLE : View.GONE}"
                         >
 
 
@@ -1277,7 +1277,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="1dp"
                             android:layout_weight="0"
-                            android:visibility="@{viewModel.data_connect_type == 1 ? View.VISIBLE : View.GONE}"
+                            android:visibility="@{viewModel.data_connection_type == 1 ? View.VISIBLE : View.GONE}"
                             android:background="@color/grey_EC" />
 
                         <LinearLayout

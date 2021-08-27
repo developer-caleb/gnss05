@@ -11,15 +11,16 @@ class MobileStationViewModel : ViewModel() {
     private var name = ""
     var cutAngleNum = MutableLiveData<Int>(0)
     var bool_rawdatasave = MutableLiveData<Boolean>(false)
+    var collectionIntervalNum = MutableLiveData<Int>(0)
+    var data_connection_type = MutableLiveData<Int>(0)
    /* var onprogress = MutableLiveData<Boolean>(false)
 
     var networkSystemNum = MutableLiveData<Int>(0)
-    var data_connect_type = MutableLiveData<Int>(0)
     var network_mode = MutableLiveData<Int>(0)
     var innerRadioProtocolNum = MutableLiveData<Int>(0)
     var startModeNum = MutableLiveData<Int>(0)
     var deplaceModeNum = MutableLiveData<Int>(0)
-    var collectionIntervalNum = MutableLiveData<Int>(0)
+
     var innerRadioChannelNum = MutableLiveData<Int>(0)
     var innerRadioIntervalNum =  MutableLiveData<Int>(0)
     var innerRadioPowerNum =  MutableLiveData<Int>(0)

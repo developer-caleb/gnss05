@@ -127,13 +127,11 @@ class ReferenceCountryActivity : ActivityBase<ActivityReferenceCountryBinding>()
             var alist = REFERENCE_COUNTRY_DATA_CONNECTION_TYPE_List
             dlg.firstLayoutUse = false
             dlg.list = alist
-            dlg.selectedposition= viewModel1.data_connect_type.value!!
+            dlg.selectedposition= viewModel1.data_connection_type.value!!
             dlg.start("")
             dlg.setOnListClickedListener { view, i ->
                 Log.d(TAG, "initListener: $i")
                 viewModel1.setDataConnectionType(i)
-                viewBinding.tvDataConnectionType.text = alist[i]
-                dlg.refresh()
                 dlg.dismiss()
             }
             dlg.setHeader("데이터 연결방식")
@@ -141,7 +139,7 @@ class ReferenceCountryActivity : ActivityBase<ActivityReferenceCountryBinding>()
         viewBinding.layoutNetworkSystem.setOnClickListener {
             val dlg = MyDialog(this)
             var alist = NETWORK_SYSTEM_List
-            var prefvalue = Define.NETWORK_SYSTEM
+            var prefvalue = Define.REFERENCE_COUNTRY_NETWORK_SYSTEM
             dlg.firstLayoutUse = false
             dlg.list = alist
             dlg.selectedposition= viewModel1.networkSystemNum.value!!
@@ -178,7 +176,7 @@ class ReferenceCountryActivity : ActivityBase<ActivityReferenceCountryBinding>()
         viewBinding.layoutNetworkMode.setOnClickListener {
             val dlg = MyDialog(this)
             var alist = NETWORK_MODE_List
-            var prefvalue = Define.NETWORK_MODE
+            var prefvalue = Define.REFERENCE_COUNTRY_NETWORK_MODE
             dlg.firstLayoutUse = false
             dlg.list = alist
             dlg.selectedposition= viewModel1.network_mode.value!!
@@ -196,7 +194,7 @@ class ReferenceCountryActivity : ActivityBase<ActivityReferenceCountryBinding>()
         viewBinding.layoutInnerRadioProtocol.setOnClickListener {
             val dlg = MyDialog(this)
             var alist = INNER_RADIO_PROTOCOL_LIST
-            var prefvalue = Define.INNER_RADIO_PROTOCOL
+            var prefvalue = Define.REFERENCE_COUNTRY_INNER_RADIO_PROTOCOL
             dlg.firstLayoutUse = false
             dlg.list = alist
             dlg.selectedposition= viewModel1.innerRadioProtocolNum.value!!
@@ -214,7 +212,7 @@ class ReferenceCountryActivity : ActivityBase<ActivityReferenceCountryBinding>()
         viewBinding.layoutInnerRadioChannel.setOnClickListener {
             val dlg = MyDialog(this)
             var alist = INNER_RADIO_CHANNEL_LIST
-            var prefvalue = Define.INNER_RADIO_CHANNEL
+            var prefvalue = Define.REFERENCE_COUNTRY_INNER_RADIO_CHANNEL
             dlg.firstLayoutUse = false
             dlg.list = alist
             dlg.selectedposition= viewModel1.innerRadioChannelNum.value!!
@@ -332,26 +330,26 @@ class ReferenceCountryActivity : ActivityBase<ActivityReferenceCountryBinding>()
     }
 
     override fun initDatabinding() {
-        viewModel1.setIntvalue(viewModel1.startModeNum, PrefUtil.getInt2(applicationContext, Define.START_MODE))  //0
-        viewModel1.setIntvalue(viewModel1.deplaceModeNum, PrefUtil.getInt2(applicationContext, Define.DEPLACEMENT_MODE))  //1
-        viewModel1.setIntvalue(viewModel1.collectionIntervalNum, PrefUtil.getInt2(applicationContext, Define.COLLECTION_INTERVAL))  //2
-        viewModel1.setIntvalue(viewModel1.innerRadioChannelNum, PrefUtil.getInt2(applicationContext, Define.INNER_RADIO_CHANNEL))  //7
-        viewModel1.setIntvalue(viewModel1.innerRadioIntervalNum, PrefUtil.getInt2(applicationContext, Define.INNER_RADIO_INTERVAL))  //8
-        viewModel1.setIntvalue(viewModel1.innerRadioPowerNum, PrefUtil.getInt2(applicationContext, Define.INNER_RADIO_POWER))  //14
-        viewModel1.setIntvalue(viewModel1.outerRadioCommunicationSpeedNum, PrefUtil.getInt2(applicationContext, Define.OUTERRADIOCOMMUNICATION_SPEED, 9600))  //14
-        viewModel1.setIntvalue(viewModel1.apnIndex, PrefUtil.getInt2(applicationContext, Define.APN_INDEX_NUM))  //14
-        viewModel1.setIntvalue(viewModel1.corsIndex, PrefUtil.getInt2(applicationContext, Define.CORS_INDEX_NUM))  //14
+        viewModel1.setIntvalue(viewModel1.startModeNum, PrefUtil.getInt2(applicationContext, Define.REFERENCE_COUNTRY_START_MODE))  //0
+        viewModel1.setIntvalue(viewModel1.deplaceModeNum, PrefUtil.getInt2(applicationContext, Define.REFERENCE_COUNTRY_DEPLACEMENT_MODE))  //1
+        viewModel1.setIntvalue(viewModel1.collectionIntervalNum, PrefUtil.getInt2(applicationContext, Define.REFERENCE_COUNTRY_COLLECTION_INTERVAL))  //2
+        viewModel1.setIntvalue(viewModel1.innerRadioChannelNum, PrefUtil.getInt2(applicationContext, Define.REFERENCE_COUNTRY_INNER_RADIO_CHANNEL))  //7
+        viewModel1.setIntvalue(viewModel1.innerRadioIntervalNum, PrefUtil.getInt2(applicationContext, Define.REFERENCE_COUNTRY_INNER_RADIO_INTERVAL))  //8
+        viewModel1.setIntvalue(viewModel1.innerRadioPowerNum, PrefUtil.getInt2(applicationContext, Define.REFERENCE_COUNTRY_INNER_RADIO_POWER))  //14
+        viewModel1.setIntvalue(viewModel1.outerRadioCommunicationSpeedNum, PrefUtil.getInt2(applicationContext, Define.REFERENCE_COUNTRY_OUTERRADIOCOMMUNICATION_SPEED, 9600))  //14
+        viewModel1.setIntvalue(viewModel1.apnIndex, PrefUtil.getInt2(applicationContext, Define.REFERENCE_COUNTRY_APN_INDEX_NUM))  //14
+        viewModel1.setIntvalue(viewModel1.corsIndex, PrefUtil.getInt2(applicationContext, Define.REFERENCE_COUNTRY_CORS_INDEX_NUM))  //14
 
-        viewModel1.setDataConnectionType(PrefUtil.getInt2(this, DATA_CONNECTION_TYPE)) //3
-        viewModel1.setNetworkMode(PrefUtil.getInt2(this, NETWORK_MODE)) //4
-        viewModel1.setInnerRadioProtocol(PrefUtil.getInt2(this, INNER_RADIO_PROTOCOL)) //5
-        viewModel1.setNetworkSystemNum(PrefUtil.getInt2(applicationContext, NETWORK_SYSTEM))  //6
-        viewModel1.setRawDatavalue(PrefUtil.getBoolean(this, RAW_DATA_SAVE)) //9 -> data, Viewbinding통합
-        viewModel1.setAutoApn(PrefUtil.getBoolean(this, AUTO_APN)) //10 -> data, viewbinding통합
+        viewModel1.setDataConnectionType(PrefUtil.getInt2(this, REFERENCE_COUNTRY_DATA_CONNECTION_TYPE)) //3
+        viewModel1.setNetworkMode(PrefUtil.getInt2(this, REFERENCE_COUNTRY_NETWORK_MODE)) //4
+        viewModel1.setInnerRadioProtocol(PrefUtil.getInt2(this, REFERENCE_COUNTRY_INNER_RADIO_PROTOCOL)) //5
+        viewModel1.setNetworkSystemNum(PrefUtil.getInt2(applicationContext, REFERENCE_COUNTRY_NETWORK_SYSTEM))  //6
+        viewModel1.setRawDatavalue(PrefUtil.getBoolean(this, REFERENCE_COUNTRY_RAW_DATA_SAVE)) //9 -> data, Viewbinding통합
+        viewModel1.setAutoApn(PrefUtil.getBoolean(this, REFERENCE_COUNTRY_AUTO_APN)) //10 -> data, viewbinding통합
 
         viewBinding.swReferenceCountryAutoplay.isChecked =PrefUtil.getBoolean(applicationContext, REFERENCE_COUNTRY_AUTO_PLAY) //11
-        viewBinding.swNetworkAutoConnect.isChecked =PrefUtil.getBoolean(applicationContext, NETWORK_AUTO_CONNECT) //12
-        viewBinding.swInnerRadioFec.isChecked =PrefUtil.getBoolean(applicationContext, INNER_RADIO_FEC) //13
+        viewBinding.swNetworkAutoConnect.isChecked =PrefUtil.getBoolean(applicationContext, REFERENCE_COUNTRY_NETWORK_AUTO_CONNECT) //12
+        viewBinding.swInnerRadioFec.isChecked =PrefUtil.getBoolean(applicationContext, REFERENCE_COUNTRY_INNER_RADIO_FEC) //13
         dbsetting()
         ApnSettings(viewModel1.apnIndex.value!!)
         CorsSettings(viewModel1.corsIndex.value!!)
@@ -382,25 +380,25 @@ class ReferenceCountryActivity : ActivityBase<ActivityReferenceCountryBinding>()
     }
 
     fun savesettings(){
-        PrefUtil.setInt(applicationContext, Define.START_MODE, viewModel1.startModeNum.value!!) //0
-        PrefUtil.setInt(applicationContext, Define.DEPLACEMENT_MODE, viewModel1.deplaceModeNum.value!!) //1
-        PrefUtil.setInt(applicationContext, Define.COLLECTION_INTERVAL, viewModel1.collectionIntervalNum.value!!) //2
-        PrefUtil.setInt(applicationContext, Define.DATA_CONNECTION_TYPE, viewModel1.data_connect_type.value!!) //3
-        PrefUtil.setInt(applicationContext, Define.NETWORK_MODE, viewModel1.network_mode.value!!) //4
-        PrefUtil.setInt(applicationContext, Define.INNER_RADIO_PROTOCOL, viewModel1.innerRadioProtocolNum.value!!) //5
-        PrefUtil.setInt(applicationContext, Define.NETWORK_SYSTEM, viewModel1.networkSystemNum.value!!) //6
-        PrefUtil.setInt(applicationContext, Define.INNER_RADIO_CHANNEL, viewModel1.innerRadioChannelNum.value!!) //7
-        PrefUtil.setInt(applicationContext, Define.INNER_RADIO_INTERVAL, viewModel1.innerRadioIntervalNum.value!!) //8
-        PrefUtil.setInt(applicationContext, Define.INNER_RADIO_POWER, viewModel1.innerRadioPowerNum.value!!) //14
-        PrefUtil.setInt(applicationContext, APN_INDEX_NUM, viewModel1.apnIndex.value!!) //??
-        PrefUtil.setInt(applicationContext, CORS_INDEX_NUM, viewModel1.corsIndex.value!!) //??
-        PrefUtil.setInt(applicationContext, OUTERRADIOCOMMUNICATION_SPEED, viewModel1.outerRadioCommunicationSpeedNum.value!!) //??
+        PrefUtil.setInt(applicationContext, Define.REFERENCE_COUNTRY_START_MODE, viewModel1.startModeNum.value!!) //0
+        PrefUtil.setInt(applicationContext, Define.REFERENCE_COUNTRY_DEPLACEMENT_MODE, viewModel1.deplaceModeNum.value!!) //1
+        PrefUtil.setInt(applicationContext, Define.REFERENCE_COUNTRY_COLLECTION_INTERVAL, viewModel1.collectionIntervalNum.value!!) //2
+        PrefUtil.setInt(applicationContext, Define.REFERENCE_COUNTRY_DATA_CONNECTION_TYPE, viewModel1.data_connection_type.value!!) //3
+        PrefUtil.setInt(applicationContext, Define.REFERENCE_COUNTRY_NETWORK_MODE, viewModel1.network_mode.value!!) //4
+        PrefUtil.setInt(applicationContext, Define.REFERENCE_COUNTRY_INNER_RADIO_PROTOCOL, viewModel1.innerRadioProtocolNum.value!!) //5
+        PrefUtil.setInt(applicationContext, Define.REFERENCE_COUNTRY_NETWORK_SYSTEM, viewModel1.networkSystemNum.value!!) //6
+        PrefUtil.setInt(applicationContext, Define.REFERENCE_COUNTRY_INNER_RADIO_CHANNEL, viewModel1.innerRadioChannelNum.value!!) //7
+        PrefUtil.setInt(applicationContext, Define.REFERENCE_COUNTRY_INNER_RADIO_INTERVAL, viewModel1.innerRadioIntervalNum.value!!) //8
+        PrefUtil.setInt(applicationContext, Define.REFERENCE_COUNTRY_INNER_RADIO_POWER, viewModel1.innerRadioPowerNum.value!!) //14
+        PrefUtil.setInt(applicationContext, REFERENCE_COUNTRY_APN_INDEX_NUM, viewModel1.apnIndex.value!!) //??
+        PrefUtil.setInt(applicationContext, REFERENCE_COUNTRY_CORS_INDEX_NUM, viewModel1.corsIndex.value!!) //??
+        PrefUtil.setInt(applicationContext, REFERENCE_COUNTRY_OUTERRADIOCOMMUNICATION_SPEED, viewModel1.outerRadioCommunicationSpeedNum.value!!) //??
 
         PrefUtil.setBoolean(applicationContext, REFERENCE_COUNTRY_AUTO_PLAY, viewBinding.swReferenceCountryAutoplay.isChecked) //11
-        PrefUtil.setBoolean(applicationContext, NETWORK_AUTO_CONNECT, viewBinding.swNetworkAutoConnect.isChecked) //12
-        PrefUtil.setBoolean(applicationContext, INNER_RADIO_FEC, viewBinding.swInnerRadioFec.isChecked) //13
-        PrefUtil.setBoolean(applicationContext, RAW_DATA_SAVE, viewModel1.bool_rawdatasave.value!!) //9
-        PrefUtil.setBoolean(applicationContext, AUTO_APN, viewModel1.auto_apn.value!!) //10
+        PrefUtil.setBoolean(applicationContext, REFERENCE_COUNTRY_NETWORK_AUTO_CONNECT, viewBinding.swNetworkAutoConnect.isChecked) //12
+        PrefUtil.setBoolean(applicationContext, REFERENCE_COUNTRY_INNER_RADIO_FEC, viewBinding.swInnerRadioFec.isChecked) //13
+        PrefUtil.setBoolean(applicationContext, REFERENCE_COUNTRY_RAW_DATA_SAVE, viewModel1.bool_rawdatasave.value!!) //9
+        PrefUtil.setBoolean(applicationContext, REFERENCE_COUNTRY_AUTO_APN, viewModel1.auto_apn.value!!) //10
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

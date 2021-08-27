@@ -183,7 +183,9 @@
                         android:layout_weight="0"
                         android:background="@color/grey_EC" />
 
-                    <LinearLayout style="@style/ButtonLayout_STYLE01">
+                    <LinearLayout
+                        android:id="@+id/layout_collection_interval"
+                        style="@style/ButtonLayout_STYLE01">
 
                         <TextView
                             style="@style/Sub_TEXTVIEW_STYLE1"
@@ -191,11 +193,13 @@
                              />
 
                         <TextView
+                            android:id="@+id/tv_collection_interval"
                             style="@style/Sub_TEXTVIEW_STYLE3"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="0"
-                            android:text="1HZ" />
+                            android:text="@{Optionlist.Companion.COLLECTION_INTERVAL_LIST.get(viewModel.collectionIntervalNum)}" />
+
 
                         <ImageView
                             android:layout_width="@dimen/rightArrowSize"
@@ -218,6 +222,7 @@
                     android:background="@color/grey_cc" />
 
                 <LinearLayout
+                    android:id="@+id/layout_data_connection_type"
                     style="@style/ButtonLayout_STYLE01"
                     >
 
@@ -228,11 +233,12 @@
 
 
                     <TextView
+                        android:id="@+id/tv_data_connection_type"
                         style="@style/Sub_TEXTVIEW_STYLE3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="0"
-                        android:text="수신기 유심통신" />
+                        android:text="@{Optionlist.Companion.MOBILESTATION_DATA_CONNECTION_TYPE_List.get(viewModel.data_connect_type)}" />
 
                     <ImageView
                         android:layout_width="@dimen/rightArrowSize"

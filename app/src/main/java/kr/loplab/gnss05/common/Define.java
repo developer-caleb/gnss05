@@ -16,29 +16,34 @@ public class Define {
     public static final int REQUEST_WORKMANAGER = 1006;
     public static final int REQUEST_CORS_SERVER_MANAGER = 1007;
 
-    //SharedPreference Code REFERENCE_COUNTRY
+
     public static final String RECYCLERVIEW_LIST_MODE = "recyclerview_mode";
     public static final String EQUIPMENT_MAKER = "equipment_maker";
     public static final String CONNECT_MODE = "connect_mode";
-    public static final String START_MODE = "start_mode";
-    public static final String DEPLACEMENT_MODE = "deplacement_mode";
-    public static final String COLLECTION_INTERVAL = "collection_interval";
-    public static final String DATA_CONNECTION_TYPE = "data_connection_type";
-    public static final String REFERENCE_COUNTRY_AUTO_PLAY = "reference_country_auto_play";
-    public static final String RAW_DATA_SAVE = "row_data_save";
-    public static final String NETWORK_AUTO_CONNECT = "network_auto_connect";
-    public static final String NETWORK_MODE = "network_mode";
-    public static final String NETWORK_SYSTEM = "network_system";
-    public static final String INNER_RADIO_CHANNEL = "inner_radio_channel";
-    public static final String INNER_RADIO_PROTOCOL = "inner_radio_protocol";
-    public static final String INNER_RADIO_INTERVAL = "inner_radio_interval";
-    public static final String INNER_RADIO_FEC = "inner_radio_fec";
-    public static final String INNER_RADIO_POWER = "inner_radio_power";
-    public static final String OUTERRADIOCOMMUNICATION_SPEED = "outer_radio_communication_speed";
-    public static final String DUALCOMMUNICATION_SPEED = "dual_communication_speed";
-    public static final String AUTO_APN = "auto_apn";
-    public static final String APN_INDEX_NUM = "apn_index_num";
-    public static final String CORS_INDEX_NUM = "cors_index_num";
+
+
+    //SharedPreference Code REFERENCE_COUNTRY
+    public static final String REFERENCE_COUNTRY_START_MODE = "reference_country_start_mode";
+    public static final String REFERENCE_COUNTRY_DEPLACEMENT_MODE = "reference_country_deplacement_mode";
+    public static final String REFERENCE_COUNTRY_COLLECTION_INTERVAL = "reference_country_collection_interval";
+    public static final String REFERENCE_COUNTRY_DATA_CONNECTION_TYPE = "reference_country_data_connection_type";
+    public static final String REFERENCE_COUNTRY_AUTO_PLAY = "reference_country_reference_country_auto_play";
+    public static final String REFERENCE_COUNTRY_RAW_DATA_SAVE = "reference_country_row_data_save";
+    public static final String REFERENCE_COUNTRY_NETWORK_AUTO_CONNECT = "reference_country_network_auto_connect";
+    public static final String REFERENCE_COUNTRY_NETWORK_MODE = "reference_country_network_mode";
+    public static final String REFERENCE_COUNTRY_NETWORK_SYSTEM = "reference_country_network_system";
+    public static final String REFERENCE_COUNTRY_INNER_RADIO_CHANNEL = "reference_country_inner_radio_channel";
+    public static final String REFERENCE_COUNTRY_INNER_RADIO_PROTOCOL = "reference_country_inner_radio_protocol";
+    public static final String REFERENCE_COUNTRY_INNER_RADIO_INTERVAL = "reference_country_inner_radio_interval";
+    public static final String REFERENCE_COUNTRY_INNER_RADIO_FEC = "reference_country_inner_radio_fec";
+    public static final String REFERENCE_COUNTRY_INNER_RADIO_POWER = "reference_country_inner_radio_power";
+    public static final String REFERENCE_COUNTRY_OUTERRADIOCOMMUNICATION_SPEED = "reference_country_outer_radio_communication_speed";
+    public static final String DUALCOMMUNICATION_SPEED = "reference_country_dual_communication_speed";
+    public static final String REFERENCE_COUNTRY_AUTO_APN = "reference_country_auto_apn";
+    public static final String REFERENCE_COUNTRY_APN_INDEX_NUM = "reference_country_apn_index_num";
+    public static final String REFERENCE_COUNTRY_CORS_INDEX_NUM = "reference_country_cors_index_num";
+
+
 
     //SharedPreference Code REFERENCE_COUNTRY_COORDINATE_SETTING
     public static final String REFERENCE_COUNTRY_COORDINATE_SETTING_NAME = "reference_country_coordinate_setting_name";
@@ -70,9 +75,9 @@ public class Define {
 
     //SharedPreference Code MOBILE STATION
     public static final String MOBILE_STATION_CUT_ANGLE= "mobile_station_cut_angle";
-
-
-
+    public static final String MOBILE_STATION_COLLECTION_INTERVAL = "mobile_station_collection_interval";
+    public static final String MOBILE_STATION_RAW_DATA_SAVE = "mobile_station_row_data_save";
+    public static final String MOBILE_STATION_DATA_CONNECTION_TYPE = "mobile_station_data_connection_type";
 
 
     //ROOM
