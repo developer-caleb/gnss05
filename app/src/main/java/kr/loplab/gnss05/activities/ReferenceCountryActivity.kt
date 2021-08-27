@@ -43,19 +43,11 @@ class ReferenceCountryActivity : ActivityBase<ActivityReferenceCountryBinding>()
     var corsPwView = false;
 
     override fun init() {
-        val ab: ActionBar? = supportActionBar
-        ab?.title ="기준국설정";
-        //viewbinding
         viewModel1 = ViewModelProvider(this).get(ReferenceCountryViewModel::class.java)
         viewBinding.viewModel = viewModel1
     }
-
-    /*TODO
-    * COrs server
-      표에서 선택해서 확인해도 업데이트가 안 됨
-      리스트에서 선택했을 때는 업데이트가 됨
-    * */
     override fun initListener() {
+        viewBinding.layoutConnectSave.setOnClickListener {  }
         viewBinding.settingSatelliteBt.setOnClickListener {
             Log.d(TAG, "initListener: settingSatelliteBt clicked")
             intent = Intent(this, SettingSatelliteActivity::class.java)
@@ -65,12 +57,10 @@ class ReferenceCountryActivity : ActivityBase<ActivityReferenceCountryBinding>()
             savesettings()
             Log.d(TAG, "initListener: saveAndApplyBt clicked")
         }
-
         viewBinding.applyBt.setOnClickListener {
             Log.d(TAG, "initListener: applyBt clicked")
         }
         viewBinding.header01.setOnBackButtonClickListener { onBackPressed();}
-
         viewBinding.btOpenWorkManager.setOnClickListener {
             intent = Intent(this, WorkManagerActivity::class.java)
             ActivityCompat.startActivityForResult(this, intent, REQUEST_WORKMANAGER, null)
@@ -103,8 +93,7 @@ class ReferenceCountryActivity : ActivityBase<ActivityReferenceCountryBinding>()
                 if(i==1){
                     intent = Intent(this, ReferenceCoordinateSetting::class.java)
                     startActivity(intent);
-                }
-            }
+                } }
             dlg.setHeader("시작 모드")
         }
        viewBinding.layoutDeplacementMode.setOnClickListener {
@@ -166,7 +155,6 @@ class ReferenceCountryActivity : ActivityBase<ActivityReferenceCountryBinding>()
             }
             dlg.setHeader("네트워크 시스템")
         }
-
         viewBinding.layoutReferenceCountryAutoplay.setOnClickListener {
             viewBinding.swReferenceCountryAutoplay.isChecked = !viewBinding.swReferenceCountryAutoplay.isChecked
         } //11
@@ -271,6 +259,7 @@ class ReferenceCountryActivity : ActivityBase<ActivityReferenceCountryBinding>()
             var alist = COMMUNICATION_SPEED_LIST
             dlg.firstLayoutUse = true
             dlg.list = alist
+            dlg.input_text_str = viewBinding.tvOuterRadioCommunicationSpeed.text.toString()
             dlg.selectedposition= alist.indexOf(viewModel1.outerRadioCommunicationSpeedNum.value.toString()!!)
             dlg.start("")
             dlg.setOnListClickedListener { view, i ->

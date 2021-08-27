@@ -38,11 +38,13 @@
             app:layout_constraintTop_toBottomOf="@+id/header_01">
 
             <LinearLayout
+
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical" >
 
                 <LinearLayout
+                    android:id="@+id/layout_connect_save"
                     style="@style/ButtonLayout_STYLE01"
                     >
                     <TextView
@@ -1096,11 +1098,11 @@
                         <TextView
                             android:id="@+id/tv_cors_ip"
                             style="@style/Sub_TEXTVIEW_STYLE2"
-                            android:textColor="@color/grey_66"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="0"
-                            android:text="" />
+                            android:text=""
+                            android:textColor="@color/grey_66" />
 
                         <ImageView
                             android:layout_width="@dimen/rightArrowSize"
@@ -1130,11 +1132,11 @@
                         <TextView
                             android:id="@+id/tv_cors_port"
                             style="@style/Sub_TEXTVIEW_STYLE2"
-                            android:textColor="@color/grey_66"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="0"
-                            android:text="" />
+                            android:text=""
+                            android:textColor="@color/grey_66" />
 
                         <ImageView
                             android:layout_width="@dimen/rightArrowSize"
@@ -1192,10 +1194,12 @@
 
                         <TextView
                             android:id="@+id/tv_cors_pw"
+                            style="@style/Sub_TEXTVIEW_STYLE3"
                             android:layout_width="160dp"
                             android:layout_height="wrap_content"
                             android:layout_gravity="right|center_vertical"
-                            android:gravity="right|center_vertical" />
+                            android:gravity="right|center_vertical"
+                            android:textColor="@color/grey_66" />
 
                         <ImageView
                             android:id="@+id/cors_pw_eye"
@@ -1266,7 +1270,7 @@
                                 />
 
                             <TextView
-                                android:id="@+id/tv_communication_speed"
+                                android:id="@+id/tv_outer_radio_communication_speed"
                                 style="@style/Sub_TEXTVIEW_STYLE3"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"

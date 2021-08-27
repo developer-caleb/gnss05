@@ -16,7 +16,7 @@ public class Define {
     public static final int REQUEST_WORKMANAGER = 1006;
     public static final int REQUEST_CORS_SERVER_MANAGER = 1007;
 
-    //SharedPreference Code
+    //SharedPreference Code REFERENCE_COUNTRY
     public static final String RECYCLERVIEW_LIST_MODE = "recyclerview_mode";
     public static final String EQUIPMENT_MAKER = "equipment_maker";
     public static final String CONNECT_MODE = "connect_mode";
@@ -67,6 +67,12 @@ public class Define {
     public static final String REFERENCE_COUNTRY_SATELLITE_SBAS= "reference_country_satellite_sbas";
     public static final String REFERENCE_COUNTRY_SATELLITE_QZSS= "reference_country_satellite_qzss";
     public static final String REFERENCE_COUNTRY_SATELLITE_LBAND= "reference_country_satellite_lband";
+
+    //SharedPreference Code MOBILE STATION
+    public static final String MOBILE_STATION_CUT_ANGLE= "mobile_station_cut_angle";
+
+
+
 
 
     //ROOM

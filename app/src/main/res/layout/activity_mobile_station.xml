@@ -4,6 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools">
     <data>
         <import type="android.view.View"/>
+        <import type="java.util.ArrayList"/>
+        <import type="java.util.Arrays"/>
+        <variable
+            name="Optionlist"
+            type="kr.loplab.gnss05.common.OptionList"/>
+        <variable
+            name="viewModel"
+            type="kr.loplab.gnss05.activities.viewmodel.MobileStationViewModel"/>
      </data>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -34,6 +42,7 @@
                 android:orientation="vertical" >
 
                 <LinearLayout
+                    android:id="@+id/layout_connect_save"
                     style="@style/ButtonLayout_STYLE01"
                     >
 
@@ -65,6 +74,7 @@
 
 
                 <LinearLayout
+                    android:id="@+id/layout_cut_angle"
                     style="@style/ButtonLayout_STYLE01"
                     >
 
@@ -74,11 +84,12 @@
                          />
 
                     <TextView
+                        android:id="@+id/tv_cut_angle"
                         style="@style/Sub_TEXTVIEW_STYLE3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="0"
-                        android:text="5" />
+                        android:text="@{viewModel.cutAngleNum.toString()}"/>
 
                     <ImageView
                         android:layout_width="@dimen/rightArrowSize"
@@ -1245,6 +1256,7 @@
             app:layout_constraintStart_toStartOf="parent">
 
             <TextView
+                android:id="@+id/setting_satellite_bt"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -1260,6 +1272,7 @@
                 android:background="@color/white" />
 
             <TextView
+                android:id="@+id/save_and_apply_bt"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -1275,6 +1288,7 @@
                 android:background="@color/white" />
 
             <TextView
+                android:id="@+id/apply_bt"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
