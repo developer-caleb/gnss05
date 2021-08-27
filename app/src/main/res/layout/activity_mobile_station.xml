@@ -328,7 +328,9 @@
                         android:background="@color/grey_EC" />
 
                     <!--프로토콜-->
-                    <LinearLayout style="@style/ButtonLayout_STYLE01">
+                    <LinearLayout style="@style/ButtonLayout_STYLE01"
+                        android:id="@+id/layout_inner_radio_protocol"
+                        >
 
                         <TextView
                             style="@style/Sub_TEXTVIEW_STYLE1"
@@ -336,11 +338,13 @@
                              />
 
                         <TextView
+                            android:id="@+id/tv_inner_radio_protocol"
                             style="@style/Sub_TEXTVIEW_STYLE3"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="0"
-                            android:text="TrimMask Ⅲ" />
+                            android:text="@{Optionlist.Companion.INNER_RADIO_PROTOCOL_LIST.get(viewModel.innerRadioProtocolNum)}" />
+
 
                         <ImageView
                             android:layout_width="@dimen/rightArrowSize"
@@ -361,7 +365,10 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:visibility="@{viewModel.innerRadioProtocolNum == 0 ? View.VISIBLE : View.GONE }"
+
+                    >
 
                     <View
                         android:layout_width="match_parent"
@@ -370,7 +377,9 @@
                         android:background="@color/grey_EC" />
 
                     <!--간격-->
-                    <LinearLayout style="@style/ButtonLayout_STYLE01">
+                    <LinearLayout
+                        android:id="@+id/layout_inner_radio_interval"
+                        style="@style/ButtonLayout_STYLE01">
 
                         <TextView
                             style="@style/Sub_TEXTVIEW_STYLE1"
@@ -382,7 +391,8 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="0"
-                            android:text="25.0" />
+                            android:text="@{Optionlist.Companion.INNER_RADIO_INTERVAL_LIST.get(viewModel.innerRadioIntervalNum)}" />
+
 
                         <ImageView
                             android:layout_width="@dimen/rightArrowSize"
@@ -402,27 +412,21 @@
 
 
                     <!--FEC-->
-                    <LinearLayout style="@style/ButtonLayout_STYLE01">
+                    <LinearLayout
+                        android:id="@+id/layout_inner_radio_fec"
+                        style="@style/ButtonLayout_STYLE01">
 
                         <TextView
                             style="@style/Sub_TEXTVIEW_STYLE1"
                             android:text="Fec"
                              />
 
-                        <TextView
-                            style="@style/Sub_TEXTVIEW_STYLE3"
+                        <Switch
+                            android:id="@+id/sw_inner_radio_fec"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_weight="0"
-                            android:text="OFF" />
-
-                        <ImageView
-                            android:layout_width="@dimen/rightArrowSize"
-                            android:layout_height="@dimen/rightArrowSize"
-                            android:layout_weight="0"
-                            android:padding="5dp"
-                            android:layout_marginRight="8dp"
-                            app:srcCompat="@drawable/next_icon" />
+                            android:layout_weight="1"
+                            android:clickable="false" />
 
 
                     </LinearLayout>
@@ -439,7 +443,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:orientation="vertical"
-
+                    android:visibility="@{viewModel.innerRadioProtocolNum == 6 ? View.VISIBLE : View.GONE }"
                     >
 
                     <View
@@ -449,7 +453,9 @@
                         android:background="@color/grey_EC" />
 
 
-                    <LinearLayout style="@style/ButtonLayout_STYLE01">
+                    <LinearLayout
+                        android:id="@+id/layout_inner_radio_power"
+                        style="@style/ButtonLayout_STYLE01">
 
                         <TextView
                             style="@style/Sub_TEXTVIEW_STYLE1"
@@ -461,7 +467,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="0"
-                            android:text="고" />
+                            android:text="@{Optionlist.Companion.INNER_RADIO_POWER_LIST.get(viewModel.innerRadioPowerNum)}" />
 
                         <ImageView
                             android:layout_width="@dimen/rightArrowSize"
@@ -494,7 +500,9 @@
                         android:background="@color/grey_EC" />
 
 
-                    <LinearLayout style="@style/ButtonLayout_STYLE01">
+                    <LinearLayout
+                        android:id="@+id/layout_outer_radio_communication_speed"
+                        style="@style/ButtonLayout_STYLE01">
 
                         <TextView
                             style="@style/Sub_TEXTVIEW_STYLE1"
@@ -502,11 +510,12 @@
                              />
 
                         <TextView
+                            android:id="@+id/tv_outer_radio_communication_speed"
                             style="@style/Sub_TEXTVIEW_STYLE3"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="0"
-                            android:text="38400" />
+                            android:text="@{viewModel.outerRadioCommunicationSpeedNum.toString()}" />
 
                         <ImageView
                             android:layout_width="@dimen/rightArrowSize"
@@ -521,8 +530,48 @@
 
 
                 </LinearLayout>
+                <!---단말기 유심통신 연결모드-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:visibility="@{viewModel.data_connection_type == 4 ? View.VISIBLE : View.GONE}"
+                    android:orientation="vertical">
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_weight="0"
+                        android:background="@color/grey_EC" />
 
 
+                    <LinearLayout
+                        style="@style/ButtonLayout_STYLE01">
+
+                        <TextView
+                            style="@style/Sub_TEXTVIEW_STYLE1"
+                            android:text="연결모드"
+                            />
+
+                        <TextView
+                            style="@style/Sub_TEXTVIEW_STYLE3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0"
+                            android:text="연결모드" />
+
+                        <ImageView
+                            android:layout_width="@dimen/rightArrowSize"
+                            android:layout_height="@dimen/rightArrowSize"
+                            android:layout_weight="0"
+                            android:padding="5dp"
+                            android:layout_marginRight="8dp"
+                            app:srcCompat="@drawable/next_icon" />
+
+                    </LinearLayout>
+
+
+
+                </LinearLayout>
 
 
 
@@ -1003,7 +1052,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:orientation="vertical"
-                    android:visibility="@{viewModel.data_connection_type == 1 ? View.VISIBLE : View.GONE}"
+                    android:visibility="@{viewModel.data_connection_type == 1 || viewModel.data_connection_type == 4 ? View.VISIBLE : View.GONE}"
 
                     >
 
@@ -1161,7 +1210,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:orientation="vertical"
-                    android:visibility="@{viewModel.data_connection_type == 1 ? View.VISIBLE : View.GONE}"
+                    android:visibility="@{viewModel.data_connection_type == 1 || viewModel.data_connection_type == 4 ? View.VISIBLE : View.GONE}"
 
                     >
 
@@ -1299,6 +1348,25 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent">
+
+            <TextView
+                android:id="@+id/start_bt"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="시작"
+                android:textColor="@color/white"
+                android:textSize="16dp"
+                android:visibility="@{viewModel.data_connection_type == 4 ? View.VISIBLE : View.GONE}"
+
+                />
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0"
+                android:background="@color/white" />
 
             <TextView
                 android:id="@+id/setting_satellite_bt"

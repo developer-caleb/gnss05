@@ -7,6 +7,7 @@ import kr.loplab.gnss05.MyDialog
 import kr.loplab.gnss05.R
 import kr.loplab.gnss05.activities.viewmodel.MobileStationViewModel
 import kr.loplab.gnss05.common.Define
+import kr.loplab.gnss05.common.Define.*
 import kr.loplab.gnss05.common.OptionList
 import kr.loplab.gnss05.common.PrefUtil
 import kr.loplab.gnss05.databinding.ActivityMobileStationBinding
@@ -94,6 +95,68 @@ class MobileStationActivity : ActivityBase<ActivityMobileStationBinding>() {
             }
             dlg.setHeader("채널")
         }
+        viewBinding.layoutInnerRadioProtocol.setOnClickListener {
+            val dlg = MyDialog(this)
+            var alist = OptionList.INNER_RADIO_PROTOCOL_LIST
+            dlg.firstLayoutUse = false
+            dlg.list = alist
+            dlg.selectedposition= viewModel1.innerRadioProtocolNum.value!!
+            dlg.start("")
+            dlg.setOnListClickedListener { view, i ->
+                Log.d(TAG, "initListener: $i")
+                viewModel1.innerRadioProtocolNum.value = i
+                dlg.dismiss()
+            }
+            dlg.setHeader("프로토콜")
+        }
+
+        viewBinding.layoutInnerRadioInterval.setOnClickListener {
+            val dlg = MyDialog(this)
+            var alist = OptionList.INNER_RADIO_INTERVAL_LIST
+            dlg.firstLayoutUse = false
+            dlg.list = alist
+            dlg.selectedposition= viewModel1.innerRadioIntervalNum.value!!
+            dlg.start("")
+            dlg.setOnListClickedListener { view, i ->
+                viewModel1.innerRadioIntervalNum.value = i
+                dlg.dismiss()
+            }
+            dlg.setHeader("간격")
+        }
+        viewBinding.layoutInnerRadioFec.setOnClickListener {
+            viewBinding.swInnerRadioFec.isChecked = !viewBinding.swInnerRadioFec.isChecked
+        }
+
+        viewBinding.layoutInnerRadioPower.setOnClickListener {
+            val dlg = MyDialog(this)
+            var alist = OptionList.INNER_RADIO_POWER_LIST
+            dlg.firstLayoutUse = false
+            dlg.list = alist
+            dlg.selectedposition= viewModel1.innerRadioPowerNum.value!!
+            dlg.start("")
+            dlg.setOnListClickedListener { view, i ->
+                viewModel1.innerRadioPowerNum.value = i
+                dlg.dismiss()
+            }
+            dlg.setHeader("전원")
+        }
+        viewBinding.layoutOuterRadioCommunicationSpeed.setOnClickListener {
+            val dlg = MyDialog(this)
+            var alist = OptionList.COMMUNICATION_SPEED_LIST
+            dlg.firstLayoutUse = true
+            dlg.list = alist
+            dlg.input_text_str = viewBinding.tvOuterRadioCommunicationSpeed.text.toString()
+            dlg.selectedposition= alist.indexOf(viewModel1.outerRadioCommunicationSpeedNum.value.toString()!!)
+            dlg.start("")
+            dlg.setOnListClickedListener { view, i ->
+                viewModel1.outerRadioCommunicationSpeedNum.value = alist[i].toInt()
+                dlg.dismiss()
+            }
+            dlg.setOnCheckClickedListener { str ->
+                viewModel1.outerRadioCommunicationSpeedNum.value = str.toInt()
+            }
+            dlg.setHeader("통신 속도")
+        }
     }
 
     override fun initDatabinding() {
@@ -102,6 +165,11 @@ class MobileStationActivity : ActivityBase<ActivityMobileStationBinding>() {
         viewModel1.setIntvalue(viewModel1.data_connection_type, PrefUtil.getInt2(applicationContext, Define.MOBILE_STATION_DATA_CONNECTION_TYPE))  //2
         viewModel1.setBoolvalue(viewModel1.bool_rawdatasave, PrefUtil.getBoolean(applicationContext, Define.MOBILE_STATION_RAW_DATA_SAVE))  //2
         viewModel1.setIntvalue(viewModel1.innerRadioChannelNum, PrefUtil.getInt2(applicationContext, Define.MOBILE_STATION_INNER_RADIO_CHANNEL))  //7
+        viewModel1.setIntvalue(viewModel1.innerRadioProtocolNum, PrefUtil.getInt2(this, MOBILE_STATION_INNER_RADIO_PROTOCOL)) //5
+        viewModel1.setIntvalue(viewModel1.innerRadioIntervalNum, PrefUtil.getInt2(applicationContext, Define.MOBILE_STATION_INNER_RADIO_INTERVAL))  //8
+        viewBinding.swInnerRadioFec.isChecked =PrefUtil.getBoolean(applicationContext, MOBILE_STATION_INNER_RADIO_FEC) //13
+        viewModel1.setIntvalue(viewModel1.innerRadioPowerNum, PrefUtil.getInt2(applicationContext, Define.MOBILE_STATION_INNER_RADIO_POWER))  //14
+        viewModel1.setIntvalue(viewModel1.outerRadioCommunicationSpeedNum, PrefUtil.getInt2(applicationContext, Define.REFERENCE_COUNTRY_OUTERRADIOCOMMUNICATION_SPEED, 9600))  //14
 
     }
     fun savesettings(){
@@ -110,5 +178,11 @@ class MobileStationActivity : ActivityBase<ActivityMobileStationBinding>() {
         PrefUtil.setInt(applicationContext, Define.MOBILE_STATION_DATA_CONNECTION_TYPE, viewModel1.data_connection_type.value!!) //2
         PrefUtil.setBoolean(applicationContext, Define.MOBILE_STATION_RAW_DATA_SAVE, viewModel1.bool_rawdatasave.value!!) //9
         PrefUtil.setInt(applicationContext, Define.MOBILE_STATION_INNER_RADIO_CHANNEL, viewModel1.innerRadioChannelNum.value!!) //7
+        PrefUtil.setInt(applicationContext, Define.MOBILE_STATION_INNER_RADIO_PROTOCOL, viewModel1.innerRadioProtocolNum.value!!) //5
+        PrefUtil.setInt(applicationContext, Define.MOBILE_STATION_INNER_RADIO_INTERVAL, viewModel1.innerRadioIntervalNum.value!!) //8
+        PrefUtil.setBoolean(applicationContext, MOBILE_STATION_INNER_RADIO_FEC, viewBinding.swInnerRadioFec.isChecked) //13
+        PrefUtil.setInt(applicationContext, Define.MOBILE_STATION_INNER_RADIO_POWER, viewModel1.innerRadioPowerNum.value!!) //14
+        PrefUtil.setInt(applicationContext, REFERENCE_COUNTRY_OUTERRADIOCOMMUNICATION_SPEED, viewModel1.outerRadioCommunicationSpeedNum.value!!) //??
+
     }
 }

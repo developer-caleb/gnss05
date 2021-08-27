@@ -14,23 +14,24 @@ class MobileStationViewModel : ViewModel() {
     var collectionIntervalNum = MutableLiveData<Int>(0)
     var data_connection_type = MutableLiveData<Int>(0)
     var innerRadioChannelNum = MutableLiveData<Int>(0)
-   /* var onprogress = MutableLiveData<Boolean>(false)
-
-    var networkSystemNum = MutableLiveData<Int>(0)
-    var network_mode = MutableLiveData<Int>(0)
     var innerRadioProtocolNum = MutableLiveData<Int>(0)
-    var startModeNum = MutableLiveData<Int>(0)
-    var deplaceModeNum = MutableLiveData<Int>(0)
-
-
     var innerRadioIntervalNum =  MutableLiveData<Int>(0)
     var innerRadioPowerNum =  MutableLiveData<Int>(0)
     var outerRadioCommunicationSpeedNum =  MutableLiveData<Int>(0)
-    var auto_apn = MutableLiveData<Boolean>(false)
-    var apnIndex = MutableLiveData<Int>(0)
-    var corsIndex = MutableLiveData<Int>(0)
-    var apn_list = MutableLiveData<ArrayList<Worker>>()
-    var cors_list = MutableLiveData<ArrayList<Server>>()*/
+
+    /* var onprogress = MutableLiveData<Boolean>(false)
+
+     var networkSystemNum = MutableLiveData<Int>(0)
+     var network_mode = MutableLiveData<Int>(0)
+     var startModeNum = MutableLiveData<Int>(0)
+     var deplaceModeNum = MutableLiveData<Int>(0)
+
+
+     var auto_apn = MutableLiveData<Boolean>(false)
+     var apnIndex = MutableLiveData<Int>(0)
+     var corsIndex = MutableLiveData<Int>(0)
+     var apn_list = MutableLiveData<ArrayList<Worker>>()
+     var cors_list = MutableLiveData<ArrayList<Server>>()*/
 
     init {  }
 

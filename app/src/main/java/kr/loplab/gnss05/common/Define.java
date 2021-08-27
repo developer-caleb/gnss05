@@ -79,6 +79,11 @@ public class Define {
     public static final String MOBILE_STATION_RAW_DATA_SAVE = "mobile_station_row_data_save";
     public static final String MOBILE_STATION_DATA_CONNECTION_TYPE = "mobile_station_data_connection_type";
     public static final String MOBILE_STATION_INNER_RADIO_CHANNEL = "mobile_station_inner_radio_channel";
+    public static final String MOBILE_STATION_INNER_RADIO_PROTOCOL = "mobile_station_inner_radio_protocol";
+    public static final String MOBILE_STATION_INNER_RADIO_INTERVAL = "mobile_station_inner_radio_interval";
+    public static final String MOBILE_STATION_INNER_RADIO_FEC = "mobile_station_inner_radio_fec";
+    public static final String MOBILE_STATION_INNER_RADIO_POWER = "mobile_station_inner_radio_power";
+    public static final String MOBILE_STATION_OUTERRADIOCOMMUNICATION_SPEED = "mobile_station_outer_radio_communication_speed";
 
 
     //ROOM
