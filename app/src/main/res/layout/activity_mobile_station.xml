@@ -607,19 +607,15 @@
                                  />
 
                             <TextView
-                                style="@style/Sub_TEXTVIEW_STYLE3"
+                                style="@style/Sub_TEXTVIEW_STYLE2"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="0"
-                                android:text="NTRIP" />
+                                android:text="NTRIP"
+                                android:textColor="@color/grey_66"
+                                />
 
-                            <ImageView
-                                android:layout_width="@dimen/rightArrowSize"
-                                android:layout_height="@dimen/rightArrowSize"
-                                android:layout_weight="0"
-                                android:padding="5dp"
-                                android:layout_marginRight="8dp"
-                                app:srcCompat="@drawable/next_icon" />
+
 
 
                         </LinearLayout>
@@ -632,7 +628,9 @@
                         android:layout_weight="0"
                         android:background="@color/grey_EC" />
 
-                    <LinearLayout style="@style/ButtonLayout_STYLE01">
+                    <LinearLayout
+                        android:id="@+id/layout_gga_upload_interval"
+                        style="@style/ButtonLayout_STYLE01">
 
                         <TextView
                             style="@style/Sub_TEXTVIEW_STYLE1"
@@ -640,11 +638,13 @@
                              />
 
                         <TextView
+                            android:id="@+id/tv_gga_upload_interval"
                             style="@style/Sub_TEXTVIEW_STYLE3"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="0"
-                            android:text="15" />
+                            android:text="@{viewModel.ggaUploadIntervalNum.toString()}"
+                            />
 
                         <ImageView
                             android:layout_width="@dimen/rightArrowSize"
@@ -664,7 +664,9 @@
                         android:background="@color/grey_EC" />
 
 
-                    <LinearLayout style="@style/ButtonLayout_STYLE01">
+                    <LinearLayout
+                        android:id="@+id/layout_network_auto_connect"
+                        style="@style/ButtonLayout_STYLE01">
 
                         <TextView
                             style="@style/Sub_TEXTVIEW_STYLE1"
@@ -672,6 +674,7 @@
                              />
 
                         <Switch
+                            android:id="@+id/sw_network_auto_connect"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
@@ -688,19 +691,24 @@
                         android:background="@color/grey_EC" />
 
 
-                    <LinearLayout style="@style/ButtonLayout_STYLE01">
+                    <LinearLayout
+                        android:id="@+id/layout_network_system"
+                        style="@style/ButtonLayout_STYLE01">
 
-                        <TextView
+
+                    <TextView
                             style="@style/Sub_TEXTVIEW_STYLE1"
                             android:text="네트워크 시스템"
                              />
 
                         <TextView
+                            android:id="@+id/tv_network_system"
                             style="@style/Sub_TEXTVIEW_STYLE3"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="0"
-                            android:text="자동" />
+                            android:text="@{Optionlist.Companion.NETWORK_SYSTEM_List.get(viewModel.networkSystemNum)}"
+                            />
 
                         <ImageView
                             android:layout_width="@dimen/rightArrowSize"
@@ -1067,6 +1075,7 @@
                              />
 
                         <ImageView
+                            android:id="@+id/cors_setting_bt"
                             android:layout_width="@dimen/rightArrowSize"
                             android:layout_height="@dimen/rightArrowSize"
                             android:layout_weight="0"
@@ -1082,7 +1091,13 @@
                             style="@style/Sub_TEXTVIEW_STYLE1"
                             android:text="이름"
                              />
-
+                        <TextView
+                            android:id="@+id/tv_cors_name"
+                            style="@style/Sub_TEXTVIEW_STYLE2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0"
+                            android:text="" />
 
                         <ImageView
                             android:layout_width="@dimen/rightArrowSize"
@@ -1102,8 +1117,8 @@
                         android:background="@color/grey_EC" />
 
                     <LinearLayout
-                        style="@style/ButtonLayout_STYLE01"
-                        >
+                        android:id="@+id/layout_cors_ip"
+                        style="@style/ButtonLayout_STYLE01">
 
                         <TextView
                             style="@style/Sub_TEXTVIEW_STYLE1"
@@ -1111,11 +1126,13 @@
                              />
 
                         <TextView
+                            android:id="@+id/tv_cors_ip"
                             style="@style/Sub_TEXTVIEW_STYLE2"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="0"
-                            android:text="58.248.35.130"/>
+                            android:text=""
+                            android:textColor="@color/grey_66" />
 
 
                     </LinearLayout>
@@ -1128,8 +1145,8 @@
                         android:background="@color/grey_EC" />
 
                     <LinearLayout
-                        style="@style/ButtonLayout_STYLE01"
-                        >
+                        android:id="@+id/layout_cors_port"
+                        style="@style/ButtonLayout_STYLE01">
 
                         <TextView
                             style="@style/Sub_TEXTVIEW_STYLE1"
@@ -1137,11 +1154,13 @@
                              />
 
                         <TextView
+                            android:id="@+id/tv_cors_port"
                             style="@style/Sub_TEXTVIEW_STYLE2"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="0"
-                            android:text="6060"/>
+                            android:text=""
+                            android:textColor="@color/grey_66" />
 
 
                     </LinearLayout>

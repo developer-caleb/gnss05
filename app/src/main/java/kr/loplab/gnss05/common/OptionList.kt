@@ -25,5 +25,7 @@ class OptionList {
 
       //이동국
       val MOBILESTATION_DATA_CONNECTION_TYPE_LIST= arrayListOf<String>("없음","수신기 유심통신","내장 라디오","외장 라디오","단말기 유심통신", "L-band")
+      val GGA_UPLOAD_INTERVAL_LIST= arrayListOf<String>("1","2","3","5","10","15","20","25","30","60","120","180")
+
   }
 }

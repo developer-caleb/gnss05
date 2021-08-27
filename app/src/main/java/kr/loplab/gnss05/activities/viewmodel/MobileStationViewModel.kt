@@ -18,7 +18,13 @@ class MobileStationViewModel : ViewModel() {
     var innerRadioIntervalNum =  MutableLiveData<Int>(0)
     var innerRadioPowerNum =  MutableLiveData<Int>(0)
     var outerRadioCommunicationSpeedNum =  MutableLiveData<Int>(0)
+    var ggaUploadIntervalNum =  MutableLiveData<Int>(0)
+    var networkSystemNum = MutableLiveData<Int>(0)
 
+    var apnIndex = MutableLiveData<Int>(0)
+    var corsIndex = MutableLiveData<Int>(0)
+    var apn_list = MutableLiveData<ArrayList<Worker>>()
+    var cors_list = MutableLiveData<ArrayList<Server>>()
     /* var onprogress = MutableLiveData<Boolean>(false)
 
      var networkSystemNum = MutableLiveData<Int>(0)
@@ -28,10 +34,7 @@ class MobileStationViewModel : ViewModel() {
 
 
      var auto_apn = MutableLiveData<Boolean>(false)
-     var apnIndex = MutableLiveData<Int>(0)
-     var corsIndex = MutableLiveData<Int>(0)
-     var apn_list = MutableLiveData<ArrayList<Worker>>()
-     var cors_list = MutableLiveData<ArrayList<Server>>()*/
+*/
 
     init {  }
 

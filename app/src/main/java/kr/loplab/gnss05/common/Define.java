@@ -84,6 +84,9 @@ public class Define {
     public static final String MOBILE_STATION_INNER_RADIO_FEC = "mobile_station_inner_radio_fec";
     public static final String MOBILE_STATION_INNER_RADIO_POWER = "mobile_station_inner_radio_power";
     public static final String MOBILE_STATION_OUTERRADIOCOMMUNICATION_SPEED = "mobile_station_outer_radio_communication_speed";
+    public static final String MOBILE_STATION_GGA_UPLOAD_INTERVAL = "mobile_station_gga_upload_interval";
+    public static final String MOBILE_STATION_NETWORK_AUTO_CONNECT = "mobile_station_network_auto_connect";
+    public static final String MOBILE_STATION_NETWORK_SYSTEM = "mobile_station_network_system";
 
 
     //ROOM

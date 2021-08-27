@@ -1,16 +1,22 @@
 package kr.loplab.gnss05.activities
 
+import android.content.Intent
 import android.util.Log
+import androidx.core.app.ActivityCompat
 import androidx.lifecycle.ViewModelProvider
+import androidx.room.Room
 import kr.loplab.gnss02.ActivityBase
 import kr.loplab.gnss05.MyDialog
 import kr.loplab.gnss05.R
+import kr.loplab.gnss05.activities.cors_servermanager.CORSServerManagerActivity
 import kr.loplab.gnss05.activities.viewmodel.MobileStationViewModel
+import kr.loplab.gnss05.activities.workmanager.AppDatabase
 import kr.loplab.gnss05.common.Define
 import kr.loplab.gnss05.common.Define.*
 import kr.loplab.gnss05.common.OptionList
 import kr.loplab.gnss05.common.PrefUtil
 import kr.loplab.gnss05.databinding.ActivityMobileStationBinding
+import java.lang.Exception
 
 class MobileStationActivity : ActivityBase<ActivityMobileStationBinding>() {
     override val layoutResourceId: Int
@@ -32,6 +38,11 @@ class MobileStationActivity : ActivityBase<ActivityMobileStationBinding>() {
         }
         viewBinding.header01.setOnBackButtonClickListener { onBackPressed();}
         viewBinding.layoutConnectSave.setOnClickListener {  }
+        viewBinding.corsSettingBt.setOnClickListener {
+            intent = Intent(this, CORSServerManagerActivity::class.java)
+            ActivityCompat.startActivityForResult(this, intent, REQUEST_CORS_SERVER_MANAGER, null)
+        }
+
         viewBinding.layoutCutAngle.setOnClickListener {
             val dlg = MyDialog(this)
             var alist = OptionList.CUT_ANGLE_LIST
@@ -140,12 +151,29 @@ class MobileStationActivity : ActivityBase<ActivityMobileStationBinding>() {
             }
             dlg.setHeader("전원")
         }
+        viewBinding.layoutGgaUploadInterval.setOnClickListener {
+            val dlg = MyDialog(this)
+            var alist = OptionList.GGA_UPLOAD_INTERVAL_LIST
+            dlg.firstLayoutUse = true
+            dlg.list = alist
+            dlg.input_text_str = viewBinding.tvGgaUploadInterval.text.toString()
+            dlg.selectedposition= viewModel1.ggaUploadIntervalNum.value!!
+            dlg.start("")
+            dlg.setOnListClickedListener { view, i ->
+                viewModel1.ggaUploadIntervalNum.value = alist[i].toInt()
+                dlg.dismiss()
+            }
+            dlg.setOnCheckClickedListener { str ->
+                viewModel1.ggaUploadIntervalNum.value = str.toInt()
+            }
+            dlg.setHeader("GGA업로드간격(s)")
+        }
         viewBinding.layoutOuterRadioCommunicationSpeed.setOnClickListener {
             val dlg = MyDialog(this)
             var alist = OptionList.COMMUNICATION_SPEED_LIST
             dlg.firstLayoutUse = true
             dlg.list = alist
-            dlg.input_text_str = viewBinding.tvOuterRadioCommunicationSpeed.text.toString()
+            dlg.input_text_str = viewBinding.tvGgaUploadInterval.text.toString()
             dlg.selectedposition= alist.indexOf(viewModel1.outerRadioCommunicationSpeedNum.value.toString()!!)
             dlg.start("")
             dlg.setOnListClickedListener { view, i ->
@@ -156,6 +184,25 @@ class MobileStationActivity : ActivityBase<ActivityMobileStationBinding>() {
                 viewModel1.outerRadioCommunicationSpeedNum.value = str.toInt()
             }
             dlg.setHeader("통신 속도")
+        }
+        viewBinding.layoutNetworkAutoConnect.setOnClickListener {
+            viewBinding.swNetworkAutoConnect.isChecked = !viewBinding.swNetworkAutoConnect.isChecked
+        } //12
+        viewBinding.layoutNetworkSystem.setOnClickListener {
+            val dlg = MyDialog(this)
+            var alist = OptionList.NETWORK_SYSTEM_List
+            dlg.firstLayoutUse = false
+            dlg.list = alist
+            dlg.selectedposition= viewModel1.networkSystemNum.value!!
+            dlg.start("")
+            dlg.setOnListClickedListener { view, i ->
+                Log.d(TAG, "initListener: $i")
+                viewModel1.networkSystemNum.value = i
+                //viewBinding.tvNetworkSystem.text = alist[viewModel1.networkSystemNum.value!!]
+                dlg.refresh()
+                dlg.dismiss()
+            }
+            dlg.setHeader("네트워크 시스템")
         }
     }
 
@@ -169,7 +216,10 @@ class MobileStationActivity : ActivityBase<ActivityMobileStationBinding>() {
         viewModel1.setIntvalue(viewModel1.innerRadioIntervalNum, PrefUtil.getInt2(applicationContext, Define.MOBILE_STATION_INNER_RADIO_INTERVAL))  //8
         viewBinding.swInnerRadioFec.isChecked =PrefUtil.getBoolean(applicationContext, MOBILE_STATION_INNER_RADIO_FEC) //13
         viewModel1.setIntvalue(viewModel1.innerRadioPowerNum, PrefUtil.getInt2(applicationContext, Define.MOBILE_STATION_INNER_RADIO_POWER))  //14
-        viewModel1.setIntvalue(viewModel1.outerRadioCommunicationSpeedNum, PrefUtil.getInt2(applicationContext, Define.REFERENCE_COUNTRY_OUTERRADIOCOMMUNICATION_SPEED, 9600))  //14
+        viewModel1.setIntvalue(viewModel1.outerRadioCommunicationSpeedNum, PrefUtil.getInt2(applicationContext, Define.MOBILE_STATION_OUTERRADIOCOMMUNICATION_SPEED, 9600))  //14
+        viewModel1.setIntvalue(viewModel1.ggaUploadIntervalNum, PrefUtil.getInt2(applicationContext, Define.MOBILE_STATION_GGA_UPLOAD_INTERVAL, 1))  //8
+        viewBinding.swNetworkAutoConnect.isChecked =PrefUtil.getBoolean(applicationContext, MOBILE_STATION_NETWORK_AUTO_CONNECT) //12
+        viewModel1.setIntvalue(viewModel1.networkSystemNum, PrefUtil.getInt2(applicationContext, REFERENCE_COUNTRY_NETWORK_SYSTEM))  //6
 
     }
     fun savesettings(){
@@ -182,7 +232,86 @@ class MobileStationActivity : ActivityBase<ActivityMobileStationBinding>() {
         PrefUtil.setInt(applicationContext, Define.MOBILE_STATION_INNER_RADIO_INTERVAL, viewModel1.innerRadioIntervalNum.value!!) //8
         PrefUtil.setBoolean(applicationContext, MOBILE_STATION_INNER_RADIO_FEC, viewBinding.swInnerRadioFec.isChecked) //13
         PrefUtil.setInt(applicationContext, Define.MOBILE_STATION_INNER_RADIO_POWER, viewModel1.innerRadioPowerNum.value!!) //14
-        PrefUtil.setInt(applicationContext, REFERENCE_COUNTRY_OUTERRADIOCOMMUNICATION_SPEED, viewModel1.outerRadioCommunicationSpeedNum.value!!) //??
+        PrefUtil.setInt(applicationContext, MOBILE_STATION_OUTERRADIOCOMMUNICATION_SPEED, viewModel1.outerRadioCommunicationSpeedNum.value!!) //??
+        PrefUtil.setInt(applicationContext, MOBILE_STATION_GGA_UPLOAD_INTERVAL, viewModel1.ggaUploadIntervalNum.value!!) //??
+        PrefUtil.setBoolean(applicationContext, MOBILE_STATION_NETWORK_AUTO_CONNECT, viewBinding.swNetworkAutoConnect.isChecked) //12
+        PrefUtil.setInt(applicationContext, Define.REFERENCE_COUNTRY_NETWORK_SYSTEM, viewModel1.networkSystemNum.value!!) //6
 
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        Log.d(TAG, "onActivityResult: , requestCode : $requestCode, resultCode: $resultCode")
+        dbsetting()
+        if(requestCode == REQUEST_WORKMANAGER)
+        {
+            Log.d(TAG, "onActivityResult: REQUEST_WORKMANAGER")
+            when(resultCode)
+            {
+                RESULT_OK -> ApnSettings(data!!.getIntExtra(APNS_SELECTED_INDEX, 0))
+                RESULT_CANCELED -> try {
+                    ApnSettings(viewModel1.apnIndex.value!!)
+                } catch (e: Exception){
+                    Log.e(TAG, "onActivityResult: ", e)
+                    ApnSettings(0)
+                }
+            }
+        }
+
+        if( requestCode == REQUEST_CORS_SERVER_MANAGER)
+        {
+            Log.d(TAG, "onActivityResult: REQUEST_CORS_SERVER_MANAGER")
+
+            when(resultCode)
+            {
+                RESULT_OK ->CorsSettings(data!!.getIntExtra(CORS_SELECTED_INDEX, 0))
+                RESULT_CANCELED -> try {
+                    CorsSettings(viewModel1.corsIndex.value!!)
+                } catch (e: Exception){
+                    Log.e(TAG, "onActivityResult: ", e)
+                    CorsSettings(0)
+                } }
+        }
+    }
+
+    fun dbsetting() {
+
+        var dbApn = Room.databaseBuilder(this, AppDatabase::class.java, WORKERS_DB)
+            .allowMainThreadQueries() //메인쓰레드에서 작동시킬 때 사용 -> viewmodel에서 mainthread로 넣어줘야해서,
+            .fallbackToDestructiveMigration()
+            .build()
+        viewModel1.apn_list.value = ArrayList(dbApn.workerDao().all)
+        Log.d(TAG, "onResume: ${viewModel1.apn_list}")
+
+        var dbCors =  Room.databaseBuilder(this, AppDatabase::class.java, Define.SERVERS_DB)
+            .fallbackToDestructiveMigration()
+            .allowMainThreadQueries() //메인쓰레드에서 작동시킬 때 사용 -> viewmodel에서 mainthread로 넣어줘야해서,
+            .build()
+        viewModel1.cors_list.value = ArrayList(dbCors.serverDao().all)
+        Log.d(TAG, "onResume: ${viewModel1.cors_list}")
+
+    }
+
+    fun ApnSettings(  idx : Int){
+        if(viewModel1.apn_list.value!!.size <= 0  ) return
+        Log.d(TAG, "ApnSettings: $idx")
+        viewModel1.apnIndex.value = idx
+
+       /* viewBinding.tvApnWorker.text = viewModel1.apn_list.value!![idx].worker
+        viewBinding.tvApnName.text = viewModel1.apn_list.value!![idx].name
+        viewBinding.tvApnUser.text = viewModel1.apn_list.value!![idx].user
+        viewBinding.tvApnPw.text = viewModel1.apn_list.value!![idx].password*/
+    }
+
+    fun CorsSettings(  idx : Int){
+        if(viewModel1.cors_list.value!!.size <= 0  ) return
+        Log.d(TAG, "CorsSettings: $idx")
+
+        viewModel1.corsIndex.value = idx
+
+        /*viewBinding.tvCorsName.text = viewModel1.cors_list.value!![idx].name
+        viewBinding.tvCorsIp.text = viewModel1.cors_list.value!![idx].ip
+        viewBinding.tvCorsPort.text = viewModel1.cors_list.value!![idx].port
+        //기준국 연결 포인트->
+        viewBinding.tvCorsPw.text = viewModel1.cors_list.value!![idx].password*/
     }
 }
