@@ -11,6 +11,7 @@ import kr.loplab.gnss05.R
 import kr.loplab.gnss05.activities.cors_servermanager.CORSServerManagerActivity
 import kr.loplab.gnss05.activities.viewmodel.MobileStationViewModel
 import kr.loplab.gnss05.activities.workmanager.AppDatabase
+import kr.loplab.gnss05.activities.workmanager.WorkManagerActivity
 import kr.loplab.gnss05.common.Define
 import kr.loplab.gnss05.common.Define.*
 import kr.loplab.gnss05.common.OptionList
@@ -41,6 +42,10 @@ class MobileStationActivity : ActivityBase<ActivityMobileStationBinding>() {
         viewBinding.corsSettingBt.setOnClickListener {
             intent = Intent(this, CORSServerManagerActivity::class.java)
             ActivityCompat.startActivityForResult(this, intent, REQUEST_CORS_SERVER_MANAGER, null)
+        }
+        viewBinding.btOpenWorkManager.setOnClickListener {
+            intent = Intent(this, WorkManagerActivity::class.java)
+            ActivityCompat.startActivityForResult(this, intent, REQUEST_WORKMANAGER, null)
         }
 
         viewBinding.layoutCutAngle.setOnClickListener {

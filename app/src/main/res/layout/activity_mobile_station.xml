@@ -926,6 +926,7 @@
 
 
                         <ImageView
+                            android:id="@+id/bt_open_work_manager"
                             android:layout_width="@dimen/rightArrowSize"
                             android:layout_height="@dimen/rightArrowSize"
                             android:layout_weight="0"
