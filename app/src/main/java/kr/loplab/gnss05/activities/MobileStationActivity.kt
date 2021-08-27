@@ -53,6 +53,9 @@ class MobileStationActivity : ActivityBase<ActivityMobileStationBinding>() {
             }
             dlg.setHeader("컷 각도")
         }
+        viewBinding.layoutRawDataSave.setOnClickListener {
+            viewModel1.setBoolvalue(viewModel1.bool_rawdatasave,!viewModel1.bool_rawdatasave.value!!)
+        }
     }
 
     override fun initDatabinding() {

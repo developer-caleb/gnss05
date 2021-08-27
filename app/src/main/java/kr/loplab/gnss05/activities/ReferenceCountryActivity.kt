@@ -5,7 +5,6 @@ import android.text.method.HideReturnsTransformationMethod
 import android.text.method.PasswordTransformationMethod
 import android.util.Log
 import android.view.inputmethod.InputMethodManager
-import androidx.appcompat.app.ActionBar
 import androidx.core.app.ActivityCompat
 import androidx.lifecycle.ViewModelProvider
 import androidx.room.Room
@@ -22,7 +21,7 @@ import kr.loplab.gnss05.common.Define.*
 import kr.loplab.gnss05.common.OptionList
 import kr.loplab.gnss05.common.OptionList.Companion.COLLECTION_INTERVAL_LIST
 import kr.loplab.gnss05.common.OptionList.Companion.COMMUNICATION_SPEED_LIST
-import kr.loplab.gnss05.common.OptionList.Companion.DATA_CONNECTION_TYPE_List
+import kr.loplab.gnss05.common.OptionList.Companion.REFERENCE_COUNTRY_DATA_CONNECTION_TYPE_List
 import kr.loplab.gnss05.common.OptionList.Companion.DEPLACEMENT_MODE_LIST
 import kr.loplab.gnss05.common.OptionList.Companion.INNER_RADIO_CHANNEL_LIST
 import kr.loplab.gnss05.common.OptionList.Companion.INNER_RADIO_INTERVAL_LIST
@@ -125,7 +124,7 @@ class ReferenceCountryActivity : ActivityBase<ActivityReferenceCountryBinding>()
         }
         viewBinding.layoutDataConnectionType.setOnClickListener {
             val dlg = MyDialog(this)
-            var alist = DATA_CONNECTION_TYPE_List
+            var alist = REFERENCE_COUNTRY_DATA_CONNECTION_TYPE_List
             dlg.firstLayoutUse = false
             dlg.list = alist
             dlg.selectedposition= viewModel1.data_connect_type.value!!
@@ -162,7 +161,6 @@ class ReferenceCountryActivity : ActivityBase<ActivityReferenceCountryBinding>()
         viewBinding.layoutRawDataSave.setOnClickListener {
             var bool = !viewModel1.bool_rawdatasave.value!!
             viewModel1.setRawDatavalue(bool)
-
         }
         viewBinding.layoutCurrentPointName.setOnClickListener {
             Log.d(TAG, "initListener: layoutCurrentPointName Clicked!")

@@ -11,7 +11,7 @@ class OptionList {
       val START_MODE_LIST = arrayListOf<String>("싱글 포인트", "기준국 좌표 입력",)
       val DEPLACEMENT_MODE_LIST = arrayListOf<String>("RTCM2.3", "RTCM3","CMR","CMR+","DGPS", "RTCM3.2")
       val COLLECTION_INTERVAL_LIST = arrayListOf<String>("60s","30s","15s","10s","5s","2s","1HZ","2HZ","5HZ")
-      val DATA_CONNECTION_TYPE_List= arrayListOf<String>("수신기 유심통신","내장 라디오","외장 라디오","듀얼")
+      val REFERENCE_COUNTRY_DATA_CONNECTION_TYPE_List= arrayListOf<String>("내장 라디오","외장 라디오")
       val NETWORK_MODE_List= arrayListOf<String>("GPRS","WIFI")
       val INNER_RADIO_CHANNEL_LIST= arrayListOf<String>("1","2","3","4","5", "6", "7","8")
       val INNER_RADIO_PROTOCOL_LIST= arrayListOf<String>("Satel","PCC_GMSK","TrimTalk 450S","South 9600","TrimMask III", "South 19200", "900M Hopping",)
