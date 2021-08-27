@@ -48,13 +48,12 @@ class ReferenceCountryActivity : ActivityBase<ActivityReferenceCountryBinding>()
         //viewbinding
         viewModel1 = ViewModelProvider(this).get(ReferenceCountryViewModel::class.java)
         viewBinding.viewModel = viewModel1
-
     }
-    /
+
     /*TODO
     * COrs server
-표에서 선택해서 확인해도 업데이트가 안됨
-리스트에서 선택했을 때는 업데이트가 됨
+      표에서 선택해서 확인해도 업데이트가 안 됨
+      리스트에서 선택했을 때는 업데이트가 됨
     * */
     override fun initListener() {
         viewBinding.settingSatelliteBt.setOnClickListener {
@@ -440,7 +439,7 @@ class ReferenceCountryActivity : ActivityBase<ActivityReferenceCountryBinding>()
 
             when(resultCode)
                 {
-                    RESULT_OK ->CorsSettings(data!!.getIntExtra(APNS_SELECTED_INDEX, 0))
+                    RESULT_OK ->CorsSettings(data!!.getIntExtra(CORS_SELECTED_INDEX, 0))
                         RESULT_CANCELED -> try {
                             CorsSettings(viewModel1.corsIndex.value!!)
                         } catch (e:Exception){
