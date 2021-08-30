@@ -27,7 +27,7 @@ class MobileStationActivity : ActivityBase<ActivityMobileStationBinding>() {
     lateinit var viewModel1: MobileStationViewModel
     var apnsPwView = false;
     var corsPwView = false;
-    
+
     override fun init() {
         viewModel1 = ViewModelProvider(this).get(MobileStationViewModel::class.java)
         viewBinding.viewModel = viewModel1
@@ -283,6 +283,30 @@ class MobileStationActivity : ActivityBase<ActivityMobileStationBinding>() {
                 if (apnsPwView) PasswordTransformationMethod.getInstance() else HideReturnsTransformationMethod.getInstance()
             if (apnsPwView)  viewBinding.apnPwEye.setImageResource(R.drawable.ic_eye_yes) else viewBinding.apnPwEye.setImageResource(R.drawable.ic_eye_no)
         }
+        viewBinding.corsPwEye.setOnClickListener {
+            Log.d(TAG, "initListener: passwordview clicked")
+            corsPwView = !corsPwView;
+            viewBinding.tvCorsPw.transformationMethod =
+                if (corsPwView) PasswordTransformationMethod.getInstance() else HideReturnsTransformationMethod.getInstance()
+            if (corsPwView)  viewBinding.corsPwEye.setImageResource(R.drawable.ic_eye_yes) else viewBinding.corsPwEye.setImageResource(R.drawable.ic_eye_no)
+        }
+
+
+        viewBinding.layoutCorsName.setOnClickListener {
+            val dlg = MyDialog(this)
+            var alist = ArrayList<String>();
+            viewModel1.cors_list.value!!.forEach { server -> alist.add(server.name)  }
+            dlg.firstLayoutUse = false
+            dlg.list = alist
+            dlg.selectedposition= viewModel1.corsIndex.value!!
+            dlg.start("")
+            dlg.setOnListClickedListener { view, i ->
+                CorsSettings(i)
+                dlg.dismiss()
+            }
+            dlg.setHeader("이름")
+        }
+
     }
 
     override fun initDatabinding() {
@@ -406,10 +430,10 @@ class MobileStationActivity : ActivityBase<ActivityMobileStationBinding>() {
         Log.d(TAG, "CorsSettings: $idx")
         viewModel1.corsIndex.value = idx
 
-        /*viewBinding.tvCorsName.text = viewModel1.cors_list.value!![idx].name
+        viewBinding.tvCorsName.text = viewModel1.cors_list.value!![idx].name
         viewBinding.tvCorsIp.text = viewModel1.cors_list.value!![idx].ip
         viewBinding.tvCorsPort.text = viewModel1.cors_list.value!![idx].port
-        //기준국 연결 포인트->
-        viewBinding.tvCorsPw.text = viewModel1.cors_list.value!![idx].password*/
+        viewBinding.tvCorsUser.text = viewModel1.cors_list.value!![idx].user
+        viewBinding.tvCorsPw.text = viewModel1.cors_list.value!![idx].password
     }
 }

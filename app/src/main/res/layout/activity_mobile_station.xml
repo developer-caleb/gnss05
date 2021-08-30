@@ -981,7 +981,7 @@
 
                             <TextView
                                 android:id="@+id/tv_apn_worker"
-                                style="@style/Sub_TEXTVIEW_STYLE2"
+                                style="@style/Sub_TEXTVIEW_STYLE3"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="0"
@@ -1086,7 +1086,8 @@
                                 android:layout_weight="0"
                                 android:padding="5dp"
                                 android:layout_marginRight="15dp"
-                                app:srcCompat="@drawable/ic_eye_no" />
+                                app:srcCompat="@drawable/ic_eye_no"
+                                />
 
 
                         </LinearLayout>
@@ -1102,7 +1103,6 @@
                     android:layout_height="match_parent"
                     android:orientation="vertical"
                     android:visibility="@{viewModel.data_connection_type == 1 || viewModel.data_connection_type == 4 ? View.VISIBLE : View.GONE}"
-
                     >
 
                     <LinearLayout
@@ -1126,7 +1126,9 @@
 
                     </LinearLayout>
 
-                    <LinearLayout style="@style/ButtonLayout_STYLE01">
+                    <LinearLayout
+                        android:id="@+id/layout_cors_name"
+                        style="@style/ButtonLayout_STYLE01">
 
                         <TextView
                             style="@style/Sub_TEXTVIEW_STYLE1"
@@ -1134,7 +1136,7 @@
                              />
                         <TextView
                             android:id="@+id/tv_cors_name"
-                            style="@style/Sub_TEXTVIEW_STYLE2"
+                            style="@style/Sub_TEXTVIEW_STYLE3"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="0"
@@ -1219,7 +1221,8 @@
                             android:text="사용자"
                              />
 
-                        <EditText
+                        <TextView
+                            android:id="@+id/tv_cors_user"
                             style="@style/Sub_TEXTVIEW_STYLE2"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -1235,27 +1238,32 @@
                         android:layout_weight="0"
                         android:background="@color/grey_EC" />
 
-                    <LinearLayout style="@style/ButtonLayout_STYLE01">
+                    <LinearLayout
+                        android:id="@+id/layout_cors_pw"
+                        style="@style/ButtonLayout_STYLE01">
 
                         <TextView
                             style="@style/Sub_TEXTVIEW_STYLE1"
                             android:text="암호"
                              />
 
-                        <EditText
+                        <TextView
+                            android:id="@+id/tv_cors_pw"
+                            style="@style/Sub_TEXTVIEW_STYLE3"
                             android:layout_width="160dp"
                             android:layout_height="wrap_content"
-                            android:ems="10"
-                            android:inputType="textPassword"
-                            tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+                            android:layout_gravity="right|center_vertical"
+                            android:gravity="right|center_vertical"
+                            android:textColor="@color/grey_66" />
 
                         <ImageView
+                            android:id="@+id/cors_pw_eye"
                             android:layout_width="@dimen/rightArrowSize"
                             android:layout_height="@dimen/rightArrowSize"
+                            android:layout_marginRight="15dp"
                             android:layout_weight="0"
                             android:padding="5dp"
-                            android:layout_marginRight="8dp"
-                            app:srcCompat="@drawable/password_icon" />
+                            app:srcCompat="@drawable/ic_eye_no" />
 
 
                     </LinearLayout>
