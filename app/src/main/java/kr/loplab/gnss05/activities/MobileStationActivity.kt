@@ -235,7 +235,10 @@ class MobileStationActivity : ActivityBase<ActivityMobileStationBinding>() {
             dlg.setHeader("통신 속도")
         }
         viewBinding.layoutNetworkAutoConnect.setOnClickListener {
-            viewBinding.swNetworkAutoConnect.isChecked = !viewBinding.swNetworkAutoConnect.isChecked
+            viewModel1.network_autoconnect.value =  !viewModel1.network_autoconnect.value!!
+        } //12
+        viewBinding.layoutNetworkAutoConnect2.setOnClickListener {
+            viewModel1.network_autoconnect.value =  !viewModel1.network_autoconnect.value!!
         } //12
 
         viewBinding.layoutNetworkSystem.setOnClickListener {
@@ -327,7 +330,8 @@ class MobileStationActivity : ActivityBase<ActivityMobileStationBinding>() {
 
         viewModel1.setIntvalue(viewModel1.outerRadioCommunicationSpeedNum, PrefUtil.getInt2(applicationContext, Define.MOBILE_STATION_OUTERRADIOCOMMUNICATION_SPEED, 9600))  //14
         viewModel1.setIntvalue(viewModel1.ggaUploadIntervalNum, PrefUtil.getInt2(applicationContext, Define.MOBILE_STATION_GGA_UPLOAD_INTERVAL, 1))  //8
-        viewBinding.swNetworkAutoConnect.isChecked =PrefUtil.getBoolean(applicationContext, MOBILE_STATION_NETWORK_AUTO_CONNECT) //12
+        viewModel1.setBoolvalue(viewModel1.network_autoconnect, PrefUtil.getBoolean(applicationContext, MOBILE_STATION_NETWORK_AUTO_CONNECT)) //12
+
         viewBinding.swNetworkTransfer.isChecked =PrefUtil.getBoolean(applicationContext, MOBILE_STATION_NETWORK_TRANSFER) //12
         viewModel1.setIntvalue(viewModel1.networkSystemNum, PrefUtil.getInt2(applicationContext, MOBILE_STATION_NETWORK_SYSTEM))  //6
         viewModel1.setBoolvalue(viewModel1.auto_apn, PrefUtil.getBoolean(this, MOBILE_STATION_AUTO_APN)) //10 -> data, viewbinding통합
@@ -355,7 +359,7 @@ class MobileStationActivity : ActivityBase<ActivityMobileStationBinding>() {
 
         PrefUtil.setInt(applicationContext, MOBILE_STATION_OUTERRADIOCOMMUNICATION_SPEED, viewModel1.outerRadioCommunicationSpeedNum.value!!) //??
         PrefUtil.setInt(applicationContext, MOBILE_STATION_GGA_UPLOAD_INTERVAL, viewModel1.ggaUploadIntervalNum.value!!) //??
-        PrefUtil.setBoolean(applicationContext, MOBILE_STATION_NETWORK_AUTO_CONNECT, viewBinding.swNetworkAutoConnect.isChecked) //12
+        PrefUtil.setBoolean(applicationContext, MOBILE_STATION_NETWORK_AUTO_CONNECT, viewModel1.network_autoconnect.value!!) //12
         PrefUtil.setInt(applicationContext, Define.MOBILE_STATION_NETWORK_SYSTEM, viewModel1.networkSystemNum.value!!) //6
         PrefUtil.setBoolean(applicationContext, MOBILE_STATION_NETWORK_TRANSFER, viewBinding.swNetworkTransfer.isChecked) //12
         PrefUtil.setBoolean(applicationContext, MOBILE_STATION_AUTO_APN, viewModel1.auto_apn.value!!) //10

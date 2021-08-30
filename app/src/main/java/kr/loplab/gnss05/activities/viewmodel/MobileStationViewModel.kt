@@ -32,6 +32,7 @@ class MobileStationViewModel : ViewModel() {
     var apn_list = MutableLiveData<ArrayList<Worker>>()
     var cors_list = MutableLiveData<ArrayList<Server>>()
     var auto_apn = MutableLiveData<Boolean>(false)
+    var network_autoconnect = MutableLiveData<Boolean>(false)
 
     /* var onprogress = MutableLiveData<Boolean>(false)
 

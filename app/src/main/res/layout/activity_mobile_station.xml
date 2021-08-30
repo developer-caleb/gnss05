@@ -557,7 +557,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="0"
-                            android:text="연결모드" />
+                            android:text="NTRIP" />
 
                         <ImageView
                             android:layout_width="@dimen/rightArrowSize"
@@ -678,6 +678,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
+                            android:checked="@{viewModel.network_autoconnect}"
                             android:clickable="false" />
 
 
@@ -1292,7 +1293,9 @@
 
                     </LinearLayout>
 
-                    <LinearLayout style="@style/ButtonLayout_STYLE01">
+                    <LinearLayout
+                        android:id="@+id/layout_mountpoint"
+                        style="@style/ButtonLayout_STYLE01">
 
                         <TextView
                             style="@style/Sub_TEXTVIEW_STYLE1"
@@ -1302,10 +1305,11 @@
 
                         <TextView
                             style="@style/Sub_TEXTVIEW_STYLE3"
+                            android:id="@+id/tv_mountpoint"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="0"
-                            android:text="DOND-RTCM32" />
+                            android:text="" />
 
                         <ImageView
                             android:layout_width="@dimen/rightArrowSize"
@@ -1336,7 +1340,14 @@
                         android:layout_marginLeft="5dp"
                         android:layout_marginRight="5dp"/>
 
+                </LinearLayout>
 
+                <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:visibility="@{viewModel.data_connection_type == 4 ? View.VISIBLE : View.GONE}"
+                >
                     <LinearLayout
                         style="@style/ButtonLayout_STYLE01"
                         android:background="@color/grey_cc">
@@ -1370,6 +1381,7 @@
 
 
                     <LinearLayout
+                        android:id="@+id/layout_network_auto_connect2"
                         style="@style/ButtonLayout_STYLE01"
                         >
 
@@ -1379,17 +1391,17 @@
                              />
 
                         <Switch
+                            android:id="@+id/sw_network_auto_connect2"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-
+                            android:checked="@{viewModel.network_autoconnect}"
                             android:clickable="false" />
 
-
                     </LinearLayout>
-
-
                 </LinearLayout>
+
+
 
 
                 <!--마지막에 선-->
