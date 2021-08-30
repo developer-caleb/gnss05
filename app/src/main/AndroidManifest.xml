@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="kr.loplab.gnss05">
+    package="kr.loplab.gnss05" >
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -17,22 +17,23 @@
         android:requestLegacyExternalStorage="true"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Gnss05">
+        android:theme="@style/Theme.Gnss05" >
         <activity
-            android:name=".activities.SettingSatelliteActivity"
-            android:exported="true">
-
+            android:name=".activities.mobile_station.MobileStationSettingSatelliteActivity"
+            android:exported="true" />
+        <activity
+            android:name=".activities.reference_country.ReferenceCountrySettingSatelliteActivity"
+            android:exported="true" >
         </activity>
         <activity
             android:name=".activities.cors_servermanager.ServerAddressAddActivity"
             android:exported="true" />
         <activity
             android:name=".activities.cors_servermanager.CORSServerManagerActivity"
-            android:exported="true"></activity>
+            android:exported="true" />
         <activity
             android:name=".activities.workmanager.WorkManagerActivity"
-            android:exported="true">
-
+            android:exported="true" >
         </activity>
         <activity
             android:name=".activities.workmanager.WorkerActivity"
@@ -50,7 +51,7 @@
             android:name=".activities.StopSurveyActivity"
             android:exported="true" />
         <activity
-            android:name=".activities.MobileStationActivity"
+            android:name=".activities.mobile_station.MobileStationActivity"
             android:exported="true" />
         <activity
             android:name=".activities.ReferenceCoordinateSetting"
@@ -66,15 +67,14 @@
             android:exported="true" />
         <activity
             android:name=".SplashActivity"
-            android:exported="true">
+            android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
-        <activity android:name=".activities.UserFormatMake"></activity>
+        <activity android:name=".activities.UserFormatMake" />
         <activity android:name=".activities.FileExportActivity" />
         <activity android:name=".ColorPickerdialog" />
         <activity android:name=".NaverMap" />
@@ -85,9 +85,8 @@
             android:value="x3tscpw23x" />
 
         <activity
-            android:name=".activities.ReferenceCountryActivity"
-            android:parentActivityName=".MainActivity">
-
+            android:name=".activities.reference_country.ReferenceCountryActivity"
+            android:parentActivityName=".MainActivity" >
         </activity>
         <activity android:name=".MainActivity" />
     </application>

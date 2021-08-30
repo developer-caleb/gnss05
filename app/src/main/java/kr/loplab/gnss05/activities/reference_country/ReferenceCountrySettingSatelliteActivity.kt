@@ -1,4 +1,4 @@
-package kr.loplab.gnss05.activities
+package kr.loplab.gnss05.activities.reference_country
 
 import android.os.Bundle
 import android.text.InputType
@@ -10,11 +10,11 @@ import kr.loplab.gnss05.R
 import kr.loplab.gnss05.common.Define.*
 import kr.loplab.gnss05.common.OptionList
 import kr.loplab.gnss05.common.PrefUtil
-import kr.loplab.gnss05.databinding.ActivitySettingSatelliteBinding
+import kr.loplab.gnss05.databinding.ActivityReferenceCountrySettingSatelliteBinding
 
-class SettingSatelliteActivity : ActivityBase<ActivitySettingSatelliteBinding>() {
+class ReferenceCountrySettingSatelliteActivity : ActivityBase<ActivityReferenceCountrySettingSatelliteBinding>() {
     override val layoutResourceId: Int
-        get() = R.layout.activity_setting_satellite
+        get() = R.layout.activity_reference_country_setting_satellite
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }

@@ -10,6 +10,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.viewpager.widget.PagerAdapter
 import kr.loplab.gnss05.*
 import kr.loplab.gnss05.activities.*
+import kr.loplab.gnss05.activities.mobile_station.MobileStationActivity
+import kr.loplab.gnss05.activities.reference_country.ReferenceCountryActivity
 import kr.loplab.gnss05.common.Define
 import kr.loplab.gnss05.common.Define.REQUEST_SETTING
 import kr.loplab.gnss05.common.PrefUtil

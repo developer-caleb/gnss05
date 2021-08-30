@@ -1,4 +1,4 @@
-package kr.loplab.gnss05.activities
+package kr.loplab.gnss05.activities.reference_country
 
 import android.content.Intent
 import android.text.method.HideReturnsTransformationMethod
@@ -12,6 +12,7 @@ import androidx.room.Room
 import kr.loplab.gnss02.ActivityBase
 import kr.loplab.gnss05.MyDialog
 import kr.loplab.gnss05.R
+import kr.loplab.gnss05.activities.ReferenceCoordinateSetting
 import kr.loplab.gnss05.activities.cors_servermanager.CORSServerManagerActivity
 import kr.loplab.gnss05.activities.viewmodel.ReferenceCountryViewModel
 import kr.loplab.gnss05.activities.workmanager.AppDatabase
@@ -49,7 +50,7 @@ class ReferenceCountryActivity : ActivityBase<ActivityReferenceCountryBinding>()
         viewBinding.layoutConnectSave.setOnClickListener {  }
         viewBinding.settingSatelliteBt.setOnClickListener {
             Log.d(TAG, "initListener: settingSatelliteBt clicked")
-            intent = Intent(this, SettingSatelliteActivity::class.java)
+            intent = Intent(this, ReferenceCountrySettingSatelliteActivity::class.java)
             startActivity(intent);
         }
         viewBinding.saveAndApplyBt.setOnClickListener {

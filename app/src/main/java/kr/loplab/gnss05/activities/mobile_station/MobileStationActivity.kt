@@ -1,4 +1,4 @@
-package kr.loplab.gnss05.activities
+package kr.loplab.gnss05.activities.mobile_station
 
 import android.content.Intent
 import android.text.method.HideReturnsTransformationMethod
@@ -11,6 +11,7 @@ import kr.loplab.gnss02.ActivityBase
 import kr.loplab.gnss05.MyDialog
 import kr.loplab.gnss05.R
 import kr.loplab.gnss05.activities.cors_servermanager.CORSServerManagerActivity
+import kr.loplab.gnss05.activities.reference_country.ReferenceCountrySettingSatelliteActivity
 import kr.loplab.gnss05.activities.viewmodel.MobileStationViewModel
 import kr.loplab.gnss05.activities.workmanager.AppDatabase
 import kr.loplab.gnss05.activities.workmanager.WorkManagerActivity
@@ -34,6 +35,11 @@ class MobileStationActivity : ActivityBase<ActivityMobileStationBinding>() {
     }
 
     override fun initListener() {
+        viewBinding.settingSatelliteBt.setOnClickListener {
+            Log.d(TAG, "initListener: settingSatelliteBt clicked")
+            intent = Intent(this, ReferenceCountrySettingSatelliteActivity::class.java)
+            startActivity(intent);
+        }
         viewBinding.saveAndApplyBt.setOnClickListener {
             savesettings()
             Log.d(TAG, "initListener: saveAndApplyBt clicked")
