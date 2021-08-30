@@ -109,6 +109,8 @@ public class Define {
     public static final String STOP_SURVEY_CUT_ANGLE= "stop_survey_cut_angle";
     public static final String STOP_SURVEY_COLLECTION_INTERVAL = "stop_survey_collection_interval";
     public static final String STOP_SURVEY_AUTO_SAVE = "stop_survey_auto_save";
+    public static final String STOP_SURVEY_POLE_HEIGHT = "stop_survey_pole_height";
+
 
 
 

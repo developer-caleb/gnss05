@@ -108,6 +108,12 @@ class StopSurveyActivity : ActivityBase<ActivityStopSurveyBinding>() {
         viewBinding.layoutStopSurveyAutosave.setOnClickListener {
             viewBinding.swStopsurveyAutosave.isChecked = !viewBinding.swStopsurveyAutosave.isChecked
         }
+        viewBinding.layoutPoleheight.setOnClickListener {
+            viewBinding.etPoleHeight.requestFocus()
+            val imm: InputMethodManager =
+                getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
+            imm.showSoftInput( viewBinding.etPoleHeight,0)
+        }
     }
 
     override fun initDatabinding() {
@@ -115,6 +121,8 @@ class StopSurveyActivity : ActivityBase<ActivityStopSurveyBinding>() {
         viewModel1.setIntvalue(viewModel1.cutAngleNum, PrefUtil.getInt2(applicationContext, Define.STOP_SURVEY_CUT_ANGLE, 1))
         viewModel1.setIntvalue(viewModel1.collectionIntervalNum, PrefUtil.getInt2(applicationContext, Define.STOP_SURVEY_COLLECTION_INTERVAL))  //2
         viewBinding.swStopsurveyAutosave.isChecked=  PrefUtil.getBoolean(applicationContext, Define.STOP_SURVEY_AUTO_SAVE)
+        viewBinding.etPoleHeight.setText(PrefUtil.getInt2(applicationContext, Define.STOP_SURVEY_POLE_HEIGHT,0))
+
 
     }
     fun savesettings(){
@@ -122,5 +130,7 @@ class StopSurveyActivity : ActivityBase<ActivityStopSurveyBinding>() {
         PrefUtil.setInt(applicationContext, Define.STOP_SURVEY_CUT_ANGLE, viewModel1.cutAngleNum.value!!)
         PrefUtil.setInt(applicationContext, Define.STOP_SURVEY_COLLECTION_INTERVAL, viewModel1.collectionIntervalNum.value!!) //2
         PrefUtil.setBoolean(this, Define.STOP_SURVEY_AUTO_SAVE, viewBinding.swStopsurveyAutosave.isChecked)
+        PrefUtil.setInt(applicationContext, Define.STOP_SURVEY_POLE_HEIGHT, viewBinding.etPoleHeight.text.toString().toInt()) //2
+
     }
 }
