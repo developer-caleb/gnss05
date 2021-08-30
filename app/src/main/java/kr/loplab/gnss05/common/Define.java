@@ -106,6 +106,8 @@ public class Define {
 
     //SharedPreference Code STOP SURVEY
     public static final String STOP_SURVEY_PDOP_LIMIT= "stop_survey_pdop_limit";
+    public static final String STOP_SURVEY_CUT_ANGLE= "stop_survey_cut_angle";
+
 
 
     //SharedPreference Code STOP SURVEY_SATELLITE

@@ -2,6 +2,17 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <import type="android.view.View"/>
+        <import type="java.util.ArrayList"/>
+        <import type="java.util.Arrays"/>
+        <variable
+            name="Optionlist"
+            type="kr.loplab.gnss05.common.OptionList"/>
+        <variable
+            name="viewModel"
+            type="kr.loplab.gnss05.activities.viewmodel.StopSurveyViewModel"/>
+    </data>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -152,7 +163,10 @@
                         android:background="@color/grey_EC" />
 
 
-                    <LinearLayout style="@style/ButtonLayout_STYLE01">
+                    <LinearLayout
+                        android:id="@+id/layout_cut_angle"
+                        style="@style/ButtonLayout_STYLE01"
+                        >
 
                         <TextView
                             style="@style/Sub_TEXTVIEW_STYLE1"
@@ -160,11 +174,13 @@
                              />
 
                         <TextView
+                            android:id="@+id/tv_cut_angle"
                             style="@style/Sub_TEXTVIEW_STYLE3"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="0"
-                            android:text="0" />
+                            android:text="@{viewModel.cutAngleNum.toString()}"/>
+
 
                         <ImageView
                             android:layout_width="@dimen/rightArrowSize"

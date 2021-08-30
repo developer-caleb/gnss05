@@ -6,10 +6,13 @@ import android.os.Bundle
 import android.text.InputType
 import android.util.Log
 import android.view.inputmethod.InputMethodManager
+import androidx.lifecycle.ViewModelProvider
 import kr.loplab.gnss02.ActivityBase
 import kr.loplab.gnss05.MyDialog
 import kr.loplab.gnss05.R
 import kr.loplab.gnss05.activities.mobile_station.MobileStationSettingSatelliteActivity
+import kr.loplab.gnss05.activities.viewmodel.MobileStationViewModel
+import kr.loplab.gnss05.activities.viewmodel.StopSurveyViewModel
 import kr.loplab.gnss05.common.Define
 import kr.loplab.gnss05.common.OptionList
 import kr.loplab.gnss05.common.PrefUtil
@@ -18,11 +21,15 @@ import kr.loplab.gnss05.databinding.ActivityStopSurveyBinding
 class StopSurveyActivity : ActivityBase<ActivityStopSurveyBinding>() {
     override val layoutResourceId: Int
         get() = R.layout.activity_stop_survey
+    lateinit var viewModel1: StopSurveyViewModel
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
 
     override fun init() {
+        viewModel1 = ViewModelProvider(this).get(StopSurveyViewModel::class.java)
+        viewBinding.viewModel = viewModel1
     }
 
 
@@ -68,12 +75,33 @@ class StopSurveyActivity : ActivityBase<ActivityStopSurveyBinding>() {
             dlg.setHeader("PDOP한계")
 
         }
+        viewBinding.layoutCutAngle.setOnClickListener {
+            val dlg = MyDialog(this)
+            var alist = OptionList.CUT_ANGLE_LIST
+            dlg.firstLayoutUse = true
+            dlg.list = alist
+            dlg.input_text_str = viewBinding.tvCutAngle.text.toString()
+            dlg.selectedposition= alist.indexOf(viewModel1.cutAngleNum.value.toString())
+            dlg.start("")
+            dlg.setOnListClickedListener { view, i ->
+                viewModel1.cutAngleNum.value = alist[i].toInt()
+                dlg.dismiss()
+            }
+            dlg.setOnCheckClickedListener { str ->
+                viewModel1.cutAngleNum.value = str.toInt()
+            }
+            dlg.setHeader("컷 각도")
+        }
     }
 
     override fun initDatabinding() {
         viewBinding.tvPdopLimit.text =PrefUtil.getFloat(this, Define.STOP_SURVEY_PDOP_LIMIT , 0.5f ).toString()
+        viewModel1.setIntvalue(viewModel1.cutAngleNum, PrefUtil.getInt2(applicationContext, Define.STOP_SURVEY_CUT_ANGLE, 1))
+
     }
     fun savesettings(){
         PrefUtil.setFloat(this, Define.STOP_SURVEY_PDOP_LIMIT, viewBinding.tvPdopLimit.text.toString().toFloat())
+        PrefUtil.setInt(applicationContext, Define.STOP_SURVEY_CUT_ANGLE, viewModel1.cutAngleNum.value!!)
+
     }
 }
