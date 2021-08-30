@@ -23,7 +23,6 @@ class ServerAddressAddActivity : ActivityBase<ActivityServerAddressAddBinding>()
     var requestCode= 0;
     var selectedPosition = -1;
     var serverslist : MutableList<Server>? = null
-    var corsPwView = false;
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
@@ -119,13 +118,7 @@ class ServerAddressAddActivity : ActivityBase<ActivityServerAddressAddBinding>()
         }
 
 
-        viewBinding.corsPwEye.setOnClickListener {
-            Log.d(TAG, "initListener: passwordview clicked")
-            corsPwView = !corsPwView;
-            viewBinding.etPassword.transformationMethod =
-                if (corsPwView) PasswordTransformationMethod.getInstance() else HideReturnsTransformationMethod.getInstance()
-            if (corsPwView)  viewBinding.corsPwEye.setImageResource(R.drawable.ic_eye_yes) else viewBinding.corsPwEye.setImageResource(R.drawable.ic_eye_no)
-        }
+
     }
 
     override fun initDatabinding() {

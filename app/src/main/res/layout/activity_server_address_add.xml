@@ -170,26 +170,32 @@
                         android:text="암호"
                         />
 
-                    <EditText
-                        android:id="@+id/et_password"
+
+                    <com.google.android.material.textfield.TextInputLayout
                         android:layout_width="wrap_content"
-                        style="@style/Sub_TEXTVIEW_STYLE2"
                         android:layout_height="wrap_content"
-                        android:backgroundTint="@color/transparent"
-                        android:layout_marginRight="5dp"
-                        android:hint="암호 입력"
-                        android:inputType="textPassword"
-                        tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
-
-                    <ImageView
-                        android:id="@+id/cors_pw_eye"
-                        android:layout_width="@dimen/rightArrowSize"
-                        android:layout_height="@dimen/rightArrowSize"
                         android:layout_weight="0"
-                        android:padding="5dp"
-                        android:layout_marginRight="20dp"
-                        app:srcCompat="@drawable/ic_eye_no" />
+                        app:errorEnabled="false"
+                        app:hintEnabled="false"
+                        app:boxStrokeWidth="0dp"
+                        app:boxStrokeWidthFocused="0dp"
+                        app:endIconMode="password_toggle"
+                        app:endIconTint="@color/main_blue"
+                        android:background="@color/transparent"
+                        android:padding="0dp"
+                        >
 
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/et_password"
+                            style="@style/Sub_TEXTVIEW_STYLE3_TEXTINPUTLAYOUT"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="0dp"
+                            android:text="AAAA01"
+                            android:hint="암호 입력"
+                            android:background="@color/transparent"
+                            android:inputType="textPassword" />
+                    </com.google.android.material.textfield.TextInputLayout>
 
                 </LinearLayout>
 
