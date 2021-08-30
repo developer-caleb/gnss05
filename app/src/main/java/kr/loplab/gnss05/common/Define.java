@@ -96,6 +96,8 @@ public class Define {
     public static final String MOBILE_STATION_NETWORK_TRANSFER = "mobile_station_network_transfer";
     public static final String MOBILE_STATION_AUTO_APN = "mobile_station_auto_apn";
     public static final String MOBILE_STATION_MOUNT_POINT = "mobile_station_mount_point";
+    public static final String MOBILE_STATION_MOUNT_SORT = "mobile_station_mount_sort";
+
 
 
     //SharedPreference Code MOBILE STATION_SATELLITE

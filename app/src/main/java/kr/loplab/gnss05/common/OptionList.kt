@@ -28,6 +28,7 @@ class OptionList {
       val GGA_UPLOAD_INTERVAL_LIST= arrayListOf<String>("1","2","3","5","10","15","20","25","30","60","120","180")
       val MOUNTPOINT_LIST= arrayListOf<String>("ANHN-RTCM30","BHAO-RTCM30","BHAO-RTCM32","BOEN-BINEX","BOEN-RTCM23", "BOEN-RTCM31", "BONH-BINEX",
       "BONH-RTCM23", "BONH-RTCM31", "BONH-RTCM32")
+      val MOUNTPOINT_SORT_LIST= arrayListOf<String>("기본","이름 순서","이름 역순","거리 순서")
 
       //정지측량
       val HEIGHT_CALC_METHOD= arrayListOf<String>("중심으로부터의 높이","측정 라인에서의 경사 높이","측정 라인에서 직립 높이","높이계로 부터의 경사 높이","장치 바닥에서 수직으로 세운 높이")

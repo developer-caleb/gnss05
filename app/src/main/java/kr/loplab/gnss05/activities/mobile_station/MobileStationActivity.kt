@@ -338,6 +338,19 @@ class MobileStationActivity : ActivityBase<ActivityMobileStationBinding>() {
             }
             dlg.setOnSortClickedListener {
                 Log.d(TAG, "initListener: sortClicked!")
+                val dlg2 = MyDialog(this)
+                var alist = OptionList.MOUNTPOINT_SORT_LIST
+                dlg2.firstLayoutUse = false
+                dlg2.list = alist
+                dlg2.selectedposition= viewModel1.mountPointSortNum.value!!
+                dlg2.start("")
+                dlg2.setOnListClickedListener { view, i ->
+                    Log.d(TAG, "initListener: $i")
+                    viewModel1.mountPointSortNum.value = i
+                    dlg2.dismiss()
+                }
+                dlg2.setHeader("정렬 유형")
+
             }
             dlg.setHeader("마운트포인트")
         }
@@ -368,6 +381,7 @@ class MobileStationActivity : ActivityBase<ActivityMobileStationBinding>() {
         viewModel1.setIntvalue(viewModel1.networkSystemNum, PrefUtil.getInt2(applicationContext, MOBILE_STATION_NETWORK_SYSTEM))  //6
         viewModel1.setBoolvalue(viewModel1.auto_apn, PrefUtil.getBoolean(this, MOBILE_STATION_AUTO_APN)) //10 -> data, viewbinding통합
         viewModel1.setStringvalue(viewModel1.mountPointString, PrefUtil.getString(applicationContext, MOBILE_STATION_MOUNT_POINT))  //6
+        viewModel1.setIntvalue(viewModel1.mountPointSortNum, PrefUtil.getInt2(applicationContext, Define.MOBILE_STATION_MOUNT_SORT))  //14
 
 
         dbsetting()
@@ -398,6 +412,7 @@ class MobileStationActivity : ActivityBase<ActivityMobileStationBinding>() {
         PrefUtil.setInt(applicationContext, Define.MOBILE_STATION_NETWORK_SYSTEM, viewModel1.networkSystemNum.value!!) //6
         PrefUtil.setBoolean(applicationContext, MOBILE_STATION_NETWORK_TRANSFER, viewBinding.swNetworkTransfer.isChecked) //12
         PrefUtil.setBoolean(applicationContext, MOBILE_STATION_AUTO_APN, viewModel1.auto_apn.value!!) //10
+        PrefUtil.setInt(applicationContext, Define.MOBILE_STATION_MOUNT_SORT, viewModel1.mountPointSortNum.value!!) //6
 
     }
 
