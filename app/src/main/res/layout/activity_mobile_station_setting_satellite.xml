@@ -3,9 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
     <data>
-        <import type="android.view.View"/>
-
+        <import type="android.view.View" />
     </data>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -14,11 +14,10 @@
             android:id="@+id/header_01"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:title="위성설정"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" >
-        </kr.loplab.gnss05.DefaultHeader>
+            app:layout_constraintTop_toTopOf="parent"
+            app:title="위성설정"></kr.loplab.gnss05.DefaultHeader>
 
         <ScrollView
             android:layout_width="match_parent"
@@ -31,19 +30,16 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical" >
-
+                android:orientation="vertical">
 
 
                 <LinearLayout
                     android:id="@+id/layout_gps"
-                    style="@style/ButtonLayout_STYLE01"
-                    >
+                    style="@style/ButtonLayout_STYLE01">
 
                     <TextView
                         style="@style/Sub_TEXTVIEW_STYLE1"
-                        android:text="GPS"
-                        />
+                        android:text="GPS" />
 
                     <Switch
                         android:id="@+id/sw_gps"
@@ -63,20 +59,17 @@
 
                 <LinearLayout
                     android:id="@+id/layout_glonass"
-                    style="@style/ButtonLayout_STYLE01"
-                    >
+                    style="@style/ButtonLayout_STYLE01">
 
                     <TextView
                         style="@style/Sub_TEXTVIEW_STYLE1"
-                        android:text="GLONASS"
-                        />
+                        android:text="GLONASS" />
 
                     <Switch
                         android:id="@+id/sw_glonass"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        />
+                        android:layout_weight="1" />
 
 
                 </LinearLayout>
@@ -89,13 +82,11 @@
 
                 <LinearLayout
                     android:id="@+id/layout_beidou"
-                    style="@style/ButtonLayout_STYLE01"
-                    >
+                    style="@style/ButtonLayout_STYLE01">
 
                     <TextView
                         style="@style/Sub_TEXTVIEW_STYLE1"
-                        android:text="BeiDou"
-                        />
+                        android:text="BeiDou" />
 
                     <Switch
                         android:id="@+id/sw_beidou"
@@ -116,13 +107,11 @@
 
                 <LinearLayout
                     android:id="@+id/layout_galilieo"
-                    style="@style/ButtonLayout_STYLE01"
-                    >
+                    style="@style/ButtonLayout_STYLE01">
 
                     <TextView
                         style="@style/Sub_TEXTVIEW_STYLE1"
-                        android:text="Galileo"
-                        />
+                        android:text="Galileo" />
 
                     <Switch
                         android:id="@+id/sw_galieo"
@@ -143,13 +132,11 @@
 
                 <LinearLayout
                     android:id="@+id/layout_sbas"
-                    style="@style/ButtonLayout_STYLE01"
-                    >
+                    style="@style/ButtonLayout_STYLE01">
 
                     <TextView
                         style="@style/Sub_TEXTVIEW_STYLE1"
-                        android:text="SBAS"
-                        />
+                        android:text="SBAS" />
 
                     <Switch
                         android:id="@+id/sw_sbas"
@@ -169,13 +156,11 @@
 
                 <LinearLayout
                     android:id="@+id/layout_qzss"
-                    style="@style/ButtonLayout_STYLE01"
-                    >
+                    style="@style/ButtonLayout_STYLE01">
 
                     <TextView
                         style="@style/Sub_TEXTVIEW_STYLE1"
-                        android:text="QZSS"
-                        />
+                        android:text="QZSS" />
 
                     <Switch
                         android:id="@+id/sw_qzss"
