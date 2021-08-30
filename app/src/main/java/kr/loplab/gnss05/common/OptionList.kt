@@ -27,5 +27,9 @@ class OptionList {
       val MOBILESTATION_DATA_CONNECTION_TYPE_LIST= arrayListOf<String>("없음","수신기 유심통신","내장 라디오","외장 라디오","단말기 유심통신", "L-band")
       val GGA_UPLOAD_INTERVAL_LIST= arrayListOf<String>("1","2","3","5","10","15","20","25","30","60","120","180")
 
+      //정지측량
+      val HEIGHT_CALC_METHOD= arrayListOf<String>("중심으로부터의 높이","측정 라인에서의 경사 높이","측정 라인에서 직립 높이","높이계로 부터의 경사 높이","장치 바닥에서 수직으로 세운 높이")
+
+
   }
 }

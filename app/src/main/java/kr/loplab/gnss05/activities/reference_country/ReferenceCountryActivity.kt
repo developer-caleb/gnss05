@@ -177,7 +177,6 @@ class ReferenceCountryActivity : ActivityBase<ActivityReferenceCountryBinding>()
         viewBinding.layoutNetworkMode.setOnClickListener {
             val dlg = MyDialog(this)
             var alist = NETWORK_MODE_List
-            var prefvalue = Define.REFERENCE_COUNTRY_NETWORK_MODE
             dlg.firstLayoutUse = false
             dlg.list = alist
             dlg.selectedposition= viewModel1.network_mode.value!!
@@ -185,7 +184,6 @@ class ReferenceCountryActivity : ActivityBase<ActivityReferenceCountryBinding>()
             dlg.setOnListClickedListener { view, i ->
                 Log.d(TAG, "initListener: $i")
                 viewModel1.setNetworkMode(i)
-                viewBinding.tvNetworkMode.text = alist[i]
                 dlg.dismiss()
             }
             dlg.setHeader("네트워크 모드")
@@ -209,7 +207,6 @@ class ReferenceCountryActivity : ActivityBase<ActivityReferenceCountryBinding>()
         viewBinding.layoutInnerRadioChannel.setOnClickListener {
             val dlg = MyDialog(this)
             var alist = INNER_RADIO_CHANNEL_LIST
-            var prefvalue = Define.REFERENCE_COUNTRY_INNER_RADIO_CHANNEL
             dlg.firstLayoutUse = false
             dlg.list = alist
             dlg.selectedposition= viewModel1.innerRadioChannelNum.value!!

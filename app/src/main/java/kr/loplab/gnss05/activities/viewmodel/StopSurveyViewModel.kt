@@ -10,6 +10,7 @@ class StopSurveyViewModel : ViewModel(){
     private var name = ""
     var cutAngleNum = MutableLiveData<Int>(0)
     var collectionIntervalNum = MutableLiveData<Int>(0)
+    var heightCalcMethod = MutableLiveData<Int>(0)
 
     /*  var bool_rawdatasave = MutableLiveData<Boolean>(false)
       var data_connection_type = MutableLiveData<Int>(0)

@@ -114,6 +114,20 @@ class StopSurveyActivity : ActivityBase<ActivityStopSurveyBinding>() {
                 getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
             imm.showSoftInput( viewBinding.etPoleHeight,0)
         }
+        viewBinding.layoutHeightCalcMethod.setOnClickListener {
+            val dlg = MyDialog(this)
+            var alist = OptionList.HEIGHT_CALC_METHOD
+            dlg.firstLayoutUse = false
+            dlg.list = alist
+            dlg.selectedposition= viewModel1.heightCalcMethod.value!!
+            dlg.start("")
+            dlg.setOnListClickedListener { view, i ->
+                Log.d(TAG, "initListener: $i")
+                viewModel1.heightCalcMethod.value = i
+                dlg.dismiss()
+            }
+            dlg.setHeader("높이 계산 방법")
+        }
     }
 
     override fun initDatabinding() {
@@ -121,7 +135,8 @@ class StopSurveyActivity : ActivityBase<ActivityStopSurveyBinding>() {
         viewModel1.setIntvalue(viewModel1.cutAngleNum, PrefUtil.getInt2(applicationContext, Define.STOP_SURVEY_CUT_ANGLE, 1))
         viewModel1.setIntvalue(viewModel1.collectionIntervalNum, PrefUtil.getInt2(applicationContext, Define.STOP_SURVEY_COLLECTION_INTERVAL))  //2
         viewBinding.swStopsurveyAutosave.isChecked=  PrefUtil.getBoolean(applicationContext, Define.STOP_SURVEY_AUTO_SAVE)
-        viewBinding.etPoleHeight.setText(PrefUtil.getInt2(applicationContext, Define.STOP_SURVEY_POLE_HEIGHT,0))
+        viewBinding.etPoleHeight.setText(PrefUtil.getInt2(applicationContext, Define.STOP_SURVEY_POLE_HEIGHT,0).toString())
+        viewModel1.setIntvalue(viewModel1.heightCalcMethod, PrefUtil.getInt2(applicationContext, Define.STOP_SURVEY_HEIGHT_CALC_METHOD))  //2
 
 
     }
@@ -131,6 +146,7 @@ class StopSurveyActivity : ActivityBase<ActivityStopSurveyBinding>() {
         PrefUtil.setInt(applicationContext, Define.STOP_SURVEY_COLLECTION_INTERVAL, viewModel1.collectionIntervalNum.value!!) //2
         PrefUtil.setBoolean(this, Define.STOP_SURVEY_AUTO_SAVE, viewBinding.swStopsurveyAutosave.isChecked)
         PrefUtil.setInt(applicationContext, Define.STOP_SURVEY_POLE_HEIGHT, viewBinding.etPoleHeight.text.toString().toInt()) //2
+        PrefUtil.setInt(applicationContext, Define.STOP_SURVEY_HEIGHT_CALC_METHOD, viewModel1.heightCalcMethod.value!!) //2
 
     }
 }
