@@ -33,8 +33,10 @@ class MyDialog(context : Context)
     lateinit var input_text: EditText;
     var input_text_str = "";
     lateinit var title_button : ImageView;
+    lateinit var title_sortbutton : ImageView;
 
     public var firstLayoutUse = true;
+    public var titlesort = false;
     public var list: ArrayList<String>? = null
     var selectedposition = 0
     var inputValue = ""  // ->>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>header에 넣을 값
@@ -50,6 +52,8 @@ class MyDialog(context : Context)
         firstLayout1.visibility = if(firstLayoutUse) View.VISIBLE else {View.GONE} ;
         title_button = dialog.findViewById(R.id.title_button);
         title_button.visibility = if(firstLayoutUse) View.VISIBLE else {View.GONE} ;
+        title_sortbutton = dialog.findViewById(R.id.title_sort_button);
+        title_button.visibility = if(firstLayoutUse && titlesort) View.VISIBLE else {View.GONE} ;
         var firstdivider  : View = dialog.findViewById(R.id.first_divider);
         firstdivider.visibility = if(firstLayoutUse) View.VISIBLE else {View.GONE} ;
         input_text = dialog.findViewById(R.id.input_text);

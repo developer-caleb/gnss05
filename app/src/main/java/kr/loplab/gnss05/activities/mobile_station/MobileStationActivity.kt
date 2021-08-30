@@ -321,6 +321,7 @@ class MobileStationActivity : ActivityBase<ActivityMobileStationBinding>() {
             val dlg = MyDialog(this)
             var alist = OptionList.MOUNTPOINT_LIST
             dlg.firstLayoutUse = true
+            dlg.titlesort = true
             dlg.list = alist
             dlg.selectedposition= alist.indexOf(viewModel1.mountPointString.value!!)
             dlg.input_text_str = viewBinding.tvMountpoint.text.toString()
@@ -329,6 +330,10 @@ class MobileStationActivity : ActivityBase<ActivityMobileStationBinding>() {
             dlg.setOnListClickedListener { view, i ->
                 Log.d(TAG, "initListener: $i")
                 viewModel1.mountPointString.value = alist[i]
+                dlg.dismiss()
+            }
+            dlg.setOnCheckClickedListener { str ->
+                viewModel1.mountPointString.value = str
                 dlg.dismiss()
             }
             dlg.setHeader("마운트포인트")
