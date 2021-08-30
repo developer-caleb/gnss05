@@ -41,21 +41,30 @@
                     android:text="좌표계"
                      />
 
-                <EditText
-                    style="@style/Sub_TEXTVIEW_STYLE3"
+                <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="0"
-                    android:text="Default"
-                    tools:ignore="TouchTargetSizeCheck" />
+                    app:errorEnabled="false"
+                    app:hintEnabled="false"
+                    app:boxStrokeWidth="0dp"
+                    app:boxStrokeWidthFocused="0dp"
+                    app:endIconMode="clear_text"
+                    app:endIconTint="@color/main_blue"
+                    android:background="@color/transparent"
+                    android:padding="0dp"
+                    >
 
-                <ImageView
-                    android:layout_width="@dimen/rightArrowSize"
-                    android:layout_height="@dimen/rightArrowSize"
-                    android:layout_weight="0"
-                    android:padding="5dp"
-                    android:layout_marginRight="8dp"
-                    app:srcCompat="@drawable/subpage_close" />
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/et_coordinate_name"
+                        style="@style/Sub_TEXTVIEW_STYLE3_TEXTINPUTLAYOUT"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="0dp"
+                        android:text="AAAA01"
+                        android:background="@color/transparent"
+                        android:inputType="text" />
+                </com.google.android.material.textfield.TextInputLayout>
 
             </LinearLayout>
 

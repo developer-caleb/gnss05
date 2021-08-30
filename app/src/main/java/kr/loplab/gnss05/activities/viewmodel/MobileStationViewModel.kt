@@ -33,6 +33,7 @@ class MobileStationViewModel : ViewModel() {
     var cors_list = MutableLiveData<ArrayList<Server>>()
     var auto_apn = MutableLiveData<Boolean>(false)
     var network_autoconnect = MutableLiveData<Boolean>(false)
+    var mountPointString = MutableLiveData<String>("")
 
     /* var onprogress = MutableLiveData<Boolean>(false)
 
@@ -75,5 +76,8 @@ class MobileStationViewModel : ViewModel() {
     }
     fun setBoolvalue(data : MutableLiveData<Boolean>, boolvalue : Boolean){
         data.value = boolvalue
+    }
+    fun setStringvalue(data : MutableLiveData<String>, stringvalue : String){
+        data.value = stringvalue
     }
 }

@@ -1,6 +1,7 @@
 package kr.loplab.gnss05.activities.mobile_station
 
 import android.content.Intent
+import android.text.InputType
 import android.text.method.HideReturnsTransformationMethod
 import android.text.method.PasswordTransformationMethod
 import android.util.Log
@@ -11,7 +12,6 @@ import kr.loplab.gnss02.ActivityBase
 import kr.loplab.gnss05.MyDialog
 import kr.loplab.gnss05.R
 import kr.loplab.gnss05.activities.cors_servermanager.CORSServerManagerActivity
-import kr.loplab.gnss05.activities.reference_country.ReferenceCountrySettingSatelliteActivity
 import kr.loplab.gnss05.activities.viewmodel.MobileStationViewModel
 import kr.loplab.gnss05.activities.workmanager.AppDatabase
 import kr.loplab.gnss05.activities.workmanager.WorkManagerActivity
@@ -231,6 +231,7 @@ class MobileStationActivity : ActivityBase<ActivityMobileStationBinding>() {
             dlg.input_text_str = viewBinding.tvGgaUploadInterval.text.toString()
             dlg.selectedposition= alist.indexOf(viewModel1.outerRadioCommunicationSpeedNum.value.toString()!!)
             dlg.start("")
+            dlg.input_text.setInputType(InputType.TYPE_CLASS_TEXT)
             dlg.setOnListClickedListener { view, i ->
                 viewModel1.outerRadioCommunicationSpeedNum.value = alist[i].toInt()
                 dlg.dismiss()
@@ -316,6 +317,23 @@ class MobileStationActivity : ActivityBase<ActivityMobileStationBinding>() {
             dlg.setHeader("이름")
         }
 
+        viewBinding.layoutMountpoint.setOnClickListener {
+            val dlg = MyDialog(this)
+            var alist = OptionList.MOUNTPOINT_LIST
+            dlg.firstLayoutUse = true
+            dlg.list = alist
+            dlg.selectedposition= alist.indexOf(viewModel1.mountPointString.value!!)
+            dlg.input_text_str = viewBinding.tvMountpoint.text.toString()
+
+            dlg.start("")
+            dlg.setOnListClickedListener { view, i ->
+                Log.d(TAG, "initListener: $i")
+                viewModel1.mountPointString.value = alist[i]
+                dlg.dismiss()
+            }
+            dlg.setHeader("마운트포인트")
+        }
+
     }
 
     override fun initDatabinding() {
@@ -341,6 +359,7 @@ class MobileStationActivity : ActivityBase<ActivityMobileStationBinding>() {
         viewBinding.swNetworkTransfer.isChecked =PrefUtil.getBoolean(applicationContext, MOBILE_STATION_NETWORK_TRANSFER) //12
         viewModel1.setIntvalue(viewModel1.networkSystemNum, PrefUtil.getInt2(applicationContext, MOBILE_STATION_NETWORK_SYSTEM))  //6
         viewModel1.setBoolvalue(viewModel1.auto_apn, PrefUtil.getBoolean(this, MOBILE_STATION_AUTO_APN)) //10 -> data, viewbinding통합
+        viewModel1.setStringvalue(viewModel1.mountPointString, PrefUtil.getString(applicationContext, MOBILE_STATION_MOUNT_POINT))  //6
 
 
         dbsetting()
@@ -362,6 +381,8 @@ class MobileStationActivity : ActivityBase<ActivityMobileStationBinding>() {
         PrefUtil.setBoolean(applicationContext, MOBILE_STATION_INNER_RADIO_FEC, viewBinding.swInnerRadioFec.isChecked) //13
         PrefUtil.setInt(applicationContext, Define.MOBILE_STATION_INNER_RADIO_POWER, viewModel1.innerRadioPowerNum.value!!) //14
         PrefUtil.setInt(applicationContext, Define.MOBILE_STATION_RADIO_MODE_POWER, viewModel1.radioModePowerNum.value!!) //14
+        PrefUtil.setString(applicationContext, Define.MOBILE_STATION_MOUNT_POINT, viewModel1.mountPointString.value!!) //14
+
 
         PrefUtil.setInt(applicationContext, MOBILE_STATION_OUTERRADIOCOMMUNICATION_SPEED, viewModel1.outerRadioCommunicationSpeedNum.value!!) //??
         PrefUtil.setInt(applicationContext, MOBILE_STATION_GGA_UPLOAD_INTERVAL, viewModel1.ggaUploadIntervalNum.value!!) //??
