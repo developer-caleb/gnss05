@@ -1,6 +1,8 @@
 package kr.loplab.gnss05.activities.workmanager
 
 import android.os.Bundle
+import android.text.method.HideReturnsTransformationMethod
+import android.text.method.PasswordTransformationMethod
 import android.util.Log
 import android.view.inputmethod.InputMethodManager
 import androidx.lifecycle.lifecycleScope
@@ -22,6 +24,7 @@ class WorkerActivity :  ActivityBase<ActivityWorkerBinding>()  {
     var requestCode= 0;
     var selectedPosition = -1;
      var workerslist : MutableList<Worker>? = null
+    var apnsPwView = false;
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
@@ -103,6 +106,15 @@ class WorkerActivity :  ActivityBase<ActivityWorkerBinding>()  {
 
         }
         }
+
+        viewBinding.apnPwEye.setOnClickListener {
+            Log.d(TAG, "initListener: passwordview clicked")
+            apnsPwView = !apnsPwView;
+            Log.d(TAG, "initListener: viewBinding.apnPwEye clicked $apnsPwView")
+            viewBinding.etPassword.transformationMethod = if (apnsPwView) PasswordTransformationMethod.getInstance() else HideReturnsTransformationMethod.getInstance()
+            if (apnsPwView)  viewBinding.apnPwEye.setImageResource(R.drawable.ic_eye_yes) else viewBinding.apnPwEye.setImageResource(R.drawable.ic_eye_no)
+        }
+
     }
     fun keyboardtoggle(){
         val imm: InputMethodManager =

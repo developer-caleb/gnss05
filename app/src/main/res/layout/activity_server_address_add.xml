@@ -182,12 +182,13 @@
                         tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
                     <ImageView
+                        android:id="@+id/cors_pw_eye"
                         android:layout_width="@dimen/rightArrowSize"
                         android:layout_height="@dimen/rightArrowSize"
                         android:layout_weight="0"
                         android:padding="5dp"
                         android:layout_marginRight="20dp"
-                        app:srcCompat="@drawable/password_icon" />
+                        app:srcCompat="@drawable/ic_eye_no" />
 
 
                 </LinearLayout>

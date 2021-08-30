@@ -1,6 +1,8 @@
 package kr.loplab.gnss05.activities.cors_servermanager
 
 import android.os.Bundle
+import android.text.method.HideReturnsTransformationMethod
+import android.text.method.PasswordTransformationMethod
 import android.util.Log
 import android.view.inputmethod.InputMethodManager
 import androidx.lifecycle.lifecycleScope
@@ -21,6 +23,7 @@ class ServerAddressAddActivity : ActivityBase<ActivityServerAddressAddBinding>()
     var requestCode= 0;
     var selectedPosition = -1;
     var serverslist : MutableList<Server>? = null
+    var corsPwView = false;
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
@@ -113,6 +116,15 @@ class ServerAddressAddActivity : ActivityBase<ActivityServerAddressAddBinding>()
                 }
 
             }
+        }
+
+
+        viewBinding.corsPwEye.setOnClickListener {
+            Log.d(TAG, "initListener: passwordview clicked")
+            corsPwView = !corsPwView;
+            viewBinding.etPassword.transformationMethod =
+                if (corsPwView) PasswordTransformationMethod.getInstance() else HideReturnsTransformationMethod.getInstance()
+            if (corsPwView)  viewBinding.corsPwEye.setImageResource(R.drawable.ic_eye_yes) else viewBinding.corsPwEye.setImageResource(R.drawable.ic_eye_no)
         }
     }
 
