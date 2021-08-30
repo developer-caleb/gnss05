@@ -37,7 +37,7 @@ class MobileStationActivity : ActivityBase<ActivityMobileStationBinding>() {
     override fun initListener() {
         viewBinding.settingSatelliteBt.setOnClickListener {
             Log.d(TAG, "initListener: settingSatelliteBt clicked")
-            intent = Intent(this, ReferenceCountrySettingSatelliteActivity::class.java)
+            intent = Intent(this, MobileStationSettingSatelliteActivity::class.java)
             startActivity(intent);
         }
         viewBinding.saveAndApplyBt.setOnClickListener {

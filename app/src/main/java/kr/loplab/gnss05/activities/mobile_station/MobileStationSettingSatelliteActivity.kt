@@ -30,12 +30,12 @@ class MobileStationSettingSatelliteActivity : ActivityBase<ActivityMobileStation
         viewBinding.btConfirm.setOnClickListener {
             Log.d(TAG, "initListener: confirmbt_clicked-> 저장하기")
             //save
-            PrefUtil.setBoolean(this, Define.REFERENCE_COUNTRY_SATELLITE_GPS, viewBinding.swGps.isChecked )
-            PrefUtil.setBoolean(this, Define.REFERENCE_COUNTRY_SATELLITE_GLONASS, viewBinding.swGlonass.isChecked)
-            PrefUtil.setBoolean(this, Define.REFERENCE_COUNTRY_SATELLITE_BEIDOU, viewBinding.swBeidou.isChecked)
-            PrefUtil.setBoolean(this, Define.REFERENCE_COUNTRY_SATELLITE_GALILEO, viewBinding.swGalieo.isChecked)
-            PrefUtil.setBoolean(this, Define.REFERENCE_COUNTRY_SATELLITE_SBAS, viewBinding.swSbas.isChecked)
-            PrefUtil.setBoolean(this, Define.REFERENCE_COUNTRY_SATELLITE_QZSS, viewBinding.swQzss.isChecked)
+            PrefUtil.setBoolean(this, Define.MOBILE_STATION_SATELLITE_GPS, viewBinding.swGps.isChecked )
+            PrefUtil.setBoolean(this, Define.MOBILE_STATION_SATELLITE_GLONASS, viewBinding.swGlonass.isChecked)
+            PrefUtil.setBoolean(this, Define.MOBILE_STATION_SATELLITE_BEIDOU, viewBinding.swBeidou.isChecked)
+            PrefUtil.setBoolean(this, Define.MOBILE_STATION_SATELLITE_GALILEO, viewBinding.swGalieo.isChecked)
+            PrefUtil.setBoolean(this, Define.MOBILE_STATION_SATELLITE_SBAS, viewBinding.swSbas.isChecked)
+            PrefUtil.setBoolean(this, Define.MOBILE_STATION_SATELLITE_QZSS, viewBinding.swQzss.isChecked)
 
             onBackPressed()
         }
@@ -72,22 +72,22 @@ class MobileStationSettingSatelliteActivity : ActivityBase<ActivityMobileStation
     override fun initDatabinding() {
 
         viewBinding.swGps.isChecked = PrefUtil.getBoolean(this,
-            Define.REFERENCE_COUNTRY_SATELLITE_GPS
+            Define.MOBILE_STATION_SATELLITE_GPS
         )
         viewBinding.swGlonass.isChecked = PrefUtil.getBoolean(this,
-            Define.REFERENCE_COUNTRY_SATELLITE_GLONASS
+            Define.MOBILE_STATION_SATELLITE_GLONASS
         )
         viewBinding.swBeidou.isChecked = PrefUtil.getBoolean(this,
-            Define.REFERENCE_COUNTRY_SATELLITE_BEIDOU
+            Define.MOBILE_STATION_SATELLITE_BEIDOU
         )
         viewBinding.swGalieo.isChecked = PrefUtil.getBoolean(this,
-            Define.REFERENCE_COUNTRY_SATELLITE_GALILEO
+            Define.MOBILE_STATION_SATELLITE_GALILEO
         )
         viewBinding.swSbas.isChecked = PrefUtil.getBoolean(this,
-            Define.REFERENCE_COUNTRY_SATELLITE_SBAS
+            Define.MOBILE_STATION_SATELLITE_SBAS
         )
         viewBinding.swQzss.isChecked = PrefUtil.getBoolean(this,
-            Define.REFERENCE_COUNTRY_SATELLITE_QZSS
+            Define.MOBILE_STATION_SATELLITE_QZSS
         )
 
 

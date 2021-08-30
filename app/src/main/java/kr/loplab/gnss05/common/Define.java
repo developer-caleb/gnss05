@@ -96,7 +96,13 @@ public class Define {
     public static final String MOBILE_STATION_NETWORK_TRANSFER = "mobile_station_network_transfer";
     public static final String MOBILE_STATION_AUTO_APN = "mobile_station_auto_apn";
 
-
+    //SharedPreference Code MOBILE STATION_SATELLITE
+    public static final String MOBILE_STATION_SATELLITE_GPS= "mobile_station_satellite_gps";
+    public static final String MOBILE_STATION_SATELLITE_GLONASS= "mobile_station_satellite_glonass";
+    public static final String MOBILE_STATION_SATELLITE_BEIDOU= "mobile_station_satellite_beidou";
+    public static final String MOBILE_STATION_SATELLITE_GALILEO= "mobile_station_satellite_galileo";
+    public static final String MOBILE_STATION_SATELLITE_SBAS= "mobile_station_satellite_sbas";
+    public static final String MOBILE_STATION_SATELLITE_QZSS= "mobile_station_satellite_qzss";
 
     //ROOM
     public static final String WORKERS_DB = "workers-db";
