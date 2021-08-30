@@ -92,16 +92,31 @@ class StopSurveyActivity : ActivityBase<ActivityStopSurveyBinding>() {
             }
             dlg.setHeader("컷 각도")
         }
+        viewBinding.layoutCollectionInterval.setOnClickListener {
+            val dlg = MyDialog(this)
+            var alist = OptionList.COLLECTION_INTERVAL_LIST
+            dlg.firstLayoutUse = false
+            dlg.list = alist
+            dlg.selectedposition= viewModel1.collectionIntervalNum.value!!
+            dlg.start("")
+            dlg.setOnListClickedListener { view, i ->
+                viewModel1.collectionIntervalNum.value = i
+                dlg.dismiss()
+            }
+            dlg.setHeader("수집간격")
+        }
     }
 
     override fun initDatabinding() {
         viewBinding.tvPdopLimit.text =PrefUtil.getFloat(this, Define.STOP_SURVEY_PDOP_LIMIT , 0.5f ).toString()
         viewModel1.setIntvalue(viewModel1.cutAngleNum, PrefUtil.getInt2(applicationContext, Define.STOP_SURVEY_CUT_ANGLE, 1))
+        viewModel1.setIntvalue(viewModel1.collectionIntervalNum, PrefUtil.getInt2(applicationContext, Define.MOBILE_STATION_COLLECTION_INTERVAL))  //2
 
     }
     fun savesettings(){
         PrefUtil.setFloat(this, Define.STOP_SURVEY_PDOP_LIMIT, viewBinding.tvPdopLimit.text.toString().toFloat())
         PrefUtil.setInt(applicationContext, Define.STOP_SURVEY_CUT_ANGLE, viewModel1.cutAngleNum.value!!)
+        PrefUtil.setInt(applicationContext, Define.MOBILE_STATION_COLLECTION_INTERVAL, viewModel1.collectionIntervalNum.value!!) //2
 
     }
 }

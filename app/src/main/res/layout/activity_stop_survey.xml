@@ -201,7 +201,9 @@
                         android:background="@color/grey_EC" />
 
 
-                    <LinearLayout style="@style/ButtonLayout_STYLE01">
+                    <LinearLayout
+                        android:id="@+id/layout_collection_interval"
+                        style="@style/ButtonLayout_STYLE01">
 
                         <TextView
                             style="@style/Sub_TEXTVIEW_STYLE1"
@@ -209,11 +211,13 @@
                              />
 
                         <TextView
+                            android:id="@+id/tv_collection_interval"
                             style="@style/Sub_TEXTVIEW_STYLE3"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="0"
-                            android:text="1HZ" />
+                            android:text="@{Optionlist.Companion.COLLECTION_INTERVAL_LIST.get(viewModel.collectionIntervalNum)}" />
+
 
                         <ImageView
                             android:layout_width="@dimen/rightArrowSize"
