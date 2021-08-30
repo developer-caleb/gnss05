@@ -28,6 +28,7 @@ class MobileStationSettingSatelliteActivity : ActivityBase<ActivityMobileStation
     override fun initListener() {
         viewBinding.header01.setOnBackButtonClickListener { onBackPressed();}
         viewBinding.btConfirm.setOnClickListener {
+            if(intent.getBooleanExtra("StopMode", false))
             Log.d(TAG, "initListener: confirmbt_clicked-> 저장하기")
             //save
             PrefUtil.setBoolean(this, Define.MOBILE_STATION_SATELLITE_GPS, viewBinding.swGps.isChecked )
@@ -36,33 +37,26 @@ class MobileStationSettingSatelliteActivity : ActivityBase<ActivityMobileStation
             PrefUtil.setBoolean(this, Define.MOBILE_STATION_SATELLITE_GALILEO, viewBinding.swGalieo.isChecked)
             PrefUtil.setBoolean(this, Define.MOBILE_STATION_SATELLITE_SBAS, viewBinding.swSbas.isChecked)
             PrefUtil.setBoolean(this, Define.MOBILE_STATION_SATELLITE_QZSS, viewBinding.swQzss.isChecked)
-
             onBackPressed()
         }
 
         //스위치
         viewBinding.layoutGps.setOnClickListener {
-            Log.d(TAG, "initListener: clicked")
             swchange(viewBinding.swGps)
         }
         viewBinding.layoutGlonass.setOnClickListener {
-            Log.d(TAG, "initListener: clicked")
             swchange(viewBinding.swGlonass)
         }
         viewBinding.layoutBeidou.setOnClickListener {
-            Log.d(TAG, "initListener: clicked")
             viewBinding.swBeidou.isChecked =    !viewBinding.swBeidou.isChecked
         }
         viewBinding.layoutGalilieo.setOnClickListener {
-            Log.d(TAG, "initListener: clicked")
             viewBinding.swGalieo.isChecked =    !viewBinding.swGalieo.isChecked
         }
         viewBinding.layoutSbas.setOnClickListener {
-            Log.d(TAG, "initListener: clicked")
             swchange2(viewBinding.swSbas)
         }
         viewBinding.layoutQzss.setOnClickListener {
-            Log.d(TAG, "initListener: clicked")
             swchange2(viewBinding.swQzss)
         }
 
@@ -70,27 +64,12 @@ class MobileStationSettingSatelliteActivity : ActivityBase<ActivityMobileStation
     }
 
     override fun initDatabinding() {
-
-        viewBinding.swGps.isChecked = PrefUtil.getBoolean(this,
-            Define.MOBILE_STATION_SATELLITE_GPS
-        )
-        viewBinding.swGlonass.isChecked = PrefUtil.getBoolean(this,
-            Define.MOBILE_STATION_SATELLITE_GLONASS
-        )
-        viewBinding.swBeidou.isChecked = PrefUtil.getBoolean(this,
-            Define.MOBILE_STATION_SATELLITE_BEIDOU
-        )
-        viewBinding.swGalieo.isChecked = PrefUtil.getBoolean(this,
-            Define.MOBILE_STATION_SATELLITE_GALILEO
-        )
-        viewBinding.swSbas.isChecked = PrefUtil.getBoolean(this,
-            Define.MOBILE_STATION_SATELLITE_SBAS
-        )
-        viewBinding.swQzss.isChecked = PrefUtil.getBoolean(this,
-            Define.MOBILE_STATION_SATELLITE_QZSS
-        )
-
-
+        viewBinding.swGps.isChecked = PrefUtil.getBoolean(this, Define.MOBILE_STATION_SATELLITE_GPS)
+        viewBinding.swGlonass.isChecked = PrefUtil.getBoolean(this, Define.MOBILE_STATION_SATELLITE_GLONASS)
+        viewBinding.swBeidou.isChecked = PrefUtil.getBoolean(this, Define.MOBILE_STATION_SATELLITE_BEIDOU)
+        viewBinding.swGalieo.isChecked = PrefUtil.getBoolean(this, Define.MOBILE_STATION_SATELLITE_GALILEO)
+        viewBinding.swSbas.isChecked = PrefUtil.getBoolean(this, Define.MOBILE_STATION_SATELLITE_SBAS)
+        viewBinding.swQzss.isChecked = PrefUtil.getBoolean(this, Define.MOBILE_STATION_SATELLITE_QZSS)
     }
     fun swchange(sw : Switch){
         sw.isChecked = !sw.isChecked
