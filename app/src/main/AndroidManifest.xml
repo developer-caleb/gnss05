@@ -39,7 +39,7 @@
             android:name=".activities.workmanager.WorkerActivity"
             android:exported="true" />
         <activity
-            android:name=".activities.CoordinateActivity"
+            android:name=".activities.coordinate.CoordinateActivity"
             android:exported="true" />
         <activity
             android:name=".PositionInformationActivity"

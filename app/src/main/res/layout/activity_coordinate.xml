@@ -4,6 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools">
     <data>
         <import type="android.view.View"/>
+        <import type="java.util.ArrayList"/>
+        <import type="java.util.Arrays"/>
+        <variable
+            name="Optionlist"
+            type="kr.loplab.gnss05.common.OptionList"/>
+        <variable
+            name="viewModel"
+            type="kr.loplab.gnss05.activities.viewmodel.CoordinateViewModel"/>
     </data>
 <androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
