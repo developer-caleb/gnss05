@@ -1,6 +1,8 @@
 package kr.loplab.gnss05.activities
 
 import android.content.Intent
+import android.text.method.HideReturnsTransformationMethod
+import android.text.method.PasswordTransformationMethod
 import android.util.Log
 import androidx.core.app.ActivityCompat
 import androidx.lifecycle.ViewModelProvider
@@ -23,7 +25,9 @@ class MobileStationActivity : ActivityBase<ActivityMobileStationBinding>() {
     override val layoutResourceId: Int
         get() = R.layout.activity_mobile_station
     lateinit var viewModel1: MobileStationViewModel
-
+    var apnsPwView = false;
+    var corsPwView = false;
+    
     override fun init() {
         viewModel1 = ViewModelProvider(this).get(MobileStationViewModel::class.java)
         viewBinding.viewModel = viewModel1
@@ -256,6 +260,29 @@ class MobileStationActivity : ActivityBase<ActivityMobileStationBinding>() {
         viewBinding.layoutAutoApn.setOnClickListener {
             viewModel1.setBoolvalue(viewModel1.auto_apn, !viewModel1.auto_apn.value!!)
         }
+
+        viewBinding.layoutApnWorker.setOnClickListener {
+            val dlg = MyDialog(this)
+            var alist = ArrayList<String>();
+            viewModel1.apn_list.value!!.forEach { worker -> alist.add(worker.worker)  }
+            dlg.firstLayoutUse = false
+            dlg.list = alist
+            dlg.selectedposition= viewModel1.apnIndex.value!!
+            dlg.start("")
+            dlg.setOnListClickedListener { view, i ->
+                ApnSettings(i)
+                dlg.dismiss()
+            }
+            dlg.setHeader("작업자")
+        }
+
+        viewBinding.apnPwEye.setOnClickListener {
+            Log.d(TAG, "initListener: passwordview clicked")
+            apnsPwView = !apnsPwView;
+            viewBinding.tvApnPw.transformationMethod =
+                if (apnsPwView) PasswordTransformationMethod.getInstance() else HideReturnsTransformationMethod.getInstance()
+            if (apnsPwView)  viewBinding.apnPwEye.setImageResource(R.drawable.ic_eye_yes) else viewBinding.apnPwEye.setImageResource(R.drawable.ic_eye_no)
+        }
     }
 
     override fun initDatabinding() {
@@ -281,6 +308,10 @@ class MobileStationActivity : ActivityBase<ActivityMobileStationBinding>() {
         viewModel1.setIntvalue(viewModel1.networkSystemNum, PrefUtil.getInt2(applicationContext, MOBILE_STATION_NETWORK_SYSTEM))  //6
         viewModel1.setBoolvalue(viewModel1.auto_apn, PrefUtil.getBoolean(this, MOBILE_STATION_AUTO_APN)) //10 -> data, viewbinding통합
 
+
+        dbsetting()
+        ApnSettings(viewModel1.apnIndex.value!!)
+        CorsSettings(viewModel1.corsIndex.value!!)
     }
 
     fun savesettings(){
@@ -364,16 +395,15 @@ class MobileStationActivity : ActivityBase<ActivityMobileStationBinding>() {
         Log.d(TAG, "ApnSettings: $idx")
         viewModel1.apnIndex.value = idx
 
-      /*  viewBinding.tvApnWorker.text = viewModel1.apn_list.value!![idx].worker
+        viewBinding.tvApnWorker.text = viewModel1.apn_list.value!![idx].worker
         viewBinding.tvApnName.text = viewModel1.apn_list.value!![idx].name
         viewBinding.tvApnUser.text = viewModel1.apn_list.value!![idx].user
-        viewBinding.tvApnPw.text = viewModel1.apn_list.value!![idx].password*/
+        viewBinding.tvApnPw.text = viewModel1.apn_list.value!![idx].password
     }
 
     fun CorsSettings(  idx : Int){
         if(viewModel1.cors_list.value!!.size <= 0  ) return
         Log.d(TAG, "CorsSettings: $idx")
-
         viewModel1.corsIndex.value = idx
 
         /*viewBinding.tvCorsName.text = viewModel1.cors_list.value!![idx].name
