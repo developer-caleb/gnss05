@@ -104,6 +104,10 @@ public class Define {
     public static final String MOBILE_STATION_SATELLITE_SBAS= "mobile_station_satellite_sbas";
     public static final String MOBILE_STATION_SATELLITE_QZSS= "mobile_station_satellite_qzss";
 
+    //SharedPreference Code STOP SURVEY
+    public static final String STOP_SURVEY_PDOP_LIMIT= "stop_survey_pdop_limit";
+
+
     //SharedPreference Code STOP SURVEY_SATELLITE
     public static final String STOP_SURVEY_SATELLITE_GPS =       "stop_survey_satellite_gps";
     public static final String STOP_SURVEY_SATELLITE_GLONASS =   "stop_survey_satellite_glonass";

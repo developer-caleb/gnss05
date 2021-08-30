@@ -72,10 +72,7 @@ class ReferenceCountrySettingSatelliteActivity : ActivityBase<ActivityReferenceC
             dlg.input_text_str = viewBinding.tvPdopLimit.text.toString()
             dlg.selectedposition= alist.indexOf(viewBinding.tvPdopLimit.text.toString())
             dlg.start("")
-            dlg.input_text.setInputType(InputType.TYPE_CLASS_NUMBER + InputType.TYPE_NUMBER_FLAG_DECIMAL
-            +InputType.TYPE_NUMBER_FLAG_SIGNED)
-
-
+            dlg.input_text.setInputType(InputType.TYPE_CLASS_NUMBER + InputType.TYPE_NUMBER_FLAG_DECIMAL +InputType.TYPE_NUMBER_FLAG_SIGNED)
             dlg.setOnListClickedListener { view, i ->
                 viewBinding.tvPdopLimit.setText(alist[i])
                 dlg.dismiss()

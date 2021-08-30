@@ -184,6 +184,12 @@ public class PrefUtil {
         float value = prefs.getFloat(key, DEFAULT_VALUE_FLOAT);
         return value;
     }
+    public static float getFloat(Context context, String key, float initialvalue) {
+        SharedPreferences prefs = getPreferences(context);
+        float value = prefs.getFloat(key, DEFAULT_VALUE_FLOAT);
+        if(value == -1) value =initialvalue;
+        return value;
+    }
 
     /**
      * 키 값 삭제
