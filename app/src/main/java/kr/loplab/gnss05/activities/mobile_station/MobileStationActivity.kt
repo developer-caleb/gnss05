@@ -336,6 +336,9 @@ class MobileStationActivity : ActivityBase<ActivityMobileStationBinding>() {
                 viewModel1.mountPointString.value = str
                 dlg.dismiss()
             }
+            dlg.setOnSortClickedListener {
+                Log.d(TAG, "initListener: sortClicked!")
+            }
             dlg.setHeader("마운트포인트")
         }
 

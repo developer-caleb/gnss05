@@ -959,7 +959,9 @@
                             android:layout_weight="0"
                             android:padding="5dp"
                             android:layout_marginRight="15dp"
-                            app:srcCompat="@drawable/ic_eye_no" />
+                            app:srcCompat="@drawable/ic_eye_no"
+                            app:tint="@color/main_blue"
+                            />
 
 
                     </LinearLayout>
@@ -1042,7 +1044,8 @@
                             android:layout_marginRight="15dp"
                             android:layout_weight="0"
                             android:padding="5dp"
-                            android:src="@drawable/ic_eye_no" />
+                            android:src="@drawable/ic_eye_no"
+                            app:tint="@color/main_blue" />
 
 
                     </LinearLayout>
@@ -1246,7 +1249,9 @@
                             android:layout_marginRight="15dp"
                             android:layout_weight="0"
                             android:padding="5dp"
-                            app:srcCompat="@drawable/ic_eye_no" />
+                            app:srcCompat="@drawable/ic_eye_no"
+                            app:tint="@color/main_blue"
+                            />
 
 
                     </LinearLayout>

@@ -30,7 +30,7 @@
             android:layout_height="match_parent"
             android:layout_weight="0"
             android:scaleType="center"
-            android:src="@drawable/ic_check_bt" />
+            android:src="@drawable/ic_dropdown" />
 
         <Space
             android:layout_width="wrap_content"

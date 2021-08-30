@@ -25,6 +25,7 @@ class MyDialog(context : Context)
     private lateinit var oklistener : MyDialogOKClickedListener
     private lateinit var cancellistener : MyDialogCancelClickedListener
     private lateinit var checklistener : MyDialogCheckClickedListener
+    private lateinit var sortlistener : MyDialogSortClickedListener
     //private lateinit var cancellistener : MyDialogCancelClickedListener
     private lateinit var listlistener : MyDialogItemClickedListener
     private lateinit var listrecyclerview : RecyclerView
@@ -98,6 +99,10 @@ class MyDialog(context : Context)
         title_button.setOnClickListener {
             checklistener.onCheckClicked(input_text.text.toString())
         }
+        title_sortbutton.setOnClickListener {
+            sortlistener.onSortClicked()
+
+        }
 
         if (input_text_str.isNotEmpty()) {input_text.setText(input_text_str)}
         dialog.show()
@@ -121,6 +126,15 @@ class MyDialog(context : Context)
             }
         }
     }
+
+    fun setOnSortClickedListener(listener: () -> Unit) {
+        this.sortlistener = object: MyDialogSortClickedListener {
+            override fun onSortClicked() {
+               listener()
+            }
+        }
+    }
+
 
     fun setOnCancelClickedListener(listener: (String) -> Unit) {
         this.cancellistener = object: MyDialogCancelClickedListener {
@@ -150,6 +164,10 @@ class MyDialog(context : Context)
     interface MyDialogCheckClickedListener {
         fun onCheckClicked(content : String)
     }
+    interface MyDialogSortClickedListener {
+        fun onSortClicked()
+    }
+
     interface MyDialogCancelClickedListener {
         fun onCancelClicked(content : String)
     }

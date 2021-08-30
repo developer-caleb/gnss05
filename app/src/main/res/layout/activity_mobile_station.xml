@@ -1087,7 +1087,7 @@
                                 android:padding="5dp"
                                 android:layout_marginRight="15dp"
                                 app:srcCompat="@drawable/ic_eye_no"
-                                />
+                                app:tint="@color/main_blue" />
 
 
                         </LinearLayout>
@@ -1263,6 +1263,7 @@
                             android:layout_marginRight="15dp"
                             android:layout_weight="0"
                             android:padding="5dp"
+                            app:tint="@color/main_blue"
                             app:srcCompat="@drawable/ic_eye_no" />
 
 
