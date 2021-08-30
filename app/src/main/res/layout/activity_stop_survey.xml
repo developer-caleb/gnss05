@@ -337,6 +337,7 @@
 
 
             <TextView
+                android:id="@+id/setting_satellite_bt"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -352,6 +353,7 @@
                 android:background="@color/white" />
 
             <TextView
+                android:id="@+id/save_and_apply_bt"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -367,6 +369,7 @@
                 android:background="@color/white" />
 
             <TextView
+                android:id="@+id/apply_bt"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"

@@ -634,8 +634,7 @@
 
                         <TextView
                             style="@style/Sub_TEXTVIEW_STYLE1"
-                            android:text="GGA업로드간격(s)"
-                             />
+                            android:text="GGA업로드간격(s)" />
 
                         <TextView
                             android:id="@+id/tv_gga_upload_interval"

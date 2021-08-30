@@ -1,4 +1,4 @@
-package kr.loplab.gnss05.activities
+package kr.loplab.gnss05.activities.stop_survey
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

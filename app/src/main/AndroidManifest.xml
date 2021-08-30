@@ -48,7 +48,7 @@
             android:name=".activities.ExportActivity"
             android:exported="true" />
         <activity
-            android:name=".activities.StopSurveyActivity"
+            android:name=".activities.stop_survey.StopSurveyActivity"
             android:exported="true" />
         <activity
             android:name=".activities.mobile_station.MobileStationActivity"
