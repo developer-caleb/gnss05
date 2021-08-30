@@ -238,7 +238,9 @@
                         android:background="@color/grey_EC" />
 
 
-                    <LinearLayout style="@style/ButtonLayout_STYLE01">
+                    <LinearLayout
+                        android:id="@+id/layout_stop_survey_autosave"
+                        style="@style/ButtonLayout_STYLE01">
 
                         <TextView
                             style="@style/Sub_TEXTVIEW_STYLE1"
@@ -246,6 +248,7 @@
                              />
 
                         <Switch
+                            android:id="@+id/sw_stopsurvey_autosave"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"

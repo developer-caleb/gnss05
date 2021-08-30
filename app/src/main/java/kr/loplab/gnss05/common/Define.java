@@ -107,6 +107,8 @@ public class Define {
     //SharedPreference Code STOP SURVEY
     public static final String STOP_SURVEY_PDOP_LIMIT= "stop_survey_pdop_limit";
     public static final String STOP_SURVEY_CUT_ANGLE= "stop_survey_cut_angle";
+    public static final String STOP_SURVEY_COLLECTION_INTERVAL = "stop_survey_collection_interval";
+    public static final String STOP_SURVEY_AUTO_SAVE = "stop_survey_auto_save";
 
 
 
