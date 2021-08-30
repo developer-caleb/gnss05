@@ -1271,15 +1271,12 @@
                 </LinearLayout>
 
 
-
-
                 <!---마운트포인트 설정-->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:orientation="vertical"
                     android:visibility="@{viewModel.data_connection_type == 1 || viewModel.data_connection_type == 4 ? View.VISIBLE : View.GONE}"
-
                     >
 
                     <LinearLayout
@@ -1330,11 +1327,12 @@
                     <Button
                         android:id="@+id/button5"
                         android:layout_width="match_parent"
-                        android:layout_height="40dp"
+                        android:layout_height="wrap_content"
                         android:text="마운트 포인트 가져오기"
                         android:textColor="@color/grey_33"
+                        android:backgroundTint="@color/main_blue"
+                        android:padding="5dp"
                         android:textSize="16dp"
-                        android:backgroundTint="@color/grey_cc"
                         android:layout_marginLeft="5dp"
                         android:layout_marginRight="5dp"/>
 
