@@ -94,6 +94,8 @@ public class Define {
     public static final String MOBILE_STATION_NETWORK_AUTO_CONNECT = "mobile_station_network_auto_connect";
     public static final String MOBILE_STATION_NETWORK_SYSTEM = "mobile_station_network_system";
     public static final String MOBILE_STATION_NETWORK_TRANSFER = "mobile_station_network_transfer";
+    public static final String MOBILE_STATION_AUTO_APN = "mobile_station_auto_apn";
+
 
 
     //ROOM

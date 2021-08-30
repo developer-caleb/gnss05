@@ -233,6 +233,7 @@ class MobileStationActivity : ActivityBase<ActivityMobileStationBinding>() {
         viewBinding.layoutNetworkAutoConnect.setOnClickListener {
             viewBinding.swNetworkAutoConnect.isChecked = !viewBinding.swNetworkAutoConnect.isChecked
         } //12
+
         viewBinding.layoutNetworkSystem.setOnClickListener {
             val dlg = MyDialog(this)
             var alist = OptionList.NETWORK_SYSTEM_List
@@ -252,6 +253,9 @@ class MobileStationActivity : ActivityBase<ActivityMobileStationBinding>() {
         viewBinding.layoutNetworkTransfer.setOnClickListener {
             viewBinding.swNetworkTransfer.isChecked = !viewBinding.swNetworkTransfer.isChecked
         } //12
+        viewBinding.layoutAutoApn.setOnClickListener {
+            viewModel1.setBoolvalue(viewModel1.auto_apn, !viewModel1.auto_apn.value!!)
+        }
     }
 
     override fun initDatabinding() {
@@ -275,6 +279,8 @@ class MobileStationActivity : ActivityBase<ActivityMobileStationBinding>() {
         viewBinding.swNetworkAutoConnect.isChecked =PrefUtil.getBoolean(applicationContext, MOBILE_STATION_NETWORK_AUTO_CONNECT) //12
         viewBinding.swNetworkTransfer.isChecked =PrefUtil.getBoolean(applicationContext, MOBILE_STATION_NETWORK_TRANSFER) //12
         viewModel1.setIntvalue(viewModel1.networkSystemNum, PrefUtil.getInt2(applicationContext, MOBILE_STATION_NETWORK_SYSTEM))  //6
+        viewModel1.setBoolvalue(viewModel1.auto_apn, PrefUtil.getBoolean(this, MOBILE_STATION_AUTO_APN)) //10 -> data, viewbinding통합
+
     }
 
     fun savesettings(){
@@ -297,6 +303,7 @@ class MobileStationActivity : ActivityBase<ActivityMobileStationBinding>() {
         PrefUtil.setBoolean(applicationContext, MOBILE_STATION_NETWORK_AUTO_CONNECT, viewBinding.swNetworkAutoConnect.isChecked) //12
         PrefUtil.setInt(applicationContext, Define.MOBILE_STATION_NETWORK_SYSTEM, viewModel1.networkSystemNum.value!!) //6
         PrefUtil.setBoolean(applicationContext, MOBILE_STATION_NETWORK_TRANSFER, viewBinding.swNetworkTransfer.isChecked) //12
+        PrefUtil.setBoolean(applicationContext, MOBILE_STATION_AUTO_APN, viewModel1.auto_apn.value!!) //10
 
     }
 
@@ -357,7 +364,7 @@ class MobileStationActivity : ActivityBase<ActivityMobileStationBinding>() {
         Log.d(TAG, "ApnSettings: $idx")
         viewModel1.apnIndex.value = idx
 
-       /* viewBinding.tvApnWorker.text = viewModel1.apn_list.value!![idx].worker
+      /*  viewBinding.tvApnWorker.text = viewModel1.apn_list.value!![idx].worker
         viewBinding.tvApnName.text = viewModel1.apn_list.value!![idx].name
         viewBinding.tvApnUser.text = viewModel1.apn_list.value!![idx].user
         viewBinding.tvApnPw.text = viewModel1.apn_list.value!![idx].password*/

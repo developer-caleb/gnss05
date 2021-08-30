@@ -937,18 +937,22 @@
 
                     </LinearLayout>
 
-                    <LinearLayout style="@style/ButtonLayout_STYLE01">
+                    <LinearLayout
+                        android:id="@+id/layout_auto_apn"
+                        style="@style/ButtonLayout_STYLE01">
 
                         <TextView
                             style="@style/Sub_TEXTVIEW_STYLE1"
                             android:text="자동 APN 사용 여부"
-                             />
+                            />
 
                         <Switch
+                            android:id="@+id/sw_auto_apn"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:clickable="false" />
+                            android:checked="@{viewModel.auto_apn}"
+                            />
 
 
                     </LinearLayout>
@@ -958,111 +962,135 @@
                         android:layout_height="1dp"
                         android:layout_weight="0"
                         android:background="@color/grey_EC" />
-
-                    <LinearLayout style="@style/ButtonLayout_STYLE01">
-
-                        <TextView
-                            style="@style/Sub_TEXTVIEW_STYLE1"
-                            android:text="작업자"
-                             />
-
-                        <EditText
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="0"
-                            android:text="" />
-
-                        <ImageView
-                            android:layout_width="@dimen/rightArrowSize"
-                            android:layout_height="@dimen/rightArrowSize"
-                            android:layout_weight="0"
-                            android:padding="5dp"
-                            android:layout_marginRight="8dp"
-                            app:srcCompat="@drawable/next_icon" />
-
-
-                    </LinearLayout>
-
-                    <View
+                    <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:layout_weight="0"
-                        android:background="@color/grey_EC" />
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:visibility="@{viewModel.auto_apn ? View.GONE: View.VISIBLE}"
+                        >
+
+                        <LinearLayout
+                            style="@style/ButtonLayout_STYLE01"
+                            android:id="@+id/layout_apn_worker"
+                            >
+
+                            <TextView
+                                style="@style/Sub_TEXTVIEW_STYLE1"
+                                android:text="작업자"
+                                />
+
+                            <TextView
+                                android:id="@+id/tv_apn_worker"
+                                style="@style/Sub_TEXTVIEW_STYLE2"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="0"
+                                android:background="@color/transparent"
+                                android:text="" />
+
+                            <ImageView
+                                android:layout_width="@dimen/rightArrowSize"
+                                android:layout_height="@dimen/rightArrowSize"
+                                android:layout_weight="0"
+                                android:padding="5dp"
+                                android:layout_marginRight="8dp"
+                                app:srcCompat="@drawable/next_icon" />
 
 
-                    <LinearLayout style="@style/ButtonLayout_STYLE01">
+                        </LinearLayout>
 
-                        <TextView
-                            style="@style/Sub_TEXTVIEW_STYLE1"
-                            android:text="이름"
-                             />
-
-                        <EditText
-                            style="@style/Sub_TEXTVIEW_STYLE2"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
                             android:layout_weight="0"
-                            android:text="cmnet" />
+                            android:background="@color/grey_EC" />
 
 
-                    </LinearLayout>
+                        <LinearLayout
+                            android:id="@+id/layout_apn_name"
+                            style="@style/ButtonLayout_STYLE01"
+                            >
+
+                            <TextView
+                                style="@style/Sub_TEXTVIEW_STYLE1"
+                                android:text="이름"
+                                />
+
+                            <TextView
+                                android:id="@+id/tv_apn_name"
+                                style="@style/Sub_TEXTVIEW_STYLE2"
+                                android:textColor="@color/grey_66"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="0" />
 
 
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:layout_weight="0"
-                        android:background="@color/grey_EC" />
+                        </LinearLayout>
 
 
-                    <LinearLayout style="@style/ButtonLayout_STYLE01">
-
-                        <TextView
-                            style="@style/Sub_TEXTVIEW_STYLE1"
-                            android:text="사용자"
-                             />
-
-                        <EditText
-                            style="@style/Sub_TEXTVIEW_STYLE2"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
                             android:layout_weight="0"
-                            android:text="user" />
+                            android:background="@color/grey_EC" />
 
 
-                    </LinearLayout>
+                        <LinearLayout style="@style/ButtonLayout_STYLE01"
+                            android:id="@+id/layout_apn_user">
 
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:layout_weight="0"
-                        android:background="@color/grey_EC" />
+                            <TextView
+                                style="@style/Sub_TEXTVIEW_STYLE1"
+                                android:text="사용자"
+                                />
 
-                    <LinearLayout style="@style/ButtonLayout_STYLE01">
+                            <TextView
+                                android:id="@+id/tv_apn_user"
+                                style="@style/Sub_TEXTVIEW_STYLE2"
+                                android:textColor="@color/grey_66"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="0" />
 
-                        <TextView
-                            style="@style/Sub_TEXTVIEW_STYLE1"
-                            android:text="암호"
-                             />
 
-                        <EditText
-                            android:layout_width="160dp"
-                            android:layout_height="wrap_content"
-                            android:ems="10"
-                            android:inputType="textPassword"
-                            tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+                        </LinearLayout>
 
-                        <ImageView
-                            android:layout_width="@dimen/rightArrowSize"
-                            android:layout_height="@dimen/rightArrowSize"
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
                             android:layout_weight="0"
-                            android:padding="5dp"
-                            android:layout_marginRight="20dp"
-                            app:srcCompat="@drawable/password_icon" />
+                            android:background="@color/grey_EC" />
+
+                        <LinearLayout
+                            android:id="@+id/layout_apn_pw"
+                            style="@style/ButtonLayout_STYLE01">
+
+                            <TextView
+                                style="@style/Sub_TEXTVIEW_STYLE1"
+                                android:text="암호"
+                                />
+
+                            <TextView
+                                android:id="@+id/tv_apn_pw"
+                                style="@style/Sub_TEXTVIEW_STYLE2"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="right|center_vertical"
+                                android:gravity="right|center_vertical"
+                                android:text=""
+                                android:textColor="@color/grey_66" />
+
+                            <ImageView
+                                android:id="@+id/apn_pw_eye"
+                                android:layout_width="@dimen/rightArrowSize"
+                                android:layout_height="@dimen/rightArrowSize"
+                                android:layout_weight="0"
+                                android:padding="5dp"
+                                android:layout_marginRight="15dp"
+                                app:srcCompat="@drawable/ic_eye_no" />
 
 
+                        </LinearLayout>
                     </LinearLayout>
-
                 </LinearLayout>
 
 
