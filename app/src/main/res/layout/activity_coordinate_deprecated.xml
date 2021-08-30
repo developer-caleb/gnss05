@@ -1,0 +1,407 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <import type="android.view.View"/>
+         </data>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".activities.reference_country.ReferenceCountryActivity">
+
+        <kr.loplab.gnss05.DefaultHeader
+            android:id="@+id/header_01"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:title="좌표계 매개변수"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" >
+        </kr.loplab.gnss05.DefaultHeader>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toTopOf="@+id/bottomButton"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/header_01">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" >
+
+                <LinearLayout
+                    style="@style/ButtonLayout_STYLE01"
+                    >
+
+                    <TextView
+                        style="@style/Sub_TEXTVIEW_STYLE1"
+                        android:text="좌표계"
+                         />
+
+                    <TextView
+                        style="@style/Sub_TEXTVIEW_STYLE3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0"
+                        android:text="Default" />
+
+                    <ImageView
+                        android:layout_width="@dimen/rightArrowSize"
+                        android:layout_height="@dimen/rightArrowSize"
+                        android:layout_weight="0"
+                        android:padding="5dp"
+                        android:layout_marginRight="8dp"
+                        app:srcCompat="@drawable/subpage_close" />
+
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="4dp"
+                    android:layout_weight="0"
+                    android:background="@color/grey_cc" />
+
+                <LinearLayout
+                    style="@style/ButtonLayout_STYLE01"
+                    >
+
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_weight="0"
+                        app:srcCompat="@drawable/subpage_setting_2"
+                        android:layout_marginLeft="20dp"/>
+
+
+                    <TextView
+                        style="@style/Sub_TEXTVIEW_STYLE1"
+                        android:paddingLeft="8dp"
+                        android:text="타원체 매개변수"
+                        android:textColor="@color/grey_33"
+                         />
+
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_weight="0"
+                    android:background="@color/grey_EC" />
+
+                <LinearLayout
+                    style="@style/ButtonLayout_STYLE01"
+                    >
+
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_weight="0"
+                        app:srcCompat="@drawable/subpage_setting_2"
+                        android:layout_marginLeft="20dp"/>
+
+
+                    <TextView
+                        style="@style/Sub_TEXTVIEW_STYLE1"
+                        android:paddingLeft="8dp"
+                        android:text="투영법"
+                        android:textColor="@color/grey_33"
+                         />
+
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_weight="0"
+                    android:background="@color/grey_EC" />
+
+                <LinearLayout
+                    style="@style/ButtonLayout_STYLE01"
+                    >
+
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_weight="0"
+                        app:srcCompat="@drawable/subpage_setting_1"
+                        android:layout_marginLeft="20dp"/>
+
+
+                    <TextView
+                        style="@style/Sub_TEXTVIEW_STYLE1"
+                        android:paddingLeft="8dp"
+                        android:text="ITRF 파라미터"
+                        android:textColor="@color/grey_33"
+                         />
+
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_weight="0"
+                    android:background="@color/grey_EC" />
+
+                <LinearLayout
+                    style="@style/ButtonLayout_STYLE01"
+                    >
+
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_weight="0"
+                        app:srcCompat="@drawable/subpage_setting_1"
+                        android:layout_marginLeft="20dp"/>
+
+
+                    <TextView
+                        style="@style/Sub_TEXTVIEW_STYLE1"
+                        android:paddingLeft="8dp"
+                        android:text="7-매개변수"
+                        android:textColor="@color/grey_33"
+                         />
+
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_weight="0"
+                    android:background="@color/grey_EC" />
+
+                <LinearLayout
+                    style="@style/ButtonLayout_STYLE01"
+                    >
+
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_weight="0"
+                        app:srcCompat="@drawable/subpage_setting_1"
+                        android:layout_marginLeft="20dp"/>
+
+
+                    <TextView
+                        style="@style/Sub_TEXTVIEW_STYLE1"
+                        android:paddingLeft="8dp"
+                        android:text="4-매개변수/수평조정"
+                        android:textColor="@color/grey_33"
+                         />
+
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_weight="0"
+                    android:background="@color/grey_EC" />
+
+                <LinearLayout
+                    style="@style/ButtonLayout_STYLE01"
+                    >
+
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_weight="0"
+                        app:srcCompat="@drawable/subpage_setting_1"
+                        android:layout_marginLeft="20dp"/>
+
+
+                    <TextView
+                        style="@style/Sub_TEXTVIEW_STYLE1"
+                        android:paddingLeft="8dp"
+                        android:text="수직 제어 파라미터"
+                        android:textColor="@color/grey_33"
+                         />
+
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_weight="0"
+                    android:background="@color/grey_EC" />
+
+                <LinearLayout
+                    style="@style/ButtonLayout_STYLE01"
+                    >
+
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_weight="0"
+                        app:srcCompat="@drawable/subpage_setting_1"
+                        android:layout_marginLeft="20dp"/>
+
+
+                    <TextView
+                        style="@style/Sub_TEXTVIEW_STYLE1"
+                        android:paddingLeft="8dp"
+                        android:text="수직 조정 파라미터"
+                        android:textColor="@color/grey_33"
+                         />
+
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_weight="0"
+                    android:background="@color/grey_EC" />
+
+                <LinearLayout
+                    style="@style/ButtonLayout_STYLE01"
+                    >
+
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_weight="0"
+                        app:srcCompat="@drawable/subpage_setting_1"
+                        android:layout_marginLeft="20dp"/>
+
+
+                    <TextView
+                        style="@style/Sub_TEXTVIEW_STYLE1"
+                        android:paddingLeft="8dp"
+                        android:text="그리드 파일"
+                        android:textColor="@color/grey_33"
+                         />
+
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_weight="0"
+                    android:background="@color/grey_EC" />
+
+                <LinearLayout
+                    style="@style/ButtonLayout_STYLE01"
+                    >
+
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_weight="0"
+                        app:srcCompat="@drawable/subpage_setting_1"
+                        android:layout_marginLeft="20dp"/>
+
+
+                    <TextView
+                        style="@style/Sub_TEXTVIEW_STYLE1"
+                        android:paddingLeft="8dp"
+                        android:text="지오이드 파일"
+                        android:textColor="@color/grey_33"
+                         />
+
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_weight="0"
+                    android:background="@color/grey_EC" />
+
+                <LinearLayout
+                    style="@style/ButtonLayout_STYLE01"
+                    >
+
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_weight="0"
+                        app:srcCompat="@drawable/subpage_setting_1"
+                        android:layout_marginLeft="20dp"/>
+
+
+                    <TextView
+                        style="@style/Sub_TEXTVIEW_STYLE1"
+                        android:paddingLeft="8dp"
+                        android:text="지역옵셋"
+                        android:textColor="@color/grey_33"
+                         />
+
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_weight="0"
+                    android:background="@color/grey_EC" />
+
+            </LinearLayout>
+
+        </ScrollView>
+
+        <LinearLayout
+            android:id="@+id/bottomButton"
+            android:layout_width="match_parent"
+            android:layout_height="62dp"
+            android:background="#000000"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="내보내기"
+                android:textColor="@color/white"
+                android:textSize="16dp" />
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0"
+                android:background="@color/white" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="불러오기"
+                android:textColor="@color/white"
+                android:textSize="16dp" />
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0"
+                android:background="@color/white" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="확인"
+                android:textColor="@color/white"
+                android:textSize="16dp" />
+
+        </LinearLayout>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

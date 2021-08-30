@@ -86,7 +86,6 @@ class MainActivity : AppCompatActivity(),
             startActivity(intent);
             overridePendingTransition(R.anim.slide_right_enter_fill_after, R.anim.hold)
         }
-
         binding.btReceiver.setOnClickListener {
             Log.d(TAG, "onCreate: receiver click")
         }
