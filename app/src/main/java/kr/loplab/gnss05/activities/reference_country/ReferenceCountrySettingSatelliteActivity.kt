@@ -41,8 +41,6 @@ class ReferenceCountrySettingSatelliteActivity : ActivityBase<ActivityReferenceC
             PrefUtil.setBoolean(this, REFERENCE_COUNTRY_SATELLITE_QZSS, viewBinding.swQzss.isChecked)
             PrefUtil.setBoolean(this, REFERENCE_COUNTRY_SATELLITE_LBAND, viewBinding.swLband.isChecked)
 
-
-
             onBackPressed()
         }
 
