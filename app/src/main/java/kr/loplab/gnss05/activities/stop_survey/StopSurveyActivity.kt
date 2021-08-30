@@ -28,7 +28,6 @@ class StopSurveyActivity : ActivityBase<ActivityStopSurveyBinding>() {
             intent.putExtra("StopMode", true)
             startActivity(intent);
 
-
         }
         viewBinding.saveAndApplyBt.setOnClickListener {  }
         viewBinding.applyBt.setOnClickListener {  }
