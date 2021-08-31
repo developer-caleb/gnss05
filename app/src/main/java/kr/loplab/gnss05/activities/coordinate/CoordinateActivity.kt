@@ -1,5 +1,6 @@
 package kr.loplab.gnss05.activities.coordinate
 
+import android.icu.text.SimpleDateFormat
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -19,6 +20,8 @@ import kr.loplab.gnss05.common.OptionList
 import kr.loplab.gnss05.common.PrefUtil
 import kr.loplab.gnss05.databinding.ActivityCoordinateBinding
 import java.lang.reflect.Array.setDouble
+import java.text.Format
+import java.util.logging.SimpleFormatter
 
 class CoordinateActivity : ActivityBase<ActivityCoordinateBinding>() {
     override val layoutResourceId: Int
@@ -97,16 +100,25 @@ class CoordinateActivity : ActivityBase<ActivityCoordinateBinding>() {
         viewBinding.layoutFourParameterRotation.setOnClickListener {
             requestETfocus(viewBinding.etFourParameterRotation)
         }
-        viewBinding.etFourParameterNorthDirectionMove.setOnFocusChangeListener { v, hasFocus ->
+        viewBinding.etFourParameterRotation.setOnFocusChangeListener { v, hasFocus ->
+            if(!hasFocus){
+                var doubleValue = if (viewBinding.etFourParameterRotation.text!!.isEmpty()) 0.0 else{ viewBinding.etFourParameterRotation.text!!.toString().toDouble()}
+                Log.d(TAG, "initListener: -> nofocus, doubleValue : $doubleValue")
+                var dd = Math.floor(doubleValue);
+                var mm = Math.floor((doubleValue - dd) / 0.01);
+                var ssssss = Math.floor((doubleValue - dd - 0.01*mm ) * 100000000).toInt();
+                var mmssssss = mm + ssssss/600000 + (ssssss%600000)/1000000
+                Log.d(TAG, "initListener: dd: $dd, mm : $mm, ssss: $ssssss, mmssss: $mmssssss")
+            }
+        }
+      /*  viewBinding.etFourParameterNorthDirectionMove.setOnFocusChangeListener { v, hasFocus ->
         when(hasFocus)
         {
             true -> if(viewBinding.etFourParameterNorthDirectionMove.text!!.toString().toDouble() == 0.0 ){ viewBinding.etFourParameterNorthDirectionMove.setText("") }
                 else -> if(viewBinding.etFourParameterNorthDirectionMove.text!!.isEmpty()) viewBinding.etFourParameterNorthDirectionMove.setText("0.0")
         }
         }
-        viewBinding.etFourParameterRotation.setOnFocusChangeListener { v, hasFocus ->
-
-        }
+       */
 
         viewBinding.layoutEllipsoidName.setOnClickListener {
             val dlg = MyDialog(this)
@@ -219,12 +231,16 @@ class CoordinateActivity : ActivityBase<ActivityCoordinateBinding>() {
         PrefUtil.setString(applicationContext, Define.COORDINATE_SEVEN_PARAMETER_DELTA_BETA, viewBinding.etSevenParameterDeltaBeta.text.toString())
         PrefUtil.setString(applicationContext, Define.COORDINATE_SEVEN_PARAMETER_DELTA_GAMMA, viewBinding.etSevenParameterDeltaGamma.text.toString())
         PrefUtil.setString(applicationContext, Define.COORDINATE_SEVEN_PARAMETER_DELTA_SCALE, viewBinding.etSevenParameterScale.text.toString())
-        PrefUtil.setDouble(applicationContext, Define.COORDINATE_FOUR_PARAMETER_NORTH_DIRECTION_MOVE, viewBinding.etFourParameterNorthDirectionMove.text.toString().toDouble())
-        PrefUtil.setDouble(applicationContext, Define.COORDINATE_FOUR_PARAMETER_EAST_DIRECTION_MOVE, viewBinding.etFourParameterEastDirectionMove.text.toString().toDouble())
-
-        PrefUtil.setDouble(applicationContext, Define.COORDINATE_FOUR_PARAMETER_SCALE, viewBinding.etFourParameterScale.text.toString().toDouble())
-        PrefUtil.setDouble(applicationContext, Define.COORDINATE_FOUR_PARAMETER_FAR_NORTH_DIRECTION_MOVE, viewBinding.etFourParameterFarNorthDirection.text.toString().toDouble())
-        PrefUtil.setDouble(applicationContext, Define.COORDINATE_FOUR_PARAMETER_FAR_EAST_DIRECTION_MOVE, viewBinding.etFourParameterFarEastDirection.text.toString().toDouble())
+        PrefUtil.setDouble(applicationContext, Define.COORDINATE_FOUR_PARAMETER_NORTH_DIRECTION_MOVE, if(viewBinding.etFourParameterNorthDirectionMove.text.toString().isEmpty()) 0.0
+            else viewBinding.etFourParameterNorthDirectionMove.text.toString().toDouble())
+        PrefUtil.setDouble(applicationContext, Define.COORDINATE_FOUR_PARAMETER_EAST_DIRECTION_MOVE, if(viewBinding.etFourParameterEastDirectionMove.text.toString().isEmpty()) 0.0
+        else viewBinding.etFourParameterEastDirectionMove.text.toString().toDouble())
+        PrefUtil.setDouble(applicationContext, Define.COORDINATE_FOUR_PARAMETER_SCALE, if(viewBinding.etFourParameterScale.text.toString().isEmpty()) 0.0
+        else viewBinding.etFourParameterScale.text.toString().toDouble())
+        PrefUtil.setDouble(applicationContext, Define.COORDINATE_FOUR_PARAMETER_FAR_NORTH_DIRECTION_MOVE, if(viewBinding.etFourParameterFarNorthDirection.text.toString().isEmpty()) 0.0
+        else viewBinding.etFourParameterFarNorthDirection.text.toString().toDouble())
+        PrefUtil.setDouble(applicationContext, Define.COORDINATE_FOUR_PARAMETER_FAR_EAST_DIRECTION_MOVE, if(viewBinding.etFourParameterFarEastDirection.text.toString().isEmpty()) 0.0
+        else viewBinding.etFourParameterFarEastDirection.text.toString().toDouble())
 
 
 
