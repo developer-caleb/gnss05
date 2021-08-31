@@ -1,8 +1,13 @@
 package kr.loplab.gnss05.activities.coordinate
 
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
+import android.util.Log
 import android.view.View
 import android.widget.LinearLayout
+import androidx.core.widget.addTextChangedListener
+import androidx.core.widget.doAfterTextChanged
 import androidx.lifecycle.ViewModelProvider
 import kr.loplab.gnss02.ActivityBase
 import kr.loplab.gnss05.MyDialog
@@ -88,6 +93,19 @@ class CoordinateActivity : ActivityBase<ActivityCoordinateBinding>() {
         }
         viewBinding.layoutFourParameterFarEastDirection.setOnClickListener {
             requestETfocus(viewBinding.etFourParameterFarEastDirection)
+        }
+        viewBinding.layoutFourParameterRotation.setOnClickListener {
+            requestETfocus(viewBinding.etFourParameterRotation)
+        }
+        viewBinding.etFourParameterNorthDirectionMove.setOnFocusChangeListener { v, hasFocus ->
+        when(hasFocus)
+        {
+            true -> if(viewBinding.etFourParameterNorthDirectionMove.text!!.toString().toDouble() == 0.0 ){ viewBinding.etFourParameterNorthDirectionMove.setText("") }
+                else -> if(viewBinding.etFourParameterNorthDirectionMove.text!!.isEmpty()) viewBinding.etFourParameterNorthDirectionMove.setText("0.0")
+        }
+        }
+        viewBinding.etFourParameterRotation.setOnFocusChangeListener { v, hasFocus ->
+
         }
 
         viewBinding.layoutEllipsoidName.setOnClickListener {
