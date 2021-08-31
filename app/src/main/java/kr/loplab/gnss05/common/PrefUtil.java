@@ -87,6 +87,14 @@ public class PrefUtil {
         editor.commit();
     }
 
+    public static void setDouble(Context context, String key, double value) {
+        SharedPreferences prefs = getPreferences(context);
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.putLong(key, java.lang.Double.doubleToRawLongBits(value));
+        editor.commit();
+    }
+
+
     /**
      * float 값 저장
      * @param context
@@ -171,6 +179,11 @@ public class PrefUtil {
         SharedPreferences prefs = getPreferences(context);
         long value = prefs.getLong(key, DEFAULT_VALUE_LONG);
         return value;
+    }
+    public static double getDouble(Context context,  String key, final double defaultValue) {
+        SharedPreferences prefs = getPreferences(context);
+        if ( !prefs.contains(key)) return defaultValue;
+        return Double.longBitsToDouble(prefs.getLong(key, 0));
     }
 
     /**

@@ -13,6 +13,7 @@ import kr.loplab.gnss05.common.Define.*
 import kr.loplab.gnss05.common.OptionList
 import kr.loplab.gnss05.common.PrefUtil
 import kr.loplab.gnss05.databinding.ActivityCoordinateBinding
+import java.lang.reflect.Array.setDouble
 
 class CoordinateActivity : ActivityBase<ActivityCoordinateBinding>() {
     override val layoutResourceId: Int
@@ -73,7 +74,9 @@ class CoordinateActivity : ActivityBase<ActivityCoordinateBinding>() {
         viewBinding.layoutSevenParameterScale.setOnClickListener {
             requestETfocus(viewBinding.etSevenParameterScale)
         }
-
+        viewBinding.layoutFourParameterNorthMove.setOnClickListener {
+            requestETfocus(viewBinding.etFourParameterNorthDirectionMove)
+        }
 
 
         viewBinding.layoutEllipsoidName.setOnClickListener {
@@ -154,6 +157,7 @@ class CoordinateActivity : ActivityBase<ActivityCoordinateBinding>() {
         viewBinding.etSevenParameterDeltaBeta.setText(PrefUtil.getString(this, COORDINATE_SEVEN_PARAMETER_DELTA_BETA))
         viewBinding.etSevenParameterDeltaGamma.setText(PrefUtil.getString(this, COORDINATE_SEVEN_PARAMETER_DELTA_GAMMA))
         viewBinding.etSevenParameterScale.setText(PrefUtil.getString(this, COORDINATE_SEVEN_PARAMETER_DELTA_SCALE))
+        viewBinding.etFourParameterNorthDirectionMove.setText(PrefUtil.getDouble(this, COORDINATE_FOUR_PARAMETER_NORTH_DIRECTION_MOVE, 0.0).toString())
 
 
     }
@@ -182,6 +186,7 @@ class CoordinateActivity : ActivityBase<ActivityCoordinateBinding>() {
         PrefUtil.setString(applicationContext, Define.COORDINATE_SEVEN_PARAMETER_DELTA_BETA, viewBinding.etSevenParameterDeltaBeta.text.toString())
         PrefUtil.setString(applicationContext, Define.COORDINATE_SEVEN_PARAMETER_DELTA_GAMMA, viewBinding.etSevenParameterDeltaGamma.text.toString())
         PrefUtil.setString(applicationContext, Define.COORDINATE_SEVEN_PARAMETER_DELTA_SCALE, viewBinding.etSevenParameterScale.text.toString())
+        PrefUtil.setDouble(applicationContext, Define.COORDINATE_FOUR_PARAMETER_NORTH_DIRECTION_MOVE, viewBinding.etFourParameterNorthDirectionMove.text.toString().toDouble())
 
 
 
