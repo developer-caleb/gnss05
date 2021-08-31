@@ -37,6 +37,8 @@ class OptionList {
       val ELLIPSOID_NAME_LIST= arrayListOf<String>("GRS80","IAU76","Airy-1830","APL4.9","NWL9D","mod_airy","andrae","aust_SA","GRS67","bessel_nam","clark66","CPM")
       val CONVERSION_TYPE_LIST= arrayListOf<String>("ITRF2014->ITRF2008","ITRF2014->ITRF2005","ITRF2014->ITRF2000","ITRF2014->ITRF1997","ITRF2008->ITRF2005",
           "ITRF2008->ITRF2000","ITRF2008->ITRF1997","ITRF2008->ITRF1989","ITRF2005->ITRF2000","ITRF2000->ITRF1997","ITRF2014->ETRF2000","ITRF2008->ETRF2000")
+      val SEVEN_PARAMETER_MODE= arrayListOf<String>("Bursa_Wolf", "Bursa_Wolf(With the origin)", "Strict Bursa-Wolf", "Helmert", "Molodensky")
+
 
   }
 }

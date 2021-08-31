@@ -11,7 +11,10 @@ class CoordinateViewModel : ViewModel(){
     var ellipsoidNameNum = MutableLiveData<Int>(0)
     var itrfConversion = MutableLiveData<Boolean>(false)
     var inputSpeed = MutableLiveData<Boolean>(false)
+    var sevenParameterUsing = MutableLiveData<Boolean>(false)
     var conversionTypeNum = MutableLiveData<Int>(0)
+    var sevenParameterMode = MutableLiveData<Int>(0)
+
     /*
       var data_connection_type = MutableLiveData<Int>(0)
       var innerRadioChannelNum = MutableLiveData<Int>(0)

@@ -1,17 +1,14 @@
 package kr.loplab.gnss05.activities.coordinate
 
 import android.os.Bundle
-import android.view.inputmethod.InputMethodManager
 import androidx.lifecycle.ViewModelProvider
 import kr.loplab.gnss02.ActivityBase
 import kr.loplab.gnss05.MyDialog
 import kr.loplab.gnss05.R
 import kr.loplab.gnss05.activities.viewmodel.CoordinateViewModel
-import kr.loplab.gnss05.activities.viewmodel.ReferenceCountryViewModel
 import kr.loplab.gnss05.common.Define
 import kr.loplab.gnss05.common.Define.*
 import kr.loplab.gnss05.common.OptionList
-import kr.loplab.gnss05.common.OptionList.Companion.ELLIPSOID_NAME_LIST
 import kr.loplab.gnss05.common.PrefUtil
 import kr.loplab.gnss05.databinding.ActivityCoordinateBinding
 
@@ -85,6 +82,22 @@ class CoordinateActivity : ActivityBase<ActivityCoordinateBinding>() {
         viewBinding.layoutInputSpeed.setOnClickListener {
             viewModel1.setBoolvalue(viewModel1.inputSpeed , !viewModel1.inputSpeed.value!!)
         }
+        viewBinding.layoutUseSevenParameter.setOnClickListener {
+            viewModel1.setBoolvalue(viewModel1.sevenParameterUsing , !viewModel1.sevenParameterUsing.value!!)
+        }
+        viewBinding.layoutSevenParameterMode.setOnClickListener {
+            val dlg = MyDialog(this)
+            var alist = OptionList.SEVEN_PARAMETER_MODE
+            dlg.firstLayoutUse = false
+            dlg.list = alist
+            dlg.selectedposition = viewModel1.sevenParameterMode.value!!
+            dlg.start("")
+            dlg.setOnListClickedListener { view, i ->
+                viewModel1.sevenParameterMode.value = i
+                dlg.dismiss()
+            }
+            dlg.setHeader("모드")
+        }
 
     }
 
@@ -92,8 +105,11 @@ class CoordinateActivity : ActivityBase<ActivityCoordinateBinding>() {
         viewModel1.setIntvalue(viewModel1.ellipsoidNameNum, PrefUtil.getInt2(this, COORDINATE_ELLIPSOIDNAME))
         viewModel1.setBoolvalue(viewModel1.itrfConversion, PrefUtil.getBoolean(applicationContext, COORDINATE_ITRFCONVERSION))
         viewModel1.setBoolvalue(viewModel1.inputSpeed, PrefUtil.getBoolean(applicationContext, COORDINATE_INPUT_SPEED))
+        viewModel1.setBoolvalue(viewModel1.sevenParameterUsing, PrefUtil.getBoolean(applicationContext, COORDINATE_SEVEN_PARAMETER_USING))
 
         viewModel1.setIntvalue(viewModel1.conversionTypeNum, PrefUtil.getInt2(this, COORDINATE_CONVERSION_TYPE))
+        viewModel1.setIntvalue(viewModel1.sevenParameterMode, PrefUtil.getInt2(this, COORDINATE_SEVEN_PARAMETER_MODE))
+
         viewBinding.etCoordinateName.setText(PrefUtil.getString(this, COORDINATE_COORDINATE_NAME))
         viewBinding.etNewTarget.setText(PrefUtil.getString(this, COORDINATE_NEW_TARGET))
         viewBinding.etVX.setText(PrefUtil.getString(this, COORDINATE_VX))
@@ -107,8 +123,11 @@ class CoordinateActivity : ActivityBase<ActivityCoordinateBinding>() {
         PrefUtil.setInt(applicationContext, Define.COORDINATE_ELLIPSOIDNAME, viewModel1.ellipsoidNameNum.value!!)
         PrefUtil.setBoolean(applicationContext, COORDINATE_ITRFCONVERSION, viewModel1.itrfConversion.value!!)
         PrefUtil.setBoolean(applicationContext, COORDINATE_INPUT_SPEED, viewModel1.inputSpeed.value!!)
+        PrefUtil.setBoolean(applicationContext, COORDINATE_SEVEN_PARAMETER_USING, viewModel1.sevenParameterUsing.value!!)
 
         PrefUtil.setInt(applicationContext, Define.COORDINATE_CONVERSION_TYPE, viewModel1.conversionTypeNum.value!!)
+        PrefUtil.setInt(applicationContext, Define.COORDINATE_SEVEN_PARAMETER_MODE, viewModel1.sevenParameterMode.value!!)
+
         PrefUtil.setString(applicationContext, Define.COORDINATE_COORDINATE_NAME, viewBinding.etCoordinateName.text.toString())
         PrefUtil.setString(applicationContext, Define.COORDINATE_NEW_TARGET, viewBinding.etNewTarget.text.toString())
         PrefUtil.setString(applicationContext, Define.COORDINATE_VX, viewBinding.etVX.text.toString())

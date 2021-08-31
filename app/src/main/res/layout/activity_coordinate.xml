@@ -593,22 +593,30 @@
 
 
                 <LinearLayout
+                    android:id="@+id/layout_use_seven_parameter"
                     style="@style/ButtonLayout_STYLE01">
 
                     <TextView
                         style="@style/Sub_TEXTVIEW_STYLE1"
                         android:text="사용 여부"
                         />
-
                     <Switch
+                        android:id="@+id/sw_seven_parameter"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:clickable="false"
+                        android:checked="@{viewModel.sevenParameterUsing}"
                         />
 
                 </LinearLayout>
-
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:visibility="@{viewModel.sevenParameterUsing? View.VISIBLE : View.GONE}"
+                    >
+                <!--"모드"-->
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
@@ -617,6 +625,7 @@
 
 
                 <LinearLayout
+                    android:id="@+id/layout_seven_parameter_mode"
                     style="@style/ButtonLayout_STYLE01">
 
                     <TextView
@@ -625,11 +634,12 @@
                          />
 
                     <TextView
+                        android:id="@+id/tv_seven_parameter_mode"
                         style="@style/Sub_TEXTVIEW_STYLE3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="0"
-                        android:text="Bursa-Wolf" />
+                        android:text="@{Optionlist.Companion.SEVEN_PARAMETER_MODE.get(viewModel.sevenParameterMode)}" />
 
 
                     <ImageView
@@ -642,6 +652,8 @@
 
                 </LinearLayout>
 
+
+                <!--"△X"-->
                 <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
@@ -665,7 +677,7 @@
                         android:text="0" />
 
                 </LinearLayout>
-
+                <!--"△Y"-->
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
@@ -690,6 +702,7 @@
 
                 </LinearLayout>
 
+                <!--"△Z"-->
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
@@ -714,6 +727,7 @@
 
                 </LinearLayout>
 
+                <!--"△α"-->
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
@@ -738,6 +752,7 @@
 
                 </LinearLayout>
 
+                <!--"△β"-->
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
@@ -761,6 +776,7 @@
 
                 </LinearLayout>
 
+                <!--"△γ"-->
 
                 <View
                     android:layout_width="match_parent"
@@ -786,6 +802,8 @@
 
                 </LinearLayout>
 
+                <!--"스케일(ppm)"-->
+
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
@@ -808,7 +826,7 @@
                         android:text="0" />
 
                 </LinearLayout>
-
+                </LinearLayout>
             </LinearLayout>
 
 
