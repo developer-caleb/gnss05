@@ -82,12 +82,17 @@ class CoordinateActivity : ActivityBase<ActivityCoordinateBinding>() {
             }
             dlg.setHeader("변환 유형")
         }
+        viewBinding.layoutInputSpeed.setOnClickListener {
+            viewModel1.setBoolvalue(viewModel1.inputSpeed , !viewModel1.inputSpeed.value!!)
+        }
 
     }
 
     override fun initDatabinding() {
         viewModel1.setIntvalue(viewModel1.ellipsoidNameNum, PrefUtil.getInt2(this, COORDINATE_ELLIPSOIDNAME))
         viewModel1.setBoolvalue(viewModel1.itrfConversion, PrefUtil.getBoolean(applicationContext, COORDINATE_ITRFCONVERSION))
+        viewModel1.setBoolvalue(viewModel1.inputSpeed, PrefUtil.getBoolean(applicationContext, COORDINATE_INPUT_SPEED))
+
         viewModel1.setIntvalue(viewModel1.conversionTypeNum, PrefUtil.getInt2(this, COORDINATE_CONVERSION_TYPE))
         viewBinding.etCoordinateName.setText(PrefUtil.getString(this, COORDINATE_COORDINATE_NAME))
         viewBinding.etNewTarget.setText(PrefUtil.getString(this, COORDINATE_NEW_TARGET))
@@ -101,6 +106,8 @@ class CoordinateActivity : ActivityBase<ActivityCoordinateBinding>() {
     fun saveSettings(){
         PrefUtil.setInt(applicationContext, Define.COORDINATE_ELLIPSOIDNAME, viewModel1.ellipsoidNameNum.value!!)
         PrefUtil.setBoolean(applicationContext, COORDINATE_ITRFCONVERSION, viewModel1.itrfConversion.value!!)
+        PrefUtil.setBoolean(applicationContext, COORDINATE_INPUT_SPEED, viewModel1.inputSpeed.value!!)
+
         PrefUtil.setInt(applicationContext, Define.COORDINATE_CONVERSION_TYPE, viewModel1.conversionTypeNum.value!!)
         PrefUtil.setString(applicationContext, Define.COORDINATE_COORDINATE_NAME, viewBinding.etCoordinateName.text.toString())
         PrefUtil.setString(applicationContext, Define.COORDINATE_NEW_TARGET, viewBinding.etNewTarget.text.toString())

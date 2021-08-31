@@ -133,6 +133,7 @@ public class Define {
     public static final String COORDINATE_CONVERSION_TYPE = "coordinate_itrf_conversion_type";
     public static final String COORDINATE_COORDINATE_NAME = "coordinate_coordinate_name";
     public static final String COORDINATE_NEW_TARGET = "coordinate_coordinate_new_target";
+    public static final String COORDINATE_INPUT_SPEED = "coordinate_coordinate_input_speed";
     public static final String COORDINATE_VX = "coordinate_coordinate_VX";
     public static final String COORDINATE_VY = "coordinate_coordinate_VY";
     public static final String COORDINATE_VZ = "coordinate_coordinate_VZ";
