@@ -340,11 +340,12 @@
                          />
 
                     <TextView
+                        android:id="@+id/tv_conversion_type"
                         style="@style/Sub_TEXTVIEW_STYLE3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="0"
-                        android:text="ITRF2014->ITRF2008" />
+                        android:text="@{Optionlist.Companion.CONVERSION_TYPE_LIST.get(viewModel.conversionTypeNum)}" />
 
 
                     <ImageView

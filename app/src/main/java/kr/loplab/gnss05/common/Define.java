@@ -130,6 +130,7 @@ public class Define {
     //SharedPreference Code Coordinate
     public static final String COORDINATE_ELLIPSOIDNAME = "coordinate_ellipsoid_name";
     public static final String COORDINATE_ITRFCONVERSION = "coordinate_itrf_conversion";
+    public static final String COORDINATE_CONVERSION_TYPE = "coordinate_itrf_conversion_type";
 
 
 

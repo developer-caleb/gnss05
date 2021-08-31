@@ -10,6 +10,7 @@ class CoordinateViewModel : ViewModel(){
     private var name = ""
     var ellipsoidNameNum = MutableLiveData<Int>(0)
     var itrfConversion = MutableLiveData<Boolean>(false)
+    var conversionTypeNum = MutableLiveData<Int>(0)
     /*
       var data_connection_type = MutableLiveData<Int>(0)
       var innerRadioChannelNum = MutableLiveData<Int>(0)
