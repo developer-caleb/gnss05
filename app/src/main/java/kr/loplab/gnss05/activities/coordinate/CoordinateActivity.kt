@@ -77,7 +77,18 @@ class CoordinateActivity : ActivityBase<ActivityCoordinateBinding>() {
         viewBinding.layoutFourParameterNorthMove.setOnClickListener {
             requestETfocus(viewBinding.etFourParameterNorthDirectionMove)
         }
-
+        viewBinding.layoutFourParameterEastMove.setOnClickListener {
+            requestETfocus(viewBinding.etFourParameterEastDirectionMove)
+        }
+        viewBinding.layoutFourParameterScale.setOnClickListener {
+            requestETfocus(viewBinding.etFourParameterScale)
+        }
+        viewBinding.layoutFourParameterFarNorthDirection.setOnClickListener {
+            requestETfocus(viewBinding.etFourParameterFarNorthDirection)
+        }
+        viewBinding.layoutFourParameterFarEastDirection.setOnClickListener {
+            requestETfocus(viewBinding.etFourParameterFarEastDirection)
+        }
 
         viewBinding.layoutEllipsoidName.setOnClickListener {
             val dlg = MyDialog(this)
@@ -158,6 +169,10 @@ class CoordinateActivity : ActivityBase<ActivityCoordinateBinding>() {
         viewBinding.etSevenParameterDeltaGamma.setText(PrefUtil.getString(this, COORDINATE_SEVEN_PARAMETER_DELTA_GAMMA))
         viewBinding.etSevenParameterScale.setText(PrefUtil.getString(this, COORDINATE_SEVEN_PARAMETER_DELTA_SCALE))
         viewBinding.etFourParameterNorthDirectionMove.setText(PrefUtil.getDouble(this, COORDINATE_FOUR_PARAMETER_NORTH_DIRECTION_MOVE, 0.0).toString())
+        viewBinding.etFourParameterEastDirectionMove.setText(PrefUtil.getDouble(this, COORDINATE_FOUR_PARAMETER_EAST_DIRECTION_MOVE, 0.0).toString())
+        viewBinding.etFourParameterScale.setText(PrefUtil.getDouble(this, COORDINATE_FOUR_PARAMETER_SCALE, 0.0).toString())
+        viewBinding.etFourParameterFarNorthDirection.setText(PrefUtil.getDouble(this, COORDINATE_FOUR_PARAMETER_FAR_NORTH_DIRECTION_MOVE, 0.0).toString())
+        viewBinding.etFourParameterFarEastDirection.setText(PrefUtil.getDouble(this,  COORDINATE_FOUR_PARAMETER_FAR_EAST_DIRECTION_MOVE, 0.0).toString())
 
 
     }
@@ -187,6 +202,11 @@ class CoordinateActivity : ActivityBase<ActivityCoordinateBinding>() {
         PrefUtil.setString(applicationContext, Define.COORDINATE_SEVEN_PARAMETER_DELTA_GAMMA, viewBinding.etSevenParameterDeltaGamma.text.toString())
         PrefUtil.setString(applicationContext, Define.COORDINATE_SEVEN_PARAMETER_DELTA_SCALE, viewBinding.etSevenParameterScale.text.toString())
         PrefUtil.setDouble(applicationContext, Define.COORDINATE_FOUR_PARAMETER_NORTH_DIRECTION_MOVE, viewBinding.etFourParameterNorthDirectionMove.text.toString().toDouble())
+        PrefUtil.setDouble(applicationContext, Define.COORDINATE_FOUR_PARAMETER_EAST_DIRECTION_MOVE, viewBinding.etFourParameterEastDirectionMove.text.toString().toDouble())
+
+        PrefUtil.setDouble(applicationContext, Define.COORDINATE_FOUR_PARAMETER_SCALE, viewBinding.etFourParameterScale.text.toString().toDouble())
+        PrefUtil.setDouble(applicationContext, Define.COORDINATE_FOUR_PARAMETER_FAR_NORTH_DIRECTION_MOVE, viewBinding.etFourParameterFarNorthDirection.text.toString().toDouble())
+        PrefUtil.setDouble(applicationContext, Define.COORDINATE_FOUR_PARAMETER_FAR_EAST_DIRECTION_MOVE, viewBinding.etFourParameterFarEastDirection.text.toString().toDouble())
 
 
 

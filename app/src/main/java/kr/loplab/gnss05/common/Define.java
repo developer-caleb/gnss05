@@ -147,8 +147,11 @@ public class Define {
     public static final String COORDINATE_SEVEN_PARAMETER_DELTA_GAMMA = "coordinate_seven_parameter_delta_gamma";
     public static final String COORDINATE_SEVEN_PARAMETER_DELTA_SCALE = "coordinate_seven_parameter_delta_scale";
     public static final String COORDINATE_FOUR_PARAMETER_USING = "coordinate_four_parameter_using";
-    public static final String COORDINATE_FOUR_PARAMETER_NORTH_DIRECTION_MOVE = "coordinate_four_parameter_NORTH_DIRECTION_MOVE";
-
+    public static final String COORDINATE_FOUR_PARAMETER_NORTH_DIRECTION_MOVE = "coordinate_four_parameter_north_direction_move";
+    public static final String COORDINATE_FOUR_PARAMETER_EAST_DIRECTION_MOVE = "coordinate_four_parameter_east_direction_move";
+    public static final String COORDINATE_FOUR_PARAMETER_SCALE = "coordinate_four_parameter_scale";
+    public static final String COORDINATE_FOUR_PARAMETER_FAR_NORTH_DIRECTION_MOVE = "coordinate_four_parameter_far_north_direction_move";
+    public static final String COORDINATE_FOUR_PARAMETER_FAR_EAST_DIRECTION_MOVE = "coordinate_four_parameter_far_east_direction_move";
 
 
 
