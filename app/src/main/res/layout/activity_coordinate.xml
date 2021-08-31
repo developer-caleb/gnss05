@@ -309,7 +309,6 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:clickable="false"
-                        android:paddingRight="8dp"
                         android:checked="@{viewModel.itrfConversion}"
                         />
 
@@ -367,6 +366,7 @@
                     android:background="@color/grey_EC" />
 
                 <LinearLayout
+                    android:id="@+id/layout_newtarget"
                     style="@style/ButtonLayout_STYLE01">
 
                     <TextView
@@ -374,13 +374,30 @@
                         android:text="새로운 타켓"
                          />
 
-                    <EditText
-                        style="@style/Sub_TEXTVIEW_STYLE2"
+                    <com.google.android.material.textfield.TextInputLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="0"
-                        android:text="2000"
-                        tools:ignore="TouchTargetSizeCheck" />
+                        app:errorEnabled="false"
+                        app:hintEnabled="false"
+                        app:boxStrokeWidth="0dp"
+                        app:boxStrokeWidthFocused="0dp"
+                        app:endIconMode="clear_text"
+                        app:endIconTint="@color/main_blue"
+                        android:background="@color/transparent"
+                        android:padding="0dp"
+                        >
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/et_new_target"
+                            style="@style/Sub_TEXTVIEW_STYLE3_TEXTINPUTLAYOUT"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="0dp"
+                            android:text=""
+                            android:background="@color/transparent"
+                            android:inputType="number" />
+                    </com.google.android.material.textfield.TextInputLayout>
 
                 </LinearLayout>
 
@@ -394,6 +411,7 @@
 
 
                 <LinearLayout
+                    android:id="@+id/layout_input_speed"
                     style="@style/ButtonLayout_STYLE01">
 
                     <TextView
@@ -402,13 +420,19 @@
                         />
 
                     <Switch
+                        android:id="@+id/sw_input_speed"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:paddingRight="8dp"/>
+                        android:clickable="false"
+                        />
 
                 </LinearLayout>
 
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
                 <!-- "Vx(mm)" -->
 
                 <View
@@ -418,19 +442,37 @@
                     android:background="@color/grey_EC" />
 
                 <LinearLayout
+                    android:id="@+id/layout_v_x"
                     style="@style/ButtonLayout_STYLE01">
 
                     <TextView
                         style="@style/Sub_TEXTVIEW_STYLE1"
-                        android:text="Vx(mm)"
-                         />
+                        android:text="Vx(mm)" />
 
-                    <EditText
-                        style="@style/Sub_TEXTVIEW_STYLE2"
+                    <com.google.android.material.textfield.TextInputLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="0"
-                        android:text="0" />
+                        app:errorEnabled="false"
+                        app:hintEnabled="false"
+                        app:boxStrokeWidth="0dp"
+                        app:boxStrokeWidthFocused="0dp"
+                        app:endIconMode="clear_text"
+                        app:endIconTint="@color/main_blue"
+                        android:background="@color/transparent"
+                        android:padding="0dp"
+                        >
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/et_v_x"
+                            style="@style/Sub_TEXTVIEW_STYLE3_TEXTINPUTLAYOUT"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="0dp"
+                            android:text=""
+                            android:background="@color/transparent"
+                            android:inputType="number" />
+                    </com.google.android.material.textfield.TextInputLayout>
 
                 </LinearLayout>
 
@@ -443,6 +485,7 @@
                     android:background="@color/grey_EC" />
 
                 <LinearLayout
+                    android:id="@+id/layout_v_y"
                     style="@style/ButtonLayout_STYLE01">
 
                     <TextView
@@ -450,12 +493,30 @@
                         android:text="Vy(mm)"
                          />
 
-                    <EditText
-                        style="@style/Sub_TEXTVIEW_STYLE2"
+                    <com.google.android.material.textfield.TextInputLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="0"
-                        android:text="0" />
+                        app:errorEnabled="false"
+                        app:hintEnabled="false"
+                        app:boxStrokeWidth="0dp"
+                        app:boxStrokeWidthFocused="0dp"
+                        app:endIconMode="clear_text"
+                        app:endIconTint="@color/main_blue"
+                        android:background="@color/transparent"
+                        android:padding="0dp"
+                        >
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/et_v_y"
+                            style="@style/Sub_TEXTVIEW_STYLE3_TEXTINPUTLAYOUT"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="0dp"
+                            android:text=""
+                            android:background="@color/transparent"
+                            android:inputType="number" />
+                    </com.google.android.material.textfield.TextInputLayout>
 
                 </LinearLayout>
 
@@ -468,6 +529,7 @@
                     android:background="@color/grey_EC" />
 
                 <LinearLayout
+                    android:id="@+id/layout_v_z"
                     style="@style/ButtonLayout_STYLE01">
 
                     <TextView
@@ -475,15 +537,33 @@
                         android:text="Vz(mm)"
                          />
 
-                    <EditText
-                        style="@style/Sub_TEXTVIEW_STYLE2"
+                    <com.google.android.material.textfield.TextInputLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="0"
-                        android:text="0" />
+                        app:errorEnabled="false"
+                        app:hintEnabled="false"
+                        app:boxStrokeWidth="0dp"
+                        app:boxStrokeWidthFocused="0dp"
+                        app:endIconMode="clear_text"
+                        app:endIconTint="@color/main_blue"
+                        android:background="@color/transparent"
+                        android:padding="0dp"
+                        >
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/et_v_z"
+                            style="@style/Sub_TEXTVIEW_STYLE3_TEXTINPUTLAYOUT"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="0dp"
+                            android:text=""
+                            android:background="@color/transparent"
+                            android:inputType="number" />
+                    </com.google.android.material.textfield.TextInputLayout>
 
                 </LinearLayout>
-
+                    </LinearLayout>
                 </LinearLayout>
             </LinearLayout>
 
@@ -521,7 +601,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:paddingRight="8dp"/>
+                        android:clickable="false"
+                        />
 
                 </LinearLayout>
 
@@ -762,7 +843,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:paddingRight="8dp"/>
+                        android:clickable="false" />
 
                 </LinearLayout>
 
@@ -966,7 +1047,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:paddingRight="8dp"/>
+                        android:clickable="false" />
 
 
 
@@ -1197,8 +1278,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:paddingRight="8dp"
-                        tools:ignore="TouchTargetSizeCheck,TouchTargetSizeCheck,UseSwitchCompatOrMaterialXml"/>
+                        android:clickable="false"
+                        tools:ignore="TouchTargetSizeCheck,TouchTargetSizeCheck,UseSwitchCompatOrMaterialXml" />
 
                 </LinearLayout>
 
@@ -1358,8 +1439,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:paddingRight="8dp"
-                        tools:ignore="TouchTargetSizeCheck,TouchTargetSizeCheck,UseSwitchCompatOrMaterialXml"/>
+                        android:clickable="false"
+                        tools:ignore="TouchTargetSizeCheck,TouchTargetSizeCheck,UseSwitchCompatOrMaterialXml" />
 
                 </LinearLayout>
 
@@ -1424,8 +1505,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:paddingRight="8dp"
-                        tools:ignore="TouchTargetSizeCheck,TouchTargetSizeCheck,UseSwitchCompatOrMaterialXml"/>
+                        android:clickable="false"
+                        tools:ignore="TouchTargetSizeCheck,TouchTargetSizeCheck,UseSwitchCompatOrMaterialXml" />
 
                 </LinearLayout>
 

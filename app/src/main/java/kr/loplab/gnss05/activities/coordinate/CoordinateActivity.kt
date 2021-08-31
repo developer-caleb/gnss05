@@ -38,11 +38,21 @@ class CoordinateActivity : ActivityBase<ActivityCoordinateBinding>() {
         }
         viewBinding.header01.setOnBackButtonClickListener{onBackPressed()}
         viewBinding.layoutCoordianteName.setOnClickListener {
-            viewBinding.etCoordinateName.requestFocus()
-            val imm: InputMethodManager =
-                getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
-            imm.showSoftInput(viewBinding.etCoordinateName,0)
+            requestETfocus(viewBinding.etCoordinateName)
         }
+        viewBinding.layoutNewtarget.setOnClickListener {
+            requestETfocus(viewBinding.etNewTarget)
+        }
+        viewBinding.layoutVX.setOnClickListener {
+            requestETfocus(viewBinding.etVX)
+        }
+        viewBinding.layoutVY.setOnClickListener {
+           requestETfocus(viewBinding.etVY)
+        }
+        viewBinding.layoutVZ.setOnClickListener {
+            requestETfocus(viewBinding.etVZ)
+        }
+
         viewBinding.layoutEllipsoidName.setOnClickListener {
             val dlg = MyDialog(this)
             var alist = OptionList.ELLIPSOID_NAME_LIST
@@ -59,7 +69,7 @@ class CoordinateActivity : ActivityBase<ActivityCoordinateBinding>() {
         viewBinding.layoutItrfConversion.setOnClickListener {
             viewModel1.setBoolvalue(viewModel1.itrfConversion , !viewModel1.itrfConversion.value!!)
         }
-        viewBinding.layoutEllipsoidName.setOnClickListener {
+        viewBinding.layoutConversionType.setOnClickListener {
             val dlg = MyDialog(this)
             var alist = OptionList.CONVERSION_TYPE_LIST
             dlg.firstLayoutUse = false
@@ -79,6 +89,12 @@ class CoordinateActivity : ActivityBase<ActivityCoordinateBinding>() {
         viewModel1.setIntvalue(viewModel1.ellipsoidNameNum, PrefUtil.getInt2(this, COORDINATE_ELLIPSOIDNAME))
         viewModel1.setBoolvalue(viewModel1.itrfConversion, PrefUtil.getBoolean(applicationContext, COORDINATE_ITRFCONVERSION))
         viewModel1.setIntvalue(viewModel1.conversionTypeNum, PrefUtil.getInt2(this, COORDINATE_CONVERSION_TYPE))
+        viewBinding.etCoordinateName.setText(PrefUtil.getString(this, COORDINATE_COORDINATE_NAME))
+        viewBinding.etNewTarget.setText(PrefUtil.getString(this, COORDINATE_NEW_TARGET))
+        viewBinding.etVX.setText(PrefUtil.getString(this, COORDINATE_VX))
+        viewBinding.etVY.setText(PrefUtil.getString(this, COORDINATE_VY))
+        viewBinding.etVZ.setText(PrefUtil.getString(this, COORDINATE_VZ))
+
 
     }
 
@@ -86,5 +102,14 @@ class CoordinateActivity : ActivityBase<ActivityCoordinateBinding>() {
         PrefUtil.setInt(applicationContext, Define.COORDINATE_ELLIPSOIDNAME, viewModel1.ellipsoidNameNum.value!!)
         PrefUtil.setBoolean(applicationContext, COORDINATE_ITRFCONVERSION, viewModel1.itrfConversion.value!!)
         PrefUtil.setInt(applicationContext, Define.COORDINATE_CONVERSION_TYPE, viewModel1.conversionTypeNum.value!!)
+        PrefUtil.setString(applicationContext, Define.COORDINATE_COORDINATE_NAME, viewBinding.etCoordinateName.text.toString())
+        PrefUtil.setString(applicationContext, Define.COORDINATE_NEW_TARGET, viewBinding.etNewTarget.text.toString())
+        PrefUtil.setString(applicationContext, Define.COORDINATE_VX, viewBinding.etVX.text.toString())
+        PrefUtil.setString(applicationContext, Define.COORDINATE_VY, viewBinding.etVY.text.toString())
+        PrefUtil.setString(applicationContext, Define.COORDINATE_VZ, viewBinding.etVZ.text.toString())
+
+
     }
+
+
 }

@@ -3,6 +3,7 @@ package kr.loplab.gnss02
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
@@ -61,6 +62,13 @@ abstract class ActivityBase<T : ViewDataBinding>: AppCompatActivity() {
     override fun startActivityForResult(intent: Intent?, requestCode: Int, options: Bundle?) {
         intent!!.putExtra(REQUEST_CODE_STRING, requestCode);
         super.startActivityForResult(intent, requestCode, options)
+    }
+
+    fun requestETfocus(editText : com.google.android.material.textfield.TextInputEditText){
+        editText.requestFocus()
+        val imm: InputMethodManager =
+            getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
+        imm.showSoftInput(editText,0)
     }
 }
 
