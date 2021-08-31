@@ -14,6 +14,8 @@ class CoordinateViewModel : ViewModel(){
     var sevenParameterUsing = MutableLiveData<Boolean>(false)
     var conversionTypeNum = MutableLiveData<Int>(0)
     var sevenParameterMode = MutableLiveData<Int>(0)
+    var fourParameterUsing = MutableLiveData<Boolean>(false)
+
 
     /*
       var data_connection_type = MutableLiveData<Int>(0)

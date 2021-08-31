@@ -1,6 +1,8 @@
 package kr.loplab.gnss05.activities.coordinate
 
 import android.os.Bundle
+import android.view.View
+import android.widget.LinearLayout
 import androidx.lifecycle.ViewModelProvider
 import kr.loplab.gnss02.ActivityBase
 import kr.loplab.gnss05.MyDialog
@@ -49,6 +51,30 @@ class CoordinateActivity : ActivityBase<ActivityCoordinateBinding>() {
         viewBinding.layoutVZ.setOnClickListener {
             requestETfocus(viewBinding.etVZ)
         }
+        viewBinding.layoutSevenParameterDeltaAlpha.setOnClickListener {
+            requestETfocus(viewBinding.etSevenParameterDeltaAlpha)
+        }
+        viewBinding.layoutSevenParameterDeltaBeta.setOnClickListener {
+            requestETfocus(viewBinding.etSevenParameterDeltaBeta)
+        }
+        viewBinding.layoutSevenParameterDeltaGamma.setOnClickListener {
+            requestETfocus(viewBinding.etSevenParameterDeltaGamma)
+        }
+        viewBinding.layoutSevenParameterDeltaX.setOnClickListener {
+            requestETfocus(viewBinding.etSevenParameterDeltaX)
+        }
+        viewBinding.layoutSevenParameterDeltaY.setOnClickListener {
+            requestETfocus(viewBinding.etSevenParameterDeltaY)
+        }
+        viewBinding.layoutSevenParameterDeltaZ.setOnClickListener {
+            requestETfocus(viewBinding.etSevenParameterDeltaZ)
+
+        }
+        viewBinding.layoutSevenParameterScale.setOnClickListener {
+            requestETfocus(viewBinding.etSevenParameterScale)
+        }
+
+
 
         viewBinding.layoutEllipsoidName.setOnClickListener {
             val dlg = MyDialog(this)
@@ -98,6 +124,9 @@ class CoordinateActivity : ActivityBase<ActivityCoordinateBinding>() {
             }
             dlg.setHeader("모드")
         }
+        viewBinding.layoutFourParameterUsing.setOnClickListener {
+            viewModel1.setBoolvalue(viewModel1.fourParameterUsing , !viewModel1.fourParameterUsing.value!!)
+        }
 
     }
 
@@ -106,6 +135,8 @@ class CoordinateActivity : ActivityBase<ActivityCoordinateBinding>() {
         viewModel1.setBoolvalue(viewModel1.itrfConversion, PrefUtil.getBoolean(applicationContext, COORDINATE_ITRFCONVERSION))
         viewModel1.setBoolvalue(viewModel1.inputSpeed, PrefUtil.getBoolean(applicationContext, COORDINATE_INPUT_SPEED))
         viewModel1.setBoolvalue(viewModel1.sevenParameterUsing, PrefUtil.getBoolean(applicationContext, COORDINATE_SEVEN_PARAMETER_USING))
+        viewModel1.setBoolvalue(viewModel1.fourParameterUsing, PrefUtil.getBoolean(applicationContext, COORDINATE_FOUR_PARAMETER_USING))
+
 
         viewModel1.setIntvalue(viewModel1.conversionTypeNum, PrefUtil.getInt2(this, COORDINATE_CONVERSION_TYPE))
         viewModel1.setIntvalue(viewModel1.sevenParameterMode, PrefUtil.getInt2(this, COORDINATE_SEVEN_PARAMETER_MODE))
@@ -116,6 +147,14 @@ class CoordinateActivity : ActivityBase<ActivityCoordinateBinding>() {
         viewBinding.etVY.setText(PrefUtil.getString(this, COORDINATE_VY))
         viewBinding.etVZ.setText(PrefUtil.getString(this, COORDINATE_VZ))
 
+        viewBinding.etSevenParameterDeltaX.setText(PrefUtil.getString(this, COORDINATE_SEVEN_PARAMETER_DELTA_X))
+        viewBinding.etSevenParameterDeltaY.setText(PrefUtil.getString(this, COORDINATE_SEVEN_PARAMETER_DELTA_Y))
+        viewBinding.etSevenParameterDeltaZ.setText(PrefUtil.getString(this, COORDINATE_SEVEN_PARAMETER_DELTA_Z))
+        viewBinding.etSevenParameterDeltaAlpha.setText(PrefUtil.getString(this, COORDINATE_SEVEN_PARAMETER_DELTA_ALPHA))
+        viewBinding.etSevenParameterDeltaBeta.setText(PrefUtil.getString(this, COORDINATE_SEVEN_PARAMETER_DELTA_BETA))
+        viewBinding.etSevenParameterDeltaGamma.setText(PrefUtil.getString(this, COORDINATE_SEVEN_PARAMETER_DELTA_GAMMA))
+        viewBinding.etSevenParameterScale.setText(PrefUtil.getString(this, COORDINATE_SEVEN_PARAMETER_DELTA_SCALE))
+
 
     }
 
@@ -124,6 +163,8 @@ class CoordinateActivity : ActivityBase<ActivityCoordinateBinding>() {
         PrefUtil.setBoolean(applicationContext, COORDINATE_ITRFCONVERSION, viewModel1.itrfConversion.value!!)
         PrefUtil.setBoolean(applicationContext, COORDINATE_INPUT_SPEED, viewModel1.inputSpeed.value!!)
         PrefUtil.setBoolean(applicationContext, COORDINATE_SEVEN_PARAMETER_USING, viewModel1.sevenParameterUsing.value!!)
+        PrefUtil.setBoolean(applicationContext, COORDINATE_FOUR_PARAMETER_USING, viewModel1.fourParameterUsing.value!!)
+
 
         PrefUtil.setInt(applicationContext, Define.COORDINATE_CONVERSION_TYPE, viewModel1.conversionTypeNum.value!!)
         PrefUtil.setInt(applicationContext, Define.COORDINATE_SEVEN_PARAMETER_MODE, viewModel1.sevenParameterMode.value!!)
@@ -133,6 +174,15 @@ class CoordinateActivity : ActivityBase<ActivityCoordinateBinding>() {
         PrefUtil.setString(applicationContext, Define.COORDINATE_VX, viewBinding.etVX.text.toString())
         PrefUtil.setString(applicationContext, Define.COORDINATE_VY, viewBinding.etVY.text.toString())
         PrefUtil.setString(applicationContext, Define.COORDINATE_VZ, viewBinding.etVZ.text.toString())
+
+        PrefUtil.setString(applicationContext, Define.COORDINATE_SEVEN_PARAMETER_DELTA_X, viewBinding.etSevenParameterDeltaX.text.toString())
+        PrefUtil.setString(applicationContext, Define.COORDINATE_SEVEN_PARAMETER_DELTA_Y, viewBinding.etSevenParameterDeltaY.text.toString())
+        PrefUtil.setString(applicationContext, Define.COORDINATE_SEVEN_PARAMETER_DELTA_Z, viewBinding.etSevenParameterDeltaZ.text.toString())
+        PrefUtil.setString(applicationContext, Define.COORDINATE_SEVEN_PARAMETER_DELTA_ALPHA, viewBinding.etSevenParameterDeltaAlpha.text.toString())
+        PrefUtil.setString(applicationContext, Define.COORDINATE_SEVEN_PARAMETER_DELTA_BETA, viewBinding.etSevenParameterDeltaBeta.text.toString())
+        PrefUtil.setString(applicationContext, Define.COORDINATE_SEVEN_PARAMETER_DELTA_GAMMA, viewBinding.etSevenParameterDeltaGamma.text.toString())
+        PrefUtil.setString(applicationContext, Define.COORDINATE_SEVEN_PARAMETER_DELTA_SCALE, viewBinding.etSevenParameterScale.text.toString())
+
 
 
     }

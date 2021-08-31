@@ -978,6 +978,7 @@
 
 
                 <LinearLayout
+                    android:id="@+id/layout_four_parameter_using"
                     style="@style/ButtonLayout_STYLE01">
 
                     <TextView
@@ -986,13 +987,22 @@
                         />
 
                     <Switch
+                        android:id="@+id/sw_four_parameter_using"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:checked="@{viewModel.fourParameterUsing}"
                         android:clickable="false" />
 
                 </LinearLayout>
 
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:visibility="@{viewModel.fourParameterUsing? View.VISIBLE : View.GONE}"
+                    >
+                <!--"북방향이동"-->
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
@@ -1023,6 +1033,7 @@
                 android:layout_weight="0"
                 android:background="@color/grey_EC" />
 
+                <!--"방향이동"-->
 
                 <LinearLayout
                     style="@style/ButtonLayout_STYLE01">
@@ -1040,6 +1051,8 @@
                         android:text="0.00067" />
 
                 </LinearLayout>
+
+                <!--"회전"-->
 
                 <View
                     android:layout_width="match_parent"
@@ -1065,11 +1078,14 @@
 
                 </LinearLayout>
 
+                <!--"스케일"-->
+
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:layout_weight="0"
                     android:background="@color/grey_EC" />
+
 
 
                 <LinearLayout
@@ -1089,6 +1105,8 @@
                         tools:ignore="TouchTargetSizeCheck" />
 
                 </LinearLayout>
+
+                <!--"원북뱡향"-->
 
                 <View
                     android:layout_width="match_parent"
@@ -1114,11 +1132,13 @@
 
                 </LinearLayout>
 
+                    <!--"원동방향"-->
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:layout_weight="0"
                     android:background="@color/grey_EC" />
+
 
 
                 <LinearLayout
@@ -1137,7 +1157,7 @@
                         android:text="214886.719222" />
 
                 </LinearLayout>
-
+                </LinearLayout>
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"

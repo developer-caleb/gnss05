@@ -137,8 +137,16 @@ public class Define {
     public static final String COORDINATE_VX = "coordinate_coordinate_VX";
     public static final String COORDINATE_VY = "coordinate_coordinate_VY";
     public static final String COORDINATE_VZ = "coordinate_coordinate_VZ";
-    public static final String COORDINATE_SEVEN_PARAMETER_USING = "coordinate_coordinate_input_speed";
-    public static final String COORDINATE_SEVEN_PARAMETER_MODE = "coordinate_coordinate_input_mode";
+    public static final String COORDINATE_SEVEN_PARAMETER_USING = "coordinate_seven_parameter_using";
+    public static final String COORDINATE_SEVEN_PARAMETER_MODE = "coordinate_seven_parameter_mode";
+    public static final String COORDINATE_SEVEN_PARAMETER_DELTA_X = "coordinate_seven_parameter_delta_x";
+    public static final String COORDINATE_SEVEN_PARAMETER_DELTA_Y = "coordinate_seven_parameter_delta_y";
+    public static final String COORDINATE_SEVEN_PARAMETER_DELTA_Z = "coordinate_seven_parameter_delta_z";
+    public static final String COORDINATE_SEVEN_PARAMETER_DELTA_ALPHA = "coordinate_seven_parameter_delta_alpha";
+    public static final String COORDINATE_SEVEN_PARAMETER_DELTA_BETA = "coordinate_seven_parameter_delta_beta";
+    public static final String COORDINATE_SEVEN_PARAMETER_DELTA_GAMMA = "coordinate_seven_parameter_delta_gamma";
+    public static final String COORDINATE_SEVEN_PARAMETER_DELTA_SCALE = "coordinate_seven_parameter_delta_scale";
+    public static final String COORDINATE_FOUR_PARAMETER_USING = "coordinate_four_parameter_using";
 
 
 
