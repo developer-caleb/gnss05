@@ -42,6 +42,7 @@
             android:orientation="vertical" >
 
             <LinearLayout
+                android:id="@+id/layout_coordiante_name"
                 style="@style/ButtonLayout_STYLE01">
 
                 <TextView
@@ -69,7 +70,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:padding="0dp"
-                        android:text="AAAA01"
+                        android:text=""
                         android:background="@color/transparent"
                         android:inputType="text" />
                 </com.google.android.material.textfield.TextInputLayout>
@@ -97,19 +98,22 @@
                 </LinearLayout>
 
 
-                <LinearLayout style="@style/ButtonLayout_STYLE01">
+                <LinearLayout
+                    android:id="@+id/layout_ellipsoid_name"
+                    style="@style/ButtonLayout_STYLE01">
 
                     <TextView
                         style="@style/Sub_TEXTVIEW_STYLE1"
                         android:text="타원체명"
-                         />
+                    />
 
                     <TextView
+                        android:id="@+id/tv_ellipsoid_name"
                         style="@style/Sub_TEXTVIEW_STYLE3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="0"
-                        android:text="GRS80" />
+                        android:text="@{Optionlist.Companion.ELLIPSOID_NAME_LIST.get(viewModel.ellipsoidNameNum)}" />
 
                     <ImageView
                         android:layout_width="@dimen/rightArrowSize"
@@ -204,17 +208,20 @@
                          />
 
                     <TextView
-                        style="@style/Sub_TEXTVIEW_STYLE3"
+                        style="@style/Sub_TEXTVIEW_STYLE2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="0"
-                        android:text="UTM투영 (남반구)" />
+                        android:text="UTM투영 (남반구)"
+                        android:textColor="@color/grey_66"
+                        />
 
                     <ImageView
                         android:layout_width="@dimen/rightArrowSize"
                         android:layout_height="@dimen/rightArrowSize"
                         android:layout_weight="0"
                         android:padding="5dp"
+                        android:visibility="gone"
                         android:layout_marginRight="8dp"
                         app:srcCompat="@drawable/next_icon" />
 
@@ -240,7 +247,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="0"
-                        android:text="E0º00'00”"
+                        android:text="E127º00'00”"
+                        android:textColor="@color/grey_66"
                         android:layout_marginRight="16dp"/>
 
                     <LinearLayout
@@ -248,13 +256,15 @@
                         android:layout_height="@dimen/rightArrowSize"
                         android:layout_weight="0"
                         android:layout_marginRight="20dp"
-                        app:srcCompat="@drawable/next_icon"
+                        android:visibility="gone"
                         android:background="@color/grey_cc">
 
                         <ImageView
                             android:layout_width="@dimen/rightArrowSize"
                             android:layout_height="@dimen/rightArrowSize"
                             android:layout_weight="0"
+                            android:visibility="gone"
+
                             app:srcCompat="@drawable/subpage_coordinate" />
                     </LinearLayout>
 
@@ -285,6 +295,7 @@
 
 
                 <LinearLayout
+                    android:id="@+id/layout_itrf_conversion"
                     style="@style/ButtonLayout_STYLE01">
 
                     <TextView
@@ -293,12 +304,24 @@
                         />
 
                     <Switch
+                        android:id="@+id/sw_itrf_conversion"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:paddingRight="8dp"/>
+                        android:clickable="false"
+                        android:paddingRight="8dp"
+                        android:checked="@{viewModel.itrfConversion}"
+                        />
 
                 </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:visibility="@{viewModel.itrfConversion? View.VISIBLE : View.GONE}"
+                    >
+                <!-- "변환 유형" -->
 
                 <View
                     android:layout_width="match_parent"
@@ -308,6 +331,7 @@
 
 
                 <LinearLayout
+                    android:id="@+id/layout_conversion_type"
                     style="@style/ButtonLayout_STYLE01">
 
                     <TextView
@@ -333,12 +357,13 @@
 
                 </LinearLayout>
 
+                <!-- "새로운 타켓" -->
+
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:layout_weight="0"
                     android:background="@color/grey_EC" />
-
 
                 <LinearLayout
                     style="@style/ButtonLayout_STYLE01">
@@ -358,12 +383,13 @@
 
                 </LinearLayout>
 
+                <!-- "입력 속도" -->
+
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:layout_weight="0"
                     android:background="@color/grey_EC" />
-
 
 
                 <LinearLayout
@@ -382,12 +408,13 @@
 
                 </LinearLayout>
 
+                <!-- "Vx(mm)" -->
+
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:layout_weight="0"
                     android:background="@color/grey_EC" />
-
 
                 <LinearLayout
                     style="@style/ButtonLayout_STYLE01">
@@ -406,12 +433,13 @@
 
                 </LinearLayout>
 
+                <!-- "Vy(mm)" -->
+
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:layout_weight="0"
                     android:background="@color/grey_EC" />
-
 
                 <LinearLayout
                     style="@style/ButtonLayout_STYLE01">
@@ -430,12 +458,13 @@
 
                 </LinearLayout>
 
+                <!-- "Vz(mm)" -->
+
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:layout_weight="0"
                     android:background="@color/grey_EC" />
-
 
                 <LinearLayout
                     style="@style/ButtonLayout_STYLE01">
@@ -454,6 +483,7 @@
 
                 </LinearLayout>
 
+                </LinearLayout>
             </LinearLayout>
 
 
@@ -1489,6 +1519,7 @@
         app:layout_constraintStart_toStartOf="parent">
 
         <TextView
+            android:id="@+id/bt_export"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -1504,6 +1535,7 @@
             android:background="@color/white" />
 
         <TextView
+            android:id="@+id/bt_load"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -1519,6 +1551,7 @@
             android:background="@color/white" />
 
         <TextView
+            android:id="@+id/bt_confirm"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"

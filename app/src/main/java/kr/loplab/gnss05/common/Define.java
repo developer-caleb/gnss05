@@ -127,6 +127,11 @@ public class Define {
     public static final String STOP_SURVEY_SATELLITE_SBAS =      "stop_survey_satellite_sbas";
     public static final String STOP_SURVEY_SATELLITE_QZSS =      "stop_survey_satellite_qzss";
 
+    //SharedPreference Code Coordinate
+    public static final String COORDINATE_ELLIPSOIDNAME = "coordinate_ellipsoid_name";
+    public static final String COORDINATE_ITRFCONVERSION = "coordinate_itrf_conversion";
+
+
 
     //ROOM
     public static final String WORKERS_DB = "workers-db";

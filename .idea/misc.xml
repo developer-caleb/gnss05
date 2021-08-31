@@ -50,7 +50,7 @@
         <entry key="app/src/main/res/layout/activity_color_picker.xml" value="0.107421875" />
         <entry key="app/src/main/res/layout/activity_connect_equipment.xml" value="0.2211904802417677" />
         <entry key="app/src/main/res/layout/activity_connect_equipment2_deprecated.xml" value="0.135546875" />
-        <entry key="app/src/main/res/layout/activity_coordinate.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_coordinate.xml" value="0.33" />
         <entry key="app/src/main/res/layout/activity_cors_server_manager.xml" value="0.2484375" />
         <entry key="app/src/main/res/layout/activity_export.xml" value="0.33" />
         <entry key="app/src/main/res/layout/activity_file_export.xml" value="0.14713141752134903" />

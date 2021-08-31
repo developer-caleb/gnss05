@@ -54,7 +54,7 @@ class MyDialog(context : Context)
         title_button = dialog.findViewById(R.id.title_button);
         title_button.visibility = if(firstLayoutUse) View.VISIBLE else {View.GONE} ;
         title_sortbutton = dialog.findViewById(R.id.title_sort_button);
-        title_button.visibility = if(firstLayoutUse && titlesort) View.VISIBLE else {View.GONE} ;
+        title_sortbutton.visibility = if(firstLayoutUse && titlesort) View.VISIBLE else {View.GONE} ;
         var firstdivider  : View = dialog.findViewById(R.id.first_divider);
         firstdivider.visibility = if(firstLayoutUse) View.VISIBLE else {View.GONE} ;
         input_text = dialog.findViewById(R.id.input_text);

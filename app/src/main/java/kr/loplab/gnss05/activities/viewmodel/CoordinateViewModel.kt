@@ -8,11 +8,9 @@ import kr.loplab.gnss05.activities.workmanager.Worker
 class CoordinateViewModel : ViewModel(){
 
     private var name = ""
-    var cutAngleNum = MutableLiveData<Int>(0)
-    var collectionIntervalNum = MutableLiveData<Int>(0)
-    var heightCalcMethod = MutableLiveData<Int>(0)
-
-    /*  var bool_rawdatasave = MutableLiveData<Boolean>(false)
+    var ellipsoidNameNum = MutableLiveData<Int>(0)
+    var itrfConversion = MutableLiveData<Boolean>(false)
+    /*
       var data_connection_type = MutableLiveData<Int>(0)
       var innerRadioChannelNum = MutableLiveData<Int>(0)
       var radioModeChannelNum = MutableLiveData<Int>(0)
