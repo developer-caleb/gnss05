@@ -152,6 +152,16 @@ public class Define {
     public static final String COORDINATE_FOUR_PARAMETER_SCALE = "coordinate_four_parameter_scale";
     public static final String COORDINATE_FOUR_PARAMETER_FAR_NORTH_DIRECTION_MOVE = "coordinate_four_parameter_far_north_direction_move";
     public static final String COORDINATE_FOUR_PARAMETER_FAR_EAST_DIRECTION_MOVE = "coordinate_four_parameter_far_east_direction_move";
+    public static final String COORDINATE_VERTICAL_CONTROL_PARAMETER_USING = "coordinate_vertical_control_parameter_using";
+    public static final String COORDINATE_VERTICAL_CONTROL_PARAMETER_A0 = "coordinate_vertical_control_parameter_a0";
+    public static final String COORDINATE_VERTICAL_CONTROL_PARAMETER_A1 = "coordinate_vertical_control_parameter_a1";
+    public static final String COORDINATE_VERTICAL_CONTROL_PARAMETER_A2 = "coordinate_vertical_control_parameter_a2";
+    public static final String COORDINATE_VERTICAL_CONTROL_PARAMETER_A3 = "coordinate_vertical_control_parameter_a3";
+    public static final String COORDINATE_VERTICAL_CONTROL_PARAMETER_A4 = "coordinate_vertical_control_parameter_a4";
+    public static final String COORDINATE_VERTICAL_CONTROL_PARAMETER_A5 = "coordinate_vertical_control_parameter_a5";
+    public static final String COORDINATE_VERTICAL_CONTROL_PARAMETER_X0 = "coordinate_vertical_control_parameter_x0";
+    public static final String COORDINATE_VERTICAL_CONTROL_PARAMETER_Y0 = "coordinate_vertical_control_parameter_y0";
+
 
 
 

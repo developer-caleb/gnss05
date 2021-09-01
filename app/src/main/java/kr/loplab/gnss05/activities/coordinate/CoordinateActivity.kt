@@ -78,7 +78,6 @@ class CoordinateActivity : ActivityBase<ActivityCoordinateBinding>() {
         }
         viewBinding.layoutSevenParameterDeltaZ.setOnClickListener {
             requestETfocus(viewBinding.etSevenParameterDeltaZ)
-
         }
         viewBinding.layoutSevenParameterScale.setOnClickListener {
             requestETfocus(viewBinding.etSevenParameterScale)
@@ -100,6 +99,30 @@ class CoordinateActivity : ActivityBase<ActivityCoordinateBinding>() {
         }
         viewBinding.layoutFourParameterRotation.setOnClickListener {
             requestETfocus(viewBinding.etFourParameterRotation)
+        }
+        viewBinding.layoutVerticalControlParameterA0.setOnClickListener {
+            requestETfocus(viewBinding.etVerticalControlParameterA0)
+        }
+        viewBinding.layoutVerticalControlParameterA1.setOnClickListener {
+            requestETfocus(viewBinding.etVerticalControlParameterA1)
+        }
+        viewBinding.layoutVerticalControlParameterA2.setOnClickListener {
+            requestETfocus(viewBinding.etVerticalControlParameterA2)
+        }
+        viewBinding.layoutVerticalControlParameterA3.setOnClickListener {
+            requestETfocus(viewBinding.etVerticalControlParameterA3)
+        }
+        viewBinding.layoutVerticalControlParameterA4.setOnClickListener {
+            requestETfocus(viewBinding.etVerticalControlParameterA4)
+        }
+        viewBinding.layoutVerticalControlParameterA5.setOnClickListener {
+            requestETfocus(viewBinding.etVerticalControlParameterA5)
+        }
+        viewBinding.layoutVerticalControlParameterX0.setOnClickListener {
+            requestETfocus(viewBinding.etVerticalControlParameterX0)
+        }
+        viewBinding.layoutVerticalControlParameterY0.setOnClickListener {
+            requestETfocus(viewBinding.etVerticalControlParameterY0)
         }
         viewBinding.etFourParameterRotation.setOnFocusChangeListener { v, hasFocus ->
             if(!hasFocus){
@@ -153,6 +176,9 @@ class CoordinateActivity : ActivityBase<ActivityCoordinateBinding>() {
         viewBinding.layoutUseSevenParameter.setOnClickListener {
             viewModel1.setBoolvalue(viewModel1.sevenParameterUsing , !viewModel1.sevenParameterUsing.value!!)
         }
+        viewBinding.layoutVerticalControlParameterUsing.setOnClickListener {
+            viewModel1.setBoolvalue(viewModel1.verticalControlParameterUsing , !viewModel1.verticalControlParameterUsing.value!!)
+        }
         viewBinding.layoutSevenParameterMode.setOnClickListener {
             val dlg = MyDialog(this)
             var alist = OptionList.SEVEN_PARAMETER_MODE
@@ -178,10 +204,12 @@ class CoordinateActivity : ActivityBase<ActivityCoordinateBinding>() {
         viewModel1.setBoolvalue(viewModel1.inputSpeed, PrefUtil.getBoolean(applicationContext, COORDINATE_INPUT_SPEED))
         viewModel1.setBoolvalue(viewModel1.sevenParameterUsing, PrefUtil.getBoolean(applicationContext, COORDINATE_SEVEN_PARAMETER_USING))
         viewModel1.setBoolvalue(viewModel1.fourParameterUsing, PrefUtil.getBoolean(applicationContext, COORDINATE_FOUR_PARAMETER_USING))
+        viewModel1.setBoolvalue(viewModel1.verticalControlParameterUsing, PrefUtil.getBoolean(applicationContext, COORDINATE_VERTICAL_CONTROL_PARAMETER_USING))
 
 
         viewModel1.setIntvalue(viewModel1.conversionTypeNum, PrefUtil.getInt2(this, COORDINATE_CONVERSION_TYPE))
         viewModel1.setIntvalue(viewModel1.sevenParameterMode, PrefUtil.getInt2(this, COORDINATE_SEVEN_PARAMETER_MODE))
+
 
         viewBinding.etCoordinateName.setText(PrefUtil.getString(this, COORDINATE_COORDINATE_NAME))
         viewBinding.etNewTarget.setText(PrefUtil.getString(this, COORDINATE_NEW_TARGET))
@@ -201,6 +229,15 @@ class CoordinateActivity : ActivityBase<ActivityCoordinateBinding>() {
         viewBinding.etFourParameterScale.setText(PrefUtil.getDouble(this, COORDINATE_FOUR_PARAMETER_SCALE, 0.0).toString())
         viewBinding.etFourParameterFarNorthDirection.setText(PrefUtil.getDouble(this, COORDINATE_FOUR_PARAMETER_FAR_NORTH_DIRECTION_MOVE, 0.0).toString())
         viewBinding.etFourParameterFarEastDirection.setText(PrefUtil.getDouble(this,  COORDINATE_FOUR_PARAMETER_FAR_EAST_DIRECTION_MOVE, 0.0).toString())
+        viewBinding.etVerticalControlParameterA0.setText(PrefUtil.getDouble(this,  COORDINATE_VERTICAL_CONTROL_PARAMETER_A0, 0.0).toString())
+        viewBinding.etVerticalControlParameterA1.setText(PrefUtil.getDouble(this,  COORDINATE_VERTICAL_CONTROL_PARAMETER_A1, 0.0).toString())
+        viewBinding.etVerticalControlParameterA2.setText(PrefUtil.getDouble(this,  COORDINATE_VERTICAL_CONTROL_PARAMETER_A2, 0.0).toString())
+        viewBinding.etVerticalControlParameterA3.setText(PrefUtil.getDouble(this,  COORDINATE_VERTICAL_CONTROL_PARAMETER_A3, 0.0).toString())
+        viewBinding.etVerticalControlParameterA4.setText(PrefUtil.getDouble(this,  COORDINATE_VERTICAL_CONTROL_PARAMETER_A4, 0.0).toString())
+        viewBinding.etVerticalControlParameterA5.setText(PrefUtil.getDouble(this,  COORDINATE_VERTICAL_CONTROL_PARAMETER_A5, 0.0).toString())
+        viewBinding.etVerticalControlParameterX0.setText(PrefUtil.getDouble(this,  COORDINATE_VERTICAL_CONTROL_PARAMETER_X0, 0.0).toString())
+        viewBinding.etVerticalControlParameterY0.setText(PrefUtil.getDouble(this,  COORDINATE_VERTICAL_CONTROL_PARAMETER_Y0, 0.0).toString())
+
 
 
     }
@@ -211,6 +248,7 @@ class CoordinateActivity : ActivityBase<ActivityCoordinateBinding>() {
         PrefUtil.setBoolean(applicationContext, COORDINATE_INPUT_SPEED, viewModel1.inputSpeed.value!!)
         PrefUtil.setBoolean(applicationContext, COORDINATE_SEVEN_PARAMETER_USING, viewModel1.sevenParameterUsing.value!!)
         PrefUtil.setBoolean(applicationContext, COORDINATE_FOUR_PARAMETER_USING, viewModel1.fourParameterUsing.value!!)
+        PrefUtil.setBoolean(applicationContext, COORDINATE_VERTICAL_CONTROL_PARAMETER_USING, viewModel1.verticalControlParameterUsing.value!!)
 
 
         PrefUtil.setInt(applicationContext, Define.COORDINATE_CONVERSION_TYPE, viewModel1.conversionTypeNum.value!!)
@@ -234,19 +272,16 @@ class CoordinateActivity : ActivityBase<ActivityCoordinateBinding>() {
         PrefUtil.setDouble(applicationContext, Define.COORDINATE_FOUR_PARAMETER_SCALE, viewBinding.etFourParameterScale.text.toString().isEmpty())
         PrefUtil.setDouble(applicationContext, Define.COORDINATE_FOUR_PARAMETER_FAR_NORTH_DIRECTION_MOVE, viewBinding.etFourParameterFarNorthDirection.text.toString().isEmpty())
         PrefUtil.setDouble(applicationContext, Define.COORDINATE_FOUR_PARAMETER_FAR_EAST_DIRECTION_MOVE, viewBinding.etFourParameterFarEastDirection.text.toString().isEmpty())
-        
-    /*
-          PrefUtil.setDouble(applicationContext, Define.COORDINATE_FOUR_PARAMETER_NORTH_DIRECTION_MOVE, if(viewBinding.etFourParameterNorthDirectionMove.text.toString().isEmpty()) 0.0
-            else viewBinding.etFourParameterNorthDirectionMove.text.toString().toDouble())
-        PrefUtil.setDouble(applicationContext, Define.COORDINATE_FOUR_PARAMETER_EAST_DIRECTION_MOVE, if(viewBinding.etFourParameterEastDirectionMove.text.toString().isEmpty()) 0.0
-        else viewBinding.etFourParameterEastDirectionMove.text.toString().toDouble())
-        PrefUtil.setDouble(applicationContext, Define.COORDINATE_FOUR_PARAMETER_SCALE, if(viewBinding.etFourParameterScale.text.toString().isEmpty()) 0.0
-        else viewBinding.etFourParameterScale.text.toString().toDouble())
-        PrefUtil.setDouble(applicationContext, Define.COORDINATE_FOUR_PARAMETER_FAR_NORTH_DIRECTION_MOVE, if(viewBinding.etFourParameterFarNorthDirection.text.toString().isEmpty()) 0.0
-        else viewBinding.etFourParameterFarNorthDirection.text.toString().toDouble())
-        PrefUtil.setDouble(applicationContext, Define.COORDINATE_FOUR_PARAMETER_FAR_EAST_DIRECTION_MOVE, if(viewBinding.etFourParameterFarEastDirection.text.toString().isEmpty()) 0.0
-        else viewBinding.etFourParameterFarEastDirection.text.toString().toDouble())
-        * */
+
+        PrefUtil.setDouble(applicationContext, Define.COORDINATE_VERTICAL_CONTROL_PARAMETER_A0, viewBinding.etVerticalControlParameterA0.text.toString().isEmpty())
+        PrefUtil.setDouble(applicationContext, Define.COORDINATE_VERTICAL_CONTROL_PARAMETER_A1, viewBinding.etVerticalControlParameterA1.text.toString().isEmpty())
+        PrefUtil.setDouble(applicationContext, Define.COORDINATE_VERTICAL_CONTROL_PARAMETER_A2, viewBinding.etVerticalControlParameterA2.text.toString().isEmpty())
+        PrefUtil.setDouble(applicationContext, Define.COORDINATE_VERTICAL_CONTROL_PARAMETER_A3, viewBinding.etVerticalControlParameterA3.text.toString().isEmpty())
+        PrefUtil.setDouble(applicationContext, Define.COORDINATE_VERTICAL_CONTROL_PARAMETER_A4, viewBinding.etVerticalControlParameterA4.text.toString().isEmpty())
+        PrefUtil.setDouble(applicationContext, Define.COORDINATE_VERTICAL_CONTROL_PARAMETER_A5, viewBinding.etVerticalControlParameterA5.text.toString().isEmpty())
+        PrefUtil.setDouble(applicationContext, Define.COORDINATE_VERTICAL_CONTROL_PARAMETER_X0, viewBinding.etVerticalControlParameterX0.text.toString().isEmpty())
+        PrefUtil.setDouble(applicationContext, Define.COORDINATE_VERTICAL_CONTROL_PARAMETER_Y0, viewBinding.etVerticalControlParameterY0.text.toString().isEmpty())
+
 
 
     }
