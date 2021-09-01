@@ -46,7 +46,7 @@
             android:name=".PositionInformationActivity"
             android:exported="true" />
         <activity
-            android:name=".activities.ExportActivity"
+            android:name=".activities.export.ExportActivity"
             android:exported="true" />
         <activity
             android:name=".activities.stop_survey.StopSurveyActivity"

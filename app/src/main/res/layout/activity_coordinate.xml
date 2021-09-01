@@ -43,8 +43,7 @@
 
             <LinearLayout
                 android:id="@+id/layout_coordiante_name"
-                style="@style/ButtonLayout_STYLE01"
-                android:visibility="gone">
+                style="@style/ButtonLayout_STYLE01">
 
                 <TextView
                     style="@style/Sub_TEXTVIEW_STYLE1"
@@ -82,8 +81,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:visibility="gone">
+                android:orientation="vertical">
 
                 <LinearLayout
                     style="@style/ButtonLayout_STYLE01"
@@ -180,8 +178,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:visibility="gone">
+                android:orientation="vertical">
 
                 <LinearLayout
                     style="@style/ButtonLayout_STYLE01"
@@ -270,8 +267,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:visibility="gone">
+                android:orientation="vertical">
 
                 <LinearLayout
                     style="@style/ButtonLayout_STYLE01"
@@ -554,8 +550,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:visibility="gone">
+                android:orientation="vertical">
 
                 <LinearLayout
                     style="@style/ButtonLayout_STYLE01"
@@ -930,8 +925,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:visibility="gone">
+                android:orientation="vertical">
 
                 <LinearLayout
                     style="@style/ButtonLayout_STYLE01"
@@ -1256,8 +1250,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:visibility="gone">
+                android:orientation="vertical">
 
                 <LinearLayout
                     style="@style/ButtonLayout_STYLE01"
@@ -1630,8 +1623,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:visibility="gone">
+                android:orientation="vertical">
 
                 <LinearLayout
                     style="@style/ButtonLayout_STYLE01"

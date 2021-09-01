@@ -4,7 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools">
     <data>
         <import type="android.view.View"/>
-
+        <import type="android.view.View"/>
+        <import type="java.util.ArrayList"/>
+        <import type="java.util.Arrays"/>
+        <variable
+            name="Optionlist"
+            type="kr.loplab.gnss05.common.OptionList"/>
+        <variable
+            name="viewModel"
+            type="kr.loplab.gnss05.activities.viewmodel.ExportViewModel"/>
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -69,6 +77,7 @@
 
 
                 <LinearLayout
+                    android:id="@+id/layout_road_cross_section_output_using"
                     style="@style/ButtonLayout_STYLE01">
 
                     <TextView
@@ -78,6 +87,7 @@
 
 
                     <Switch
+                        android:id="@+id/sw_road_cross_section_output_using"
                         style="@style/switchbutton"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
