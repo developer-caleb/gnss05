@@ -20,8 +20,9 @@
 
     <!--    아이콘 사이즈 그룹 -->
     <dimen name="rightArrowSize">35dp</dimen>
-    <dimen name="LIconsize">35dp</dimen>
+    <dimen name="LIconsize">50dp</dimen>
     <dimen name="SIconsize">35dp</dimen>
+    <dimen name="LIconweight">0</dimen>
     <dimen name="Backbuttonsize">30dp</dimen>
 
     <!--   Table 레이아웃 사이즈 그룹 -->

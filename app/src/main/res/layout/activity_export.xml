@@ -15,7 +15,7 @@
             android:id="@+id/header_01"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:title="파일 출력"
+            app:title="내보내기"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" >
@@ -719,7 +719,7 @@
                 android:id="@+id/bt_add_file_format"
                 android:layout_width="0dp"
                 android:layout_weight="1"
-                android:text="사용자 파일 추가"
+                android:text="파일 형식 추가"
                 style="@style/TextViewButton_STYLE01"
                />
 
