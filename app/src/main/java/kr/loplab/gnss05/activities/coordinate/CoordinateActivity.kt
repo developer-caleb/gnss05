@@ -229,7 +229,14 @@ class CoordinateActivity : ActivityBase<ActivityCoordinateBinding>() {
         PrefUtil.setString(applicationContext, Define.COORDINATE_SEVEN_PARAMETER_DELTA_BETA, viewBinding.etSevenParameterDeltaBeta.text.toString())
         PrefUtil.setString(applicationContext, Define.COORDINATE_SEVEN_PARAMETER_DELTA_GAMMA, viewBinding.etSevenParameterDeltaGamma.text.toString())
         PrefUtil.setString(applicationContext, Define.COORDINATE_SEVEN_PARAMETER_DELTA_SCALE, viewBinding.etSevenParameterScale.text.toString())
-        PrefUtil.setDouble(applicationContext, Define.COORDINATE_FOUR_PARAMETER_NORTH_DIRECTION_MOVE, if(viewBinding.etFourParameterNorthDirectionMove.text.toString().isEmpty()) 0.0
+        PrefUtil.setDouble(applicationContext, Define.COORDINATE_FOUR_PARAMETER_NORTH_DIRECTION_MOVE, viewBinding.etFourParameterNorthDirectionMove.text.toString())
+        PrefUtil.setDouble(applicationContext, Define.COORDINATE_FOUR_PARAMETER_EAST_DIRECTION_MOVE, viewBinding.etFourParameterEastDirectionMove.text.toString())
+        PrefUtil.setDouble(applicationContext, Define.COORDINATE_FOUR_PARAMETER_SCALE, viewBinding.etFourParameterScale.text.toString().isEmpty())
+        PrefUtil.setDouble(applicationContext, Define.COORDINATE_FOUR_PARAMETER_FAR_NORTH_DIRECTION_MOVE, viewBinding.etFourParameterFarNorthDirection.text.toString().isEmpty())
+        PrefUtil.setDouble(applicationContext, Define.COORDINATE_FOUR_PARAMETER_FAR_EAST_DIRECTION_MOVE, viewBinding.etFourParameterFarEastDirection.text.toString().isEmpty())
+        
+    /*
+          PrefUtil.setDouble(applicationContext, Define.COORDINATE_FOUR_PARAMETER_NORTH_DIRECTION_MOVE, if(viewBinding.etFourParameterNorthDirectionMove.text.toString().isEmpty()) 0.0
             else viewBinding.etFourParameterNorthDirectionMove.text.toString().toDouble())
         PrefUtil.setDouble(applicationContext, Define.COORDINATE_FOUR_PARAMETER_EAST_DIRECTION_MOVE, if(viewBinding.etFourParameterEastDirectionMove.text.toString().isEmpty()) 0.0
         else viewBinding.etFourParameterEastDirectionMove.text.toString().toDouble())
@@ -239,7 +246,7 @@ class CoordinateActivity : ActivityBase<ActivityCoordinateBinding>() {
         else viewBinding.etFourParameterFarNorthDirection.text.toString().toDouble())
         PrefUtil.setDouble(applicationContext, Define.COORDINATE_FOUR_PARAMETER_FAR_EAST_DIRECTION_MOVE, if(viewBinding.etFourParameterFarEastDirection.text.toString().isEmpty()) 0.0
         else viewBinding.etFourParameterFarEastDirection.text.toString().toDouble())
-
+        * */
 
 
     }

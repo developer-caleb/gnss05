@@ -380,7 +380,7 @@ class MobileStationActivity : ActivityBase<ActivityMobileStationBinding>() {
         viewBinding.swNetworkTransfer.isChecked =PrefUtil.getBoolean(applicationContext, MOBILE_STATION_NETWORK_TRANSFER) //12
         viewModel1.setIntvalue(viewModel1.networkSystemNum, PrefUtil.getInt2(applicationContext, MOBILE_STATION_NETWORK_SYSTEM))  //6
         viewModel1.setBoolvalue(viewModel1.auto_apn, PrefUtil.getBoolean(this, MOBILE_STATION_AUTO_APN)) //10 -> data, viewbinding통합
-        viewModel1.setStringvalue(viewModel1.mountPointString, PrefUtil.getString(applicationContext, MOBILE_STATION_MOUNT_POINT))  //6
+        viewModel1.setStringvalue(viewModel1.mountPointString, PrefUtil.getString(applicationContext, MOBILE_STATION_MOUNT_POINT)!!)  //6
         viewModel1.setIntvalue(viewModel1.mountPointSortNum, PrefUtil.getInt2(applicationContext, Define.MOBILE_STATION_MOUNT_SORT))  //14
 
 

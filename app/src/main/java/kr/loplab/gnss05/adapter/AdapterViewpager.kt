@@ -132,7 +132,7 @@ class AdapterViewpager: PagerAdapter, MainpageRecyclerViewAdapter.RecyclerItemCl
         datasarray[3] = data3
     }
     fun init(position: Int){
-        if(PrefUtil.getBoolean(mContext, Define.RECYCLERVIEW_LIST_MODE)){
+        if(PrefUtil.getBoolean(mContext!!, Define.RECYCLERVIEW_LIST_MODE)){
             binding.recyclerviewMain.layoutManager = LinearLayoutManager(mContext);
             Log.d(TAG, "init: listmode-> RECYCLERVIEW_LIST_MODE" )
             arrayadapter[position] = MainpageRecyclerViewAdapter(mContext, datasarray[position]!!, R.layout.recyclerview_item_vertical)
