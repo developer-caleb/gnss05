@@ -35,7 +35,6 @@ class MobileStationViewModel : ViewModel() {
     var network_autoconnect = MutableLiveData<Boolean>(false)
     var mountPointString = MutableLiveData<String>("")
     var mountPointSortNum = MutableLiveData<Int>(0)
-
     /* var onprogress = MutableLiveData<Boolean>(false)
 
      var networkSystemNum = MutableLiveData<Int>(0)

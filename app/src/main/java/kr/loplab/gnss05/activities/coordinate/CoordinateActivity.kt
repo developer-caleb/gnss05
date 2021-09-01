@@ -39,91 +39,42 @@ class CoordinateActivity : ActivityBase<ActivityCoordinateBinding>() {
     }
 
     override fun initListener() {
-        viewBinding.btConfirm.setOnClickListener {
-            saveSettings()
-        }
+        viewBinding.btConfirm.setOnClickListener { saveSettings() }
         viewBinding.btExport.setOnClickListener {  }
         viewBinding.btLoad.setOnClickListener {
         }
         viewBinding.header01.setOnBackButtonClickListener{onBackPressed()}
-        viewBinding.layoutCoordianteName.setOnClickListener {
-            requestETfocus(viewBinding.etCoordinateName)
-        }
-        viewBinding.layoutNewtarget.setOnClickListener {
-            requestETfocus(viewBinding.etNewTarget)
-        }
-        viewBinding.layoutVX.setOnClickListener {
-            requestETfocus(viewBinding.etVX)
-        }
-        viewBinding.layoutVY.setOnClickListener {
-           requestETfocus(viewBinding.etVY)
-        }
-        viewBinding.layoutVZ.setOnClickListener {
-            requestETfocus(viewBinding.etVZ)
-        }
-        viewBinding.layoutSevenParameterDeltaAlpha.setOnClickListener {
-            requestETfocus(viewBinding.etSevenParameterDeltaAlpha)
-        }
-        viewBinding.layoutSevenParameterDeltaBeta.setOnClickListener {
-            requestETfocus(viewBinding.etSevenParameterDeltaBeta)
-        }
-        viewBinding.layoutSevenParameterDeltaGamma.setOnClickListener {
-            requestETfocus(viewBinding.etSevenParameterDeltaGamma)
-        }
-        viewBinding.layoutSevenParameterDeltaX.setOnClickListener {
-            requestETfocus(viewBinding.etSevenParameterDeltaX)
-        }
-        viewBinding.layoutSevenParameterDeltaY.setOnClickListener {
-            requestETfocus(viewBinding.etSevenParameterDeltaY)
-        }
-        viewBinding.layoutSevenParameterDeltaZ.setOnClickListener {
-            requestETfocus(viewBinding.etSevenParameterDeltaZ)
-        }
-        viewBinding.layoutSevenParameterScale.setOnClickListener {
-            requestETfocus(viewBinding.etSevenParameterScale)
-        }
-        viewBinding.layoutFourParameterNorthMove.setOnClickListener {
-            requestETfocus(viewBinding.etFourParameterNorthDirectionMove)
-        }
-        viewBinding.layoutFourParameterEastMove.setOnClickListener {
-            requestETfocus(viewBinding.etFourParameterEastDirectionMove)
-        }
-        viewBinding.layoutFourParameterScale.setOnClickListener {
-            requestETfocus(viewBinding.etFourParameterScale)
-        }
-        viewBinding.layoutFourParameterFarNorthDirection.setOnClickListener {
-            requestETfocus(viewBinding.etFourParameterFarNorthDirection)
-        }
-        viewBinding.layoutFourParameterFarEastDirection.setOnClickListener {
-            requestETfocus(viewBinding.etFourParameterFarEastDirection)
-        }
-        viewBinding.layoutFourParameterRotation.setOnClickListener {
-            requestETfocus(viewBinding.etFourParameterRotation)
-        }
-        viewBinding.layoutVerticalControlParameterA0.setOnClickListener {
-            requestETfocus(viewBinding.etVerticalControlParameterA0)
-        }
-        viewBinding.layoutVerticalControlParameterA1.setOnClickListener {
-            requestETfocus(viewBinding.etVerticalControlParameterA1)
-        }
-        viewBinding.layoutVerticalControlParameterA2.setOnClickListener {
-            requestETfocus(viewBinding.etVerticalControlParameterA2)
-        }
-        viewBinding.layoutVerticalControlParameterA3.setOnClickListener {
-            requestETfocus(viewBinding.etVerticalControlParameterA3)
-        }
-        viewBinding.layoutVerticalControlParameterA4.setOnClickListener {
-            requestETfocus(viewBinding.etVerticalControlParameterA4)
-        }
-        viewBinding.layoutVerticalControlParameterA5.setOnClickListener {
-            requestETfocus(viewBinding.etVerticalControlParameterA5)
-        }
-        viewBinding.layoutVerticalControlParameterX0.setOnClickListener {
-            requestETfocus(viewBinding.etVerticalControlParameterX0)
-        }
-        viewBinding.layoutVerticalControlParameterY0.setOnClickListener {
-            requestETfocus(viewBinding.etVerticalControlParameterY0)
-        }
+        viewBinding.layoutCoordianteName.setOnClickListener { requestETfocus(viewBinding.etCoordinateName) }
+        viewBinding.layoutNewtarget.setOnClickListener { requestETfocus(viewBinding.etNewTarget) }
+        viewBinding.layoutVX.setOnClickListener { requestETfocus(viewBinding.etVX) }
+        viewBinding.layoutVY.setOnClickListener { requestETfocus(viewBinding.etVY) }
+        viewBinding.layoutVZ.setOnClickListener { requestETfocus(viewBinding.etVZ) }
+        viewBinding.layoutSevenParameterDeltaAlpha.setOnClickListener { requestETfocus(viewBinding.etSevenParameterDeltaAlpha) }
+        viewBinding.layoutSevenParameterDeltaBeta.setOnClickListener { requestETfocus(viewBinding.etSevenParameterDeltaBeta) }
+        viewBinding.layoutSevenParameterDeltaGamma.setOnClickListener { requestETfocus(viewBinding.etSevenParameterDeltaGamma) }
+        viewBinding.layoutSevenParameterDeltaX.setOnClickListener { requestETfocus(viewBinding.etSevenParameterDeltaX) }
+        viewBinding.layoutSevenParameterDeltaY.setOnClickListener { requestETfocus(viewBinding.etSevenParameterDeltaY) }
+        viewBinding.layoutSevenParameterDeltaZ.setOnClickListener { requestETfocus(viewBinding.etSevenParameterDeltaZ) }
+        viewBinding.layoutSevenParameterScale.setOnClickListener { requestETfocus(viewBinding.etSevenParameterScale) }
+        viewBinding.layoutFourParameterNorthMove.setOnClickListener { requestETfocus(viewBinding.etFourParameterNorthDirectionMove) }
+        viewBinding.layoutFourParameterEastMove.setOnClickListener { requestETfocus(viewBinding.etFourParameterEastDirectionMove) }
+        viewBinding.layoutFourParameterScale.setOnClickListener { requestETfocus(viewBinding.etFourParameterScale) }
+        viewBinding.layoutFourParameterFarNorthDirection.setOnClickListener { requestETfocus(viewBinding.etFourParameterFarNorthDirection) }
+        viewBinding.layoutFourParameterFarEastDirection.setOnClickListener { requestETfocus(viewBinding.etFourParameterFarEastDirection) }
+        viewBinding.layoutFourParameterRotation.setOnClickListener { requestETfocus(viewBinding.etFourParameterRotation) }
+        viewBinding.layoutVerticalControlParameterA0.setOnClickListener { requestETfocus(viewBinding.etVerticalControlParameterA0) }
+        viewBinding.layoutVerticalControlParameterA1.setOnClickListener { requestETfocus(viewBinding.etVerticalControlParameterA1) }
+        viewBinding.layoutVerticalControlParameterA2.setOnClickListener { requestETfocus(viewBinding.etVerticalControlParameterA2) }
+        viewBinding.layoutVerticalControlParameterA3.setOnClickListener { requestETfocus(viewBinding.etVerticalControlParameterA3) }
+        viewBinding.layoutVerticalControlParameterA4.setOnClickListener { requestETfocus(viewBinding.etVerticalControlParameterA4) }
+        viewBinding.layoutVerticalControlParameterA5.setOnClickListener { requestETfocus(viewBinding.etVerticalControlParameterA5) }
+        viewBinding.layoutVerticalControlParameterX0.setOnClickListener { requestETfocus(viewBinding.etVerticalControlParameterX0) }
+        viewBinding.layoutVerticalControlParameterY0.setOnClickListener { requestETfocus(viewBinding.etVerticalControlParameterY0) }
+        viewBinding.layoutVerticalAdjustmentParameterAdjustmentConstant.setOnClickListener { requestETfocus(viewBinding.etVerticalAdjustmentParameterAdjustmentConstant) }
+        viewBinding.layoutVerticalAdjustmentParameterNorthSuperelevation.setOnClickListener { requestETfocus(viewBinding.etVerticalAdjustmentParameterNorthSuperelevation) }
+        viewBinding.layoutVerticalAdjustmentParameterEastSuperelevation.setOnClickListener { requestETfocus(viewBinding.etVerticalAdjustmentParameterEastSuperelevation) }
+        viewBinding.layoutVerticalAdjustmentParameterFarNorthDirection.setOnClickListener { requestETfocus(viewBinding.etVerticalAdjustmentParameterFarNorthDirection) }
+        viewBinding.layoutVerticalAdjustmentParameterFarEastDirection.setOnClickListener { requestETfocus(viewBinding.etVerticalAdjustmentParameterFarEastDirection) }
         viewBinding.etFourParameterRotation.setOnFocusChangeListener { v, hasFocus ->
             if(!hasFocus){
                 var doubleValue = if (viewBinding.etFourParameterRotation.text!!.isEmpty()) 0.0 else{ viewBinding.etFourParameterRotation.text!!.toString().toDouble()}
@@ -195,6 +146,9 @@ class CoordinateActivity : ActivityBase<ActivityCoordinateBinding>() {
         viewBinding.layoutFourParameterUsing.setOnClickListener {
             viewModel1.setBoolvalue(viewModel1.fourParameterUsing , !viewModel1.fourParameterUsing.value!!)
         }
+        viewBinding.layoutVerticalAdjustmentParameterUsing.setOnClickListener {
+            viewModel1.setBoolvalue(viewModel1.verticalAdjustmentParameterUsing , !viewModel1.verticalAdjustmentParameterUsing.value!!)
+        }
 
     }
 
@@ -205,11 +159,10 @@ class CoordinateActivity : ActivityBase<ActivityCoordinateBinding>() {
         viewModel1.setBoolvalue(viewModel1.sevenParameterUsing, PrefUtil.getBoolean(applicationContext, COORDINATE_SEVEN_PARAMETER_USING))
         viewModel1.setBoolvalue(viewModel1.fourParameterUsing, PrefUtil.getBoolean(applicationContext, COORDINATE_FOUR_PARAMETER_USING))
         viewModel1.setBoolvalue(viewModel1.verticalControlParameterUsing, PrefUtil.getBoolean(applicationContext, COORDINATE_VERTICAL_CONTROL_PARAMETER_USING))
-
+        viewModel1.setBoolvalue(viewModel1.verticalAdjustmentParameterUsing, PrefUtil.getBoolean(applicationContext, COORDINATE_VERTICAL_ADJUSTMENT_PARAMETER_USING))
 
         viewModel1.setIntvalue(viewModel1.conversionTypeNum, PrefUtil.getInt2(this, COORDINATE_CONVERSION_TYPE))
         viewModel1.setIntvalue(viewModel1.sevenParameterMode, PrefUtil.getInt2(this, COORDINATE_SEVEN_PARAMETER_MODE))
-
 
         viewBinding.etCoordinateName.setText(PrefUtil.getString(this, COORDINATE_COORDINATE_NAME))
         viewBinding.etNewTarget.setText(PrefUtil.getString(this, COORDINATE_NEW_TARGET))
@@ -237,6 +190,12 @@ class CoordinateActivity : ActivityBase<ActivityCoordinateBinding>() {
         viewBinding.etVerticalControlParameterA5.setText(PrefUtil.getDouble(this,  COORDINATE_VERTICAL_CONTROL_PARAMETER_A5, 0.0).toString())
         viewBinding.etVerticalControlParameterX0.setText(PrefUtil.getDouble(this,  COORDINATE_VERTICAL_CONTROL_PARAMETER_X0, 0.0).toString())
         viewBinding.etVerticalControlParameterY0.setText(PrefUtil.getDouble(this,  COORDINATE_VERTICAL_CONTROL_PARAMETER_Y0, 0.0).toString())
+        viewBinding.etVerticalAdjustmentParameterAdjustmentConstant.setText(PrefUtil.getInt2(this,  COORDINATE_VERTICAL_ADJUSTMENT_PARAMETER_AdjustmentConstant).toString())
+        viewBinding.etVerticalAdjustmentParameterNorthSuperelevation.setText(PrefUtil.getInt2(this,  COORDINATE_VERTICAL_ADJUSTMENT_PARAMETER_NorthSuperelevation).toString())
+        viewBinding.etVerticalAdjustmentParameterEastSuperelevation.setText(PrefUtil.getInt2(this,  COORDINATE_VERTICAL_ADJUSTMENT_PARAMETER_EastSuperelevation).toString())
+        viewBinding.etVerticalAdjustmentParameterFarNorthDirection.setText(PrefUtil.getInt2(this,  COORDINATE_VERTICAL_ADJUSTMENT_PARAMETER_FarNorthDirection).toString())
+        viewBinding.etVerticalAdjustmentParameterFarEastDirection.setText(PrefUtil.getInt2(this,  COORDINATE_VERTICAL_ADJUSTMENT_PARAMETER_FarEastDirection).toString())
+
 
 
 
@@ -249,7 +208,7 @@ class CoordinateActivity : ActivityBase<ActivityCoordinateBinding>() {
         PrefUtil.setBoolean(applicationContext, COORDINATE_SEVEN_PARAMETER_USING, viewModel1.sevenParameterUsing.value!!)
         PrefUtil.setBoolean(applicationContext, COORDINATE_FOUR_PARAMETER_USING, viewModel1.fourParameterUsing.value!!)
         PrefUtil.setBoolean(applicationContext, COORDINATE_VERTICAL_CONTROL_PARAMETER_USING, viewModel1.verticalControlParameterUsing.value!!)
-
+        PrefUtil.setBoolean(applicationContext, COORDINATE_VERTICAL_ADJUSTMENT_PARAMETER_USING, viewModel1.verticalAdjustmentParameterUsing.value!!)
 
         PrefUtil.setInt(applicationContext, Define.COORDINATE_CONVERSION_TYPE, viewModel1.conversionTypeNum.value!!)
         PrefUtil.setInt(applicationContext, Define.COORDINATE_SEVEN_PARAMETER_MODE, viewModel1.sevenParameterMode.value!!)
@@ -281,6 +240,12 @@ class CoordinateActivity : ActivityBase<ActivityCoordinateBinding>() {
         PrefUtil.setDouble(applicationContext, Define.COORDINATE_VERTICAL_CONTROL_PARAMETER_A5, viewBinding.etVerticalControlParameterA5.text.toString().isEmpty())
         PrefUtil.setDouble(applicationContext, Define.COORDINATE_VERTICAL_CONTROL_PARAMETER_X0, viewBinding.etVerticalControlParameterX0.text.toString().isEmpty())
         PrefUtil.setDouble(applicationContext, Define.COORDINATE_VERTICAL_CONTROL_PARAMETER_Y0, viewBinding.etVerticalControlParameterY0.text.toString().isEmpty())
+
+        PrefUtil.setString(applicationContext, Define.COORDINATE_VERTICAL_ADJUSTMENT_PARAMETER_AdjustmentConstant, viewBinding.etVerticalAdjustmentParameterAdjustmentConstant.text.toString())
+        PrefUtil.setString(applicationContext, Define.COORDINATE_VERTICAL_ADJUSTMENT_PARAMETER_NorthSuperelevation, viewBinding.etVerticalAdjustmentParameterNorthSuperelevation.text.toString())
+        PrefUtil.setString(applicationContext, Define.COORDINATE_VERTICAL_ADJUSTMENT_PARAMETER_EastSuperelevation, viewBinding.etVerticalAdjustmentParameterEastSuperelevation.text.toString())
+        PrefUtil.setString(applicationContext, Define.COORDINATE_VERTICAL_ADJUSTMENT_PARAMETER_FarNorthDirection, viewBinding.etVerticalAdjustmentParameterFarNorthDirection.text.toString())
+        PrefUtil.setString(applicationContext, Define.COORDINATE_VERTICAL_ADJUSTMENT_PARAMETER_FarEastDirection, viewBinding.etVerticalAdjustmentParameterFarEastDirection.text.toString())
 
 
 
