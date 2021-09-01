@@ -1,4 +1,4 @@
-package kr.loplab.gnss05
+package kr.loplab.gnss05.common
 
 import android.content.Context
 import android.util.TypedValue
