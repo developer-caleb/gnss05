@@ -30,15 +30,24 @@
 
 
         <ImageView
-            android:id="@+id/imageView2"
+            android:id="@+id/bt_back"
             android:layout_width="@dimen/Backbuttonsize"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:layout_weight="1"
-            android:padding="5dp"
+            android:padding="10dp"
             app:srcCompat="@drawable/icon_basic_header_btn_back"
             app:tint="@color/colorPrimary" />
 
+
+        <View
+            android:id="@+id/divider9"
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_weight="0"
+            android:background="@color/bg_line" />
 
         <ImageView
             android:id="@+id/imageView3"
@@ -118,7 +127,7 @@
             android:layout_weight="3" />
 
         <ImageView
-            android:id="@+id/imageView5"
+            android:id="@+id/bt_position_information"
             style="@style/IMAGEVIEW_01"
             android:layout_gravity="bottom"
             android:layout_weight="0"
@@ -140,7 +149,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="H:0.05" />
+                android:textColor="@color/white"
+                android:text="32" />
 
             <TextView
                 android:id="@+id/textView13"
@@ -148,10 +158,11 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="v:0.09" />
+                android:textColor="@color/white"
+                android:text="37" />
         </LinearLayout>
         <ImageView
-            android:id="@+id/imageView7"
+            android:id="@+id/battery_status"
             style="@style/IMAGEVIEW_01"
             android:layout_gravity="bottom"
             android:layout_weight="0"

@@ -19,6 +19,9 @@ class StatusWorkActivity : ActivityBase<ActivityStatusWorkBinding>() {
     }
 
     override fun initListener() {
+        viewBinding.btBack.setOnClickListener {
+            onBackPressed()
+        }
     }
 
     override fun initDatabinding() {
