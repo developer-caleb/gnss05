@@ -1630,7 +1630,8 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:visibility="gone">
 
                 <LinearLayout
                     style="@style/ButtonLayout_STYLE01"
@@ -1639,8 +1640,7 @@
                     <TextView
                         style="@style/Sub_TEXTVIEW_STYLE1"
                         android:text="수직 조정 파라미터"
-                        android:textColor="@color/grey_33"
-                         />
+                        android:textColor="@color/grey_33" />
 
                 </LinearLayout>
 
@@ -1651,233 +1651,227 @@
 
                     <TextView
                         style="@style/Sub_TEXTVIEW_STYLE1"
-                        android:text="사용 여부"
-                        />
+                        android:text="사용 여부" />
 
                     <Switch
                         android:id="@+id/sw_vertical_adjustment_parameter_using"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:clickable="false"
-                        android:checked="@{viewModel.verticalAdjustmentParameterUsing}"/>
+                        android:checked="@{viewModel.verticalAdjustmentParameterUsing}"
+                        android:clickable="false" />
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:visibility="@{viewModel.verticalAdjustmentParameterUsing ? View.VISIBLE : View.GONE}"
-                    >
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_weight="0"
-                    android:background="@color/grey_EC" />
+                    android:visibility="@{viewModel.verticalAdjustmentParameterUsing ? View.VISIBLE : View.GONE}">
 
-
-                <LinearLayout
-                    android:id="@+id/layout_vertical_adjustment_parameter_adjustment_constant"
-                    style="@style/ButtonLayout_STYLE01">
-
-                    <TextView
-                        style="@style/Sub_TEXTVIEW_STYLE1"
-                        android:text="조정 상수"
-                         />
-
-                    <com.google.android.material.textfield.TextInputLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
                         android:layout_weight="0"
-                        android:background="@color/transparent"
-                        android:padding="0dp"
-                        app:boxStrokeWidth="0dp"
-                        app:boxStrokeWidthFocused="0dp"
-                        app:endIconMode="clear_text"
-                        app:endIconTint="@color/main_blue"
-                        app:errorEnabled="false"
-                        app:hintEnabled="false">
+                        android:background="@color/grey_EC" />
 
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/et_vertical_adjustment_parameter_adjustment_constant"
-                            style="@style/Sub_TEXTVIEW_STYLE3_TEXTINPUTLAYOUT"
+
+                    <LinearLayout
+                        android:id="@+id/layout_vertical_adjustment_parameter_adjustment_constant"
+                        style="@style/ButtonLayout_STYLE01">
+
+                        <TextView
+                            style="@style/Sub_TEXTVIEW_STYLE1"
+                            android:text="조정 상수" />
+
+                        <com.google.android.material.textfield.TextInputLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_weight="0"
                             android:background="@color/transparent"
-                            android:inputType="number"
                             android:padding="0dp"
-                            android:text="" />
-                    </com.google.android.material.textfield.TextInputLayout>
+                            app:boxStrokeWidth="0dp"
+                            app:boxStrokeWidthFocused="0dp"
+                            app:endIconMode="clear_text"
+                            app:endIconTint="@color/main_blue"
+                            app:errorEnabled="false"
+                            app:hintEnabled="false">
 
-                </LinearLayout>
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/et_vertical_adjustment_parameter_adjustment_constant"
+                                style="@style/Sub_TEXTVIEW_STYLE3_TEXTINPUTLAYOUT"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:background="@color/transparent"
+                                android:inputType="number"
+                                android:padding="0dp"
+                                android:text="" />
+                        </com.google.android.material.textfield.TextInputLayout>
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_weight="0"
-                    android:background="@color/grey_EC" />
+                    </LinearLayout>
 
-
-                <LinearLayout
-                    android:id="@+id/layout_vertical_adjustment_parameter_north_superelevation"
-                    style="@style/ButtonLayout_STYLE01">
-
-                    <TextView
-                        style="@style/Sub_TEXTVIEW_STYLE1"
-                        android:text="북 편경사(ppm)"
-                         />
-
-                    <com.google.android.material.textfield.TextInputLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
                         android:layout_weight="0"
-                        android:background="@color/transparent"
-                        android:padding="0dp"
-                        app:boxStrokeWidth="0dp"
-                        app:boxStrokeWidthFocused="0dp"
-                        app:endIconMode="clear_text"
-                        app:endIconTint="@color/main_blue"
-                        app:errorEnabled="false"
-                        app:hintEnabled="false">
+                        android:background="@color/grey_EC" />
 
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/et_vertical_adjustment_parameter_north_superelevation"
-                            style="@style/Sub_TEXTVIEW_STYLE3_TEXTINPUTLAYOUT"
+
+                    <LinearLayout
+                        android:id="@+id/layout_vertical_adjustment_parameter_north_superelevation"
+                        style="@style/ButtonLayout_STYLE01">
+
+                        <TextView
+                            style="@style/Sub_TEXTVIEW_STYLE1"
+                            android:text="북 편경사(ppm)" />
+
+                        <com.google.android.material.textfield.TextInputLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_weight="0"
                             android:background="@color/transparent"
-                            android:inputType="number"
                             android:padding="0dp"
-                            android:text="" />
-                    </com.google.android.material.textfield.TextInputLayout>
+                            app:boxStrokeWidth="0dp"
+                            app:boxStrokeWidthFocused="0dp"
+                            app:endIconMode="clear_text"
+                            app:endIconTint="@color/main_blue"
+                            app:errorEnabled="false"
+                            app:hintEnabled="false">
 
-                </LinearLayout>
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/et_vertical_adjustment_parameter_north_superelevation"
+                                style="@style/Sub_TEXTVIEW_STYLE3_TEXTINPUTLAYOUT"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:background="@color/transparent"
+                                android:inputType="number"
+                                android:padding="0dp"
+                                android:text="" />
+                        </com.google.android.material.textfield.TextInputLayout>
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_weight="0"
-                    android:background="@color/grey_EC" />
+                    </LinearLayout>
 
-
-                <LinearLayout
-                    android:id="@+id/layout_vertical_adjustment_parameter_east_superelevation"
-                    style="@style/ButtonLayout_STYLE01">
-
-                    <TextView
-                        style="@style/Sub_TEXTVIEW_STYLE1"
-                        android:text="동 편경사(ppm)"
-                         />
-
-                    <com.google.android.material.textfield.TextInputLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
                         android:layout_weight="0"
-                        android:background="@color/transparent"
-                        android:padding="0dp"
-                        app:boxStrokeWidth="0dp"
-                        app:boxStrokeWidthFocused="0dp"
-                        app:endIconMode="clear_text"
-                        app:endIconTint="@color/main_blue"
-                        app:errorEnabled="false"
-                        app:hintEnabled="false">
+                        android:background="@color/grey_EC" />
 
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/et_vertical_adjustment_parameter_east_superelevation"
-                            style="@style/Sub_TEXTVIEW_STYLE3_TEXTINPUTLAYOUT"
+
+                    <LinearLayout
+                        android:id="@+id/layout_vertical_adjustment_parameter_east_superelevation"
+                        style="@style/ButtonLayout_STYLE01">
+
+                        <TextView
+                            style="@style/Sub_TEXTVIEW_STYLE1"
+                            android:text="동 편경사(ppm)" />
+
+                        <com.google.android.material.textfield.TextInputLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_weight="0"
                             android:background="@color/transparent"
-                            android:inputType="number"
                             android:padding="0dp"
-                            android:text="" />
-                    </com.google.android.material.textfield.TextInputLayout>
+                            app:boxStrokeWidth="0dp"
+                            app:boxStrokeWidthFocused="0dp"
+                            app:endIconMode="clear_text"
+                            app:endIconTint="@color/main_blue"
+                            app:errorEnabled="false"
+                            app:hintEnabled="false">
 
-                </LinearLayout>
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/et_vertical_adjustment_parameter_east_superelevation"
+                                style="@style/Sub_TEXTVIEW_STYLE3_TEXTINPUTLAYOUT"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:background="@color/transparent"
+                                android:inputType="number"
+                                android:padding="0dp"
+                                android:text="" />
+                        </com.google.android.material.textfield.TextInputLayout>
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_weight="0"
-                    android:background="@color/grey_EC" />
+                    </LinearLayout>
 
-
-                <LinearLayout
-                    android:id="@+id/layout_vertical_adjustment_parameter_far_north_direction"
-                    style="@style/ButtonLayout_STYLE01">
-
-                    <TextView
-                        style="@style/Sub_TEXTVIEW_STYLE1"
-                        android:text="원북방향"
-                         />
-
-                    <com.google.android.material.textfield.TextInputLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
                         android:layout_weight="0"
-                        android:background="@color/transparent"
-                        android:padding="0dp"
-                        app:boxStrokeWidth="0dp"
-                        app:boxStrokeWidthFocused="0dp"
-                        app:endIconMode="clear_text"
-                        app:endIconTint="@color/main_blue"
-                        app:errorEnabled="false"
-                        app:hintEnabled="false">
+                        android:background="@color/grey_EC" />
 
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/et_vertical_adjustment_parameter_far_north_direction"
-                            style="@style/Sub_TEXTVIEW_STYLE3_TEXTINPUTLAYOUT"
+
+                    <LinearLayout
+                        android:id="@+id/layout_vertical_adjustment_parameter_far_north_direction"
+                        style="@style/ButtonLayout_STYLE01">
+
+                        <TextView
+                            style="@style/Sub_TEXTVIEW_STYLE1"
+                            android:text="원북방향" />
+
+                        <com.google.android.material.textfield.TextInputLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_weight="0"
                             android:background="@color/transparent"
-                            android:inputType="number"
                             android:padding="0dp"
-                            android:text="" />
-                    </com.google.android.material.textfield.TextInputLayout>
+                            app:boxStrokeWidth="0dp"
+                            app:boxStrokeWidthFocused="0dp"
+                            app:endIconMode="clear_text"
+                            app:endIconTint="@color/main_blue"
+                            app:errorEnabled="false"
+                            app:hintEnabled="false">
 
-                </LinearLayout>
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/et_vertical_adjustment_parameter_far_north_direction"
+                                style="@style/Sub_TEXTVIEW_STYLE3_TEXTINPUTLAYOUT"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:background="@color/transparent"
+                                android:inputType="number"
+                                android:padding="0dp"
+                                android:text="" />
+                        </com.google.android.material.textfield.TextInputLayout>
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_weight="0"
-                    android:background="@color/grey_EC" />
+                    </LinearLayout>
 
-
-                <LinearLayout
-                    android:id="@+id/layout_vertical_adjustment_parameter_far_east_direction"
-                    style="@style/ButtonLayout_STYLE01">
-
-                    <TextView
-                        style="@style/Sub_TEXTVIEW_STYLE1"
-                        android:text="원동방향"
-                         />
-
-                    <com.google.android.material.textfield.TextInputLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
                         android:layout_weight="0"
-                        android:background="@color/transparent"
-                        android:padding="0dp"
-                        app:boxStrokeWidth="0dp"
-                        app:boxStrokeWidthFocused="0dp"
-                        app:endIconMode="clear_text"
-                        app:endIconTint="@color/main_blue"
-                        app:errorEnabled="false"
-                        app:hintEnabled="false">
+                        android:background="@color/grey_EC" />
 
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/et_vertical_adjustment_parameter_far_east_direction"
-                            style="@style/Sub_TEXTVIEW_STYLE3_TEXTINPUTLAYOUT"
+
+                    <LinearLayout
+                        android:id="@+id/layout_vertical_adjustment_parameter_far_east_direction"
+                        style="@style/ButtonLayout_STYLE01">
+
+                        <TextView
+                            style="@style/Sub_TEXTVIEW_STYLE1"
+                            android:text="원동방향" />
+
+                        <com.google.android.material.textfield.TextInputLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_weight="0"
                             android:background="@color/transparent"
-                            android:inputType="number"
                             android:padding="0dp"
-                            android:text="" />
-                    </com.google.android.material.textfield.TextInputLayout>
+                            app:boxStrokeWidth="0dp"
+                            app:boxStrokeWidthFocused="0dp"
+                            app:endIconMode="clear_text"
+                            app:endIconTint="@color/main_blue"
+                            app:errorEnabled="false"
+                            app:hintEnabled="false">
 
-                </LinearLayout>
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/et_vertical_adjustment_parameter_far_east_direction"
+                                style="@style/Sub_TEXTVIEW_STYLE3_TEXTINPUTLAYOUT"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:background="@color/transparent"
+                                android:inputType="number"
+                                android:padding="0dp"
+                                android:text="" />
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                    </LinearLayout>
                 </LinearLayout>
 
             </LinearLayout>
@@ -1905,6 +1899,7 @@
 
 
                 <LinearLayout
+                    android:id="@+id/layout_grid_file_using"
                     style="@style/ButtonLayout_STYLE01">
 
                     <TextView
@@ -1913,14 +1908,19 @@
                         />
 
                     <Switch
+                        android:id="@+id/sw_layout_grid_file_using"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:clickable="false"
-                        tools:ignore="TouchTargetSizeCheck,TouchTargetSizeCheck,UseSwitchCompatOrMaterialXml" />
+                        android:checked="@{viewModel.gridFileUsing}"
+                        android:clickable="false"/>
 
                 </LinearLayout>
-
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    >
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
@@ -1929,6 +1929,7 @@
 
 
                 <LinearLayout
+                    android:id="@+id/layout_grid_file_route"
                     style="@style/ButtonLayout_STYLE01">
 
                     <TextView
@@ -1945,7 +1946,7 @@
                         app:srcCompat="@drawable/next_icon" />
 
                 </LinearLayout>
-
+                </LinearLayout>
             </LinearLayout>
 
 

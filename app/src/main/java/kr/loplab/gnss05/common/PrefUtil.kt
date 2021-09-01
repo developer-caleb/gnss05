@@ -64,10 +64,11 @@ object PrefUtil {
      * @param key
      * @param value
      */
-    fun setInt(context: Context, key: String?, value: Int) {
+    fun setInt(context: Context, key: String?, value: Any) {
+        var putvalue = if (value !is Int)  0 else value
         val prefs = getPreferences(context)
         val editor = prefs.edit()
-        editor.putInt(key, value)
+        editor.putInt(key, putvalue)
         editor.commit()
     }
 

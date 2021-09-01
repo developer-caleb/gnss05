@@ -130,6 +130,9 @@ class CoordinateActivity : ActivityBase<ActivityCoordinateBinding>() {
         viewBinding.layoutVerticalControlParameterUsing.setOnClickListener {
             viewModel1.setBoolvalue(viewModel1.verticalControlParameterUsing , !viewModel1.verticalControlParameterUsing.value!!)
         }
+        viewBinding.layoutGridFileUsing.setOnClickListener {
+            viewModel1.setBoolvalue(viewModel1.gridFileUsing , !viewModel1.gridFileUsing.value!!)
+        }
         viewBinding.layoutSevenParameterMode.setOnClickListener {
             val dlg = MyDialog(this)
             var alist = OptionList.SEVEN_PARAMETER_MODE
@@ -210,6 +213,7 @@ class CoordinateActivity : ActivityBase<ActivityCoordinateBinding>() {
         PrefUtil.setBoolean(applicationContext, COORDINATE_VERTICAL_CONTROL_PARAMETER_USING, viewModel1.verticalControlParameterUsing.value!!)
         PrefUtil.setBoolean(applicationContext, COORDINATE_VERTICAL_ADJUSTMENT_PARAMETER_USING, viewModel1.verticalAdjustmentParameterUsing.value!!)
 
+
         PrefUtil.setInt(applicationContext, Define.COORDINATE_CONVERSION_TYPE, viewModel1.conversionTypeNum.value!!)
         PrefUtil.setInt(applicationContext, Define.COORDINATE_SEVEN_PARAMETER_MODE, viewModel1.sevenParameterMode.value!!)
 
@@ -241,11 +245,11 @@ class CoordinateActivity : ActivityBase<ActivityCoordinateBinding>() {
         PrefUtil.setDouble(applicationContext, Define.COORDINATE_VERTICAL_CONTROL_PARAMETER_X0, viewBinding.etVerticalControlParameterX0.text.toString().isEmpty())
         PrefUtil.setDouble(applicationContext, Define.COORDINATE_VERTICAL_CONTROL_PARAMETER_Y0, viewBinding.etVerticalControlParameterY0.text.toString().isEmpty())
 
-        PrefUtil.setString(applicationContext, Define.COORDINATE_VERTICAL_ADJUSTMENT_PARAMETER_AdjustmentConstant, viewBinding.etVerticalAdjustmentParameterAdjustmentConstant.text.toString())
-        PrefUtil.setString(applicationContext, Define.COORDINATE_VERTICAL_ADJUSTMENT_PARAMETER_NorthSuperelevation, viewBinding.etVerticalAdjustmentParameterNorthSuperelevation.text.toString())
-        PrefUtil.setString(applicationContext, Define.COORDINATE_VERTICAL_ADJUSTMENT_PARAMETER_EastSuperelevation, viewBinding.etVerticalAdjustmentParameterEastSuperelevation.text.toString())
-        PrefUtil.setString(applicationContext, Define.COORDINATE_VERTICAL_ADJUSTMENT_PARAMETER_FarNorthDirection, viewBinding.etVerticalAdjustmentParameterFarNorthDirection.text.toString())
-        PrefUtil.setString(applicationContext, Define.COORDINATE_VERTICAL_ADJUSTMENT_PARAMETER_FarEastDirection, viewBinding.etVerticalAdjustmentParameterFarEastDirection.text.toString())
+        PrefUtil.setInt(applicationContext, Define.COORDINATE_VERTICAL_ADJUSTMENT_PARAMETER_AdjustmentConstant, viewBinding.etVerticalAdjustmentParameterAdjustmentConstant.text.toString().toInt())
+        PrefUtil.setInt(applicationContext, Define.COORDINATE_VERTICAL_ADJUSTMENT_PARAMETER_NorthSuperelevation, viewBinding.etVerticalAdjustmentParameterNorthSuperelevation.text.toString().toInt())
+        PrefUtil.setInt(applicationContext, Define.COORDINATE_VERTICAL_ADJUSTMENT_PARAMETER_EastSuperelevation, viewBinding.etVerticalAdjustmentParameterEastSuperelevation.text.toString().toInt())
+        PrefUtil.setInt(applicationContext, Define.COORDINATE_VERTICAL_ADJUSTMENT_PARAMETER_FarNorthDirection, viewBinding.etVerticalAdjustmentParameterFarNorthDirection.text.toString().toInt())
+        PrefUtil.setInt(applicationContext, Define.COORDINATE_VERTICAL_ADJUSTMENT_PARAMETER_FarEastDirection, viewBinding.etVerticalAdjustmentParameterFarEastDirection.text.toString().toInt())
 
 
 

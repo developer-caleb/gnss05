@@ -17,6 +17,8 @@ class CoordinateViewModel : ViewModel(){
     var fourParameterUsing = MutableLiveData<Boolean>(false)
     var verticalControlParameterUsing = MutableLiveData<Boolean>(false)
     var verticalAdjustmentParameterUsing = MutableLiveData<Boolean>(false)
+    var gridFileUsing = MutableLiveData<Boolean>(false)
+
 
     /*
       var data_connection_type = MutableLiveData<Int>(0)
