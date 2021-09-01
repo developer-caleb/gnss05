@@ -94,7 +94,7 @@ class AdapterViewpager: PagerAdapter, MainpageRecyclerViewAdapter.RecyclerItemCl
         data1.add(MainIcons(R.drawable.ic_1_10_change_location, "위치변경"))
         data1.add(MainIcons(R.drawable.ic_1_11_enroll_equipment, "장비등록"))
 
-        data2.add(MainIcons(R.drawable.ic_2_0_status_work, "현황작업", NaverMap::class.java))
+        data2.add(MainIcons(R.drawable.ic_2_0_status_work, "현황작업", StatusWorkActivity::class.java))
         data2.add(MainIcons(R.drawable.ic_2_1_detail_survey, "상세 측량"))
         data2.add(MainIcons(R.drawable.ic_2_2_cad, "CAD (측설)"))
         data2.add(MainIcons(R.drawable.ic_2_3_point_stack_out, "점측설"))
