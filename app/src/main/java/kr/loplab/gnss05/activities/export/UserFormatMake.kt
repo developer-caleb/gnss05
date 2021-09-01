@@ -35,7 +35,7 @@ class UserFormatMake : ActivityBase<ActivityUserFormatBinding>(),
     var listdata =  ArrayList<Array<String>>()
     var sperate_num = -1;
     var mode = USERFORMATMAKEMODE.ADD;
-    var arrays1 = arrayListOf<String>("/", "@", "Space")
+    var arrays1 = arrayListOf<String>(",", "@", "Space")
         //ArrayList(listOf(listOf("/", "1"), listOf("@", "0"), listOf("Space", "0"))) //ArrayList<String>();
     override fun init() {
 
@@ -53,7 +53,14 @@ class UserFormatMake : ActivityBase<ActivityUserFormatBinding>(),
       //
         viewBinding.header04.setOnBackButtonClickListener{onBackPressed()}
        // viewBinding.header04.optionButtonText = "저장"
-        viewBinding.header04.setOnOptionButtonClickListener{ Log.d(TAG, "initListener: ")};
+        viewBinding.header04.setOnOptionButtonClickListener{
+            //저장버튼 클릭
+            Log.d(TAG, "initListener: ")
+            if (viewBinding.etFormatName.text.toString().isEmpty()){
+                showToast("작업자 이름은 반드시 포함되어야 합니다.")
+                return@setOnOptionButtonClickListener}
+            /
+        };
 
         viewBinding.btAdd.setOnClickListener {
             //if (mode == USERFORMATMAKEMODE.ADD) return@setOnClickListener
@@ -94,8 +101,8 @@ class UserFormatMake : ActivityBase<ActivityUserFormatBinding>(),
             }
         }
 
-
-        viewBinding.headerSwitch.setOnCheckedChangeListener { compoundButton, bool ->
+        viewBinding.layoutFileheader.setOnClickListener { viewBinding.swFileheader.performClick() }
+        viewBinding.swFileheader.setOnCheckedChangeListener { compoundButton, bool ->
             Log.d(TAG, "initListener: ${bool.toString()}")
             when(bool){
              true-> {viewBinding.checkTv.text = "예"; PrefUtil.setBoolean(applicationContext, getString(
@@ -160,7 +167,7 @@ class UserFormatMake : ActivityBase<ActivityUserFormatBinding>(),
         setUserFormatText()
 
         viewBinding.tvSeperate.text = arrays1[sperate_num]
-        viewBinding.headerSwitch.isChecked = PrefUtil.getBoolean(applicationContext, getString(R.string.boolfileheader))
+        viewBinding.swFileheader.isChecked = PrefUtil.getBoolean(applicationContext, getString(R.string.boolfileheader))
     }
 
     override fun onItemAddClick(view: View?, position: Int) {

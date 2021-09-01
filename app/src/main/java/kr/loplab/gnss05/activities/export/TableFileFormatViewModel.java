@@ -41,9 +41,9 @@ import kr.loplab.gnss05.tableview.model.RowHeader;
 public class TableFileFormatViewModel extends TableViewModel {
     String TAG = TableFileFormatViewModel.class.getSimpleName();
     // Constant size for dummy data sets
-    private static int COLUMN_SIZE = 4;
+    private static int COLUMN_SIZE = 3;
     private static int ROW_SIZE = 5;
-    private ArrayList<String> customFileFormat = new ArrayList<>(Arrays.asList("번호", "작업자", "이름", "사용자","암호"));
+    private ArrayList<String> customFileFormat = new ArrayList<>(Arrays.asList("번호", "형식명", "확장명", "형식설명"));
     List<FileFormat> fileformatslist =null;
 
      TableFileFormatViewModel(){}
