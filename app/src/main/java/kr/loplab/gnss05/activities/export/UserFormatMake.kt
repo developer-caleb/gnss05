@@ -1,4 +1,4 @@
-package kr.loplab.gnss05.activities
+package kr.loplab.gnss05.activities.export
 
 import android.util.Log
 import android.view.View
@@ -74,7 +74,7 @@ class UserFormatMake : ActivityBase<ActivityUserFormatBinding>(),
             dlg.firstLayoutUse= false;
            // arrays1.add("/");  arrays1.add("@"); arrays1.add("Space");
             dlg.list = arrays1
-            dlg.selectedposition= PrefUtil.getInt(applicationContext, getString(R.string.int_seperate_sign))
+            dlg.selectedposition= PrefUtil.getInt2(applicationContext, getString(R.string.int_seperate_sign))
             dlg.setOnOKClickedListener{ content ->
                 Log.d(TAG, "onItemClick: $content")
             }

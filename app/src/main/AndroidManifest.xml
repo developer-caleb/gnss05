@@ -75,8 +75,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activities.UserFormatMake" />
-        <activity android:name=".activities.FileExportActivity" />
+        <activity android:name=".activities.export.UserFormatMake" />
+        <activity android:name=".activities.export.FileExportActivity" />
         <activity android:name=".ColorPickerdialog" />
         <activity android:name=".NaverMap" />
         <activity android:name=".tableview.TableMainActivity" />

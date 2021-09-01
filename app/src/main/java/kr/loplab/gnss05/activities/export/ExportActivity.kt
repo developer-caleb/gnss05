@@ -5,8 +5,6 @@ import android.os.Bundle
 import androidx.lifecycle.ViewModelProvider
 import kr.loplab.gnss02.ActivityBase
 import kr.loplab.gnss05.R
-import kr.loplab.gnss05.activities.FileExportActivity
-import kr.loplab.gnss05.activities.viewmodel.CoordinateViewModel
 import kr.loplab.gnss05.activities.viewmodel.ExportViewModel
 import kr.loplab.gnss05.common.Define
 import kr.loplab.gnss05.common.Define.EXPORT_ROAD_CROSS_SECTION_OUTPUT_USING

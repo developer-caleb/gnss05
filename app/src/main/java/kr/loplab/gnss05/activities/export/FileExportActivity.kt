@@ -1,4 +1,4 @@
-package kr.loplab.gnss05.activities
+package kr.loplab.gnss05.activities.export
 
 import android.os.Environment
 import android.util.Log

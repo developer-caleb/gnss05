@@ -49,7 +49,7 @@ import com.evrencoskun.tableview.pagination.Pagination;
 import kr.loplab.gnss05.DefaultHeader;
 import kr.loplab.gnss05.GlobalApplication;
 import kr.loplab.gnss05.R;
-import kr.loplab.gnss05.activities.UserFormatMake;
+import kr.loplab.gnss05.activities.export.UserFormatMake;
 
 
 /**
