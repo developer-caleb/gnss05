@@ -19,6 +19,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Gnss05">
         <activity
+            android:name=".activities.export.CustomFileFormatActivity"
+            android:exported="true" />
+        <activity
             android:name=".activities.StatusWorkActivity"
             android:exported="true" />
         <activity
@@ -26,7 +29,7 @@
             android:exported="true" />
         <activity
             android:name=".activities.reference_country.ReferenceCountrySettingSatelliteActivity"
-            android:exported="true"></activity>
+            android:exported="true" />
         <activity
             android:name=".activities.cors_servermanager.ServerAddressAddActivity"
             android:exported="true" />
@@ -35,7 +38,7 @@
             android:exported="true" />
         <activity
             android:name=".activities.workmanager.WorkManagerActivity"
-            android:exported="true"></activity>
+            android:exported="true" />
         <activity
             android:name=".activities.workmanager.WorkerActivity"
             android:exported="true" />
@@ -87,7 +90,7 @@
 
         <activity
             android:name=".activities.reference_country.ReferenceCountryActivity"
-            android:parentActivityName=".MainActivity"></activity>
+            android:parentActivityName=".MainActivity" />
         <activity android:name=".MainActivity" />
     </application>
 

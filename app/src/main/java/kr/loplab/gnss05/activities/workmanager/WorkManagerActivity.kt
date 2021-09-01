@@ -87,6 +87,7 @@ class WorkManagerActivity : ActivityBase<ActivityWorkManagerBinding>() {
 
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data) //추가해보고 확인
         //onActivityResult 말고 intent로 뷰 새로 띄우는 방법도 생각해볼 것..
         if(resultCode== RESULT_OK && requestCode == REQUEST_WORKER_MANAGE_ADD)
         {

@@ -192,22 +192,6 @@ public class TableFragment extends Fragment {
         }
     }
 
-/*    public void filterTableForMood(@NonNull String filter) {
-        // Sets a filter to the table, this will only filter a specific column.
-        // In the example data, this will filter the mood column.
-        if (mTableFilter != null) {
-            mTableFilter.set(TableViewModel.MOOD_COLUMN_INDEX, filter);
-        }
-    }
-
-    public void filterTableForGender(@NonNull String filter) {
-        // Sets a filter to the table, this will only filter a specific column.
-        // In the example data, this will filter the gender column.
-        if (mTableFilter != null) {
-            mTableFilter.set(TableViewModel.GENDER_COLUMN_INDEX, filter);
-        }
-    }*/
-
     // The following four methods below: nextTablePage(), previousTablePage(),
     // goToTablePage(int page) and setTableItemsPerPage(int itemsPerPage)
     // are for controlling the TableView pagination.

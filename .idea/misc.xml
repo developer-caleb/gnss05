@@ -52,6 +52,7 @@
         <entry key="app/src/main/res/layout/activity_connect_equipment2_deprecated.xml" value="0.135546875" />
         <entry key="app/src/main/res/layout/activity_coordinate.xml" value="0.33" />
         <entry key="app/src/main/res/layout/activity_cors_server_manager.xml" value="0.2484375" />
+        <entry key="app/src/main/res/layout/activity_custom_file_format.xml" value="0.33" />
         <entry key="app/src/main/res/layout/activity_export.xml" value="0.29189614476789927" />
         <entry key="app/src/main/res/layout/activity_file_export.xml" value="0.33" />
         <entry key="app/src/main/res/layout/activity_hamburger.xml" value="0.238671875" />
@@ -71,7 +72,7 @@
         <entry key="app/src/main/res/layout/activity_standard_point.xml" value="0.31614583333333335" />
         <entry key="app/src/main/res/layout/activity_status_work.xml" value="0.33" />
         <entry key="app/src/main/res/layout/activity_stop_survey.xml" value="0.37962962962962965" />
-        <entry key="app/src/main/res/layout/activity_tablemain.xml" value="0.141015625" />
+        <entry key="app/src/main/res/layout/activity_tablemain.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_type3.xml" value="0.31614583333333335" />
         <entry key="app/src/main/res/layout/activity_type5.xml" value="0.31614583333333335" />
         <entry key="app/src/main/res/layout/activity_user_format.xml" value="0.30466277929816626" />
