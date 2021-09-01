@@ -15,6 +15,10 @@ public class Define {
     public static final int REQUEST_SERVER_MANAGE_EDIT = 1005;
     public static final int REQUEST_WORKMANAGER = 1006;
     public static final int REQUEST_CORS_SERVER_MANAGER = 1007;
+    public static final int REQUEST_FILE_FORMAT_ADD = 1008;
+    public static final int REQUEST_FILE_FORMAT_EDIT = 1009;
+
+
 
 
     public static final String RECYCLERVIEW_LIST_MODE = "recyclerview_mode";
