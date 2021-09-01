@@ -15,11 +15,15 @@ class CustomFileFormatActivity : ActivityBase<ActivityCustomFileFormatBinding>()
     }
 
     override fun init() {
+
     }
 
     override fun initListener() {
+        viewBinding.header01.setOnBackButtonClickListener { onBackPressed();}
+
     }
 
     override fun initDatabinding() {
+
     }
 }

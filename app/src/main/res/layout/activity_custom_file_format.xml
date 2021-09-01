@@ -80,7 +80,7 @@
             android:id="@+id/header_01"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:title="작업 관리자"
+            app:title="사용자 정의 파일 형식"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" >
