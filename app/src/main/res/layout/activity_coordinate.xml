@@ -1930,7 +1930,9 @@
 
                 <LinearLayout
                     android:id="@+id/layout_grid_file_route"
-                    style="@style/ButtonLayout_STYLE01">
+                    style="@style/ButtonLayout_STYLE01"
+                    android:visibility="@{viewModel.gridFileUsing? View.VISIBLE : View.GONE}"
+                    >
 
                     <TextView
                         style="@style/Sub_TEXTVIEW_STYLE1"
@@ -1972,6 +1974,7 @@
 
 
                 <LinearLayout
+                    android:id="@+id/layout_input_parameter_using"
                     style="@style/ButtonLayout_STYLE01">
 
                     <TextView
@@ -1980,14 +1983,20 @@
                         />
 
                     <Switch
+                        android:id="@+id/sw_input_parameter_using"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:clickable="false"
-                        tools:ignore="TouchTargetSizeCheck,TouchTargetSizeCheck,UseSwitchCompatOrMaterialXml" />
+                        android:checked="@{viewModel.inputParameterUsing}"
+                        android:clickable="false"/>
 
                 </LinearLayout>
-
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:visibility="@{viewModel.inputParameterUsing? View.VISIBLE : View.GONE}"
+                    >
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
@@ -2058,6 +2067,7 @@
                         android:layout_weight="0"
                         android:text="0" />
 
+                </LinearLayout>
                 </LinearLayout>
 
             </LinearLayout>

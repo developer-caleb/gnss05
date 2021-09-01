@@ -152,7 +152,7 @@ class CoordinateActivity : ActivityBase<ActivityCoordinateBinding>() {
         viewBinding.layoutVerticalAdjustmentParameterUsing.setOnClickListener {
             viewModel1.setBoolvalue(viewModel1.verticalAdjustmentParameterUsing , !viewModel1.verticalAdjustmentParameterUsing.value!!)
         }
-
+        viewBinding.layoutGridFileRoute.setOnClickListener {  }
     }
 
     override fun initDatabinding() {
