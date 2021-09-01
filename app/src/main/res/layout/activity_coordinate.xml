@@ -2005,6 +2005,8 @@
 
 
                 <LinearLayout
+                    android:id="@+id/layout_input_parameter_x"
+
                     style="@style/ButtonLayout_STYLE01">
 
                     <TextView
@@ -2012,12 +2014,30 @@
                         android:text="X"
                          />
 
-                    <EditText
-                        style="@style/Sub_TEXTVIEW_STYLE2"
+                    <com.google.android.material.textfield.TextInputLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="0"
-                        android:text="0" />
+                        android:background="@color/transparent"
+                        android:padding="0dp"
+                        app:boxStrokeWidth="0dp"
+                        app:boxStrokeWidthFocused="0dp"
+                        app:endIconMode="clear_text"
+                        app:endIconTint="@color/main_blue"
+                        app:errorEnabled="false"
+                        app:hintEnabled="false">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/et_input_parameter_x"
+
+                            style="@style/Sub_TEXTVIEW_STYLE3_TEXTINPUTLAYOUT"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@color/transparent"
+                            android:inputType="number"
+                            android:padding="0dp"
+                            android:text="" />
+                    </com.google.android.material.textfield.TextInputLayout>
 
                 </LinearLayout>
 
@@ -2029,6 +2049,8 @@
 
 
                 <LinearLayout
+                    android:id="@+id/layout_input_parameter_y"
+
                     style="@style/ButtonLayout_STYLE01">
 
                     <TextView
@@ -2036,12 +2058,30 @@
                         android:text="Y"
                          />
 
-                    <EditText
-                        style="@style/Sub_TEXTVIEW_STYLE2"
+                    <com.google.android.material.textfield.TextInputLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="0"
-                        android:text="0" />
+                        android:background="@color/transparent"
+                        android:padding="0dp"
+                        app:boxStrokeWidth="0dp"
+                        app:boxStrokeWidthFocused="0dp"
+                        app:endIconMode="clear_text"
+                        app:endIconTint="@color/main_blue"
+                        app:errorEnabled="false"
+                        app:hintEnabled="false">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/et_input_parameter_y"
+
+                            style="@style/Sub_TEXTVIEW_STYLE3_TEXTINPUTLAYOUT"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@color/transparent"
+                            android:inputType="number"
+                            android:padding="0dp"
+                            android:text="" />
+                    </com.google.android.material.textfield.TextInputLayout>
 
                 </LinearLayout>
 
@@ -2053,6 +2093,8 @@
 
 
                 <LinearLayout
+                    android:id="@+id/layout_input_parameter_level"
+
                     style="@style/ButtonLayout_STYLE01">
 
                     <TextView
@@ -2060,12 +2102,30 @@
                         android:text="레벨"
                          />
 
-                    <EditText
-                        style="@style/Sub_TEXTVIEW_STYLE2"
+                    <com.google.android.material.textfield.TextInputLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="0"
-                        android:text="0" />
+                        android:background="@color/transparent"
+                        android:padding="0dp"
+                        app:boxStrokeWidth="0dp"
+                        app:boxStrokeWidthFocused="0dp"
+                        app:endIconMode="clear_text"
+                        app:endIconTint="@color/main_blue"
+                        app:errorEnabled="false"
+                        app:hintEnabled="false">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/et_input_parameter_level"
+
+                            style="@style/Sub_TEXTVIEW_STYLE3_TEXTINPUTLAYOUT"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@color/transparent"
+                            android:inputType="number"
+                            android:padding="0dp"
+                            android:text="" />
+                    </com.google.android.material.textfield.TextInputLayout>
 
                 </LinearLayout>
                 </LinearLayout>

@@ -1,14 +1,7 @@
 package kr.loplab.gnss05.activities.coordinate
 
-import android.icu.text.SimpleDateFormat
 import android.os.Bundle
-import android.text.Editable
-import android.text.TextWatcher
 import android.util.Log
-import android.view.View
-import android.widget.LinearLayout
-import androidx.core.widget.addTextChangedListener
-import androidx.core.widget.doAfterTextChanged
 import androidx.lifecycle.ViewModelProvider
 import kr.loplab.gnss02.ActivityBase
 import kr.loplab.gnss05.MyDialog
@@ -20,9 +13,6 @@ import kr.loplab.gnss05.common.OptionList
 import kr.loplab.gnss05.common.PrefUtil
 import kr.loplab.gnss05.common.Utilities
 import kr.loplab.gnss05.databinding.ActivityCoordinateBinding
-import java.lang.reflect.Array.setDouble
-import java.text.Format
-import java.util.logging.SimpleFormatter
 
 class CoordinateActivity : ActivityBase<ActivityCoordinateBinding>() {
     override val layoutResourceId: Int
@@ -75,6 +65,11 @@ class CoordinateActivity : ActivityBase<ActivityCoordinateBinding>() {
         viewBinding.layoutVerticalAdjustmentParameterEastSuperelevation.setOnClickListener { requestETfocus(viewBinding.etVerticalAdjustmentParameterEastSuperelevation) }
         viewBinding.layoutVerticalAdjustmentParameterFarNorthDirection.setOnClickListener { requestETfocus(viewBinding.etVerticalAdjustmentParameterFarNorthDirection) }
         viewBinding.layoutVerticalAdjustmentParameterFarEastDirection.setOnClickListener { requestETfocus(viewBinding.etVerticalAdjustmentParameterFarEastDirection) }
+        viewBinding.layoutInputParameterX.setOnClickListener { requestETfocus(viewBinding.etInputParameterX) }
+        viewBinding.layoutInputParameterY.setOnClickListener { requestETfocus(viewBinding.etInputParameterY) }
+        viewBinding.layoutInputParameterLevel.setOnClickListener { requestETfocus(viewBinding.etInputParameterLevel) }
+
+
         viewBinding.etFourParameterRotation.setOnFocusChangeListener { v, hasFocus ->
             if(!hasFocus){
                 var doubleValue = if (viewBinding.etFourParameterRotation.text!!.isEmpty()) 0.0 else{ viewBinding.etFourParameterRotation.text!!.toString().toDouble()}
@@ -153,6 +148,9 @@ class CoordinateActivity : ActivityBase<ActivityCoordinateBinding>() {
             viewModel1.setBoolvalue(viewModel1.verticalAdjustmentParameterUsing , !viewModel1.verticalAdjustmentParameterUsing.value!!)
         }
         viewBinding.layoutGridFileRoute.setOnClickListener {  }
+        viewBinding.layoutInputParameterUsing.setOnClickListener {
+            viewModel1.setBoolvalue(viewModel1.inputParameterUsing , !viewModel1.inputParameterUsing.value!!)
+        }
     }
 
     override fun initDatabinding() {
@@ -163,6 +161,7 @@ class CoordinateActivity : ActivityBase<ActivityCoordinateBinding>() {
         viewModel1.setBoolvalue(viewModel1.fourParameterUsing, PrefUtil.getBoolean(applicationContext, COORDINATE_FOUR_PARAMETER_USING))
         viewModel1.setBoolvalue(viewModel1.verticalControlParameterUsing, PrefUtil.getBoolean(applicationContext, COORDINATE_VERTICAL_CONTROL_PARAMETER_USING))
         viewModel1.setBoolvalue(viewModel1.verticalAdjustmentParameterUsing, PrefUtil.getBoolean(applicationContext, COORDINATE_VERTICAL_ADJUSTMENT_PARAMETER_USING))
+        viewModel1.setBoolvalue(viewModel1.inputParameterUsing, PrefUtil.getBoolean(applicationContext, COORDINATE_INPUT_PARAMETER_USING))
 
         viewModel1.setIntvalue(viewModel1.conversionTypeNum, PrefUtil.getInt2(this, COORDINATE_CONVERSION_TYPE))
         viewModel1.setIntvalue(viewModel1.sevenParameterMode, PrefUtil.getInt2(this, COORDINATE_SEVEN_PARAMETER_MODE))
@@ -198,6 +197,9 @@ class CoordinateActivity : ActivityBase<ActivityCoordinateBinding>() {
         viewBinding.etVerticalAdjustmentParameterEastSuperelevation.setText(PrefUtil.getInt2(this,  COORDINATE_VERTICAL_ADJUSTMENT_PARAMETER_EastSuperelevation).toString())
         viewBinding.etVerticalAdjustmentParameterFarNorthDirection.setText(PrefUtil.getInt2(this,  COORDINATE_VERTICAL_ADJUSTMENT_PARAMETER_FarNorthDirection).toString())
         viewBinding.etVerticalAdjustmentParameterFarEastDirection.setText(PrefUtil.getInt2(this,  COORDINATE_VERTICAL_ADJUSTMENT_PARAMETER_FarEastDirection).toString())
+        viewBinding.etInputParameterX.setText(PrefUtil.getInt2(this,  COORDINATE_INPUT_PARAMETER_INPUT_PARAMETER_X).toString())
+        viewBinding.etInputParameterY.setText(PrefUtil.getInt2(this,  COORDINATE_INPUT_PARAMETER_INPUT_PARAMETER_Y).toString())
+        viewBinding.etInputParameterLevel.setText(PrefUtil.getInt2(this,  COORDINATE_INPUT_PARAMETER_INPUT_PARAMETER_LEVEL).toString())
 
 
 
@@ -212,6 +214,7 @@ class CoordinateActivity : ActivityBase<ActivityCoordinateBinding>() {
         PrefUtil.setBoolean(applicationContext, COORDINATE_FOUR_PARAMETER_USING, viewModel1.fourParameterUsing.value!!)
         PrefUtil.setBoolean(applicationContext, COORDINATE_VERTICAL_CONTROL_PARAMETER_USING, viewModel1.verticalControlParameterUsing.value!!)
         PrefUtil.setBoolean(applicationContext, COORDINATE_VERTICAL_ADJUSTMENT_PARAMETER_USING, viewModel1.verticalAdjustmentParameterUsing.value!!)
+        PrefUtil.setBoolean(applicationContext, COORDINATE_INPUT_PARAMETER_USING, viewModel1.inputParameterUsing.value!!)
 
 
         PrefUtil.setInt(applicationContext, Define.COORDINATE_CONVERSION_TYPE, viewModel1.conversionTypeNum.value!!)
@@ -250,6 +253,9 @@ class CoordinateActivity : ActivityBase<ActivityCoordinateBinding>() {
         PrefUtil.setInt(applicationContext, Define.COORDINATE_VERTICAL_ADJUSTMENT_PARAMETER_EastSuperelevation, viewBinding.etVerticalAdjustmentParameterEastSuperelevation.text.toString().toInt())
         PrefUtil.setInt(applicationContext, Define.COORDINATE_VERTICAL_ADJUSTMENT_PARAMETER_FarNorthDirection, viewBinding.etVerticalAdjustmentParameterFarNorthDirection.text.toString().toInt())
         PrefUtil.setInt(applicationContext, Define.COORDINATE_VERTICAL_ADJUSTMENT_PARAMETER_FarEastDirection, viewBinding.etVerticalAdjustmentParameterFarEastDirection.text.toString().toInt())
+        PrefUtil.setInt(applicationContext, Define.COORDINATE_INPUT_PARAMETER_INPUT_PARAMETER_X, viewBinding.etInputParameterX.text.toString().toInt())
+        PrefUtil.setInt(applicationContext, Define.COORDINATE_INPUT_PARAMETER_INPUT_PARAMETER_Y, viewBinding.etInputParameterY.text.toString().toInt())
+        PrefUtil.setInt(applicationContext, Define.COORDINATE_INPUT_PARAMETER_INPUT_PARAMETER_LEVEL, viewBinding.etInputParameterLevel.text.toString().toInt())
 
 
 

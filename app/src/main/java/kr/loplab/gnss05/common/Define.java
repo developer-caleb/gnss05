@@ -167,6 +167,11 @@ public class Define {
     public static final String COORDINATE_VERTICAL_ADJUSTMENT_PARAMETER_EastSuperelevation = "coordinate_vertical_adjustment_parameter_EastSuperelevation";
     public static final String COORDINATE_VERTICAL_ADJUSTMENT_PARAMETER_FarNorthDirection = "coordinate_vertical_adjustment_parameter_FarNorthDirection";
     public static final String COORDINATE_VERTICAL_ADJUSTMENT_PARAMETER_FarEastDirection = "coordinate_vertical_adjustment_parameter_FarEastDirection";
+    public static final String COORDINATE_INPUT_PARAMETER_USING = "coordinate_input_parameter_using";
+    public static final String COORDINATE_INPUT_PARAMETER_INPUT_PARAMETER_X = "coordinate_input_parameter_x";
+    public static final String COORDINATE_INPUT_PARAMETER_INPUT_PARAMETER_Y = "coordinate_input_parameter_y";
+    public static final String COORDINATE_INPUT_PARAMETER_INPUT_PARAMETER_LEVEL = "coordinate_input_parameter_level";
+
 
 
 
