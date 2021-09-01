@@ -8,6 +8,9 @@ import kr.loplab.gnss05.R
 import kr.loplab.gnss05.activities.FileExportActivity
 import kr.loplab.gnss05.activities.viewmodel.CoordinateViewModel
 import kr.loplab.gnss05.activities.viewmodel.ExportViewModel
+import kr.loplab.gnss05.common.Define
+import kr.loplab.gnss05.common.Define.EXPORT_ROAD_CROSS_SECTION_OUTPUT_USING
+import kr.loplab.gnss05.common.PrefUtil
 import kr.loplab.gnss05.databinding.ActivityExportBinding
 import kr.loplab.gnss05.tableview.TableMainActivity
 
@@ -35,10 +38,21 @@ class ExportActivity :  ActivityBase<ActivityExportBinding>() {
         viewBinding.btExport.setOnClickListener {
             intent = Intent(this, FileExportActivity::class.java)
             startActivity(intent);
+
+        }
+
+        viewBinding.layoutRoadCrossSectionOutputUsing.setOnClickListener {
+            viewModel1.setBoolvalue(viewModel1.roadCrossSecionOutputUsing , !viewModel1.roadCrossSecionOutputUsing.value!!)
         }
     }
 
     override fun initDatabinding() {
+        viewModel1.setBoolvalue(viewModel1.roadCrossSecionOutputUsing, PrefUtil.getBoolean(applicationContext, EXPORT_ROAD_CROSS_SECTION_OUTPUT_USING))
+
+    }
+
+    fun savesettings(){
+        PrefUtil.setBoolean(applicationContext, Define.EXPORT_ROAD_CROSS_SECTION_OUTPUT_USING, viewModel1.roadCrossSecionOutputUsing.value!!)
 
     }
 }

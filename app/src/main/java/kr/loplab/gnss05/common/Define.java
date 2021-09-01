@@ -172,6 +172,8 @@ public class Define {
     public static final String COORDINATE_INPUT_PARAMETER_INPUT_PARAMETER_Y = "coordinate_input_parameter_y";
     public static final String COORDINATE_INPUT_PARAMETER_INPUT_PARAMETER_LEVEL = "coordinate_input_parameter_level";
 
+    //SharedPreference Code EXPORT
+    public static final String EXPORT_ROAD_CROSS_SECTION_OUTPUT_USING = "export_road_cross_sction_output_using";
 
 
 

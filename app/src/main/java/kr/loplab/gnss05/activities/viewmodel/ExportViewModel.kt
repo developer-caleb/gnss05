@@ -6,6 +6,7 @@ import kr.loplab.gnss05.activities.cors_servermanager.Server
 import kr.loplab.gnss05.activities.workmanager.Worker
 
 class ExportViewModel : ViewModel(){
+    var roadCrossSecionOutputUsing = MutableLiveData<Boolean>(false)
 
     private var name = ""
    /* var ellipsoidNameNum = MutableLiveData<Int>(0)
@@ -20,39 +21,7 @@ class ExportViewModel : ViewModel(){
     var gridFileUsing = MutableLiveData<Boolean>(false)
     var inputParameterUsing = MutableLiveData<Boolean>(false)*/
 
-    /*
-      var data_connection_type = MutableLiveData<Int>(0)
-      var innerRadioChannelNum = MutableLiveData<Int>(0)
-      var radioModeChannelNum = MutableLiveData<Int>(0)
-      var innerRadioProtocolNum = MutableLiveData<Int>(0)
-      var radioModeProtocolNum = MutableLiveData<Int>(0)
 
-
-      var innerRadioIntervalNum =  MutableLiveData<Int>(0)
-      var innerRadioPowerNum =  MutableLiveData<Int>(0)
-      var radioModePowerNum = MutableLiveData<Int>(0)
-
-      var outerRadioCommunicationSpeedNum =  MutableLiveData<Int>(0)
-      var ggaUploadIntervalNum =  MutableLiveData<Int>(0)
-      var networkSystemNum = MutableLiveData<Int>(0)
-
-      var apnIndex = MutableLiveData<Int>(0)
-      var corsIndex = MutableLiveData<Int>(0)
-      var apn_list = MutableLiveData<ArrayList<Worker>>()
-      var cors_list = MutableLiveData<ArrayList<Server>>()
-      var auto_apn = MutableLiveData<Boolean>(false)
-      var network_autoconnect = MutableLiveData<Boolean>(false)*/
-
-    /* var onprogress = MutableLiveData<Boolean>(false)
-
-     var networkSystemNum = MutableLiveData<Int>(0)
-     var network_mode = MutableLiveData<Int>(0)
-     var startModeNum = MutableLiveData<Int>(0)
-     var deplaceModeNum = MutableLiveData<Int>(0)
-
-
-     var auto_apn = MutableLiveData<Boolean>(false)
-*/
 
     init {  }
 
