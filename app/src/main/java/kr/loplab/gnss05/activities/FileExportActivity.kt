@@ -64,6 +64,9 @@ class FileExportActivity : ActivityBase<ActivityFileExportBinding>(),
             super.onBackPressed()
         }
         viewBinding.folderIcon.text = "\uD83D\uDDC2    "
+        viewBinding.layoutFilenameInput.setOnClickListener { requestETfocus(viewBinding.etFilenameInput) }
+
+
     }
 
     override fun initDatabinding() {
