@@ -18,6 +18,7 @@ import kr.loplab.gnss05.common.Define
 import kr.loplab.gnss05.common.Define.*
 import kr.loplab.gnss05.common.OptionList
 import kr.loplab.gnss05.common.PrefUtil
+import kr.loplab.gnss05.common.Utilities
 import kr.loplab.gnss05.databinding.ActivityCoordinateBinding
 import java.lang.reflect.Array.setDouble
 import java.text.Format
@@ -104,21 +105,18 @@ class CoordinateActivity : ActivityBase<ActivityCoordinateBinding>() {
             if(!hasFocus){
                 var doubleValue = if (viewBinding.etFourParameterRotation.text!!.isEmpty()) 0.0 else{ viewBinding.etFourParameterRotation.text!!.toString().toDouble()}
                 Log.d(TAG, "initListener: -> nofocus, doubleValue : $doubleValue")
-                var dd = Math.floor(doubleValue);
-                var mm = Math.floor((doubleValue - dd) / 0.01);
-                var ssssss = Math.floor((doubleValue - dd - 0.01*mm ) * 100000000).toInt();
-                var mmssssss = mm + ssssss/600000 + (ssssss%600000)/1000000
-                Log.d(TAG, "initListener: dd: $dd, mm : $mm, ssss: $ssssss, mmssss: $mmssssss")
+                viewBinding.etFourParameterRotation.setText(Utilities.doubledegree(doubleValue).toString())
             }
         }
-      /*  viewBinding.etFourParameterNorthDirectionMove.setOnFocusChangeListener { v, hasFocus ->
+        viewBinding.etFourParameterNorthDirectionMove.setOnFocusChangeListener { v, hasFocus ->
         when(hasFocus)
         {
-            true -> if(viewBinding.etFourParameterNorthDirectionMove.text!!.toString().toDouble() == 0.0 ){ viewBinding.etFourParameterNorthDirectionMove.setText("") }
+            true ->
+                if(viewBinding.etFourParameterNorthDirectionMove.text!!.isNotEmpty())
+                {if(viewBinding.etFourParameterNorthDirectionMove.text!!.toString().toDouble() == 0.0 ){ viewBinding.etFourParameterNorthDirectionMove.setText("") }}
                 else -> if(viewBinding.etFourParameterNorthDirectionMove.text!!.isEmpty()) viewBinding.etFourParameterNorthDirectionMove.setText("0.0")
         }
         }
-       */
 
         viewBinding.layoutEllipsoidName.setOnClickListener {
             val dlg = MyDialog(this)
