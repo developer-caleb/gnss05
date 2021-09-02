@@ -6,6 +6,9 @@ class OptionList {
       "GEO(GINTEC)", "South", "Kolida", "Ruide", "Sanding", "Stonex", "UniStrong",
       "Hemisphere", "GINTEC", "GEOMAX", "Hi-Target", "HuaXing"
       )
+      val SEPERATOR_LIST = arrayListOf<String>(",", "@", "Space")
+
+
       //기준국
       val CONNECT_MODE_LIST = arrayListOf<String>("블루투스", "WIFI", "데모",)
       val START_MODE_LIST = arrayListOf<String>("싱글 포인트", "기준국 좌표 입력",)

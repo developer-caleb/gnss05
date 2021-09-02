@@ -76,7 +76,7 @@ class CustomFileFormatActivity : ActivityBase<ActivityCustomFileFormatBinding>()
         refresh()
     }
     fun refresh(){
-        var  fileformatslist : List<FileFormat> = db.fileFormatDao().all
+        var  fileformatslist : MutableList<FileFormat> = db.fileFormatDao().all
         mTableView = findViewById(R.id.tableview2)
         tableFileFormatViewModel = TableFileFormatViewModel(fileformatslist)
         //추가 시작

@@ -15,6 +15,7 @@ import kr.loplab.gnss05.activities.workmanager.AppDatabase
 import kr.loplab.gnss05.adapter.UserFormatAddRecyclerViewAdapter
 import kr.loplab.gnss05.adapter.UserFormatDeleteRecyclerViewAdapter
 import kr.loplab.gnss05.common.Define
+import kr.loplab.gnss05.common.OptionList.Companion.SEPERATOR_LIST
 import kr.loplab.gnss05.common.PrefUtil
 import kr.loplab.gnss05.databinding.ActivityUserFormatBinding
 import kr.loplab.gnss05.enums.USERFORMATMAKEMODE
@@ -42,7 +43,7 @@ class UserFormatMake : ActivityBase<ActivityUserFormatBinding>(),
     var itemdata = ArrayList<Array<String>>()
     var listdata =  ArrayList<Array<String>>()
     var mode = USERFORMATMAKEMODE.ADD;
-    var seperatorArrays1 = arrayListOf<String>(",", "@", "Space")
+
     var requestCode= 0;
     var selectedPosition = -1;
     var fileFormatList : MutableList<FileFormat>? = null
@@ -141,7 +142,7 @@ class UserFormatMake : ActivityBase<ActivityUserFormatBinding>(),
             val dlg = MyDialog(this)
             dlg.firstLayoutUse= false;
            // arrays1.add("/");  arrays1.add("@"); arrays1.add("Space");
-            dlg.list = seperatorArrays1
+            dlg.list = SEPERATOR_LIST
             dlg.selectedposition= PrefUtil.getInt2(applicationContext, getString(R.string.int_seperate_sign))
             dlg.setOnOKClickedListener{ content ->
                 Log.d(TAG, "onItemClick: $content")
@@ -152,7 +153,7 @@ class UserFormatMake : ActivityBase<ActivityUserFormatBinding>(),
             }
             dlg.setOnListClickedListener { view, i ->
                 Log.d(TAG, "initListener: 와 된다~ $i 된다~")
-                viewBinding.tvSeperate.text = seperatorArrays1[i]
+                viewBinding.tvSeperate.text = SEPERATOR_LIST[i]
                 dlg.selectItem(i)
                 PrefUtil.setInt(applicationContext, getString(R.string.int_seperate_sign), i)
               // selectSeperateNum(i)
@@ -216,7 +217,7 @@ class UserFormatMake : ActivityBase<ActivityUserFormatBinding>(),
     override fun initDatabinding() {
         setUserFormatText()
 
-        viewBinding.tvSeperate.text = seperatorArrays1[getSeperateNum()]
+        viewBinding.tvSeperate.text = SEPERATOR_LIST[getSeperateNum()]
         viewBinding.swFileheader.isChecked = PrefUtil.getBoolean(applicationContext, getString(R.string.boolfileheader))
         if(requestCode == Define.REQUEST_FILE_FORMAT_EDIT) {
             lifecycleScope.launch(Dispatchers.IO) {
@@ -224,7 +225,7 @@ class UserFormatMake : ActivityBase<ActivityUserFormatBinding>(),
                     fileFormatList = db.fileFormatDao().all
                     viewBinding.etFormatName.setText(fileFormatList!![selectedPosition].formatName)
                     PrefUtil.setInt(applicationContext, getString(R.string.int_seperate_sign), fileFormatList!![selectedPosition].seperator)
-                    viewBinding.tvSeperate.text = seperatorArrays1[getSeperateNum()]
+                    viewBinding.tvSeperate.text = SEPERATOR_LIST[getSeperateNum()]
 
                 }catch (e: Exception){
                     Log.e(TAG, "initDatabinding: ", e )
@@ -286,7 +287,7 @@ class UserFormatMake : ActivityBase<ActivityUserFormatBinding>(),
         return when(sepearatorNum)
         {
             2 -> " "
-            else -> seperatorArrays1[sepearatorNum][0].toString()
+            else -> SEPERATOR_LIST[sepearatorNum][0].toString()
         }
     }
     fun getFormatDescription():String{

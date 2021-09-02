@@ -21,119 +21,130 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
+package kr.loplab.gnss05.activities.export
 
-package kr.loplab.gnss05.activities.export;
+import android.util.Log
+import com.google.gson.GsonBuilder
+import com.google.gson.JsonObject
+import com.google.gson.reflect.TypeToken
+import kr.loplab.gnss05.tableview.TableViewModel
+import kr.loplab.gnss05.activities.export.TableFileFormatViewModel
+import kr.loplab.gnss05.activities.export.FileFormat
+import kr.loplab.gnss05.common.OptionList.Companion.SEPERATOR_LIST
+import kr.loplab.gnss05.tableview.model.Cell
+import kr.loplab.gnss05.tableview.model.ColumnHeader
+import kr.loplab.gnss05.tableview.model.RowHeader
+import org.json.JSONObject
+import java.util.*
 
-import android.util.Log;
+class TableFileFormatViewModel : TableViewModel {
+    var TAG = TableFileFormatViewModel::class.java.simpleName
+    private val customFileFormat = ArrayList(Arrays.asList("번호", "형식명", "확장명", "형식설명"))
+    var fileformatslist: MutableList<FileFormat>? = null
 
-import androidx.annotation.NonNull;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
-import kr.loplab.gnss05.activities.workmanager.Worker;
-import kr.loplab.gnss05.tableview.TableViewModel;
-import kr.loplab.gnss05.tableview.model.Cell;
-import kr.loplab.gnss05.tableview.model.ColumnHeader;
-import kr.loplab.gnss05.tableview.model.RowHeader;
-
-public class TableFileFormatViewModel extends TableViewModel {
-    String TAG = TableFileFormatViewModel.class.getSimpleName();
-    // Constant size for dummy data sets
-    private static int COLUMN_SIZE = 3;
-    private static int ROW_SIZE = 5;
-    private ArrayList<String> customFileFormat = new ArrayList<>(Arrays.asList("번호", "형식명", "확장명", "형식설명"));
-    List<FileFormat> fileformatslist =null;
-
-     TableFileFormatViewModel(){}
-     TableFileFormatViewModel(List<FileFormat> fileformatslist){
-         ROW_SIZE = fileformatslist.size();
-        this.fileformatslist = fileformatslist;
+    internal constructor() {}
+    internal constructor(fileformatslist: MutableList<FileFormat>) {
+        ROW_SIZE = fileformatslist.size
+        this.fileformatslist = fileformatslist
     }
 
-    @Override
-    public void removePosition(int position){
-        Log.d(TAG, "removePosition: override.. 삭제");
-        if(position>= fileformatslist.size()||position<0) return;
-        if(fileformatslist !=null && fileformatslist.size()>0){
-            fileformatslist.remove(position);
-            ROW_SIZE = fileformatslist.size();
-        }else{return;}
-    }
-
-
-    @NonNull
-    private List<RowHeader> getSimpleRowHeaderList() {
-        List<RowHeader> list = new ArrayList<>();
-        for (int i = 0; i < ROW_SIZE; i++) {
-            RowHeader header = new RowHeader(String.valueOf(i), //"row " +
-                   String.valueOf(i+1)
-            );
-            list.add(header);
+    override fun removePosition(position: Int) {
+        Log.d(TAG, "removePosition: override.. 삭제")
+        if (position >= fileformatslist!!.size || position < 0) return
+        if (fileformatslist != null && fileformatslist!!.size > 0) {
+            fileformatslist!!.removeAt(position)
+            ROW_SIZE = fileformatslist!!.size
+        } else {
+            return
         }
-
-        return list;
     }
 
-    /**
-     * This is a dummy model list test some cases.
-     */
-    @NonNull
-    private List<ColumnHeader> getRandomColumnHeaderList() {
-        List<ColumnHeader> list = new ArrayList<>();
-        for (int i = 0; i < COLUMN_SIZE; i++) {
-            String title = customFileFormat.get(i + 1);
-            ColumnHeader header = new ColumnHeader(String.valueOf(i), title);
-            list.add(header);
-        }
-        return list;
-    }
-
-    /**
-     * This is a dummy model list test some cases.
-     */
-    @NonNull
-    private List<List<Cell>> getCellListForSortingTest() {
-        List<List<Cell>> list = new ArrayList<>();
-        for (int i = 0; i < ROW_SIZE; i++) {
-            List<Cell> cellList = new ArrayList<>();
-            for (int j = 0; j < COLUMN_SIZE; j++) {
-                Object text = "";//"cell " + j + " " + i;
-                //final int random = new Random().nextInt();
-                if (j == 0) {
-                    if(fileformatslist !=null && fileformatslist.size()!=0){
-                        text= fileformatslist.get(i).getFormatName();
-                    }else text= "";
-                } else if (j == 1) {
-                    if(fileformatslist !=null && fileformatslist.size()!=0){
-                        text= fileformatslist.get(i).getExtensionName();
-                    }else text= "";
-                } else if (j == 2) {
-                    if(fileformatslist !=null && fileformatslist.size()!=0){
-                        text= fileformatslist.get(i).getFormatDescription();
-                    }else text= "";
-                }
-                // Create dummy id.
-                String id = j + "-" + i;
-                Cell cell;
-                cell = new Cell(id, text);
-                cellList.add(cell);
+    private val simpleRowHeaderList: List<RowHeader>
+        private get() {
+            val list: MutableList<RowHeader> = ArrayList()
+            for (i in 0 until ROW_SIZE) {
+                val header = RowHeader(i.toString(), (i + 1).toString())
+                list.add(header)
             }
-            list.add(cellList);
+            return list
         }
-        return list;
+
+    /**
+     * This is a dummy model list test some cases.
+     */
+    private val randomColumnHeaderList: List<ColumnHeader>
+        private get() {
+            val list: MutableList<ColumnHeader> = ArrayList()
+            for (i in 0 until COLUMN_SIZE) {
+                val title = customFileFormat[i + 1]
+                val header = ColumnHeader(i.toString(), title)
+                list.add(header)
+            }
+            return list
+        }//"cell " + j + " " + i;
+    //final int random = new Random().nextInt();
+    // Create dummy id.
+    /**
+     * This is a dummy model list test some cases.
+     */
+    private val cellListForSortingTest: List<List<Cell>>
+        private get() {
+            val list: MutableList<List<Cell>> = ArrayList()
+            for (i in 0 until ROW_SIZE) {
+                val cellList: MutableList<Cell> = ArrayList()
+                for (j in 0 until COLUMN_SIZE) {
+                    var text: Any = "" //"cell " + j + " " + i;
+                    //final int random = new Random().nextInt();
+                    if (j == 0) {
+                        text = if (fileformatslist != null && fileformatslist!!.size != 0) {
+                            fileformatslist!![i].formatName
+                        } else ""
+                    } else if (j == 1) {
+                        text = if (fileformatslist != null && fileformatslist!!.size != 0) {
+                            fileformatslist!![i].extensionName
+                        } else ""
+                    } else if (j == 2) {
+                        text = if (fileformatslist != null && fileformatslist!!.size != 0) {
+                            jsonarrayToList(fileformatslist!![i].formatDescription , fileformatslist!![i].seperator)
+                        } else ""
+                    }
+                    // Create dummy id.
+                    val id = "$j-$i"
+                    var cell: Cell
+                    cell = Cell(id, text)
+                    cellList.add(cell)
+                }
+                list.add(cellList)
+            }
+            return list
+        }
+
+    override fun getCellList(): List<List<Cell>> {
+        return cellListForSortingTest
     }
 
+    override fun getRowHeaderList(): List<RowHeader> {
+        return simpleRowHeaderList
+    }
 
-    @NonNull
-    public List<List<Cell>> getCellList() { return getCellListForSortingTest(); }
+    override fun getColumnHeaderList(): List<ColumnHeader> {
+        return randomColumnHeaderList
+    }
 
-    @NonNull
-    public List<RowHeader> getRowHeaderList() { return getSimpleRowHeaderList(); }
+    companion object {
+        // Constant size for dummy data sets
+        private const val COLUMN_SIZE = 3
+        private var ROW_SIZE = 5
+    }
 
-    @NonNull
-    public List<ColumnHeader> getColumnHeaderList() { return getRandomColumnHeaderList(); }
+    fun jsonarrayToList(jsonarray : String , seperatornum : Int): String{
+        var makeGson = GsonBuilder().create()
+        var listType: TypeToken<ArrayList<String>> = object : TypeToken<ArrayList<String>>() {}
+        var jsonarrays = JSONObject(jsonarray);
+        var formatDescriptionFormatList =  makeGson.toJson(JSONObject(jsonarray),listType.type)
 
-    
+        var formatdescription = "";
+        formatDescriptionFormatList.forEachIndexed { index, smalldata -> formatdescription += "[${smalldata}]${SEPERATOR_LIST[seperatornum]} " }
+        return formatdescription
+    }
 }
