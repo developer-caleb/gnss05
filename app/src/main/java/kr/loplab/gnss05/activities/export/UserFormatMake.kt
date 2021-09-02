@@ -292,7 +292,7 @@ class UserFormatMake : ActivityBase<ActivityUserFormatBinding>(),
     fun getFormatDescription():String{
         var jsonlist = ArrayList<String>()
             listdata.forEachIndexed { index, element -> jsonlist.add(element[0]) }
-        var jsonElements = Gson().toJsonTree(listdata)
+        var jsonElements = Gson().toJsonTree(jsonlist)
         return jsonElements.toString()
     }
 }
