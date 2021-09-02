@@ -239,7 +239,7 @@ class UserFormatMake : ActivityBase<ActivityUserFormatBinding>(),
                     viewBinding.etFormatName.setText(fileFormatList!![selectedPosition].formatName)
                     PrefUtil.setInt(applicationContext, getString(R.string.int_seperate_sign), fileFormatList!![selectedPosition].seperator)
                     viewBinding.tvSeperate.text = seperatorArrays1[getSeperateNum()]
-                    
+
                 }catch (e: Exception){
                     Log.e(TAG, "initDatabinding: ", e )
                 }
