@@ -19,6 +19,7 @@ import kr.loplab.gnss05.common.OptionList.Companion.SEPERATOR_LIST
 import kr.loplab.gnss05.common.PrefUtil
 import kr.loplab.gnss05.databinding.ActivityUserFormatBinding
 import kr.loplab.gnss05.enums.USERFORMATMAKEMODE
+import org.json.JSONArray
 import java.lang.Exception
 import java.util.*
 import kotlin.collections.ArrayList
@@ -88,7 +89,7 @@ class UserFormatMake : ActivityBase<ActivityUserFormatBinding>(),
             //저장버튼 클릭
             Log.d(TAG, "initListener: ")
             if (viewBinding.etFormatName.text.toString().isEmpty()) {
-                showToast("형식명은 반드시 포함되어야 합니다.")
+                showToast("형식은 반드시 포함되어야 합니다.")
                 return@setOnOptionButtonClickListener
             }
             when (requestCode) {
@@ -152,7 +153,6 @@ class UserFormatMake : ActivityBase<ActivityUserFormatBinding>(),
                 Log.d(TAG, "onItemClick: $content")
             }
             dlg.setOnListClickedListener { view, i ->
-                Log.d(TAG, "initListener: 와 된다~ $i 된다~")
                 viewBinding.tvSeperate.text = SEPERATOR_LIST[i]
                 dlg.selectItem(i)
                 PrefUtil.setInt(applicationContext, getString(R.string.int_seperate_sign), i)
@@ -227,6 +227,23 @@ class UserFormatMake : ActivityBase<ActivityUserFormatBinding>(),
                     PrefUtil.setInt(applicationContext, getString(R.string.int_seperate_sign), fileFormatList!![selectedPosition].seperator)
                     viewBinding.tvSeperate.text = SEPERATOR_LIST[getSeperateNum()]
 
+
+                    var jArray = JSONArray(fileFormatList!![selectedPosition].formatDescription);
+                    var formatDescriptionFormatList = ArrayList<Array<String>>()
+                    if (jArray != null) {
+                        for (i in 0 until jArray.length()) {
+                            var jArray2 = JSONArray(jArray[i].toString())
+                            println("JARRAY2 : ${jArray2.toString()}")
+                            formatDescriptionFormatList.add(arrayOf(jArray2[0] as String, jArray2[1] as String));
+                        }
+                    }
+                   listdata.clear(); listdata.addAll(formatDescriptionFormatList);
+                    Log.d(TAG, "initDatabinding: new list data => ${listdata.toString()}")
+                  setUserFormatText()
+                    listdata.forEachIndexed { index, element -> itemdata[element[1].toInt()][2] = false.toString(); }
+                    Log.d(TAG, "initDatabinding: new item data => ${itemdata.toString()}")
+
+                    //여기 빡세다.. index 가 1인 걸 넣으면서 계속 빼주면 되는데
                 }catch (e: Exception){
                     Log.e(TAG, "initDatabinding: ", e )
                 }

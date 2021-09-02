@@ -7,6 +7,7 @@ class OptionList {
       "Hemisphere", "GINTEC", "GEOMAX", "Hi-Target", "HuaXing"
       )
       val SEPERATOR_LIST = arrayListOf<String>(",", "@", "Space")
+      val SEPERATOR_LIST_OUTPUT = arrayListOf<String>(",", "@", " ")
 
 
       //기준국

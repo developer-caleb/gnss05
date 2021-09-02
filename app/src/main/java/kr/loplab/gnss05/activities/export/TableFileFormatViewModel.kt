@@ -31,7 +31,9 @@ import com.google.gson.reflect.TypeToken
 import kr.loplab.gnss05.tableview.TableViewModel
 import kr.loplab.gnss05.activities.export.TableFileFormatViewModel
 import kr.loplab.gnss05.activities.export.FileFormat
+import kr.loplab.gnss05.common.JsonUtils.Companion.jsonarrayToList
 import kr.loplab.gnss05.common.OptionList.Companion.SEPERATOR_LIST
+import kr.loplab.gnss05.common.OptionList.Companion.SEPERATOR_LIST_OUTPUT
 import kr.loplab.gnss05.tableview.model.Cell
 import kr.loplab.gnss05.tableview.model.ColumnHeader
 import kr.loplab.gnss05.tableview.model.RowHeader
@@ -141,19 +143,5 @@ class TableFileFormatViewModel : TableViewModel {
         private var ROW_SIZE = 5
     }
 
-    fun jsonarrayToList(jsonarray : String , seperatornum : Int): String{
-        var jArray = JSONArray(jsonarray);
-        var formatDescriptionFormatList = ArrayList<String>()
-        if (jArray != null) {
-            for (i in 0 until jArray.length()) {
-                var jArray2 = JSONArray(jArray[i].toString())
-                println("JARRAY2 : ${jArray2.toString()}")
-                formatDescriptionFormatList.add(jArray2[0] as String);
-            }
-        }
 
-        var formatdescription = "";
-        formatDescriptionFormatList.forEachIndexed { index, smalldata -> formatdescription += "[${smalldata}]${SEPERATOR_LIST[seperatornum]} " }
-        return formatdescription
-    }
 }
