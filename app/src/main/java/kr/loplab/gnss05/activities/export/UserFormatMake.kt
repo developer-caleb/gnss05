@@ -241,6 +241,8 @@ class UserFormatMake : ActivityBase<ActivityUserFormatBinding>(),
                     Log.d(TAG, "initDatabinding: new list data => ${listdata.toString()}")
                   setUserFormatText()
                     listdata.forEachIndexed { index, element -> itemdata[element[1].toInt()][2] = false.toString(); }
+                    adapterAdd.notifyDataSetChanged()
+                    adapterDelete.notifyDataSetChanged()
                     Log.d(TAG, "initDatabinding: new item data => ${itemdata.toString()}")
 
                     //여기 빡세다.. index 가 1인 걸 넣으면서 계속 빼주면 되는데
