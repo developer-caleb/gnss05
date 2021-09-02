@@ -93,6 +93,7 @@ class CustomFileFormatActivity : ActivityBase<ActivityCustomFileFormatBinding>()
 
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        Log.d(TAG, "onActivityResult:-> $requestCode")
         super.onActivityResult(requestCode, resultCode, data) //추가해보고 확인
         //onActivityResult 말고 intent로 뷰 새로 띄우는 방법도 생각해볼 것..
         if(resultCode== RESULT_OK && requestCode == Define.REQUEST_FILE_FORMAT_ADD)

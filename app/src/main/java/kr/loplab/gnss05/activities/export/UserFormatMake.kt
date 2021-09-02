@@ -88,7 +88,7 @@ class UserFormatMake : ActivityBase<ActivityUserFormatBinding>(),
             //저장버튼 클릭
             Log.d(TAG, "initListener: ")
             if (viewBinding.etFormatName.text.toString().isEmpty()) {
-                showToast("작업자 이름은 반드시 포함되어야 합니다.")
+                showToast("형식명은 반드시 포함되어야 합니다.")
                 return@setOnOptionButtonClickListener
             }
             when (requestCode) {
@@ -291,8 +291,8 @@ class UserFormatMake : ActivityBase<ActivityUserFormatBinding>(),
         }
     }
     fun getFormatDescription():String{
-      /*  var jsonlist = ArrayList<String>()
-            listdata.forEachIndexed { index, element -> jsonlist.add(element[0]) }*/
+        //var jsonlist = ArrayList<String>()
+         //   listdata.forEachIndexed { index, element -> jsonlist.add(element[0]) }
         var jsonElements = Gson().toJsonTree(listdata)
         return jsonElements.toString()
     }

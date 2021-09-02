@@ -108,7 +108,8 @@ class TableFileFormatViewModel : TableViewModel {
                         } else ""
                     } else if (j == 2) {
                         text = if (fileformatslist != null && fileformatslist!!.size != 0) {
-                            jsonarrayToList(fileformatslist!![i].formatDescription , fileformatslist!![i].seperator)
+                           // fileformatslist!![i].formatDescription
+                                jsonarrayToList(fileformatslist!![i].formatDescription , fileformatslist!![i].seperator)
                         } else ""
                     }
                     // Create dummy id.
@@ -142,14 +143,17 @@ class TableFileFormatViewModel : TableViewModel {
 
     fun jsonarrayToList(jsonarray : String , seperatornum : Int): String{
         var jArray = JSONArray(jsonarray);
-        var formatDescriptionFormatList = ArrayList<Array<String>>()
+        var formatDescriptionFormatList = ArrayList<String>()
         if (jArray != null) {
             for (i in 0 until jArray.length()) {
-                formatDescriptionFormatList.add(jArray[i].);
+                var jArray2 = JSONArray(jArray[i].toString())
+                println("JARRAY2 : ${jArray2.toString()}")
+                formatDescriptionFormatList.add(jArray2[0] as String);
             }
         }
+
         var formatdescription = "";
-        formatDescriptionFormatList.forEachIndexed { index, smalldata -> formatdescription += "[${smalldata}]${SEPERATOR_LIST[seperatornum][0]} " }
+        formatDescriptionFormatList.forEachIndexed { index, smalldata -> formatdescription += "[${smalldata}]${SEPERATOR_LIST[seperatornum]} " }
         return formatdescription
     }
 }
