@@ -145,7 +145,7 @@ class TableFileFormatViewModel : TableViewModel {
         var formatDescriptionFormatList = ArrayList<Array<String>>()
         if (jArray != null) {
             for (i in 0 until jArray.length()) {
-                formatDescriptionFormatList.add(jArray[i] as Array<String>);
+                formatDescriptionFormatList.add(jArray[i].);
             }
         }
         var formatdescription = "";
