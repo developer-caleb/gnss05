@@ -188,4 +188,6 @@ public class Define {
     //ROOM
     public static final String WORKERS_DB = "workers-db";
     public static final String SERVERS_DB = "servers-db";
+    public static final String FILEFORMAT_DB = "servers-db";
+
 }

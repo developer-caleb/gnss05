@@ -61,7 +61,7 @@ class UserFormatMake : ActivityBase<ActivityUserFormatBinding>(),
         viewBinding.recyclerviewUserFormatSettings.adapter = adapterAdd
         selectmode(USERFORMATMAKEMODE.ADD)
 
-        db = Room.databaseBuilder(this, AppDatabase::class.java, Define.SERVERS_DB)
+        db = Room.databaseBuilder(this, AppDatabase::class.java, Define.FILEFORMAT_DB)
             .allowMainThreadQueries() //메인쓰레드에서 작동시킬 때 사용
             .fallbackToDestructiveMigration()
             .build()
@@ -90,9 +90,6 @@ class UserFormatMake : ActivityBase<ActivityUserFormatBinding>(),
                 showToast("작업자 이름은 반드시 포함되어야 합니다.")
                 return@setOnOptionButtonClickListener
             }
-
-
-
             when (requestCode) {
                 Define.REQUEST_FILE_FORMAT_ADD -> {
                     lifecycleScope.launch(Dispatchers.IO) {
@@ -195,30 +192,19 @@ class UserFormatMake : ActivityBase<ActivityUserFormatBinding>(),
                 itemdata[adapterAdd.selectedPosition][2] = false.toString()
                 //true인 녀석이 있으면 true인 첫번째 index가 selectposition이 되도록한다.
                 adapterAdd.selectedPosition = itemdata.indexOfFirst { element -> element[2]==true.toString()}
-                /*if(itemdata.indexOfFirst { element -> element[2]==true.toString() } !=-1)
-                { adapterAdd.selectedPosition = itemdata.indexOfFirst { element -> element[2]==true.toString() }
-                }else { return@setOnClickListener}*/
-                //데이터 새로고침
                 adapterAdd.notifyDataSetChanged();
                 adapterDelete.notifyDataSetChanged();
-
-                //텍스트를 listdata[0]으로 출력
                 viewBinding.tvUserformat.text = listdata[0].toString()
             }
             USERFORMATMAKEMODE.DELETE ->{
-                //선택 포지션이 없으면 return
                 if(adapterDelete.selectedPosition ==-1||listdata.size<1){
                     Log.d(TAG, "not selected")
                     return@setOnClickListener}
                 itemdata[listdata[adapterDelete.selectedPosition][1].toInt()][2] = true.toString()
                 listdata.removeAt(adapterDelete.selectedPosition)
-                //itemdata[adapterDelete.selectedPosition][2] = true.toString()
                 adapterDelete.selectedPosition = 0;
-                //adapterDelete.selectedPosition = itemdata.indexOfFirst { element -> element[2]==false.toString()}
                 adapterAdd.notifyDataSetChanged();
                 adapterDelete.notifyDataSetChanged();
-
-            //viewBinding.tvUserformat.text = listdata[0].toString()
             }
 
         }
@@ -304,6 +290,8 @@ class UserFormatMake : ActivityBase<ActivityUserFormatBinding>(),
         }
     }
     fun getFormatDescription():String{
+        var jsonlist = ArrayList<String>()
+            listdata.forEachIndexed { index, element -> jsonlist.add(element[0]) }
         var jsonElements = Gson().toJsonTree(listdata)
         return jsonElements.toString()
     }

@@ -31,7 +31,7 @@ class CustomFileFormatActivity : ActivityBase<ActivityCustomFileFormatBinding>()
     }
 
     override fun init() {
-        db = Room.databaseBuilder(this, AppDatabase::class.java, Define.WORKERS_DB)
+        db = Room.databaseBuilder(this, AppDatabase::class.java, Define.FILEFORMAT_DB)
             .allowMainThreadQueries() //메인쓰레드에서 작동시킬 때 사용
             .fallbackToDestructiveMigration()
             .build()
@@ -89,7 +89,26 @@ class CustomFileFormatActivity : ActivityBase<ActivityCustomFileFormatBinding>()
             tableFileFormatViewModel.getColumnHeaderList(), tableFileFormatViewModel
                 .getRowHeaderList(), tableFileFormatViewModel.getCellList()
         )
-
     }
 
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data) //추가해보고 확인
+        //onActivityResult 말고 intent로 뷰 새로 띄우는 방법도 생각해볼 것..
+        if(resultCode== RESULT_OK && requestCode == Define.REQUEST_FILE_FORMAT_ADD)
+        {
+            Log.d(TAG, "onActivityResult: 축하합니다_추가1")
+            refresh()
+            mTableView.selectedRow = -1
+            TableViewModel.selectedIndex = -1
+        }
+
+        if(resultCode== RESULT_OK && requestCode == Define.REQUEST_FILE_FORMAT_EDIT)
+        {
+            Log.d(TAG, "onActivityResult: 축하합니다_수정1")
+            refresh()
+            mTableView.selectedRow = -1
+            TableViewModel.selectedIndex = -1
+        }
+    }
 }
