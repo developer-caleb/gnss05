@@ -2,15 +2,23 @@ package kr.loplab.gnss05.activities.export
 
 import android.util.Log
 import android.view.View
+import androidx.lifecycle.lifecycleScope
+import androidx.room.Room
+import com.google.gson.Gson
 import kotlinx.android.synthetic.main.activity_user_format.*
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import kr.loplab.gnss02.ActivityBase
 import kr.loplab.gnss05.MyDialog
 import kr.loplab.gnss05.R
+import kr.loplab.gnss05.activities.workmanager.AppDatabase
 import kr.loplab.gnss05.adapter.UserFormatAddRecyclerViewAdapter
 import kr.loplab.gnss05.adapter.UserFormatDeleteRecyclerViewAdapter
+import kr.loplab.gnss05.common.Define
 import kr.loplab.gnss05.common.PrefUtil
 import kr.loplab.gnss05.databinding.ActivityUserFormatBinding
 import kr.loplab.gnss05.enums.USERFORMATMAKEMODE
+import java.lang.Exception
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -33,10 +41,16 @@ class UserFormatMake : ActivityBase<ActivityUserFormatBinding>(),
     private lateinit var adapterDelete : UserFormatDeleteRecyclerViewAdapter
     var itemdata = ArrayList<Array<String>>()
     var listdata =  ArrayList<Array<String>>()
-    var sperate_num = -1;
     var mode = USERFORMATMAKEMODE.ADD;
-    var arrays1 = arrayListOf<String>(",", "@", "Space")
-        //ArrayList(listOf(listOf("/", "1"), listOf("@", "0"), listOf("Space", "0"))) //ArrayList<String>();
+    var seperatorArrays1 = arrayListOf<String>(",", "@", "Space")
+    var requestCode= 0;
+    var selectedPosition = -1;
+    var fileFormatList : MutableList<FileFormat>? = null
+
+    lateinit var db : AppDatabase
+
+
+    //ArrayList(listOf(listOf("/", "1"), listOf("@", "0"), listOf("Space", "0"))) //ArrayList<String>();
     override fun init() {
 
         optionitemlist.forEachIndexed { index, item -> itemdata.add(arrayOf(item, index.toString(), true.toString()))}
@@ -46,6 +60,22 @@ class UserFormatMake : ActivityBase<ActivityUserFormatBinding>(),
         adapterDelete.setClickListener(this)
         viewBinding.recyclerviewUserFormatSettings.adapter = adapterAdd
         selectmode(USERFORMATMAKEMODE.ADD)
+
+        db = Room.databaseBuilder(this, AppDatabase::class.java, Define.SERVERS_DB)
+            .allowMainThreadQueries() //메인쓰레드에서 작동시킬 때 사용
+            .fallbackToDestructiveMigration()
+            .build()
+
+        if (intent.hasExtra(Define.REQUEST_CODE_STRING) )
+        {
+            requestCode = intent.getIntExtra(Define.REQUEST_CODE_STRING,0)
+            Log.d(TAG, "init: requestcode $requestCode")
+        }
+        if (intent.hasExtra("selectPosition") )
+        {
+            selectedPosition = intent.getIntExtra("selectPosition",0)
+            Log.d(TAG, "init: selectedPosition $selectedPosition")
+        }
       //
     }
 
@@ -53,15 +83,49 @@ class UserFormatMake : ActivityBase<ActivityUserFormatBinding>(),
       //
         viewBinding.header04.setOnBackButtonClickListener{onBackPressed()}
        // viewBinding.header04.optionButtonText = "저장"
-        viewBinding.header04.setOnOptionButtonClickListener{
+        viewBinding.header04.setOnOptionButtonClickListener {
             //저장버튼 클릭
             Log.d(TAG, "initListener: ")
-            if (viewBinding.etFormatName.text.toString().isEmpty()){
+            if (viewBinding.etFormatName.text.toString().isEmpty()) {
                 showToast("작업자 이름은 반드시 포함되어야 합니다.")
-                return@setOnOptionButtonClickListener}
-            /
-        };
+                return@setOnOptionButtonClickListener
+            }
 
+
+
+            when (requestCode) {
+                Define.REQUEST_FILE_FORMAT_ADD -> {
+                    lifecycleScope.launch(Dispatchers.IO) {
+                        Log.d(TAG, "initListener: bt confirm")
+
+                        db.fileFormatDao().insert(
+                            FileFormat(
+                                viewBinding.etFormatName.text.toString(),
+                                "csv",
+                                getFormatDescription(),
+                                getSeperateNum()
+                            )
+                        )
+                    }
+                    setResult(RESULT_OK)
+                    finish()
+                }
+                Define.REQUEST_FILE_FORMAT_EDIT -> {
+                    Log.d(TAG, "initListener: edit! confirm")
+                    lifecycleScope.launch(Dispatchers.IO) {
+                        var fileFormatModel = db.fileFormatDao().all[selectedPosition]
+                        fileFormatModel.formatName = viewBinding.etFormatName.text.toString()
+                        fileFormatModel.extensionName = "csv"
+                        fileFormatModel.formatDescription =  getFormatDescription()
+                        fileFormatModel.seperator =  getSeperateNum()
+                        db.fileFormatDao().update(fileFormatModel)
+                    }
+                    setResult(RESULT_OK)
+                    finish()
+                }
+
+            };
+        }
         viewBinding.btAdd.setOnClickListener {
             //if (mode == USERFORMATMAKEMODE.ADD) return@setOnClickListener
             Log.d(TAG, "bt add clicked ${adapterAdd.selectedPosition}")
@@ -80,7 +144,7 @@ class UserFormatMake : ActivityBase<ActivityUserFormatBinding>(),
             val dlg = MyDialog(this)
             dlg.firstLayoutUse= false;
            // arrays1.add("/");  arrays1.add("@"); arrays1.add("Space");
-            dlg.list = arrays1
+            dlg.list = seperatorArrays1
             dlg.selectedposition= PrefUtil.getInt2(applicationContext, getString(R.string.int_seperate_sign))
             dlg.setOnOKClickedListener{ content ->
                 Log.d(TAG, "onItemClick: $content")
@@ -91,7 +155,7 @@ class UserFormatMake : ActivityBase<ActivityUserFormatBinding>(),
             }
             dlg.setOnListClickedListener { view, i ->
                 Log.d(TAG, "initListener: 와 된다~ $i 된다~")
-                viewBinding.tvSeperate.text = arrays1[i]
+                viewBinding.tvSeperate.text = seperatorArrays1[i]
                 dlg.selectItem(i)
                 PrefUtil.setInt(applicationContext, getString(R.string.int_seperate_sign), i)
               // selectSeperateNum(i)
@@ -166,8 +230,21 @@ class UserFormatMake : ActivityBase<ActivityUserFormatBinding>(),
     override fun initDatabinding() {
         setUserFormatText()
 
-        viewBinding.tvSeperate.text = arrays1[sperate_num]
+        viewBinding.tvSeperate.text = seperatorArrays1[getSeperateNum()]
         viewBinding.swFileheader.isChecked = PrefUtil.getBoolean(applicationContext, getString(R.string.boolfileheader))
+        if(requestCode == Define.REQUEST_FILE_FORMAT_EDIT) {
+            lifecycleScope.launch(Dispatchers.IO) {
+                try {
+                    fileFormatList = db.fileFormatDao().all
+                    viewBinding.etFormatName.setText(fileFormatList!![selectedPosition].formatName)
+                    PrefUtil.setInt(applicationContext, getString(R.string.int_seperate_sign), fileFormatList!![selectedPosition].seperator)
+                    viewBinding.tvSeperate.text = seperatorArrays1[getSeperateNum()]
+                    
+                }catch (e: Exception){
+                    Log.e(TAG, "initDatabinding: ", e )
+                }
+            }
+        }
     }
 
     override fun onItemAddClick(view: View?, position: Int) {
@@ -179,17 +256,9 @@ class UserFormatMake : ActivityBase<ActivityUserFormatBinding>(),
     }
 
     fun setUserFormatText(){
-        sperate_num = if(PrefUtil.getInt(applicationContext, getString(R.string.int_seperate_sign))<=0){
-            0 }else{ PrefUtil.getInt(applicationContext, getString(R.string.int_seperate_sign))}
        //selectSeperateNum(sperate_num)
         var text1 = "";
-        listdata.forEachIndexed { index, smalldata -> text1 += "[${smalldata[0]}]${
-            when(sperate_num)
-            {
-                2 -> " "
-                else -> arrays1[sperate_num][0]
-            }
-        } " }
+        listdata.forEachIndexed { index, smalldata -> text1 += "[${smalldata[0]}]${getSeperator()} " }
 
         viewBinding.tvUserformat.text ="$text1"
         //Space 로 나누는 것은 별로 좋지 못함.-> 원래 그냥 파일에도 SPACE 있음
@@ -222,9 +291,20 @@ class UserFormatMake : ActivityBase<ActivityUserFormatBinding>(),
     }*/
 
 
-    fun selectSeperateNum(num : Int){
-        arrays1.forEachIndexed { index, element  -> (element as MutableList<String>)[1] = "0" }
-        (arrays1[num] as MutableList<String>)[1] = "1"
+    fun getSeperateNum():Int{
+        var sepearatorNum =  PrefUtil.getInt2(applicationContext, getString(R.string.int_seperate_sign))
+        return sepearatorNum;
     }
-
+    fun getSeperator():String{
+        var sepearatorNum =  PrefUtil.getInt2(applicationContext, getString(R.string.int_seperate_sign))
+        return when(sepearatorNum)
+        {
+            2 -> " "
+            else -> seperatorArrays1[sepearatorNum][0].toString()
+        }
+    }
+    fun getFormatDescription():String{
+        var jsonElements = Gson().toJsonTree(listdata)
+        return jsonElements.toString()
+    }
 }

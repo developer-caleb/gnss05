@@ -6,7 +6,7 @@ import androidx.room.migration.Migration
 import androidx.sqlite.db.SupportSQLiteDatabase
 
 @Entity
-data class FileFormat(var formatName: String, var extensionName: String, var formatDescription: String) {
+data class FileFormat(var formatName: String, var extensionName: String , var formatDescription: String, var seperator: Int) {
     @PrimaryKey(autoGenerate = true)
     var id = 0
 }
