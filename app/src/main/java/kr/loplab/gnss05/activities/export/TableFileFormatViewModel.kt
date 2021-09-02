@@ -25,6 +25,7 @@ package kr.loplab.gnss05.activities.export
 
 import android.util.Log
 import com.google.gson.GsonBuilder
+import com.google.gson.JsonArray
 import com.google.gson.JsonObject
 import com.google.gson.reflect.TypeToken
 import kr.loplab.gnss05.tableview.TableViewModel
@@ -34,8 +35,10 @@ import kr.loplab.gnss05.common.OptionList.Companion.SEPERATOR_LIST
 import kr.loplab.gnss05.tableview.model.Cell
 import kr.loplab.gnss05.tableview.model.ColumnHeader
 import kr.loplab.gnss05.tableview.model.RowHeader
+import org.json.JSONArray
 import org.json.JSONObject
 import java.util.*
+import kotlin.collections.ArrayList
 
 class TableFileFormatViewModel : TableViewModel {
     var TAG = TableFileFormatViewModel::class.java.simpleName
@@ -138,13 +141,15 @@ class TableFileFormatViewModel : TableViewModel {
     }
 
     fun jsonarrayToList(jsonarray : String , seperatornum : Int): String{
-        var makeGson = GsonBuilder().create()
-        var listType: TypeToken<ArrayList<String>> = object : TypeToken<ArrayList<String>>() {}
-        var jsonarrays = JSONObject(jsonarray);
-        var formatDescriptionFormatList =  makeGson.toJson(JSONObject(jsonarray),listType.type)
-
+        var jArray = JSONArray(jsonarray);
+        var formatDescriptionFormatList = ArrayList<Array<String>>()
+        if (jArray != null) {
+            for (i in 0 until jArray.length()) {
+                formatDescriptionFormatList.add(jArray[i] as Array<String>);
+            }
+        }
         var formatdescription = "";
-        formatDescriptionFormatList.forEachIndexed { index, smalldata -> formatdescription += "[${smalldata}]${SEPERATOR_LIST[seperatornum]} " }
+        formatDescriptionFormatList.forEachIndexed { index, smalldata -> formatdescription += "[${smalldata}]${SEPERATOR_LIST[seperatornum][0]} " }
         return formatdescription
     }
 }
