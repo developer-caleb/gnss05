@@ -24,6 +24,8 @@
     <dimen name="SIconsize">35dp</dimen>
     <dimen name="LIconweight">0</dimen>
     <dimen name="Backbuttonsize">30dp</dimen>
+    <dimen name="SURVEY_ICON_SIZE">40dp</dimen>
+
 
     <!--   Table 레이아웃 사이즈 그룹 -->
     <dimen name="column_header_height">35dp</dimen>

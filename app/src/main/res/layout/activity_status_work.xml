@@ -210,6 +210,108 @@
         android:layout_height="wrap_content"
         android:layout_weight="1">
 
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginBottom="10dp"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/bt_toolbar0"
+                    style="@style/IMAGEVIEW_SURVEY_BUTTON"
+                    app:srcCompat="@drawable/ic_status_work_toolbar0" />
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="5dp" />
+
+                <ImageView
+                    android:id="@+id/bt_toolbar1"
+                    style="@style/IMAGEVIEW_SURVEY_BUTTON"
+                    app:srcCompat="@drawable/ic_status_work_toolbar1" />
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="5dp" />
+
+                <ImageView
+                    android:id="@+id/bt_toolbar2"
+                    style="@style/IMAGEVIEW_SURVEY_BUTTON"
+                    app:srcCompat="@drawable/ic_status_work_toolbar2" />
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="5dp" />
+
+                <ImageView
+                    android:id="@+id/bt_toolbar3"
+                    style="@style/IMAGEVIEW_SURVEY_BUTTON"
+                    app:srcCompat="@drawable/ic_status_work_toolbar3" />
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="5dp" />
+
+                <ImageView
+                    android:id="@+id/bt_toolbar4"
+                    style="@style/IMAGEVIEW_SURVEY_BUTTON"
+                    app:srcCompat="@drawable/ic_status_work_toolbar4" />
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="5dp" />
+
+                <ImageView
+                    android:id="@+id/bt_toolbar5"
+                    style="@style/IMAGEVIEW_SURVEY_BUTTON"
+                    app:srcCompat="@drawable/ic_status_work_toolbar5" />
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="5dp" />
+
+                <ImageView
+                    android:id="@+id/bt_toolbar6"
+                    style="@style/IMAGEVIEW_SURVEY_BUTTON"
+                    app:srcCompat="@drawable/ic_status_work_toolbar6" />
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="5dp" />
+
+                <ImageView
+                    android:id="@+id/bt_toolbar7"
+                    style="@style/IMAGEVIEW_SURVEY_BUTTON"
+                    app:srcCompat="@drawable/ic_status_work_toolbar7" />
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="5dp" />
+
+                <ImageView
+                    android:id="@+id/bt_toolbar8"
+                    style="@style/IMAGEVIEW_SURVEY_BUTTON"
+                    app:srcCompat="@drawable/ic_status_work_toolbar8" />
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="5dp" />
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/bt_01"
+                style="@style/IMAGEVIEW_SURVEY_BUTTON"
+                app:srcCompat="@drawable/ic_status_work_toolbar_icon_down" />
+        </LinearLayout>
+
         <TextView
             android:id="@+id/textView26"
             android:layout_width="wrap_content"
@@ -223,8 +325,10 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <LinearLayout
+            android:id="@+id/linearLayout6"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
+            android:layout_marginTop="70dp"
             android:layout_marginEnd="10dp"
             android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -233,11 +337,7 @@
 
             <ImageView
                 android:id="@+id/bt_survey_mode"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:background="@drawable/bt_background_brightgrey"
-                android:padding="5dp"
-                android:scaleType="fitXY"
+                style="@style/IMAGEVIEW_SURVEY_BUTTON"
                 app:srcCompat="@drawable/ic_status_work_surveymode0" />
         </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
