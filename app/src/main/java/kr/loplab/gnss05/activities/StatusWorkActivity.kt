@@ -6,24 +6,30 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AlertDialog
+import androidx.lifecycle.ViewModelProvider
 import kotlinx.android.synthetic.main.activity_main.*
 import kr.loplab.gnss02.ActivityBase
 import kr.loplab.gnss05.PositionInformationActivity
 import kr.loplab.gnss05.R
 import kr.loplab.gnss05.activities.mobile_station.MobileStationActivity
 import kr.loplab.gnss05.activities.mobile_station.MobileStationSettingSatelliteActivity
+import kr.loplab.gnss05.activities.viewmodel.ExportViewModel
+import kr.loplab.gnss05.activities.viewmodel.StatusWorkViewModel
 import kr.loplab.gnss05.databinding.ActivitySettingBinding
 import kr.loplab.gnss05.databinding.ActivityStatusWorkBinding
 
 class StatusWorkActivity : ActivityBase<ActivityStatusWorkBinding>() {
     override val layoutResourceId: Int
         get() = R.layout.activity_status_work
+    lateinit var viewModel1: StatusWorkViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
 
     override fun init() {
+        viewModel1 = ViewModelProvider(this).get(StatusWorkViewModel::class.java)
+        viewBinding.viewModel = viewModel1
     }
 
     override fun initListener() {
