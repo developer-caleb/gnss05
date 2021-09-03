@@ -13,7 +13,7 @@
             type="kr.loplab.gnss05.activities.viewmodel.StatusWorkViewModel"/>
         <import type="android.view.View"/>
         <import type="kr.loplab.gnss05.enums.SurveyType"/>
-        <import type="androidx.core.content.ContextCompat"/>
+
     </data>
 <LinearLayout
     android:layout_width="match_parent"
@@ -211,7 +211,8 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
+            app:layout_constraintTop_toTopOf="parent" />
+
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -356,10 +357,9 @@
                 style="@style/IMAGEVIEW_SURVEY_BUTTON"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/SURVEY_ICON_SIZE"
+                android:background="@{viewModel.surveyType == SurveyType.TOPO ? @drawable/bt_background_mainblue : @drawable/bt_background_brightgrey }"
                 android:gravity="center_vertical"
-                android:orientation="horizontal"
-                android:background="@{viewModel.surveyType == SurveyType.TOPO ? @drawable/bt_background_mainblue : @drawble/bt_background_brightgrey }"
-                >
+                android:orientation="horizontal">
 
                 <ImageView
                     android:id="@+id/imageView11"
@@ -387,8 +387,11 @@
                 style="@style/IMAGEVIEW_SURVEY_BUTTON"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/SURVEY_ICON_SIZE"
+                android:background="@{viewModel.surveyType == SurveyType.FAST ? @drawable/bt_background_mainblue : @drawable/bt_background_brightgrey }"
                 android:gravity="center_vertical"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+
+                >
 
                 <ImageView
                     android:id="@+id/imageView12"
@@ -418,8 +421,11 @@
                 style="@style/IMAGEVIEW_SURVEY_BUTTON"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/SURVEY_ICON_SIZE"
+                android:background="@{viewModel.surveyType == SurveyType.AUTO ? @drawable/bt_background_mainblue : @drawable/bt_background_brightgrey }"
                 android:gravity="center_vertical"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+
+                >
 
                 <ImageView
                     android:id="@+id/imageView13"
@@ -439,6 +445,17 @@
 
             </LinearLayout>
         </LinearLayout>
+
+        <ImageView
+            android:id="@+id/bt_measurement"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="80dp"
+            app:layout_constraintBottom_toBottomOf="@+id/background_demomode"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:srcCompat="@drawable/ic_measurement" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <View
