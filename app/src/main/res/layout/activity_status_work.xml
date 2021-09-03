@@ -5,17 +5,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     >
     <data>
-        <import type="android.view.View"/>
-        <import type="java.util.ArrayList"/>
-        <import type="java.util.Arrays"/>
-        <import type="kr.loplab.gnss05.enums.SurveyType"/>
-
         <variable
             name="Optionlist"
             type="kr.loplab.gnss05.common.OptionList"/>
         <variable
             name="viewModel"
             type="kr.loplab.gnss05.activities.viewmodel.StatusWorkViewModel"/>
+        <import type="android.view.View"/>
+        <import type="kr.loplab.gnss05.enums.SurveyType"/>
+        <import type="androidx.core.content.ContextCompat"/>
     </data>
 <LinearLayout
     android:layout_width="match_parent"
@@ -342,7 +340,7 @@
             <ImageView
                 android:id="@+id/bt_survey_mode"
                 style="@style/IMAGEVIEW_SURVEY_BUTTON"
-                app:srcCompat="@drawable/ic_status_work_surveymode0" />
+                android:src="@{viewModel.surveyType == SurveyType.TOPO ? @drawable/ic_status_work_surveymode0 : viewModel.surveyType == SurveyType.FAST? @drawable/ic_status_work_surveymode1 : @drawable/ic_status_work_surveymode2}" />
         </LinearLayout>
 
         <LinearLayout

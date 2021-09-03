@@ -66,15 +66,15 @@ class StatusWorkActivity : ActivityBase<ActivityStatusWorkBinding>() {
             viewModel1.setBoolvalue(viewModel1.surveyModeLayout, false);
         }
         viewBinding.btTopoSurvey.setOnClickListener {
-            viewModel1.setSurveyType(viewModel1.surveyType, SurveyType.topo)
+            viewModel1.setSurveyType(viewModel1.surveyType, SurveyType.TOPO)
             viewModel1.setBoolvalue(viewModel1.surveyModeLayout, false);
         }
         viewBinding.btFastSurvey.setOnClickListener {
-            viewModel1.setSurveyType(viewModel1.surveyType, SurveyType.fast)
+            viewModel1.setSurveyType(viewModel1.surveyType, SurveyType.FAST)
             viewModel1.setBoolvalue(viewModel1.surveyModeLayout, false);
         }
         viewBinding.btAutoSurvey.setOnClickListener {
-            viewModel1.setSurveyType(viewModel1.surveyType, SurveyType.auto)
+            viewModel1.setSurveyType(viewModel1.surveyType, SurveyType.AUTO)
             viewModel1.setBoolvalue(viewModel1.surveyModeLayout, false);
         }
     }
