@@ -24,6 +24,7 @@ import com.karumi.dexter.PermissionToken
 import com.karumi.dexter.listener.PermissionRequest
 import com.karumi.dexter.listener.multi.MultiplePermissionsListener
 import kotlinx.android.synthetic.main.activity_main.*
+import kr.loplab.gnss05.activities.ConnectEquipmentActivity
 import kr.loplab.gnss05.adapter.AdapterViewpager
 import kr.loplab.gnss05.adapter.DialogRecyclerviewAdapter
 import kr.loplab.gnss05.common.Define.REQUEST_SETTING
@@ -88,6 +89,8 @@ class MainActivity : AppCompatActivity(),
         }
         binding.btReceiver.setOnClickListener {
             Log.d(TAG, "onCreate: receiver click")
+            intent = Intent(this, ConnectEquipmentActivity::class.java)
+            startActivity(intent);
         }
         binding.btSatellite.setOnClickListener {
             Log.d(TAG, "onCreate: satellite click")
@@ -366,6 +369,7 @@ class MainActivity : AppCompatActivity(),
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
         Log.d(TAG, "onActivityResult:")
         if (resultCode== Activity.RESULT_OK && requestCode==REQUEST_SETTING){
             Log.d(TAG, "onActivityResult: ->REQUEST_SETTING")
