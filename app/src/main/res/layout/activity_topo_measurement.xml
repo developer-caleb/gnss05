@@ -526,7 +526,7 @@
                         tools:ignore="TouchTargetSizeCheck" />
 
                 </LinearLayout>
-                
+
             </LinearLayout>
 
         </ScrollView>
