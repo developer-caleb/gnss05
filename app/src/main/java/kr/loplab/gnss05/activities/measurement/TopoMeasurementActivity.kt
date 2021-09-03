@@ -19,9 +19,11 @@ class TopoMeasurementActivity : ActivityBase<ActivityTopoMeasurementBinding>() {
     }
 
     override fun initListener() {
-
+        viewBinding.header01.setOnBackButtonClickListener{onBackPressed()}
+        viewBinding.layoutName.setOnClickListener {
+            requestETfocus(viewBinding.etName)
+        }
     }
-
     override fun initDatabinding() {
 
     }

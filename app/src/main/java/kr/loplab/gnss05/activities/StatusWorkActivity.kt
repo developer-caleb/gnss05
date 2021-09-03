@@ -89,6 +89,7 @@ class StatusWorkActivity : ActivityBase<ActivityStatusWorkBinding>() {
                 }
             }
         }
+
     }
 
     override fun initDatabinding() {
