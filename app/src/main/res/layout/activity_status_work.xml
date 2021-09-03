@@ -31,7 +31,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:background="@color/main_blue"
+        android:background="@color/grey_66"
         android:orientation="horizontal">
 
 
@@ -55,14 +55,40 @@
             android:layout_weight="0"
             android:background="@color/bg_line" />
 
-        <ImageView
-            android:id="@+id/imageView3"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/bt_mobilestation"
             style="@style/IMAGEVIEW_01"
             android:layout_width="@dimen/LIconsize"
             android:layout_height="match_parent"
             android:layout_gravity="center"
-            android:layout_weight="0"
-            app:srcCompat="@drawable/ic_launcher_foreground" />
+            android:layout_weight="0">
+
+            <ImageView
+                android:id="@+id/imageView8"
+                android:layout_width="25dp"
+                android:layout_height="35dp"
+                android:scaleType="fitXY"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.15"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.23000002"
+                app:srcCompat="@drawable/ic_device_on" />
+
+            <ImageView
+                android:id="@+id/imageView10"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:scaleType="fitXY"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.84"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.90999997"
+                app:srcCompat="@drawable/ic_tablet_on" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -72,18 +98,18 @@
 
             <TextView
                 android:id="@+id/textView7"
+                style="@style/TEXTVIEW_SMALL_WHITE"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                style="@style/TEXTVIEW_SMALL_WHITE"
                 android:text="DGNSS" />
 
             <TextView
                 android:id="@+id/textView6"
+                style="@style/TEXTVIEW_SMALL_WHITE"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                style="@style/TEXTVIEW_SMALL_WHITE"
                 android:text="지연2" />
         </LinearLayout>
 
@@ -93,14 +119,14 @@
             android:layout_weight="3" />
 
         <ImageView
-            android:layout_width="25dp"
             android:id="@+id/connect_status"
             style="@style/IMAGEVIEW_01"
+            android:layout_width="25dp"
             android:layout_height="20dp"
             android:layout_gravity="bottom"
+            android:layout_marginBottom="3dp"
             android:layout_weight="0"
             android:padding="0dp"
-            android:layout_marginBottom="3dp"
             app:srcCompat="@drawable/diff_singal_1" />
 
         <LinearLayout
@@ -111,18 +137,18 @@
 
             <TextView
                 android:id="@+id/textView10"
+                style="@style/TEXTVIEW_SMALL_WHITE"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                style="@style/TEXTVIEW_SMALL_WHITE"
                 android:text="H:0.05" />
 
             <TextView
                 android:id="@+id/textView11"
+                style="@style/TEXTVIEW_SMALL_WHITE"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                style="@style/TEXTVIEW_SMALL_WHITE"
                 android:text="v:0.09" />
         </LinearLayout>
 
@@ -136,8 +162,9 @@
             style="@style/IMAGEVIEW_01"
             android:layout_gravity="bottom"
             android:layout_weight="0"
-            android:padding="0dp"
-            app:srcCompat="@drawable/ic_launcher_foreground" />
+            android:padding="5dp"
+            android:scaleType="fitXY"
+            app:srcCompat="@drawable/ic_position_info" />
 
         <Space
             android:layout_width="wrap_content"
@@ -173,7 +200,9 @@
             android:layout_gravity="bottom"
             android:layout_weight="0"
             android:padding="0dp"
-            app:srcCompat="@drawable/ic_launcher_foreground" />
+            android:scaleType="center"
+            android:tint="#FFFFFF"
+            app:srcCompat="@drawable/ic_battery_3" />
     </LinearLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
