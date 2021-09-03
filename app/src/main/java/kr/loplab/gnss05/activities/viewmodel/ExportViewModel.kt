@@ -9,17 +9,19 @@ class ExportViewModel : ViewModel(){
     var roadCrossSecionOutputUsing = MutableLiveData<Boolean>(false)
 
     private var name = ""
-   /* var ellipsoidNameNum = MutableLiveData<Int>(0)
-    var itrfConversion = MutableLiveData<Boolean>(false)
-    var inputSpeed = MutableLiveData<Boolean>(false)
-    var sevenParameterUsing = MutableLiveData<Boolean>(false)
-    var conversionTypeNum = MutableLiveData<Int>(0)
-    var sevenParameterMode = MutableLiveData<Int>(0)
-    var fourParameterUsing = MutableLiveData<Boolean>(false)
-    var verticalControlParameterUsing = MutableLiveData<Boolean>(false)
-    var verticalAdjustmentParameterUsing = MutableLiveData<Boolean>(false)
-    var gridFileUsing = MutableLiveData<Boolean>(false)
-    var inputParameterUsing = MutableLiveData<Boolean>(false)*/
+    var degreeFormNum = MutableLiveData<Int>(0)
+
+    /* var ellipsoidNameNum = MutableLiveData<Int>(0)
+     var itrfConversion = MutableLiveData<Boolean>(false)
+     var inputSpeed = MutableLiveData<Boolean>(false)
+     var sevenParameterUsing = MutableLiveData<Boolean>(false)
+     var conversionTypeNum = MutableLiveData<Int>(0)
+     var sevenParameterMode = MutableLiveData<Int>(0)
+     var fourParameterUsing = MutableLiveData<Boolean>(false)
+     var verticalControlParameterUsing = MutableLiveData<Boolean>(false)
+     var verticalAdjustmentParameterUsing = MutableLiveData<Boolean>(false)
+     var gridFileUsing = MutableLiveData<Boolean>(false)
+     var inputParameterUsing = MutableLiveData<Boolean>(false)*/
 
 
 

@@ -4,10 +4,12 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.lifecycle.ViewModelProvider
 import kr.loplab.gnss02.ActivityBase
+import kr.loplab.gnss05.MyDialog
 import kr.loplab.gnss05.R
 import kr.loplab.gnss05.activities.viewmodel.ExportViewModel
 import kr.loplab.gnss05.common.Define
 import kr.loplab.gnss05.common.Define.EXPORT_ROAD_CROSS_SECTION_OUTPUT_USING
+import kr.loplab.gnss05.common.OptionList
 import kr.loplab.gnss05.common.PrefUtil
 import kr.loplab.gnss05.databinding.ActivityExportBinding
 import kr.loplab.gnss05.tableview.TableMainActivity
@@ -40,6 +42,19 @@ class ExportActivity :  ActivityBase<ActivityExportBinding>() {
 
         viewBinding.layoutRoadCrossSectionOutputUsing.setOnClickListener {
             viewModel1.setBoolvalue(viewModel1.roadCrossSecionOutputUsing , !viewModel1.roadCrossSecionOutputUsing.value!!)
+        }
+        viewBinding.layoutDegreeForm.setOnClickListener {
+            val dlg = MyDialog(this)
+            var alist = OptionList.ELLIPSOID_NAME_LIST
+            dlg.firstLayoutUse = false
+            dlg.list = alist
+            dlg.selectedposition = viewModel1.degreeFormNum.value!!
+            dlg.start("")
+            dlg.setOnListClickedListener { view, i ->
+                viewModel1.degreeFormNum.value = i
+                dlg.dismiss()
+            }
+            dlg.setHeader("각도 형식")
         }
     }
 

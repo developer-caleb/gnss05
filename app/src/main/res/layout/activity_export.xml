@@ -162,6 +162,7 @@
 
 
                 <LinearLayout
+                    android:id="@+id/layout_degree_form"
                     style="@style/ButtonLayout_STYLE01">
 
                     <TextView

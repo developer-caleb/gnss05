@@ -43,6 +43,8 @@ class OptionList {
           "ITRF2008->ITRF2000","ITRF2008->ITRF1997","ITRF2008->ITRF1989","ITRF2005->ITRF2000","ITRF2000->ITRF1997","ITRF2014->ETRF2000","ITRF2008->ETRF2000")
       val SEVEN_PARAMETER_MODE= arrayListOf<String>("Bursa_Wolf", "Bursa_Wolf(With the origin)", "Strict Bursa-Wolf", "Helmert", "Molodensky")
 
+      //내보내기
+      val DEGREE_FORM_TYPE = arrayListOf<String>("dd.mmsss", "dd:mm:ss.ssss", "ddºmm'ss.ssss\"", "dd (Decimal)", "Radian")
 
   }
 }
