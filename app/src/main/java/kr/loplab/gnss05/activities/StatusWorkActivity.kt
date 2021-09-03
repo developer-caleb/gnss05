@@ -89,9 +89,7 @@ class StatusWorkActivity : ActivityBase<ActivityStatusWorkBinding>() {
                 }
             }
         }
-        viewBinding.btToolbarOpen.setOnClickListener {
-            viewModel1.setBoolvalue(viewModel1.toolbarOpen, !viewModel1.toolbarOpen.value!!);
-        }
+        viewBinding.btToolbarOpen.setOnClickListener { viewModel1.setBoolvalue(viewModel1.toolbarOpen, !viewModel1.toolbarOpen.value!!); }
         viewBinding.btToolbar0.setOnClickListener {  }
         viewBinding.btToolbar1.setOnClickListener {  }
         viewBinding.btToolbar2.setOnClickListener {  }
