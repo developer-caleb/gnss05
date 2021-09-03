@@ -19,6 +19,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Gnss05">
         <activity
+            android:name=".activities.measurement.TopoMeasurementActivity"
+            android:exported="true" />
+        <activity
             android:name=".activities.export.CustomFileFormatActivity"
             android:exported="true" />
         <activity

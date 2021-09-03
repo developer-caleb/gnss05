@@ -11,6 +11,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 import kr.loplab.gnss02.ActivityBase
 import kr.loplab.gnss05.PositionInformationActivity
 import kr.loplab.gnss05.R
+import kr.loplab.gnss05.activities.measurement.TopoMeasurementActivity
 import kr.loplab.gnss05.activities.mobile_station.MobileStationActivity
 import kr.loplab.gnss05.activities.mobile_station.MobileStationSettingSatelliteActivity
 import kr.loplab.gnss05.activities.viewmodel.ExportViewModel
@@ -76,6 +77,17 @@ class StatusWorkActivity : ActivityBase<ActivityStatusWorkBinding>() {
         viewBinding.btAutoSurvey.setOnClickListener {
             viewModel1.setSurveyType(viewModel1.surveyType, SurveyType.AUTO)
             viewModel1.setBoolvalue(viewModel1.surveyModeLayout, false);
+        }
+        viewBinding.btMeasurement.setOnClickListener {
+            when(viewModel1.surveyType.value){
+                SurveyType.FAST->{}
+                SurveyType.AUTO->{}
+                else->{
+                    Log.d(TAG, "initListener: GO TOPO ACTIVITY")
+                    intent = Intent(this, TopoMeasurementActivity::class.java)
+                    startActivity(intent);
+                }
+            }
         }
     }
 
