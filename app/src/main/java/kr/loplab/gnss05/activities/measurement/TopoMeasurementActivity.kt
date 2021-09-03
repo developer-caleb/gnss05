@@ -23,6 +23,9 @@ class TopoMeasurementActivity : ActivityBase<ActivityTopoMeasurementBinding>() {
         viewBinding.layoutName.setOnClickListener {
             requestETfocus(viewBinding.etName)
         }
+        viewBinding.btConfirm.setOnClickListener {
+            finish()
+        }
     }
     override fun initDatabinding() {
 

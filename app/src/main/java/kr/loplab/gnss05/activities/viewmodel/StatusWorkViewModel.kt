@@ -11,6 +11,8 @@ class StatusWorkViewModel : ViewModel(){
     private var name = ""
     var surveyModeLayout = MutableLiveData<Boolean>(false)
     var surveyType = MutableLiveData<SurveyType>(SurveyType.TOPO)
+    var toolbarOpen = MutableLiveData<Boolean>(false)
+
 
     /*  var ellipsoidNameNum = MutableLiveData<Int>(0)
       var itrfConversion = MutableLiveData<Boolean>(false)

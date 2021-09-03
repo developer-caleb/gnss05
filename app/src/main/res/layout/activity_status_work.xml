@@ -225,7 +225,9 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:visibility="@{viewModel.toolbarOpen? View.VISIBLE : View.GONE}"
+                >
 
                 <ImageView
                     android:id="@+id/bt_toolbar0"
@@ -312,7 +314,8 @@
             <ImageView
                 android:id="@+id/bt_toolbar_open"
                 style="@style/IMAGEVIEW_SURVEY_BUTTON"
-                app:srcCompat="@drawable/ic_status_work_toolbar_icon_down" />
+                android:src="@{viewModel.toolbarOpen? @drawable/ic_status_work_toolbar_icon_down : @drawable/ic_status_work_toolbar_icon_up }"
+                />
         </LinearLayout>
 
         <TextView
@@ -333,6 +336,7 @@
             android:layout_height="0dp"
             android:layout_marginTop="70dp"
             android:layout_marginEnd="10dp"
+            android:layout_marginBottom="120dp"
             android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -342,6 +346,25 @@
                 android:id="@+id/bt_survey_mode"
                 style="@style/IMAGEVIEW_SURVEY_BUTTON"
                 android:src="@{viewModel.surveyType == SurveyType.TOPO ? @drawable/ic_status_work_surveymode0 : viewModel.surveyType == SurveyType.FAST? @drawable/ic_status_work_surveymode1 : @drawable/ic_status_work_surveymode2}" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+
+            <ImageView
+                android:id="@+id/bt_point_save"
+                style="@style/IMAGEVIEW_SURVEY_BUTTON"
+                android:src="@drawable/ic_status_work_point_save" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="5dp" />
+
+            <ImageView
+                android:id="@+id/bt_settings"
+                style="@style/IMAGEVIEW_SURVEY_BUTTON"
+                android:src="@drawable/ic_status_work_settings" />
         </LinearLayout>
 
         <LinearLayout
