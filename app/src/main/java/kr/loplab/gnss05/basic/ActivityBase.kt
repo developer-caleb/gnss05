@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.inputmethod.InputMethodManager
+import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
@@ -65,6 +66,12 @@ abstract class ActivityBase<T : ViewDataBinding>: AppCompatActivity() {
     }
 
     fun requestETfocus(editText : com.google.android.material.textfield.TextInputEditText){
+        editText.requestFocus()
+        val imm: InputMethodManager =
+            getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
+        imm.showSoftInput(editText,0)
+    }
+    fun requestETfocus(editText : EditText){
         editText.requestFocus()
         val imm: InputMethodManager =
             getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
