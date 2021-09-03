@@ -357,7 +357,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/SURVEY_ICON_SIZE"
                 android:gravity="center_vertical"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:background="@{viewModel.surveyType == SurveyType.TOPO ? @drawable/bt_background_mainblue : @drawble/bt_background_brightgrey }"
+                >
 
                 <ImageView
                     android:id="@+id/imageView11"
