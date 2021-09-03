@@ -4,11 +4,13 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import kr.loplab.gnss05.activities.cors_servermanager.Server
 import kr.loplab.gnss05.activities.workmanager.Worker
+import kr.loplab.gnss05.enums.SurveyType
 
 class StatusWorkViewModel : ViewModel(){
 
     private var name = ""
     var surveyModeLayout = MutableLiveData<Boolean>(false)
+    var surveyType = MutableLiveData<SurveyType>(SurveyType.topo)
 
     /*  var ellipsoidNameNum = MutableLiveData<Int>(0)
       var itrfConversion = MutableLiveData<Boolean>(false)
@@ -48,5 +50,8 @@ class StatusWorkViewModel : ViewModel(){
     }
     fun setBoolvalue(data : MutableLiveData<Boolean>, boolvalue : Boolean){
         data.value = boolvalue
+    }
+    fun setSurveyType(data : MutableLiveData<SurveyType>, value : SurveyType){
+        data.value = value
     }
 }

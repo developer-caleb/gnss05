@@ -17,6 +17,7 @@ import kr.loplab.gnss05.activities.viewmodel.ExportViewModel
 import kr.loplab.gnss05.activities.viewmodel.StatusWorkViewModel
 import kr.loplab.gnss05.databinding.ActivitySettingBinding
 import kr.loplab.gnss05.databinding.ActivityStatusWorkBinding
+import kr.loplab.gnss05.enums.SurveyType
 
 class StatusWorkActivity : ActivityBase<ActivityStatusWorkBinding>() {
     override val layoutResourceId: Int
@@ -59,7 +60,22 @@ class StatusWorkActivity : ActivityBase<ActivityStatusWorkBinding>() {
             alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.BLUE)
         }
         viewBinding.btSurveyMode.setOnClickListener {
-
+            viewModel1.setBoolvalue(viewModel1.surveyModeLayout, true);
+        }
+        viewBinding.backgroundDemomode.setOnClickListener{
+            viewModel1.setBoolvalue(viewModel1.surveyModeLayout, false);
+        }
+        viewBinding.btTopoSurvey.setOnClickListener {
+            viewModel1.setSurveyType(viewModel1.surveyType, SurveyType.topo)
+            viewModel1.setBoolvalue(viewModel1.surveyModeLayout, false);
+        }
+        viewBinding.btFastSurvey.setOnClickListener {
+            viewModel1.setSurveyType(viewModel1.surveyType, SurveyType.fast)
+            viewModel1.setBoolvalue(viewModel1.surveyModeLayout, false);
+        }
+        viewBinding.btAutoSurvey.setOnClickListener {
+            viewModel1.setSurveyType(viewModel1.surveyType, SurveyType.auto)
+            viewModel1.setBoolvalue(viewModel1.surveyModeLayout, false);
         }
     }
 

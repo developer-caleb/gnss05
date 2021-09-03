@@ -8,6 +8,8 @@
         <import type="android.view.View"/>
         <import type="java.util.ArrayList"/>
         <import type="java.util.Arrays"/>
+        <import type="kr.loplab.gnss05.enums.SurveyType"/>
+
         <variable
             name="Optionlist"
             type="kr.loplab.gnss05.common.OptionList"/>
@@ -20,24 +22,6 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-
-
-    <kr.loplab.gnss05.DefaultHeader
-        android:id="@+id/header_02"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:backButtonEnabled="false"
-        app:title="현황 작업"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" >
-    </kr.loplab.gnss05.DefaultHeader>
-
-    <View
-        android:id="@+id/divider10"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="?android:attr/listDivider" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -217,11 +201,19 @@
     </LinearLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/background_demomode"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1">
 
+        <View
+            android:id="@+id/background_demomode"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -357,7 +349,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:visibility="@{viewModel.surveyModeLayout? View.Visible : Vi}"
+            android:visibility="@{viewModel.surveyModeLayout? View.VISIBLE : View.GONE}"
             app:layout_constraintEnd_toEndOf="@+id/linearLayout6"
             app:layout_constraintTop_toTopOf="@+id/linearLayout6">
 
@@ -366,6 +358,7 @@
                 style="@style/IMAGEVIEW_SURVEY_BUTTON"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/SURVEY_ICON_SIZE"
+                android:gravity="center_vertical"
                 android:orientation="horizontal">
 
                 <ImageView
@@ -394,6 +387,7 @@
                 style="@style/IMAGEVIEW_SURVEY_BUTTON"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/SURVEY_ICON_SIZE"
+                android:gravity="center_vertical"
                 android:orientation="horizontal">
 
                 <ImageView
@@ -424,6 +418,7 @@
                 style="@style/IMAGEVIEW_SURVEY_BUTTON"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/SURVEY_ICON_SIZE"
+                android:gravity="center_vertical"
                 android:orientation="horizontal">
 
                 <ImageView
