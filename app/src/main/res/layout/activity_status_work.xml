@@ -31,7 +31,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:background="@color/grey_66"
+        android:background="@color/grey_55"
         android:orientation="horizontal">
 
 
@@ -86,7 +86,7 @@
                 app:layout_constraintHorizontal_bias="0.84"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.90999997"
+                app:layout_constraintVertical_bias="0.91"
                 app:srcCompat="@drawable/ic_tablet_on" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -127,7 +127,7 @@
             android:layout_marginBottom="3dp"
             android:layout_weight="0"
             android:padding="0dp"
-            app:srcCompat="@drawable/diff_singal_1" />
+            app:srcCompat="@drawable/ic_signal0" />
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -195,14 +195,14 @@
         </LinearLayout>
 
         <ImageView
-            android:id="@+id/battery_status"
+            android:id="@+id/bt_battery_status"
             style="@style/IMAGEVIEW_01"
             android:layout_gravity="bottom"
             android:layout_weight="0"
             android:padding="0dp"
             android:scaleType="center"
-            android:tint="#FFFFFF"
-            app:srcCompat="@drawable/ic_battery_3" />
+            app:srcCompat="@drawable/ic_battery_3"
+            app:tint="#FFFFFF" />
     </LinearLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
