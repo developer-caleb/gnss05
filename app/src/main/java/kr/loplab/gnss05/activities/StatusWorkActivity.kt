@@ -52,6 +52,9 @@ class StatusWorkActivity : ActivityBase<ActivityStatusWorkBinding>() {
             alertDialog.show()
             alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.BLUE)
         }
+        viewBinding.btSurveyMode.setOnClickListener {
+
+        }
     }
 
     override fun initDatabinding() {
