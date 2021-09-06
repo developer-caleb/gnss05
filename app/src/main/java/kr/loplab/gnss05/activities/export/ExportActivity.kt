@@ -124,9 +124,21 @@ class ExportActivity :  ActivityBase<ActivityExportBinding>() {
         viewModel1.setBoolvalue(viewModel1.roadCrossSecionOutputUsing, PrefUtil.getBoolean(applicationContext, Define.EXPORT_POINT_REFERENCE_POINT))
         viewModel1.setBoolvalue(viewModel1.roadCrossSecionOutputUsing, PrefUtil.getBoolean(applicationContext, Define.EXPORT_POINT_REFERENCE_POINT))
         viewModel1.setIntvalue(viewModel1.degreeFormNum, PrefUtil.getInt2(applicationContext, Define.EXPORT_DEGREE_FORM))
-        setTvFileFormatList(viewModel1.degreeFormNum.value!!);
+
         // viewModel1.set(viewModel1.roadCrossSecionOutputUsing, PrefUtil.getString(applicationContext, Define.EXPORT_FILE_FORM_LIST))
 
+
+
+
+
+
+
+        viewModel1.fileFormNum.observe (this , {
+            viewModel1.setStringValue(viewModel1.fileFormList,
+                when(it){
+                    0->pointDataForm()
+                    else->"123"
+                })})
     }
 
     fun savesettings(){
@@ -141,14 +153,11 @@ class ExportActivity :  ActivityBase<ActivityExportBinding>() {
         PrefUtil.setBoolean(applicationContext, Define.EXPORT_POINT_REFERENCE_POINT, viewModel1.roadCrossSecionOutputUsing.value!!)
         PrefUtil.setInt(applicationContext, Define.EXPORT_DEGREE_FORM, viewModel1.degreeFormNum.value!!)
     }
-
-    fun setTvFileFormatList(formatindex : Int){
-        viewModel1.setStringValue(viewModel1.fileFormList,
-            when(formatindex){
-            0->"하이"
-            else->"123"
-        })
-
-
+    fun pointDataForm(): String{
+        var arrayList = arrayOf(0,1, 49, 50,51,52,53,54,2,3,4,42,5,6,7,37, 27,28, 33, 29, 30, 39, 23,24 , 44, );
+        var returnString = "";
+        arrayList.forEachIndexed { index, element -> returnString = "$returnString[${OptionList.optionitemlist[element]}]," }
+        return returnString
     }
+
 }
