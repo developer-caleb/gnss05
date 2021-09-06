@@ -45,9 +45,9 @@ class OptionList {
 
       //내보내기
       val DEGREE_FORM_TYPE = arrayListOf<String>("dd.mmsss", "dd:mm:ss.ssss", "ddºmm'ss.ssss\"", "dd (Decimal)", "Radian")
-      val DEGREE_FILE_FORM = arrayListOf<String>("측량 점 데이터 형식(.csv)", "TPS 데이터형식(.csv)", "DOL 파일 형식(.csv)",
+      val DEGREE_FILE_FORM1 = arrayListOf<String>("측량 점 데이터 형식(.csv)", "TPS 데이터형식(.csv)", "DOL 파일 형식(.csv)",
           "측점보고서(Brief)(.xls)", "측점보고서(Complete)(.xls)", "Gnss measuremnet report (.xls)", "전체 제어점 보고서 (.xls)")
-
+      val DEGREE_FILE_FORM2 = arrayListOf<String>("단면 측정 데이터(.csv)")
 
       //UserFormatMake
       var optionitemlist  = arrayOf("이름", "코드", "위도", "경도", "고도", "X", "Y", "Z(레벨)", "X(공간)", "Y(공간)",  //0~9

@@ -83,7 +83,7 @@ class ExportActivity :  ActivityBase<ActivityExportBinding>() {
         //횡단면 출력 ON
         viewBinding.layoutFileForm1.setOnClickListener {
             val dlg = MyDialog(this)
-            var alist = OptionList.DEGREE_FILE_FORM
+            var alist = OptionList.DEGREE_FILE_FORM1
             dlg.firstLayoutUse = false
             dlg.list = alist
             dlg.selectedposition = viewModel1.fileFormNum.value!!
@@ -98,7 +98,7 @@ class ExportActivity :  ActivityBase<ActivityExportBinding>() {
         //횡단면 출력 OFF
         viewBinding.layoutFileForm2.setOnClickListener {
             val dlg = MyDialog(this)
-            var alist = OptionList.DEGREE_FILE_FORM
+            var alist = OptionList.DEGREE_FILE_FORM2
             dlg.firstLayoutUse = false
             dlg.list = alist
             dlg.selectedposition = viewModel1.fileFormNum.value!!
