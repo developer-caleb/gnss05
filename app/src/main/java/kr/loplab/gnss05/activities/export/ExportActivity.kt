@@ -83,31 +83,31 @@ class ExportActivity :  ActivityBase<ActivityExportBinding>() {
         //횡단면 출력 ON
         viewBinding.layoutFileForm1.setOnClickListener {
             val dlg = MyDialog(this)
-            var alist = OptionList.DEGREE_FORM_TYPE
+            var alist = OptionList.DEGREE_FILE_FORM
             dlg.firstLayoutUse = false
             dlg.list = alist
-            dlg.selectedposition = viewModel1.degreeFormNum.value!!
+            dlg.selectedposition = viewModel1.fileFormNum.value!!
             dlg.start("")
             dlg.setOnListClickedListener { view, i ->
-                viewModel1.degreeFormNum.value = i
+                viewModel1.fileFormNum.value = i
                 dlg.dismiss()
             }
-            dlg.setHeader("각도 형식")
+            dlg.setHeader("파일 형식")
         }
 
         //횡단면 출력 OFF
         viewBinding.layoutFileForm2.setOnClickListener {
             val dlg = MyDialog(this)
-            var alist = OptionList.DEGREE_FORM_TYPE
+            var alist = OptionList.DEGREE_FILE_FORM
             dlg.firstLayoutUse = false
             dlg.list = alist
-            dlg.selectedposition = viewModel1.degreeFormNum.value!!
+            dlg.selectedposition = viewModel1.fileFormNum.value!!
             dlg.start("")
             dlg.setOnListClickedListener { view, i ->
-                viewModel1.degreeFormNum.value = i
+                viewModel1.fileFormNum.value = i
                 dlg.dismiss()
             }
-            dlg.setHeader("각도 형식")
+            dlg.setHeader("파일 형식")
         }
 
     }
