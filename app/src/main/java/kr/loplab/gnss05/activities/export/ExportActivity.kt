@@ -122,7 +122,10 @@ class ExportActivity :  ActivityBase<ActivityExportBinding>() {
         viewModel1.setBoolvalue(viewModel1.roadCrossSecionOutputUsing, PrefUtil.getBoolean(applicationContext, Define.EXPORT_POINT_POINT_SKATE))
         viewModel1.setBoolvalue(viewModel1.roadCrossSecionOutputUsing, PrefUtil.getBoolean(applicationContext, Define.EXPORT_POINT_SCREEN_POINT))
         viewModel1.setBoolvalue(viewModel1.roadCrossSecionOutputUsing, PrefUtil.getBoolean(applicationContext, Define.EXPORT_POINT_REFERENCE_POINT))
-       // viewModel1.set(viewModel1.roadCrossSecionOutputUsing, PrefUtil.getString(applicationContext, Define.EXPORT_FILE_FORM_LIST))
+        viewModel1.setBoolvalue(viewModel1.roadCrossSecionOutputUsing, PrefUtil.getBoolean(applicationContext, Define.EXPORT_POINT_REFERENCE_POINT))
+        viewModel1.setIntvalue(viewModel1.degreeFormNum, PrefUtil.getInt2(applicationContext, Define.EXPORT_DEGREE_FORM))
+        setTvFileFormatList(viewModel1.degreeFormNum.value!!);
+        // viewModel1.set(viewModel1.roadCrossSecionOutputUsing, PrefUtil.getString(applicationContext, Define.EXPORT_FILE_FORM_LIST))
 
     }
 
@@ -136,6 +139,15 @@ class ExportActivity :  ActivityBase<ActivityExportBinding>() {
         PrefUtil.setBoolean(applicationContext, Define.EXPORT_POINT_POINT_SKATE, viewModel1.roadCrossSecionOutputUsing.value!!)
         PrefUtil.setBoolean(applicationContext, Define.EXPORT_POINT_SCREEN_POINT, viewModel1.roadCrossSecionOutputUsing.value!!)
         PrefUtil.setBoolean(applicationContext, Define.EXPORT_POINT_REFERENCE_POINT, viewModel1.roadCrossSecionOutputUsing.value!!)
+        PrefUtil.setInt(applicationContext, Define.EXPORT_DEGREE_FORM, viewModel1.degreeFormNum.value!!)
+    }
+
+    fun setTvFileFormatList(formatindex : Int){
+        viewModel1.setStringValue(viewModel1.fileFormList,
+            when(formatindex){
+            0->"하이"
+            else->"123"
+        })
 
 
     }

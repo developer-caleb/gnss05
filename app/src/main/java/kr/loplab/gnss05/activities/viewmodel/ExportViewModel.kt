@@ -65,4 +65,7 @@ class ExportViewModel : ViewModel(){
     fun setBoolvalue(data : MutableLiveData<Boolean>, boolvalue : Boolean){
         data.value = boolvalue
     }
+    fun setStringValue(data : MutableLiveData<String>, stringValue : String){
+        data.value = stringValue
+    }
 }
