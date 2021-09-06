@@ -12,7 +12,6 @@ import kr.loplab.gnss05.common.Define.EXPORT_ROAD_CROSS_SECTION_OUTPUT_USING
 import kr.loplab.gnss05.common.OptionList
 import kr.loplab.gnss05.common.PrefUtil
 import kr.loplab.gnss05.databinding.ActivityExportBinding
-import kr.loplab.gnss05.tableview.TableMainActivity
 
 class ExportActivity :  ActivityBase<ActivityExportBinding>() {
     override val layoutResourceId: Int
@@ -80,31 +79,31 @@ class ExportActivity :  ActivityBase<ActivityExportBinding>() {
             }
             dlg.setHeader("각도 형식")
         }
-        //횡단면 출력 ON
+        //횡단면 출력 OFF
         viewBinding.layoutFileForm1.setOnClickListener {
             val dlg = MyDialog(this)
             var alist = OptionList.DEGREE_FILE_FORM1
             dlg.firstLayoutUse = false
             dlg.list = alist
-            dlg.selectedposition = viewModel1.fileFormNum.value!!
+            dlg.selectedposition = viewModel1.fileFormNum1.value!!
             dlg.start("")
             dlg.setOnListClickedListener { view, i ->
-                viewModel1.fileFormNum.value = i
+                viewModel1.fileFormNum1.value = i
                 dlg.dismiss()
             }
             dlg.setHeader("파일 형식")
         }
 
-        //횡단면 출력 OFF
+        //횡단면 출력 ON
         viewBinding.layoutFileForm2.setOnClickListener {
             val dlg = MyDialog(this)
             var alist = OptionList.DEGREE_FILE_FORM2
             dlg.firstLayoutUse = false
             dlg.list = alist
-            dlg.selectedposition = viewModel1.fileFormNum.value!! - OptionList.DEGREE_FILE_FORM1.size
+            dlg.selectedposition = viewModel1.fileFormNum2.value!!
             dlg.start("")
             dlg.setOnListClickedListener { view, i ->
-                viewModel1.fileFormNum.value = i + OptionList.DEGREE_FILE_FORM1.size
+                viewModel1.fileFormNum2.value = i
                 dlg.dismiss()
             }
             dlg.setHeader("파일 형식")
@@ -114,34 +113,26 @@ class ExportActivity :  ActivityBase<ActivityExportBinding>() {
 
     override fun initDatabinding() {
         viewModel1.setBoolvalue(viewModel1.roadCrossSecionOutputUsing, PrefUtil.getBoolean(applicationContext, EXPORT_ROAD_CROSS_SECTION_OUTPUT_USING))
-        viewModel1.setBoolvalue(viewModel1.roadCrossSecionOutputUsing, PrefUtil.getBoolean(applicationContext, Define.EXPORT_POINT_ASSIST))
-        viewModel1.setBoolvalue(viewModel1.roadCrossSecionOutputUsing, PrefUtil.getBoolean(applicationContext, Define.EXPORT_POINT_MEASUREMENT))
-        viewModel1.setBoolvalue(viewModel1.roadCrossSecionOutputUsing, PrefUtil.getBoolean(applicationContext, Define.EXPORT_POINT_CONTROL_MEASUREMENT))
-        viewModel1.setBoolvalue(viewModel1.roadCrossSecionOutputUsing, PrefUtil.getBoolean(applicationContext, Define.EXPORT_POINT_POINT_INPUT))
-        viewModel1.setBoolvalue(viewModel1.roadCrossSecionOutputUsing, PrefUtil.getBoolean(applicationContext, Define.EXPORT_POINT_POINT_CALCULATION))
-        viewModel1.setBoolvalue(viewModel1.roadCrossSecionOutputUsing, PrefUtil.getBoolean(applicationContext, Define.EXPORT_POINT_POINT_SKATE))
+        viewModel1.setBoolvalue(viewModel1.pointAssist, PrefUtil.getBoolean(applicationContext, Define.EXPORT_POINT_ASSIST))
+        viewModel1.setBoolvalue(viewModel1.pointMeasurement, PrefUtil.getBoolean(applicationContext, Define.EXPORT_POINT_MEASUREMENT))
+        viewModel1.setBoolvalue(viewModel1.controlMeasurement, PrefUtil.getBoolean(applicationContext, Define.EXPORT_POINT_CONTROL_MEASUREMENT))
+        viewModel1.setBoolvalue(viewModel1.pointInput, PrefUtil.getBoolean(applicationContext, Define.EXPORT_POINT_INPUT))
+        viewModel1.setBoolvalue(viewModel1.pointCalculation, PrefUtil.getBoolean(applicationContext, Define.EXPORT_POINT_CALCULATION))
+        viewModel1.setBoolvalue(viewModel1.pointSkate, PrefUtil.getBoolean(applicationContext, Define.EXPORT_POINT_SKATE))
         viewModel1.setBoolvalue(viewModel1.roadCrossSecionOutputUsing, PrefUtil.getBoolean(applicationContext, Define.EXPORT_POINT_SCREEN_POINT))
         viewModel1.setBoolvalue(viewModel1.roadCrossSecionOutputUsing, PrefUtil.getBoolean(applicationContext, Define.EXPORT_POINT_REFERENCE_POINT))
         viewModel1.setBoolvalue(viewModel1.roadCrossSecionOutputUsing, PrefUtil.getBoolean(applicationContext, Define.EXPORT_POINT_REFERENCE_POINT))
         viewModel1.setIntvalue(viewModel1.degreeFormNum, PrefUtil.getInt2(applicationContext, Define.EXPORT_DEGREE_FORM))
-
-        // viewModel1.set(viewModel1.roadCrossSecionOutputUsing, PrefUtil.getString(applicationContext, Define.EXPORT_FILE_FORM_LIST))
-
-
+        viewModel1.setIntvalue(viewModel1.fileFormNum1, PrefUtil.getInt2(applicationContext, Define.EXPORT_FILEFORM_NUM1))
+        viewModel1.setIntvalue(viewModel1.fileFormNum2, PrefUtil.getInt2(applicationContext, Define.EXPORT_FILEFORM_NUM2))
 
 
-
-
-
-        viewModel1.fileFormNum.observe (this , {
-            viewModel1.setStringValue(viewModel1.fileFormList,
-                dataForm(it))})
-        viewModel1.roadCrossSecionOutputUsing.observe(this, {
-            when(it){
-               true -> viewModel1.setIntvalue(viewModel1.fileFormNum, 7 )
-                false -> viewModel1.setIntvalue(viewModel1.fileFormNum, 0 )
-            }
-        })
+        viewModel1.fileFormNum1.observe (this , {
+            viewModel1.setStringValue(viewModel1.fileFormList1,
+                dataForm1(it))})
+        viewModel1.fileFormNum2.observe (this , {
+            viewModel1.setStringValue(viewModel1.fileFormList2,
+                dataForm2(it))})
     }
 
 
@@ -150,20 +141,30 @@ class ExportActivity :  ActivityBase<ActivityExportBinding>() {
         PrefUtil.setBoolean(applicationContext, Define.EXPORT_POINT_ASSIST, viewModel1.roadCrossSecionOutputUsing.value!!)
         PrefUtil.setBoolean(applicationContext, Define.EXPORT_POINT_MEASUREMENT, viewModel1.roadCrossSecionOutputUsing.value!!)
         PrefUtil.setBoolean(applicationContext, Define.EXPORT_POINT_CONTROL_MEASUREMENT, viewModel1.roadCrossSecionOutputUsing.value!!)
-        PrefUtil.setBoolean(applicationContext, Define.EXPORT_POINT_POINT_INPUT, viewModel1.roadCrossSecionOutputUsing.value!!)
-        PrefUtil.setBoolean(applicationContext, Define.EXPORT_POINT_POINT_CALCULATION, viewModel1.roadCrossSecionOutputUsing.value!!)
-        PrefUtil.setBoolean(applicationContext, Define.EXPORT_POINT_POINT_SKATE, viewModel1.roadCrossSecionOutputUsing.value!!)
+        PrefUtil.setBoolean(applicationContext, Define.EXPORT_POINT_INPUT, viewModel1.roadCrossSecionOutputUsing.value!!)
+        PrefUtil.setBoolean(applicationContext, Define.EXPORT_POINT_CALCULATION, viewModel1.roadCrossSecionOutputUsing.value!!)
+        PrefUtil.setBoolean(applicationContext, Define.EXPORT_POINT_SKATE, viewModel1.roadCrossSecionOutputUsing.value!!)
         PrefUtil.setBoolean(applicationContext, Define.EXPORT_POINT_SCREEN_POINT, viewModel1.roadCrossSecionOutputUsing.value!!)
         PrefUtil.setBoolean(applicationContext, Define.EXPORT_POINT_REFERENCE_POINT, viewModel1.roadCrossSecionOutputUsing.value!!)
         PrefUtil.setInt(applicationContext, Define.EXPORT_DEGREE_FORM, viewModel1.degreeFormNum.value!!)
     }
-    fun dataForm(index: Int): String{
+    fun dataForm1(index: Int): String{
         var arrayList =
             when(index){
                 1->arrayOf(0,1,2,3,4,5,6,7, 23,24, 74,75,76,77,78,79,80,81,82,83,84,85,86,87,88)
                 7-> arrayOf(11, 13,0,1,6,7,8,16,17,15,18)
          else -> arrayOf(0,1,50,51,52,53,54,55,2,3,4,42,5,6,7,37,27,28,33,29,30,39,23,24,45,46,47,48,49,56,57,58,59,60,61,62,63,64,12,16,17,18,19,21);
       }
+        var returnString = "";
+        arrayList.forEachIndexed { index, element -> returnString = "$returnString[${OptionList.optionitemlist[element]}], " }
+        return returnString
+    }
+    fun dataForm2(index: Int): String{
+        var arrayList =
+            when(index){
+                0->arrayOf(11, 13,0,1,6,7,8,16,17,15,18)
+                else -> arrayOf(11, 13,0,1,6,7,8,16,17,15,18)
+            }
         var returnString = "";
         arrayList.forEachIndexed { index, element -> returnString = "$returnString[${OptionList.optionitemlist[element]}], " }
         return returnString

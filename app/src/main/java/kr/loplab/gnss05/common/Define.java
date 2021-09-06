@@ -181,12 +181,15 @@ public class Define {
     public static final String EXPORT_POINT_ASSIST = "export_point_assist";
     public static final String EXPORT_POINT_MEASUREMENT = "export_point_measurement";
     public static final String EXPORT_POINT_CONTROL_MEASUREMENT = "export_point_control_measurement";
-    public static final String EXPORT_POINT_POINT_INPUT = "export_point_point_input";
-    public static final String EXPORT_POINT_POINT_CALCULATION = "export_point_point_calculation";
-    public static final String EXPORT_POINT_POINT_SKATE = "export_point_point_skate";
+    public static final String EXPORT_POINT_INPUT = "export_point_input";
+    public static final String EXPORT_POINT_CALCULATION = "export_point_calculation";
+    public static final String EXPORT_POINT_SKATE = "export_point_skate";
     public static final String EXPORT_POINT_SCREEN_POINT = "export_point_screen_point";
     public static final String EXPORT_POINT_REFERENCE_POINT = "export_point_reference_point";
     public static final String EXPORT_DEGREE_FORM = "export_degree_form";
+    public static final String EXPORT_FILEFORM_NUM1 = "export_degree_form1";
+    public static final String EXPORT_FILEFORM_NUM2 = "export_degree_form2";
+
     public static final String EXPORT_FILE_FORM_LIST = "export_point_file_form_list";
 
 

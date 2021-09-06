@@ -18,8 +18,11 @@ class ExportViewModel : ViewModel(){
     var pointSkate = MutableLiveData<Boolean>(false)
     var screenPoint = MutableLiveData<Boolean>(false)
     var referencePoint = MutableLiveData<Boolean>(false)
-    var fileFormNum = MutableLiveData<Int>(0)
-    var fileFormList = MutableLiveData<String>("")
+    var fileFormNum1 = MutableLiveData<Int>(0)
+    var fileFormNum2 = MutableLiveData<Int>(0)
+    var fileFormList1 = MutableLiveData<String>("")
+    var fileFormList2 = MutableLiveData<String>("")
+
     /* var ellipsoidNameNum = MutableLiveData<Int>(0)
      var itrfConversion = MutableLiveData<Boolean>(false)
      var inputSpeed = MutableLiveData<Boolean>(false)

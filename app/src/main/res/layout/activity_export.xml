@@ -108,8 +108,6 @@
                     android:layout_height="match_parent"
                     android:visibility="@{viewModel.roadCrossSecionOutputUsing ? View.GONE : View.VISIBLE }"
                     android:orientation="vertical"
-
-
                     >
                 <LinearLayout
                     android:id="@+id/layout_file_form1"
@@ -127,7 +125,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="0"
-                        android:text="@{Optionlist.Companion.DEGREE_FILE_FORM1.get(viewModel.fileFormNum)}" />
+                        android:text="@{Optionlist.Companion.DEGREE_FILE_FORM1.get(viewModel.fileFormNum1)}" />
 
 
                     <ImageView
@@ -145,57 +143,15 @@
                     android:layout_height="4dp"
                     android:layout_weight="0"
                     android:background="@color/grey_cc" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:visibility="@{viewModel.roadCrossSecionOutputUsing ? View.VISIBLE : View.GONE }"
-                    android:orientation="vertical"
 
 
-                    >
-                    <LinearLayout
-                        android:id="@+id/layout_file_form2"
 
-                        style="@style/ButtonLayout_STYLE01">
-
-                        <TextView
-                            style="@style/Sub_TEXTVIEW_STYLE1"
-                            android:text="파일형식"
-                            />
-
-                        <TextView
-                            android:id="@+id/tv_file_form2"
-                            style="@style/Sub_TEXTVIEW_STYLE3"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="0"
-                            android:text="단면 측정 데이터(.csv)" />
-
-
-                        <ImageView
-                            android:layout_width="@dimen/rightArrowSize"
-                            android:layout_height="@dimen/rightArrowSize"
-                            android:layout_weight="0"
-                            android:padding="5dp"
-                            android:layout_marginRight="8dp"
-                            app:srcCompat="@drawable/next_icon" />
-
-                    </LinearLayout>
-
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="4dp"
-                        android:layout_weight="0"
-                        android:background="@color/grey_cc" />
-                </LinearLayout>
 
                 <LinearLayout
                      android:layout_width="match_parent"
                      android:layout_height="wrap_content"
                      android:orientation="vertical"
-                    android:visibility="@{viewModel.fileFormNum == 0 || viewModel.fileFormNum == 1 ? View.VISIBLE : View.GONE}"
+                    android:visibility="@{viewModel.fileFormNum1 == 0 || viewModel.fileFormNum1 == 1 ? View.VISIBLE : View.GONE}"
                     >
                 <LinearLayout
                     style="@style/ButtonLayout_STYLE01"
@@ -207,7 +163,7 @@
                         android:id="@+id/tv_file_form_list"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@{viewModel.fileFormList}"
+                        android:text="@{viewModel.fileFormList1}"
                         android:textSize="14dp"
                         android:textColor="@color/black"
                         android:paddingLeft="15dp"
@@ -268,7 +224,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:orientation="vertical"
-                    android:visibility="@{viewModel.fileFormNum == 2 ? View.VISIBLE : View.GONE}"
+                    android:visibility="@{viewModel.fileFormNum1 == 2 ? View.VISIBLE : View.GONE}"
                     >
 
                     <LinearLayout
@@ -494,7 +450,7 @@
 
 
                 </LinearLayout>
-
+                </LinearLayout>
 
                 <!--–(도로 횡단면 출력 OFF) – 파일형식 (AutoCAD(이름) (.dxf)) 하위옵션-->
                 <LinearLayout
@@ -803,7 +759,80 @@
 
                 </LinearLayout>
 
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:visibility="@{viewModel.roadCrossSecionOutputUsing ? View.VISIBLE : View.GONE }"
 
+                    >
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    >
+                    <LinearLayout
+                        android:id="@+id/layout_file_form2"
+
+                        style="@style/ButtonLayout_STYLE01">
+
+                        <TextView
+                            style="@style/Sub_TEXTVIEW_STYLE1"
+                            android:text="파일형식"
+                            />
+
+                        <TextView
+                            android:id="@+id/tv_file_form2"
+                            style="@style/Sub_TEXTVIEW_STYLE3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0"
+                            android:text="단면 측정 데이터(.csv)" />
+
+
+                        <ImageView
+                            android:layout_width="@dimen/rightArrowSize"
+                            android:layout_height="@dimen/rightArrowSize"
+                            android:layout_weight="0"
+                            android:padding="5dp"
+                            android:layout_marginRight="8dp"
+                            app:srcCompat="@drawable/next_icon" />
+
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="4dp"
+                        android:layout_weight="0"
+                        android:background="@color/grey_cc" />
+
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    style="@style/ButtonLayout_STYLE01"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="5dp"
+                    android:paddingBottom="5dp">
+
+                    <TextView
+                        android:id="@+id/tv_file_form_list2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@{viewModel.fileFormList2}"
+                        android:textSize="14dp"
+                        android:textColor="@color/black"
+                        android:paddingLeft="15dp"
+                        android:paddingRight="15dp"
+                         />
+                </LinearLayout>
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="4dp"
+                        android:layout_weight="0"
+                        android:background="@color/grey_cc" />
+                </LinearLayout>
 
             </LinearLayout>
         </ScrollView>
