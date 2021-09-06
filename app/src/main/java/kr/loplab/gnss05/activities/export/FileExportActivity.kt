@@ -117,15 +117,9 @@ class FileExportActivity : ActivityBase<ActivityFileExportBinding>(),
                      Directorytype.downloadfolders.name-> initdirectory(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).absolutePath)
                      Directorytype.SDCARDfolder.name-> initdirectory(rootPath)
                      Directorytype.goBack.name -> prevPath(path)
-                     Directorytype.storagedirectory.name -> {
-                     goFolder("EXPORT")
-                     }
-                     Directorytype.Coordinate.name -> {
-                         goFolder("Coordinate")
-                     }
-                     Directorytype.GEOid.name -> {
-                         goFolder("Geoid")
-                     }
+                     Directorytype.storagedirectory.name -> { goFolder("EXPORT") }
+                     Directorytype.Coordinate.name -> { goFolder("Coordinate") }
+                     Directorytype.GEOid.name -> { goFolder("Geoid") }
                      else ->  nextPath(path);
                  }
     }
