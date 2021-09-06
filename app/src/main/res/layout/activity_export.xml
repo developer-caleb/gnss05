@@ -103,8 +103,17 @@
                     android:background="@color/grey_cc" />
 
 
-
                 <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:visibility="@{viewModel.roadCrossSecionOutputUsing ? View.VISIBLE : View.GONE }"
+                    android:orientation="vertical"
+
+
+                    >
+                <LinearLayout
+                    android:id="@+id/layout_file_form1"
+
                     style="@style/ButtonLayout_STYLE01">
 
                     <TextView
@@ -113,6 +122,7 @@
                          />
 
                     <TextView
+                        android:id="@+id/tv_file_form1"
                         style="@style/Sub_TEXTVIEW_STYLE3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -135,7 +145,51 @@
                     android:layout_height="4dp"
                     android:layout_weight="0"
                     android:background="@color/grey_cc" />
+                </LinearLayout>
 
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:visibility="@{viewModel.roadCrossSecionOutputUsing ? View.GONE : View.VISIBLE }"
+                    android:orientation="vertical"
+
+
+                    >
+                    <LinearLayout
+                        android:id="@+id/layout_file_form2"
+
+                        style="@style/ButtonLayout_STYLE01">
+
+                        <TextView
+                            style="@style/Sub_TEXTVIEW_STYLE1"
+                            android:text="파일형식"
+                            />
+
+                        <TextView
+                            android:id="@+id/tv_file_form2"
+                            style="@style/Sub_TEXTVIEW_STYLE3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0"
+                            android:text="측량 점 데이터 형식(.csv)" />
+
+
+                        <ImageView
+                            android:layout_width="@dimen/rightArrowSize"
+                            android:layout_height="@dimen/rightArrowSize"
+                            android:layout_weight="0"
+                            android:padding="5dp"
+                            android:layout_marginRight="8dp"
+                            app:srcCompat="@drawable/next_icon" />
+
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="4dp"
+                        android:layout_weight="0"
+                        android:background="@color/grey_cc" />
+                </LinearLayout>
 
 
                 <LinearLayout

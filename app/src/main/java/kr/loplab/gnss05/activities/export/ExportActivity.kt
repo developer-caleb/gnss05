@@ -80,14 +80,62 @@ class ExportActivity :  ActivityBase<ActivityExportBinding>() {
             }
             dlg.setHeader("각도 형식")
         }
+        //횡단면 출력 ON
+        viewBinding.layoutFileForm1.setOnClickListener {
+            val dlg = MyDialog(this)
+            var alist = OptionList.DEGREE_FORM_TYPE
+            dlg.firstLayoutUse = false
+            dlg.list = alist
+            dlg.selectedposition = viewModel1.degreeFormNum.value!!
+            dlg.start("")
+            dlg.setOnListClickedListener { view, i ->
+                viewModel1.degreeFormNum.value = i
+                dlg.dismiss()
+            }
+            dlg.setHeader("각도 형식")
+        }
+
+        //횡단면 출력 OFF
+        viewBinding.layoutFileForm2.setOnClickListener {
+            val dlg = MyDialog(this)
+            var alist = OptionList.DEGREE_FORM_TYPE
+            dlg.firstLayoutUse = false
+            dlg.list = alist
+            dlg.selectedposition = viewModel1.degreeFormNum.value!!
+            dlg.start("")
+            dlg.setOnListClickedListener { view, i ->
+                viewModel1.degreeFormNum.value = i
+                dlg.dismiss()
+            }
+            dlg.setHeader("각도 형식")
+        }
+
     }
 
     override fun initDatabinding() {
         viewModel1.setBoolvalue(viewModel1.roadCrossSecionOutputUsing, PrefUtil.getBoolean(applicationContext, EXPORT_ROAD_CROSS_SECTION_OUTPUT_USING))
+        viewModel1.setBoolvalue(viewModel1.roadCrossSecionOutputUsing, PrefUtil.getBoolean(applicationContext, Define.EXPORT_POINT_ASSIST))
+        viewModel1.setBoolvalue(viewModel1.roadCrossSecionOutputUsing, PrefUtil.getBoolean(applicationContext, Define.EXPORT_POINT_MEASUREMENT))
+        viewModel1.setBoolvalue(viewModel1.roadCrossSecionOutputUsing, PrefUtil.getBoolean(applicationContext, Define.EXPORT_POINT_CONTROL_MEASUREMENT))
+        viewModel1.setBoolvalue(viewModel1.roadCrossSecionOutputUsing, PrefUtil.getBoolean(applicationContext, Define.EXPORT_POINT_POINT_INPUT))
+        viewModel1.setBoolvalue(viewModel1.roadCrossSecionOutputUsing, PrefUtil.getBoolean(applicationContext, Define.EXPORT_POINT_POINT_CALCULATION))
+        viewModel1.setBoolvalue(viewModel1.roadCrossSecionOutputUsing, PrefUtil.getBoolean(applicationContext, Define.EXPORT_POINT_POINT_SKATE))
+        viewModel1.setBoolvalue(viewModel1.roadCrossSecionOutputUsing, PrefUtil.getBoolean(applicationContext, Define.EXPORT_POINT_SCREEN_POINT))
+        viewModel1.setBoolvalue(viewModel1.roadCrossSecionOutputUsing, PrefUtil.getBoolean(applicationContext, Define.EXPORT_POINT_REFERENCE_POINT))
 
     }
 
     fun savesettings(){
         PrefUtil.setBoolean(applicationContext, Define.EXPORT_ROAD_CROSS_SECTION_OUTPUT_USING, viewModel1.roadCrossSecionOutputUsing.value!!)
+        PrefUtil.setBoolean(applicationContext, Define.EXPORT_POINT_ASSIST, viewModel1.roadCrossSecionOutputUsing.value!!)
+        PrefUtil.setBoolean(applicationContext, Define.EXPORT_POINT_MEASUREMENT, viewModel1.roadCrossSecionOutputUsing.value!!)
+        PrefUtil.setBoolean(applicationContext, Define.EXPORT_POINT_CONTROL_MEASUREMENT, viewModel1.roadCrossSecionOutputUsing.value!!)
+        PrefUtil.setBoolean(applicationContext, Define.EXPORT_POINT_POINT_INPUT, viewModel1.roadCrossSecionOutputUsing.value!!)
+        PrefUtil.setBoolean(applicationContext, Define.EXPORT_POINT_POINT_CALCULATION, viewModel1.roadCrossSecionOutputUsing.value!!)
+        PrefUtil.setBoolean(applicationContext, Define.EXPORT_POINT_POINT_SKATE, viewModel1.roadCrossSecionOutputUsing.value!!)
+        PrefUtil.setBoolean(applicationContext, Define.EXPORT_POINT_SCREEN_POINT, viewModel1.roadCrossSecionOutputUsing.value!!)
+        PrefUtil.setBoolean(applicationContext, Define.EXPORT_POINT_REFERENCE_POINT, viewModel1.roadCrossSecionOutputUsing.value!!)
+
+
     }
 }
