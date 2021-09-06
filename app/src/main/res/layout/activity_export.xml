@@ -199,10 +199,11 @@
                     android:paddingBottom="5dp">
 
                     <TextView
+                        android:id="@+id/tv_file_form_list"
                         style="@style/Sub_TEXTVIEW_STYLE1"
                         android:layout_height="wrap_content"
                         android:paddingRight="20dp"
-                        android:text="[이름],[코드],[원점 위도],[원점 경도],[원점 고도],[Station Correction x],[Station Correction y],[Station Correction h],[위도],[경도],[고도],[안테나 높이],[X],[Y],[Z(레벨)],[솔루션 정보],[위성연산],[위성 추적중],[PDOP],[수평오차],[수직오차,[지연],[현재날짜],[현재시간],[기준국 ID],[기준국 위도],[기준국 경도],[기준국 고도],[기준국과 거리],[경사 보정],[경사 각도],[투영 각도],[X보정],[Y보정],[측설점],[스테이션],[옵셋],[레벨편차],[시작거리],[타워명],[타워번호]"
+                        android:text="@{viewModel.fileFormList}"
                          />
 
                 </LinearLayout>

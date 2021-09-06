@@ -186,6 +186,7 @@ public class Define {
     public static final String EXPORT_POINT_POINT_SKATE = "export_point_point_skate";
     public static final String EXPORT_POINT_SCREEN_POINT = "export_point_screen_point";
     public static final String EXPORT_POINT_REFERENCE_POINT = "export_point_reference_point";
+    public static final String EXPORT_FILE_FORM_LIST = "export_point_file_form_list";
 
 
 

@@ -122,6 +122,7 @@ class ExportActivity :  ActivityBase<ActivityExportBinding>() {
         viewModel1.setBoolvalue(viewModel1.roadCrossSecionOutputUsing, PrefUtil.getBoolean(applicationContext, Define.EXPORT_POINT_POINT_SKATE))
         viewModel1.setBoolvalue(viewModel1.roadCrossSecionOutputUsing, PrefUtil.getBoolean(applicationContext, Define.EXPORT_POINT_SCREEN_POINT))
         viewModel1.setBoolvalue(viewModel1.roadCrossSecionOutputUsing, PrefUtil.getBoolean(applicationContext, Define.EXPORT_POINT_REFERENCE_POINT))
+       // viewModel1.set(viewModel1.roadCrossSecionOutputUsing, PrefUtil.getString(applicationContext, Define.EXPORT_FILE_FORM_LIST))
 
     }
 
