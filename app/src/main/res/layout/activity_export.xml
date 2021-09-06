@@ -195,7 +195,7 @@
                      android:layout_width="match_parent"
                      android:layout_height="wrap_content"
                      android:orientation="vertical"
-                    android:visibility="@{viewModel.fileFormNum != 2 ? View.VISIBLE : View.GONE}"
+                    android:visibility="@{viewModel.fileFormNum == 0 || viewModel.fileFormNum == 1 ? View.VISIBLE : View.GONE}"
                     >
                 <LinearLayout
                     style="@style/ButtonLayout_STYLE01"

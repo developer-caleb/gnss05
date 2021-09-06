@@ -135,10 +135,7 @@ class ExportActivity :  ActivityBase<ActivityExportBinding>() {
 
         viewModel1.fileFormNum.observe (this , {
             viewModel1.setStringValue(viewModel1.fileFormList,
-                when(it){
-                    0->pointDataForm()
-                    else->"123"
-                })})
+                dataForm(it))})
     }
 
     fun savesettings(){
@@ -153,8 +150,12 @@ class ExportActivity :  ActivityBase<ActivityExportBinding>() {
         PrefUtil.setBoolean(applicationContext, Define.EXPORT_POINT_REFERENCE_POINT, viewModel1.roadCrossSecionOutputUsing.value!!)
         PrefUtil.setInt(applicationContext, Define.EXPORT_DEGREE_FORM, viewModel1.degreeFormNum.value!!)
     }
-    fun pointDataForm(): String{
-        var arrayList = arrayOf(0,1,  50,51,52,53,54,55,2,3,4,42,5,6,7,37, 27,28, 33, 29, 30, 39, 23,24 , 45,46,47,48,49,56,57,58,59,60,61,62,63,64,12, 16,17,18,19,21);
+    fun dataForm(index: Int): String{
+        var arrayList =
+            when(index){
+                1->arrayOf(0,1,2,3,4,5,6,7, 23,24, 74,75,76,77,78,79,80,81,82,83,84,85,86,87,88)
+         else -> arrayOf(0,1,50,51,52,53,54,55,2,3,4,42,5,6,7,37,27,28, 33, 29, 30, 39, 23,24 ,45,46,47,48,49,56,57,58,59,60,61,62,63,64,12, 16,17,18,19,21);
+      }
         var returnString = "";
         arrayList.forEachIndexed { index, element -> returnString = "$returnString[${OptionList.optionitemlist[element]}], " }
         return returnString
