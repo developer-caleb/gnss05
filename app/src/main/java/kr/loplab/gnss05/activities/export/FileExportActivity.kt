@@ -97,16 +97,13 @@ class FileExportActivity : ActivityBase<ActivityFileExportBinding>(),
     }
 
     override fun onItemClick(view: View?, position: Int) {
-
         var sdPath = ""
-
         Log.d(TAG, "onItemClick: sdpath : $sdPath")
         Log.d(TAG, "onItemClick: 절대경로 : ${Environment.getExternalStorageDirectory().absolutePath}")
         Log.d(TAG, "onItemClick: 상대경로 : ${Environment.getExternalStorageDirectory().canonicalPath}")
         Log.d(TAG, "onItemClick: 다운로드 경로1 : ${Environment.getExternalStorageDirectory().absolutePath}")
         Log.d(TAG, "onItemClick: 다운로드 경로2 : ${Environment.getDataDirectory().absolutePath}")
         Log.d(TAG, "onItemClick: 다운로드 경로3 : ${Environment.getRootDirectory().absolutePath}")
-
         Log.d(TAG, "Recyclerview onItemClick: $position 클릭했음")
 
           Log.d("KJH_TEST",  "$position : " + data[position].toString());
