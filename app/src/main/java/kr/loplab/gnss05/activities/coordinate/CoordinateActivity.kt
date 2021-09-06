@@ -36,7 +36,7 @@ class CoordinateActivity : ActivityBase<ActivityCoordinateBinding>() {
         viewBinding.btConfirm.setOnClickListener { saveSettings() }
         viewBinding.btExport.setOnClickListener {
             intent = Intent(this, FileExportActivity::class.java)
-            intent.putExtra("mode", "REQUEST_COORDINATE_EXPORT");
+            intent.putExtra("mode", INTENT_COORDINATE_EXPORT);
             ActivityCompat.startActivityForResult(this, intent, Define.REQUEST_COORDINATE_EXPORT, null)
         }
         viewBinding.btLoad.setOnClickListener {
@@ -155,10 +155,15 @@ class CoordinateActivity : ActivityBase<ActivityCoordinateBinding>() {
         viewBinding.layoutVerticalAdjustmentParameterUsing.setOnClickListener {
             viewModel1.setBoolvalue(viewModel1.verticalAdjustmentParameterUsing , !viewModel1.verticalAdjustmentParameterUsing.value!!)
         }
-        viewBinding.layoutGridFileRoute.setOnClickListener {  }
+        viewBinding.layoutGridFileRoute.setOnClickListener {
+            intent = Intent(this, FileExportActivity::class.java)
+            intent.putExtra("mode", INTENT_GRID_FILE_IMPORT);
+            ActivityCompat.startActivityForResult(this, intent, Define.REQUEST_GRID_FILE_IMPORT, null)
+        }
         viewBinding.layoutInputParameterUsing.setOnClickListener {
             viewModel1.setBoolvalue(viewModel1.inputParameterUsing , !viewModel1.inputParameterUsing.value!!)
         }
+
     }
 
     override fun initDatabinding() {

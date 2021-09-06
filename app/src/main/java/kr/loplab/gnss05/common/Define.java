@@ -18,7 +18,11 @@ public class Define {
     public static final int REQUEST_FILE_FORMAT_ADD = 1008;
     public static final int REQUEST_FILE_FORMAT_EDIT = 1009;
     public static final int REQUEST_COORDINATE_EXPORT = 1010;
+    public static final int REQUEST_GRID_FILE_IMPORT = 1011;
 
+
+    public static final String INTENT_COORDINATE_EXPORT = "INTENT_COORDINATE_EXPORT";
+    public static final String INTENT_GRID_FILE_IMPORT = "INTENT_GRID_FILE_IMPORT";
 
 
 

@@ -7,6 +7,8 @@ import android.widget.TextView
 import kr.loplab.gnss02.ActivityBase
 import kr.loplab.gnss05.adapter.FiledirectoryRecyclerViewAdapter
 import kr.loplab.gnss05.R
+import kr.loplab.gnss05.common.Define.INTENT_COORDINATE_EXPORT
+import kr.loplab.gnss05.common.Define.INTENT_GRID_FILE_IMPORT
 import kr.loplab.gnss05.databinding.ActivityFileExportBinding
 import kr.loplab.gnss05.enums.Directorytype
 import java.io.File
@@ -37,9 +39,24 @@ class FileExportActivity : ActivityBase<ActivityFileExportBinding>(),
 
     override fun init() {
         //initialdata.add(arrayOf( "기본 저장 디렉토리로 이동", "0"), )
-        initialdata.add(arrayOf( "프로그램 폴더로 이동", Directorytype.storagedirectory.name, "rightarrow"))
-        initialdata.add(arrayOf( "다운로드 폴더로 이동", Directorytype.downloadfolders.name, "rightarrow"))
-        initialdata.add(arrayOf("최상위 폴더로 이동", Directorytype.rootdirectory.name, "rightarrow"))
+
+        if (intent.hasExtra("mode"))
+        {
+            when (intent.getStringExtra("mode")){
+                INTENT_COORDINATE_EXPORT -> {
+                    initialdata.add(arrayOf( "내부 저장소 루트 디렉토리로 이동", Directorytype.rootdirectory.name, "rightarrow"))
+                    initialdata.add(arrayOf( "프로그램 저장 디렉토리로 이동", Directorytype.Coordinate.name, "rightarrow"))
+                }
+                INTENT_GRID_FILE_IMPORT -> {
+                    initialdata.add(arrayOf( "내부 저장소 루트 디렉토리로 이동", Directorytype.rootdirectory.name, "rightarrow"))
+                    initialdata.add(arrayOf( "프로그램 저장 디렉토리로 이동", Directorytype.GEOid.name, "rightarrow"))
+                }
+            }
+        }else{
+            initialdata.add(arrayOf( "프로그램 폴더로 이동", Directorytype.storagedirectory.name, "rightarrow"))
+            initialdata.add(arrayOf( "다운로드 폴더로 이동", Directorytype.downloadfolders.name, "rightarrow"))
+            initialdata.add(arrayOf("최상위 폴더로 이동", Directorytype.rootdirectory.name, "rightarrow"))
+        }
         //initialdata.add(arrayOf( "SD카드 루트 디렉토리로 이동", "SDCARD!"))
         initialdata.add(arrayOf( "돌아가기", Directorytype.goBack.name, "back"))
         adapter  = FiledirectoryRecyclerViewAdapter(this, data)
@@ -47,12 +64,6 @@ class FileExportActivity : ActivityBase<ActivityFileExportBinding>(),
         viewBinding.recyclerview.adapter = adapter
         rootPath = Environment.getExternalStorageDirectory().absolutePath;
         var result : Boolean = initdirectory(rootPath);
-
-
-
-
-
-
 
 
     }
@@ -73,9 +84,13 @@ class FileExportActivity : ActivityBase<ActivityFileExportBinding>(),
         if (intent.hasExtra("mode"))
         {
             when (intent.getStringExtra("mode")){
-                "REQUEST_COORDINATE_EXPORT" -> {
+                INTENT_COORDINATE_EXPORT -> {
                     viewBinding.header03.tvTitle!!.text = "좌표계 파일 내보내기"
                 viewBinding.exportFileFormat.text = "좌표계 매개변수(*.SP)"
+                }
+                INTENT_GRID_FILE_IMPORT -> {
+                    viewBinding.header03.tvTitle!!.text = "파일 불러오기"
+                    viewBinding.exportFileFormat.text = "그리드 파일(*.GSB)"
                 }
             }
         }
@@ -106,15 +121,13 @@ class FileExportActivity : ActivityBase<ActivityFileExportBinding>(),
                      Directorytype.SDCARDfolder.name-> initdirectory(rootPath)
                      Directorytype.goBack.name -> prevPath(path)
                      Directorytype.storagedirectory.name -> {
-                         var  gnssfolder = File(Environment.getExternalStorageDirectory().absolutePath +"/GNSS/EXPORT")
-                         if (!gnssfolder.exists()) {
-                             Log.d(TAG, "onItemClick: Directory Does Not Exist, Create It! /GNSS")
-                             //Toast.makeText(MainActivity.this, "Directory Does Not Exist, Create It", Toast.LENGTH_SHORT).show();
-                             var success = true
-                             success = gnssfolder.mkdirs();
-                         }
-                         initdirectory(Environment.getExternalStorageDirectory().absolutePath +"/GNSS/EXPORT")
-
+                     goFolder("EXPORT")
+                     }
+                     Directorytype.Coordinate.name -> {
+                         goFolder("Coordinate")
+                     }
+                     Directorytype.GEOid.name -> {
+                         goFolder("Geoid")
                      }
                      else ->  nextPath(path);
                  }
@@ -148,6 +161,16 @@ class FileExportActivity : ActivityBase<ActivityFileExportBinding>(),
         return true;
     }
 
+    fun goFolder(str: String){
+        var  gnssfolder = File(Environment.getExternalStorageDirectory().absolutePath +"/GNSS/$str")
+        if (!gnssfolder.exists()) {
+            Log.d(TAG, "onItemClick: Directory Does Not Exist, Create It! /GNSS")
+            //Toast.makeText(MainActivity.this, "Directory Does Not Exist, Create It", Toast.LENGTH_SHORT).show();
+            var success = true
+            success = gnssfolder.mkdirs();
+        }
+        initdirectory(Environment.getExternalStorageDirectory().absolutePath +"/GNSS/$str")
+    }
 
     fun nextPath(str: String) {
         prevPath = currentPath
