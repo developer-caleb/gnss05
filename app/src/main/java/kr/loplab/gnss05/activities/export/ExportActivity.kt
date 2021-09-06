@@ -119,9 +119,8 @@ class ExportActivity :  ActivityBase<ActivityExportBinding>() {
         viewModel1.setBoolvalue(viewModel1.pointInput, PrefUtil.getBoolean(applicationContext, Define.EXPORT_POINT_INPUT))
         viewModel1.setBoolvalue(viewModel1.pointCalculation, PrefUtil.getBoolean(applicationContext, Define.EXPORT_POINT_CALCULATION))
         viewModel1.setBoolvalue(viewModel1.pointSkate, PrefUtil.getBoolean(applicationContext, Define.EXPORT_POINT_SKATE))
-        viewModel1.setBoolvalue(viewModel1.roadCrossSecionOutputUsing, PrefUtil.getBoolean(applicationContext, Define.EXPORT_POINT_SCREEN_POINT))
-        viewModel1.setBoolvalue(viewModel1.roadCrossSecionOutputUsing, PrefUtil.getBoolean(applicationContext, Define.EXPORT_POINT_REFERENCE_POINT))
-        viewModel1.setBoolvalue(viewModel1.roadCrossSecionOutputUsing, PrefUtil.getBoolean(applicationContext, Define.EXPORT_POINT_REFERENCE_POINT))
+        viewModel1.setBoolvalue(viewModel1.screenPoint, PrefUtil.getBoolean(applicationContext, Define.EXPORT_POINT_SCREEN_POINT))
+        viewModel1.setBoolvalue(viewModel1.referencePoint, PrefUtil.getBoolean(applicationContext, Define.EXPORT_POINT_REFERENCE_POINT))
         viewModel1.setIntvalue(viewModel1.degreeFormNum, PrefUtil.getInt2(applicationContext, Define.EXPORT_DEGREE_FORM))
         viewModel1.setIntvalue(viewModel1.fileFormNum1, PrefUtil.getInt2(applicationContext, Define.EXPORT_FILEFORM_NUM1))
         viewModel1.setIntvalue(viewModel1.fileFormNum2, PrefUtil.getInt2(applicationContext, Define.EXPORT_FILEFORM_NUM2))
@@ -138,14 +137,14 @@ class ExportActivity :  ActivityBase<ActivityExportBinding>() {
 
     fun savesettings(){
         PrefUtil.setBoolean(applicationContext, Define.EXPORT_ROAD_CROSS_SECTION_OUTPUT_USING, viewModel1.roadCrossSecionOutputUsing.value!!)
-        PrefUtil.setBoolean(applicationContext, Define.EXPORT_POINT_ASSIST, viewModel1.roadCrossSecionOutputUsing.value!!)
-        PrefUtil.setBoolean(applicationContext, Define.EXPORT_POINT_MEASUREMENT, viewModel1.roadCrossSecionOutputUsing.value!!)
-        PrefUtil.setBoolean(applicationContext, Define.EXPORT_POINT_CONTROL_MEASUREMENT, viewModel1.roadCrossSecionOutputUsing.value!!)
-        PrefUtil.setBoolean(applicationContext, Define.EXPORT_POINT_INPUT, viewModel1.roadCrossSecionOutputUsing.value!!)
-        PrefUtil.setBoolean(applicationContext, Define.EXPORT_POINT_CALCULATION, viewModel1.roadCrossSecionOutputUsing.value!!)
-        PrefUtil.setBoolean(applicationContext, Define.EXPORT_POINT_SKATE, viewModel1.roadCrossSecionOutputUsing.value!!)
-        PrefUtil.setBoolean(applicationContext, Define.EXPORT_POINT_SCREEN_POINT, viewModel1.roadCrossSecionOutputUsing.value!!)
-        PrefUtil.setBoolean(applicationContext, Define.EXPORT_POINT_REFERENCE_POINT, viewModel1.roadCrossSecionOutputUsing.value!!)
+        PrefUtil.setBoolean(applicationContext, Define.EXPORT_POINT_ASSIST, viewModel1.pointAssist.value!!)
+        PrefUtil.setBoolean(applicationContext, Define.EXPORT_POINT_MEASUREMENT, viewModel1.pointMeasurement.value!!)
+        PrefUtil.setBoolean(applicationContext, Define.EXPORT_POINT_CONTROL_MEASUREMENT, viewModel1.controlMeasurement.value!!)
+        PrefUtil.setBoolean(applicationContext, Define.EXPORT_POINT_INPUT, viewModel1.pointInput.value!!)
+        PrefUtil.setBoolean(applicationContext, Define.EXPORT_POINT_CALCULATION, viewModel1.pointCalculation.value!!)
+        PrefUtil.setBoolean(applicationContext, Define.EXPORT_POINT_SKATE, viewModel1.pointSkate.value!!)
+        PrefUtil.setBoolean(applicationContext, Define.EXPORT_POINT_SCREEN_POINT, viewModel1.screenPoint.value!!)
+        PrefUtil.setBoolean(applicationContext, Define.EXPORT_POINT_REFERENCE_POINT, viewModel1.referencePoint.value!!)
         PrefUtil.setInt(applicationContext, Define.EXPORT_DEGREE_FORM, viewModel1.degreeFormNum.value!!)
     }
     fun dataForm1(index: Int): String{
@@ -162,8 +161,8 @@ class ExportActivity :  ActivityBase<ActivityExportBinding>() {
     fun dataForm2(index: Int): String{
         var arrayList =
             when(index){
-                0->arrayOf(11, 13,0,1,6,7,8,16,17,15,18)
-                else -> arrayOf(11, 13,0,1,6,7,8,16,17,15,18)
+                0->arrayOf(11, 13,0,1,6,7,8,16,17,15,18, 14)
+                else -> arrayOf(11, 13,0,1,6,7,8,16,17,15,18, 14)
             }
         var returnString = "";
         arrayList.forEachIndexed { index, element -> returnString = "$returnString[${OptionList.optionitemlist[element]}], " }

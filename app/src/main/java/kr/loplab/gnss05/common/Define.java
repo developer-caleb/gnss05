@@ -190,8 +190,6 @@ public class Define {
     public static final String EXPORT_FILEFORM_NUM1 = "export_degree_form1";
     public static final String EXPORT_FILEFORM_NUM2 = "export_degree_form2";
 
-    public static final String EXPORT_FILE_FORM_LIST = "export_point_file_form_list";
-
 
 
 
