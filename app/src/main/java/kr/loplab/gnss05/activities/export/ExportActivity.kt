@@ -43,9 +43,33 @@ class ExportActivity :  ActivityBase<ActivityExportBinding>() {
         viewBinding.layoutRoadCrossSectionOutputUsing.setOnClickListener {
             viewModel1.setBoolvalue(viewModel1.roadCrossSecionOutputUsing , !viewModel1.roadCrossSecionOutputUsing.value!!)
         }
+        viewBinding.layoutPointAssist.setOnClickListener {
+            viewModel1.setBoolvalue(viewModel1.pointAssist , !viewModel1.pointAssist.value!!)
+        }
+        viewBinding.layoutPointMeasurement.setOnClickListener {
+            viewModel1.setBoolvalue(viewModel1.pointMeasurement , !viewModel1.pointMeasurement.value!!)
+        }
+        viewBinding.layoutControlMeasurement.setOnClickListener {
+            viewModel1.setBoolvalue(viewModel1.controlMeasurement , !viewModel1.controlMeasurement.value!!)
+        }
+        viewBinding.layoutPointInput.setOnClickListener {
+            viewModel1.setBoolvalue(viewModel1.pointInput , !viewModel1.pointInput.value!!)
+        }
+        viewBinding.layoutPointCalculation.setOnClickListener {
+            viewModel1.setBoolvalue(viewModel1.pointCalculation , !viewModel1.pointCalculation.value!!)
+        }
+        viewBinding.layoutPointSkateout.setOnClickListener {
+            viewModel1.setBoolvalue(viewModel1.pointSkate , !viewModel1.pointSkate.value!!)
+        }
+        viewBinding.layoutScreenPoint.setOnClickListener {
+            viewModel1.setBoolvalue(viewModel1.screenPoint , !viewModel1.screenPoint.value!!)
+        }
+        viewBinding.layoutReferencePoint.setOnClickListener {
+            viewModel1.setBoolvalue(viewModel1.referencePoint , !viewModel1.referencePoint.value!!)
+        }
         viewBinding.layoutDegreeForm.setOnClickListener {
             val dlg = MyDialog(this)
-            var alist = OptionList.ELLIPSOID_NAME_LIST
+            var alist = OptionList.DEGREE_FORM_TYPE
             dlg.firstLayoutUse = false
             dlg.list = alist
             dlg.selectedposition = viewModel1.degreeFormNum.value!!
@@ -65,6 +89,5 @@ class ExportActivity :  ActivityBase<ActivityExportBinding>() {
 
     fun savesettings(){
         PrefUtil.setBoolean(applicationContext, Define.EXPORT_ROAD_CROSS_SECTION_OUTPUT_USING, viewModel1.roadCrossSecionOutputUsing.value!!)
-
     }
 }

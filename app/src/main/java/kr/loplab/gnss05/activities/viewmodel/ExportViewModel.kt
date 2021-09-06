@@ -10,6 +10,14 @@ class ExportViewModel : ViewModel(){
 
     private var name = ""
     var degreeFormNum = MutableLiveData<Int>(0)
+    var pointAssist = MutableLiveData<Boolean>(false)
+    var pointMeasurement = MutableLiveData<Boolean>(false)
+    var controlMeasurement = MutableLiveData<Boolean>(false)
+    var pointInput = MutableLiveData<Boolean>(false)
+    var pointCalculation = MutableLiveData<Boolean>(false)
+    var pointSkate = MutableLiveData<Boolean>(false)
+    var screenPoint = MutableLiveData<Boolean>(false)
+    var referencePoint = MutableLiveData<Boolean>(false)
 
     /* var ellipsoidNameNum = MutableLiveData<Int>(0)
      var itrfConversion = MutableLiveData<Boolean>(false)

@@ -175,7 +175,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="0"
-                        android:text="ddºmm'ss.ssss”" />
+                        android:text="@{Optionlist.Companion.DEGREE_FORM_TYPE.get(viewModel.degreeFormNum)}" />
 
 
                     <ImageView
@@ -206,6 +206,7 @@
                     >
 
                     <LinearLayout
+                        android:id="@+id/layout_point_assist"
                         style="@style/ButtonLayout_STYLE01">
 
                         <TextView
@@ -215,11 +216,12 @@
 
 
                         <Switch
+                            android:id="@+id/sw_point_assist"
                             style="@style/switchbutton"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            
+                            android:checked="@{viewModel.pointAssist}"
                              />
 
 
@@ -233,6 +235,7 @@
 
 
                     <LinearLayout
+                        android:id="@+id/layout_point_measurement"
                         style="@style/ButtonLayout_STYLE01">
 
                         <TextView
@@ -242,11 +245,14 @@
 
 
                         <Switch
+                            android:id="@+id/sw_point_measurement"
                             style="@style/switchbutton"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                             />
+                            android:checked="@{viewModel.pointMeasurement}"
+
+                            />
 
                     </LinearLayout>
 
@@ -257,6 +263,8 @@
                         android:background="@color/grey_EC" />
 
                     <LinearLayout
+                        android:id="@+id/layout_control_measurement"
+
                         style="@style/ButtonLayout_STYLE01">
 
                         <TextView
@@ -266,6 +274,8 @@
 
 
                         <Switch
+                            android:id="@+id/sw_control_measurement"
+                            android:checked="@{viewModel.controlMeasurement}"
                             style="@style/switchbutton"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -281,6 +291,7 @@
                         android:background="@color/grey_EC" />
 
                     <LinearLayout
+                        android:id="@+id/layout_point_input"
                         style="@style/ButtonLayout_STYLE01">
 
                         <TextView
@@ -290,6 +301,8 @@
 
 
                         <Switch
+                            android:id="@+id/sw_point_input"
+                            android:checked="@{viewModel.pointInput}"
                             style="@style/switchbutton"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -305,6 +318,7 @@
                         android:background="@color/grey_EC" />
 
                     <LinearLayout
+                        android:id="@+id/layout_point_calculation"
                         style="@style/ButtonLayout_STYLE01">
 
                         <TextView
@@ -314,6 +328,8 @@
 
 
                         <Switch
+                            android:id="@+id/sw_point_calculation"
+                            android:checked="@{viewModel.pointCalculation}"
                             style="@style/switchbutton"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -329,6 +345,7 @@
                         android:background="@color/grey_EC" />
 
                     <LinearLayout
+                        android:id="@+id/layout_point_skateout"
                         style="@style/ButtonLayout_STYLE01">
 
                         <TextView
@@ -338,6 +355,8 @@
 
 
                         <Switch
+                            android:id="@+id/sw_point_skateout"
+                            android:checked="@{viewModel.pointSkate}"
                             style="@style/switchbutton"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -353,6 +372,7 @@
                         android:background="@color/grey_EC" />
 
                     <LinearLayout
+                        android:id="@+id/layout_screen_point"
                         style="@style/ButtonLayout_STYLE01">
 
                         <TextView
@@ -362,6 +382,8 @@
 
 
                         <Switch
+                            android:id="@+id/sw_screen_point"
+                            android:checked="@{viewModel.screenPoint}"
                             style="@style/switchbutton"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -377,6 +399,7 @@
                         android:background="@color/grey_EC" />
 
                     <LinearLayout
+                        android:id="@+id/layout_reference_point"
                         style="@style/ButtonLayout_STYLE01">
 
                         <TextView
@@ -386,6 +409,8 @@
 
 
                         <Switch
+                            android:id="@+id/sw_reference_point"
+                            android:checked="@{viewModel.referencePoint}"
                             style="@style/switchbutton"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
