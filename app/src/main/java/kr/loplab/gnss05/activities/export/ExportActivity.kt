@@ -161,8 +161,8 @@ class ExportActivity :  ActivityBase<ActivityExportBinding>() {
     fun dataForm2(index: Int): String{
         var arrayList =
             when(index){
-                0->arrayOf(11, 13,0,1,6,7,8,16,17,15,18, 14)
-                else -> arrayOf(11, 13,0,1,6,7,8,16,17,15,18, 14)
+                0-> arrayOf(11, 13,0,1,6,7,8,16,17,15,18,14)
+                else -> arrayOf(11,13,0,1,6,7,8,16,17,15,18,14)
             }
         var returnString = "";
         arrayList.forEachIndexed { index, element -> returnString = "$returnString[${OptionList.optionitemlist[element]}], " }

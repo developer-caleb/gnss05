@@ -70,7 +70,12 @@ class FileExportActivity : ActivityBase<ActivityFileExportBinding>(),
     }
 
     override fun initDatabinding() {
-
+        if (intent.hasExtra("mode"))
+        {
+            when (intent.getStringExtra("mode")){
+                "REQUEST_COORDINATE_EXPORT" -> viewBinding.header03.tvTitle!!.text = "좌표계 파일 내보내기"
+            }
+        }
     }
 
     override fun onItemClick(view: View?, position: Int) {

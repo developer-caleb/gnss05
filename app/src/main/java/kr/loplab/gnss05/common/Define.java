@@ -17,6 +17,8 @@ public class Define {
     public static final int REQUEST_CORS_SERVER_MANAGER = 1007;
     public static final int REQUEST_FILE_FORMAT_ADD = 1008;
     public static final int REQUEST_FILE_FORMAT_EDIT = 1009;
+    public static final int REQUEST_COORDINATE_EXPORT = 1010;
+
 
 
 

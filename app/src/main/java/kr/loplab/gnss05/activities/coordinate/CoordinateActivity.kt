@@ -1,11 +1,14 @@
 package kr.loplab.gnss05.activities.coordinate
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import androidx.core.app.ActivityCompat
 import androidx.lifecycle.ViewModelProvider
 import kr.loplab.gnss02.ActivityBase
 import kr.loplab.gnss05.MyDialog
 import kr.loplab.gnss05.R
+import kr.loplab.gnss05.activities.export.FileExportActivity
 import kr.loplab.gnss05.activities.viewmodel.CoordinateViewModel
 import kr.loplab.gnss05.common.Define
 import kr.loplab.gnss05.common.Define.*
@@ -13,6 +16,7 @@ import kr.loplab.gnss05.common.OptionList
 import kr.loplab.gnss05.common.PrefUtil
 import kr.loplab.gnss05.common.Utilities
 import kr.loplab.gnss05.databinding.ActivityCoordinateBinding
+import kr.loplab.gnss05.tableview.TableViewModel
 
 class CoordinateActivity : ActivityBase<ActivityCoordinateBinding>() {
     override val layoutResourceId: Int
@@ -30,7 +34,11 @@ class CoordinateActivity : ActivityBase<ActivityCoordinateBinding>() {
 
     override fun initListener() {
         viewBinding.btConfirm.setOnClickListener { saveSettings() }
-        viewBinding.btExport.setOnClickListener {  }
+        viewBinding.btExport.setOnClickListener {
+            intent = Intent(this, FileExportActivity::class.java)
+            intent.putExtra("mode", "REQUEST_COORDINATE_EXPORT");
+            ActivityCompat.startActivityForResult(this, intent, Define.REQUEST_COORDINATE_EXPORT, null)
+        }
         viewBinding.btLoad.setOnClickListener {
         }
         viewBinding.header01.setOnBackButtonClickListener{onBackPressed()}
