@@ -178,6 +178,21 @@ public class Define {
 
     //SharedPreference Code EXPORT
     public static final String EXPORT_ROAD_CROSS_SECTION_OUTPUT_USING = "export_road_cross_sction_output_using";
+    public static final String EXPORT_POINT_ASSIST = "export_point_assist";
+    public static final String EXPORT_POINT_MEASUREMENT = "export_point_measurement";
+    public static final String EXPORT_POINT_CONTROL_MEASUREMENT = "export_point_control_measurement";
+    public static final String EXPORT_POINT_POINT_INPUT = "export_point_point_input";
+    public static final String EXPORT_POINT_POINT_CALCULATION = "export_point_point_calculation";
+    public static final String EXPORT_POINT_POINT_SKATE = "export_point_point_skate";
+    public static final String EXPORT_POINT_SCREEN_POINT = "export_point_screen_point";
+    public static final String EXPORT_POINT_REFERENCE_POINT = "export_point_reference_point";
+
+
+
+
+
+
+
 
 
 
