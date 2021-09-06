@@ -25,8 +25,8 @@ class FiledirectoryRecyclerViewAdapter internal constructor(context: Context?, d
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.myTextView.text = mData[position][0]
         when(mData[position][2]){
-            "rightarrow" -> holder.imageView.setImageResource(R.drawable.ic_rightarrow2)
-            "back" -> holder.imageView.setImageResource(R.drawable.lefticon)
+            "rightarrow" -> holder.imageView.setImageResource(R.drawable.ic_move_category)
+            "back" -> holder.imageView.setImageResource(R.drawable.ic_move_back)
             "folder" -> holder.imageView.setImageResource(R.drawable.foldericon)
                 ".csv" ->  holder.imageView.setImageResource(R.drawable.excelicon)
             else -> holder.imageView.setImageResource(R.drawable.unknown_file)

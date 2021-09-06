@@ -73,7 +73,10 @@ class FileExportActivity : ActivityBase<ActivityFileExportBinding>(),
         if (intent.hasExtra("mode"))
         {
             when (intent.getStringExtra("mode")){
-                "REQUEST_COORDINATE_EXPORT" -> viewBinding.header03.tvTitle!!.text = "좌표계 파일 내보내기"
+                "REQUEST_COORDINATE_EXPORT" -> {
+                    viewBinding.header03.tvTitle!!.text = "좌표계 파일 내보내기"
+                viewBinding.exportFileFormat.text = "좌표계 매개변수(*.SP)"
+                }
             }
         }
     }

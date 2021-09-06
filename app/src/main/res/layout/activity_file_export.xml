@@ -126,7 +126,7 @@
             android:text="파일유형" />
 
         <TextView
-            android:id="@+id/textView16"
+            android:id="@+id/export_file_format"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="0"
