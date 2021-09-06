@@ -154,9 +154,9 @@ class ExportActivity :  ActivityBase<ActivityExportBinding>() {
         PrefUtil.setInt(applicationContext, Define.EXPORT_DEGREE_FORM, viewModel1.degreeFormNum.value!!)
     }
     fun pointDataForm(): String{
-        var arrayList = arrayOf(0,1, 49, 50,51,52,53,54,2,3,4,42,5,6,7,37, 27,28, 33, 29, 30, 39, 23,24 , 44, );
+        var arrayList = arrayOf(0,1,  50,51,52,53,54,55,2,3,4,42,5,6,7,37, 27,28, 33, 29, 30, 39, 23,24 , 45,46,47,48,49,56,57,58,59,60,61,62,63,64,12, 16,17,18,19,21);
         var returnString = "";
-        arrayList.forEachIndexed { index, element -> returnString = "$returnString[${OptionList.optionitemlist[element]}]," }
+        arrayList.forEachIndexed { index, element -> returnString = "$returnString[${OptionList.optionitemlist[element]}], " }
         return returnString
     }
 

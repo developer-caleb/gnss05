@@ -205,10 +205,13 @@
 
                     <TextView
                         android:id="@+id/tv_file_form_list"
-                        style="@style/Sub_TEXTVIEW_STYLE1"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:paddingRight="20dp"
                         android:text="@{viewModel.fileFormList}"
+                        android:textSize="14dp"
+                        android:textColor="@color/black"
+                        android:paddingLeft="15dp"
+                        android:paddingRight="15dp"
                          />
 
                 </LinearLayout>
