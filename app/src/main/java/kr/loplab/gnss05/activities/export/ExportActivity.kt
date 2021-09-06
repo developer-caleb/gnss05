@@ -101,10 +101,10 @@ class ExportActivity :  ActivityBase<ActivityExportBinding>() {
             var alist = OptionList.DEGREE_FILE_FORM2
             dlg.firstLayoutUse = false
             dlg.list = alist
-            dlg.selectedposition = viewModel1.fileFormNum.value!!
+            dlg.selectedposition = viewModel1.fileFormNum.value!! - OptionList.DEGREE_FILE_FORM1.size
             dlg.start("")
             dlg.setOnListClickedListener { view, i ->
-                viewModel1.fileFormNum.value = i
+                viewModel1.fileFormNum.value = i + OptionList.DEGREE_FILE_FORM1.size
                 dlg.dismiss()
             }
             dlg.setHeader("파일 형식")
@@ -136,7 +136,14 @@ class ExportActivity :  ActivityBase<ActivityExportBinding>() {
         viewModel1.fileFormNum.observe (this , {
             viewModel1.setStringValue(viewModel1.fileFormList,
                 dataForm(it))})
+        viewModel1.roadCrossSecionOutputUsing.observe(this, {
+            when(it){
+               true -> viewModel1.setIntvalue(viewModel1.fileFormNum, 7 )
+                false -> viewModel1.setIntvalue(viewModel1.fileFormNum, 0 )
+            }
+        })
     }
+
 
     fun savesettings(){
         PrefUtil.setBoolean(applicationContext, Define.EXPORT_ROAD_CROSS_SECTION_OUTPUT_USING, viewModel1.roadCrossSecionOutputUsing.value!!)
@@ -154,7 +161,8 @@ class ExportActivity :  ActivityBase<ActivityExportBinding>() {
         var arrayList =
             when(index){
                 1->arrayOf(0,1,2,3,4,5,6,7, 23,24, 74,75,76,77,78,79,80,81,82,83,84,85,86,87,88)
-         else -> arrayOf(0,1,50,51,52,53,54,55,2,3,4,42,5,6,7,37,27,28, 33, 29, 30, 39, 23,24 ,45,46,47,48,49,56,57,58,59,60,61,62,63,64,12, 16,17,18,19,21);
+                7-> arrayOf(11, 13,0,1,6,7,8,16,17,15,18)
+         else -> arrayOf(0,1,50,51,52,53,54,55,2,3,4,42,5,6,7,37,27,28,33,29,30,39,23,24,45,46,47,48,49,56,57,58,59,60,61,62,63,64,12,16,17,18,19,21);
       }
         var returnString = "";
         arrayList.forEachIndexed { index, element -> returnString = "$returnString[${OptionList.optionitemlist[element]}], " }
