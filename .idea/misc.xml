@@ -115,6 +115,7 @@
         <entry key="app/src/main/res/layout/recyclerview_checkitem.xml" value="0.25" />
         <entry key="app/src/main/res/layout/recyclerview_item.xml" value="0.33" />
         <entry key="app/src/main/res/layout/recyclerview_item_grid.xml" value="0.18" />
+        <entry key="app/src/main/res/layout/recyclerview_item_icons.xml" value="0.33" />
         <entry key="app/src/main/res/layout/recyclerview_item_vertical.xml" value="0.244140625" />
         <entry key="app/src/main/res/layout/recyclerview_listitem.xml" value="0.25" />
         <entry key="app/src/main/res/layout/satellite_set.xml" value="0.246484375" />

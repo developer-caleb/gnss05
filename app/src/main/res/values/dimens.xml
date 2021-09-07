@@ -4,6 +4,7 @@
     <dimen name="defaultTextsize">19dp</dimen>
     <dimen name="fontHeaderTitle">19dp</dimen>
     <dimen name="small_icon_text">13dp</dimen>
+    <dimen name="status_work_text">12dp</dimen>
 
 
     <!--    패딩, 마진 그룹 -->
