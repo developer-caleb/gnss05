@@ -21,7 +21,7 @@ import kr.loplab.gnss05.common.PrefUtil
 import kr.loplab.gnss05.databinding.ToolViewpageradapterBinding
 import kr.loplab.gnss05.model.MainIcons
 
-class AdapterViewpager: PagerAdapter, MainpageRecyclerViewAdapter.RecyclerItemClickListener {
+class MainAdapterViewpager: PagerAdapter, MainpageRecyclerViewAdapter.RecyclerItemClickListener {
     val TAG = javaClass.simpleName
     public var arrlist = arrayOf("작업", "연결", "측정", "도구")
     // LayoutInflater 서비스 사용을 위한 Context 참조 저장.

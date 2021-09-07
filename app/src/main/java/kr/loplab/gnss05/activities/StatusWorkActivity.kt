@@ -90,7 +90,7 @@ class StatusWorkActivity : ActivityBase<ActivityStatusWorkBinding>() {
             }
         }
         viewBinding.btToolbarOpen.setOnClickListener { viewModel1.setBoolvalue(viewModel1.toolbarOpen, !viewModel1.toolbarOpen.value!!); }
-        viewBinding.btToolbar0.setOnClickListener {  }
+     /*   viewBinding.btToolbar0.setOnClickListener {  }
         viewBinding.btToolbar1.setOnClickListener {  }
         viewBinding.btToolbar2.setOnClickListener {  }
         viewBinding.btToolbar3.setOnClickListener {  }
@@ -98,7 +98,7 @@ class StatusWorkActivity : ActivityBase<ActivityStatusWorkBinding>() {
         viewBinding.btToolbar5.setOnClickListener {  }
         viewBinding.btToolbar6.setOnClickListener {  }
         viewBinding.btToolbar7.setOnClickListener {  }
-        viewBinding.btToolbar8.setOnClickListener {  }
+        viewBinding.btToolbar8.setOnClickListener {  }*/
         viewBinding.btPointSave.setOnClickListener {  }
         viewBinding.btSettings.setOnClickListener {  }
         viewBinding.layoutFastSurveyName.setOnClickListener {

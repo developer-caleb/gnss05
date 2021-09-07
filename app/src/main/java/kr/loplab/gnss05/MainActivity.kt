@@ -25,7 +25,7 @@ import com.karumi.dexter.listener.PermissionRequest
 import com.karumi.dexter.listener.multi.MultiplePermissionsListener
 import kotlinx.android.synthetic.main.activity_main.*
 import kr.loplab.gnss05.activities.ConnectEquipmentActivity
-import kr.loplab.gnss05.adapter.AdapterViewpager
+import kr.loplab.gnss05.adapter.MainAdapterViewpager
 import kr.loplab.gnss05.adapter.DialogRecyclerviewAdapter
 import kr.loplab.gnss05.common.Define.REQUEST_SETTING
 import kr.loplab.gnss05.databinding.ActivityMainBinding
@@ -38,7 +38,7 @@ class MainActivity : AppCompatActivity(),
      DialogRecyclerviewAdapter.RecyclerItemClickListener {
     val TAG = javaClass.simpleName
     private lateinit var binding : ActivityMainBinding
-    var adapterViewpager: AdapterViewpager? = null
+    var adapterViewpager: MainAdapterViewpager? = null
 
 
     var tabposition =0;
@@ -67,7 +67,7 @@ class MainActivity : AppCompatActivity(),
     }
 
     fun init(){
-        adapterViewpager = AdapterViewpager(this)
+        adapterViewpager = MainAdapterViewpager(this)
         binding.pager1.adapter = adapterViewpager
 
     }
@@ -373,7 +373,7 @@ class MainActivity : AppCompatActivity(),
         Log.d(TAG, "onActivityResult:")
         if (resultCode== Activity.RESULT_OK && requestCode==REQUEST_SETTING){
             Log.d(TAG, "onActivityResult: ->REQUEST_SETTING")
-            adapterViewpager = AdapterViewpager(this)
+            adapterViewpager = MainAdapterViewpager(this)
             binding.pager1.adapter = adapterViewpager
 
 
