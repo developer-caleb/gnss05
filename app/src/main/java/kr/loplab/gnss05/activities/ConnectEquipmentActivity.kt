@@ -118,6 +118,8 @@ class ConnectEquipmentActivity : ActivityBase<ActivityConnectEquipmentBinding>()
 
     override fun onBluetoothItemClick(view: View?, position: Int) {
         Log.d(TAG, "onBluetoothItemClick:  $position")
+        bluetoothAdapter.selectednum = position
+        bluetoothAdapter.notifyDataSetChanged();
     }
 
 

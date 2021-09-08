@@ -2,11 +2,13 @@ package kr.loplab.gnss05.adapter
 
 import android.bluetooth.BluetoothDevice
 import android.content.Context
+import android.os.Build
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import kr.loplab.gnss05.R
 
@@ -14,7 +16,9 @@ class BluetoothEquipmentRecyclerViewAdapter internal constructor(context: Contex
     RecyclerView.Adapter<BluetoothEquipmentRecyclerViewAdapter.ViewHolder>() {
     private val mData: ArrayList<BluetoothDevice>
     private val mInflater: LayoutInflater
+    private val context :Context? = context;
     private var mClickListener: RecyclerItemClickListener? = null
+    var selectednum = -1;
 
     // inflates the cell layout from xml when needed
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -26,7 +30,7 @@ class BluetoothEquipmentRecyclerViewAdapter internal constructor(context: Contex
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.equipmentName.text = mData[position].name
         holder.equipmentCode.text = mData[position].address
-
+        holder.itemView.setBackgroundColor(ContextCompat.getColor(context!!, R.color.main_blue))
     }
 
     // total number of cells
