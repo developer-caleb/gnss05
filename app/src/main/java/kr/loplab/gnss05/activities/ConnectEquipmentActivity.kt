@@ -6,6 +6,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.provider.Settings
 import android.util.Log
+import android.view.View
 import androidx.lifecycle.ViewModelProvider
 import kr.loplab.gnss02.ActivityBase
 import kr.loplab.gnss05.MyDialog
@@ -20,7 +21,7 @@ import kr.loplab.gnss05.common.OptionList.Companion.EQUIPMENT_MAKER_LIST
 import kr.loplab.gnss05.common.PrefUtil
 import kr.loplab.gnss05.databinding.ActivityConnectEquipmentBinding
 
-class ConnectEquipmentActivity : ActivityBase<ActivityConnectEquipmentBinding>() {
+class ConnectEquipmentActivity : ActivityBase<ActivityConnectEquipmentBinding>(), BluetoothEquipmentRecyclerViewAdapter.RecyclerItemClickListener {
     override val layoutResourceId: Int
         get() = R.layout.activity_connect_equipment
     lateinit var viewModel1: ConnectEquipmentViewModel
@@ -109,9 +110,15 @@ class ConnectEquipmentActivity : ActivityBase<ActivityConnectEquipmentBinding>()
         }}
         bluetoothAdapter = BluetoothEquipmentRecyclerViewAdapter(this, arrays!!)
         viewBinding.recyclerviewBluetoothEquipment.adapter = bluetoothAdapter
+        bluetoothAdapter.setClickListener(this)
     }
     fun setWifiList(){
 
     }
+
+    override fun onBluetoothItemClick(view: View?, position: Int) {
+        Log.d(TAG, "onBluetoothItemClick:  $position")
+    }
+
 
 }

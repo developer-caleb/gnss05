@@ -40,7 +40,8 @@ class BluetoothEquipmentRecyclerViewAdapter internal constructor(context: Contex
         var equipmentName: TextView
         var equipmentCode: TextView
         override fun onClick(view: View) {
-            if (mClickListener != null) mClickListener!!.onItemClick(view, adapterPosition)
+            if (mClickListener != null) mClickListener!!.onBluetoothItemClick(view, adapterPosition)
+
         }
 
         init {
@@ -61,10 +62,12 @@ class BluetoothEquipmentRecyclerViewAdapter internal constructor(context: Contex
         mClickListener = itemClickListener
     }
 
+
     // parent activity will implement this method to respond to click events
     interface RecyclerItemClickListener {
-        fun onItemClick(view: View?, position: Int)
+        fun onBluetoothItemClick(view: View?, position: Int)
     }
+
 
     // data is passed into the constructor
     init {
