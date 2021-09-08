@@ -26,7 +26,7 @@
             android:backgroundTint="#0084CE">
         </kr.loplab.gnss05.DefaultHeader>
 
-        <ScrollView
+        <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
             android:layout_height="0dp"
             app:layout_constraintBottom_toTopOf="@+id/bottomButton"
@@ -417,7 +417,7 @@
 
             </LinearLayout>
 
-        </ScrollView>
+        </androidx.core.widget.NestedScrollView>
 
         <LinearLayout
             android:id="@+id/bottomButton"
@@ -461,6 +461,7 @@
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:background="@color/main_blue_alpha"
+            android:visibility="@{connectionequpmentviewmodel.scanning ? View.VISIBLE : View.GONE}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

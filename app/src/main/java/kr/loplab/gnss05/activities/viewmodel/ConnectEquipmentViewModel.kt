@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModel
 class ConnectEquipmentViewModel : ViewModel() {
     private var name = ""
     var connect_mode = MutableLiveData<Int>(0)
+    var scanning = MutableLiveData<Boolean>(false)
     init {
 
     }
@@ -18,5 +19,11 @@ class ConnectEquipmentViewModel : ViewModel() {
     fun getName() = name
     fun setConnectMode(num : Int){
         connect_mode.postValue(num)
+    }
+    fun setIntvalue(data : MutableLiveData<Int>, num : Int){
+        data.value = num
+    }
+    fun setBoolvalue(data : MutableLiveData<Boolean>, boolvalue : Boolean){
+        data.value = boolvalue
     }
 }

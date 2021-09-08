@@ -39,7 +39,6 @@ class ConnectEquipmentActivity : ActivityBase<ActivityConnectEquipmentBinding>()
     var bluetoothDefaultAdapter = BluetoothAdapter.getDefaultAdapter()
     private val REQUEST_PERMISSIONS= 2
     private val REQUEST_ALL_PERMISSIONS= 2
-    private var scanning: Boolean = false
     private val SCAN_PERIOD = 15000
     private val handler = Handler()
     var devicesArr = arrayListOf<BluetoothDevice>()
@@ -60,20 +59,13 @@ class ConnectEquipmentActivity : ActivityBase<ActivityConnectEquipmentBinding>()
     viewBinding.makerSelectBt.setOnClickListener {
             val dlg = MyDialog(this)
             dlg.firstLayoutUse = false
-            /* var list = arrayListOf<String>("GEO(GINTEC)", "South", "Kolida", "Ruide", "Sanding", "Stonex", "UniStrong",
-            "Hemisphere", "GINTEC", "GEOMAX", "Hi-Target", "HuaXing")*/
              dlg.list = EQUIPMENT_MAKER_LIST
-
               dlg.selectedposition= PrefUtil.getInt2(applicationContext, EQUIPMENT_MAKER)
-            /*dlg.setOnOKClickedListener{ content ->
-                Log.d(TAG, "onItemClick: $content")
-            }*/
             dlg.start("메인의 내용을 변경할까요?")
               dlg.setOnListClickedListener { view, i ->
             Log.d(TAG, "initListener: $i")
             PrefUtil.setInt(applicationContext, EQUIPMENT_MAKER, i)
             viewBinding.tvEquipmentMaker.text = EQUIPMENT_MAKER_LIST[PrefUtil.getInt2(applicationContext, EQUIPMENT_MAKER)]
-            dlg.refresh()
             dlg.dismiss()
         }
         dlg.setHeader("장비제조사")
@@ -217,15 +209,15 @@ class ConnectEquipmentActivity : ActivityBase<ActivityConnectEquipmentBinding>()
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     private fun scanDevice(state:Boolean) = if(state) {
         handler.postDelayed({
-            scanning = false
+            viewModel1.setBoolvalue(viewModel1.scanning, false)
             bluetoothDefaultAdapter?.bluetoothLeScanner?.stopScan(mLeScanCallback)
         }, SCAN_PERIOD.toLong())
-        scanning = true
+        viewModel1.setBoolvalue(viewModel1.scanning, true)
         devicesArr.clear()
         bluetoothDefaultAdapter?.bluetoothLeScanner?.startScan(mLeScanCallback)
     }
     else {
-        scanning = false
+        viewModel1.setBoolvalue(viewModel1.scanning, false)
         bluetoothDefaultAdapter?.bluetoothLeScanner?.stopScan(mLeScanCallback)
     }
 
