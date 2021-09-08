@@ -432,7 +432,7 @@
             app:layout_constraintStart_toStartOf="parent">
 
             <TextView
-                android:id="@+id/bt_search"
+                android:id="@+id/bt_scan"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
