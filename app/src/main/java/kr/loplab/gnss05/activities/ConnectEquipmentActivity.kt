@@ -89,19 +89,12 @@ class ConnectEquipmentActivity : ActivityBase<ActivityConnectEquipmentBinding>()
             }
             dlg.setHeader("연결모드")
         }
-        viewBinding.btBluetoothSetting.setOnClickListener {
-            intent = Intent(Settings.ACTION_BLUETOOTH_SETTINGS)
-            startActivity(intent)
-        }
+
         viewBinding.btScan.setOnClickListener {
             Log.d(TAG, "initListener: ")
             when(PrefUtil.getInt2(applicationContext, CONNECT_MODE)) {
-                0->{
-                if (!hasPermissions(this, PERMISSIONS)) {
-                    requestPermissions(PERMISSIONS, REQUEST_ALL_PERMISSIONS)
-                   }
-                scanDevice(true)
-            }
+                0->{ intent = Intent(Settings.ACTION_BLUETOOTH_SETTINGS)
+                    startActivity(intent) }
                 else ->{
 
                 }
@@ -115,6 +108,10 @@ class ConnectEquipmentActivity : ActivityBase<ActivityConnectEquipmentBinding>()
 
     }
 
+    override fun onResume() {
+        super.onResume()
+        setBluetoothList()
+    }
     override fun initDatabinding() {
         viewModel1.setConnectMode(PrefUtil.getInt2(applicationContext, CONNECT_MODE))
         viewBinding.tvEquipmentMaker.text = if(PrefUtil.getInt2(applicationContext, EQUIPMENT_MAKER)==-1){"제조사명"}
@@ -142,83 +139,90 @@ class ConnectEquipmentActivity : ActivityBase<ActivityConnectEquipmentBinding>()
 
     }
 
-    override fun onBluetoothItemClick(view: View?, position: Int) {
+  override fun onBluetoothItemClick(view: View?, position: Int) {
         Log.d(TAG, "onBluetoothItemClick:  $position")
         bluetoothRecyclerViewAdapter.selectednum = position
         bluetoothRecyclerViewAdapter.notifyDataSetChanged();
     }
-    private fun hasPermissions(context: Context?, permissions: Array<String>): Boolean {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && context != null && permissions != null) {
-            for (permission in permissions) {
-                if (ActivityCompat.checkSelfPermission(context, permission) != PackageManager.PERMISSION_GRANTED) {
-                    return false
-                }
-            }
-        }
-        return true
-    }
+    /*
+   private fun hasPermissions(context: Context?, permissions: Array<String>): Boolean {
+       if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && context != null && permissions != null) {
+           for (permission in permissions) {
+               if (ActivityCompat.checkSelfPermission(context, permission) != PackageManager.PERMISSION_GRANTED) {
+                   return false
+               }
+           }
+       }
+       return true
+   }
 
-    // Permission 확인
-    @RequiresApi(Build.VERSION_CODES.M)
-    override fun onRequestPermissionsResult(
-        requestCode: Int,
-        permissions: Array<String?>,
-        grantResults: IntArray
-    ) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        when (requestCode) {
-            REQUEST_PERMISSIONS -> {
-                // If request is cancelled, the result arrays are empty.
-                if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                  showToast("Permissions granted!")
-                } else {
-                    requestPermissions(permissions, REQUEST_PERMISSIONS)
-                 showToast("Permissions must be granted")
-                }
-            }
-        }
-    }
-
-
-    private val mLeScanCallback = @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
-    object: ScanCallback() {
-        override fun onScanFailed(errorCode: Int) {
-            super.onScanFailed(errorCode)
-            Log.d("scanCallback", "BLE Scan Failed : " + errorCode)
-        }
-        override fun onBatchScanResults(results: MutableList<android.bluetooth.le.ScanResult > ?) {
-            super.onBatchScanResults(results)
-            results?.let {
-                // results is not null
-                for(result in it) {
-                    if(!devicesArr.contains(result.device) && result.device.name!=null) devicesArr.add(result.device)
-                }
-            }
-        }
-        override fun onScanResult(callbackType: Int, result: android.bluetooth.le.ScanResult?) {
-            super.onScanResult(callbackType, result)
-            result?.let {
-                // result is not null
-                if(!devicesArr.contains(it.device) && it.device.name!=null) devicesArr.add(it.device)
-                bluetoothRecyclerViewAdapter.notifyDataSetChanged()
-            }
-        }
-    }
+   // Permission 확인
+   @RequiresApi(Build.VERSION_CODES.M)
+   override fun onRequestPermissionsResult(
+       requestCode: Int,
+       permissions: Array<String?>,
+       grantResults: IntArray
+   ) {
+       super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+       when (requestCode) {
+           REQUEST_PERMISSIONS -> {
+               // If request is cancelled, the result arrays are empty.
+               if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                 showToast("Permissions granted!")
+               } else {
+                   requestPermissions(permissions, REQUEST_PERMISSIONS)
+                showToast("Permissions must be granted")
+               }
+           }
+       }
+   }
 
 
-    @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
-    private fun scanDevice(state:Boolean) = if(state) {
-        handler.postDelayed({
-            viewModel1.setBoolvalue(viewModel1.scanning, false)
-            bluetoothDefaultAdapter?.bluetoothLeScanner?.stopScan(mLeScanCallback)
-        }, SCAN_PERIOD.toLong())
-        viewModel1.setBoolvalue(viewModel1.scanning, true)
-        devicesArr.clear()
-        bluetoothDefaultAdapter?.bluetoothLeScanner?.startScan(mLeScanCallback)
-    }
-    else {
-        viewModel1.setBoolvalue(viewModel1.scanning, false)
-        bluetoothDefaultAdapter?.bluetoothLeScanner?.stopScan(mLeScanCallback)
-    }
+   private val mLeScanCallback = @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
+   object: ScanCallback() {
+       override fun onScanFailed(errorCode: Int) {
+           super.onScanFailed(errorCode)
+           Log.d("scanCallback", "BLE Scan Failed : " + errorCode)
+       }
+       override fun onBatchScanResults(results: MutableList<android.bluetooth.le.ScanResult > ?) {
+           super.onBatchScanResults(results)
+           results?.let {
+               // results is not null
+               for(result in it) {
+                   if(!devicesArr.contains(result.device) && result.device.name!=null) devicesArr.add(result.device)
+               }
+           }
+       }
+       override fun onScanResult(callbackType: Int, result: android.bluetooth.le.ScanResult?) {
+           super.onScanResult(callbackType, result)
+           result?.let {
+               // result is not null
+               if(!devicesArr.contains(it.device) && it.device.name!=null) devicesArr.add(it.device)
+               bluetoothRecyclerViewAdapter.notifyDataSetChanged()
+           }
+       }
+   }
 
+
+   @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
+   private fun scanDevice(state:Boolean) { if(state) {
+       if(viewModel1.scanning.value!!){ // restart
+           bluetoothDefaultAdapter?.bluetoothLeScanner?.stopScan(mLeScanCallback)
+           viewModel1.setBoolvalue(viewModel1.scanning, true)
+           scanDevice(true)
+       }else {
+           handler.postDelayed({
+               viewModel1.setBoolvalue(viewModel1.scanning, false)
+               bluetoothDefaultAdapter?.bluetoothLeScanner?.stopScan(mLeScanCallback)
+           }, SCAN_PERIOD.toLong())
+           viewModel1.setBoolvalue(viewModel1.scanning, true)
+           devicesArr.clear()
+           bluetoothDefaultAdapter?.bluetoothLeScanner?.startScan(mLeScanCallback)
+       }
+   }
+   else {
+       viewModel1.setBoolvalue(viewModel1.scanning, false)
+       bluetoothDefaultAdapter?.bluetoothLeScanner?.stopScan(mLeScanCallback)
+   }
+   }*/
 }
