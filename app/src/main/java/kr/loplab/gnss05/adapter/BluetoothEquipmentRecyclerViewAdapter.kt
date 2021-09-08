@@ -30,7 +30,8 @@ class BluetoothEquipmentRecyclerViewAdapter internal constructor(context: Contex
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.equipmentName.text = mData[position].name
         holder.equipmentCode.text = mData[position].address
-        holder.itemView.setBackgroundColor(ContextCompat.getColor(context!!, R.color.main_blue))
+        if (position == selectednum){holder.itemView.setBackgroundColor(ContextCompat.getColor(context!!, R.color.main_blue))}
+        else {holder.itemView.setBackgroundColor(ContextCompat.getColor(context!!, R.color.white))}
     }
 
     // total number of cells
