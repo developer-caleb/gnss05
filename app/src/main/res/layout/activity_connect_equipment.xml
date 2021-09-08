@@ -155,6 +155,14 @@
                             android:textColor="@color/grey_33"
                             />
 
+                        <ImageView
+                            android:id="@+id/bt_bluetooth_setting"
+                            android:layout_width="60dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="0"
+                            android:scaleType="center"
+                            app:srcCompat="@drawable/ic_status_work_settings" />
+
                     </LinearLayout>
 
                     <androidx.recyclerview.widget.RecyclerView
@@ -202,7 +210,7 @@
                             android:layout_weight="1"
                             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                             tools:itemCount="3"
-                            tools:listitem="@layout/recyclerview_custom_format">
+                            tools:listitem="@layout/recyclerview_connect_equipment">
                         </androidx.recyclerview.widget.RecyclerView>
 
 

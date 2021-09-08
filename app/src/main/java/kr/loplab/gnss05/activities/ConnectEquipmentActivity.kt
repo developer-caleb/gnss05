@@ -1,12 +1,17 @@
 package kr.loplab.gnss05.activities
 
+import android.bluetooth.BluetoothAdapter
+import android.content.Intent
 import android.os.Bundle
+import android.provider.Settings
 import android.util.Log
 import androidx.lifecycle.ViewModelProvider
 import kr.loplab.gnss02.ActivityBase
 import kr.loplab.gnss05.MyDialog
 import kr.loplab.gnss05.R
 import kr.loplab.gnss05.activities.viewmodel.ConnectEquipmentViewModel
+import kr.loplab.gnss05.adapter.BluetoothEquipmentRecyclerViewAdapter
+import kr.loplab.gnss05.adapter.DialogRecyclerviewAdapter
 import kr.loplab.gnss05.common.Define.CONNECT_MODE
 import kr.loplab.gnss05.common.Define.EQUIPMENT_MAKER
 import kr.loplab.gnss05.common.OptionList.Companion.CONNECT_MODE_LIST
@@ -18,6 +23,9 @@ class ConnectEquipmentActivity : ActivityBase<ActivityConnectEquipmentBinding>()
     override val layoutResourceId: Int
         get() = R.layout.activity_connect_equipment
     lateinit var viewModel1: ConnectEquipmentViewModel
+    lateinit var wifiAdapter : DialogRecyclerviewAdapter
+    lateinit var bluetoothAdapter : BluetoothEquipmentRecyclerViewAdapter
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -70,6 +78,10 @@ class ConnectEquipmentActivity : ActivityBase<ActivityConnectEquipmentBinding>()
             }
             dlg.setHeader("연결모드")
         }
+        viewBinding.btBluetoothSetting.setOnClickListener {
+            intent = Intent(Settings.ACTION_BLUETOOTH_SETTINGS)
+            startActivity(intent)
+        }
         viewBinding.btSearch.setOnClickListener {  }
         viewBinding.btConnect.setOnClickListener {  }
 
@@ -80,8 +92,26 @@ class ConnectEquipmentActivity : ActivityBase<ActivityConnectEquipmentBinding>()
         viewBinding.tvEquipmentMaker.text = if(PrefUtil.getInt(applicationContext, EQUIPMENT_MAKER)==-1){"제조사명"}
         else{EQUIPMENT_MAKER_LIST[PrefUtil.getInt(applicationContext, EQUIPMENT_MAKER)]}
         viewBinding.tvConnectMode.text = CONNECT_MODE_LIST[PrefUtil.getInt2(applicationContext, CONNECT_MODE)]
+        setBluetoothList();
+        setWifiList();
+    }
+    fun setBluetoothList(){
+   
+        val pairedDevices = BluetoothAdapter.getDefaultAdapter().bondedDevices
+        var arrays = arrayListOf<String>()
+        if (pairedDevices.size>0){
+        pairedDevices.forEach { divices ->
+            run {
+                arrays.add(divices.name)
+                Log.d(TAG, "setBluetoothList: ")
+            }
+        }}
+
+        bluetoothAdapter = BluetoothEquipmentRecyclerViewAdapter(this, arrays!!)
+        viewBinding.recyclerviewBluetoothEquipment.adapter = bluetoothAdapter
+    }
+    fun setWifiList(){
 
     }
-
 
 }

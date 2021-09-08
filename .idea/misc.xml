@@ -113,6 +113,7 @@
         <entry key="app/src/main/res/layout/position_reference_station.xml" value="0.2872655478775913" />
         <entry key="app/src/main/res/layout/position_reference_station_deprecated.xml" value="0.1359375" />
         <entry key="app/src/main/res/layout/recyclerview_checkitem.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/recyclerview_connect_equipment.xml" value="0.33" />
         <entry key="app/src/main/res/layout/recyclerview_custom_format.xml" value="0.5" />
         <entry key="app/src/main/res/layout/recyclerview_item.xml" value="0.33" />
         <entry key="app/src/main/res/layout/recyclerview_item_grid.xml" value="0.18" />
