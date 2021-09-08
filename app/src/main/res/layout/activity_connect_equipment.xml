@@ -164,7 +164,7 @@
                         android:layout_weight="1"
                         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                         tools:itemCount="3"
-                        tools:listitem="@layout/recyclerview_listitem">
+                        tools:listitem="@layout/recyclerview_custom_format">
 
                     </androidx.recyclerview.widget.RecyclerView>
 
@@ -202,7 +202,7 @@
                             android:layout_weight="1"
                             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                             tools:itemCount="3"
-                            tools:listitem="@layout/recyclerview_listitem">
+                            tools:listitem="@layout/recyclerview_custom_format">
                         </androidx.recyclerview.widget.RecyclerView>
 
 

@@ -113,12 +113,15 @@
         <entry key="app/src/main/res/layout/position_reference_station.xml" value="0.2872655478775913" />
         <entry key="app/src/main/res/layout/position_reference_station_deprecated.xml" value="0.1359375" />
         <entry key="app/src/main/res/layout/recyclerview_checkitem.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/recyclerview_custom_format.xml" value="0.5" />
         <entry key="app/src/main/res/layout/recyclerview_item.xml" value="0.33" />
         <entry key="app/src/main/res/layout/recyclerview_item_grid.xml" value="0.18" />
         <entry key="app/src/main/res/layout/recyclerview_item_icons.xml" value="0.33" />
         <entry key="app/src/main/res/layout/recyclerview_item_vertical.xml" value="0.244140625" />
         <entry key="app/src/main/res/layout/recyclerview_listitem.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/revision.xml" value="0.16666666666666666" />
         <entry key="app/src/main/res/layout/satellite_set.xml" value="0.246484375" />
+        <entry key="app/src/main/res/layout/satellite_set_deprecated.xml" value="0.16666666666666666" />
         <entry key="app/src/main/res/layout/server_add.xml" value="0.244140625" />
         <entry key="app/src/main/res/layout/setting_sub2.xml" value="0.1296875" />
         <entry key="app/src/main/res/layout/setting_sub3.xml" value="0.332" />
