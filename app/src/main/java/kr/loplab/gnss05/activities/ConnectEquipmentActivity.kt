@@ -1,6 +1,7 @@
 package kr.loplab.gnss05.activities
 
 import android.bluetooth.BluetoothAdapter
+import android.bluetooth.BluetoothDevice
 import android.content.Intent
 import android.os.Bundle
 import android.provider.Settings
@@ -96,17 +97,16 @@ class ConnectEquipmentActivity : ActivityBase<ActivityConnectEquipmentBinding>()
         setWifiList();
     }
     fun setBluetoothList(){
-   
+
         val pairedDevices = BluetoothAdapter.getDefaultAdapter().bondedDevices
-        var arrays = arrayListOf<String>()
+        var arrays = arrayListOf<BluetoothDevice>()
         if (pairedDevices.size>0){
         pairedDevices.forEach { divices ->
             run {
-                arrays.add(divices.name)
+                arrays.add(divices)
                 Log.d(TAG, "setBluetoothList: ")
             }
         }}
-
         bluetoothAdapter = BluetoothEquipmentRecyclerViewAdapter(this, arrays!!)
         viewBinding.recyclerviewBluetoothEquipment.adapter = bluetoothAdapter
     }

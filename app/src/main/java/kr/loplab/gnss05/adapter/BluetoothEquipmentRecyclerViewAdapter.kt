@@ -1,5 +1,6 @@
 package kr.loplab.gnss05.adapter
 
+import android.bluetooth.BluetoothDevice
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
@@ -9,9 +10,9 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import kr.loplab.gnss05.R
 
-class BluetoothEquipmentRecyclerViewAdapter internal constructor(context: Context?, data: ArrayList<String>) :
+class BluetoothEquipmentRecyclerViewAdapter internal constructor(context: Context?, data: ArrayList<BluetoothDevice>) :
     RecyclerView.Adapter<BluetoothEquipmentRecyclerViewAdapter.ViewHolder>() {
-    private val mData: ArrayList<String>
+    private val mData: ArrayList<BluetoothDevice>
     private val mInflater: LayoutInflater
     private var mClickListener: RecyclerItemClickListener? = null
 
@@ -23,7 +24,9 @@ class BluetoothEquipmentRecyclerViewAdapter internal constructor(context: Contex
 
     // binds the data to the TextView in each cell
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.equipmentName.text = mData[position]
+        holder.equipmentName.text = mData[position].name
+        holder.equipmentCode.text = mData[position].address
+
     }
 
     // total number of cells
@@ -50,7 +53,7 @@ class BluetoothEquipmentRecyclerViewAdapter internal constructor(context: Contex
 
     // convenience method for getting data at click position
     fun getItem(id: Int): String {
-        return mData[id]
+        return mData[id].name
     }
 
     // allows clicks events to be caught
