@@ -52,6 +52,7 @@
 
     <!--Figma-->
     <color name="main_blue">#1DB7FB</color>
+    <color name="main_blue_alpha">#301DB7FB</color>
     <color name="blue">#0084CE</color>
     <color name="deep_blue">#0160A7</color>
     <color name="dark_gray">@color/grey_33</color>

@@ -40,7 +40,7 @@ class ConnectEquipmentActivity : ActivityBase<ActivityConnectEquipmentBinding>()
     private val REQUEST_PERMISSIONS= 2
     private val REQUEST_ALL_PERMISSIONS= 2
     private var scanning: Boolean = false
-    private val SCAN_PERIOD = 1000
+    private val SCAN_PERIOD = 15000
     private val handler = Handler()
     var devicesArr = arrayListOf<BluetoothDevice>()
     private val PERMISSIONS = arrayOf(Manifest.permission.ACCESS_FINE_LOCATION)
@@ -64,7 +64,7 @@ class ConnectEquipmentActivity : ActivityBase<ActivityConnectEquipmentBinding>()
             "Hemisphere", "GINTEC", "GEOMAX", "Hi-Target", "HuaXing")*/
              dlg.list = EQUIPMENT_MAKER_LIST
 
-              dlg.selectedposition= PrefUtil.getInt(applicationContext, EQUIPMENT_MAKER)
+              dlg.selectedposition= PrefUtil.getInt2(applicationContext, EQUIPMENT_MAKER)
             /*dlg.setOnOKClickedListener{ content ->
                 Log.d(TAG, "onItemClick: $content")
             }*/
@@ -72,7 +72,7 @@ class ConnectEquipmentActivity : ActivityBase<ActivityConnectEquipmentBinding>()
               dlg.setOnListClickedListener { view, i ->
             Log.d(TAG, "initListener: $i")
             PrefUtil.setInt(applicationContext, EQUIPMENT_MAKER, i)
-            viewBinding.tvEquipmentMaker.text = EQUIPMENT_MAKER_LIST[PrefUtil.getInt(applicationContext, EQUIPMENT_MAKER)]
+            viewBinding.tvEquipmentMaker.text = EQUIPMENT_MAKER_LIST[PrefUtil.getInt2(applicationContext, EQUIPMENT_MAKER)]
             dlg.refresh()
             dlg.dismiss()
         }
@@ -85,13 +85,13 @@ class ConnectEquipmentActivity : ActivityBase<ActivityConnectEquipmentBinding>()
             //dlg.title_dialog
             dlg.firstLayoutUse = false
             dlg.list = CONNECT_MODE_LIST
-            dlg.selectedposition= PrefUtil.getInt(applicationContext, CONNECT_MODE)
+            dlg.selectedposition= PrefUtil.getInt2(applicationContext, CONNECT_MODE)
             dlg.start("1123");
             dlg.setOnListClickedListener { view, i ->
                 Log.d(TAG, "initListener: $i")
                 viewModel1.setConnectMode(i)
                 PrefUtil.setInt(applicationContext, CONNECT_MODE, i)
-                viewBinding.tvConnectMode.text = CONNECT_MODE_LIST[PrefUtil.getInt(applicationContext, CONNECT_MODE)]
+                viewBinding.tvConnectMode.text = CONNECT_MODE_LIST[PrefUtil.getInt2(applicationContext, CONNECT_MODE)]
                 dlg.refresh()
                 dlg.dismiss()
             }
@@ -102,12 +102,18 @@ class ConnectEquipmentActivity : ActivityBase<ActivityConnectEquipmentBinding>()
             startActivity(intent)
         }
         viewBinding.btScan.setOnClickListener {
-                v:View? ->// Scan Button Onclick
-            if(!hasPermissions(this, PERMISSIONS)) {
-                requestPermissions(PERMISSIONS, REQUEST_ALL_PERMISSIONS)
+            Log.d(TAG, "initListener: ")
+            when(PrefUtil.getInt2(applicationContext, CONNECT_MODE)) {
+                0->{
+                if (!hasPermissions(this, PERMISSIONS)) {
+                    requestPermissions(PERMISSIONS, REQUEST_ALL_PERMISSIONS)
+                   }
+                scanDevice(true)
             }
-            scanDevice(true)
+                else ->{
 
+                }
+            }
         }
         viewBinding.btConnect.setOnClickListener {
             if(bluetoothRecyclerViewAdapter.selectednum == -1){
@@ -119,8 +125,8 @@ class ConnectEquipmentActivity : ActivityBase<ActivityConnectEquipmentBinding>()
 
     override fun initDatabinding() {
         viewModel1.setConnectMode(PrefUtil.getInt2(applicationContext, CONNECT_MODE))
-        viewBinding.tvEquipmentMaker.text = if(PrefUtil.getInt(applicationContext, EQUIPMENT_MAKER)==-1){"제조사명"}
-        else{EQUIPMENT_MAKER_LIST[PrefUtil.getInt(applicationContext, EQUIPMENT_MAKER)]}
+        viewBinding.tvEquipmentMaker.text = if(PrefUtil.getInt2(applicationContext, EQUIPMENT_MAKER)==-1){"제조사명"}
+        else{EQUIPMENT_MAKER_LIST[PrefUtil.getInt2(applicationContext, EQUIPMENT_MAKER)]}
         viewBinding.tvConnectMode.text = CONNECT_MODE_LIST[PrefUtil.getInt2(applicationContext, CONNECT_MODE)]
         setBluetoothList();
         setWifiList();
