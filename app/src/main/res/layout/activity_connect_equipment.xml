@@ -157,37 +157,18 @@
 
                     </LinearLayout>
 
-                    <LinearLayout style="@style/ButtonLayout_STYLE01">
-
-                        <TextView
-                            style="@style/Sub_TEXTVIEW_STYLE1"
-                            android:text="블루투스 연결 가능 장비명"
-                            />
-
-
-                    </LinearLayout>
-
-                    <View
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/recyclerview_bluetooth_equipment"
                         android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:layout_weight="0"
-                        android:background="@color/grey_EC" />
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                        tools:itemCount="3"
+                        tools:listitem="@layout/recyclerview_listitem">
 
-                    <LinearLayout style="@style/ButtonLayout_STYLE01">
-
-                        <TextView
-                            style="@style/Sub_TEXTVIEW_STYLE1"
-                            android:text="블루투스 연결 가능 장비명"
-                            />
+                    </androidx.recyclerview.widget.RecyclerView>
 
 
-                    </LinearLayout>
-
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:layout_weight="0"
-                        android:background="@color/grey_EC" />
 
                 </LinearLayout>
 
@@ -213,37 +194,17 @@
 
                     </LinearLayout>
 
-                    <LinearLayout style="@style/ButtonLayout_STYLE01">
 
-                        <TextView
-                            style="@style/Sub_TEXTVIEW_STYLE1"
-                            android:text="WiFi 연결 가능 장비명"
-                            />
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/recyclerview_wife_equipment"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                            tools:itemCount="3"
+                            tools:listitem="@layout/recyclerview_listitem">
+                        </androidx.recyclerview.widget.RecyclerView>
 
-
-                    </LinearLayout>
-
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:layout_weight="0"
-                        android:background="@color/grey_EC" />
-
-                    <LinearLayout style="@style/ButtonLayout_STYLE01">
-
-                        <TextView
-                            style="@style/Sub_TEXTVIEW_STYLE1"
-                            android:text="WiFi 연결 가능 장비명"
-                            />
-
-
-                    </LinearLayout>
-
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:layout_weight="0"
-                        android:background="@color/grey_EC" />
 
                 </LinearLayout>
 
@@ -463,6 +424,7 @@
             app:layout_constraintStart_toStartOf="parent">
 
             <TextView
+                android:id="@+id/bt_search"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -477,6 +439,7 @@
                 android:background="@color/white" />
 
             <TextView
+                android:id="@+id/bt_connect"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"

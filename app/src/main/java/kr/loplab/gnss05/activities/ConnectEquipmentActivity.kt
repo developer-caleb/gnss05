@@ -70,6 +70,8 @@ class ConnectEquipmentActivity : ActivityBase<ActivityConnectEquipmentBinding>()
             }
             dlg.setHeader("연결모드")
         }
+        viewBinding.btSearch.setOnClickListener {  }
+        viewBinding.btConnect.setOnClickListener {  }
 
     }
 
