@@ -180,7 +180,7 @@ class ConnectEquipmentActivity : ActivityBase<ActivityConnectEquipmentBinding>()
             override fun run() {
                 if (mController.isConnect) {
                     dismissDialog()
-                    showToast("Connect Success！")
+                    showToast("연결에 성공하였습니다!")
                     updateStatus()
                     return
                 }
@@ -189,7 +189,7 @@ class ConnectEquipmentActivity : ActivityBase<ActivityConnectEquipmentBinding>()
                     viewBinding.mTvConnectStatus.postDelayed(this, 1000)
                     return
                 }
-              showToast("Connect Failed！")
+              showToast("연결 실패！")
                 updateStatus()
                 dismissDialog()
                 mController.disConnect()
