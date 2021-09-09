@@ -2,12 +2,14 @@ package kr.loplab.gnss05.activities.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import kr.loplab.gnss05.connection.ConnectionStatus
 
 
 class ConnectEquipmentViewModel : ViewModel() {
     private var name = ""
     var connect_mode = MutableLiveData<Int>(0)
     var scanning = MutableLiveData<Boolean>(false)
+    var connection_state = MutableLiveData<ConnectionStatus>(ConnectionStatus.DISCONNECT)
     init {
 
     }

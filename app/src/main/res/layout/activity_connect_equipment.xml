@@ -472,7 +472,18 @@
                 android:layout_weight="1"
                 android:text="연결"
                 style="@style/TextViewButton_STYLE01" />
-
+            <View
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0"
+                android:background="@color/white" />
+            <TextView
+                android:id="@+id/bt_disconnect"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="중지"
+                style="@style/TextViewButton_STYLE01" />
 
         </LinearLayout>
 
