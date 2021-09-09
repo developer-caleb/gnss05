@@ -159,7 +159,7 @@
                         <TextView
                             android:id="@+id/m_tv_bt_connect_status"
                             style="@style/Sub_TEXTVIEW_STYLE1"
-                            android:text="연결 안 됨"
+                            android:text=""
                             android:layout_marginRight="20dp"
                             android:textColor="@color/grey_33"
                             android:layout_weight="0"
@@ -211,7 +211,7 @@
                         <TextView
                             android:id="@+id/m_tv_wifi_connect_status"
                             style="@style/Sub_TEXTVIEW_STYLE1"
-                            android:text="연결 안 됨"
+                            android:text=""
                             android:layout_marginRight="20dp"
                             android:textColor="@color/grey_33"
                             android:layout_weight="0"

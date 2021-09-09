@@ -10,7 +10,7 @@ import kr.loplab.gnss05.receiver.entity.Cmd;
 public class ConnectManager {
 
 	private static ConnectManager sInstance = null;
-
+	private ConnectionTypes mconnectionType = ConnectionTypes.DEMO;
 	private IGnssConnection mGnssConnection;
 	private ConnectionStatus mConnectionStatus = ConnectionStatus.DISCONNECT;
 
