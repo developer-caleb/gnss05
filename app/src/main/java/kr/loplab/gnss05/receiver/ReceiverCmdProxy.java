@@ -19,9 +19,11 @@ import com.huace.gnssserver.gnss.data.receiver.EnumModemDialStatus;
 import com.huace.gnssserver.gnss.data.receiver.NoneMagneticTiltStartInfo;
 import com.huace.gnssserver.gnss.data.receiver.RegisterCode;
 
+import kr.loplab.gnss05.receiver.cmd.GetCmdDialModemEventArgs;
 import kr.loplab.gnss05.receiver.cmd.GetCmdDisableOtherIOsEventArgs;
 import kr.loplab.gnss05.receiver.cmd.GetCmdOutputNMEAEventArgs;
 import kr.loplab.gnss05.receiver.cmd.GetCmdOutputPosDataEventArgs;
+import kr.loplab.gnss05.receiver.cmd.GetCmdRegReceiverEventArgs;
 import kr.loplab.gnss05.receiver.cmd.GetCmdStartNoneMagneticTiltEventArgs;
 import kr.loplab.gnss05.receiver.cmd.GetCmdStartRoverEventArgs;
 import kr.loplab.gnss05.receiver.cmd.GetCmdUpdateCorsInfoEventArgs;

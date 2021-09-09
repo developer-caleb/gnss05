@@ -4,7 +4,7 @@ import com.huace.gnssserver.gnss.data.receiver.EnumReceiverCmd;
 import com.huace.gnssserver.gnss.data.receiver.NoneMagneticTiltStartInfo;
 
 /**
- * 开启 imu
+ * 켜다 imu
  */
 public class GetCmdStartNoneMagneticTiltEventArgs extends ReceiverCmdEventArgs {
 
