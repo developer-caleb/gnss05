@@ -14,7 +14,23 @@ import com.huace.gnssserver.gnss.data.receiver.ReceiverCmd;
 
 import java.util.List;
 
+import kr.loplab.gnss05.GlobalApplication;
+import kr.loplab.gnss05.receiver.asw.GetBattteyLifeEventArgs;
+import kr.loplab.gnss05.receiver.asw.GetDeviceInfoEventArgs;
+import kr.loplab.gnss05.receiver.asw.GetGnssDopsEventArgs;
+import kr.loplab.gnss05.receiver.asw.GetModemAutoDialParamsEventArgs;
+import kr.loplab.gnss05.receiver.asw.GetModemDialStatusEventArgs;
+import kr.loplab.gnss05.receiver.asw.GetNoneMagneticSetParamsEventArgs;
+import kr.loplab.gnss05.receiver.asw.GetNoneMagneticTiltInfoEventArgs;
+import kr.loplab.gnss05.receiver.asw.GetPositionExEventArgs;
+import kr.loplab.gnss05.receiver.asw.GetReceiverInfoEventArgs;
+import kr.loplab.gnss05.receiver.asw.GetSatelliteInfosEventArgs;
+import kr.loplab.gnss05.receiver.asw.GetSatelliteUsedNumsEventArgs;
+import kr.loplab.gnss05.receiver.asw.GetSourceListEventArgs;
+import kr.loplab.gnss05.receiver.asw.GetSourceTableEventArgs;
+import kr.loplab.gnss05.receiver.asw.IReceiverDataEventArgs;
 import kr.loplab.gnss05.receiver.entity.ReceiverAsw;
+import kr.loplab.gnss05.receiver.sourcelist.GetSourceFromReceiver;
 
 /**
  * Huatest 분석 모듈에서 제공하는 데이터 서비스 인터페이스(시뮬레이션)
@@ -87,7 +103,7 @@ public class ReceiverService {
     }
 
     /**
-     * 设备信息
+     * 장치 정보
      */
     public void post(GetDeviceInfoEventArgs args) {
         if (args.getDeviceInfo() != null) {
@@ -96,14 +112,14 @@ public class ReceiverService {
     }
 
     /**
-     * 接收机电量
+     * 수신기 배터리
      */
     public void post(GetBattteyLifeEventArgs args) {
         // sendBroadcast(args, args.getBatteryLife());
     }
 
     /**
-     * 可用卫星/卫星总数
+     * 가용 위성/총 위성 수
      */
     public void post(GetSatelliteUsedNumsEventArgs args) {
         if (args.getSatelliteNumber() != null) {
@@ -112,7 +128,7 @@ public class ReceiverService {
     }
 
     /**
-     * 卫星数据
+     * 위성 데이터
      */
     public void post(GetSatelliteInfosEventArgs args) {
         if (args.getSatelliteInfos() != null) {
@@ -121,28 +137,28 @@ public class ReceiverService {
     }
 
     /**
-     * 经纬度信息
+     * 위도 및 경도 정보
      */
     public void post(GetPositionExEventArgs args) {
         sendBroadcast(args, args.getPositionInfo());
     }
 
     /**
-     * 无磁倾斜数据
+     * 비자성 기울기 데이터
      */
     public void post(GetNoneMagneticTiltInfoEventArgs args) {
         sendBroadcast(args, args.getInfo());
     }
 
     /**
-     * 无磁倾斜参数
+     * 비자성 기울기 매개변수
      */
     public void post(GetNoneMagneticSetParamsEventArgs args) {
         sendBroadcast(args, args.getInfo());
     }
 
     /**
-     * dop值
+     * dop값
      */
     public void post(GetGnssDopsEventArgs args) {
         DopsInfo dop = args.getDopsInfo();
@@ -152,7 +168,7 @@ public class ReceiverService {
     }
 
     /**
-     * 拨号数据
+     * 다이얼 데이터
      *
      * @param getModemAutoDialParamsEventArgs
      */
@@ -166,15 +182,15 @@ public class ReceiverService {
         if (data != null) {
             intent.putExtra(RECEIVER_DATA, data);
         }
-        App.getInstance().sendBroadcast(intent);
+        GlobalApplication.getInstance().sendBroadcast(intent);
     }
 
     private void sendBroadcast(Intent intent) {
-        App.getInstance().sendBroadcast(intent);
+        GlobalApplication.getInstance().sendBroadcast(intent);
     }
 
     /**
-     * 获取到源列表通知
+     * 소스 목록 알림 받기
      *
      * @param getSourceListEventArgs
      */
@@ -185,7 +201,7 @@ public class ReceiverService {
     }
 
     /**
-     * 获取到源列表数据
+     * 소스 목록 데이터 가져오기
      *
      * @param getSourceListEventArgs
      */
@@ -195,7 +211,7 @@ public class ReceiverService {
     }
 
     /**
-     * 拨号状态
+     * 전화 걸기 상태
      *
      * @param args
      */
