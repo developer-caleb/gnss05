@@ -8,6 +8,7 @@ import com.chc.gnss.sdk.CHC_OEM_TYPE;
 import com.chc.gnss.sdk.CHC_RECEIVER_TYPE;
 import com.chc.gnss.sdk.CHC_Receiver;
 import com.chc.gnss.sdk.CHC_ReceiverRef;
+import com.huace.gnssserver.gnss.data.receiver.EnumReceiverCmd;
 
 import java.io.IOException;
 import java.util.Timer;
@@ -15,9 +16,11 @@ import java.util.TimerTask;
 import java.util.Vector;
 
 import kr.loplab.gnss05.GlobalApplication;
+import kr.loplab.gnss05.common.ConstPath;
 import kr.loplab.gnss05.common.FileUtils;
 import kr.loplab.gnss05.common.L;
 import kr.loplab.gnss05.common.SleepUtils;
+import kr.loplab.gnss05.receiver.cmd.ReceiverCmdEventArgs;
 import kr.loplab.gnss05.receiver.entity.Cmd;
 
 /**

@@ -121,7 +121,7 @@ class ConnectEquipmentActivity : ActivityBase<ActivityConnectEquipmentBinding>()
         mController.connect(this)
     }
     private fun showConnectDialoig() {
-        mConnectDialog = ProgressDialog.show(this, "INFO", "Connecting...")
+        mConnectDialog = ProgressDialog.show(this, "정보", "연결 중 입니다...")
         checkConnectStatus()
     }
     override fun onResume() {

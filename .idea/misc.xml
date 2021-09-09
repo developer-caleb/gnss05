@@ -130,7 +130,7 @@
         <entry key="app/src/main/res/layout/setting_sub4.xml" value="0.1296875" />
         <entry key="app/src/main/res/layout/standard.xml" value="0.2359375" />
         <entry key="app/src/main/res/layout/standard_coordinate_set.xml" value="0.246484375" />
-        <entry key="app/src/main/res/layout/standard_coordinate_set_deprecated.xml" value="0.124609375" />
+        <entry key="app/src/main/res/layout/standard_coordinate_set_deprecated.xml" value="0.33" />
         <entry key="app/src/main/res/layout/standard_keyboard_popup.xml" value="0.2359375" />
         <entry key="app/src/main/res/layout/standard_keyboard_popup_deprecated.xml" value="0.1703125" />
         <entry key="app/src/main/res/layout/stop_set.xml" value="0.246484375" />
