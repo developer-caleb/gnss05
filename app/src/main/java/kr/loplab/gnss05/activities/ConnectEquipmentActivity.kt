@@ -139,6 +139,11 @@ WifiEquipmentRecyclerViewAdapter.RecyclerItemClickListener{
             }
         }
 
+        viewBinding.header01.setOnOptionButtonClickListener{
+            Log.d(TAG, "initListener: ${ConnectManager.getInstance().connectionStatus.toString()}")
+        }
+
+
     }
     fun wifiConnect(){
         MyBluetoothManager.getInstance().setBlueName(

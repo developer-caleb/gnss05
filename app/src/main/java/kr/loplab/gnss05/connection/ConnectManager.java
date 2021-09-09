@@ -1,6 +1,7 @@
 package kr.loplab.gnss05.connection;
 
 import android.content.Context;
+import android.util.Log;
 
 import kr.loplab.gnss05.GlobalApplication;
 import kr.loplab.gnss05.receiver.UseDemo;
@@ -8,7 +9,7 @@ import kr.loplab.gnss05.receiver.entity.Cmd;
 
 
 public class ConnectManager {
-
+	private String TAG = this.getClass().getSimpleName();
 	private static ConnectManager sInstance = null;
 	private ConnectionTypes mconnectionType = ConnectionTypes.DEMO;
 	private IGnssConnection mGnssConnection;
@@ -44,7 +45,9 @@ public class ConnectManager {
 	}
 
 	public boolean connect(Context context) {
+		Log.d(TAG, "connect: 연결 성공할 뻔 실패");
 		try {
+			Log.d(TAG, "connect: 연결 성공");
 			if (mGnssConnection != null) {
 				mGnssConnection.disConnect();
 				mGnssConnection = null;
@@ -90,6 +93,7 @@ public class ConnectManager {
 			setConnectionStatus(ConnectionStatus.CONNECT_FAILD);
 			// 와이파이 연결 끊김
 			UseDemo.stopReceiver();
+			Log.e(TAG, "connectionLost: nn");
 		}
 
 		@Override
@@ -97,6 +101,7 @@ public class ConnectManager {
 			setConnectionStatus(ConnectionStatus.DISCONNECT);
 			// wifi disconnected
 			UseDemo.stopReceiver();
+			Log.e(TAG, "beDisConnected: stop it");
 		}
 
 		@Override
