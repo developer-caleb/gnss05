@@ -10,7 +10,11 @@ import com.naver.maps.map.NaverMapSdk;
 
 public class GlobalApplication  extends Application {
     public static Toast mToast;
+    public static GlobalApplication instance = null;
 
+    public static GlobalApplication getInstance() {
+        return instance;
+    }
     @Override
     public void onCreate() {
         super.onCreate();

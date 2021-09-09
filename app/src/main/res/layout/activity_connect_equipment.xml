@@ -153,6 +153,16 @@
                             style="@style/Sub_TEXTVIEW_STYLE1"
                             android:text="블루투스 장치"
                             android:textColor="@color/grey_33"
+                            android:layout_weight="3"
+                            />
+
+                        <TextView
+                            android:id="@+id/m_tv_connect_status"
+                            style="@style/Sub_TEXTVIEW_STYLE1"
+                            android:text="연결 안 됨"
+                            android:layout_marginRight="20dp"
+                            android:textColor="@color/grey_33"
+                            android:layout_weight="0"
                             />
                         <!--
                         <ImageView

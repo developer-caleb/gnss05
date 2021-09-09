@@ -1,25 +1,23 @@
 package kr.loplab.gnss05.activities
 
 import android.Manifest
+import android.app.ProgressDialog
 import android.bluetooth.BluetoothAdapter
 import android.bluetooth.BluetoothDevice
-import android.bluetooth.le.ScanCallback
-import android.content.Context
 import android.content.Intent
-import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Bundle
 import android.os.Handler
 import android.provider.Settings
 import android.util.Log
 import android.view.View
+import android.widget.Toast
 import androidx.annotation.RequiresApi
-import androidx.core.app.ActivityCompat
-import androidx.core.os.HandlerCompat.postDelayed
 import androidx.lifecycle.ViewModelProvider
 import kr.loplab.gnss02.ActivityBase
 import kr.loplab.gnss05.MyDialog
 import kr.loplab.gnss05.R
+import kr.loplab.gnss05.activities.bluetooth.ConnectController
 import kr.loplab.gnss05.activities.viewmodel.ConnectEquipmentViewModel
 import kr.loplab.gnss05.adapter.BluetoothEquipmentRecyclerViewAdapter
 import kr.loplab.gnss05.adapter.DialogRecyclerviewAdapter
@@ -28,6 +26,8 @@ import kr.loplab.gnss05.common.Define.EQUIPMENT_MAKER
 import kr.loplab.gnss05.common.OptionList.Companion.CONNECT_MODE_LIST
 import kr.loplab.gnss05.common.OptionList.Companion.EQUIPMENT_MAKER_LIST
 import kr.loplab.gnss05.common.PrefUtil
+import kr.loplab.gnss05.connection.ConnectManager
+import kr.loplab.gnss05.connection.bluetooth.MyBluetoothManager
 import kr.loplab.gnss05.databinding.ActivityConnectEquipmentBinding
 
 class ConnectEquipmentActivity : ActivityBase<ActivityConnectEquipmentBinding>(), BluetoothEquipmentRecyclerViewAdapter.RecyclerItemClickListener {
@@ -42,6 +42,10 @@ class ConnectEquipmentActivity : ActivityBase<ActivityConnectEquipmentBinding>()
     private val SCAN_PERIOD = 15000
     private val handler = Handler()
     var devicesArr = arrayListOf<BluetoothDevice>()
+    private val mController: ConnectController = ConnectController()
+    private var mCount = 0
+
+    private var mConnectDialog: ProgressDialog? = null
     private val PERMISSIONS = arrayOf(Manifest.permission.ACCESS_FINE_LOCATION)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -59,17 +63,16 @@ class ConnectEquipmentActivity : ActivityBase<ActivityConnectEquipmentBinding>()
     viewBinding.makerSelectBt.setOnClickListener {
             val dlg = MyDialog(this)
             dlg.firstLayoutUse = false
-             dlg.list = EQUIPMENT_MAKER_LIST
-              dlg.selectedposition= PrefUtil.getInt2(applicationContext, EQUIPMENT_MAKER)
+            dlg.list = EQUIPMENT_MAKER_LIST
+            dlg.selectedposition= PrefUtil.getInt2(applicationContext, EQUIPMENT_MAKER)
             dlg.start("메인의 내용을 변경할까요?")
-              dlg.setOnListClickedListener { view, i ->
+            dlg.setOnListClickedListener { view, i ->
             Log.d(TAG, "initListener: $i")
             PrefUtil.setInt(applicationContext, EQUIPMENT_MAKER, i)
             viewBinding.tvEquipmentMaker.text = EQUIPMENT_MAKER_LIST[PrefUtil.getInt2(applicationContext, EQUIPMENT_MAKER)]
             dlg.dismiss()
         }
         dlg.setHeader("장비제조사")
-
     }
 
         viewBinding.connectModeBt.setOnClickListener {
@@ -78,7 +81,7 @@ class ConnectEquipmentActivity : ActivityBase<ActivityConnectEquipmentBinding>()
             dlg.firstLayoutUse = false
             dlg.list = CONNECT_MODE_LIST
             dlg.selectedposition= PrefUtil.getInt2(applicationContext, CONNECT_MODE)
-            dlg.start("1123");
+            dlg.start("");
             dlg.setOnListClickedListener { view, i ->
                 Log.d(TAG, "initListener: $i")
                 viewModel1.setConnectMode(i)
@@ -101,13 +104,26 @@ class ConnectEquipmentActivity : ActivityBase<ActivityConnectEquipmentBinding>()
             }
         }
         viewBinding.btConnect.setOnClickListener {
-            if(bluetoothRecyclerViewAdapter.selectednum == -1){
+            when(PrefUtil.getInt2(applicationContext, CONNECT_MODE)){
+            0 -> {if(bluetoothRecyclerViewAdapter.selectednum == -1){
                 showToast("블루투스 장치를 선택해주세요"); return@setOnClickListener
+            }else{
+                bluetoothConnect()
+            }}
             }
         }
 
     }
-
+    fun bluetoothConnect(){
+        MyBluetoothManager.getInstance().setBlueName(
+            devicesArr[bluetoothRecyclerViewAdapter.selectednum].name  )
+        showConnectDialoig()
+        mController.connect(this)
+    }
+    private fun showConnectDialoig() {
+        mConnectDialog = ProgressDialog.show(this, "INFO", "Connecting...")
+        checkConnectStatus()
+    }
     override fun onResume() {
         super.onResume()
         setBluetoothList()
@@ -138,12 +154,49 @@ class ConnectEquipmentActivity : ActivityBase<ActivityConnectEquipmentBinding>()
     fun setWifiList(){
 
     }
+    private fun dismissDialog() {
+        if (dialogIsShow()) {
+            mConnectDialog!!.dismiss()
+        }
+    }
 
+    private fun dialogIsShow(): Boolean {
+        return mConnectDialog != null && mConnectDialog!!.isShowing
+    }
   override fun onBluetoothItemClick(view: View?, position: Int) {
         Log.d(TAG, "onBluetoothItemClick:  $position")
         bluetoothRecyclerViewAdapter.selectednum = position
         bluetoothRecyclerViewAdapter.notifyDataSetChanged();
     }
+    private fun updateStatus() {
+        viewBinding.mTvConnectStatus.setText(
+            ConnectManager.getInstance()
+                .getConnectionStatus().name
+        )
+    }
+    private fun checkConnectStatus() {
+        mCount = 0
+        viewBinding.mTvConnectStatus.postDelayed(object : Runnable {
+            override fun run() {
+                if (mController.isConnect) {
+                    dismissDialog()
+                    showToast("Connect Success！")
+                    updateStatus()
+                    return
+                }
+                mCount++
+                if (mCount < 20) {
+                    viewBinding.mTvConnectStatus.postDelayed(this, 1000)
+                    return
+                }
+              showToast("Connect Failed！")
+                updateStatus()
+                dismissDialog()
+                mController.disConnect()
+            }
+        }, 1000)
+    }
+    //**와이파이 스캔,
     /*
    private fun hasPermissions(context: Context?, permissions: Array<String>): Boolean {
        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && context != null && permissions != null) {
