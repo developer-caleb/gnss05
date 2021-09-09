@@ -143,7 +143,7 @@ WifiEquipmentRecyclerViewAdapter.RecyclerItemClickListener{
     fun wifiConnect(){
         MyBluetoothManager.getInstance().setBlueName(
             wifiDevicesArr[wifiRecyclerViewAdapter.selectednum].SSID  )
-        showBtConnectDialog()
+        showWifiConnectDialog()
         mController.connect(this)
     }
     fun bluetoothConnect(){
@@ -155,6 +155,10 @@ WifiEquipmentRecyclerViewAdapter.RecyclerItemClickListener{
     private fun showBtConnectDialog() {
         mConnectDialog = ProgressDialog.show(this, "정보", "연결 중 입니다...")
         checkConnectStatus(viewBinding.mTvBtConnectStatus)
+    }
+    private fun showWifiConnectDialog() {
+        mConnectDialog = ProgressDialog.show(this, "정보", "연결 중 입니다...")
+        checkConnectStatus(viewBinding.mTvWifiConnectStatus)
     }
     override fun onResume() {
         super.onResume()
@@ -258,6 +262,7 @@ WifiEquipmentRecyclerViewAdapter.RecyclerItemClickListener{
 
     fun clickWifiScan() {
         val success = wifiManager!!.startScan()
+
         if (!success) showToast("Wifi Scan에 실패하였습니다.")
     }
 

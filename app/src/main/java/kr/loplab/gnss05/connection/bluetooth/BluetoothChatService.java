@@ -284,7 +284,7 @@ public class BluetoothChatService {
 				if (mbStopThread) {
 					return;
 				}
-				// 2.尝试第二种方式
+				// 2.두 번째 방법을 시도하십시오
 				if (btSocket == null) {
 					L.d("1.Try to reflect connect");
 					btSocket = tryCreateBtSocketByReflect();

@@ -49,8 +49,7 @@ public class ConnectManager {
 				mGnssConnection.disConnect();
 				mGnssConnection = null;
 			}
-			mGnssConnection = GnssConnectionFactory
-					.makeConnection(GnssConnectionWay.BLUETOOTH);
+			mGnssConnection = GnssConnectionFactory.makeConnection(GnssConnectionWay.BLUETOOTH);
 			if (mGnssConnection == null) {
 				return false;
 			}
