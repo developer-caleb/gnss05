@@ -2,14 +2,13 @@ package kr.loplab.gnss05.adapter
 
 import android.bluetooth.BluetoothDevice
 import android.content.Context
-import android.os.Build
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
+import kr.loplab.gnss05.MyDialog
 import kr.loplab.gnss05.R
 
 class BluetoothEquipmentRecyclerViewAdapter internal constructor(context: Context?, data: ArrayList<BluetoothDevice>) :
@@ -17,7 +16,7 @@ class BluetoothEquipmentRecyclerViewAdapter internal constructor(context: Contex
     private val mData: ArrayList<BluetoothDevice>
     private val mInflater: LayoutInflater
     private val context :Context? = context;
-    private var mClickListener: RecyclerItemClickListener? = null
+    private var itemClickListener: RecyclerItemClickListener? = null
     var selectednum = -1;
 
     // inflates the cell layout from xml when needed
@@ -45,7 +44,7 @@ class BluetoothEquipmentRecyclerViewAdapter internal constructor(context: Contex
         var equipmentName: TextView
         var equipmentCode: TextView
         override fun onClick(view: View) {
-            if (mClickListener != null) mClickListener!!.onBluetoothItemClick(view, adapterPosition)
+            if (itemClickListener != null) itemClickListener!!.onBluetoothItemClick(view, adapterPosition)
 
         }
 
@@ -63,15 +62,21 @@ class BluetoothEquipmentRecyclerViewAdapter internal constructor(context: Contex
     }
 
     // allows clicks events to be caught
-    fun setClickListener(itemClickListener: RecyclerItemClickListener?) {
-        mClickListener = itemClickListener
+    public fun setBtItemClickListener(listener: (view: View?, position: Int) -> Unit) {
+        this.itemClickListener= object : BluetoothEquipmentRecyclerViewAdapter.RecyclerItemClickListener{
+            override fun onBluetoothItemClick(view: View?, position: Int) {
+                listener(view, position) // 뷰와 포지션를 가진 이 함수를 변수로 넣어라!!
+            }
+        }
     }
 
 
     // parent activity will implement this method to respond to click events
     interface RecyclerItemClickListener {
-        fun onBluetoothItemClick(view: View?, position: Int)
+       public fun onBluetoothItemClick(view: View?, position: Int)
     }
+
+
 
 
     // data is passed into the constructor

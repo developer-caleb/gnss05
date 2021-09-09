@@ -35,7 +35,7 @@ import kr.loplab.gnss05.connection.ConnectManager
 import kr.loplab.gnss05.connection.bluetooth.MyBluetoothManager
 import kr.loplab.gnss05.databinding.ActivityConnectEquipmentBinding
 
-class ConnectEquipmentActivity : ActivityBase<ActivityConnectEquipmentBinding>(), BluetoothEquipmentRecyclerViewAdapter.RecyclerItemClickListener,
+class ConnectEquipmentActivity : ActivityBase<ActivityConnectEquipmentBinding>(),
 WifiEquipmentRecyclerViewAdapter.RecyclerItemClickListener{
     override val layoutResourceId: Int
         get() = R.layout.activity_connect_equipment
@@ -187,7 +187,13 @@ WifiEquipmentRecyclerViewAdapter.RecyclerItemClickListener{
         }}
         bluetoothRecyclerViewAdapter = BluetoothEquipmentRecyclerViewAdapter(this, btDevicesArr!!)
         viewBinding.recyclerviewBluetoothEquipment.adapter = bluetoothRecyclerViewAdapter
-        bluetoothRecyclerViewAdapter.setClickListener(this)
+        bluetoothRecyclerViewAdapter.setBtItemClickListener { view, position ->
+            run {
+                Log.d(TAG, "onBTItemClick:  $position")
+                bluetoothRecyclerViewAdapter.selectednum = position
+                bluetoothRecyclerViewAdapter.notifyDataSetChanged();
+            }
+        }
     }
     fun setWifiList(){
         val results = wifiManager!!.scanResults
@@ -212,11 +218,7 @@ WifiEquipmentRecyclerViewAdapter.RecyclerItemClickListener{
     private fun dialogIsShow(): Boolean {
         return mConnectDialog != null && mConnectDialog!!.isShowing
     }
-  override fun onBluetoothItemClick(view: View?, position: Int) {
-        Log.d(TAG, "onBluetoothItemClick:  $position")
-        bluetoothRecyclerViewAdapter.selectednum = position
-        bluetoothRecyclerViewAdapter.notifyDataSetChanged();
-    }
+
     private fun updateStatus(textview : TextView) {
         textview.setText(ConnectManager.getInstance().getConnectionStatus().name
         )
