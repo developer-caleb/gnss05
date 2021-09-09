@@ -89,14 +89,14 @@ public class ConnectManager {
 		@Override
 		public void connectionLost() {
 			setConnectionStatus(ConnectionStatus.CONNECT_FAILD);
-			// wifi断开
+			// 와이파이 연결 끊김
 			UseDemo.stopReceiver();
 		}
 
 		@Override
 		public void beDisConnected() {
 			setConnectionStatus(ConnectionStatus.DISCONNECT);
-			// wifi断开
+			// wifi disconnected
 			UseDemo.stopReceiver();
 		}
 
@@ -107,7 +107,7 @@ public class ConnectManager {
 	};
 
 	/**
-	 * 给接收机写数据，不要直接调用，只能让CmdManager调用
+	 * Write data to the receiver, don’t call it directly, only call CmdManager
 	 * 
 	 * @param data
 	 */

@@ -16,7 +16,7 @@ import android.os.Handler
 import android.provider.Settings
 import android.util.Log
 import android.view.View
-import android.widget.Toast
+import android.widget.TextView
 import androidx.annotation.RequiresApi
 import androidx.lifecycle.ViewModelProvider
 import kr.loplab.gnss02.ActivityBase
@@ -25,7 +25,6 @@ import kr.loplab.gnss05.R
 import kr.loplab.gnss05.activities.bluetooth.ConnectController
 import kr.loplab.gnss05.activities.viewmodel.ConnectEquipmentViewModel
 import kr.loplab.gnss05.adapter.BluetoothEquipmentRecyclerViewAdapter
-import kr.loplab.gnss05.adapter.DialogRecyclerviewAdapter
 import kr.loplab.gnss05.adapter.WifiEquipmentRecyclerViewAdapter
 import kr.loplab.gnss05.common.Define.CONNECT_MODE
 import kr.loplab.gnss05.common.Define.EQUIPMENT_MAKER
@@ -144,18 +143,18 @@ WifiEquipmentRecyclerViewAdapter.RecyclerItemClickListener{
     fun wifiConnect(){
         MyBluetoothManager.getInstance().setBlueName(
             wifiDevicesArr[wifiRecyclerViewAdapter.selectednum].SSID  )
-        showConnectDialoig()
+        showBtConnectDialog()
         mController.connect(this)
     }
     fun bluetoothConnect(){
         MyBluetoothManager.getInstance().setBlueName(
             btDevicesArr[bluetoothRecyclerViewAdapter.selectednum].name  )
-        showConnectDialoig()
+        showBtConnectDialog()
         mController.connect(this)
     }
-    private fun showConnectDialoig() {
+    private fun showBtConnectDialog() {
         mConnectDialog = ProgressDialog.show(this, "정보", "연결 중 입니다...")
-        checkConnectStatus()
+        checkConnectStatus(viewBinding.mTvBtConnectStatus)
     }
     override fun onResume() {
         super.onResume()
@@ -212,29 +211,27 @@ WifiEquipmentRecyclerViewAdapter.RecyclerItemClickListener{
         bluetoothRecyclerViewAdapter.selectednum = position
         bluetoothRecyclerViewAdapter.notifyDataSetChanged();
     }
-    private fun updateStatus() {
-        viewBinding.mTvBtConnectStatus.setText(
-            ConnectManager.getInstance()
-                .getConnectionStatus().name
+    private fun updateStatus(textview : TextView) {
+        textview.setText(ConnectManager.getInstance().getConnectionStatus().name
         )
     }
-    private fun checkConnectStatus() {
+    private fun checkConnectStatus(textview : TextView) {
         mCount = 0
-        viewBinding.mTvBtConnectStatus.postDelayed(object : Runnable {
+        textview.postDelayed(object : Runnable {
             override fun run() {
                 if (mController.isConnect) {
                     dismissDialog()
                     showToast("연결에 성공하였습니다!")
-                    updateStatus()
+                    updateStatus(textview)
                     return
                 }
                 mCount++
                 if (mCount < 20) {
-                    viewBinding.mTvBtConnectStatus.postDelayed(this, 1000)
+                    textview.postDelayed(this, 1000)
                     return
                 }
               showToast("연결 실패！")
-                updateStatus()
+                updateStatus(textview)
                 dismissDialog()
                 mController.disConnect()
             }
@@ -265,6 +262,7 @@ WifiEquipmentRecyclerViewAdapter.RecyclerItemClickListener{
     }
 
     private fun scanFailure() {    // Wifi검색 실패
+        showToast("Wifi Scan에 실패하였습니다.")
     }
 
     override fun onWifiItemClick(view: View?, position: Int) {
