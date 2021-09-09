@@ -169,14 +169,14 @@ class ConnectEquipmentActivity : ActivityBase<ActivityConnectEquipmentBinding>()
         bluetoothRecyclerViewAdapter.notifyDataSetChanged();
     }
     private fun updateStatus() {
-        viewBinding.mTvConnectStatus.setText(
+        viewBinding.mTvBtConnectStatus.setText(
             ConnectManager.getInstance()
                 .getConnectionStatus().name
         )
     }
     private fun checkConnectStatus() {
         mCount = 0
-        viewBinding.mTvConnectStatus.postDelayed(object : Runnable {
+        viewBinding.mTvBtConnectStatus.postDelayed(object : Runnable {
             override fun run() {
                 if (mController.isConnect) {
                     dismissDialog()
@@ -186,7 +186,7 @@ class ConnectEquipmentActivity : ActivityBase<ActivityConnectEquipmentBinding>()
                 }
                 mCount++
                 if (mCount < 20) {
-                    viewBinding.mTvConnectStatus.postDelayed(this, 1000)
+                    viewBinding.mTvBtConnectStatus.postDelayed(this, 1000)
                     return
                 }
               showToast("연결 실패！")
