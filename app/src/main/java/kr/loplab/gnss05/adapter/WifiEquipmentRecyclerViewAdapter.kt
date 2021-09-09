@@ -46,7 +46,7 @@ class WifiEquipmentRecyclerViewAdapter internal constructor(context: Context?, d
         var equipmentName: TextView
         var equipmentCode: TextView
         override fun onClick(view: View) {
-            if (mClickListener != null) mClickListener!!.onBluetoothItemClick(view, adapterPosition)
+            if (mClickListener != null) mClickListener!!.onWifiItemClick(view, adapterPosition)
 
         }
 
@@ -71,7 +71,7 @@ class WifiEquipmentRecyclerViewAdapter internal constructor(context: Context?, d
 
     // parent activity will implement this method to respond to click events
     interface RecyclerItemClickListener {
-        fun onBluetoothItemClick(view: View?, position: Int)
+        fun onWifiItemClick(view: View?, position: Int)
     }
 
 

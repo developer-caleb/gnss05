@@ -4,7 +4,12 @@ import android.Manifest
 import android.app.ProgressDialog
 import android.bluetooth.BluetoothAdapter
 import android.bluetooth.BluetoothDevice
+import android.content.BroadcastReceiver
+import android.content.Context
 import android.content.Intent
+import android.content.IntentFilter
+import android.net.wifi.ScanResult
+import android.net.wifi.WifiManager
 import android.os.Build
 import android.os.Bundle
 import android.os.Handler
@@ -21,6 +26,7 @@ import kr.loplab.gnss05.activities.bluetooth.ConnectController
 import kr.loplab.gnss05.activities.viewmodel.ConnectEquipmentViewModel
 import kr.loplab.gnss05.adapter.BluetoothEquipmentRecyclerViewAdapter
 import kr.loplab.gnss05.adapter.DialogRecyclerviewAdapter
+import kr.loplab.gnss05.adapter.WifiEquipmentRecyclerViewAdapter
 import kr.loplab.gnss05.common.Define.CONNECT_MODE
 import kr.loplab.gnss05.common.Define.EQUIPMENT_MAKER
 import kr.loplab.gnss05.common.OptionList.Companion.CONNECT_MODE_LIST
@@ -30,23 +36,31 @@ import kr.loplab.gnss05.connection.ConnectManager
 import kr.loplab.gnss05.connection.bluetooth.MyBluetoothManager
 import kr.loplab.gnss05.databinding.ActivityConnectEquipmentBinding
 
-class ConnectEquipmentActivity : ActivityBase<ActivityConnectEquipmentBinding>(), BluetoothEquipmentRecyclerViewAdapter.RecyclerItemClickListener {
+class ConnectEquipmentActivity : ActivityBase<ActivityConnectEquipmentBinding>(), BluetoothEquipmentRecyclerViewAdapter.RecyclerItemClickListener,
+WifiEquipmentRecyclerViewAdapter.RecyclerItemClickListener{
     override val layoutResourceId: Int
         get() = R.layout.activity_connect_equipment
     lateinit var viewModel1: ConnectEquipmentViewModel
-    lateinit var wifiRecyclerViewAdapter : DialogRecyclerviewAdapter
+    lateinit var wifiRecyclerViewAdapter : WifiEquipmentRecyclerViewAdapter
     lateinit var bluetoothRecyclerViewAdapter : BluetoothEquipmentRecyclerViewAdapter
     var bluetoothDefaultAdapter = BluetoothAdapter.getDefaultAdapter() //블루투스 검색
     private val REQUEST_PERMISSIONS= 2 //블루투스 검색
     private val REQUEST_ALL_PERMISSIONS= 2 //블루투스 검색
     private val SCAN_PERIOD = 15000 //블루투스 검색
     private val handler = Handler()  //블루투스 검색
-    var devicesArr = arrayListOf<BluetoothDevice>()
+    var btDevicesArr = arrayListOf<BluetoothDevice>()
+    var wifiDevicesArr = arrayListOf<ScanResult>()
+    var wifiManager: WifiManager? = null
+    var intentFilter = IntentFilter()
+
+
     private val mController: ConnectController = ConnectController()
     private var mCount = 0
 
     private var mConnectDialog: ProgressDialog? = null
     private val PERMISSIONS = arrayOf(Manifest.permission.ACCESS_FINE_LOCATION) //블루투스 검색 -> 검색하려면 fine location permission 받아야한다고 함. 이유는 모름
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -55,6 +69,11 @@ class ConnectEquipmentActivity : ActivityBase<ActivityConnectEquipmentBinding>()
     override fun init() {
         viewModel1 = ViewModelProvider(this).get(ConnectEquipmentViewModel::class.java)
         viewBinding.connectionequpmentviewmodel = viewModel1
+
+        //Wifi Scan 관련
+        wifiManager = applicationContext.getSystemService(WIFI_SERVICE) as WifiManager
+        intentFilter.addAction(WifiManager.SCAN_RESULTS_AVAILABLE_ACTION)
+        applicationContext.registerReceiver(wifiScanReceiver, intentFilter)
     }
 
     @RequiresApi(Build.VERSION_CODES.M)
@@ -98,6 +117,9 @@ class ConnectEquipmentActivity : ActivityBase<ActivityConnectEquipmentBinding>()
             when(PrefUtil.getInt2(applicationContext, CONNECT_MODE)) {
                 0->{ intent = Intent(Settings.ACTION_BLUETOOTH_SETTINGS)
                     startActivity(intent) }
+                1->{
+                    clickWifiScan()
+                }
                 else ->{
 
                 }
@@ -110,13 +132,24 @@ class ConnectEquipmentActivity : ActivityBase<ActivityConnectEquipmentBinding>()
             }else{
                 bluetoothConnect()
             }}
+                1->  {if(wifiRecyclerViewAdapter.selectednum == -1){
+                    showToast("와이파이 장치를 선택해주세요"); return@setOnClickListener
+                }else{
+                    wifiConnect()
+                }}
             }
         }
 
     }
+    fun wifiConnect(){
+        MyBluetoothManager.getInstance().setBlueName(
+            wifiDevicesArr[wifiRecyclerViewAdapter.selectednum].SSID  )
+        showConnectDialoig()
+        mController.connect(this)
+    }
     fun bluetoothConnect(){
         MyBluetoothManager.getInstance().setBlueName(
-            devicesArr[bluetoothRecyclerViewAdapter.selectednum].name  )
+            btDevicesArr[bluetoothRecyclerViewAdapter.selectednum].name  )
         showConnectDialoig()
         mController.connect(this)
     }
@@ -138,21 +171,32 @@ class ConnectEquipmentActivity : ActivityBase<ActivityConnectEquipmentBinding>()
     }
     fun setBluetoothList(){
 
-        val pairedDevices = BluetoothAdapter.getDefaultAdapter().bondedDevices
-        devicesArr.clear()
-        if (pairedDevices.size>0){
-        pairedDevices.forEach { divices ->
+        val pairedBTDevices = BluetoothAdapter.getDefaultAdapter().bondedDevices
+        btDevicesArr.clear()
+        if (pairedBTDevices.size>0){
+        pairedBTDevices.forEach { divices ->
             run {
-                devicesArr.add(divices)
+                btDevicesArr.add(divices)
                 Log.d(TAG, "setBluetoothList: ")
             }
         }}
-        bluetoothRecyclerViewAdapter = BluetoothEquipmentRecyclerViewAdapter(this, devicesArr!!)
+        bluetoothRecyclerViewAdapter = BluetoothEquipmentRecyclerViewAdapter(this, btDevicesArr!!)
         viewBinding.recyclerviewBluetoothEquipment.adapter = bluetoothRecyclerViewAdapter
         bluetoothRecyclerViewAdapter.setClickListener(this)
     }
     fun setWifiList(){
-
+        val results = wifiManager!!.scanResults
+        wifiDevicesArr.clear()
+        if (results.size>0){
+            results.forEach { divices ->
+                run {
+                    wifiDevicesArr.add(divices)
+                    Log.d(TAG, "setBluetoothList: ")
+                }
+            }}
+        wifiRecyclerViewAdapter = WifiEquipmentRecyclerViewAdapter(this, wifiDevicesArr!!)
+        viewBinding.recyclerviewWifiEquipment.adapter = wifiRecyclerViewAdapter
+        wifiRecyclerViewAdapter.setClickListener(this)
     }
     private fun dismissDialog() {
         if (dialogIsShow()) {
@@ -195,6 +239,38 @@ class ConnectEquipmentActivity : ActivityBase<ActivityConnectEquipmentBinding>()
                 mController.disConnect()
             }
         }, 1000)
+    }
+
+
+    var wifiScanReceiver: BroadcastReceiver = object : BroadcastReceiver() {
+        override fun onReceive(
+            c: Context,
+            intent: Intent
+        ) {
+            viewModel1.setBoolvalue(viewModel1.scanning , false)
+            // wifiManager.startScan(); 시  발동되는 메소드 ( 예제에서는 버튼을 누르면 startScan()을 했음. )
+            val success =
+                intent.getBooleanExtra(WifiManager.EXTRA_RESULTS_UPDATED, false) //스캔 성공 여부 값 반환
+            if (success) {
+                setWifiList()  //Scan successed
+            } else {
+                scanFailure()
+            }
+        } // onReceive()..
+    }
+
+    fun clickWifiScan() {
+        val success = wifiManager!!.startScan()
+        if (!success) showToast("Wifi Scan에 실패하였습니다.")
+    }
+
+    private fun scanFailure() {    // Wifi검색 실패
+    }
+
+    override fun onWifiItemClick(view: View?, position: Int) {
+        Log.d(TAG, "onWifiItemClick:  $position")
+        wifiRecyclerViewAdapter.selectednum = position
+        wifiRecyclerViewAdapter.notifyDataSetChanged();
     }
     //**와이파이 스캔,
     /*

@@ -166,6 +166,9 @@ class MainActivity : AppCompatActivity(),
                 .withPermissions(
                     Manifest.permission.WRITE_EXTERNAL_STORAGE,
                     Manifest.permission.READ_EXTERNAL_STORAGE,
+                    Manifest.permission.ACCESS_FINE_LOCATION,
+                    Manifest.permission.ACCESS_WIFI_STATE,
+                    Manifest.permission.CHANGE_WIFI_STATE,
 
                 ) // 위치
                 .withListener(object : MultiplePermissionsListener {

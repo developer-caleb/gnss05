@@ -472,7 +472,7 @@
 
 
         </LinearLayout>
-        <!-- 장비연결
+
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/layout_scanning"
             android:layout_width="100dp"
@@ -506,7 +506,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
-           -->
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
