@@ -36,17 +36,17 @@ class ConnectEquipmentActivity : ActivityBase<ActivityConnectEquipmentBinding>()
     lateinit var viewModel1: ConnectEquipmentViewModel
     lateinit var wifiRecyclerViewAdapter : DialogRecyclerviewAdapter
     lateinit var bluetoothRecyclerViewAdapter : BluetoothEquipmentRecyclerViewAdapter
-    var bluetoothDefaultAdapter = BluetoothAdapter.getDefaultAdapter()
-    private val REQUEST_PERMISSIONS= 2
-    private val REQUEST_ALL_PERMISSIONS= 2
-    private val SCAN_PERIOD = 15000
-    private val handler = Handler()
+    var bluetoothDefaultAdapter = BluetoothAdapter.getDefaultAdapter() //블루투스 검색
+    private val REQUEST_PERMISSIONS= 2 //블루투스 검색
+    private val REQUEST_ALL_PERMISSIONS= 2 //블루투스 검색
+    private val SCAN_PERIOD = 15000 //블루투스 검색
+    private val handler = Handler()  //블루투스 검색
     var devicesArr = arrayListOf<BluetoothDevice>()
     private val mController: ConnectController = ConnectController()
     private var mCount = 0
 
     private var mConnectDialog: ProgressDialog? = null
-    private val PERMISSIONS = arrayOf(Manifest.permission.ACCESS_FINE_LOCATION)
+    private val PERMISSIONS = arrayOf(Manifest.permission.ACCESS_FINE_LOCATION) //블루투스 검색 -> 검색하려면 fine location permission 받아야한다고 함. 이유는 모름
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
