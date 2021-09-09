@@ -5,6 +5,7 @@
     >
     <data>
         <import type="android.view.View"/>
+        <import type="kr.loplab.gnss05.connection.ConnectionStatus"/>
         <variable
             name="connectionequpmentviewmodel"
             type="kr.loplab.gnss05.activities.viewmodel.ConnectEquipmentViewModel"/>
@@ -457,6 +458,7 @@
                 android:layout_weight="1"
                 android:text="검색"
                 style="@style/TextViewButton_STYLE01"
+                android:visibility="@{connectionequpmentviewmodel.connection_state == ConnectionStatus.CONNECTED? View.GONE : View.VISIBLE}"
                 />
 
             <View
@@ -471,6 +473,8 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:text="연결"
+                android:visibility="@{connectionequpmentviewmodel.connection_state == ConnectionStatus.CONNECTED? View.GONE : View.VISIBLE}"
+
                 style="@style/TextViewButton_STYLE01" />
             <View
                 android:layout_width="1dp"
@@ -483,6 +487,8 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:text="중지"
+                android:visibility="@{connectionequpmentviewmodel.connection_state == ConnectionStatus.CONNECTED? View.VISIBLE : View.GONE}"
+
                 style="@style/TextViewButton_STYLE01" />
 
         </LinearLayout>
