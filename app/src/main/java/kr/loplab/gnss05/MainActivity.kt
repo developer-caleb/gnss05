@@ -42,7 +42,7 @@ import kotlin.concurrent.thread
 
 
 class MainActivity :  ActivityBase<ActivityMainBinding>(),
-     DialogRecyclerviewAdapter.RecyclerItemClickListener {
+     DialogRecyclerviewAdapter.RecyclerItemClickListener , ConnectManager.ConnectStateChangeListener{
     override val layoutResourceId: Int
         get() = R.layout.activity_main
     var adapterViewpager: MainAdapterViewpager? = null
@@ -73,16 +73,6 @@ class MainActivity :  ActivityBase<ActivityMainBinding>(),
 
 
     override fun initListener(){
-        ConnectManager.instance!!.setOnConnectStateChangeListener {
-            Log.d(TAG, "onConnectStateChange: 커넥션스테이트 ! -> ${it.name}")
-            viewModel1.setConnectionState(it)
-            when (it){
-                ConnectionStatus.DISCONNECT -> {}
-                ConnectionStatus.CONNECTTNG -> {}
-                ConnectionStatus.CONNECTED -> {}
-                ConnectionStatus.CONNECT_FAILD -> {}
-            }
-        }
         viewBinding.pager1.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
             override fun onPageScrolled(i: Int, v: Float, i1: Int) {}
             override fun onPageSelected(i: Int) {}
@@ -387,9 +377,21 @@ class MainActivity :  ActivityBase<ActivityMainBinding>(),
 
     override fun onResume() {
         super.onResume()
+        ConnectManager.instance!!.setOnConnectStateChangeListener(this)
         initDatabinding()
     }
 
+    override fun onConnectStateChange(connectionStatus: ConnectionStatus) {
+        Log.d(TAG, "onConnectStateChange: 커넥션스테이트 ! 2 -> ${connectionStatus.name}")
+        viewModel1.setConnectionState(connectionStatus)
+        Log.d(TAG, "initListener: ${viewModel1.connection_state}")
+        when (connectionStatus){
+            ConnectionStatus.DISCONNECT -> {}
+            ConnectionStatus.CONNECTTNG -> {}
+            ConnectionStatus.CONNECTED -> {}
+            ConnectionStatus.CONNECT_FAILD -> {}
+        }
+    }
 
 
 }

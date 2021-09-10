@@ -37,7 +37,7 @@ import kr.loplab.gnss05.connection.bluetooth.MyBluetoothManager
 import kr.loplab.gnss05.databinding.ActivityConnectEquipmentBinding
 
 class ConnectEquipmentActivity : ActivityBase<ActivityConnectEquipmentBinding>(),
-WifiEquipmentRecyclerViewAdapter.RecyclerItemClickListener{
+WifiEquipmentRecyclerViewAdapter.RecyclerItemClickListener, ConnectManager.ConnectStateChangeListener{
     override val layoutResourceId: Int
         get() = R.layout.activity_connect_equipment
     lateinit var viewModel1: ConnectEquipmentViewModel
@@ -79,10 +79,7 @@ WifiEquipmentRecyclerViewAdapter.RecyclerItemClickListener{
 
     @RequiresApi(Build.VERSION_CODES.M)
     override fun initListener() {
-        ConnectManager.instance!!.setOnConnectStateChangeListener {
-            Log.d(TAG, "onConnectStateChange: 커넥션스테이트 ! -> ${it.name}")
-
-        }
+        ConnectManager.instance!!.setOnConnectStateChangeListener(this)
     viewBinding.header01.setOnBackButtonClickListener{onBackPressed()}
     viewBinding.makerSelectBt.setOnClickListener {
             val dlg = MyDialog(this)
@@ -284,6 +281,10 @@ WifiEquipmentRecyclerViewAdapter.RecyclerItemClickListener{
         Log.d(TAG, "onWifiItemClick:  $position")
         wifiRecyclerViewAdapter.selectednum = position
         wifiRecyclerViewAdapter.notifyDataSetChanged();
+    }
+
+    override fun onConnectStateChange(connectionStatus: ConnectionStatus) {
+        Log.d(TAG, "onConnectStateChange: 커넥션스테이트 ! 1 -> ${connectionStatus.name}")
     }
 
     //**와이파이 스캔,

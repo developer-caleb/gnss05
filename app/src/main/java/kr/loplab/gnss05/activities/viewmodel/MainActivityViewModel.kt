@@ -27,6 +27,6 @@ class MainActivityViewModel : ViewModel() {
         data.value = boolvalue
     }
     fun setConnectionState(connectionStatus : ConnectionStatus){
-        connection_state.value = connectionStatus
+        connection_state.postValue(connectionStatus)
     }
 }

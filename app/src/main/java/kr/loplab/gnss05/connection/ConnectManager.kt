@@ -127,12 +127,8 @@ class ConnectManager private constructor() {
         fun onConnectStateChange(connectionStatus : ConnectionStatus)
     }
 
-    fun setOnConnectStateChangeListener(listener: (ConnectionStatus) -> Unit) {
-        this.connectionStateChangeListener = object: ConnectManager.ConnectStateChangeListener {
-            override fun onConnectStateChange(connectionStatus: ConnectionStatus) {
-                listener(connectionStatus)
-            }
-        }
+    fun setOnConnectStateChangeListener(listener: ConnectStateChangeListener) {
+        connectionStateChangeListener = listener
     }
 
 }

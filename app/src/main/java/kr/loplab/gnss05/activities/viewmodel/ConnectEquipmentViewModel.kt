@@ -28,4 +28,7 @@ class ConnectEquipmentViewModel : ViewModel() {
     fun setBoolvalue(data : MutableLiveData<Boolean>, boolvalue : Boolean){
         data.value = boolvalue
     }
+    fun setConnectionState(connectionStatus : ConnectionStatus){
+        connection_state.postValue(connectionStatus)
+    }
 }
