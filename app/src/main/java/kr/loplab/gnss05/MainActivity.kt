@@ -36,6 +36,7 @@ import kr.loplab.gnss05.connection.ConnectManager
 import kr.loplab.gnss05.connection.ConnectionStatus
 import kr.loplab.gnss05.databinding.ActivityConnectEquipmentBinding
 import kr.loplab.gnss05.databinding.ActivityMainBinding
+import kr.loplab.gnss05.enums.ConnectType
 import java.io.*
 import java.lang.Exception
 import kotlin.concurrent.thread
@@ -100,6 +101,10 @@ class MainActivity :  ActivityBase<ActivityMainBinding>(),
         viewBinding.logoImg.setOnClickListener {
             Log.d(TAG, "onCreate: logo click")
         }
+        viewModel1.connection_state.observe(this, {
+            viewChanger()
+        })
+        viewModel1.connect_type.observe(this, {viewChanger()})
     }
 
     override fun initDatabinding(){
@@ -393,6 +398,24 @@ class MainActivity :  ActivityBase<ActivityMainBinding>(),
         }
     }
 
+    fun viewChanger(){
+        Log.d(TAG, "viewChanger: viewchanage~\n" +
+                " viewModel1.connection_state : ${viewModel1.connection_state.value}, viewModel1.connect_type : ${viewModel1.connect_type.value}")
+        if (viewModel1.connection_state.value != ConnectionStatus.CONNECTED) {
+            adapterViewpager!!.connectType(0); return
+        } //뷰를 모두 type1으로 바꾸고 return;
+        when(viewModel1.connect_type.value){
+            ConnectType.MOBILE_STATION -> {
+                adapterViewpager!!.connectType(1); return
+            }
+            ConnectType.REFERENCE_COUNTRY -> {
+                adapterViewpager!!.connectType(2); return
+            }
+            ConnectType.STOP_SURVEY -> {
+                adapterViewpager!!.connectType(3); return
+            }
+        }
+    }
 
 }
 

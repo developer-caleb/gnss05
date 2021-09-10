@@ -9,4 +9,7 @@ data class MainIcons(
     var activityname : Class<*> = HamburgerActivity::class.java,
     var requestcode : Int = 0,
 ) {
+    fun changeIcon(icon :Int){
+        this.icon = icon
+    }
 }

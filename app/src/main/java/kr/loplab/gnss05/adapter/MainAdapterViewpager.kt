@@ -178,4 +178,37 @@ class MainAdapterViewpager: PagerAdapter, MainpageRecyclerViewAdapter.RecyclerIt
         }
     }
 
+    fun connectType(type : Int){
+        when (type){
+            0->{
+                datasarray[1]?.get(0)?.changeIcon(R.drawable.ic_1_0_connect_device_off)
+                datasarray[1]?.get(1)?.changeIcon(R.drawable.ic_1_1_move_country_off)
+                datasarray[1]?.get(2)?.changeIcon(R.drawable.ic_1_2_reference_country_off)
+                datasarray[1]?.get(3)?.changeIcon(R.drawable.ic_1_3_stop_survey_off)
+                arrayadapter[1]?.notifyDataSetChanged()
+            }
+            1->{
+                datasarray[1]?.get(0)?.changeIcon(R.drawable.ic_1_0_connect_device)
+                datasarray[1]?.get(1)?.changeIcon(R.drawable.ic_1_1_move_country)
+                datasarray[1]?.get(2)?.changeIcon(R.drawable.ic_1_2_reference_country_off)
+                datasarray[1]?.get(3)?.changeIcon(R.drawable.ic_1_3_stop_survey_off)
+                arrayadapter[1]?.notifyDataSetChanged()
+            }
+            2->{
+                datasarray[1]?.get(0)?.changeIcon(R.drawable.ic_1_0_connect_device)
+                datasarray[1]?.get(1)?.changeIcon(R.drawable.ic_1_1_move_country_off)
+                datasarray[1]?.get(2)?.changeIcon(R.drawable.ic_1_2_reference_country)
+                datasarray[1]?.get(3)?.changeIcon(R.drawable.ic_1_3_stop_survey_off)
+                arrayadapter[1]?.notifyDataSetChanged()
+            }
+            3->{
+                datasarray[1]?.get(0)?.changeIcon(R.drawable.ic_1_0_connect_device)
+                datasarray[1]?.get(1)?.changeIcon(R.drawable.ic_1_1_move_country_off)
+                datasarray[1]?.get(2)?.changeIcon(R.drawable.ic_1_2_reference_country_off)
+                datasarray[1]?.get(3)?.changeIcon(R.drawable.ic_1_3_stop_survey)
+                arrayadapter[1]?.notifyDataSetChanged()
+            }
+        }
+    }
+
 }
