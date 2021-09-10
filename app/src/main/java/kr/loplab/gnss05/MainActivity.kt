@@ -28,6 +28,8 @@ import kr.loplab.gnss05.activities.ConnectEquipmentActivity
 import kr.loplab.gnss05.adapter.MainAdapterViewpager
 import kr.loplab.gnss05.adapter.DialogRecyclerviewAdapter
 import kr.loplab.gnss05.common.Define.REQUEST_SETTING
+import kr.loplab.gnss05.connection.ConnectManager
+import kr.loplab.gnss05.connection.ConnectionStatus
 import kr.loplab.gnss05.databinding.ActivityMainBinding
 import java.io.*
 import java.lang.Exception
@@ -73,6 +75,9 @@ class MainActivity : AppCompatActivity(),
     }
 
     fun initListener(){
+        ConnectManager.instance!!.setOnConnectStateChangeListener {
+            Log.d(TAG, "onConnectStateChange: 커넥션스테이트 ! -> ${it.name}")
+        }
         binding.pager1.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
             override fun onPageScrolled(i: Int, v: Float, i1: Int) {}
             override fun onPageSelected(i: Int) {}
@@ -386,6 +391,8 @@ class MainActivity : AppCompatActivity(),
            // adapterViewpager?.notifyDataSetChanged()
         }
     }
+
+
 
 
 }
