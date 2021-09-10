@@ -98,17 +98,16 @@
                 app:srcCompat="@drawable/ic_satellite" />
 
 
-
             <ImageView
                 android:id="@+id/bt_receiver"
                 android:layout_width="40dp"
                 android:layout_height="45dp"
                 android:background="@drawable/ripple_circle"
-                android:scaleType="center"
+                android:scaleType="centerInside"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/bt_satellite"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/ic_receiver" />
+                android:src="@{viewmodel.connection_state == ConnectionStatus.CONNECTED ? @drawable/ic_receiver_on : @drawable/ic_receiver_off}" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
 

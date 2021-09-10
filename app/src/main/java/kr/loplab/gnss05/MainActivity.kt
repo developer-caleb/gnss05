@@ -75,6 +75,7 @@ class MainActivity :  ActivityBase<ActivityMainBinding>(),
     override fun initListener(){
         ConnectManager.instance!!.setOnConnectStateChangeListener {
             Log.d(TAG, "onConnectStateChange: 커넥션스테이트 ! -> ${it.name}")
+            viewModel1.setConnectionState(it)
             when (it){
                 ConnectionStatus.DISCONNECT -> {}
                 ConnectionStatus.CONNECTTNG -> {}
@@ -112,7 +113,7 @@ class MainActivity :  ActivityBase<ActivityMainBinding>(),
     }
 
     override fun initDatabinding(){
-
+    viewModel1.setConnectionState(ConnectManager.instance!!.connectionStatus)
     }
     fun tablayoutinitialize() {
         //custom tab 구현시작
@@ -379,15 +380,15 @@ class MainActivity :  ActivityBase<ActivityMainBinding>(),
             Log.d(TAG, "onActivityResult: ->REQUEST_SETTING")
             adapterViewpager = MainAdapterViewpager(this)
             viewBinding.pager1.adapter = adapterViewpager
-
-
-
-
         // adapterViewpager?.init(tabposition) //변경은 되는데 viewpager에서 변경이 안 됨. 다시 만들어져야함
            // adapterViewpager?.notifyDataSetChanged()
         }
     }
 
+    override fun onResume() {
+        super.onResume()
+        initDatabinding()
+    }
 
 
 

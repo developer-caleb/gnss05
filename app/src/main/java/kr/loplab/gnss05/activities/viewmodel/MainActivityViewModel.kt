@@ -3,11 +3,13 @@ package kr.loplab.gnss05.activities.viewmodel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import kr.loplab.gnss05.connection.ConnectionStatus
+import kr.loplab.gnss05.connection.ConnectionTypes
+import kr.loplab.gnss05.enums.ConnectType
 
 
 class MainActivityViewModel : ViewModel() {
     private var name = ""
-    var connect_type = MutableLiveData<Int>(0)
+    var connect_type = MutableLiveData<ConnectType>(ConnectType.MOBILE_STATION)
     var connection_state = MutableLiveData<ConnectionStatus>(ConnectionStatus.DISCONNECT)
     init {
 
@@ -23,5 +25,8 @@ class MainActivityViewModel : ViewModel() {
     }
     fun setBoolvalue(data : MutableLiveData<Boolean>, boolvalue : Boolean){
         data.value = boolvalue
+    }
+    fun setConnectionState(connectionStatus : ConnectionStatus){
+        connection_state.value = connectionStatus
     }
 }
