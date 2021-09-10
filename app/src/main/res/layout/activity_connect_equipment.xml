@@ -433,7 +433,7 @@
                 android:layout_weight="1"
                 android:text="검색"
                 style="@style/TextViewButton_STYLE01"
-                android:visibility="@{((viewmodel.connect_mode != 1) &amp;&amp; (viewmodel.connection_state == ConnectionStatus.CONNECTED))? View.GONE : View.VISIBLE}"
+                android:visibility="@{((viewmodel.connect_mode == 1) || (viewmodel.connection_state == ConnectionStatus.CONNECTED))? View.GONE : View.VISIBLE}"
                 />
 
             <View
@@ -507,7 +507,7 @@
             android:layout_width="wrap_content"
             android:layout_height="0dp"
             android:background="#33000000"
-            android:visibility="@{viewmodel.connection_state == ConnectionStatus.CONNECTED}"
+            android:visibility="@{viewmodel.connection_state == ConnectionStatus.CONNECTED ? View.VISIBLE : View.GONE}"
             app:layout_constraintBottom_toBottomOf="@+id/nestedScrollView"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
