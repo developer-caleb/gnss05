@@ -80,6 +80,7 @@ WifiEquipmentRecyclerViewAdapter.RecyclerItemClickListener{
     override fun initListener() {
         ConnectManager.instance!!.setOnConnectStateChangeListener {
             Log.d(TAG, "onConnectStateChange: 커넥션스테이트 ! -> ${it.name}")
+
         }
     viewBinding.header01.setOnBackButtonClickListener{onBackPressed()}
     viewBinding.makerSelectBt.setOnClickListener {

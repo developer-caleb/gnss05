@@ -24,22 +24,24 @@ import com.karumi.dexter.PermissionToken
 import com.karumi.dexter.listener.PermissionRequest
 import com.karumi.dexter.listener.multi.MultiplePermissionsListener
 import kotlinx.android.synthetic.main.activity_main.*
+import kr.loplab.gnss02.ActivityBase
 import kr.loplab.gnss05.activities.ConnectEquipmentActivity
 import kr.loplab.gnss05.adapter.MainAdapterViewpager
 import kr.loplab.gnss05.adapter.DialogRecyclerviewAdapter
 import kr.loplab.gnss05.common.Define.REQUEST_SETTING
 import kr.loplab.gnss05.connection.ConnectManager
 import kr.loplab.gnss05.connection.ConnectionStatus
+import kr.loplab.gnss05.databinding.ActivityConnectEquipmentBinding
 import kr.loplab.gnss05.databinding.ActivityMainBinding
 import java.io.*
 import java.lang.Exception
 import kotlin.concurrent.thread
 
 
-class MainActivity : AppCompatActivity(),
+class MainActivity :  ActivityBase<ActivityMainBinding>(),
      DialogRecyclerviewAdapter.RecyclerItemClickListener {
-    val TAG = javaClass.simpleName
-    private lateinit var binding : ActivityMainBinding
+    override val layoutResourceId: Int
+        get() = R.layout.activity_main
     var adapterViewpager: MainAdapterViewpager? = null
 
 
@@ -47,67 +49,63 @@ class MainActivity : AppCompatActivity(),
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         //setContentView(R.layout.activity_qservice);
-        binding = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(binding.root)
-
-
-        initDefault()
-        init()
-        initListener()
-        initDatabinding()
-
 
     }
 
 
-    fun initDefault(){
+
+
+    override fun init(){
         tablayoutinitialize()
         //setContentView(R.layout.activity_main)
         permissionchecking()
         // set up the RecyclerView
-
-    }
-
-    fun init(){
         adapterViewpager = MainAdapterViewpager(this)
-        binding.pager1.adapter = adapterViewpager
+        viewBinding.pager1.adapter = adapterViewpager
 
     }
+   
 
-    fun initListener(){
+    override fun initListener(){
         ConnectManager.instance!!.setOnConnectStateChangeListener {
             Log.d(TAG, "onConnectStateChange: 커넥션스테이트 ! -> ${it.name}")
+            when (it){
+                ConnectionStatus.DISCONNECT -> {}
+                ConnectionStatus.CONNECTTNG -> {}
+                ConnectionStatus.CONNECTED -> {}
+                ConnectionStatus.CONNECT_FAILD -> {}
+            }
         }
-        binding.pager1.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
+        viewBinding.pager1.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
             override fun onPageScrolled(i: Int, v: Float, i1: Int) {}
             override fun onPageSelected(i: Int) {}
             override fun onPageScrollStateChanged(i: Int) {
-                tabposition = binding.pager1.currentItem
-                tabs.selectTab(tabs.getTabAt(binding.pager1.currentItem))
+                tabposition = viewBinding.pager1.currentItem
+                tabs.selectTab(tabs.getTabAt(viewBinding.pager1.currentItem))
             }
         })
 
-        binding.imageHamburger.setOnClickListener { Log.d(TAG, "onCreate: hamburger")
+        viewBinding.imageHamburger.setOnClickListener { Log.d(TAG, "onCreate: hamburger")
             intent = Intent(this, HamburgerActivity::class.java)
             startActivity(intent);
             overridePendingTransition(R.anim.slide_right_enter_fill_after, R.anim.hold)
         }
-        binding.btReceiver.setOnClickListener {
+        viewBinding.btReceiver.setOnClickListener {
             Log.d(TAG, "onCreate: receiver click")
             intent = Intent(this, ConnectEquipmentActivity::class.java)
             startActivity(intent);
         }
-        binding.btSatellite.setOnClickListener {
+        viewBinding.btSatellite.setOnClickListener {
             Log.d(TAG, "onCreate: satellite click")
             intent = Intent(this, PositionInformationActivity::class.java)
             startActivity(intent);
         }
-        binding.logoImg.setOnClickListener {
+        viewBinding.logoImg.setOnClickListener {
             Log.d(TAG, "onCreate: logo click")
         }
     }
 
-    fun initDatabinding(){
+    override fun initDatabinding(){
 
     }
     fun tablayoutinitialize() {
@@ -127,16 +125,16 @@ class MainActivity : AppCompatActivity(),
         val tabtext4 = LayoutInflater.from(this).inflate(R.layout.tool_new_customtabtextview, null) as TextView
         tabtext4.text = "도구"
         tabtext4.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.ic_tab4, 0, 0)
-        binding.tabs.addTab(binding.tabs.newTab().setCustomView(tabtext0))
-        binding.tabs.addTab(binding.tabs.newTab().setCustomView(tabtext1))
+        viewBinding.tabs.addTab(viewBinding.tabs.newTab().setCustomView(tabtext0))
+        viewBinding.tabs.addTab(viewBinding.tabs.newTab().setCustomView(tabtext1))
         //binding.tabs.addTab(binding.tabs.newTab().setCustomView(tabtext2))
-        binding.tabs.addTab(binding.tabs.newTab().setCustomView(tabtext3))
-        binding.tabs.addTab(binding.tabs.newTab().setCustomView(tabtext4))
+        viewBinding.tabs.addTab(viewBinding.tabs.newTab().setCustomView(tabtext3))
+        viewBinding.tabs.addTab(viewBinding.tabs.newTab().setCustomView(tabtext4))
 
         //custom tab 완성
-        binding.tabs.getTabAt(0)!!.select()
+        viewBinding.tabs.getTabAt(0)!!.select()
 
-        binding.tabs.setOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
+        viewBinding.tabs.setOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
             override fun onTabSelected(tab: TabLayout.Tab) {
                // tab.view.setBackgroundColor(resources.getColor(R.color.black))
                 selecttab(tab.position)
@@ -154,7 +152,7 @@ class MainActivity : AppCompatActivity(),
 
    fun selecttab(position : Int){
        tabposition = position;
-       if (binding.pager1.currentItem != position) {binding.pager1.currentItem = position}
+       if (viewBinding.pager1.currentItem != position) {viewBinding.pager1.currentItem = position}
    }
 
 
@@ -228,14 +226,6 @@ class MainActivity : AppCompatActivity(),
     } // openSettings()..
 
 
-    fun showToast(str:String){
-        if(GlobalApplication.mToast!=null){
-            GlobalApplication.mToast.cancel();
-        }
-        GlobalApplication.mToast = Toast.makeText(baseContext,str,Toast.LENGTH_SHORT)
-        GlobalApplication.mToast.show();
-        Log.d("TAG", "showToast: $str")
-    }
 
     inner class Gnssreceiver3  {
         var filepath = ""
@@ -382,7 +372,7 @@ class MainActivity : AppCompatActivity(),
         if (resultCode== Activity.RESULT_OK && requestCode==REQUEST_SETTING){
             Log.d(TAG, "onActivityResult: ->REQUEST_SETTING")
             adapterViewpager = MainAdapterViewpager(this)
-            binding.pager1.adapter = adapterViewpager
+            viewBinding.pager1.adapter = adapterViewpager
 
 
 
