@@ -76,10 +76,10 @@ public class ConnectManager {
 	private IConnectionCallback mConnectionCallback = new IConnectionCallback() {
 
 		@Override
-		public void backConnectionState(boolean succesed) {
-			setConnectionStatus(succesed ? ConnectionStatus.CONNECTED
+		public void backConnectionState(boolean success) {
+			setConnectionStatus(success ? ConnectionStatus.CONNECTED
 					: ConnectionStatus.CONNECT_FAILD);
-			if (succesed) {
+			if (success) {
 				// wifi connect success
 				UseDemo.runReceiver(GlobalApplication.getInstance());
 			} else {
