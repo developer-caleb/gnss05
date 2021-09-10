@@ -269,7 +269,6 @@ WifiEquipmentRecyclerViewAdapter.RecyclerItemClickListener, ConnectManager.Conne
 
     fun clickWifiScan() {
         val success = wifiManager!!.startScan()
-
         if (!success) showToast("Wifi Scan에 실패하였습니다.")
     }
 
@@ -285,6 +284,13 @@ WifiEquipmentRecyclerViewAdapter.RecyclerItemClickListener, ConnectManager.Conne
 
     override fun onConnectStateChange(connectionStatus: ConnectionStatus) {
         Log.d(TAG, "onConnectStateChange: 커넥션스테이트 ! 1 -> ${connectionStatus.name}")
+        viewModel1.setConnectionState(connectionStatus)
+        when (connectionStatus){
+            ConnectionStatus.DISCONNECT -> {showToast("장비 연결이 끊겼습니다.")}
+            ConnectionStatus.CONNECTTNG -> {}
+            ConnectionStatus.CONNECTED -> {}
+            ConnectionStatus.CONNECT_FAILD -> {showToast("장비 연결이 끊겼습니다.")}
+        }
     }
 
     //**와이파이 스캔,
