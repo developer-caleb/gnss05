@@ -32,11 +32,12 @@ import kr.loplab.gnss05.common.OptionList.Companion.CONNECT_MODE_LIST
 import kr.loplab.gnss05.common.OptionList.Companion.EQUIPMENT_MAKER_LIST
 import kr.loplab.gnss05.common.PrefUtil
 import kr.loplab.gnss05.connection.ConnectManager
+import kr.loplab.gnss05.connection.ConnectionStatus
 import kr.loplab.gnss05.connection.bluetooth.MyBluetoothManager
 import kr.loplab.gnss05.databinding.ActivityConnectEquipmentBinding
 
 class ConnectEquipmentActivity : ActivityBase<ActivityConnectEquipmentBinding>(),
-WifiEquipmentRecyclerViewAdapter.RecyclerItemClickListener{
+WifiEquipmentRecyclerViewAdapter.RecyclerItemClickListener, ConnectManager.ConnectStateChangeListener{
     override val layoutResourceId: Int
         get() = R.layout.activity_connect_equipment
     lateinit var viewModel1: ConnectEquipmentViewModel
@@ -140,7 +141,7 @@ WifiEquipmentRecyclerViewAdapter.RecyclerItemClickListener{
         }
 
         viewBinding.header01.setOnOptionButtonClickListener{
-            Log.d(TAG, "initListener: ${ConnectManager.getInstance().connectionStatus.toString()}") }
+            Log.d(TAG, "initListener: ${ConnectManager.instance!!.connectionStatus.toString()}") }
     }
     fun wifiConnect(){
         MyBluetoothManager.getInstance().setBlueName(
@@ -220,7 +221,7 @@ WifiEquipmentRecyclerViewAdapter.RecyclerItemClickListener{
     }
 
     private fun updateStatus(textview : TextView) {
-        textview.setText(ConnectManager.getInstance().getConnectionStatus().name
+        textview.setText(ConnectManager.instance!!.connectionStatus.name
         )
     }
     private fun checkConnectStatus(textview : TextView) {
@@ -278,6 +279,10 @@ WifiEquipmentRecyclerViewAdapter.RecyclerItemClickListener{
         Log.d(TAG, "onWifiItemClick:  $position")
         wifiRecyclerViewAdapter.selectednum = position
         wifiRecyclerViewAdapter.notifyDataSetChanged();
+    }
+
+    override fun onConnectStateChange(connectionStatus: ConnectionStatus) {
+        Log.d(TAG, "onConnectStateChange: 커넥션스테이트 ! -> ${connectionStatus.name}")
     }
     //**와이파이 스캔,
     /*

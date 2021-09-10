@@ -1,124 +1,138 @@
-package kr.loplab.gnss05.connection;
+package kr.loplab.gnss05.connection
 
-import android.content.Context;
-import android.util.Log;
+import android.content.Context
+import android.util.Log
+import kr.loplab.gnss05.connection.ConnectionTypes
+import kr.loplab.gnss05.connection.IGnssConnection
+import kr.loplab.gnss05.connection.ConnectionStatus
+import kr.loplab.gnss05.connection.GnssConnectionFactory
+import kr.loplab.gnss05.connection.GnssConnectionWay
+import kr.loplab.gnss05.connection.IConnectionCallback
+import kr.loplab.gnss05.receiver.UseDemo
+import kr.loplab.gnss05.GlobalApplication
+import kr.loplab.gnss05.MyDialog
+import kr.loplab.gnss05.receiver.entity.Cmd
+import kr.loplab.gnss05.connection.ConnectManager
+import java.lang.Exception
 
-import kr.loplab.gnss05.GlobalApplication;
-import kr.loplab.gnss05.receiver.UseDemo;
-import kr.loplab.gnss05.receiver.entity.Cmd;
+class ConnectManager private constructor() {
+    private val TAG = this.javaClass.simpleName
+    private val mconnectionType = ConnectionTypes.DEMO
+    private var mGnssConnection: IGnssConnection? = null
+    private lateinit var connectionStateChangeListener:ConnectStateChangeListener
+    var connectionStatus = ConnectionStatus.DISCONNECT
+        private set //자바 -> 코틀린 옮기는 과정에서 생김
 
+    /**
+     * begin connecting
+     */
+    val isConnected: Boolean
+        get() = connectionStatus == ConnectionStatus.CONNECTED
 
-public class ConnectManager {
-	private String TAG = this.getClass().getSimpleName();
-	private static ConnectManager sInstance = null;
-	private ConnectionTypes mconnectionType = ConnectionTypes.DEMO;
-	private IGnssConnection mGnssConnection;
-	private ConnectionStatus mConnectionStatus = ConnectionStatus.DISCONNECT;
+    fun connect(context: Context?): Boolean {
+        return try {
+            Log.d(TAG, "connect: 연결 성공")
 
-	private ConnectManager() {
-	}
+            if (mGnssConnection != null) {
+                mGnssConnection!!.disConnect()
+                mGnssConnection = null
+            }
+            mGnssConnection = GnssConnectionFactory.makeConnection(GnssConnectionWay.BLUETOOTH)
+            if (mGnssConnection == null) {
+                return false
+            }
+            connectionStateChangeListener.onConnectStateChange(ConnectionStatus.CONNECTTNG)
+            connectionStatus = ConnectionStatus.CONNECTTNG
+            (mGnssConnection != null
+                    && mGnssConnection!!.connect(context, mConnectionCallback))
+        } catch (e: Exception) {
+            e.printStackTrace()
+            false
+        }
+    }
 
-	public static ConnectManager getInstance() {
-		if (sInstance == null) {
-			synchronized (ConnectManager.class) {
-				if (sInstance == null) {
-					sInstance = new ConnectManager();
-				}
-			}
-		}
-		return sInstance;
-	}
+    fun disConnect() {
+        if (mGnssConnection != null) {
+            mGnssConnection!!.disConnect()
+            mGnssConnection = null
+        }
+        connectionStateChangeListener.onConnectStateChange(ConnectionStatus.DISCONNECT)
+        connectionStatus = ConnectionStatus.DISCONNECT
+    }
 
-	private void setConnectionStatus(ConnectionStatus status) {
-		mConnectionStatus = status;
-	}
+    private val mConnectionCallback: IConnectionCallback = object : IConnectionCallback {
+        override fun backConnectionState(success: Boolean) {
+            connectionStatus =
+                if (success) ConnectionStatus.CONNECTED else ConnectionStatus.CONNECT_FAILD
+            if (success) connectionStateChangeListener.onConnectStateChange(ConnectionStatus.CONNECTED) else connectionStateChangeListener.onConnectStateChange(ConnectionStatus.CONNECT_FAILD)
+            if (success) {
+                // wifi connect success
+                UseDemo.runReceiver(GlobalApplication.getInstance())
+            } else {
+                // wifi break
+                UseDemo.stopReceiver()
+            }
+        }
 
-	public ConnectionStatus getConnectionStatus() {
-		return mConnectionStatus;
-	}
+        override fun connectionLost() {
+            connectionStatus = ConnectionStatus.CONNECT_FAILD
+            connectionStateChangeListener.onConnectStateChange(ConnectionStatus.CONNECT_FAILD)
+            // 와이파이 연결 끊김
+            UseDemo.stopReceiver()
+            Log.e(TAG, "connectionLost: nn")
+        }
 
-	/**
-	 * begin connecting
-	 */
-	public boolean isConnected() {
-		return mConnectionStatus == ConnectionStatus.CONNECTED;
-	}
+        override fun beDisConnected() {
+            connectionStatus = ConnectionStatus.DISCONNECT
+            connectionStateChangeListener.onConnectStateChange(ConnectionStatus.DISCONNECT)
 
-	public boolean connect(Context context) {
-		Log.d(TAG, "connect: 연결 성공할 뻔 실패");
-		try {
-			Log.d(TAG, "connect: 연결 성공");
-			if (mGnssConnection != null) {
-				mGnssConnection.disConnect();
-				mGnssConnection = null;
-			}
-			mGnssConnection = GnssConnectionFactory.makeConnection(GnssConnectionWay.BLUETOOTH);
-			if (mGnssConnection == null) {
-				return false;
-			}
-			setConnectionStatus(ConnectionStatus.CONNECTTNG);
-			return mGnssConnection != null
-					&& mGnssConnection.connect(context, mConnectionCallback);
-		} catch (Exception e) {
-			e.printStackTrace();
-			return false;
-		}
-	}
+            // wifi disconnected
+            UseDemo.stopReceiver()
+            Log.e(TAG, "beDisConnected: stop it")
+        }
 
-	public void disConnect() {
-		if (mGnssConnection != null) {
-			mGnssConnection.disConnect();
-			mGnssConnection = null;
-		}
-		setConnectionStatus(ConnectionStatus.DISCONNECT);
-	}
+        override fun receiver(data: ByteArray) {
+            UseDemo.receiveData(data)
+        }
+    }
 
-	private IConnectionCallback mConnectionCallback = new IConnectionCallback() {
+    /**
+     * Write data to the receiver, don’t call it directly, only call CmdManager
+     *
+     * @param data
+     */
+    fun write(data: ByteArray?) {
+        if (mGnssConnection != null) {
+            mGnssConnection!!.writeDataToDevice(Cmd(data))
+        }
+    }
 
-		@Override
-		public void backConnectionState(boolean success) {
-			setConnectionStatus(success ? ConnectionStatus.CONNECTED
-					: ConnectionStatus.CONNECT_FAILD);
-			if (success) {
-				// wifi connect success
-				UseDemo.runReceiver(GlobalApplication.getInstance());
-			} else {
-				// wifi break
-				UseDemo.stopReceiver();
-			}
-		}
+    companion object {
+        private var sInstance: ConnectManager? = null
+        @JvmStatic
+		val instance: ConnectManager?
+            get() {
+                if (sInstance == null) {
+                    synchronized(ConnectManager::class.java) {
+                        if (sInstance == null) {
+                            sInstance = ConnectManager()
+                        }
+                    }
+                }
+                return sInstance
+            }
+    }
 
-		@Override
-		public void connectionLost() {
-			setConnectionStatus(ConnectionStatus.CONNECT_FAILD);
-			// 와이파이 연결 끊김
-			UseDemo.stopReceiver();
-			Log.e(TAG, "connectionLost: nn");
-		}
+    interface ConnectStateChangeListener {
+        fun onConnectStateChange(connectionStatus : ConnectionStatus)
+    }
 
-		@Override
-		public void beDisConnected() {
-			setConnectionStatus(ConnectionStatus.DISCONNECT);
-			// wifi disconnected
-			UseDemo.stopReceiver();
-			Log.e(TAG, "beDisConnected: stop it");
-		}
-
-		@Override
-		public void receiver(byte[] data) {
-			UseDemo.receiveData(data);
-		}
-	};
-
-	/**
-	 * Write data to the receiver, don’t call it directly, only call CmdManager
-	 * 
-	 * @param data
-	 */
-	public void write(byte[] data) {
-		if (mGnssConnection != null) {
-			mGnssConnection.writeDataToDevice(new Cmd(data));
-		}
-	}
+    fun setOnConnectStateChangeListener(listener: (ConnectionStatus) -> Unit) {
+        this.connectionStateChangeListener = object: ConnectManager.ConnectStateChangeListener {
+            override fun onConnectStateChange(connectionStatus: ConnectionStatus) {
+                listener(connectionStatus)
+            }
+        }
+    }
 
 }
