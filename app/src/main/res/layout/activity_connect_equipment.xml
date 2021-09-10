@@ -25,12 +25,12 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             android:backgroundTint="#0084CE"
-            app:optionButtonEnabled="true"
             app:optionButtonText="상태"
             >
         </kr.loplab.gnss05.DefaultHeader>
 
         <androidx.core.widget.NestedScrollView
+            android:id="@+id/nestedScrollView"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             app:layout_constraintBottom_toTopOf="@+id/bottomButton"
@@ -41,17 +41,15 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical" >
+                android:orientation="vertical">
 
                 <LinearLayout
                     android:id="@+id/maker_select_bt"
-                    style="@style/ButtonLayout_STYLE01"
-                    >
+                    style="@style/ButtonLayout_STYLE01">
 
                     <TextView
                         style="@style/Sub_TEXTVIEW_STYLE1"
-                        android:text="장비제조사"
-                        />
+                        android:text="장비제조사" />
 
                     <View
                         android:layout_width="1dp"
@@ -69,7 +67,6 @@
                         android:text="제조사명" />
 
 
-
                 </LinearLayout>
 
                 <View
@@ -79,14 +76,11 @@
                     android:background="@color/grey_EC" />
 
 
-                <LinearLayout
-                    style="@style/ButtonLayout_STYLE01"
-                    >
+                <LinearLayout style="@style/ButtonLayout_STYLE01">
 
                     <TextView
                         style="@style/Sub_TEXTVIEW_STYLE1"
-                        android:text="연결방식"
-                        />
+                        android:text="연결방식" />
 
                     <View
                         android:layout_width="1dp"
@@ -103,7 +97,6 @@
                         android:text="RTK" />
 
 
-
                 </LinearLayout>
 
                 <View
@@ -114,13 +107,11 @@
 
                 <LinearLayout
                     android:id="@+id/connect_mode_bt"
-                    style="@style/ButtonLayout_STYLE01"
-                    >
+                    style="@style/ButtonLayout_STYLE01">
 
                     <TextView
                         style="@style/Sub_TEXTVIEW_STYLE1"
-                        android:text="연결모드"
-                        />
+                        android:text="연결모드" />
 
 
                     <View
@@ -139,15 +130,13 @@
                         android:text="블루투스" />
 
 
-
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:orientation="vertical"
-                    android:visibility="@{viewmodel.connect_mode == 0 ? View.VISIBLE : View.GONE}"
-                    >
+                    android:visibility="@{viewmodel.connect_mode == 0 ? View.VISIBLE : View.GONE}">
 
                     <LinearLayout
                         style="@style/ButtonLayout_STYLE01"
@@ -155,18 +144,18 @@
 
                         <TextView
                             style="@style/Sub_TEXTVIEW_STYLE1"
-                            android:text="블루투스 장치"
-                            android:textColor="@color/grey_33"
                             android:layout_weight="3"
-                            />
+                            android:text="블루투스 장치"
+                            android:textColor="@color/grey_33" />
 
                         <TextView
                             android:id="@+id/m_tv_bt_connect_status"
                             style="@style/Sub_TEXTVIEW_STYLE1"
-                            android:text=""
                             android:layout_marginRight="20dp"
-                            android:textColor="@color/grey_33"
                             android:layout_weight="0"
+                            android:text="@{viewmodel.connection_state.toString()}"
+                            android:textColor="@color/grey_33"
+
                             />
                         <!--
                         <ImageView
@@ -194,7 +183,6 @@
                 </LinearLayout>
 
 
-
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -210,28 +198,26 @@
                         <TextView
                             style="@style/Sub_TEXTVIEW_STYLE1"
                             android:text="WiFi 장치"
-                            android:textColor="@color/grey_33"
-                            />
+                            android:textColor="@color/grey_33" />
+
                         <TextView
                             android:id="@+id/m_tv_wifi_connect_status"
                             style="@style/Sub_TEXTVIEW_STYLE1"
-                            android:text=""
                             android:layout_marginRight="20dp"
-                            android:textColor="@color/grey_33"
                             android:layout_weight="0"
-                            />
+                            android:text="@{viewmodel.connection_state.toString()}"
+                            android:textColor="@color/grey_33" />
                     </LinearLayout>
 
 
-                        <androidx.recyclerview.widget.RecyclerView
-                            android:id="@+id/recyclerview_wifi_equipment"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                            tools:itemCount="3"
-                            tools:listitem="@layout/recyclerview_connect_equipment">
-                        </androidx.recyclerview.widget.RecyclerView>
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/recyclerview_wifi_equipment"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                        tools:itemCount="3"
+                        tools:listitem="@layout/recyclerview_connect_equipment"></androidx.recyclerview.widget.RecyclerView>
 
 
                 </LinearLayout>
@@ -244,196 +230,185 @@
                     android:visibility="@{viewmodel.connect_mode == 2 ? View.VISIBLE : View.GONE}"
 
                     >
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical">
 
                     <LinearLayout
-                        style="@style/ButtonLayout_STYLE01"
-                        android:background="@color/grey_cc">
-
-                        <TextView
-                            style="@style/Sub_TEXTVIEW_STYLE1"
-                            android:text="시작 점 좌표"
-                            android:textColor="@color/grey_33"
-                            />
-
-                    </LinearLayout>
-
-                    <LinearLayout style="@style/ButtonLayout_STYLE01">
-
-                        <TextView
-                            style="@style/Sub_TEXTVIEW_STYLE1"
-                            android:text="위도"
-                            />
-
-                        <TextView
-                            style="@style/Sub_TEXTVIEW_STYLE2"
-                            android:layout_width="128dp"
-                            android:layout_height="wrap_content"
-                            android:gravity="center"
-                            android:paddingRight="0dp"
-                            android:text="위도 값" />
-
-
-
-                    </LinearLayout>
-
-                    <View
                         android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:layout_weight="0"
-                        android:background="@color/grey_EC" />
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
 
-                    <LinearLayout style="@style/ButtonLayout_STYLE01">
+                        <LinearLayout
+                            style="@style/ButtonLayout_STYLE01"
+                            android:background="@color/grey_cc">
 
-                        <TextView
-                            style="@style/Sub_TEXTVIEW_STYLE1"
-                            android:text="경도"
-                            />
+                            <TextView
+                                style="@style/Sub_TEXTVIEW_STYLE1"
+                                android:text="시작 점 좌표"
+                                android:textColor="@color/grey_33" />
 
-                        <TextView
-                            style="@style/Sub_TEXTVIEW_STYLE2"
-                            android:layout_width="128dp"
-                            android:layout_height="wrap_content"
-                            android:gravity="center"
-                            android:paddingRight="0dp"
-                            android:text="경도 값" />
+                        </LinearLayout>
 
+                        <LinearLayout style="@style/ButtonLayout_STYLE01">
+
+                            <TextView
+                                style="@style/Sub_TEXTVIEW_STYLE1"
+                                android:text="위도" />
+
+                            <TextView
+                                style="@style/Sub_TEXTVIEW_STYLE2"
+                                android:layout_width="128dp"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:paddingRight="0dp"
+                                android:text="위도 값" />
+
+
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:layout_weight="0"
+                            android:background="@color/grey_EC" />
+
+                        <LinearLayout style="@style/ButtonLayout_STYLE01">
+
+                            <TextView
+                                style="@style/Sub_TEXTVIEW_STYLE1"
+                                android:text="경도" />
+
+                            <TextView
+                                style="@style/Sub_TEXTVIEW_STYLE2"
+                                android:layout_width="128dp"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:paddingRight="0dp"
+                                android:text="경도 값" />
+
+
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:layout_weight="0"
+                            android:background="@color/grey_EC" />
+
+                        <LinearLayout style="@style/ButtonLayout_STYLE01">
+
+                            <TextView
+                                style="@style/Sub_TEXTVIEW_STYLE1"
+                                android:text="Z" />
+
+                            <TextView
+                                style="@style/Sub_TEXTVIEW_STYLE2"
+                                android:layout_width="128dp"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:paddingRight="0dp"
+                                android:text="Z값" />
+
+
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:layout_weight="0"
+                            android:background="@color/grey_EC" />
 
                     </LinearLayout>
 
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:layout_weight="0"
-                        android:background="@color/grey_EC" />
-
-                    <LinearLayout style="@style/ButtonLayout_STYLE01">
-
-                        <TextView
-                            style="@style/Sub_TEXTVIEW_STYLE1"
-                            android:text="Z"
-                            />
-
-                        <TextView
-                            style="@style/Sub_TEXTVIEW_STYLE2"
-                            android:layout_width="128dp"
-                            android:layout_height="wrap_content"
-                            android:gravity="center"
-                            android:paddingRight="0dp"
-                            android:text="Z값" />
-
-
-                    </LinearLayout>
-
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:layout_weight="0"
-                        android:background="@color/grey_EC" />
-
-                </LinearLayout>
-
-
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical">
 
                     <LinearLayout
-                        style="@style/ButtonLayout_STYLE01"
-                        android:background="@color/grey_cc">
-
-                        <TextView
-                            style="@style/Sub_TEXTVIEW_STYLE1"
-                            android:text="옵션"
-                            android:textColor="@color/grey_33"
-                            />
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        style="@style/ButtonLayout_STYLE01"
-                        android:orientation="horizontal">
-
-                        <TextView
-                            style="@style/Sub_TEXTVIEW_STYLE1"
-                            android:text="임의 방향"
-                            />
-
-                        <Switch
-                            android:layout_width="128dp"
-                            android:layout_height="wrap_content"
-                            android:gravity="center"
-                            android:paddingRight="40dp"
-                            android:track="@drawable/switch_track_selector"
-                            android:thumb="@drawable/switch_thumb"
-                            />
-
-
-                    </LinearLayout>
-
-                    <View
                         android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:layout_weight="0"
-                        android:background="@color/grey_EC" />
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
 
-                    <LinearLayout style="@style/ButtonLayout_STYLE01">
+                        <LinearLayout
+                            style="@style/ButtonLayout_STYLE01"
+                            android:background="@color/grey_cc">
 
-                        <TextView
-                            style="@style/Sub_TEXTVIEW_STYLE1"
-                            android:text="방향"
-                            />
+                            <TextView
+                                style="@style/Sub_TEXTVIEW_STYLE1"
+                                android:text="옵션"
+                                android:textColor="@color/grey_33" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            style="@style/ButtonLayout_STYLE01"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                style="@style/Sub_TEXTVIEW_STYLE1"
+                                android:text="임의 방향" />
+
+                            <Switch
+                                android:layout_width="128dp"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:paddingRight="40dp"
+                                android:thumb="@drawable/switch_thumb"
+                                android:track="@drawable/switch_track_selector" />
 
 
-                        <TextView
-                            style="@style/Sub_TEXTVIEW_STYLE2"
-                            android:layout_width="128dp"
-                            android:layout_height="wrap_content"
-                            android:gravity="center"
-                            android:paddingRight="0dp"
-                            android:text="방향 값" />
+                        </LinearLayout>
 
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:layout_weight="0"
+                            android:background="@color/grey_EC" />
+
+                        <LinearLayout style="@style/ButtonLayout_STYLE01">
+
+                            <TextView
+                                style="@style/Sub_TEXTVIEW_STYLE1"
+                                android:text="방향" />
+
+
+                            <TextView
+                                style="@style/Sub_TEXTVIEW_STYLE2"
+                                android:layout_width="128dp"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:paddingRight="0dp"
+                                android:text="방향 값" />
+
+
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:layout_weight="0"
+                            android:background="@color/grey_EC" />
+
+                        <LinearLayout style="@style/ButtonLayout_STYLE01">
+
+                            <TextView
+                                style="@style/Sub_TEXTVIEW_STYLE1"
+                                android:text="속도" />
+
+
+                            <TextView
+                                style="@style/Sub_TEXTVIEW_STYLE2"
+                                android:layout_width="128dp"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:paddingRight="0dp"
+                                android:text="속도 값" />
+
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:layout_weight="0"
+                            android:background="@color/grey_EC" />
 
                     </LinearLayout>
-
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:layout_weight="0"
-                        android:background="@color/grey_EC" />
-
-                    <LinearLayout style="@style/ButtonLayout_STYLE01">
-
-                        <TextView
-                            style="@style/Sub_TEXTVIEW_STYLE1"
-                            android:text="속도"
-                            />
-
-
-                        <TextView
-                            style="@style/Sub_TEXTVIEW_STYLE2"
-                            android:layout_width="128dp"
-                            android:layout_height="wrap_content"
-                            android:gravity="center"
-                            android:paddingRight="0dp"
-                            android:text="속도 값" />
-
-                    </LinearLayout>
-
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:layout_weight="0"
-                        android:background="@color/grey_EC" />
-
                 </LinearLayout>
-                </LinearLayout>
-
 
 
             </LinearLayout>
@@ -458,7 +433,7 @@
                 android:layout_weight="1"
                 android:text="검색"
                 style="@style/TextViewButton_STYLE01"
-                android:visibility="@{viewmodel.connection_state == ConnectionStatus.CONNECTED? View.GONE : View.VISIBLE}"
+                android:visibility="@{((viewmodel.connect_mode != 1) &amp;&amp; (viewmodel.connection_state == ConnectionStatus.CONNECTED))? View.GONE : View.VISIBLE}"
                 />
 
             <View
@@ -526,6 +501,17 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <View
+            android:id="@+id/block_view"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:background="#33000000"
+            android:visibility="@{viewmodel.connection_state == ConnectionStatus.CONNECTED}"
+            app:layout_constraintBottom_toBottomOf="@+id/nestedScrollView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/header_01" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

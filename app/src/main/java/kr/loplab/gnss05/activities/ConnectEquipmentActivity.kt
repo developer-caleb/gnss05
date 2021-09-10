@@ -79,7 +79,7 @@ WifiEquipmentRecyclerViewAdapter.RecyclerItemClickListener, ConnectManager.Conne
 
     @RequiresApi(Build.VERSION_CODES.M)
     override fun initListener() {
-        ConnectManager.instance!!.setOnConnectStateChangeListener(this)
+
     viewBinding.header01.setOnBackButtonClickListener{onBackPressed()}
     viewBinding.makerSelectBt.setOnClickListener {
             val dlg = MyDialog(this)
@@ -95,7 +95,9 @@ WifiEquipmentRecyclerViewAdapter.RecyclerItemClickListener, ConnectManager.Conne
         }
         dlg.setHeader("장비제조사")
     }
-
+    viewBinding.btDisconnect.setOnClickListener {
+        ConnectManager.instance!!.disConnect();
+    }
         viewBinding.connectModeBt.setOnClickListener {
             val dlg = MyDialog(this)
             //dlg.title_dialog
@@ -144,7 +146,12 @@ WifiEquipmentRecyclerViewAdapter.RecyclerItemClickListener, ConnectManager.Conne
 
         viewBinding.header01.setOnOptionButtonClickListener{
             Log.d(TAG, "initListener: ${ConnectManager.instance!!.connectionStatus.toString()}") }
+    
+    viewBinding.blockView.setOnClickListener {
+        Log.d(TAG, "initListener: blockviewClicked!")
     }
+    }
+    
     fun wifiConnect(){
         MyBluetoothManager.getInstance().setBlueName(
             wifiDevicesArr[wifiRecyclerViewAdapter.selectednum].SSID  )
@@ -167,7 +174,10 @@ WifiEquipmentRecyclerViewAdapter.RecyclerItemClickListener, ConnectManager.Conne
     }
     override fun onResume() {
         super.onResume()
+        ConnectManager.instance!!.setOnConnectStateChangeListener(this)
+        viewModel1.setConnectionState(ConnectManager.instance!!.connectionStatus)
         setBluetoothList()
+        //setWifiList()
     }
     override fun initDatabinding() {
         viewModel1.setConnectMode(PrefUtil.getInt2(applicationContext, CONNECT_MODE))
@@ -222,10 +232,7 @@ WifiEquipmentRecyclerViewAdapter.RecyclerItemClickListener, ConnectManager.Conne
         return mConnectDialog != null && mConnectDialog!!.isShowing
     }
 
-    private fun updateStatus(textview : TextView) {
-        textview.setText(ConnectManager.instance!!.connectionStatus.name
-        )
-    }
+
     private fun checkConnectStatus(textview : TextView) {
         mCount = 0
         textview.postDelayed(object : Runnable {
@@ -233,7 +240,6 @@ WifiEquipmentRecyclerViewAdapter.RecyclerItemClickListener, ConnectManager.Conne
                 if (mController.isConnect) {
                     dismissDialog()
                     showToast("연결에 성공하였습니다!")
-                    updateStatus(textview)
                     return
                 }
                 mCount++
@@ -242,7 +248,6 @@ WifiEquipmentRecyclerViewAdapter.RecyclerItemClickListener, ConnectManager.Conne
                     return
                 }
               showToast("연결 실패！")
-                updateStatus(textview)
                 dismissDialog()
                 mController.disConnect()
             }
