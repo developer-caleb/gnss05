@@ -391,10 +391,10 @@ class MainActivity :  ActivityBase<ActivityMainBinding>(),
         viewModel1.setConnectionState(connectionStatus)
         Log.d(TAG, "initListener: ${viewModel1.connection_state}")
         when (connectionStatus){
-            ConnectionStatus.DISCONNECT -> {}
+            ConnectionStatus.DISCONNECT -> {showToast("장비 연결이 끊겼습니다.")}
             ConnectionStatus.CONNECTTNG -> {}
             ConnectionStatus.CONNECTED -> {}
-            ConnectionStatus.CONNECT_FAILD -> {}
+            ConnectionStatus.CONNECT_FAILD -> {showToast("장비 연결이 끊겼습니다.")}
         }
     }
 

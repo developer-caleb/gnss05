@@ -2,6 +2,8 @@ package kr.loplab.gnss02
 
 import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.util.Log
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
@@ -12,9 +14,11 @@ import androidx.databinding.ViewDataBinding
 import com.google.android.material.snackbar.Snackbar
 import kr.loplab.gnss05.GlobalApplication
 import kr.loplab.gnss05.common.Define.REQUEST_CODE_STRING
+import kr.loplab.gnss05.connection.ConnectManager
+import kr.loplab.gnss05.connection.ConnectionStatus
 
 
-abstract class ActivityBase<T : ViewDataBinding>: AppCompatActivity() {
+abstract class ActivityBase<T : ViewDataBinding>: AppCompatActivity(), ConnectManager.ConnectStateChangeListener {
     val TAG = javaClass.simpleName
     abstract val layoutResourceId: Int
     lateinit var viewBinding: T
@@ -42,18 +46,33 @@ abstract class ActivityBase<T : ViewDataBinding>: AppCompatActivity() {
 
     }
 
+    override fun onResume() {
+        super.onResume()
+        ConnectManager.instance!!.setOnConnectStateChangeListener(this)
+    }
+    override fun onConnectStateChange(connectionStatus: ConnectionStatus) {
+        Log.d(TAG, "onConnectStateChange: 커넥션스테이트 ! 2 -> ${connectionStatus.name}")
+        when (connectionStatus){
+            ConnectionStatus.DISCONNECT -> {showToast("장비 연결이 끊겼습니다.")}
+            ConnectionStatus.CONNECTTNG -> {}
+            ConnectionStatus.CONNECTED -> {}
+            ConnectionStatus.CONNECT_FAILD -> {showToast("장비 연결이 끊겼습니다.")}
+        }
+    }
 
     fun snackbarShow(str:String){
         Snackbar.make(window.decorView.rootView,str, Snackbar.LENGTH_LONG).show()
     }
 
     fun showToast(str:String){
-        if(GlobalApplication.mToast!=null){
-            GlobalApplication.mToast.cancel();
+        runOnUiThread {
+            if(GlobalApplication.mToast!=null){
+                GlobalApplication.mToast.cancel();
+            }
+            GlobalApplication.mToast = Toast.makeText(baseContext,str,Toast.LENGTH_SHORT)
+            GlobalApplication.mToast.show();
+            Log.d("TAG", "showToast: $str")
         }
-        GlobalApplication.mToast = Toast.makeText(baseContext,str,Toast.LENGTH_SHORT)
-        GlobalApplication.mToast.show();
-        Log.d("TAG", "showToast: $str")
     }
     override fun startActivityForResult(intent: Intent?, requestCode: Int) {
         intent!!.putExtra("requestCode", requestCode);
