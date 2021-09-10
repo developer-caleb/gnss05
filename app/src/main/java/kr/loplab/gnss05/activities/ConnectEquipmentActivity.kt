@@ -54,6 +54,7 @@ WifiEquipmentRecyclerViewAdapter.RecyclerItemClickListener{
     var intentFilter = IntentFilter()
 
 
+
     private val mController: ConnectController = ConnectController()
     private var mCount = 0
 
@@ -68,7 +69,7 @@ WifiEquipmentRecyclerViewAdapter.RecyclerItemClickListener{
 
     override fun init() {
         viewModel1 = ViewModelProvider(this).get(ConnectEquipmentViewModel::class.java)
-        viewBinding.connectionequpmentviewmodel = viewModel1
+        viewBinding.viewmodel = viewModel1
 
         //Wifi Scan 관련
         wifiManager = applicationContext.getSystemService(WIFI_SERVICE) as WifiManager

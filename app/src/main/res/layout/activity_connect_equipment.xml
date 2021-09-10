@@ -7,7 +7,7 @@
         <import type="android.view.View"/>
         <import type="kr.loplab.gnss05.connection.ConnectionStatus"/>
         <variable
-            name="connectionequpmentviewmodel"
+            name="viewmodel"
             type="kr.loplab.gnss05.activities.viewmodel.ConnectEquipmentViewModel"/>
 
     </data>
@@ -146,7 +146,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:orientation="vertical"
-                    android:visibility="@{connectionequpmentviewmodel.connect_mode == 0 ? View.VISIBLE : View.GONE}"
+                    android:visibility="@{viewmodel.connect_mode == 0 ? View.VISIBLE : View.GONE}"
                     >
 
                     <LinearLayout
@@ -199,7 +199,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:orientation="vertical"
-                    android:visibility="@{connectionequpmentviewmodel.connect_mode == 1 ? View.VISIBLE : View.GONE}"
+                    android:visibility="@{viewmodel.connect_mode == 1 ? View.VISIBLE : View.GONE}"
 
                     >
 
@@ -241,7 +241,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:visibility="@{connectionequpmentviewmodel.connect_mode == 2 ? View.VISIBLE : View.GONE}"
+                    android:visibility="@{viewmodel.connect_mode == 2 ? View.VISIBLE : View.GONE}"
 
                     >
                 <LinearLayout
@@ -446,7 +446,7 @@
             android:layout_height="62dp"
             android:background="#000000"
             android:orientation="horizontal"
-            android:visibility="@{connectionequpmentviewmodel.connect_mode==2 ? View.GONE : View.VISIBLE}"
+            android:visibility="@{viewmodel.connect_mode==2 ? View.GONE : View.VISIBLE}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent">
@@ -458,7 +458,7 @@
                 android:layout_weight="1"
                 android:text="검색"
                 style="@style/TextViewButton_STYLE01"
-                android:visibility="@{connectionequpmentviewmodel.connection_state == ConnectionStatus.CONNECTED? View.GONE : View.VISIBLE}"
+                android:visibility="@{viewmodel.connection_state == ConnectionStatus.CONNECTED? View.GONE : View.VISIBLE}"
                 />
 
             <View
@@ -473,7 +473,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:text="연결"
-                android:visibility="@{connectionequpmentviewmodel.connection_state == ConnectionStatus.CONNECTED? View.GONE : View.VISIBLE}"
+                android:visibility="@{viewmodel.connection_state == ConnectionStatus.CONNECTED? View.GONE : View.VISIBLE}"
 
                 style="@style/TextViewButton_STYLE01" />
             <View
@@ -487,7 +487,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:text="중지"
-                android:visibility="@{connectionequpmentviewmodel.connection_state == ConnectionStatus.CONNECTED? View.VISIBLE : View.GONE}"
+                android:visibility="@{viewmodel.connection_state == ConnectionStatus.CONNECTED? View.VISIBLE : View.GONE}"
 
                 style="@style/TextViewButton_STYLE01" />
 
@@ -498,7 +498,7 @@
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:background="@color/main_blue_alpha"
-            android:visibility="@{connectionequpmentviewmodel.scanning ? View.VISIBLE : View.GONE}"
+            android:visibility="@{viewmodel.scanning ? View.VISIBLE : View.GONE}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

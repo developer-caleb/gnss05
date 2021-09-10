@@ -15,6 +15,7 @@ import android.view.View
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.ViewModelProvider
 import androidx.viewpager.widget.ViewPager
 import com.chc.gnss.sdk.*
 import com.google.android.material.tabs.TabLayout
@@ -26,6 +27,8 @@ import com.karumi.dexter.listener.multi.MultiplePermissionsListener
 import kotlinx.android.synthetic.main.activity_main.*
 import kr.loplab.gnss02.ActivityBase
 import kr.loplab.gnss05.activities.ConnectEquipmentActivity
+import kr.loplab.gnss05.activities.viewmodel.ConnectEquipmentViewModel
+import kr.loplab.gnss05.activities.viewmodel.MainActivityViewModel
 import kr.loplab.gnss05.adapter.MainAdapterViewpager
 import kr.loplab.gnss05.adapter.DialogRecyclerviewAdapter
 import kr.loplab.gnss05.common.Define.REQUEST_SETTING
@@ -43,6 +46,7 @@ class MainActivity :  ActivityBase<ActivityMainBinding>(),
     override val layoutResourceId: Int
         get() = R.layout.activity_main
     var adapterViewpager: MainAdapterViewpager? = null
+    lateinit var viewModel1: MainActivityViewModel
 
 
     var tabposition =0;
@@ -56,6 +60,8 @@ class MainActivity :  ActivityBase<ActivityMainBinding>(),
 
 
     override fun init(){
+        viewModel1 = ViewModelProvider(this).get(MainActivityViewModel::class.java)
+        viewBinding.viewmodel = viewModel1
         tablayoutinitialize()
         //setContentView(R.layout.activity_main)
         permissionchecking()
@@ -64,7 +70,7 @@ class MainActivity :  ActivityBase<ActivityMainBinding>(),
         viewBinding.pager1.adapter = adapterViewpager
 
     }
-   
+
 
     override fun initListener(){
         ConnectManager.instance!!.setOnConnectStateChangeListener {

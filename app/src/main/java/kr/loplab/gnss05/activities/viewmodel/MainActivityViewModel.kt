@@ -7,8 +7,7 @@ import kr.loplab.gnss05.connection.ConnectionStatus
 
 class MainActivityViewModel : ViewModel() {
     private var name = ""
-    var connect_mode = MutableLiveData<Int>(0)
-    var scanning = MutableLiveData<Boolean>(false)
+    var connect_type = MutableLiveData<Int>(0)
     var connection_state = MutableLiveData<ConnectionStatus>(ConnectionStatus.DISCONNECT)
     init {
 
@@ -19,9 +18,6 @@ class MainActivityViewModel : ViewModel() {
     }
 
     fun getName() = name
-    fun setConnectMode(num : Int){
-        connect_mode.postValue(num)
-    }
     fun setIntvalue(data : MutableLiveData<Int>, num : Int){
         data.value = num
     }
