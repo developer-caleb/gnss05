@@ -10,6 +10,7 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
+import android.os.Handler
 import android.provider.Settings
 import android.util.Log
 import android.view.LayoutInflater
@@ -389,32 +390,40 @@ class MainActivity :  ActivityBase<ActivityMainBinding>(),
 
 
     private val mReceiver = MyReceiver()
-
-    class MyReceiver : BroadcastReceiver() {
+    inner class MyReceiver : BroadcastReceiver() {
         val TAG : String = this.javaClass.simpleName
         override fun onReceive(context: Context, intent: Intent) {
+
             Log.d(TAG, "onReceive: ")
             val action = intent.action
             if (action == EnumReceiverCmd.RECEIVER_ASW_SET_GNSS_POSDATA.name
             ) {
-                val asw: ReceiverAsw = ReceiverService
-                    .getBroadcastData(intent) ?: return;
-               Runnable {
-                    when (asw.getReceiverCmdType()) {
-                        EnumReceiverCmd.RECEIVER_ASW_SET_GNSS_POSDATA -> if (asw.getParcelable() is PositionInfo) {
-                            val p = asw
-                                .getParcelable() as PositionInfo
-                            if (p != null && p.satellitePosition != null && p.satellitePosition
-                                    .position != null) {
-                                Log.d(TAG, "onReceive: ${p.satellitePosition.position.x.toString()}")
-                                Log.d(TAG, "onReceive: ${p.satellitePosition.position.y.toString()}")
-                                Log.d(TAG, "onReceive: ${p.satellitePosition.position.z.toString()}")
+                Log.d(TAG, "onReceive: 2")
+                val asw: ReceiverAsw? = ReceiverService.getBroadcastData(intent)
+                if (asw== null){
+                    Log.d(TAG, "onReceive: null"); return}else{
+                    Log.d(TAG, "onReceive: not null")}
+
+                runOnUiThread {
+                    Runnable {
+                        Log.d(TAG, "onReceive: 3")
+                        when (asw.getReceiverCmdType()) {
+                            EnumReceiverCmd.RECEIVER_ASW_SET_GNSS_POSDATA -> if (asw.getParcelable() is PositionInfo) {
+                                val p = asw.getParcelable() as PositionInfo
+                                if (p != null && p.satellitePosition != null && p.satellitePosition
+                                        .position != null) {
+                                    Log.d(TAG, "run:x " + p.satellitePosition.position.x.toString())
+                                    Log.d(TAG, "run:y " + p.satellitePosition.position.y.toString())
+                                    Log.d(TAG, "run:z " + p.satellitePosition.position.z.toString())
+                                }
                             }
-                        }
-                        else -> {
+                            else -> {
+                                Log.d(TAG, "onReceive: 4")
+                            }
                         }
                     }
                 }
+
             }
         }
     }
