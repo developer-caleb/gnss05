@@ -141,7 +141,7 @@ public class Receiver {
 	}
 
 	/**
-	 * 接收数据
+	 * Receive data
 	 * 
 	 * @param bts
 	 *            data

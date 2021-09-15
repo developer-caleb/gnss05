@@ -18,6 +18,7 @@ public class GlobalApplication  extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+        instance = this;
         NaverMapSdk.getInstance(this).setClient(new NaverMapSdk.NaverCloudPlatformClient("x3tscpw23x"));
         //Dark mode 없애기
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);

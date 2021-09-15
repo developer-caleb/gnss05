@@ -4,7 +4,7 @@ import com.huace.gnssserver.gnss.data.receiver.EnumReceiverCmd;
 import com.huace.gnssserver.gnss.data.receiver.NoneMagneticSetParams;
 
 /**
- * 无磁倾斜数据
+ * Non-magnetic tilt data
  */
 public class GetNoneMagneticSetParamsEventArgs extends ReceiverDataEventArgs {
     private NoneMagneticSetParams mInfo;

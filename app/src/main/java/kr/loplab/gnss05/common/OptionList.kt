@@ -31,7 +31,9 @@ class OptionList {
       val MOBILESTATION_DATA_CONNECTION_TYPE_LIST= arrayListOf<String>("없음","수신기 유심통신","내장 라디오","외장 라디오","단말기 유심통신", "L-band")
       val GGA_UPLOAD_INTERVAL_LIST= arrayListOf<String>("1","2","3","5","10","15","20","25","30","60","120","180")
       val MOUNTPOINT_LIST= arrayListOf<String>("ANHN-RTCM30","BHAO-RTCM30","BHAO-RTCM32","BOEN-BINEX","BOEN-RTCM23", "BOEN-RTCM31", "BONH-BINEX",
-      "BONH-RTCM23", "BONH-RTCM31", "BONH-RTCM32")
+      "BONH-RTCM23", "BONH-RTCM31", "BONH-RTCM32", "SB-AutoSelection-CMR", "SB-AutoSelection-CMRplus", "SB-AutoSelection-CMRx", "SB-AutoSelection-RTCM23",
+          "SB-AutoSelection-RTCM31", "SB-AutoSelection-RTCM32", "VRS-CMR", "VRS-CMRplus", "VRS-CMRx","VRS-RTCM23","VRS-RTCM31", "VRS-RTCM31(2)"
+          )
       val MOUNTPOINT_SORT_LIST= arrayListOf<String>("기본","이름 순서","이름 역순","거리 순서")
 
       //정지측량

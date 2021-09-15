@@ -3,6 +3,8 @@ package kr.loplab.gnss05;
 import android.Manifest
 import android.app.Activity
 import android.app.AlertDialog
+import android.content.BroadcastReceiver
+import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
 import android.net.Uri
@@ -19,6 +21,8 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.viewpager.widget.ViewPager
 import com.chc.gnss.sdk.*
 import com.google.android.material.tabs.TabLayout
+import com.huace.gnssserver.gnss.data.receiver.EnumReceiverCmd
+import com.huace.gnssserver.gnss.data.receiver.PositionInfo
 import com.karumi.dexter.Dexter
 import com.karumi.dexter.MultiplePermissionsReport
 import com.karumi.dexter.PermissionToken
@@ -37,10 +41,12 @@ import kr.loplab.gnss05.connection.ConnectionStatus
 import kr.loplab.gnss05.databinding.ActivityConnectEquipmentBinding
 import kr.loplab.gnss05.databinding.ActivityMainBinding
 import kr.loplab.gnss05.enums.ConnectType
+import kr.loplab.gnss05.receiver.ReceiverService
+import kr.loplab.gnss05.receiver.entity.ReceiverAsw
 import java.io.*
 import java.lang.Exception
+import java.util.ArrayList
 import kotlin.concurrent.thread
-
 
 class MainActivity :  ActivityBase<ActivityMainBinding>(),
      DialogRecyclerviewAdapter.RecyclerItemClickListener , ConnectManager.ConnectStateChangeListener{
@@ -194,8 +200,6 @@ class MainActivity :  ActivityBase<ActivityMainBinding>(),
                     ) { // 이전 권한 여부를 거부한 권한이 있으면 실행되는 메소드
                       /*  Toast.makeText(this@MainActivity, "list : $list", Toast.LENGTH_LONG)
                             .show() // 거부한 권한 이름이 저장된 list*/
-
-
                         showSettingsDialog() // 권한 거부시 앱 정보 설정 페이지를 띄우기 위한 임의 메소드
                     } // onPermissionRationaleShouldBeShown()..
                 })
@@ -250,55 +254,6 @@ class MainActivity :  ActivityBase<ActivityMainBinding>(),
             CHC_Receiver.CHCGetCmdInitConnection(receiveref, cmdRef)
         }
 
-        fun processdata() {
-            Log.d(TAG, "processdata: --> test")
-            thread {
-                var i =0;
-                while (CHC_Receiver.CHCParseData(receiveref) == 0 && i < 50) {
-                    Log.d(TAG, "processdata: 시도횟수 : $i")
-                    Log.d(TAG, "CHC_Receiver.CHCParseData(receiveref): " + CHC_Receiver.CHCParseData(receiveref))
-                    val info = CHC_MessageInfo()
-                    CHC_Receiver.CHCGetMessageInfo(receiveref, info)
-                    Log.d(TAG, "processdata: ${info.msgType.toString()}")
-                  /*  when (info.msgType) {
-                        CHC_MESSAGE_TYPE.CHC_MESSAGE_TYPE_SYSTEM -> {
-                            Log.d(TAG, "processdata: CHC_MESSAGE_TYPE.CHC_MESSAGE_TYPE_SYSTEM")
-                            //Process system data
-                            //onSystemInfo(info.ulmsg)
-                        }
-                        CHC_MESSAGE_TYPE.CHC_MESSAGE_TYPE_GNSS -> {
-                            Log.d(TAG, "processdata: CHC_MESSAGE_TYPE.CHC_MESSAGE_TYPE_GNSS")
-                            //Process GNSS OEM board data
-                            //onGNSSInfo(info.ulmsg)
-                        }
-                        CHC_MESSAGE_TYPE.CHC_MESSAGE_TYPE_PDA -> {
-                            Log.d(TAG, "processdata: CHC_MESSAGE_TYPE.CHC_MESSAGE_TYPE_PDA")
-                            //Process WIFI or modem data
-                            //onPDAInfo(info.ulmsg)
-                        }
-                        CHC_MESSAGE_TYPE.CHC_MESSAGE_TYPE_DATALINK -> {
-                            Log.d(TAG, "processdata: CHC_MESSAGE_TYPE.CHC_MESSAGE_TYPE_DATALINK")
-                            //Process system data
-                          //  onDataLinkInfo(info.ulmsg)
-                        }
-                        else -> {
-                        }
-                    }
-*/
-
-                    Log.d(TAG, "processdata: 131${info.ulmsg}, 132${CHC_ReceiverConstants.CHC_MESSAGE_SYSTEM_INIT_CONNECTION.toLong()}")
-                    if (info.msgType == CHC_MESSAGE_TYPE.CHC_MESSAGE_TYPE_SYSTEM) {
-                        if (info.ulmsg == CHC_ReceiverConstants.CHC_MESSAGE_SYSTEM_INIT_CONNECTION.toLong()) {
-                            Log.d(TAG, "processdata: -> connection is successful")
-                            val size = 0
-                            CHC_Receiver.CHCGetCmdInitReceiver(receiveref, cmdRef)
-                        }
-                    }
-                    Thread.sleep(1000); i++
-                }
-            }
-
-        }
 
         //작동 가능 확인
         fun openrawfile(): String? {
@@ -382,8 +337,17 @@ class MainActivity :  ActivityBase<ActivityMainBinding>(),
 
     override fun onResume() {
         super.onResume()
+        Log.d(TAG, "onResume: ")
         ConnectManager.instance!!.setOnConnectStateChangeListener(this)
         initDatabinding()
+
+        //리시버
+        val cmds: MutableList<EnumReceiverCmd> = ArrayList()
+        cmds.add(EnumReceiverCmd.RECEIVER_ASW_SET_GNSS_POSDATA)
+        registerReceiver(
+            mReceiver,
+            ReceiverService.createReceiverAswIntentFilter(cmds)
+        )
     }
 
     override fun onConnectStateChange(connectionStatus: ConnectionStatus) {
@@ -417,6 +381,43 @@ class MainActivity :  ActivityBase<ActivityMainBinding>(),
         }
     }
 
+
+    override fun onStop() {
+        unregisterReceiver(mReceiver)
+        super.onStop()
+    }
+
+
+    private val mReceiver = MyReceiver()
+
+    class MyReceiver : BroadcastReceiver() {
+        val TAG : String = this.javaClass.simpleName
+        override fun onReceive(context: Context, intent: Intent) {
+            Log.d(TAG, "onReceive: ")
+            val action = intent.action
+            if (action == EnumReceiverCmd.RECEIVER_ASW_SET_GNSS_POSDATA.name
+            ) {
+                val asw: ReceiverAsw = ReceiverService
+                    .getBroadcastData(intent) ?: return;
+               Runnable {
+                    when (asw.getReceiverCmdType()) {
+                        EnumReceiverCmd.RECEIVER_ASW_SET_GNSS_POSDATA -> if (asw.getParcelable() is PositionInfo) {
+                            val p = asw
+                                .getParcelable() as PositionInfo
+                            if (p != null && p.satellitePosition != null && p.satellitePosition
+                                    .position != null) {
+                                Log.d(TAG, "onReceive: ${p.satellitePosition.position.x.toString()}")
+                                Log.d(TAG, "onReceive: ${p.satellitePosition.position.y.toString()}")
+                                Log.d(TAG, "onReceive: ${p.satellitePosition.position.z.toString()}")
+                            }
+                        }
+                        else -> {
+                        }
+                    }
+                }
+            }
+        }
+    }
 }
 
 
