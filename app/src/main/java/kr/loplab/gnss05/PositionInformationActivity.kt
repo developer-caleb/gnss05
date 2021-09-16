@@ -9,7 +9,9 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
 import androidx.lifecycle.ViewModelProvider
+import com.chc.gnss.sdk.CHC_Course
 import com.google.android.material.tabs.TabLayout
+import com.huace.gnssserver.gnss.data.receiver.Course
 import com.huace.gnssserver.gnss.data.receiver.DopsInfo
 import com.huace.gnssserver.gnss.data.receiver.EnumReceiverCmd
 import com.huace.gnssserver.gnss.data.receiver.PositionInfo
@@ -18,6 +20,7 @@ import kr.loplab.gnss05.activities.viewmodel.PositionInformationViewModel
 import kr.loplab.gnss05.connection.ConnectManager
 import kr.loplab.gnss05.databinding.ActivityPositionInformationBinding
 import kr.loplab.gnss05.fragments.*
+import kr.loplab.gnss05.receiver.ConversionDataStruct
 import kr.loplab.gnss05.receiver.ReceiverService
 import kr.loplab.gnss05.receiver.entity.ReceiverAsw
 import java.text.SimpleDateFormat
@@ -59,9 +62,7 @@ class PositionInformationActivity : ActivityBase<ActivityPositionInformationBind
                 EnumReceiverCmd.RECEIVER_ASW_SET_GNSS_POSDATA.name ->{
                     Log.d(TAG, "onReceive: 2")
                     val asw: ReceiverAsw? = ReceiverService.getBroadcastData(intent)
-                    if (asw== null){
-                        Log.d(TAG, "onReceive: null"); return}else{
-                        Log.d(TAG, "onReceive: not null")}
+                    if (asw== null){ Log.d(TAG, "onReceive: null"); return}
                     runOnUiThread {
                         Log.d(TAG, "onReceive: 3")
                         when (asw.receiverCmdType) {
@@ -69,10 +70,13 @@ class PositionInformationActivity : ActivityBase<ActivityPositionInformationBind
                                 val p = asw.getParcelable() as PositionInfo
                                 if (p != null && p.satellitePosition != null && p.satellitePosition
                                         .position != null) {
+                                            var course2 = ConversionDataStruct.covCourse(CHC_Course());
                                     Log.d(TAG, "run:x " + p.satellitePosition.position.x.toString())
                                     Log.d(TAG, "run:y " + p.satellitePosition.position.y.toString())
                                     Log.d(TAG, "run:z " + p.satellitePosition.position.z.toString())
                                     Log.d(TAG, "시간 : ${p.time.year}-${p.time.month}-${p.time.day} ${p.time.hour}:${p.time.minute}:${p.time.second} ")
+                                    Log.d(TAG, "onReceive: gg ${course2.course}")
+                                    Log.d(TAG, "onReceive: gg ${course2.speed}")
                                     viewModel1.setStringvalue(viewModel1.utcTime, "${p.time.year}-${p.time.month}-${p.time.day} ${p.time.hour}:${p.time.minute}:${p.time.second}")
                                     viewModel1.setStringvalue(viewModel1.time, SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.KOREA).format(Date(System.currentTimeMillis())))
                                     viewModel1.setStringvalue(viewModel1.x, p.satellitePosition.position.x.toString() )
@@ -80,11 +84,12 @@ class PositionInformationActivity : ActivityBase<ActivityPositionInformationBind
                                     viewModel1.setStringvalue(viewModel1.z, p.satellitePosition.position.z.toString() )
                                     viewModel1.setStringvalue(viewModel1.horizontalError, p.satellitePrecision.hpre.toString() )
                                     viewModel1.setStringvalue(viewModel1.verticalError, p.satellitePrecision.vpre.toString() )
+                                    viewModel1.setStringvalue(viewModel1.velocity, course2.speed.toString() )
+                                    viewModel1.setStringvalue(viewModel1.direction, course2.course.toString() )
                                 }
-                            }
-                            else -> {
-                                Log.d(TAG, "onReceive: 4")
-                            }
+                            }else -> { Log.d(TAG, "onReceive: 4") }
+
+
                         }
                     }
                 }
@@ -130,7 +135,7 @@ class PositionInformationActivity : ActivityBase<ActivityPositionInformationBind
         val cmds: MutableList<EnumReceiverCmd> = ArrayList()
         cmds.add(EnumReceiverCmd.RECEIVER_ASW_SET_GNSS_POSDATA)
         cmds.add(EnumReceiverCmd.RECEIVER_ASW_SET_GNSS_DOPSDATA)
-        cmds.add(EnumReceiverCmd.RECEIVER_ASW_SET_GNSS_DOPSDATA)
+
 
         registerReceiver(mReceiver, ReceiverService.createReceiverAswIntentFilter(cmds)
         )

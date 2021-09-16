@@ -189,7 +189,7 @@ public class ReceiverDataParse {
 					.covPositionInfo(chc_Position);
 			Course course = ConversionDataStruct.covCourse(chc_Course); //?, 속도
 			ReceiverService.BUS.post(new GetPositionExEventArgs(
-					EnumReceiverCmd.RECEIVER_ASW_SET_GNSS_POSDATA,
+					EnumReceiverCmd.RECEIVER_ASW_SET_GNSS_POSDATA,   // 포지션 , position info, course를 같이 넣었네?
 					positionInfo, course));
 			chc_Position.delete();
 			chc_Course.delete();

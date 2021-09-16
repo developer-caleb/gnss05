@@ -86,8 +86,7 @@ public class ReceiverService {
         if (type instanceof ReceiverCmd) {
             ReceiverAsw asw = new ReceiverAsw();
             asw.setReceiverCmdType(((ReceiverCmd) type).getEnumReceiverCmd());
-            asw.setParcelable(intent
-                    .getParcelableExtra(ReceiverService.RECEIVER_DATA));
+            asw.setParcelable(intent.getParcelableExtra(ReceiverService.RECEIVER_DATA));
             return asw;
         }
         return null;
