@@ -54,39 +54,45 @@ class PositionInformationActivity : ActivityBase<ActivityPositionInformationBind
 
             Log.d(TAG, "onReceive: ")
             val action = intent.action
-            if (action == EnumReceiverCmd.RECEIVER_ASW_SET_GNSS_POSDATA.name
-            ) {
-                Log.d(TAG, "onReceive: 2")
-                val asw: ReceiverAsw? = ReceiverService.getBroadcastData(intent)
-                if (asw== null){
-                    Log.d(TAG, "onReceive: null"); return}else{
-                    Log.d(TAG, "onReceive: not null")}
-                runOnUiThread {
-                    Log.d(TAG, "onReceive: 3")
-                    when (asw.receiverCmdType) {
-                        EnumReceiverCmd.RECEIVER_ASW_SET_GNSS_POSDATA -> if (asw.getParcelable() is PositionInfo) {
-                            val p = asw.getParcelable() as PositionInfo
-                            if (p != null && p.satellitePosition != null && p.satellitePosition
-                                    .position != null) {
-                                Log.d(TAG, "run:x " + p.satellitePosition.position.x.toString())
-                                Log.d(TAG, "run:y " + p.satellitePosition.position.y.toString())
-                                Log.d(TAG, "run:z " + p.satellitePosition.position.z.toString())
-                                Log.d(TAG, "시간 : ${p.time.year}-${p.time.month}-${p.time.day} ${p.time.hour}:${p.time.minute}:${p.time.second} ")
-                                viewModel1.setStringvalue(viewModel1.utcTime, "${p.time.year}-${p.time.month}-${p.time.day} ${p.time.hour}:${p.time.minute}:${p.time.second}")
-                                viewModel1.setStringvalue(viewModel1.time, SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.KOREA).format(Date(System.currentTimeMillis())))
-                                viewModel1.setStringvalue(viewModel1.x, p.satellitePosition.position.x.toString() )
-                                viewModel1.setStringvalue(viewModel1.y, p.satellitePosition.position.y.toString() )
-                                viewModel1.setStringvalue(viewModel1.z, p.satellitePosition.position.z.toString() )
-                                viewModel1.setStringvalue(viewModel1.horizontalError, p.satellitePrecision.hpre.toString() )
-                                viewModel1.setStringvalue(viewModel1.verticalError, p.satellitePrecision.vpre.toString() )
+            when (action){
+                EnumReceiverCmd.RECEIVER_ASW_SET_GNSS_POSDATA.name ->{
+                    Log.d(TAG, "onReceive: 2")
+                    val asw: ReceiverAsw? = ReceiverService.getBroadcastData(intent)
+                    if (asw== null){
+                        Log.d(TAG, "onReceive: null"); return}else{
+                        Log.d(TAG, "onReceive: not null")}
+                    runOnUiThread {
+                        Log.d(TAG, "onReceive: 3")
+                        when (asw.receiverCmdType) {
+                            EnumReceiverCmd.RECEIVER_ASW_SET_GNSS_POSDATA -> if (asw.getParcelable() is PositionInfo) {
+                                val p = asw.getParcelable() as PositionInfo
+                                if (p != null && p.satellitePosition != null && p.satellitePosition
+                                        .position != null) {
+                                    Log.d(TAG, "run:x " + p.satellitePosition.position.x.toString())
+                                    Log.d(TAG, "run:y " + p.satellitePosition.position.y.toString())
+                                    Log.d(TAG, "run:z " + p.satellitePosition.position.z.toString())
+                                    Log.d(TAG, "시간 : ${p.time.year}-${p.time.month}-${p.time.day} ${p.time.hour}:${p.time.minute}:${p.time.second} ")
+                                    viewModel1.setStringvalue(viewModel1.utcTime, "${p.time.year}-${p.time.month}-${p.time.day} ${p.time.hour}:${p.time.minute}:${p.time.second}")
+                                    viewModel1.setStringvalue(viewModel1.time, SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.KOREA).format(Date(System.currentTimeMillis())))
+                                    viewModel1.setStringvalue(viewModel1.x, p.satellitePosition.position.x.toString() )
+                                    viewModel1.setStringvalue(viewModel1.y, p.satellitePosition.position.y.toString() )
+                                    viewModel1.setStringvalue(viewModel1.z, p.satellitePosition.position.z.toString() )
+                                    viewModel1.setStringvalue(viewModel1.horizontalError, p.satellitePrecision.hpre.toString() )
+                                    viewModel1.setStringvalue(viewModel1.verticalError, p.satellitePrecision.vpre.toString() )
+                                }
                             }
-                        }
-                        else -> {
-                            Log.d(TAG, "onReceive: 4")
+                            else -> {
+                                Log.d(TAG, "onReceive: 4")
+                            }
                         }
                     }
                 }
+                EnumReceiverCmd.RECEIVER_ASW_SET_GNSS_DOPSDATA.name -> {
+                    Log.d(TAG, "onReceive: 4")
+
+                }
             }
+
         }
     }
     override fun onResume() {
@@ -100,7 +106,7 @@ class PositionInformationActivity : ActivityBase<ActivityPositionInformationBind
         //리시버
         val cmds: MutableList<EnumReceiverCmd> = ArrayList()
         cmds.add(EnumReceiverCmd.RECEIVER_ASW_SET_GNSS_POSDATA)
-        cmds.add(EnumReceiverCmd.RECEIVER_ASW_SET_GNSS_POSDATA)
+        cmds.add(EnumReceiverCmd.RECEIVER_ASW_SET_GNSS_DOPSDATA)
         registerReceiver(mReceiver, ReceiverService.createReceiverAswIntentFilter(cmds)
         )
     }

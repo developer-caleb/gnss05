@@ -328,7 +328,7 @@ public class ReceiverDataParse {
 		}
 
 		/*
-		 * i80s倾斜测量数据
+		 * i80s Tilt measurement data
 		 */
 		if ((ulmsg & CHC_ReceiverConstants.CHC_MESSAGE_SYSTEM_NONE_MAGNETIC_TILT_INFO) != 0) {
 			CHC_NoneMagneticTiltInfo chcTiltInfo = new CHC_NoneMagneticTiltInfo();
@@ -343,7 +343,7 @@ public class ReceiverDataParse {
 		}
 
 		/*
-		 * i80s倾斜测量参数
+		 * i80s Tilt measurement parameters
 		 */
 		if ((ulmsg & CHC_ReceiverConstants.CHC_MESSAGE_SYSTEM_NONE_MAGNETIC_TILT_PARAM) != 0) {
 			short[] controlStatus = new short[1];
