@@ -55,7 +55,7 @@ import kr.loplab.gnss05.receiver.cmd.GetCmdOutputPosDataEventArgs;
 import kr.loplab.gnss05.receiver.cmd.ReceiverCmdEventArgs;
 
 /**
- * 解析数据
+ * Analytical data
  * 
  * @author wangjun
  * 

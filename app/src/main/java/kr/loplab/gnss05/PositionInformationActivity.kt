@@ -79,7 +79,6 @@ class PositionInformationActivity : ActivityBase<ActivityPositionInformationBind
                                 viewModel1.setStringvalue(viewModel1.z, p.satellitePosition.position.z.toString() )
                                 viewModel1.setStringvalue(viewModel1.horizontalError, p.satellitePrecision.hpre.toString() )
                                 viewModel1.setStringvalue(viewModel1.verticalError, p.satellitePrecision.vpre.toString() )
-
                             }
                         }
                         else -> {
@@ -87,7 +86,6 @@ class PositionInformationActivity : ActivityBase<ActivityPositionInformationBind
                         }
                     }
                 }
-
             }
         }
     }
@@ -102,9 +100,8 @@ class PositionInformationActivity : ActivityBase<ActivityPositionInformationBind
         //리시버
         val cmds: MutableList<EnumReceiverCmd> = ArrayList()
         cmds.add(EnumReceiverCmd.RECEIVER_ASW_SET_GNSS_POSDATA)
-        registerReceiver(
-            mReceiver,
-            ReceiverService.createReceiverAswIntentFilter(cmds)
+        cmds.add(EnumReceiverCmd.RECEIVER_ASW_SET_GNSS_POSDATA)
+        registerReceiver(mReceiver, ReceiverService.createReceiverAswIntentFilter(cmds)
         )
     }
     

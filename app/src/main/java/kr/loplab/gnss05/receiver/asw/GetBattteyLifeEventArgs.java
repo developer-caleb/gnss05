@@ -1,5 +1,7 @@
 package kr.loplab.gnss05.receiver.asw;
 
+import android.os.Parcelable;
+
 import com.huace.gnssserver.gnss.data.receiver.EnumReceiverCmd;
 
 /**
@@ -21,4 +23,6 @@ public class GetBattteyLifeEventArgs extends ReceiverDataEventArgs {
 	public int getBatteryLife() {
 		return mBatteryLife;
 	}
+
+
 }
