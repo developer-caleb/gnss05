@@ -69,10 +69,13 @@ class PositionInformationActivity : ActivityBase<ActivityPositionInformationBind
                                 Log.d(TAG, "run:y " + p.satellitePosition.position.y.toString())
                                 Log.d(TAG, "run:z " + p.satellitePosition.position.z.toString())
                                 Log.d(TAG, "시간 : ${p.time.year}-${p.time.month}-${p.time.day} ${p.time.hour}:${p.time.minute}:${p.time.second} ")
-                                viewModel1.setStringvalue(viewModel1.time, "${p.time.year}-${p.time.month}-${p.time.day} ${p.time.hour}:${p.time.minute}:${p.time.second}")
+                                viewModel1.setStringvalue(viewModel1.utcTime, "${p.time.year}-${p.time.month}-${p.time.day} ${p.time.hour}:${p.time.minute}:${p.time.second}")
+                                viewModel1.setStringvalue(viewModel1.utcTime, "${p.gpsTime.week}:${p.gpsTime.second}")
                                 viewModel1.setStringvalue(viewModel1.x, p.satellitePosition.position.x.toString() )
                                 viewModel1.setStringvalue(viewModel1.y, p.satellitePosition.position.y.toString() )
                                 viewModel1.setStringvalue(viewModel1.z, p.satellitePosition.position.z.toString() )
+                                viewModel1.setStringvalue(viewModel1.horizontalError, p.satellitePrecision.hpre.toString() )
+                                viewModel1.setStringvalue(viewModel1.verticalError, p.satellitePrecision.vpre.toString() )
 
                             }
                         }
