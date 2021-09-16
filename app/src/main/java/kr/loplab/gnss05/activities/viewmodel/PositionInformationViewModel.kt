@@ -23,6 +23,7 @@ class PositionInformationViewModel : ViewModel(){
     var pdopValue = MutableLiveData<Float>(0f) //PDOP
     var hdopValue = MutableLiveData<Float>(0f) //HDOP
     var vdopValue = MutableLiveData<Float>(0f) //vDOP
+    //var vdopValue = MutableLiveData<Float>(0f) //vDOP
 
 
 
