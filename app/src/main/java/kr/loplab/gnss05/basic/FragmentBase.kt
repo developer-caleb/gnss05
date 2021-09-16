@@ -13,7 +13,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModel
 import kr.loplab.gnss05.GlobalApplication
 
-abstract class FragmentBase<T : ViewDataBinding,VM: ViewModelBasic> : Fragment() {
+abstract class FragmentBase<T : ViewDataBinding,VM: ViewModel> : Fragment() {
     val TAG = javaClass.simpleName
     abstract val layoutResourceId: Int
     lateinit var viewDataBinding: T
@@ -47,9 +47,7 @@ abstract class FragmentBase<T : ViewDataBinding,VM: ViewModelBasic> : Fragment()
 
 
     private fun initDefault(){
-        viewModel.msg.observe(viewLifecycleOwner,{
-            showToast(it)
-        })
+
     }
 
     fun showToast(str:String){

@@ -96,7 +96,7 @@
         <entry key="app/src/main/res/layout/dialog1.xml" value="0.45" />
         <entry key="app/src/main/res/layout/file_call.xml" value="0.25" />
         <entry key="app/src/main/res/layout/file_out.xml" value="0.246484375" />
-        <entry key="app/src/main/res/layout/fragment_position_detail_info.xml" value="0.2361111111111111" />
+        <entry key="app/src/main/res/layout/fragment_position_detail_info.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_position_reference_country.xml" value="0.18" />
         <entry key="app/src/main/res/layout/fragment_position_satellite_info.xml" value="0.244140625" />
         <entry key="app/src/main/res/layout/fragment_position_satellite_map.xml" value="0.23127413127413127" />
@@ -124,6 +124,7 @@
         <entry key="app/src/main/res/layout/satellite_set.xml" value="0.246484375" />
         <entry key="app/src/main/res/layout/satellite_set_deprecated.xml" value="0.16666666666666666" />
         <entry key="app/src/main/res/layout/server_add.xml" value="0.244140625" />
+        <entry key="app/src/main/res/layout/setting_sub1.xml" value="0.5" />
         <entry key="app/src/main/res/layout/setting_sub2.xml" value="0.1296875" />
         <entry key="app/src/main/res/layout/setting_sub3.xml" value="0.332" />
         <entry key="app/src/main/res/layout/setting_sub3_2.xml" value="0.25" />
@@ -134,7 +135,7 @@
         <entry key="app/src/main/res/layout/standard_keyboard_popup.xml" value="0.2359375" />
         <entry key="app/src/main/res/layout/standard_keyboard_popup_deprecated.xml" value="0.1703125" />
         <entry key="app/src/main/res/layout/stop_set.xml" value="0.246484375" />
-        <entry key="app/src/main/res/layout/tab_icon_cell.xml" value="0.5" />
+        <entry key="app/src/main/res/layout/tab_icon_cell.xml" value="0.25" />
         <entry key="app/src/main/res/layout/table_fragment_main.xml" value="0.22" />
         <entry key="app/src/main/res/layout/table_view_cell_layout.xml" value="0.2484375" />
         <entry key="app/src/main/res/layout/table_view_column_header_layout.xml" value="0.2484375" />
@@ -145,8 +146,8 @@
         <entry key="app/src/main/res/layout/tool_viewpageradapter.xml" value="0.18" />
         <entry key="app/src/main/res/layout/toolbar1.xml" value="0.2484375" />
         <entry key="app/src/main/res/layout/topo.xml" value="0.246484375" />
-        <entry key="app/src/main/res/layout/work_sub1.xml" value="0.2484375" />
-        <entry key="app/src/main/res/layout/work_sub1_file_directory.xml" value="0.244140625" />
+        <entry key="app/src/main/res/layout/work_sub1.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/work_sub1_file_directory.xml" value="0.5" />
         <entry key="app/src/main/res/layout/worker.xml" value="0.244140625" />
         <entry key="app/src/main/res/layout/workgroup_sub1.xml" value="0.244140625" />
         <entry key="tableview/src/androidTest/res/layout/cell_layout.xml" value="0.2912037037037037" />
