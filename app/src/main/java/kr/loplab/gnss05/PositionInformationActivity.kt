@@ -130,6 +130,8 @@ class PositionInformationActivity : ActivityBase<ActivityPositionInformationBind
         val cmds: MutableList<EnumReceiverCmd> = ArrayList()
         cmds.add(EnumReceiverCmd.RECEIVER_ASW_SET_GNSS_POSDATA)
         cmds.add(EnumReceiverCmd.RECEIVER_ASW_SET_GNSS_DOPSDATA)
+        cmds.add(EnumReceiverCmd.RECEIVER_ASW_SET_GNSS_DOPSDATA)
+
         registerReceiver(mReceiver, ReceiverService.createReceiverAswIntentFilter(cmds)
         )
     }

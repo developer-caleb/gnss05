@@ -187,7 +187,7 @@ public class ReceiverDataParse {
 					chc_Course);
 			PositionInfo positionInfo = ConversionDataStruct
 					.covPositionInfo(chc_Position);
-			Course course = ConversionDataStruct.covCourse(chc_Course);
+			Course course = ConversionDataStruct.covCourse(chc_Course); //?, 속도
 			ReceiverService.BUS.post(new GetPositionExEventArgs(
 					EnumReceiverCmd.RECEIVER_ASW_SET_GNSS_POSDATA,
 					positionInfo, course));
