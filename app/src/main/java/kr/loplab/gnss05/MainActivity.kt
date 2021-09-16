@@ -39,7 +39,6 @@ import kr.loplab.gnss05.adapter.DialogRecyclerviewAdapter
 import kr.loplab.gnss05.common.Define.REQUEST_SETTING
 import kr.loplab.gnss05.connection.ConnectManager
 import kr.loplab.gnss05.connection.ConnectionStatus
-import kr.loplab.gnss05.databinding.ActivityConnectEquipmentBinding
 import kr.loplab.gnss05.databinding.ActivityMainBinding
 import kr.loplab.gnss05.enums.ConnectType
 import kr.loplab.gnss05.receiver.ReceiverService
@@ -403,23 +402,20 @@ class MainActivity :  ActivityBase<ActivityMainBinding>(),
                 if (asw== null){
                     Log.d(TAG, "onReceive: null"); return}else{
                     Log.d(TAG, "onReceive: not null")}
-
                 runOnUiThread {
-                    Runnable {
-                        Log.d(TAG, "onReceive: 3")
-                        when (asw.getReceiverCmdType()) {
-                            EnumReceiverCmd.RECEIVER_ASW_SET_GNSS_POSDATA -> if (asw.getParcelable() is PositionInfo) {
-                                val p = asw.getParcelable() as PositionInfo
-                                if (p != null && p.satellitePosition != null && p.satellitePosition
-                                        .position != null) {
-                                    Log.d(TAG, "run:x " + p.satellitePosition.position.x.toString())
-                                    Log.d(TAG, "run:y " + p.satellitePosition.position.y.toString())
-                                    Log.d(TAG, "run:z " + p.satellitePosition.position.z.toString())
-                                }
+                    Log.d(TAG, "onReceive: 3")
+                    when (asw.receiverCmdType) {
+                        EnumReceiverCmd.RECEIVER_ASW_SET_GNSS_POSDATA -> if (asw.getParcelable() is PositionInfo) {
+                            val p = asw.getParcelable() as PositionInfo
+                            if (p != null && p.satellitePosition != null && p.satellitePosition
+                                    .position != null) {
+                                Log.d(TAG, "run:x " + p.satellitePosition.position.x.toString())
+                                Log.d(TAG, "run:y " + p.satellitePosition.position.y.toString())
+                                Log.d(TAG, "run:z " + p.satellitePosition.position.z.toString())
                             }
-                            else -> {
-                                Log.d(TAG, "onReceive: 4")
-                            }
+                        }
+                        else -> {
+                            Log.d(TAG, "onReceive: 4")
                         }
                     }
                 }

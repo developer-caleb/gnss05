@@ -61,7 +61,7 @@
 
                         <TextView
                             style="@style/position_data_TEXTVIEW_STYLE1"
-                            android:text="경도도" />
+                            android:text="경도" />
 
                         <View
                             android:layout_width="1dp"
