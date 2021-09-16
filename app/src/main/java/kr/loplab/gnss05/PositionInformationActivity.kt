@@ -10,6 +10,7 @@ import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
 import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.tabs.TabLayout
+import com.huace.gnssserver.gnss.data.receiver.DopsInfo
 import com.huace.gnssserver.gnss.data.receiver.EnumReceiverCmd
 import com.huace.gnssserver.gnss.data.receiver.PositionInfo
 import kr.loplab.gnss02.ActivityBase
@@ -88,8 +89,30 @@ class PositionInformationActivity : ActivityBase<ActivityPositionInformationBind
                     }
                 }
                 EnumReceiverCmd.RECEIVER_ASW_SET_GNSS_DOPSDATA.name -> {
-                    Log.d(TAG, "onReceive: 4")
-
+                    Log.d(TAG, "onReceive: 2")
+                    val asw: ReceiverAsw? = ReceiverService.getBroadcastData(intent)
+                    if (asw== null){
+                        Log.d(TAG, "onReceive: null"); return}else{
+                        Log.d(TAG, "onReceive: not null")}
+                    runOnUiThread {
+                        Log.d(TAG, "onReceive: 3")
+                        when (asw.receiverCmdType) {
+                            EnumReceiverCmd.RECEIVER_ASW_SET_GNSS_DOPSDATA -> if (asw.getParcelable() is DopsInfo) {
+                                val p = asw.getParcelable() as DopsInfo
+                                if (p != null ) {
+                                    Log.d(TAG, "run:pdop " + p.pdop.toString())
+                                    Log.d(TAG, "run:hdop " + p.hdop.toString())
+                                    Log.d(TAG, "run:vdop " + p.vdop.toString())
+                                    viewModel1.setStringvalue(viewModel1.pdop, p.pdop.toString() )
+                                    viewModel1.setStringvalue(viewModel1.hdop, p.hdop.toString() )
+                                    viewModel1.setStringvalue(viewModel1.vdop, p.vdop.toString() )
+                                }
+                            }
+                            else -> {
+                                Log.d(TAG, "onReceive: 4")
+                            }
+                        }
+                    }
                 }
             }
 
@@ -155,7 +178,6 @@ class PositionInformationActivity : ActivityBase<ActivityPositionInformationBind
     }
 
     override fun initDatabinding() {
-        viewModel1.setStringvalue(viewModel1.latitude, "안녕?" )
 
     }
 
