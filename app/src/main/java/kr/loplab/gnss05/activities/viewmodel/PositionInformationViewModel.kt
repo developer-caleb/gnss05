@@ -34,7 +34,9 @@ class PositionInformationViewModel : ViewModel(){
 
     init {  }
 
-
+    fun setStringvalue(data : MutableLiveData<String>, str : String){
+        data.value = str
+    }
     fun setIntvalue(data : MutableLiveData<Int>, num : Int){
         data.value = num
     }

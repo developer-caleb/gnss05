@@ -44,7 +44,6 @@ class PositionInformationActivity : ActivityBase<ActivityPositionInformationBind
     override fun onStop() {
         unregisterReceiver(mReceiver)
         super.onStop()
-
     }
     inner class MyReceiver : BroadcastReceiver() {
         val TAG : String = this.javaClass.simpleName
@@ -69,6 +68,12 @@ class PositionInformationActivity : ActivityBase<ActivityPositionInformationBind
                                 Log.d(TAG, "run:x " + p.satellitePosition.position.x.toString())
                                 Log.d(TAG, "run:y " + p.satellitePosition.position.y.toString())
                                 Log.d(TAG, "run:z " + p.satellitePosition.position.z.toString())
+                                Log.d(TAG, "시간 : ${p.time.year}-${p.time.month}-${p.time.day} ${p.time.hour}:${p.time.minute}:${p.time.second} ")
+                                viewModel1.setStringvalue(viewModel1.time, "${p.time.year}-${p.time.month}-${p.time.day} ${p.time.hour}:${p.time.minute}:${p.time.second}")
+                                viewModel1.setStringvalue(viewModel1.x, p.satellitePosition.position.x.toString() )
+                                viewModel1.setStringvalue(viewModel1.y, p.satellitePosition.position.y.toString() )
+                                viewModel1.setStringvalue(viewModel1.z, p.satellitePosition.position.z.toString() )
+
                             }
                         }
                         else -> {
@@ -85,16 +90,16 @@ class PositionInformationActivity : ActivityBase<ActivityPositionInformationBind
         when (ConnectManager.instance?.isConnected)
         {
             true ->   { Log.d(TAG, "onResume: connected")
-                //리시버
-                val cmds: MutableList<EnumReceiverCmd> = ArrayList()
-                cmds.add(EnumReceiverCmd.RECEIVER_ASW_SET_GNSS_POSDATA)
-                registerReceiver(
-                    mReceiver,
-                    ReceiverService.createReceiverAswIntentFilter(cmds)
-                )
             }
             false ->  Log.d(TAG, "onResume: unconnected")
         }
+        //리시버
+        val cmds: MutableList<EnumReceiverCmd> = ArrayList()
+        cmds.add(EnumReceiverCmd.RECEIVER_ASW_SET_GNSS_POSDATA)
+        registerReceiver(
+            mReceiver,
+            ReceiverService.createReceiverAswIntentFilter(cmds)
+        )
     }
     
     override fun init() {
@@ -141,6 +146,8 @@ class PositionInformationActivity : ActivityBase<ActivityPositionInformationBind
     }
 
     override fun initDatabinding() {
+        viewModel1.setStringvalue(viewModel1.latitude, "안녕?" )
+
     }
 
 

@@ -28,7 +28,7 @@ class PositionDetailInfoFragment : FragmentBase<FragmentPositionDetailInfoBindin
 
     override fun init() {
         Log.d(TAG, "init: viewbinding 성공!")
-        viewModel1 = ViewModelProvider(this).get(PositionInformationViewModel::class.java)
+        viewModel1 = ViewModelProvider(requireActivity()).get(PositionInformationViewModel::class.java)
         viewBinding.viewModel = viewModel1
     }
 

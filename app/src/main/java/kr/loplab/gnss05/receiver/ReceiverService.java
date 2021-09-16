@@ -62,7 +62,7 @@ public class ReceiverService {
     }
 
     /**
-     * 获取广播过滤器
+     * Get broadcast filter
      *
      * @return
      */
