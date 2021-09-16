@@ -3,20 +3,20 @@ package kr.loplab.gnss05
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
+import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.tabs.TabLayout
 import com.huace.gnssserver.gnss.data.receiver.EnumReceiverCmd
 import com.huace.gnssserver.gnss.data.receiver.PositionInfo
 import kr.loplab.gnss02.ActivityBase
+import kr.loplab.gnss05.activities.viewmodel.PositionInformationViewModel
 import kr.loplab.gnss05.connection.ConnectManager
-import kr.loplab.gnss05.databinding.ActivityExportBinding
 import kr.loplab.gnss05.databinding.ActivityPositionInformationBinding
-import kr.loplab.gnss05.positioninfo.*
+import kr.loplab.gnss05.fragments.*
 import kr.loplab.gnss05.receiver.ReceiverService
 import kr.loplab.gnss05.receiver.entity.ReceiverAsw
 import java.util.ArrayList
@@ -24,7 +24,7 @@ import java.util.ArrayList
 class PositionInformationActivity : ActivityBase<ActivityPositionInformationBinding>() {
     override val layoutResourceId: Int
         get() = R.layout.activity_position_information
-
+    lateinit var viewModel1: PositionInformationViewModel
     var tabposition = 0;
 
     private var fragmentManager: FragmentManager? = null
@@ -98,6 +98,8 @@ class PositionInformationActivity : ActivityBase<ActivityPositionInformationBind
     }
     
     override fun init() {
+        viewModel1 = ViewModelProvider(this).get(PositionInformationViewModel::class.java)
+        viewBinding.viewModel = viewModel1
         fragmentManager = supportFragmentManager;
         fragments[0] = PositionDetailInfoFragment()
         fragments[1] = PositionReferenceCountryFragment()

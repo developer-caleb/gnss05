@@ -16,11 +16,8 @@ import kr.loplab.gnss05.GlobalApplication
 abstract class FragmentBase<T : ViewDataBinding,VM: ViewModelBasic> : Fragment() {
     val TAG = javaClass.simpleName
     abstract val layoutResourceId: Int
-
     lateinit var viewDataBinding: T
-
     lateinit var title:String
-
     abstract val viewModel : VM
 
     protected abstract fun init()

@@ -1,4 +1,4 @@
-package kr.loplab.gnss05.positioninfo
+package kr.loplab.gnss05.fragments
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -8,10 +8,10 @@ import android.view.ViewGroup
 import kr.loplab.gnss05.R
 
 
-class PositionSatelliteSNRFragment : Fragment() {
+class PositionReferenceCountryFragment : Fragment() {
     /*   override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }*/
+          super.onCreate(savedInstanceState)
+      }*/
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -19,7 +19,7 @@ class PositionSatelliteSNRFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
 
-        return inflater.inflate(R.layout.fragment_position_satellite_snr, container, false)
+        return inflater.inflate(R.layout.fragment_position_reference_country, container, false)
     }
 
     companion object {

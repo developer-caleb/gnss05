@@ -1,4 +1,4 @@
-package kr.loplab.gnss05.positioninfo
+package kr.loplab.gnss05.fragments
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -6,8 +6,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import kr.loplab.gnss05.R
-class PositionDetailInfoFragment : Fragment() {
- /*   override fun onCreate(savedInstanceState: Bundle?) {
+
+
+class PositionSatelliteMapFragment : Fragment() {
+    /*   override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }*/
 
@@ -17,7 +19,7 @@ class PositionDetailInfoFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
 
-        return inflater.inflate(R.layout.fragment_position_detail_info, container, false)
+        return inflater.inflate(R.layout.fragment_position_satellite_map, container, false)
     }
 
     companion object {
