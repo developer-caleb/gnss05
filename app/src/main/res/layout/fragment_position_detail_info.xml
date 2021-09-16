@@ -7,6 +7,9 @@
         <import type="java.util.ArrayList"/>
         <import type="java.util.Arrays"/>
         <variable
+            name="ConnectManager"
+            type="kr.loplab.gnss05.connection.ConnectManager"/>
+        <variable
             name="Optionlist"
             type="kr.loplab.gnss05.common.OptionList"/>
         <variable
@@ -54,7 +57,7 @@
 
                         <TextView
                             style="@style/position_data_TEXTVIEW_STYLE1"
-                            android:text="TextView" />
+                            android:text="@{viewModel.latitude}" />
 
                     </TableRow>
 
@@ -81,7 +84,7 @@
 
                         <TextView
                             style="@style/position_data_TEXTVIEW_STYLE1"
-                            android:text="TextView" />
+                            android:text="@{viewModel.longitude}"  />
 
                     </TableRow>
 
@@ -108,7 +111,7 @@
 
                         <TextView
                             style="@style/position_data_TEXTVIEW_STYLE1"
-                            android:text="TextView" />
+                            android:text="@{viewModel.altitude}" />
                     </TableRow>
 
                     <View
@@ -133,8 +136,9 @@
                             android:background="@color/grey_cc" />
 
                         <TextView
+                            android:id="@+id/tv_y"
                             style="@style/position_data_TEXTVIEW_STYLE1"
-                            android:text="TextView" />
+                            android:text="@{viewModel.y}"/>
                     </TableRow>
 
                     <View
@@ -159,8 +163,9 @@
                             android:background="@color/grey_cc" />
 
                         <TextView
+                            android:id="@+id/tv_x"
                             style="@style/position_data_TEXTVIEW_STYLE1"
-                            android:text="TextView" />
+                            android:text="@{viewModel.x.toString()}" />
                     </TableRow>
 
                     <View
@@ -185,8 +190,9 @@
                             android:background="@color/grey_cc" />
 
                         <TextView
+                            android:id="@+id/tv_z"
                             style="@style/position_data_TEXTVIEW_STYLE1"
-                            android:text="TextView" />
+                            android:text="@{viewModel.z.toString()}" />
                     </TableRow>
 
                     <View
@@ -212,7 +218,7 @@
 
                         <TextView
                             style="@style/position_data_TEXTVIEW_STYLE1"
-                            android:text="TextView" />
+                            android:text="@{viewModel.velocity}" />
                     </TableRow>
 
                     <View
@@ -238,7 +244,7 @@
 
                         <TextView
                             style="@style/position_data_TEXTVIEW_STYLE1"
-                            android:text="TextView" />
+                            android:text="@{viewModel.direction}" />
                     </TableRow>
 
                     <View
@@ -264,7 +270,7 @@
 
                         <TextView
                             style="@style/position_data_TEXTVIEW_STYLE1"
-                            android:text="TextView" />
+                            android:text="@{viewModel.solutionInfo}" />
                     </TableRow>
 
                     <View
@@ -290,7 +296,7 @@
 
                         <TextView
                             style="@style/position_data_TEXTVIEW_STYLE1"
-                            android:text="TextView" />
+                            android:text="@{viewModel.horizontalError}" />
                     </TableRow>
 
                     <View
@@ -316,7 +322,7 @@
 
                         <TextView
                             style="@style/position_data_TEXTVIEW_STYLE1"
-                            android:text="TextView" />
+                            android:text="@{viewModel.verticalError}" />
                     </TableRow>
 
                     <View
@@ -342,7 +348,7 @@
 
                         <TextView
                             style="@style/position_data_TEXTVIEW_STYLE1"
-                            android:text="TextView" />
+                            android:text="@{viewModel.satellite}" />
                     </TableRow>
 
                     <View
@@ -368,7 +374,7 @@
 
                         <TextView
                             style="@style/position_data_TEXTVIEW_STYLE1"
-                            android:text="TextView" />
+                            android:text="@{viewModel.deplacementMode}" />
                     </TableRow>
 
                     <View
@@ -394,7 +400,7 @@
 
                         <TextView
                             style="@style/position_data_TEXTVIEW_STYLE1"
-                            android:text="TextView" />
+                            android:text="@{viewModel.delay}" />
                     </TableRow>
 
                     <View
@@ -420,7 +426,7 @@
 
                         <TextView
                             style="@style/position_data_TEXTVIEW_STYLE1"
-                            android:text="TextView" />
+                            android:text="@{viewModel.pdop}" />
                     </TableRow>
 
                     <View
@@ -446,7 +452,7 @@
 
                         <TextView
                             style="@style/position_data_TEXTVIEW_STYLE1"
-                            android:text="TextView" />
+                            android:text="@{viewModel.hdop}" />
                     </TableRow>
 
                     <View
@@ -472,7 +478,7 @@
 
                         <TextView
                             style="@style/position_data_TEXTVIEW_STYLE1"
-                            android:text="TextView" />
+                            android:text="@{viewModel.vdop}" />
                     </TableRow>
 
                     <View
@@ -498,7 +504,7 @@
 
                         <TextView
                             style="@style/position_data_TEXTVIEW_STYLE1"
-                            android:text="TextView" />
+                            android:text="@{viewModel.utcTime}" />
                     </TableRow>
 
                     <View
@@ -524,7 +530,7 @@
 
                         <TextView
                             style="@style/position_data_TEXTVIEW_STYLE1"
-                            android:text="TextView" />
+                            android:text="@{viewModel.time}" />
                     </TableRow>
 
                     <View
@@ -550,7 +556,7 @@
 
                         <TextView
                             style="@style/position_data_TEXTVIEW_STYLE1"
-                            android:text="TextView" />
+                            android:text="@{viewModel.destanceFromReferenceCountry}" />
                     </TableRow>
 
                     <View

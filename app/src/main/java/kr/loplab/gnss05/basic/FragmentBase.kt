@@ -10,27 +10,26 @@ import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModel
 import kr.loplab.gnss05.GlobalApplication
 
-abstract class FragmentBase<T : ViewDataBinding,VM: ViewModel> : Fragment() {
+abstract class FragmentBase<T : ViewDataBinding> : Fragment() {
     val TAG = javaClass.simpleName
     abstract val layoutResourceId: Int
-    lateinit var viewDataBinding: T
+    lateinit var viewBinding: T
     lateinit var title:String
-    abstract val viewModel : VM
+    //abstract val viewModel : VM
 
     protected abstract fun init()
     protected abstract fun initListener()
-    protected abstract fun initLiveData()
+    protected abstract fun initDataBinding()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
-        viewDataBinding = DataBindingUtil.inflate(inflater, layoutResourceId, container, false)
+        viewBinding = DataBindingUtil.inflate(inflater, layoutResourceId, container, false)
         //viewDataBinding.setVariable(BR.viewModel,viewModel)
-        viewDataBinding.lifecycleOwner=this
+        viewBinding.lifecycleOwner=this
 
-        return viewDataBinding.root
+        return viewBinding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -41,7 +40,7 @@ abstract class FragmentBase<T : ViewDataBinding,VM: ViewModel> : Fragment() {
 
         init()
         initListener()
-        initLiveData()
+        initDataBinding()
     }
 
 
