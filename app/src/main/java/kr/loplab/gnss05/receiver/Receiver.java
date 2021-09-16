@@ -122,7 +122,7 @@ public class Receiver {
 	}
 
 	/**
-	 * return the comfiguration's path if their doesn't have copy from the other place
+	 * return the configuration's path if their doesn't have copy from the other place
 	 * 
 	 * @return
 	 */

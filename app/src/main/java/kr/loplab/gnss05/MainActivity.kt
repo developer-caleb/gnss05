@@ -341,13 +341,7 @@ class MainActivity :  ActivityBase<ActivityMainBinding>(),
         ConnectManager.instance!!.setOnConnectStateChangeListener(this)
         initDatabinding()
 
-        //리시버
-        val cmds: MutableList<EnumReceiverCmd> = ArrayList()
-        cmds.add(EnumReceiverCmd.RECEIVER_ASW_SET_GNSS_POSDATA)
-        registerReceiver(
-            mReceiver,
-            ReceiverService.createReceiverAswIntentFilter(cmds)
-        )
+
     }
 
     override fun onConnectStateChange(connectionStatus: ConnectionStatus) {
@@ -383,45 +377,8 @@ class MainActivity :  ActivityBase<ActivityMainBinding>(),
 
 
     override fun onStop() {
-        unregisterReceiver(mReceiver)
+
         super.onStop()
-    }
-
-
-    private val mReceiver = MyReceiver()
-    inner class MyReceiver : BroadcastReceiver() {
-        val TAG : String = this.javaClass.simpleName
-        override fun onReceive(context: Context, intent: Intent) {
-
-            Log.d(TAG, "onReceive: ")
-            val action = intent.action
-            if (action == EnumReceiverCmd.RECEIVER_ASW_SET_GNSS_POSDATA.name
-            ) {
-                Log.d(TAG, "onReceive: 2")
-                val asw: ReceiverAsw? = ReceiverService.getBroadcastData(intent)
-                if (asw== null){
-                    Log.d(TAG, "onReceive: null"); return}else{
-                    Log.d(TAG, "onReceive: not null")}
-                runOnUiThread {
-                    Log.d(TAG, "onReceive: 3")
-                    when (asw.receiverCmdType) {
-                        EnumReceiverCmd.RECEIVER_ASW_SET_GNSS_POSDATA -> if (asw.getParcelable() is PositionInfo) {
-                            val p = asw.getParcelable() as PositionInfo
-                            if (p != null && p.satellitePosition != null && p.satellitePosition
-                                    .position != null) {
-                                Log.d(TAG, "run:x " + p.satellitePosition.position.x.toString())
-                                Log.d(TAG, "run:y " + p.satellitePosition.position.y.toString())
-                                Log.d(TAG, "run:z " + p.satellitePosition.position.z.toString())
-                            }
-                        }
-                        else -> {
-                            Log.d(TAG, "onReceive: 4")
-                        }
-                    }
-                }
-
-            }
-        }
     }
 }
 
