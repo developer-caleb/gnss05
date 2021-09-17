@@ -39,11 +39,6 @@ public class SplashActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
-        //Gnssreceiver2 gnssreceiver2 = new Gnssreceiver2();
-
-
-
-        //Log.d(TAG, "onCreate: -> filepath" + gnssreceiver2.openrawfile() );
 
         PackageManager pm = getPackageManager();
         try {
@@ -51,7 +46,6 @@ public class SplashActivity extends AppCompatActivity {
             versionName = packageInfo.versionName;
         } catch (Exception e) {
         }
-        //remoteConfig();
         starthandler();
 
     }
@@ -78,49 +72,11 @@ public class SplashActivity extends AppCompatActivity {
             internalfilewrite();
             CHC_Receiver receiver = null;  //1
             filepath =  internalfileread(); //2
-            initialize();
-            processdata();
+
         }
         // CHC_Receiver = null;
         // CHC_Receiver receiver = new CHC_Receiver();
 
-
-
-
-
-
-        void initialize(){
-            CHC_RECEIVER_TYPE chc_receiver_type = CHC_RECEIVER_TYPE.CHC_RECEIVER_TYPE_SMART_GNSS; //3
-            // The absolute path of the 'features.hcc'
-           // CHC_OEM_TYPE oem_type = CHC_OEM_TYPE.CHC_OEM_TYPE_UNICORE;
-            CHC_OEM_TYPE oem_type = CHC_OEM_TYPE.CHC_OEM_TYPE_AUTO; //안되면
-
-            //config에 있는 파일 넣어놓고, resource로 부르기.
-            receiveref = new CHC_ReceiverRef(filepath , chc_receiver_type, oem_type);
-            CHC_CONNECTION_METHOD method = CHC_CONNECTION_METHOD.CHC_CONNECTION_METHOD_BT;  //4
-            CHC_Receiver.CHCUpdateConnectionMethod(receiveref, method);         //5
-            cmdRef = new CHC_CMDRef();
-
-            CHC_Receiver.CHCGetCmdInitConnection(receiveref , cmdRef );
-        }
-
-        void processdata(){
-            Log.d(TAG, "processdata: --> test");
-            while (CHC_Receiver.CHCParseData(receiveref)==0){
-                Log.d(TAG, "CHC_Receiver.CHCParseData(receiveref): " + CHC_Receiver.CHCParseData(receiveref));
-                CHC_MessageInfo info = new CHC_MessageInfo();
-                CHC_Receiver.CHCGetMessageInfo(receiveref, info);
-                if(info.getMsgType()== CHC_MESSAGE_TYPE.CHC_MESSAGE_TYPE_SYSTEM)
-                {
-                    if(info.getUlmsg()== CHC_ReceiverConstants.CHC_MESSAGE_SYSTEM_INIT_CONNECTION) {
-                        Log.d(TAG, "processdata: -> connection is successful");
-                        int size = 0;
-                        CHC_Receiver.CHCGetCmdInitReceiver(receiveref, cmdRef);
-                    }
-                    }
-            }
-
-        }
 
 
         //작동 가능 확인
@@ -179,11 +135,8 @@ public class SplashActivity extends AppCompatActivity {
             } catch (Exception e){
                 Log.e(TAG, "internalfileread: "+ e);
             }
-
             return  returnstr;
         }
-
-
     }
 
 

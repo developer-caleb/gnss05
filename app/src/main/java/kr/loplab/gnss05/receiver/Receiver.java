@@ -1,6 +1,7 @@
 package kr.loplab.gnss05.receiver;
 
 import android.content.Context;
+import android.util.Log;
 
 import com.chc.gnss.sdk.CHC_CMDRef;
 import com.chc.gnss.sdk.CHC_COMMUNICATION_TYPE;
@@ -10,12 +11,15 @@ import com.chc.gnss.sdk.CHC_Receiver;
 import com.chc.gnss.sdk.CHC_ReceiverRef;
 import com.huace.gnssserver.gnss.data.receiver.EnumReceiverCmd;
 
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.Vector;
 
 import kr.loplab.gnss05.GlobalApplication;
+import kr.loplab.gnss05.R;
 import kr.loplab.gnss05.common.ConstPath;
 import kr.loplab.gnss05.common.FileUtils;
 import kr.loplab.gnss05.common.L;
@@ -30,7 +34,7 @@ import kr.loplab.gnss05.receiver.entity.Cmd;
  * 
  */
 public class Receiver {
-
+	String TAG  = this.getClass().getSimpleName();
 	@SuppressWarnings("unused")
 	private Context mContext;
 
@@ -65,6 +69,7 @@ public class Receiver {
 	private static Receiver sInstance = null;
 
 	private Receiver() {
+		Log.d(TAG, "Receiver: 생성!");
 		String file = getFeaturesPath();
 		if (!FileUtils.existFile(file)) {
 			return;
@@ -129,16 +134,20 @@ public class Receiver {
 	private String getFeaturesPath() {
 		String file = ConstPath.getFeaturesPath();
 		if (!FileUtils.existFile(file)) {
+			Log.d(TAG, "getFeaturesPath: 파일이 없음");
 			try {
-				FileUtils.copyFileFromAssets(GlobalApplication.getInstance(),
-						ConstPath.getFeaturesName(),
-						ConstPath.getConfigFolder());
+				Log.d(TAG, "getFeaturesPath: 파일을 복사 시도");
+
+				FileUtils.copyFileFromAssets(GlobalApplication.getInstance(), ConstPath.getFeaturesName(), ConstPath.getConfigFolder());
 			} catch (IOException e) {
+				Log.d(TAG, "getFeaturesPath: 오류가 남..");
 				L.printException(e);
 			}
 		}
 		return file;
 	}
+
+
 
 	/**
 	 * Receive data

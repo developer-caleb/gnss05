@@ -21,7 +21,7 @@ public class ConstPath {
 	}
 
 	/**
-	 * 注册配置文件路径
+	 * Registered configuration file path
 	 * 
 	 * @return
 	 */
