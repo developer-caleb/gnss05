@@ -5,7 +5,8 @@ import java.io.File;
 public class ConstPath {
 
 	public static String getAppDataFolder() {
-		return SdCardUtils.getSdCardPath() + "sdk" + File.separator;
+		//return SdCardUtils.getSdCardPath() + "sdk" + File.separator;
+		return MyFileUtils.sdCardPath1() + "sdk" + File.separator;
 	}
 
 	public static String getConfigFolder() {
