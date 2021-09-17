@@ -5,6 +5,7 @@ import android.content.IntentFilter;
 import android.os.Parcelable;
 
 import androidx.annotation.Nullable;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
 import com.huace.gnssserver.gnss.data.receiver.DopsInfo;
 import com.huace.gnssserver.gnss.data.receiver.EnumModemDialStatus;
@@ -181,11 +182,13 @@ public class ReceiverService {
         if (data != null) {
             intent.putExtra(RECEIVER_DATA, data);
         }
-        GlobalApplication.getInstance().sendBroadcast(intent);
+        //GlobalApplication.getInstance().sendBroadcast(intent);
+        LocalBroadcastManager.getInstance(GlobalApplication.instance.getApplicationContext()).sendBroadcast(intent);
     }
 
     private void sendBroadcast(Intent intent) {
-        GlobalApplication.getInstance().sendBroadcast(intent);
+        //GlobalApplication.getInstance().sendBroadcast(intent);
+        LocalBroadcastManager.getInstance(GlobalApplication.instance.getApplicationContext()).sendBroadcast(intent);
     }
 
     /**

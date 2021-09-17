@@ -215,7 +215,7 @@ WifiEquipmentRecyclerViewAdapter.RecyclerItemClickListener, ConnectManager.Conne
             results.forEach { divices ->
                 run {
                     wifiDevicesArr.add(divices)
-                    Log.d(TAG, "setBluetoothList: ")
+                    Log.d(TAG, "setWifiList: ")
                 }
             }}
         wifiRecyclerViewAdapter = WifiEquipmentRecyclerViewAdapter(this, wifiDevicesArr!!)
