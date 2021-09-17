@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
 import androidx.lifecycle.ViewModelProvider
+import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import com.chc.gnss.sdk.CHC_Course
 import com.google.android.material.tabs.TabLayout
 import com.huace.gnssserver.gnss.data.receiver.Course
@@ -55,7 +56,9 @@ class PositionInformationActivity : ActivityBase<ActivityPositionInformationBind
     inner class MyReceiver : BroadcastReceiver() {
         val TAG : String = this.javaClass.simpleName
         override fun onReceive(context: Context, intent: Intent) {
-
+            //브로드캐스트를 받았을 경우
+            //Intent 안에 정보를 다 넣은 것 같음.
+            //브로드캐스트가 아니라 백그라운드로 우리가 원하는 정보를 계속 받아오는게 최종적으로 중요할 것 같다.
             Log.d(TAG, "onReceive: ")
             val action = intent.action
             when (action){
@@ -65,18 +68,11 @@ class PositionInformationActivity : ActivityBase<ActivityPositionInformationBind
                     if (asw== null){ Log.d(TAG, "onReceive: null"); return}
                     runOnUiThread {
                         Log.d(TAG, "onReceive: 3")
-                        when (asw.receiverCmdType) {
-                            EnumReceiverCmd.RECEIVER_ASW_SET_GNSS_POSDATA -> if (asw.getParcelable() is PositionInfo) {
+
+                         if ( asw.receiverCmdType ==   EnumReceiverCmd.RECEIVER_ASW_SET_GNSS_POSDATA && (asw.getParcelable() is PositionInfo) ) {
                                 val p = asw.getParcelable() as PositionInfo
                                 if (p != null && p.satellitePosition != null && p.satellitePosition
                                         .position != null) {
-                                            var course2 = ConversionDataStruct.covCourse(CHC_Course());
-                                    Log.d(TAG, "run:x " + p.satellitePosition.position.x.toString())
-                                    Log.d(TAG, "run:y " + p.satellitePosition.position.y.toString())
-                                    Log.d(TAG, "run:z " + p.satellitePosition.position.z.toString())
-                                    Log.d(TAG, "시간 : ${p.time.year}-${p.time.month}-${p.time.day} ${p.time.hour}:${p.time.minute}:${p.time.second} ")
-                                    Log.d(TAG, "onReceive: gg ${course2.course}")
-                                    Log.d(TAG, "onReceive: gg ${course2.speed}")
                                     viewModel1.setStringvalue(viewModel1.utcTime, "${p.time.year}-${p.time.month}-${p.time.day} ${p.time.hour}:${p.time.minute}:${p.time.second}")
                                     viewModel1.setStringvalue(viewModel1.time, SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.KOREA).format(Date(System.currentTimeMillis())))
                                     viewModel1.setStringvalue(viewModel1.x, p.satellitePosition.position.x.toString() )
@@ -84,30 +80,31 @@ class PositionInformationActivity : ActivityBase<ActivityPositionInformationBind
                                     viewModel1.setStringvalue(viewModel1.z, p.satellitePosition.position.z.toString() )
                                     viewModel1.setStringvalue(viewModel1.horizontalError, p.satellitePrecision.hpre.toString() )
                                     viewModel1.setStringvalue(viewModel1.verticalError, p.satellitePrecision.vpre.toString() )
-                                    viewModel1.setStringvalue(viewModel1.velocity, course2.speed.toString() )
-                                    viewModel1.setStringvalue(viewModel1.direction, course2.course.toString() )
                                 }
-                            }else -> { Log.d(TAG, "onReceive: 4") }
+                            }else { Log.d(TAG, "onReceive: 4") }
 
-
-                        }
+                        if ( asw.receiverCmdType ==   EnumReceiverCmd.RECEIVER_ASW_SET_GNSS_POSDATA && (asw.getParcelable() is Course) ) {
+                            val p = asw.getParcelable() as Course
+                            if (p != null ) {
+                                Log.d(TAG, "onReceive: 5")
+                                viewModel1.setStringvalue(viewModel1.velocity, p.speed.toString() )
+                                viewModel1.setStringvalue(viewModel1.direction, p.course.toString() )
+                            }
+                        }else { Log.d(TAG, "onReceive: 6") }
                     }
                 }
                 EnumReceiverCmd.RECEIVER_ASW_SET_GNSS_DOPSDATA.name -> {
-                    Log.d(TAG, "onReceive: 2")
+                    Log.d(TAG, "onReceive: 7")
                     val asw: ReceiverAsw? = ReceiverService.getBroadcastData(intent)
                     if (asw== null){
                         Log.d(TAG, "onReceive: null"); return}else{
                         Log.d(TAG, "onReceive: not null")}
                     runOnUiThread {
-                        Log.d(TAG, "onReceive: 3")
+                        Log.d(TAG, "onReceive: 8")
                         when (asw.receiverCmdType) {
                             EnumReceiverCmd.RECEIVER_ASW_SET_GNSS_DOPSDATA -> if (asw.getParcelable() is DopsInfo) {
                                 val p = asw.getParcelable() as DopsInfo
                                 if (p != null ) {
-                                    Log.d(TAG, "run:pdop " + p.pdop.toString())
-                                    Log.d(TAG, "run:hdop " + p.hdop.toString())
-                                    Log.d(TAG, "run:vdop " + p.vdop.toString())
                                     viewModel1.setStringvalue(viewModel1.pdop, p.pdop.toString() )
                                     viewModel1.setStringvalue(viewModel1.hdop, p.hdop.toString() )
                                     viewModel1.setStringvalue(viewModel1.vdop, p.vdop.toString() )
@@ -131,13 +128,14 @@ class PositionInformationActivity : ActivityBase<ActivityPositionInformationBind
             }
             false ->  Log.d(TAG, "onResume: unconnected")
         }
-        //리시버
+        //안드로이드 브로드캐스트 리시버에 filter를 등록함, 해당 리시버가 들어올 경우에는, filtering 해서 데이터를 받을 수 있게 됨.
+        //그러면 반대로 누군가는 계속 브로드캐스트를 등록한다는 말임. 그 등록하는 애를 찾아야함.
         val cmds: MutableList<EnumReceiverCmd> = ArrayList()
         cmds.add(EnumReceiverCmd.RECEIVER_ASW_SET_GNSS_POSDATA)
         cmds.add(EnumReceiverCmd.RECEIVER_ASW_SET_GNSS_DOPSDATA)
 
 
-        registerReceiver(mReceiver, ReceiverService.createReceiverAswIntentFilter(cmds)
+        LocalBroadcastManager.getInstance(this).registerReceiver(mReceiver, ReceiverService.createReceiverAswIntentFilter(cmds)
         )
     }
     
