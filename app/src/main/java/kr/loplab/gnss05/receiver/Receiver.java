@@ -144,6 +144,7 @@ public class Receiver {
 				L.printException(e);
 			}
 		}
+		Log.d(TAG, "getFeaturesPath: 파일이름 :"+ file);
 		return file;
 	}
 
