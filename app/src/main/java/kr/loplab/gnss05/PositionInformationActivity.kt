@@ -53,7 +53,7 @@ class PositionInformationActivity : ActivityBase<ActivityPositionInformationBind
         unregisterReceiver(mReceiver)
         super.onStop()
     }
-    inner class MyReceiver : BroadcastReceiver() {
+    private inner class MyReceiver : BroadcastReceiver() {
         val TAG : String = this.javaClass.simpleName
         override fun onReceive(context: Context, intent: Intent) {
             //브로드캐스트를 받았을 경우

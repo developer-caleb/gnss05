@@ -1,5 +1,7 @@
 package kr.loplab.gnss05.activities
 
+import android.content.BroadcastReceiver
+import android.content.Context
 import android.content.Intent
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
@@ -7,6 +9,10 @@ import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AlertDialog
 import androidx.lifecycle.ViewModelProvider
+import com.huace.gnssserver.gnss.data.receiver.Course
+import com.huace.gnssserver.gnss.data.receiver.DopsInfo
+import com.huace.gnssserver.gnss.data.receiver.EnumReceiverCmd
+import com.huace.gnssserver.gnss.data.receiver.PositionInfo
 import kotlinx.android.synthetic.main.activity_main.*
 import kr.loplab.gnss02.ActivityBase
 import kr.loplab.gnss05.PositionInformationActivity
@@ -19,11 +25,16 @@ import kr.loplab.gnss05.activities.viewmodel.StatusWorkViewModel
 import kr.loplab.gnss05.databinding.ActivitySettingBinding
 import kr.loplab.gnss05.databinding.ActivityStatusWorkBinding
 import kr.loplab.gnss05.enums.SurveyType
+import kr.loplab.gnss05.receiver.ReceiverService
+import kr.loplab.gnss05.receiver.entity.ReceiverAsw
+import java.text.SimpleDateFormat
+import java.util.*
 
 class StatusWorkActivity : ActivityBase<ActivityStatusWorkBinding>() {
     override val layoutResourceId: Int
         get() = R.layout.activity_status_work
     lateinit var viewModel1: StatusWorkViewModel
+    private val mReceiver = MyReceiver()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -110,5 +121,64 @@ class StatusWorkActivity : ActivityBase<ActivityStatusWorkBinding>() {
     }
 
     override fun initDatabinding() {
+    }
+
+    private inner class MyReceiver : BroadcastReceiver() {
+        val TAG : String = this.javaClass.simpleName
+        override fun onReceive(context: Context, intent: Intent) {
+            //브로드캐스트를 받았을 경우
+            //Intent 안에 정보를 다 넣은 것 같음.
+            //브로드캐스트가 아니라 백그라운드로 우리가 원하는 정보를 계속 받아오는게 최종적으로 중요할 것 같다.
+            Log.d(TAG, "onReceive: ")
+            val action = intent.action
+            when (action){
+                EnumReceiverCmd.RECEIVER_ASW_SET_GNSS_POSDATA.name ->{
+                    Log.d(TAG, "onReceive: 2")
+                    val asw: ReceiverAsw? = ReceiverService.getBroadcastData(intent)
+                    if (asw== null){ Log.d(TAG, "onReceive: null"); return}
+                    runOnUiThread {
+                        Log.d(TAG, "onReceive: 3")
+
+                        if ( asw.receiverCmdType ==   EnumReceiverCmd.RECEIVER_ASW_SET_GNSS_POSDATA && (asw.getParcelable() is PositionInfo) ) {
+                            val p = asw.getParcelable() as PositionInfo
+                            if (p != null && p.satellitePosition != null && p.satellitePosition
+                                    .position != null) {
+
+                                viewModel1.setStringvalue(viewModel1.x, p.satellitePosition.position.x.toString() )
+                                viewModel1.setStringvalue(viewModel1.y, p.satellitePosition.position.y.toString() )
+                                viewModel1.setStringvalue(viewModel1.z, p.satellitePosition.position.z.toString() )
+                                viewModel1.setStringvalue(viewModel1.horizontalError, p.satellitePrecision.hpre.toString() )
+                                viewModel1.setStringvalue(viewModel1.verticalError, p.satellitePrecision.vpre.toString() )
+                            }
+                        }else { Log.d(TAG, "onReceive: 4") }
+
+                    }
+                }
+                EnumReceiverCmd.RECEIVER_ASW_SET_GNSS_DOPSDATA.name -> {
+                    Log.d(TAG, "onReceive: 7")
+                    val asw: ReceiverAsw? = ReceiverService.getBroadcastData(intent)
+                    if (asw== null){
+                        Log.d(TAG, "onReceive: null"); return}else{
+                        Log.d(TAG, "onReceive: not null")}
+                    runOnUiThread {
+                        Log.d(TAG, "onReceive: 8")
+                        when (asw.receiverCmdType) {
+                            EnumReceiverCmd.RECEIVER_ASW_SET_GNSS_DOPSDATA -> if (asw.getParcelable() is DopsInfo) {
+                                val p = asw.getParcelable() as DopsInfo
+                                if (p != null ) {
+                                    viewModel1.setStringvalue(viewModel1.pdop, p.pdop.toString() )
+                                    viewModel1.setStringvalue(viewModel1.hdop, p.hdop.toString() )
+                                    viewModel1.setStringvalue(viewModel1.vdop, p.vdop.toString() )
+                                }
+                            }
+                            else -> {
+                                Log.d(TAG, "onReceive: 4")
+                            }
+                        }
+                    }
+                }
+            }
+
+        }
     }
 }

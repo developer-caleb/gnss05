@@ -514,13 +514,25 @@
                     android:text="현재점명:"
                     android:textSize="@dimen/status_work_text" />
 
-                <TextView
-                    android:id="@+id/textView2"
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="X:38422.608"
+                    android:orientation="horizontal"
+                    >
+                <TextView
+                    android:id="@+id/label_x"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="X:"
                     android:textSize="@dimen/status_work_text" />
+                    <TextView
+                        android:id="@+id/tv_x"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="38422.608"
+                        android:textSize="@dimen/status_work_text" />
 
+                </LinearLayout>
                 <TextView
                     android:id="@+id/textView3"
                     android:layout_width="match_parent"
@@ -541,34 +553,67 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:orientation="vertical">
-
+               <LinearLayout
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:orientation="horizontal"
+                   >
                 <TextView
-                    android:id="@+id/textView5"
+                    android:id="@+id/label_h"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="H:"
+                    android:textSize="@dimen/status_work_text" />
+                   <TextView
+                       android:id="@+id/tv_h"
+                       android:layout_width="match_parent"
+                       android:layout_height="wrap_content"
+                       android:text="3.021"
+                       android:textSize="@dimen/status_work_text" />
+
+               </LinearLayout>
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="H:3.021"
-                    android:textSize="@dimen/status_work_text" />
-
+                    android:orientation="horizontal"
+                    >
+                    <TextView
+                        android:id="@+id/label_y"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Y:"
+                        android:textSize="@dimen/status_work_text" />
                 <TextView
-                    android:id="@+id/textView9"
+                    android:id="@+id/tv_y"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Y:18663.791"
+                    android:text="18663.791"
                     android:textSize="@dimen/status_work_text" />
-
+                </LinearLayout>
                 <TextView
                     android:id="@+id/textView24"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="기준국거리:4437.273"
                     android:textSize="@dimen/status_work_text" />
-
-                <TextView
-                    android:id="@+id/textView25"
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="PDOP:0.26"
+                    android:orientation="horizontal"
+                    >
+                <TextView
+                    android:id="@+id/label_pdop"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="PDOP:"
                     android:textSize="@dimen/status_work_text" />
+                    <TextView
+                        android:id="@+id/tv_pdop"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="0.26"
+                        android:textSize="@dimen/status_work_text" />
+                </LinearLayout>
             </LinearLayout>
         </LinearLayout>
 

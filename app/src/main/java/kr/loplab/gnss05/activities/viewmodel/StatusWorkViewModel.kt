@@ -12,7 +12,16 @@ class StatusWorkViewModel : ViewModel(){
     var surveyModeLayout = MutableLiveData<Boolean>(false)
     var surveyType = MutableLiveData<SurveyType>(SurveyType.TOPO)
     var toolbarOpen = MutableLiveData<Boolean>(false)
-
+    var horizontalError  = MutableLiveData<String>("0.00") //수평오차
+    var verticalError  = MutableLiveData<String>("0.00") //수직오차
+    var calSatelliteNum  = MutableLiveData<String>("0.00") //수직오차
+    var allSatelliteNum  = MutableLiveData<String>("0.00") //수직오차
+    public var y = MutableLiveData<String>("0") //y
+    public var x = MutableLiveData<String>("0") //x
+    public var z = MutableLiveData<String>("0") //z
+    var pdop = MutableLiveData<String>("0") //PDOP
+    var hdop = MutableLiveData<String>("0") //HDOP
+    var vdop = MutableLiveData<String>("0") //vDOP
 
     /*  var ellipsoidNameNum = MutableLiveData<Int>(0)
       var itrfConversion = MutableLiveData<Boolean>(false)
@@ -47,6 +56,9 @@ class StatusWorkViewModel : ViewModel(){
 
 
     init {  }
+    fun setStringvalue(data : MutableLiveData<String>, str : String){
+        data.value = str
+    }
     fun setIntvalue(data : MutableLiveData<Int>, num : Int){
         data.value = num
     }
