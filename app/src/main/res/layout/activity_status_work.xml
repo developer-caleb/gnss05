@@ -131,22 +131,46 @@
                 android:layout_height="match_parent"
                 android:layout_weight="0"
                 android:orientation="vertical">
-
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    >
                 <TextView
-                    android:id="@+id/textView10"
+                    android:id="@+id/label_h_error"
                     style="@style/TEXTVIEW_SMALL_WHITE"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="H:0.05" />
-
+                    android:text="H:" />
+                    <TextView
+                        android:id="@+id/tv_h_error"
+                        style="@style/TEXTVIEW_SMALL_WHITE"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@{viewModel.horizontalError}" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    >
                 <TextView
-                    android:id="@+id/textView11"
+                    android:id="@+id/label_v_error"
                     style="@style/TEXTVIEW_SMALL_WHITE"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="v:0.09" />
+                    android:text="v:" />
+                    <TextView
+                        android:id="@+id/tv_v_error"
+                        style="@style/TEXTVIEW_SMALL_WHITE"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@{viewModel.verticalError}" />
+                </LinearLayout>
             </LinearLayout>
 
             <Space
@@ -175,20 +199,20 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/textView12"
+                    android:id="@+id/tv_cal_satellite_num"
                     style="@style/TEXTVIEW_SMALL_WHITE"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="32" />
+                    android:text="@{viewModel.calSatelliteNum}" />
 
                 <TextView
-                    android:id="@+id/textView13"
+                    android:id="@+id/tv_all_satellite_num"
                     style="@style/TEXTVIEW_SMALL_WHITE"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="37" />
+                    android:text="@{viewModel.allSatelliteNum}" />
             </LinearLayout>
 
             <ImageView
@@ -529,7 +553,7 @@
                         android:id="@+id/tv_x"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="38422.608"
+                        android:text="@{viewModel.x}"
                         android:textSize="@dimen/status_work_text" />
 
                 </LinearLayout>
@@ -568,7 +592,7 @@
                        android:id="@+id/tv_h"
                        android:layout_width="match_parent"
                        android:layout_height="wrap_content"
-                       android:text="3.021"
+                       android:text="@{viewModel.z}"
                        android:textSize="@dimen/status_work_text" />
 
                </LinearLayout>
@@ -587,7 +611,7 @@
                     android:id="@+id/tv_y"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="18663.791"
+                    android:text="@{viewModel.y}"
                     android:textSize="@dimen/status_work_text" />
                 </LinearLayout>
                 <TextView
@@ -611,7 +635,7 @@
                         android:id="@+id/tv_pdop"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="0.26"
+                        android:text="@{viewModel.pdop}"
                         android:textSize="@dimen/status_work_text" />
                 </LinearLayout>
             </LinearLayout>

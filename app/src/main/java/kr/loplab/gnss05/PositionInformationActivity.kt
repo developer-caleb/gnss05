@@ -50,7 +50,13 @@ class PositionInformationActivity : ActivityBase<ActivityPositionInformationBind
     }
 
     override fun onStop() {
-        unregisterReceiver(mReceiver)
+        try {
+            unregisterReceiver(mReceiver)
+        } catch (e: Exception){
+            Log.e(TAG, "onStop:unregisterReceiver $e", )
+        }
+
+
         super.onStop()
     }
     private inner class MyReceiver : BroadcastReceiver() {

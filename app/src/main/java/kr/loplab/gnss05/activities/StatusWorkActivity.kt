@@ -9,6 +9,7 @@ import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AlertDialog
 import androidx.lifecycle.ViewModelProvider
+import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import com.huace.gnssserver.gnss.data.receiver.Course
 import com.huace.gnssserver.gnss.data.receiver.DopsInfo
 import com.huace.gnssserver.gnss.data.receiver.EnumReceiverCmd
@@ -22,6 +23,7 @@ import kr.loplab.gnss05.activities.mobile_station.MobileStationActivity
 import kr.loplab.gnss05.activities.mobile_station.MobileStationSettingSatelliteActivity
 import kr.loplab.gnss05.activities.viewmodel.ExportViewModel
 import kr.loplab.gnss05.activities.viewmodel.StatusWorkViewModel
+import kr.loplab.gnss05.connection.ConnectManager
 import kr.loplab.gnss05.databinding.ActivitySettingBinding
 import kr.loplab.gnss05.databinding.ActivityStatusWorkBinding
 import kr.loplab.gnss05.enums.SurveyType
@@ -39,7 +41,16 @@ class StatusWorkActivity : ActivityBase<ActivityStatusWorkBinding>() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
+    override fun onStop() {
+        try {
+            unregisterReceiver(mReceiver)
+        } catch (e: Exception){
+            Log.e(TAG, "onStop:unregisterReceiver $e", )
+        }
 
+
+        super.onStop()
+    }
     override fun init() {
         viewModel1 = ViewModelProvider(this).get(StatusWorkViewModel::class.java)
         viewBinding.viewModel = viewModel1
@@ -122,7 +133,24 @@ class StatusWorkActivity : ActivityBase<ActivityStatusWorkBinding>() {
 
     override fun initDatabinding() {
     }
+    override fun onResume() {
+        super.onResume()
+        when (ConnectManager.instance?.isConnected)
+        {
+            true ->   { Log.d(TAG, "onResume: connected")
+            }
+            false ->  Log.d(TAG, "onResume: unconnected")
+        }
+        //안드로이드 브로드캐스트 리시버에 filter를 등록함, 해당 리시버가 들어올 경우에는, filtering 해서 데이터를 받을 수 있게 됨.
+        //그러면 반대로 누군가는 계속 브로드캐스트를 등록한다는 말임. 그 등록하는 애를 찾아야함.
+        val cmds: MutableList<EnumReceiverCmd> = ArrayList()
+        cmds.add(EnumReceiverCmd.RECEIVER_ASW_SET_GNSS_POSDATA)
+        cmds.add(EnumReceiverCmd.RECEIVER_ASW_SET_GNSS_DOPSDATA)
 
+
+        LocalBroadcastManager.getInstance(this).registerReceiver(mReceiver, ReceiverService.createReceiverAswIntentFilter(cmds)
+        )
+    }
     private inner class MyReceiver : BroadcastReceiver() {
         val TAG : String = this.javaClass.simpleName
         override fun onReceive(context: Context, intent: Intent) {
