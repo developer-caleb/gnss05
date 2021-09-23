@@ -14,8 +14,8 @@ class StatusWorkViewModel : ViewModel(){
     var toolbarOpen = MutableLiveData<Boolean>(false)
     var horizontalError  = MutableLiveData<String>("0.00") //수평오차
     var verticalError  = MutableLiveData<String>("0.00") //수직오차
-    var calSatelliteNum  = MutableLiveData<String>("0.00") //수직오차
-    var allSatelliteNum  = MutableLiveData<String>("0.00") //수직오차
+    var calSatelliteNum  = MutableLiveData<String>("0") //연산 중인 위성
+    var allSatelliteNum  = MutableLiveData<String>("0") //확인 된 위성
     public var y = MutableLiveData<String>("0") //y
     public var x = MutableLiveData<String>("0") //x
     public var z = MutableLiveData<String>("0") //z

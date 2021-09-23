@@ -115,7 +115,7 @@ public class ReceiverService {
      * 수신기 배터리
      */
     public void post(GetBattteyLifeEventArgs args) {
-        // sendBroadcast(args, args.getBatteryLife());
+       //  sendBroadcast(args, args.getBatteryLife()); //int를 intent로 넣어줘야할 듯
     }
 
     /**
@@ -132,7 +132,7 @@ public class ReceiverService {
      */
     public void post(GetSatelliteInfosEventArgs args) {
         if (args.getSatelliteInfos() != null) {
-            // sendBroadcast(args, args.getSatelliteInfos());
+          //   sendBroadcast(args, args.getSatelliteInfos()); // List<Parcelable> 로 가져옴 list처리를 해줘야할 듯
         }
     }
 

@@ -131,18 +131,21 @@
                 android:layout_height="match_parent"
                 android:layout_weight="0"
                 android:orientation="vertical">
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    >
-                <TextView
-                    android:id="@+id/label_h_error"
-                    style="@style/TEXTVIEW_SMALL_WHITE"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="H:" />
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/label_h_error"
+                        style="@style/TEXTVIEW_SMALL_WHITE"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="H:" />
+
                     <TextView
                         android:id="@+id/tv_h_error"
                         style="@style/TEXTVIEW_SMALL_WHITE"
@@ -151,18 +154,21 @@
                         android:layout_weight="1"
                         android:text="@{viewModel.horizontalError}" />
                 </LinearLayout>
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    >
-                <TextView
-                    android:id="@+id/label_v_error"
-                    style="@style/TEXTVIEW_SMALL_WHITE"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="v:" />
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/label_v_error"
+                        style="@style/TEXTVIEW_SMALL_WHITE"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="V:" />
+
                     <TextView
                         android:id="@+id/tv_v_error"
                         style="@style/TEXTVIEW_SMALL_WHITE"

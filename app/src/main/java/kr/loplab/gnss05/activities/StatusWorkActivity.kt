@@ -10,10 +10,7 @@ import android.util.Log
 import androidx.appcompat.app.AlertDialog
 import androidx.lifecycle.ViewModelProvider
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
-import com.huace.gnssserver.gnss.data.receiver.Course
-import com.huace.gnssserver.gnss.data.receiver.DopsInfo
-import com.huace.gnssserver.gnss.data.receiver.EnumReceiverCmd
-import com.huace.gnssserver.gnss.data.receiver.PositionInfo
+import com.huace.gnssserver.gnss.data.receiver.*
 import kotlinx.android.synthetic.main.activity_main.*
 import kr.loplab.gnss02.ActivityBase
 import kr.loplab.gnss05.PositionInformationActivity
@@ -146,7 +143,7 @@ class StatusWorkActivity : ActivityBase<ActivityStatusWorkBinding>() {
         val cmds: MutableList<EnumReceiverCmd> = ArrayList()
         cmds.add(EnumReceiverCmd.RECEIVER_ASW_SET_GNSS_POSDATA)
         cmds.add(EnumReceiverCmd.RECEIVER_ASW_SET_GNSS_DOPSDATA)
-
+        cmds.add(EnumReceiverCmd.RECEIVER_ASW_GET_GNSS_SATELLITE_USEDNUM)
 
         LocalBroadcastManager.getInstance(this).registerReceiver(mReceiver, ReceiverService.createReceiverAswIntentFilter(cmds)
         )
@@ -172,11 +169,11 @@ class StatusWorkActivity : ActivityBase<ActivityStatusWorkBinding>() {
                             if (p != null && p.satellitePosition != null && p.satellitePosition
                                     .position != null) {
 
-                                viewModel1.setStringvalue(viewModel1.x, p.satellitePosition.position.x.toString() )
-                                viewModel1.setStringvalue(viewModel1.y, p.satellitePosition.position.y.toString() )
-                                viewModel1.setStringvalue(viewModel1.z, p.satellitePosition.position.z.toString() )
-                                viewModel1.setStringvalue(viewModel1.horizontalError, p.satellitePrecision.hpre.toString() )
-                                viewModel1.setStringvalue(viewModel1.verticalError, p.satellitePrecision.vpre.toString() )
+                                viewModel1.setStringvalue(viewModel1.x, String.format("%.3f",  p.satellitePosition.position.x ))
+                                viewModel1.setStringvalue(viewModel1.y, String.format("%.3f",  p.satellitePosition.position.y ) )
+                                viewModel1.setStringvalue(viewModel1.z, String.format("%.3f",  p.satellitePosition.position.z ) )
+                                viewModel1.setStringvalue(viewModel1.horizontalError,  String.format("%.2f",  p.satellitePrecision.hpre ) )
+                                viewModel1.setStringvalue(viewModel1.verticalError, String.format("%.2f",  p.satellitePrecision.vpre ) )
                             }
                         }else { Log.d(TAG, "onReceive: 4") }
 
@@ -197,6 +194,29 @@ class StatusWorkActivity : ActivityBase<ActivityStatusWorkBinding>() {
                                     viewModel1.setStringvalue(viewModel1.pdop, p.pdop.toString() )
                                     viewModel1.setStringvalue(viewModel1.hdop, p.hdop.toString() )
                                     viewModel1.setStringvalue(viewModel1.vdop, p.vdop.toString() )
+                                }
+                            }
+                            else -> {
+                                Log.d(TAG, "onReceive: 4")
+                            }
+                        }
+                    }
+                }
+
+                EnumReceiverCmd.RECEIVER_ASW_GET_GNSS_SATELLITE_USEDNUM.name -> {
+                    Log.d(TAG, "onReceive: 7")
+                    val asw: ReceiverAsw? = ReceiverService.getBroadcastData(intent)
+                    if (asw== null){
+                        Log.d(TAG, "onReceive: null"); return}
+                    runOnUiThread {
+                        Log.d(TAG, "onReceive: 8")
+                        when (asw.receiverCmdType) {
+                            EnumReceiverCmd.RECEIVER_ASW_GET_GNSS_SATELLITE_USEDNUM -> if (asw.getParcelable() is SatelliteNumber) {
+                                val p = asw.getParcelable() as SatelliteNumber
+                                if (p != null ) {
+                                    viewModel1.setStringvalue(viewModel1.calSatelliteNum, p.satUsedNum.toString() )
+                                    viewModel1.setStringvalue(viewModel1.allSatelliteNum, p.satNum.toString() )
+
                                 }
                             }
                             else -> {
