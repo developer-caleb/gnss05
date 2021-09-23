@@ -141,6 +141,7 @@ public class ReceiverService {
      */
     public void post(GetPositionExEventArgs args) {
         sendBroadcast(args, args.getPositionInfo());
+        sendBroadcast(args, args.getCourse());
     }
 
     /**
