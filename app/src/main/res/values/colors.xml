@@ -3,7 +3,7 @@
     <color name="bg_line">#E7E7E7</color>
     <color name="transparent">#00FFFFFF</color>
     <color name="colorPrimaryDark">#1975d2</color>
-    <color name="colorToGet">#00FF00</color>
+    <color name="batteryGreen">#00FF00</color>
     <color name="colorToPay">#ff0000</color>
     <color name="red">#ff0000</color>
     <color name="colorSecondary">#64b5f6</color>

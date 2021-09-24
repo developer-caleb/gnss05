@@ -3,9 +3,12 @@ package kr.loplab.gnss05.activities
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
+import android.content.IntentFilter
 import android.graphics.Color
+import android.os.BatteryManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Parcelable
 import android.util.Log
 import androidx.appcompat.app.AlertDialog
 import androidx.lifecycle.ViewModelProvider
@@ -42,7 +45,7 @@ class StatusWorkActivity : ActivityBase<ActivityStatusWorkBinding>() {
         try {
             unregisterReceiver(mReceiver)
         } catch (e: Exception){
-            Log.e(TAG, "onStop:unregisterReceiver $e", )
+            Log.e(TAG, "onStop:unregisterReceiver $e")
         }
 
 
@@ -69,11 +72,22 @@ class StatusWorkActivity : ActivityBase<ActivityStatusWorkBinding>() {
             startActivity(intent);
         }
         viewBinding.btBatteryStatus.setOnClickListener {
+            val batteryStatus: Intent? = IntentFilter(Intent.ACTION_BATTERY_CHANGED).let { ifilter ->
+                this.registerReceiver(null, ifilter)
+            }
+            val batteryPct: Float? = batteryStatus?.let { intent ->
+                val level: Int = intent.getIntExtra(BatteryManager.EXTRA_LEVEL, -1)
+                val scale: Int = intent.getIntExtra(BatteryManager.EXTRA_SCALE, -1)
+                level * 100 / scale.toFloat()
+            }
+            Log.d(TAG, "onReceive: MyBattery = ${batteryPct!!.toInt()}")
+
            val alertDialog = AlertDialog.Builder(this)
                .setTitle("배터리 전원")
-               .setMessage("A현재 배터리 용량:90%\nB현재 배터리 용량:80%")
+               .setMessage("단말기 현재 배터리 용량: ${batteryPct!!.toInt()}%\n장비 현재 배터리 용량: ${viewModel1.equipmentBattery.value}%")
                .setPositiveButton("확인"){dialog, which -> {
-                   //클릭하면 뭐할지..
+
+               //클릭하면 뭐할지..
                }}
                .create()
             alertDialog.show()
@@ -143,8 +157,7 @@ class StatusWorkActivity : ActivityBase<ActivityStatusWorkBinding>() {
         val cmds: MutableList<EnumReceiverCmd> = ArrayList()
         cmds.add(EnumReceiverCmd.RECEIVER_ASW_SET_GNSS_POSDATA)
         cmds.add(EnumReceiverCmd.RECEIVER_ASW_SET_GNSS_DOPSDATA)
-        cmds.add(EnumReceiverCmd.RECEIVER_ASW_GET_GNSS_SATELLITE_USEDNUM)
-
+        cmds.add(EnumReceiverCmd.RECEIVER_ASW_GET_BATTERYLIFE)
         LocalBroadcastManager.getInstance(this).registerReceiver(mReceiver, ReceiverService.createReceiverAswIntentFilter(cmds)
         )
     }
@@ -158,72 +171,72 @@ class StatusWorkActivity : ActivityBase<ActivityStatusWorkBinding>() {
             val action = intent.action
             when (action){
                 EnumReceiverCmd.RECEIVER_ASW_SET_GNSS_POSDATA.name ->{
-                    Log.d(TAG, "onReceive: 2")
+                    Log.d(TAG, "onReceive: RECEIVER_ASW_SET_GNSS_POSDATA")
                     val asw: ReceiverAsw? = ReceiverService.getBroadcastData(intent)
-                    if (asw== null){ Log.d(TAG, "onReceive: null"); return}
+                    if (asw== null){ Log.d(TAG, "onReceive: null RECEIVER_ASW_SET_GNSS_POSDATA"); return}
                     runOnUiThread {
-                        Log.d(TAG, "onReceive: 3")
 
                         if ( asw.receiverCmdType ==   EnumReceiverCmd.RECEIVER_ASW_SET_GNSS_POSDATA && (asw.getParcelable() is PositionInfo) ) {
                             val p = asw.getParcelable() as PositionInfo
                             if (p != null && p.satellitePosition != null && p.satellitePosition
                                     .position != null) {
-
                                 viewModel1.setStringvalue(viewModel1.x, String.format("%.3f",  p.satellitePosition.position.x ))
                                 viewModel1.setStringvalue(viewModel1.y, String.format("%.3f",  p.satellitePosition.position.y ) )
                                 viewModel1.setStringvalue(viewModel1.z, String.format("%.3f",  p.satellitePosition.position.z ) )
                                 viewModel1.setStringvalue(viewModel1.horizontalError,  String.format("%.2f",  p.satellitePrecision.hpre ) )
                                 viewModel1.setStringvalue(viewModel1.verticalError, String.format("%.2f",  p.satellitePrecision.vpre ) )
                             }
-                        }else { Log.d(TAG, "onReceive: 4") }
+                        }
+                        if ( asw.receiverCmdType ==   EnumReceiverCmd.RECEIVER_ASW_SET_GNSS_POSDATA && (asw.getParcelable() is Course) ) {
+                            val p = asw.getParcelable() as Course
+                            if (p != null ) {
+                               /* viewModel1.setStringvalue(viewModel1.x, String.format("%.3f",  p.course ))
+                                viewModel1.setStringvalue(viewModel1.y, String.format("%.3f",  p.speed ) )*/
+                            }
+                        }
 
                     }
                 }
                 EnumReceiverCmd.RECEIVER_ASW_SET_GNSS_DOPSDATA.name -> {
-                    Log.d(TAG, "onReceive: 7")
+                    Log.d(TAG, "onReceive: RECEIVER_ASW_SET_GNSS_DOPSDATA")
                     val asw: ReceiverAsw? = ReceiverService.getBroadcastData(intent)
                     if (asw== null){
-                        Log.d(TAG, "onReceive: null"); return}else{
-                        Log.d(TAG, "onReceive: not null")}
+                        Log.d(TAG, "onReceive: RECEIVER_ASW_SET_GNSS_DOPSDATA null"); return}
                     runOnUiThread {
-                        Log.d(TAG, "onReceive: 8")
                         when (asw.receiverCmdType) {
                             EnumReceiverCmd.RECEIVER_ASW_SET_GNSS_DOPSDATA -> if (asw.getParcelable() is DopsInfo) {
                                 val p = asw.getParcelable() as DopsInfo
                                 if (p != null ) {
-                                    viewModel1.setStringvalue(viewModel1.pdop, p.pdop.toString() )
-                                    viewModel1.setStringvalue(viewModel1.hdop, p.hdop.toString() )
-                                    viewModel1.setStringvalue(viewModel1.vdop, p.vdop.toString() )
+                                    viewModel1.setStringvalue(viewModel1.pdop, String.format("%.3f",  p.pdop ))
+                                    viewModel1.setStringvalue(viewModel1.hdop, String.format("%.3f",  p.hdop ))
+                                    viewModel1.setStringvalue(viewModel1.vdop, String.format("%.3f",  p.vdop ))
                                 }
-                            }
-                            else -> {
-                                Log.d(TAG, "onReceive: 4")
                             }
                         }
                     }
                 }
 
                 EnumReceiverCmd.RECEIVER_ASW_GET_GNSS_SATELLITE_USEDNUM.name -> {
-                    Log.d(TAG, "onReceive: 7")
+                    Log.d(TAG, "onReceive: RECEIVER_ASW_GET_GNSS_SATELLITE_USEDNUM")
                     val asw: ReceiverAsw? = ReceiverService.getBroadcastData(intent)
                     if (asw== null){
-                        Log.d(TAG, "onReceive: null"); return}
+                        Log.d(TAG, "onReceive: RECEIVER_ASW_GET_GNSS_SATELLITE_USEDNUM null"); return}
                     runOnUiThread {
-                        Log.d(TAG, "onReceive: 8")
                         when (asw.receiverCmdType) {
                             EnumReceiverCmd.RECEIVER_ASW_GET_GNSS_SATELLITE_USEDNUM -> if (asw.getParcelable() is SatelliteNumber) {
                                 val p = asw.getParcelable() as SatelliteNumber
                                 if (p != null ) {
                                     viewModel1.setStringvalue(viewModel1.calSatelliteNum, p.satUsedNum.toString() )
                                     viewModel1.setStringvalue(viewModel1.allSatelliteNum, p.satNum.toString() )
-
                                 }
-                            }
-                            else -> {
-                                Log.d(TAG, "onReceive: 4")
                             }
                         }
                     }
+                }
+
+                EnumReceiverCmd.RECEIVER_ASW_GET_BATTERYLIFE.name -> {
+                    Log.d(TAG, "onReceive: RECEIVER_ASW_GET_BATTERYLIFE ${intent.getIntExtra(ReceiverService.RECEIVER_DATA,0)}")
+                    viewModel1.setStringvalue(viewModel1.equipmentBattery, intent.getIntExtra(ReceiverService.RECEIVER_DATA,0).toString() )
                 }
             }
 

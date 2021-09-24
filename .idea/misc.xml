@@ -27,6 +27,11 @@
         <entry key="app/src/main/res/drawable/bt_background_selector.xml" value="0.2375" />
         <entry key="app/src/main/res/drawable/checkbox_custom.xml" value="0.17546296296296296" />
         <entry key="app/src/main/res/drawable/ic_0_0_work2.xml" value="0.22" />
+        <entry key="app/src/main/res/drawable/ic_battery_0.xml" value="0.1671875" />
+        <entry key="app/src/main/res/drawable/ic_battery_1.xml" value="0.1671875" />
+        <entry key="app/src/main/res/drawable/ic_battery_2.xml" value="0.1671875" />
+        <entry key="app/src/main/res/drawable/ic_battery_3.xml" value="0.1671875" />
+        <entry key="app/src/main/res/drawable/ic_battery_4.xml" value="0.1671875" />
         <entry key="app/src/main/res/drawable/ic_check_yes.xml" value="0.17546296296296296" />
         <entry key="app/src/main/res/drawable/ic_close.xml" value="0.3055555555555556" />
         <entry key="app/src/main/res/drawable/ic_down.xml" value="0.260546875" />
@@ -74,7 +79,7 @@
         <entry key="app/src/main/res/layout/activity_setting_satellite.xml" value="0.33" />
         <entry key="app/src/main/res/layout/activity_splash.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_standard_point.xml" value="0.31614583333333335" />
-        <entry key="app/src/main/res/layout/activity_status_work.xml" value="0.4888888888888889" />
+        <entry key="app/src/main/res/layout/activity_status_work.xml" value="0.3091684434968017" />
         <entry key="app/src/main/res/layout/activity_stop_survey.xml" value="0.37962962962962965" />
         <entry key="app/src/main/res/layout/activity_tablemain.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_topo_measurement.xml" value="0.2935185185185185" />

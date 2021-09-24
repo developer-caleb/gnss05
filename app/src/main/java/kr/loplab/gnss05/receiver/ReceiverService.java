@@ -115,7 +115,8 @@ public class ReceiverService {
      * 수신기 배터리
      */
     public void post(GetBattteyLifeEventArgs args) {
-       //  sendBroadcast(args, args.getBatteryLife()); //int를 intent로 넣어줘야할 듯
+         sendBroadcast(args, args.getBatteryLife()); //int를 intent로 넣어줘야할 듯
+
     }
 
     /**
@@ -183,12 +184,16 @@ public class ReceiverService {
         if (data != null) {
             intent.putExtra(RECEIVER_DATA, data);
         }
-        //GlobalApplication.getInstance().sendBroadcast(intent);
+        LocalBroadcastManager.getInstance(GlobalApplication.instance.getApplicationContext()).sendBroadcast(intent);
+    }
+    private void sendBroadcast(IReceiverDataEventArgs args, int number) {
+        Intent intent = new Intent(args.getDataType().name());
+        intent.putExtra(RECEIVER_TYPE, new ReceiverCmd(args.getDataType()));
+        intent.putExtra(RECEIVER_DATA, number);
         LocalBroadcastManager.getInstance(GlobalApplication.instance.getApplicationContext()).sendBroadcast(intent);
     }
 
     private void sendBroadcast(Intent intent) {
-        //GlobalApplication.getInstance().sendBroadcast(intent);
         LocalBroadcastManager.getInstance(GlobalApplication.instance.getApplicationContext()).sendBroadcast(intent);
     }
 

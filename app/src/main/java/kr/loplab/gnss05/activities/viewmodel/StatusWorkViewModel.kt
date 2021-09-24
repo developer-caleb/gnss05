@@ -22,6 +22,8 @@ class StatusWorkViewModel : ViewModel(){
     var pdop = MutableLiveData<String>("0") //PDOP
     var hdop = MutableLiveData<String>("0") //HDOP
     var vdop = MutableLiveData<String>("0") //vDOP
+    var equipmentBattery = MutableLiveData<String>("0") //vDOP
+
 
     /*  var ellipsoidNameNum = MutableLiveData<Int>(0)
       var itrfConversion = MutableLiveData<Boolean>(false)
