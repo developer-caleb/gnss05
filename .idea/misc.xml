@@ -52,10 +52,12 @@
         <entry key="app/src/main/res/drawable/pencil.xml" value="0.12109375" />
         <entry key="app/src/main/res/drawable/point.xml" value="0.30277777777777776" />
         <entry key="app/src/main/res/drawable/ripple_circle.xml" value="0.113671875" />
+        <entry key="app/src/main/res/drawable/rotate_progress_color.xml" value="0.21927083333333333" />
         <entry key="app/src/main/res/drawable/share.xml" value="0.12109375" />
         <entry key="app/src/main/res/drawable/tabbackground.xml" value="0.169921875" />
         <entry key="app/src/main/res/font/noto_sans.xml" value="0.3671875" />
         <entry key="app/src/main/res/layout/TOPO.xml" value="0.18064450207692165" />
+        <entry key="app/src/main/res/layout/activity_apn.xml" value="0.171875" />
         <entry key="app/src/main/res/layout/activity_color_picker.xml" value="0.107421875" />
         <entry key="app/src/main/res/layout/activity_connect_equipment.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_connect_equipment2_deprecated.xml" value="0.135546875" />
@@ -74,9 +76,11 @@
         <entry key="app/src/main/res/layout/activity_reference_coordinate_setting.xml" value="0.246484375" />
         <entry key="app/src/main/res/layout/activity_reference_country.xml" value="0.33" />
         <entry key="app/src/main/res/layout/activity_reference_country_setting_satellite.xml" value="0.30185185185185187" />
+        <entry key="app/src/main/res/layout/activity_rover_net.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_server_address_add.xml" value="0.2484375" />
         <entry key="app/src/main/res/layout/activity_setting.xml" value="0.252734375" />
         <entry key="app/src/main/res/layout/activity_setting_satellite.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/activity_sourcelist.xml" value="0.171875" />
         <entry key="app/src/main/res/layout/activity_splash.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_standard_point.xml" value="0.31614583333333335" />
         <entry key="app/src/main/res/layout/activity_status_work.xml" value="0.3091684434968017" />
@@ -99,6 +103,7 @@
         <entry key="app/src/main/res/layout/coordinate_system_sub2.xml" value="0.244140625" />
         <entry key="app/src/main/res/layout/coordinate_system_sub7_2.xml" value="0.11953125" />
         <entry key="app/src/main/res/layout/dialog1.xml" value="0.45" />
+        <entry key="app/src/main/res/layout/dialog_progress.xml" value="0.2" />
         <entry key="app/src/main/res/layout/file_call.xml" value="0.25" />
         <entry key="app/src/main/res/layout/file_out.xml" value="0.246484375" />
         <entry key="app/src/main/res/layout/fragment_position_detail_info.xml" value="0.25" />
@@ -155,6 +160,8 @@
         <entry key="app/src/main/res/layout/work_sub1_file_directory.xml" value="0.5" />
         <entry key="app/src/main/res/layout/worker.xml" value="0.244140625" />
         <entry key="app/src/main/res/layout/workgroup_sub1.xml" value="0.244140625" />
+        <entry key="app/src/main/res/menu/rover_net.xml" value="0.171875" />
+        <entry key="app/src/main/res/menu/source_list.xml" value="0.171875" />
         <entry key="tableview/src/androidTest/res/layout/cell_layout.xml" value="0.2912037037037037" />
         <entry key="tableview/src/androidTest/res/layout/column_layout.xml" value="0.2912037037037037" />
         <entry key="tableview/src/androidTest/res/layout/corner_layout.xml" value="0.2484375" />

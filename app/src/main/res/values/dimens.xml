@@ -52,4 +52,14 @@
     <dimen name="switch_radius">11dp</dimen>
     <dimen name="switch_width">40dp</dimen>
     <dimen name="switch_thumb_diameter">22dp</dimen>
+
+    <!-- SDK DEMO-->
+    <!-- Main program style start -->
+    <dimen name="components_height">48dp</dimen> <!-- Touchable UI components are generally laid out along 48dp units -->
+    <dimen name="activity_horizontal_padding">10dp</dimen>
+    <dimen name="activity_vertical_padding">10dp</dimen>
+    <dimen name="text_size_large">18sp</dimen>
+    <!-- Main program style end -->
+    <dimen name="height_components_edittext">45dp</dimen>
+
 </resources>

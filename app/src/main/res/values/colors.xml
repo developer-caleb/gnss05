@@ -40,6 +40,7 @@
     <color name="unselected_button_color">#FF000000</color>
     <color name="table_header">@color/grey_EC</color>
     <color name="grey_66">#666666</color>
+    <color name="bg_list_even">#00e1e1e1</color><!-- 列表偶数列背景色  从0开始-->
 
     <!--table-->
     <color name="selected_background_color">#6636D1</color>

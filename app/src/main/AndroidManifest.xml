@@ -74,6 +74,15 @@
             android:name=".activities.cors_servermanager.CORSServerManagerActivity"
             android:exported="true" />
         <activity
+            android:name=".net.RoverNetActivity"
+            android:exported="true" />
+        <activity
+            android:name=".source.SourceListActivity"
+            android:exported="true" />
+        <activity
+            android:name=".apn.ApnActivity"
+            android:exported="true" />
+        <activity
             android:name=".activities.workmanager.WorkManagerActivity"
             android:exported="true" />
         <activity

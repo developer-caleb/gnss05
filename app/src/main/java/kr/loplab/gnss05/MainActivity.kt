@@ -41,6 +41,7 @@ import kr.loplab.gnss05.connection.ConnectManager
 import kr.loplab.gnss05.connection.ConnectionStatus
 import kr.loplab.gnss05.databinding.ActivityMainBinding
 import kr.loplab.gnss05.enums.ConnectType
+import kr.loplab.gnss05.net.RoverNetActivity
 import kr.loplab.gnss05.receiver.ReceiverService
 import kr.loplab.gnss05.receiver.entity.ReceiverAsw
 import java.io.*
@@ -90,7 +91,7 @@ class MainActivity :  ActivityBase<ActivityMainBinding>(),
         })
 
         viewBinding.imageHamburger.setOnClickListener { Log.d(TAG, "onCreate: hamburger")
-            intent = Intent(this, HamburgerActivity::class.java)
+            intent = Intent(this, RoverNetActivity::class.java)
             startActivity(intent);
             overridePendingTransition(R.anim.slide_right_enter_fill_after, R.anim.hold)
         }

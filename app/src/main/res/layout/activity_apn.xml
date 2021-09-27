@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical" >
+
+        <!-- APN接入点 -->
+
+        <LinearLayout style="@style/setting_LinearLayout" >
+
+            <TextView
+                style="@style/setting_TextView"
+                android:text="@string/tv_apn_access_pt" />
+
+            <EditText
+                android:id="@+id/etApnAccessPt"
+                style="@style/setting_EditText.gravity_end" />
+        </LinearLayout>
+
+        <!-- 服务商号码 -->
+
+        <LinearLayout style="@style/setting_LinearLayout" >
+
+            <TextView
+                style="@style/setting_TextView"
+                android:text="@string/tv_server_num" />
+
+            <EditText
+                android:id="@+id/etServerNum"
+                style="@style/setting_EditText.gravity_end" />
+        </LinearLayout>
+
+        <!-- 拨号用户 -->
+
+        <LinearLayout style="@style/setting_LinearLayout" >
+
+            <TextView
+                style="@style/setting_TextView"
+                android:text="@string/tv_dial_user_name" />
+
+            <EditText
+                android:id="@+id/etDialUserName"
+                style="@style/setting_EditText.gravity_end" />
+        </LinearLayout>
+
+        <!-- 拨号密码 -->
+
+        <LinearLayout style="@style/setting_LinearLayout" >
+
+            <TextView
+                style="@style/setting_TextView"
+                android:text="@string/tv_dial_pswd" />
+
+            <EditText
+                android:id="@+id/etDialPswd"
+                style="@style/setting_EditText.gravity_end" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal" >
+
+        <Button
+            android:id="@+id/btnGet"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="Get" />
+
+        <Button
+            android:id="@+id/btnSet"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="Set" />
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical" >
+
+        <!-- IP -->
+
+        <LinearLayout style="@style/setting_LinearLayout" >
+
+            <TextView
+                style="@style/setting_TextView"
+                android:text="@string/diff_source_titlt_ip" />
+
+            <EditText
+                android:id="@+id/etIP"
+                style="@style/setting_EditText.gravity_end" />
+        </LinearLayout>
+        <!-- 端口 -->
+
+        <LinearLayout style="@style/setting_LinearLayout" >
+
+            <TextView
+                style="@style/setting_TextView"
+                android:text="@string/diff_source_titlt_port" />
+
+            <EditText
+                android:id="@+id/etPort"
+                style="@style/setting_EditText.gravity_end"
+                android:inputType="number" />
+        </LinearLayout>
+
+        <!-- 源列表 -->
+
+        <LinearLayout
+            android:id="@+id/llSourceList"
+            style="@style/setting_LinearLayout" >
+
+            <TextView
+                style="@style/setting_TextView"
+                android:text="@string/diff_source_titlt_sourcelist" />
+
+            <TextView
+                android:id="@+id/tvCurSourcePoint"
+                style="@style/setting_TextView.with_icon.gravity_end" />
+        </LinearLayout>
+
+        <!-- 用户名 -->
+
+        <LinearLayout style="@style/setting_LinearLayout" >
+
+            <TextView
+                style="@style/setting_TextView"
+                android:text="@string/diff_source_titlt_user" />
+
+            <EditText
+                android:id="@+id/etUserName"
+                style="@style/setting_EditText.gravity_end" />
+        </LinearLayout>
+
+        <!-- 密码 -->
+
+        <LinearLayout style="@style/setting_LinearLayout" >
+
+            <TextView
+                style="@style/setting_TextView"
+                android:text="@string/diff_source_titlt_password" />
+
+            <EditText
+                android:id="@+id/etPassWord"
+                style="@style/setting_EditText.gravity_end"
+                android:inputType="textPassword" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal" >
+
+        <Button
+            android:id="@+id/btnConnect"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="Login" />
+
+        <Button
+            android:id="@+id/btnDisConnect"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="Break" />
+    </LinearLayout>
+
+</LinearLayout>

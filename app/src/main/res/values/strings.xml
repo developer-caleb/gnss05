@@ -18,6 +18,22 @@
     <string name="table_pagination_details">Page %s, showing items %s - %s.</string>
 
 
+    <!--SDK DEMO-->
+    <string name="msg_initing">Data Loading…</string>
+    <string name="msg_please_input_apn_access_pt">Please input the APN</string>
+    <string name="msg_please_input_server_num">please Input the server number</string>
+    <string name="tv_apn_access_pt">APN</string>
+    <string name="tv_server_num">Server Number</string>
+    <string name="tv_dial_user_name">Dial userName</string>
+    <string name="tv_dial_pswd">Dial Password</string>
+    <string name="diff_source_titlt_ip">IP</string>
+    <string name="diff_source_titlt_port">Port</string>
+    <string name="diff_source_titlt_sourcelist">SourceList</string>
+    <string name="diff_source_titlt_user">UserName</string>
+    <string name="diff_source_titlt_password">Password</string>
+    <string name="msg_logining">3G Loging…</string>
+
+
     <string-array name="moods">
         <item />
         <item>Happy</item>
