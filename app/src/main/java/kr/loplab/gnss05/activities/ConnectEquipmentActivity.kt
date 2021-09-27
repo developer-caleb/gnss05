@@ -52,7 +52,7 @@ WifiEquipmentRecyclerViewAdapter.RecyclerItemClickListener, ConnectManager.Conne
     var wifiDevicesArr = arrayListOf<ScanResult>()
     var wifiManager: WifiManager? = null
     var intentFilter = IntentFilter()
-
+    var threadon = false;
 
 
     private val mController: ConnectController = ConnectController()
@@ -224,7 +224,9 @@ WifiEquipmentRecyclerViewAdapter.RecyclerItemClickListener, ConnectManager.Conne
     }
     private fun dismissDialog() {
         if (dialogIsShow()) {
+            threadon= false
             mConnectDialog!!.dismiss()
+
         }
     }
 
@@ -234,22 +236,23 @@ WifiEquipmentRecyclerViewAdapter.RecyclerItemClickListener, ConnectManager.Conne
 
 
     private fun checkConnectStatus(textview : TextView) {
+        threadon = true
         mCount = 0
         textview.postDelayed(object : Runnable {
             override fun run() {
-                if (mController.isConnect) {
-                    dismissDialog()
-                    showToast("연결에 성공하였습니다!")
-                    return
-                }
-                mCount++
-                if (mCount < 20) {
-                    textview.postDelayed(this, 1000)
-                    return
-                }
-              showToast("연결 실패！")
-                dismissDialog()
-                mController.disConnect()
+                   if (mController.isConnect) {
+                       dismissDialog()
+                       showToast("연결에 성공하였습니다!")
+                       return
+                   }
+                   mCount++
+                   if (mCount < 20) {
+                       textview.postDelayed(this, 1000)
+                       return
+                   }
+                   showToast("연결 실패！")
+                   dismissDialog()
+                   mController.disConnect()
             }
         }, 1000)
     }
@@ -291,10 +294,17 @@ WifiEquipmentRecyclerViewAdapter.RecyclerItemClickListener, ConnectManager.Conne
         Log.d(TAG, "onConnectStateChange: 커넥션스테이트 ! 1 -> ${connectionStatus.name}")
         viewModel1.setConnectionState(connectionStatus)
         when (connectionStatus){
-            ConnectionStatus.DISCONNECT -> {showToast("장비 연결이 끊겼습니다.")}
+            ConnectionStatus.DISCONNECT -> {
+                showToast("장비 연결이 끊겼습니다.")
+                dismissDialog()
+            }
             ConnectionStatus.CONNECTTNG -> {}
             ConnectionStatus.CONNECTED -> {}
-            ConnectionStatus.CONNECT_FAILD -> {showToast("장비 연결이 끊겼습니다.")}
+            ConnectionStatus.CONNECT_FAILD -> {
+                showToast("장비 연결이 실패했습니다.")
+                mController.disConnect()
+                dismissDialog()
+            }
         }
     }
 

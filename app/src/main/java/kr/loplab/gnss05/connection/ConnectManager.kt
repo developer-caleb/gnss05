@@ -20,8 +20,7 @@ class ConnectManager private constructor() {
     private val mconnectionType = ConnectionTypes.DEMO
     private var mGnssConnection: IGnssConnection? = null
     private lateinit var connectionStateChangeListener:ConnectStateChangeListener
-    var connectionStatus = ConnectionStatus.DISCONNECT
-        private set //자바 -> 코틀린 옮기는 과정에서 생김
+    var connectionStatus = ConnectionStatus.DISCONNECT ; private set //자바 -> 코틀린 옮기는 과정에서 생김
 
     /**
      * begin connecting

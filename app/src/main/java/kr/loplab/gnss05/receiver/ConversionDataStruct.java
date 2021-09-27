@@ -1184,7 +1184,7 @@ public class ConversionDataStruct {
 	}
 
 	/**
-	 * 获取EnumDataFrequency列表
+	 * EnumDataFrequency 목록 가져오기
 	 */
 	public static List<EnumDataFrequency> covEnumDataFrequencyList(
 			CHC_DATA_FREQUENCY[] chcDataFrequencies) {

@@ -286,7 +286,7 @@ public class ReceiverDataParse {
 					EnumReceiverCmd.RECEIVER_CMD_GET_GNSS_BASEPARAM));
 		}
 
-		/** the onformation of the receiver */
+		/** the information of the receiver */
 		if ((ulmsg & CHC_ReceiverConstants.CHC_MESSAGE_SYSTEM_DEVICEINFO) != 0) {
 			CHC_ReceiverInfo receiverInfo = new CHC_ReceiverInfo();
 			CHC_Receiver.CHCGetReceiverInfo(mReceiverRef, receiverInfo);

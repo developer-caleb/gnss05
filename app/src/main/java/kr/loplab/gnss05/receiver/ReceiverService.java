@@ -116,7 +116,6 @@ public class ReceiverService {
      */
     public void post(GetBattteyLifeEventArgs args) {
          sendBroadcast(args, args.getBatteryLife()); //int를 intent로 넣어줘야할 듯
-
     }
 
     /**

@@ -158,6 +158,7 @@ class StatusWorkActivity : ActivityBase<ActivityStatusWorkBinding>() {
         cmds.add(EnumReceiverCmd.RECEIVER_ASW_SET_GNSS_POSDATA)
         cmds.add(EnumReceiverCmd.RECEIVER_ASW_SET_GNSS_DOPSDATA)
         cmds.add(EnumReceiverCmd.RECEIVER_ASW_GET_BATTERYLIFE)
+        cmds.add(EnumReceiverCmd.RECEIVER_ASW_GET_GNSS_SATELLITE_USEDNUM)
         LocalBroadcastManager.getInstance(this).registerReceiver(mReceiver, ReceiverService.createReceiverAswIntentFilter(cmds)
         )
     }
@@ -236,7 +237,7 @@ class StatusWorkActivity : ActivityBase<ActivityStatusWorkBinding>() {
 
                 EnumReceiverCmd.RECEIVER_ASW_GET_BATTERYLIFE.name -> {
                     Log.d(TAG, "onReceive: RECEIVER_ASW_GET_BATTERYLIFE ${intent.getIntExtra(ReceiverService.RECEIVER_DATA,0)}")
-                    viewModel1.setStringvalue(viewModel1.equipmentBattery, intent.getIntExtra(ReceiverService.RECEIVER_DATA,0).toString() )
+                    viewModel1.setStringvalue(viewModel1.equipmentBattery, (intent.getIntExtra(ReceiverService.RECEIVER_DATA,0)*20).toString() )
                 }
             }
 
