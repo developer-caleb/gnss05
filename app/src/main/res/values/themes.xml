@@ -21,4 +21,26 @@
         <!-- Customize your theme here. -->
 
     </style>
+
+    <style name="Theme.Gnss06" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/black</item>
+        <item name="colorPrimaryVariant">@color/black</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/black</item>
+        <item name="colorSecondaryVariant">@color/black</item>
+        <item name="colorOnSecondary">@color/black</item>
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+
+        <item name="android:textColor">@color/black</item>
+        <item name="android:includeFontPadding">false</item>
+        <item name="android:textSize">@dimen/defaultTextsize</item>
+        <item name="android:fontFamily">@font/noto_sans_cj_kkr_regular</item>
+        <item name="android:switchStyle">@style/switchbutton</item>
+        <item name="android:editTextStyle">@style/edittextStyle</item>
+        <!-- Customize your theme here. -->
+
+    </style>
 </resources>

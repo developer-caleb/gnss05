@@ -75,13 +75,19 @@
             android:exported="true" />
         <activity
             android:name=".net.RoverNetActivity"
-            android:exported="true" />
+            android:exported="true"
+            android:theme="@style/Theme.Gnss06"
+            />
         <activity
             android:name=".source.SourceListActivity"
-            android:exported="true" />
+            android:exported="true"
+            android:theme="@style/Theme.Gnss06"
+            />
         <activity
             android:name=".apn.ApnActivity"
-            android:exported="true" />
+            android:exported="true"
+            android:theme="@style/Theme.Gnss06"
+            />
         <activity
             android:name=".activities.workmanager.WorkManagerActivity"
             android:exported="true" />

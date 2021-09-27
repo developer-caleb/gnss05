@@ -85,9 +85,6 @@ public class RoverNetActivity extends AppCompatActivity {
 	//APN으로 이동
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
-		// Handle action bar item clicks here. The action bar will
-		// automatically handle clicks on the Home/Up button, so long
-		// as you specify a parent activity in AndroidManifest.xml.
 		int id = item.getItemId();
 		if (id == R.id.action_apn) {
 			Intent intent = new Intent(this, ApnActivity.class);

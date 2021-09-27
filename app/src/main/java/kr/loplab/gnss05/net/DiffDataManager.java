@@ -7,11 +7,11 @@ public class DiffDataManager {
 
 	private DiffDataManager() {
 		mDiffDataInfo = new DiffDataInfo();
-		mDiffDataInfo.setIp("211.144.118.5");
-		mDiffDataInfo.setPort(2102);
+		mDiffDataInfo.setIp("210.117.198.83");
+		mDiffDataInfo.setPort(2201);
 		mDiffDataInfo.setSourcePoint("RTCM3");
-		mDiffDataInfo.setUserName("zd");
-		mDiffDataInfo.setPassWord("zd");
+		mDiffDataInfo.setUserName("dreamtns00");
+		mDiffDataInfo.setPassWord("ngii");
 	}
 
 	public static DiffDataManager getInstance() {
