@@ -140,7 +140,7 @@ public class ReceiverDataParse {
 	}
 
 	private void getPdaData(long ulmsg) {
-
+		//Log.d(TAG, "getPdaData: 1");
 		/** 3G modem dial params */
 		if ((ulmsg & CHC_ReceiverConstants.CHC_MESSAGE_MODEM_DIALPARAM) != 0) {
 			CHC_ModemDialParams chc_params = new CHC_ModemDialParams();
@@ -173,6 +173,7 @@ public class ReceiverDataParse {
 	 * @param ulmsg
 	 */
 	private void parseGnssData(long ulmsg) {
+		//Log.d(TAG, "parseGnssData: 1");
 		// the satellite infomation
 		if ((ulmsg & CHC_ReceiverConstants.CHC_MESSAGE_GNSS_DATASVTRACK) != 0) {
 			parseSatelliteData();
@@ -211,7 +212,7 @@ public class ReceiverDataParse {
 	 * get Satellite Data
 	 */
 	private void parseSatelliteData() {
-
+		Log.d(TAG, "parseSatelliteData: 1");
 		CHC_SatelliteNumber chc_SatelliteNumber = new CHC_SatelliteNumber();
 		CHC_Receiver.CHCGetSatelliteUsedNums(mReceiverRef, chc_SatelliteNumber); // user			// satellite/all
 		SatelliteNumber satNumbers = ConversionDataStruct
@@ -271,6 +272,7 @@ public class ReceiverDataParse {
 	 * @param ulmsg
 	 */
 	private void parseSystemData(long ulmsg) {
+		//Log.d(TAG, "parseSystemData: 1");
 		if ((ulmsg & CHC_ReceiverConstants.CHC_MESSAGE_SYSTEM_INIT_CONNECTION) != 0) {
 			/**
 			 * query some data
@@ -361,15 +363,14 @@ public class ReceiverDataParse {
 	 * get the information callback of the netlink
 	 */
 	void parseDatalinkData(long ulmsg) {
-		//Log.d(TAG, "parseDatalinkData: 데이터링크데이터 가져오기 ulmsg: " + ulmsg);
-		//Log.d(TAG, "parseDatalinkData: 데이터링크데이터 가져오기 CHC_ReceiverConstants.CHC_MESSAGE_NETLINK_SOURCELIST: " + CHC_ReceiverConstants.CHC_MESSAGE_NETLINK_SOURCELIST);
-		//Log.d(TAG, "parseDatalinkData: 데이터링크데이터 가져오기 ulmsg & CHC_ReceiverConstants.CHC_MESSAGE_NETLINK_SOURCELIST: "+ (ulmsg & CHC_ReceiverConstants.CHC_MESSAGE_NETLINK_SOURCELIST));
+		Log.d(TAG, "parseDatalinkData: 데이터링크데이터 가져오기 ulmsg: " + ulmsg);
+		Log.d(TAG, "parseDatalinkData: 데이터링크데이터 가져오기 CHC_ReceiverConstants.CHC_MESSAGE_NETLINK_SOURCELIST: " + CHC_ReceiverConstants.CHC_MESSAGE_NETLINK_SOURCELIST);
+		Log.d(TAG, "parseDatalinkData: 데이터링크데이터 가져오기 ulmsg & CHC_ReceiverConstants.CHC_MESSAGE_NETLINK_SOURCELIST: "+ (ulmsg & CHC_ReceiverConstants.CHC_MESSAGE_NETLINK_SOURCELIST));
 
 		/** get source table */
-		if ((ulmsg & CHC_ReceiverConstants.CHC_MESSAGE_NETLINK_SOURCELIST) != 0) {
+		//if ((ulmsg & CHC_ReceiverConstants.CHC_MESSAGE_NETLINK_SOURCELIST) != 0) {
 			Log.d(TAG, "parseDatalinkData: 소스리스트가 존재함");
 			CHC_Buffer chc_buf = new CHC_Buffer(0);
-			//int len = CHC_Receiver.CHCGetSourceTable_s(mReceiverRef, chc_buf);
 			int len = CHC_Receiver.CHCGetSourceTable_s(mReceiverRef, chc_buf);
 			chc_buf.delete();
 			if (len <= 0) {
@@ -380,9 +381,9 @@ public class ReceiverDataParse {
 			DataSourceList data = ConversionDataStruct.covDataSourceList(buf);
 			ReceiverService.BUS.post(new GetSourceTableEventArgs(EnumReceiverCmd.RECEIVER_ASW_GET_SOURCE_TABLE, data));
 			chc_buf.delete();
-		}else{
-			Log.d(TAG, "parseDatalinkData: 소스리스트가 존재하지 않음.. 망했음");
-		}
+		//}else{
+		//	Log.d(TAG, "parseDatalinkData: 소스리스트가 존재하지 않음.. 망했음");
+		//}
 	}
 
 }

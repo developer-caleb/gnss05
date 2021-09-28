@@ -2,9 +2,11 @@ package kr.loplab.gnss05.activities.mobile_station
 
 import android.content.Intent
 import android.text.InputType
+import android.text.TextUtils
 import android.text.method.HideReturnsTransformationMethod
 import android.text.method.PasswordTransformationMethod
 import android.util.Log
+import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.lifecycle.ViewModelProvider
 import androidx.room.Room
@@ -17,9 +19,13 @@ import kr.loplab.gnss05.activities.workmanager.AppDatabase
 import kr.loplab.gnss05.activities.workmanager.WorkManagerActivity
 import kr.loplab.gnss05.common.Define
 import kr.loplab.gnss05.common.Define.*
+import kr.loplab.gnss05.common.L
 import kr.loplab.gnss05.common.OptionList
 import kr.loplab.gnss05.common.PrefUtil
 import kr.loplab.gnss05.databinding.ActivityMobileStationBinding
+import kr.loplab.gnss05.net.DiffDataInfo
+import kr.loplab.gnss05.net.DiffDataManager
+import kr.loplab.gnss05.net.NetCorsController
 import java.lang.Exception
 
 class MobileStationActivity : ActivityBase<ActivityMobileStationBinding>() {
@@ -28,6 +34,7 @@ class MobileStationActivity : ActivityBase<ActivityMobileStationBinding>() {
     lateinit var viewModel1: MobileStationViewModel
     var apnsPwView = false;
     var corsPwView = false;
+    private val mController = NetCorsController()
 
     override fun init() {
         viewModel1 = ViewModelProvider(this).get(MobileStationViewModel::class.java)
@@ -39,6 +46,9 @@ class MobileStationActivity : ActivityBase<ActivityMobileStationBinding>() {
             Log.d(TAG, "initListener: settingSatelliteBt clicked")
             intent = Intent(this, MobileStationSettingSatelliteActivity::class.java)
             startActivity(intent);
+        }
+        viewBinding.startBt.setOnClickListener {
+            connectStart();
         }
         viewBinding.saveAndApplyBt.setOnClickListener {
             savesettings()
@@ -380,7 +390,9 @@ class MobileStationActivity : ActivityBase<ActivityMobileStationBinding>() {
         viewBinding.swNetworkTransfer.isChecked =PrefUtil.getBoolean(applicationContext, MOBILE_STATION_NETWORK_TRANSFER) //12
         viewModel1.setIntvalue(viewModel1.networkSystemNum, PrefUtil.getInt2(applicationContext, MOBILE_STATION_NETWORK_SYSTEM))  //6
         viewModel1.setBoolvalue(viewModel1.auto_apn, PrefUtil.getBoolean(this, MOBILE_STATION_AUTO_APN)) //10 -> data, viewbinding통합
-        viewModel1.setStringvalue(viewModel1.mountPointString, PrefUtil.getString(applicationContext, MOBILE_STATION_MOUNT_POINT)!!)  //6
+        //viewModel1.setStringvalue(viewModel1.mountPointString, PrefUtil.getString(applicationContext, MOBILE_STATION_MOUNT_POINT)!!)  //6
+        viewModel1.setStringvalue(viewModel1.mountPointString, "FKP_V31")
+
         viewModel1.setIntvalue(viewModel1.mountPointSortNum, PrefUtil.getInt2(applicationContext, Define.MOBILE_STATION_MOUNT_SORT))  //14
 
 
@@ -416,6 +428,7 @@ class MobileStationActivity : ActivityBase<ActivityMobileStationBinding>() {
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
         Log.d(TAG, "onActivityResult: , requestCode : $requestCode, resultCode: $resultCode")
         dbsetting()
         if(requestCode == REQUEST_WORKMANAGER)
@@ -488,5 +501,59 @@ class MobileStationActivity : ActivityBase<ActivityMobileStationBinding>() {
         viewBinding.tvCorsPort.text = viewModel1.cors_list.value!![idx].port
         viewBinding.tvCorsUser.text = viewModel1.cors_list.value!![idx].user
         viewBinding.tvCorsPw.text = viewModel1.cors_list.value!![idx].password
+    }
+
+    fun connectStart(){
+        if (!checkconnectState()) { return }
+        val diffDataInfo: DiffDataInfo = getDataFromUi()
+        DiffDataManager.getInstance().diffDataInfo = diffDataInfo
+        mController.login(diffDataInfo, this)
+    }
+    private fun ipAndPortEnable(): Boolean {
+        if (viewBinding.tvCorsIp.getText().isEmpty()) {
+           showToast("Ip 주소가 입력되지 않았습니다.")
+            return false
+        }
+        if (viewBinding.tvCorsPort.getText().isEmpty()) {
+            showToast("포트가 입력되지 않았습니다.")
+            return false
+        }
+        return true
+    }
+
+    fun checkconnectState() : Boolean{
+        if (!mController.isGnssConnect()) {
+            Toast.makeText(this, "No Receiver Select！", Toast.LENGTH_LONG).show()
+            return false
+        }
+        if (!ipAndPortEnable()) {
+            return false
+        }
+        if (viewBinding.tvCorsUser.getText().isEmpty()) {
+            showToast("유저 이름을 입력해주세요.")
+            return false
+        }
+        if (viewBinding.tvCorsPw.getText().isEmpty()) {
+           showToast("비밀번호를 입력해주세요.")
+            return false
+        }
+        return true
+    }
+
+    private fun getDataFromUi(): DiffDataInfo {
+        var port: Int
+        try {
+            port = viewBinding.tvCorsPort.getText().toString().toInt()
+        } catch (e: Exception) {
+            port = -1
+            L.printException(e)
+        }
+        val diffDataInfo = DiffDataInfo()
+        diffDataInfo.setIp(viewBinding.tvCorsIp.text.toString())
+        diffDataInfo.setPort(port)
+        diffDataInfo.setSourcePoint(viewBinding.tvMountpoint.getText().toString())
+        diffDataInfo.setUserName(viewBinding.tvCorsUser.text.toString())
+        diffDataInfo.setPassWord(viewBinding.tvCorsPw.text.toString())
+        return diffDataInfo
     }
 }

@@ -228,8 +228,8 @@
                 android:layout_weight="0"
                 android:padding="0dp"
                 android:scaleType="center"
-                android:src="@{Integer.parseInt(viewModel.equipmentBattery) &lt; 10?  @drawable/ic_battery_0 : Integer.parseInt(viewModel.equipmentBattery) &lt; 35?  @drawable/ic_battery_1 : Integer.parseInt(viewModel.equipmentBattery) &lt; 60?  @drawable/ic_battery_2 : Integer.parseInt(viewModel.equipmentBattery) &lt; 90?  @drawable/ic_battery_3 : @drawable/ic_battery_4}"
-                android:tint="@{Integer.parseInt(viewModel.equipmentBattery) &lt; 10? @color/grey_dd : @color/batteryGreen}" />
+                android:src="@{Integer.parseInt(viewModel.equipmentBattery) &lt;= 20?  @drawable/ic_battery_0 : Integer.parseInt(viewModel.equipmentBattery) &lt;= 40?  @drawable/ic_battery_1 : Integer.parseInt(viewModel.equipmentBattery) &lt;= 60?  @drawable/ic_battery_2 : Integer.parseInt(viewModel.equipmentBattery) &lt;= 80?  @drawable/ic_battery_3 : @drawable/ic_battery_4}"
+                android:tint="@{Integer.parseInt(viewModel.equipmentBattery) &lt;= 20? @color/grey_dd : @color/batteryGreen}" />
         </LinearLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout

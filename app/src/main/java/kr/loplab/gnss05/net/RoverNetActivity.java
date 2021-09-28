@@ -130,7 +130,7 @@ public class RoverNetActivity extends AppCompatActivity {
 
 	private boolean ipAndPortEnable() {
 		if (mEtIP.getText().length() == 0) {
-			Toast.makeText(this, "Please Input IP！", Toast.LENGTH_LONG).show();
+			Toast.makeText(this, "", Toast.LENGTH_LONG).show();
 			return false;
 		}
 		if (mEtPort.getText().length() == 0) {

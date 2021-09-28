@@ -187,10 +187,10 @@ class MainActivity :  ActivityBase<ActivityMainBinding>(),
                     override fun onPermissionsChecked(multiplePermissionsReport: MultiplePermissionsReport) { // 권한 여부를 다 묻고 실행되는 메소드
                         // check if all permissions are granted
                         if (multiplePermissionsReport.areAllPermissionsGranted()) {
-                            Toast.makeText(this@MainActivity, "권한 허용 완료", Toast.LENGTH_SHORT).show()
+                          showToast("권한 허용 완료")
                         }
                         if (!multiplePermissionsReport.areAllPermissionsGranted()) {
-                            Toast.makeText(this@MainActivity, "권한 재확인", Toast.LENGTH_SHORT).show()
+                            showToast("권한 재확인")
                             permissionchecking()
                         }
                     } // onPermissionsChecked()..

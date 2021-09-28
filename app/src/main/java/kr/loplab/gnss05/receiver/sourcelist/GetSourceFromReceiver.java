@@ -50,7 +50,6 @@ public class GetSourceFromReceiver {
 		mSourceList = new ArrayList<>();
 		ReceiverCmdProxy.BUS.post(new GetCmdUpdateGprsInfoEventArgs(
 				EnumReceiverCmd.RECEIVER_CMD_SET_GPRS_INFO, getGPRSInfo()));
-
 		ReceiverCmdProxy.BUS.post(new ReceiverCmdEventArgs(
 				EnumReceiverCmd.RECEIVER_CMD_GET_SOURCE_TABLE));
 
