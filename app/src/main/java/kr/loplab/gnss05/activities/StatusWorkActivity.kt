@@ -43,7 +43,8 @@ class StatusWorkActivity : ActivityBase<ActivityStatusWorkBinding>() {
     }
     override fun onStop() {
         try {
-            unregisterReceiver(mReceiver)
+            LocalBroadcastManager.getInstance(this).unregisterReceiver(mReceiver);
+            //unregisterReceiver(mReceiver)
         } catch (e: Exception){
             Log.e(TAG, "onStop:unregisterReceiver $e")
         }

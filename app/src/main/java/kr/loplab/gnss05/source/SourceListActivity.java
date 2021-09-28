@@ -21,8 +21,11 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 
+import com.huace.gnssserver.gnss.data.receiver.EnumReceiverCmd;
+
 import java.io.Serializable;
 import java.util.List;
+import java.util.Locale;
 
 import kr.loplab.gnss05.R;
 import kr.loplab.gnss05.common.DialogUtils;
@@ -76,6 +79,8 @@ public class SourceListActivity extends AppCompatActivity {
 	private void initData() {
 		mIp = getIntent().getStringExtra(IP);
 		mPort = getIntent().getIntExtra(PORT, -1);
+		Log.d(TAG, "initData: ip: " + mIp);
+		Log.d(TAG, "initData: port: " + mPort);
 		// TODO Auto-generated method stub
 
 	}
@@ -128,7 +133,7 @@ public class SourceListActivity extends AppCompatActivity {
 			return;
 		}
 		mDialog = DialogUtils.showProgressDialog(this, R.string.msg_initing);
-		int delaytime =30; //원래 15
+		int delaytime =15; //원래 15
 		//delaytime 이후에 cancel 시키기
 		mLvSourceList.postDelayed(mDelayCancelRunnable, delaytime * 1000);
 		GetSourceFromReceiver.getInstance().loadSourceList(mIp, mPort);
@@ -180,6 +185,7 @@ public class SourceListActivity extends AppCompatActivity {
 					});
 				}
 			}
+			
 		}
 	}
 }

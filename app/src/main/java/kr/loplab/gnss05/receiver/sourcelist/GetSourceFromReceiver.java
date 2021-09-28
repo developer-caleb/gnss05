@@ -1,6 +1,8 @@
 package kr.loplab.gnss05.receiver.sourcelist;
 
 
+import android.util.Log;
+
 import com.huace.gnssserver.gnss.data.receiver.DataSourceList;
 import com.huace.gnssserver.gnss.data.receiver.EnumNetworkProtocol;
 import com.huace.gnssserver.gnss.data.receiver.EnumReceiverCmd;
@@ -20,6 +22,7 @@ import kr.loplab.gnss05.receiver.cmd.GetCmdUpdateGprsInfoEventArgs;
 import kr.loplab.gnss05.receiver.cmd.ReceiverCmdEventArgs;
 
 public class GetSourceFromReceiver {
+	String TAG = this.getClass().getSimpleName();
 	private static GetSourceFromReceiver instance = null;
 
 	private ArrayList<Ntriprecord> mSourceList = new ArrayList<>();
@@ -47,8 +50,10 @@ public class GetSourceFromReceiver {
 		mSourceList = new ArrayList<>();
 		ReceiverCmdProxy.BUS.post(new GetCmdUpdateGprsInfoEventArgs(
 				EnumReceiverCmd.RECEIVER_CMD_SET_GPRS_INFO, getGPRSInfo()));
+
 		ReceiverCmdProxy.BUS.post(new ReceiverCmdEventArgs(
 				EnumReceiverCmd.RECEIVER_CMD_GET_SOURCE_TABLE));
+
 		mStrSource = "";
 	}
 
@@ -97,6 +102,7 @@ public class GetSourceFromReceiver {
 	}
 
 	public void onEventBackgroundThread(IReceiverDataEventArgs args) {
+		Log.d(TAG, "onEventBackgroundThread: 백그라운드에서 소스 가져오기");
 		try {
 			switch (args.getDataType()) {
 			case RECEIVER_ASW_GET_SOURCE_TABLE:
@@ -110,8 +116,7 @@ public class GetSourceFromReceiver {
 							// Parse the raw data acquired
 							List<String> strlist = parseSourceTable(mStrSource);
 							parseSourcePoints(strlist);
-							ReceiverService.BUS
-									.post(new GetSourceListEventArgs(true));
+							ReceiverService.BUS.post(new GetSourceListEventArgs(true));
 						}
 					}
 				}

@@ -61,7 +61,7 @@ import kr.loplab.gnss05.receiver.cmd.ReceiverCmdEventArgs;
  * 
  */
 public class ReceiverDataParse {
-
+	String TAG = this.getClass().getSimpleName();
 	private Receiver mReceiver;
 
 	private CHC_ReceiverRef mReceiverRef;
@@ -361,9 +361,15 @@ public class ReceiverDataParse {
 	 * get the information callback of the netlink
 	 */
 	void parseDatalinkData(long ulmsg) {
+		//Log.d(TAG, "parseDatalinkData: 데이터링크데이터 가져오기 ulmsg: " + ulmsg);
+		//Log.d(TAG, "parseDatalinkData: 데이터링크데이터 가져오기 CHC_ReceiverConstants.CHC_MESSAGE_NETLINK_SOURCELIST: " + CHC_ReceiverConstants.CHC_MESSAGE_NETLINK_SOURCELIST);
+		//Log.d(TAG, "parseDatalinkData: 데이터링크데이터 가져오기 ulmsg & CHC_ReceiverConstants.CHC_MESSAGE_NETLINK_SOURCELIST: "+ (ulmsg & CHC_ReceiverConstants.CHC_MESSAGE_NETLINK_SOURCELIST));
+
 		/** get source table */
 		if ((ulmsg & CHC_ReceiverConstants.CHC_MESSAGE_NETLINK_SOURCELIST) != 0) {
+			Log.d(TAG, "parseDatalinkData: 소스리스트가 존재함");
 			CHC_Buffer chc_buf = new CHC_Buffer(0);
+			//int len = CHC_Receiver.CHCGetSourceTable_s(mReceiverRef, chc_buf);
 			int len = CHC_Receiver.CHCGetSourceTable_s(mReceiverRef, chc_buf);
 			chc_buf.delete();
 			if (len <= 0) {
@@ -372,9 +378,10 @@ public class ReceiverDataParse {
 			CHC_Buffer buf = new CHC_Buffer(len);
 			CHC_Receiver.CHCGetSourceTable_s(mReceiverRef, buf);
 			DataSourceList data = ConversionDataStruct.covDataSourceList(buf);
-			ReceiverService.BUS.post(new GetSourceTableEventArgs(
-					EnumReceiverCmd.RECEIVER_ASW_GET_SOURCE_TABLE, data));
+			ReceiverService.BUS.post(new GetSourceTableEventArgs(EnumReceiverCmd.RECEIVER_ASW_GET_SOURCE_TABLE, data));
 			chc_buf.delete();
+		}else{
+			Log.d(TAG, "parseDatalinkData: 소스리스트가 존재하지 않음.. 망했음");
 		}
 	}
 

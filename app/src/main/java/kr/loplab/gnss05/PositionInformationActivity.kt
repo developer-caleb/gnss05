@@ -51,12 +51,11 @@ class PositionInformationActivity : ActivityBase<ActivityPositionInformationBind
 
     override fun onStop() {
         try {
-            unregisterReceiver(mReceiver)
+           // unregisterReceiver(mReceiver)
+            LocalBroadcastManager.getInstance(this).unregisterReceiver(mReceiver);
         } catch (e: Exception){
             Log.e(TAG, "onStop:unregisterReceiver $e", )
         }
-
-
         super.onStop()
     }
     private inner class MyReceiver : BroadcastReceiver() {
@@ -74,7 +73,6 @@ class PositionInformationActivity : ActivityBase<ActivityPositionInformationBind
                     if (asw== null){ Log.d(TAG, "onReceive: null"); return}
                     runOnUiThread {
                         Log.d(TAG, "onReceive: 3")
-
                          if ( asw.receiverCmdType ==   EnumReceiverCmd.RECEIVER_ASW_SET_GNSS_POSDATA && (asw.getParcelable() is PositionInfo) ) {
                                 val p = asw.getParcelable() as PositionInfo
                                 if (p != null && p.satellitePosition != null && p.satellitePosition
@@ -87,8 +85,7 @@ class PositionInformationActivity : ActivityBase<ActivityPositionInformationBind
                                     viewModel1.setStringvalue(viewModel1.horizontalError, p.satellitePrecision.hpre.toString() )
                                     viewModel1.setStringvalue(viewModel1.verticalError, p.satellitePrecision.vpre.toString() )
                                 }
-                            }else { Log.d(TAG, "onReceive: 4") }
-
+                            }
                         if ( asw.receiverCmdType ==   EnumReceiverCmd.RECEIVER_ASW_SET_GNSS_POSDATA && (asw.getParcelable() is Course) ) {
                             val p = asw.getParcelable() as Course
                             if (p != null ) {
@@ -96,7 +93,7 @@ class PositionInformationActivity : ActivityBase<ActivityPositionInformationBind
                                 viewModel1.setStringvalue(viewModel1.velocity, p.speed.toString() )
                                 viewModel1.setStringvalue(viewModel1.direction, p.course.toString() )
                             }
-                        }else { Log.d(TAG, "onReceive: 6") }
+                        }
                     }
                 }
                 EnumReceiverCmd.RECEIVER_ASW_SET_GNSS_DOPSDATA.name -> {

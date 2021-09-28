@@ -1,5 +1,7 @@
 package kr.loplab.gnss05.receiver;
 
+import android.util.Log;
+
 import com.chc.gnss.sdk.CHC_CMD;
 import com.chc.gnss.sdk.CHC_CMDRef;
 import com.chc.gnss.sdk.CHC_CORSInfo;
@@ -39,7 +41,7 @@ import kr.loplab.gnss05.receiver.entity.Cmd;
  * @author wangjun
  */
 public class ReceiverCmdProxy {
-
+    String TAG = this.getClass().getSimpleName();
     private Receiver mReceiver;
 
     private CHC_ReceiverRef mReceiverRef;
@@ -173,6 +175,7 @@ public class ReceiverCmdProxy {
                     break;
                 case RECEIVER_CMD_GET_SOURCE_TABLE:
                     // get the source table from the server
+                    Log.d(TAG, "post: 마운트 포인트 가져오기 cmd");
                     CHC_Receiver.CHCGetCmdQuerySourceTable(mReceiverRef, mCmdRef);
                     break;
                 case RECEIVER_CMD_SET_GPRS_LOGIN:
