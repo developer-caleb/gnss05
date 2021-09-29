@@ -17,7 +17,7 @@ import kr.loplab.gnss05.R
 import kr.loplab.gnss05.model.MainIcons
 import java.lang.Exception
 
-class MainpageRecyclerViewAdapter internal constructor(context: Context?, data: ArrayList<MainIcons>,  resource : Int) :
+class MainpageRecyclerViewAdapter internal constructor(context: Context?, data: ArrayList<MainIcons>,  resource : Int, adapterIdx : Int) :
     RecyclerView.Adapter<MainpageRecyclerViewAdapter.ViewHolder>() {
     var TAG :String  = javaClass.simpleName;
     var context :Context? = context
@@ -25,6 +25,7 @@ class MainpageRecyclerViewAdapter internal constructor(context: Context?, data: 
     private val mInflater: LayoutInflater
     private var mClickListener: RecyclerItemClickListener? = null
     var resource = resource;
+    public var adapterIdx = adapterIdx;
 
     // inflates the cell layout from xml when needed
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -67,10 +68,11 @@ class MainpageRecyclerViewAdapter internal constructor(context: Context?, data: 
         var myTextView2: TextView
         var icon: ImageView
         override fun onClick(view: View) {
-            if (mClickListener != null) mClickListener!!.onItemClick(view, adapterPosition)
-            Log.d(TAG, "onBindViewHolder: position -> $position , request code : ${mData[position].requestcode}")
+            if (mClickListener != null) mClickListener!!.onItemClick(view, adapterPosition, adapterIdx)
+          
+         /*TODO   Log.d(TAG, "onBindViewHolder: position -> $position , request code : ${mData[position].requestcode}")
             val intent = Intent(context, mData[position].activityname)
-            startActivityForResult(context as Activity ,intent, mData[position].requestcode,null)
+            startActivityForResult(context as Activity ,intent, mData[position].requestcode,null)*/
           //  context?.startActivity(intent)
         }
 
@@ -96,7 +98,7 @@ class MainpageRecyclerViewAdapter internal constructor(context: Context?, data: 
 
     // parent activity will implement this method to respond to click events
     interface RecyclerItemClickListener {
-        fun onItemClick(view: View?, position: Int)
+        fun onItemClick(view: View?, position: Int, adapterIdx: Int)
     }
 
     // data is passed into the constructor

@@ -394,11 +394,14 @@ class MobileStationActivity : ActivityBase<ActivityMobileStationBinding>() {
         viewModel1.setStringvalue(viewModel1.mountPointString, "FKP_V31")
 
         viewModel1.setIntvalue(viewModel1.mountPointSortNum, PrefUtil.getInt2(applicationContext, Define.MOBILE_STATION_MOUNT_SORT))  //14
-
+        viewModel1.setIntvalue(viewModel1.apnIndex, PrefUtil.getInt2(applicationContext, Define.MOBILE_STATION_MOUNT_APN_IDX))  //14
+        viewModel1.setIntvalue(viewModel1.corsIndex, PrefUtil.getInt2(applicationContext, Define.MOBILE_STATION_MOUNT_CORS_IDX))  //14
 
         dbsetting()
+        //if(viewModel1.apn_list.value!!.size )
         ApnSettings(viewModel1.apnIndex.value!!)
         CorsSettings(viewModel1.corsIndex.value!!)
+
     }
 
     fun savesettings(){
@@ -424,7 +427,8 @@ class MobileStationActivity : ActivityBase<ActivityMobileStationBinding>() {
         PrefUtil.setBoolean(applicationContext, MOBILE_STATION_NETWORK_TRANSFER, viewBinding.swNetworkTransfer.isChecked) //12
         PrefUtil.setBoolean(applicationContext, MOBILE_STATION_AUTO_APN, viewModel1.auto_apn.value!!) //10
         PrefUtil.setInt(applicationContext, Define.MOBILE_STATION_MOUNT_SORT, viewModel1.mountPointSortNum.value!!) //6
-
+        PrefUtil.setInt(applicationContext, Define.MOBILE_STATION_MOUNT_APN_IDX, viewModel1.apnIndex.value!!)
+        PrefUtil.setInt(applicationContext, Define.MOBILE_STATION_MOUNT_CORS_IDX, viewModel1.corsIndex.value!!)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -449,12 +453,11 @@ class MobileStationActivity : ActivityBase<ActivityMobileStationBinding>() {
         if( requestCode == REQUEST_CORS_SERVER_MANAGER)
         {
             Log.d(TAG, "onActivityResult: REQUEST_CORS_SERVER_MANAGER")
-
             when(resultCode)
             {
                 RESULT_OK ->CorsSettings(data!!.getIntExtra(CORS_SELECTED_INDEX, 0))
                 RESULT_CANCELED -> try {
-                    CorsSettings(viewModel1.corsIndex.value!!)
+                CorsSettings(viewModel1.corsIndex.value!!)
                 } catch (e: Exception){
                     Log.e(TAG, "onActivityResult: ", e)
                     CorsSettings(0)
@@ -481,26 +484,30 @@ class MobileStationActivity : ActivityBase<ActivityMobileStationBinding>() {
     }
 
     fun ApnSettings(  idx : Int){
+        var setidx : Int =  idx;
+        if (setidx >= viewModel1.apn_list.value!!.size) setidx = 0;
         if(viewModel1.apn_list.value!!.size <= 0  ) return
-        Log.d(TAG, "ApnSettings: $idx")
-        viewModel1.apnIndex.value = idx
+        Log.d(TAG, "ApnSettings: $setidx")
+        viewModel1.apnIndex.value = setidx
 
-        viewBinding.tvApnWorker.text = viewModel1.apn_list.value!![idx].worker
-        viewBinding.tvApnName.text = viewModel1.apn_list.value!![idx].name
-        viewBinding.tvApnUser.text = viewModel1.apn_list.value!![idx].user
-        viewBinding.tvApnPw.text = viewModel1.apn_list.value!![idx].password
+        viewBinding.tvApnWorker.text = viewModel1.apn_list.value!![setidx].worker
+        viewBinding.tvApnName.text = viewModel1.apn_list.value!![setidx].name
+        viewBinding.tvApnUser.text = viewModel1.apn_list.value!![setidx].user
+        viewBinding.tvApnPw.text = viewModel1.apn_list.value!![setidx].password
     }
 
     fun CorsSettings(  idx : Int){
+        var setidx : Int =  idx;
+        if (setidx >= viewModel1.cors_list.value!!.size) setidx = 0;
         if(viewModel1.cors_list.value!!.size <= 0  ) return
-        Log.d(TAG, "CorsSettings: $idx")
-        viewModel1.corsIndex.value = idx
+        Log.d(TAG, "CorsSettings: $setidx")
+        viewModel1.corsIndex.value = setidx
 
-        viewBinding.tvCorsName.text = viewModel1.cors_list.value!![idx].name
-        viewBinding.tvCorsIp.text = viewModel1.cors_list.value!![idx].ip
-        viewBinding.tvCorsPort.text = viewModel1.cors_list.value!![idx].port
-        viewBinding.tvCorsUser.text = viewModel1.cors_list.value!![idx].user
-        viewBinding.tvCorsPw.text = viewModel1.cors_list.value!![idx].password
+        viewBinding.tvCorsName.text = viewModel1.cors_list.value!![setidx].name
+        viewBinding.tvCorsIp.text = viewModel1.cors_list.value!![setidx].ip
+        viewBinding.tvCorsPort.text = viewModel1.cors_list.value!![setidx].port
+        viewBinding.tvCorsUser.text = viewModel1.cors_list.value!![setidx].user
+        viewBinding.tvCorsPw.text = viewModel1.cors_list.value!![setidx].password
     }
 
     fun connectStart(){

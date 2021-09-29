@@ -107,6 +107,8 @@ public class Define {
     public static final String MOBILE_STATION_AUTO_APN = "mobile_station_auto_apn";
     public static final String MOBILE_STATION_MOUNT_POINT = "mobile_station_mount_point";
     public static final String MOBILE_STATION_MOUNT_SORT = "mobile_station_mount_sort";
+    public static final String MOBILE_STATION_MOUNT_CORS_IDX = "mobile_station_cors_idx";
+    public static final String MOBILE_STATION_MOUNT_APN_IDX = "mobile_station_apn_idx";
 
 
 

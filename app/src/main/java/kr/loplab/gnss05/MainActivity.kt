@@ -102,6 +102,10 @@ class MainActivity :  ActivityBase<ActivityMainBinding>(),
         }
         viewBinding.btSatellite.setOnClickListener {
             Log.d(TAG, "onCreate: satellite click")
+            if(!ConnectManager.instance!!.isConnected ){
+               Log.e(TAG, "onItemClick: 장비 연결 후 시도", )
+               showToast("장비 연결 후 시도해주세요."); return@setOnClickListener;
+            }
             intent = Intent(this, PositionInformationActivity::class.java)
             startActivity(intent);
         }
@@ -116,6 +120,7 @@ class MainActivity :  ActivityBase<ActivityMainBinding>(),
 
     override fun initDatabinding(){
     viewModel1.setConnectionState(ConnectManager.instance!!.connectionStatus)
+        viewChanger()
     }
     fun tablayoutinitialize() {
         //custom tab 구현시작
@@ -211,16 +216,16 @@ class MainActivity :  ActivityBase<ActivityMainBinding>(),
     // 만약 권한을 거절했을 경우,  다이얼로그 띄우기 위한 임의 메소드
     private fun showSettingsDialog() {
         val builder: AlertDialog.Builder = AlertDialog.Builder(this@MainActivity)
-        builder.setTitle("권한 허용을 하셔야합니다.")
-        builder.setMessage("거부 된 기능은 설정에서 권한 허용 가능합니다.")
-        builder.setPositiveButton("설정",
-            DialogInterface.OnClickListener { dialog, which ->
-                dialog.cancel()
-                openSettings() // 어플리케이션 정보 설정 페이지 띄움.
-            })
-        builder.setNegativeButton("취소",
-            DialogInterface.OnClickListener { dialog, which -> dialog.cancel() })
-        builder.show()
+            builder.setTitle("권한 허용을 하셔야합니다.")
+            builder.setMessage("거부 된 기능은 설정에서 권한 허용 가능합니다.")
+            builder.setPositiveButton("설정",
+                DialogInterface.OnClickListener { dialog, which ->
+                    dialog.cancel()
+                    openSettings() // 어플리케이션 정보 설정 페이지 띄움.
+                })
+            builder.setNegativeButton("취소",
+                DialogInterface.OnClickListener { dialog, which -> dialog.cancel() })
+            builder.show()
     } // showSettingsDialog()..
 
 
@@ -233,97 +238,6 @@ class MainActivity :  ActivityBase<ActivityMainBinding>(),
     } // openSettings()..
 
 
-
-    inner class Gnssreceiver3  {
-        var filepath = ""
-        var receiveref: CHC_ReceiverRef? = null
-        var cmdRef: CHC_CMDRef? = null
-
-        // CHC_Receiver = null;
-        // CHC_Receiver receiver = new CHC_Receiver();
-        fun initialize() {
-            val chc_receiver_type = CHC_RECEIVER_TYPE.CHC_RECEIVER_TYPE_SMART_GNSS //3
-            // The absolute path of the 'features.hcc'
-            // CHC_OEM_TYPE oem_type = CHC_OEM_TYPE.CHC_OEM_TYPE_UNICORE;
-            val oem_type = CHC_OEM_TYPE.CHC_OEM_TYPE_AUTO //안되면
-
-            //config에 있는 파일 넣어놓고, resource로 부르기.
-            receiveref = CHC_ReceiverRef(filepath, chc_receiver_type, oem_type)
-            val method = CHC_CONNECTION_METHOD.CHC_CONNECTION_METHOD_BT //4
-            CHC_Receiver.CHCUpdateConnectionMethod(receiveref, method) //5
-            cmdRef = CHC_CMDRef()
-            CHC_Receiver.CHCGetCmdInitConnection(receiveref, cmdRef)
-        }
-
-
-        //작동 가능 확인
-        fun openrawfile(): String? {
-            val inputStream: InputStream = getResources().openRawResource(R.raw.features)
-            val byteArrayOutputStream = ByteArrayOutputStream()
-            var i: Int
-            try {
-                i = inputStream.read()
-                while (i != -1) {
-                    byteArrayOutputStream.write(i)
-                    i = inputStream.read()
-                }
-                inputStream.close()
-            } catch (e: IOException) {
-                return null
-            }
-            return byteArrayOutputStream.toString()
-        }
-
-        fun internalfilewrite() {
-            try {
-                val fos: FileOutputStream = openFileOutput("features.hcc", MODE_PRIVATE)
-                val dos = DataOutputStream(fos)
-                dos.writeUTF(openrawfile())
-                dos.flush()
-                dos.close()
-            } catch (e: Exception) {
-                Log.e(TAG, "internalfileopenwrite: error $e")
-            }
-        }
-
-        fun internalfileread(): String {
-            var returnstr = ""
-            try {
-                val file: File = getFileStreamPath("features.hcc")
-                val br = BufferedReader(FileReader(file))
-                var line: String
-                try{
-                while (br.readLine().also { line = it } != null) {
-                    Log.d(TAG, "internalfileread:--- $line")
-                }} catch (e1 : Exception) {
-                    Log.e(TAG, "internalfileread:---> $e1")
-                }
-                br.close()
-                Log.d(TAG, "internalfileread: filepath-> " + file.absolutePath)
-                Log.d(TAG, "internalfileread: file.tostring$file")
-
-                //FileInputStream fis = openFileInput(file.getAbsolutePath());
-                val fis: FileInputStream = openFileInput("features.hcc")
-                val dis = DataInputStream(fis)
-                Log.d(TAG, "internalfileread: -읽기" + dis.readUTF())
-                val path: String = getFileStreamPath("features.hcc").absolutePath
-                Log.d(TAG, "internalfileread:->>> $path")
-                returnstr = file.absolutePath
-            } catch (e: Exception) {
-                Log.e(TAG, "internalfileread: $e")
-            }
-            return returnstr
-        }
-
-        init {
-            internalfilewrite()
-            val receiver: CHC_Receiver? = null //1
-            filepath = internalfileread() //2
-            //initialize()
-            //processdata();
-        }
-    }
-
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         Log.d(TAG, "onActivityResult:")
@@ -333,6 +247,7 @@ class MainActivity :  ActivityBase<ActivityMainBinding>(),
             viewBinding.pager1.adapter = adapterViewpager
         // adapterViewpager?.init(tabposition) //변경은 되는데 viewpager에서 변경이 안 됨. 다시 만들어져야함
            // adapterViewpager?.notifyDataSetChanged()
+
         }
     }
 
@@ -341,8 +256,6 @@ class MainActivity :  ActivityBase<ActivityMainBinding>(),
         Log.d(TAG, "onResume: ")
         ConnectManager.instance!!.setOnConnectStateChangeListener(this)
         initDatabinding()
-
-
     }
 
     override fun onConnectStateChange(connectionStatus: ConnectionStatus) {

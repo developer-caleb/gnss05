@@ -1,10 +1,14 @@
 package kr.loplab.gnss05.adapter
 
+import android.app.Activity
 import android.content.Context
+import android.content.Intent
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.core.app.ActivityCompat.startActivityForResult
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.viewpager.widget.PagerAdapter
@@ -18,6 +22,7 @@ import kr.loplab.gnss05.activities.stop_survey.StopSurveyActivity
 import kr.loplab.gnss05.common.Define
 import kr.loplab.gnss05.common.Define.REQUEST_SETTING
 import kr.loplab.gnss05.common.PrefUtil
+import kr.loplab.gnss05.connection.ConnectManager
 import kr.loplab.gnss05.databinding.ToolViewpageradapterBinding
 import kr.loplab.gnss05.model.MainIcons
 
@@ -33,6 +38,8 @@ class MainAdapterViewpager: PagerAdapter, MainpageRecyclerViewAdapter.RecyclerIt
     var data1 = ArrayList<MainIcons>()
     var data2 = ArrayList<MainIcons>()
     var data3 = ArrayList<MainIcons>()
+
+
     constructor() {}
     // Context를 전달받아 mContext에 저장하는 생성자 추가.
     constructor(context: Context?) {
@@ -136,46 +143,29 @@ class MainAdapterViewpager: PagerAdapter, MainpageRecyclerViewAdapter.RecyclerIt
         if(PrefUtil.getBoolean(mContext!!, Define.RECYCLERVIEW_LIST_MODE)){
             binding.recyclerviewMain.layoutManager = LinearLayoutManager(mContext);
             Log.d(TAG, "init: listmode-> RECYCLERVIEW_LIST_MODE" )
-            arrayadapter[position] = MainpageRecyclerViewAdapter(mContext, datasarray[position]!!, R.layout.recyclerview_item_vertical)
+            arrayadapter[position] = MainpageRecyclerViewAdapter(mContext, datasarray[position]!!, R.layout.recyclerview_item_vertical, position)
         }else{
             Log.d(TAG, "init: listmode-> RECYCLERVIEW_GRID_MODE" )
             binding.recyclerviewMain.layoutManager = GridLayoutManager(mContext, 3)
-            arrayadapter[position] = MainpageRecyclerViewAdapter(mContext, datasarray[position]!!, R.layout.recyclerview_item_grid)
+            arrayadapter[position] = MainpageRecyclerViewAdapter(mContext, datasarray[position]!!, R.layout.recyclerview_item_grid, position)
         }
         binding.recyclerviewMain.adapter = arrayadapter[position]
         arrayadapter[position]?.setClickListener(this)
         arrayadapter[position]?.notifyDataSetChanged()
     }
     fun initListener(position: Int){
-
-
     }
     fun initDatabinding(position: Int){}
-    override fun onItemClick(view: View?, position: Int) {
+    override fun onItemClick(view: View?, position: Int, adapterIdx : Int) {
         Log.d("TAG", "onItemClick: $position clicked!")
-        when (position){
-            /*      0 ->    { intent = Intent(this, StandardPointActivity::class.java)
-                      startActivity(intent);}
-                  1 ->    { intent = Intent(this, NaverMap::class.java)
-                      startActivity(intent);}
-                  2 -> {
-                      val dlg = MyDialog(this)
-                      dlg.setClickListener(this)
-                      dlg.setOnOKClickedListener{ content ->
-                          Log.d(TAG, "onItemClick: $content")
-                      }
-                      dlg.start("메인의 내용을 변경할까요?")
-                  }
-                  3 -> {
-                      val nextIntent = Intent(this, ColorPickerdialog::class.java)
-                      startActivity(nextIntent);
-                  }
-                  4 -> {
-                      val nextIntent = Intent(this, FileExportActivity::class.java)
-                      startActivity(nextIntent);
-                  }
-            */
+        //viewpager idx랑 position이랑 둘다 있어야함.
+        if(!ConnectManager.instance!!.isConnected && adapterIdx ==1 && (position==1 || position==2 || position==3)){
+            Log.e(TAG, "onItemClick: 장비 연결 후 시도", )
+            Toast.makeText(mContext, "장비 연결 후 시도해주세요." , Toast.LENGTH_SHORT).show(); return;
         }
+        Log.d(TAG, "onBindViewHolder: position -> $position , request code : ${datasarray[adapterIdx]!![position].requestcode}")
+        val intent2  = Intent(mContext, datasarray[adapterIdx]!![position].activityname);
+        startActivityForResult(mContext as Activity ,intent2, datasarray[adapterIdx]!![position].requestcode,null)
     }
 
     fun connectType(type : Int){
@@ -210,5 +200,7 @@ class MainAdapterViewpager: PagerAdapter, MainpageRecyclerViewAdapter.RecyclerIt
             }
         }
     }
+
+
 
 }
