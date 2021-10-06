@@ -74,7 +74,7 @@ class MainActivity :  ActivityBase<ActivityMainBinding>(),
         //setContentView(R.layout.activity_main)
         permissionchecking()
         // set up the RecyclerView
-        adapterViewpager = MainAdapterViewpager(this)
+        adapterViewpager = MainAdapterViewpager(this, viewModel1.connect_type.value!!)
         viewBinding.pager1.adapter = adapterViewpager
 
     }
@@ -115,7 +115,7 @@ class MainActivity :  ActivityBase<ActivityMainBinding>(),
         viewModel1.connection_state.observe(this, {
             viewChanger()
         })
-        viewModel1.connect_type.observe(this, {viewChanger()})
+
     }
 
     override fun initDatabinding(){
@@ -243,9 +243,9 @@ class MainActivity :  ActivityBase<ActivityMainBinding>(),
         Log.d(TAG, "onActivityResult:")
         if (resultCode== Activity.RESULT_OK && requestCode==REQUEST_SETTING){
             Log.d(TAG, "onActivityResult: ->REQUEST_SETTING")
-            adapterViewpager = MainAdapterViewpager(this)
+            adapterViewpager = MainAdapterViewpager(this, viewModel1.connect_type.value!!)
             viewBinding.pager1.adapter = adapterViewpager
-        // adapterViewpager?.init(tabposition) //변경은 되는데 viewpager에서 변경이 안 됨. 다시 만들어져야함
+           // adapterViewpager?.init(tabposition) //변경은 되는데 viewpager에서 변경이 안 됨. 다시 만들어져야함
            // adapterViewpager?.notifyDataSetChanged()
 
         }
@@ -274,27 +274,13 @@ class MainActivity :  ActivityBase<ActivityMainBinding>(),
         Log.d(TAG, "viewChanger: viewchanage~\n" +
                 " viewModel1.connection_state : ${viewModel1.connection_state.value}, viewModel1.connect_type : ${viewModel1.connect_type.value}")
         if (viewModel1.connection_state.value != ConnectionStatus.CONNECTED) {
-            adapterViewpager!!.connectType(0); return
+            viewModel1.setConnectionType(ConnectType.DISCONNECTED)
         } //뷰를 모두 type1으로 바꾸고 return;
-        when(viewModel1.connect_type.value){
-            ConnectType.MOBILE_STATION -> {
-                adapterViewpager!!.connectType(1); return
-            }
-            ConnectType.REFERENCE_COUNTRY -> {
-                adapterViewpager!!.connectType(2); return
-            }
-            ConnectType.STOP_SURVEY -> {
-                adapterViewpager!!.connectType(3); return
-            }
-        }
+        adapterViewpager!!.connectType(viewModel1.connect_type.value!!);
     }
 
 
     override fun onStop() {
-
         super.onStop()
     }
 }
-
-
-

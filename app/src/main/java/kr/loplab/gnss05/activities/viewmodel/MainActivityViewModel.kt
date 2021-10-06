@@ -29,4 +29,7 @@ class MainActivityViewModel : ViewModel() {
     fun setConnectionState(connectionStatus : ConnectionStatus){
         connection_state.postValue(connectionStatus)
     }
+    fun setConnectionType(connectiontype : ConnectType){
+        connect_type.postValue(connectiontype)
+    }
 }

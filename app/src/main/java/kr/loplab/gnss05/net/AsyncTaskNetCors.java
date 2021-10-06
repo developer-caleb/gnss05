@@ -120,7 +120,6 @@ public class AsyncTaskNetCors extends AsyncTask<DiffDataInfo, Void, Boolean> {
 		ReceiverCmdProxy.BUS.post(new GetCmdStartRoverEventArgs(
 				EnumReceiverCmd.RECEIVER_CMD_SET_GNSS_STARTROVER,
 				new RoverParams(10, 6))); //Height cut-off angle, PDOP value
-
 	}
 
 	private CorsInfo convertToCors(DiffDataInfo diffInfo) {

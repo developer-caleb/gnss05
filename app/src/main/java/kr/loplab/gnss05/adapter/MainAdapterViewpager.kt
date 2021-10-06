@@ -24,6 +24,7 @@ import kr.loplab.gnss05.common.Define.REQUEST_SETTING
 import kr.loplab.gnss05.common.PrefUtil
 import kr.loplab.gnss05.connection.ConnectManager
 import kr.loplab.gnss05.databinding.ToolViewpageradapterBinding
+import kr.loplab.gnss05.enums.ConnectType
 import kr.loplab.gnss05.model.MainIcons
 
 class MainAdapterViewpager: PagerAdapter, MainpageRecyclerViewAdapter.RecyclerItemClickListener {
@@ -38,12 +39,13 @@ class MainAdapterViewpager: PagerAdapter, MainpageRecyclerViewAdapter.RecyclerIt
     var data1 = ArrayList<MainIcons>()
     var data2 = ArrayList<MainIcons>()
     var data3 = ArrayList<MainIcons>()
-
+    var connectType = ConnectType.DISCONNECTED;
 
     constructor() {}
     // Context를 전달받아 mContext에 저장하는 생성자 추가.
-    constructor(context: Context?) {
+    constructor(context: Context?, connectType: ConnectType) {
         mContext = context
+        this.connectType = connectType;
     }
     override fun getCount(): Int {
         return arrlist.size
@@ -151,6 +153,7 @@ class MainAdapterViewpager: PagerAdapter, MainpageRecyclerViewAdapter.RecyclerIt
         }
         binding.recyclerviewMain.adapter = arrayadapter[position]
         arrayadapter[position]?.setClickListener(this)
+        connectType(connectType);
         arrayadapter[position]?.notifyDataSetChanged()
     }
     fun initListener(position: Int){
@@ -168,30 +171,30 @@ class MainAdapterViewpager: PagerAdapter, MainpageRecyclerViewAdapter.RecyclerIt
         startActivityForResult(mContext as Activity ,intent2, datasarray[adapterIdx]!![position].requestcode,null)
     }
 
-    fun connectType(type : Int){
+    fun connectType(type : ConnectType){
         when (type){
-            0->{
+            ConnectType.DISCONNECTED->{
                 datasarray[1]?.get(0)?.changeIcon(R.drawable.ic_1_0_connect_device_off)
                 datasarray[1]?.get(1)?.changeIcon(R.drawable.ic_1_1_move_country_off)
                 datasarray[1]?.get(2)?.changeIcon(R.drawable.ic_1_2_reference_country_off)
                 datasarray[1]?.get(3)?.changeIcon(R.drawable.ic_1_3_stop_survey_off)
                 arrayadapter[1]?.notifyDataSetChanged()
             }
-            1->{
+            ConnectType.MOBILE_STATION->{
                 datasarray[1]?.get(0)?.changeIcon(R.drawable.ic_1_0_connect_device)
                 datasarray[1]?.get(1)?.changeIcon(R.drawable.ic_1_1_move_country)
                 datasarray[1]?.get(2)?.changeIcon(R.drawable.ic_1_2_reference_country_off)
                 datasarray[1]?.get(3)?.changeIcon(R.drawable.ic_1_3_stop_survey_off)
                 arrayadapter[1]?.notifyDataSetChanged()
             }
-            2->{
+            ConnectType.REFERENCE_COUNTRY->{
                 datasarray[1]?.get(0)?.changeIcon(R.drawable.ic_1_0_connect_device)
                 datasarray[1]?.get(1)?.changeIcon(R.drawable.ic_1_1_move_country_off)
                 datasarray[1]?.get(2)?.changeIcon(R.drawable.ic_1_2_reference_country)
                 datasarray[1]?.get(3)?.changeIcon(R.drawable.ic_1_3_stop_survey_off)
                 arrayadapter[1]?.notifyDataSetChanged()
             }
-            3->{
+            ConnectType.STOP_SURVEY->{
                 datasarray[1]?.get(0)?.changeIcon(R.drawable.ic_1_0_connect_device)
                 datasarray[1]?.get(1)?.changeIcon(R.drawable.ic_1_1_move_country_off)
                 datasarray[1]?.get(2)?.changeIcon(R.drawable.ic_1_2_reference_country_off)

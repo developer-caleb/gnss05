@@ -84,6 +84,7 @@ class PositionInformationActivity : ActivityBase<ActivityPositionInformationBind
                                     viewModel1.setStringvalue(viewModel1.z, p.satellitePosition.position.z.toString() )
                                     viewModel1.setStringvalue(viewModel1.horizontalError, p.satellitePrecision.hpre.toString() )
                                     viewModel1.setStringvalue(viewModel1.verticalError, p.satellitePrecision.vpre.toString() )
+                                    viewModel1.setStringvalue(viewModel1.delay, p.diffAge.toString())
                                 }
                             }
                         if ( asw.receiverCmdType ==   EnumReceiverCmd.RECEIVER_ASW_SET_GNSS_POSDATA && (asw.getParcelable() is Course) ) {

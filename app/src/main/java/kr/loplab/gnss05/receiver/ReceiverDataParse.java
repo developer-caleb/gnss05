@@ -140,7 +140,7 @@ public class ReceiverDataParse {
 	}
 
 	private void getPdaData(long ulmsg) {
-		//Log.d(TAG, "getPdaData: 1");
+		Log.d(TAG, "getPdaData: 1");
 		/** 3G modem dial params */
 		if ((ulmsg & CHC_ReceiverConstants.CHC_MESSAGE_MODEM_DIALPARAM) != 0) {
 			CHC_ModemDialParams chc_params = new CHC_ModemDialParams();
@@ -368,7 +368,7 @@ public class ReceiverDataParse {
 		Log.d(TAG, "parseDatalinkData: 데이터링크데이터 가져오기 ulmsg & CHC_ReceiverConstants.CHC_MESSAGE_NETLINK_SOURCELIST: "+ (ulmsg & CHC_ReceiverConstants.CHC_MESSAGE_NETLINK_SOURCELIST));
 
 		/** get source table */
-		//if ((ulmsg & CHC_ReceiverConstants.CHC_MESSAGE_NETLINK_SOURCELIST) != 0) {
+		if ((ulmsg & CHC_ReceiverConstants.CHC_MESSAGE_NETLINK_SOURCELIST) != 0) {
 			Log.d(TAG, "parseDatalinkData: 소스리스트가 존재함");
 			CHC_Buffer chc_buf = new CHC_Buffer(0);
 			int len = CHC_Receiver.CHCGetSourceTable_s(mReceiverRef, chc_buf);
@@ -381,9 +381,9 @@ public class ReceiverDataParse {
 			DataSourceList data = ConversionDataStruct.covDataSourceList(buf);
 			ReceiverService.BUS.post(new GetSourceTableEventArgs(EnumReceiverCmd.RECEIVER_ASW_GET_SOURCE_TABLE, data));
 			chc_buf.delete();
-		//}else{
-		//	Log.d(TAG, "parseDatalinkData: 소스리스트가 존재하지 않음.. 망했음");
-		//}
+		}else{
+			Log.d(TAG, "parseDatalinkData: 소스리스트가 존재하지 않음..");
+		}
 	}
 
 }

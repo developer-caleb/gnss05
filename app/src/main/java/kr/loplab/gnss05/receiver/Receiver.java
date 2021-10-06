@@ -314,6 +314,7 @@ public class Receiver {
 							while (mIsRun
 									&& mReceiverRef != null
 									&& (CHC_Receiver.CHCParseData(mReceiverRef) > 0)) {
+								//데이터를 parse해서 받는 행위
 								ReceiverDataParse.getInstance().parseData();
 							}
 						}
