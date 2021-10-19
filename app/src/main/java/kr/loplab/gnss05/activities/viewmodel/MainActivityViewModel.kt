@@ -9,7 +9,7 @@ import kr.loplab.gnss05.enums.ConnectType
 
 class MainActivityViewModel : ViewModel() {
     private var name = ""
-    var connect_type = MutableLiveData<ConnectType>(ConnectType.MOBILE_STATION)
+    var connect_type = MutableLiveData<ConnectType>(ConnectType.DISCONNECTED)
     var connection_state = MutableLiveData<ConnectionStatus>(ConnectionStatus.DISCONNECT)
     init {
 
@@ -27,9 +27,9 @@ class MainActivityViewModel : ViewModel() {
         data.value = boolvalue
     }
     fun setConnectionState(connectionStatus : ConnectionStatus){
-        connection_state.postValue(connectionStatus)
+        connection_state.value = connectionStatus
     }
     fun setConnectionType(connectiontype : ConnectType){
-        connect_type.postValue(connectiontype)
+        connect_type.value= connectiontype
     }
 }

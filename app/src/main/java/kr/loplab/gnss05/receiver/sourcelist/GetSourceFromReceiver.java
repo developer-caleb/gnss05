@@ -4,6 +4,7 @@ package kr.loplab.gnss05.receiver.sourcelist;
 import android.util.Log;
 
 import com.huace.gnssserver.gnss.data.receiver.DataSourceList;
+import com.huace.gnssserver.gnss.data.receiver.EnumModemDialStatus;
 import com.huace.gnssserver.gnss.data.receiver.EnumNetworkProtocol;
 import com.huace.gnssserver.gnss.data.receiver.EnumReceiverCmd;
 import com.huace.gnssserver.gnss.data.receiver.GprsInfo;
@@ -18,6 +19,8 @@ import kr.loplab.gnss05.receiver.ReceiverService;
 import kr.loplab.gnss05.receiver.asw.GetSourceListEventArgs;
 import kr.loplab.gnss05.receiver.asw.GetSourceTableEventArgs;
 import kr.loplab.gnss05.receiver.asw.IReceiverDataEventArgs;
+import kr.loplab.gnss05.receiver.cmd.GetCmdDialModemEventArgs;
+import kr.loplab.gnss05.receiver.cmd.GetCmdPowerModemEventArgs;
 import kr.loplab.gnss05.receiver.cmd.GetCmdUpdateGprsInfoEventArgs;
 import kr.loplab.gnss05.receiver.cmd.ReceiverCmdEventArgs;
 
@@ -48,11 +51,19 @@ public class GetSourceFromReceiver {
 		mIp = ip;
 		mPort = port;
 		mSourceList = new ArrayList<>();
-		ReceiverCmdProxy.BUS.post(new GetCmdUpdateGprsInfoEventArgs(
-				EnumReceiverCmd.RECEIVER_CMD_SET_GPRS_INFO, getGPRSInfo()));
+	
+		ReceiverCmdProxy.BUS.post(new GetCmdUpdateGprsInfoEventArgs(EnumReceiverCmd.RECEIVER_CMD_SET_GPRS_INFO, getGPRSInfo()));
+		ReceiverCmdProxy.BUS.post(new GetCmdPowerModemEventArgs(EnumReceiverCmd.RECEIVER_CMD_SET_MODEM_POWERON, (short) 1));
+		/*if (ReceiverService.BUS.getModemDialStatus() == EnumModemDialStatus.MODEM_DIAL_STATUS_INIT) {
+			Log.d(TAG, "loadSourceList: 10-");
+		}*/
+		ReceiverCmdProxy.BUS.post(new ReceiverCmdEventArgs(EnumReceiverCmd.RECEIVER_CMD_GET_MODEM_POWER_STATUS));
+		/*ReceiverCmdProxy.BUS.post(new ReceiverCmdEventArgs(
+				EnumReceiverCmd.RECEIVER_CMD_GET_MODEM_DIAL_PARAM));
+				MODEM APN 연결 상황 가져오기
+				*/
 		ReceiverCmdProxy.BUS.post(new ReceiverCmdEventArgs(
 				EnumReceiverCmd.RECEIVER_CMD_GET_SOURCE_TABLE));
-
 		mStrSource = "";
 	}
 

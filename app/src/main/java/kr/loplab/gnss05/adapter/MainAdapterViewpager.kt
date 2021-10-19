@@ -170,7 +170,10 @@ class MainAdapterViewpager: PagerAdapter, MainpageRecyclerViewAdapter.RecyclerIt
         val intent2  = Intent(mContext, datasarray[adapterIdx]!![position].activityname);
         startActivityForResult(mContext as Activity ,intent2, datasarray[adapterIdx]!![position].requestcode,null)
     }
-
+    fun changeconnecttype(type : ConnectType){
+        connectType = type;
+        connectType(type);
+    }
     fun connectType(type : ConnectType){
         when (type){
             ConnectType.DISCONNECTED->{

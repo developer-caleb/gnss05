@@ -112,14 +112,15 @@ class MainActivity :  ActivityBase<ActivityMainBinding>(),
         viewBinding.logoImg.setOnClickListener {
             Log.d(TAG, "onCreate: logo click")
         }
-        viewModel1.connection_state.observe(this, {
+        viewModel1.connect_type.observe(this, {
             viewChanger()
         })
 
     }
 
     override fun initDatabinding(){
-    viewModel1.setConnectionState(ConnectManager.instance!!.connectionStatus)
+        if(viewModel1.connection_state.value!= ConnectManager.instance!!.connectionStatus)  viewModel1.setConnectionState(ConnectManager.instance!!.connectionStatus)
+        onConnectStateChange(viewModel1.connection_state.value!!)
         viewChanger()
     }
     fun tablayoutinitialize() {
@@ -263,20 +264,26 @@ class MainActivity :  ActivityBase<ActivityMainBinding>(),
         viewModel1.setConnectionState(connectionStatus)
         Log.d(TAG, "initListener: ${viewModel1.connection_state}")
         when (connectionStatus){
-            ConnectionStatus.DISCONNECT -> {showToast("장비 연결이 끊겼습니다.")}
-            ConnectionStatus.CONNECTTNG -> {}
-            ConnectionStatus.CONNECTED -> {}
-            ConnectionStatus.CONNECT_FAILD -> {showToast("장비 연결이 끊겼습니다.")}
+            ConnectionStatus.DISCONNECT -> {showToast("장비 연결이 끊겼습니다.")
+                viewModel1.setConnectionType(ConnectType.DISCONNECTED)
+            }
+            ConnectionStatus.CONNECTTNG -> {
+                viewModel1.setConnectionType(ConnectType.MOBILE_STATION)
+            }
+            ConnectionStatus.CONNECTED -> {
+                viewModel1.setConnectionType(ConnectType.MOBILE_STATION)
+            }
+            ConnectionStatus.CONNECT_FAILD -> {
+                viewModel1.setConnectionType(ConnectType.DISCONNECTED)
+                showToast("장비 연결이 끊겼습니다.")}
         }
     }
 
     fun viewChanger(){
         Log.d(TAG, "viewChanger: viewchanage~\n" +
                 " viewModel1.connection_state : ${viewModel1.connection_state.value}, viewModel1.connect_type : ${viewModel1.connect_type.value}")
-        if (viewModel1.connection_state.value != ConnectionStatus.CONNECTED) {
-            viewModel1.setConnectionType(ConnectType.DISCONNECTED)
-        } //뷰를 모두 type1으로 바꾸고 return;
-        adapterViewpager!!.connectType(viewModel1.connect_type.value!!);
+
+        adapterViewpager!!.changeconnecttype(viewModel1.connect_type.value!!);
     }
 
 

@@ -25,6 +25,7 @@ import kr.loplab.gnss05.receiver.cmd.GetCmdDialModemEventArgs;
 import kr.loplab.gnss05.receiver.cmd.GetCmdDisableOtherIOsEventArgs;
 import kr.loplab.gnss05.receiver.cmd.GetCmdOutputNMEAEventArgs;
 import kr.loplab.gnss05.receiver.cmd.GetCmdOutputPosDataEventArgs;
+import kr.loplab.gnss05.receiver.cmd.GetCmdPowerModemEventArgs;
 import kr.loplab.gnss05.receiver.cmd.GetCmdRegReceiverEventArgs;
 import kr.loplab.gnss05.receiver.cmd.GetCmdStartNoneMagneticTiltEventArgs;
 import kr.loplab.gnss05.receiver.cmd.GetCmdStartRoverEventArgs;
@@ -76,6 +77,17 @@ public class ReceiverCmdProxy {
                 case RECEIVER_CMD_GET_RECEIVER_INFO:
                     // the information of the receiver
                     CHC_Receiver.CHCGetCmdQueryReceiverInfo(mReceiverRef, mCmdRef);
+                    break;
+                case RECEIVER_CMD_GET_MODEM_POWER_STATUS:
+                    // 신규로 내가 추가함
+                    CHC_Receiver.CHCGetCmdQueryModemPowerStatus(mReceiverRef, mCmdRef);
+                    break;
+                case RECEIVER_CMD_SET_MODEM_POWERON:
+                    // 신규로 내가 추가함
+                    if (args instanceof GetCmdPowerModemEventArgs) {
+                        Log.d(TAG, "post: isdial->"+ ((GetCmdPowerModemEventArgs)args).isDial());
+                        Log.d(TAG, "post: 파워 1" + CHC_Receiver.CHCGetCmdPowerModem(mReceiverRef, ((GetCmdPowerModemEventArgs)args).isDial(), mCmdRef));
+                    }
                     break;
                 case RECEIVER_CMD_QUERY_NEW_DEVINFO:
                     //// the information of the Device
@@ -154,8 +166,8 @@ public class ReceiverCmdProxy {
                     break;
                 case RECEIVER_CMD_GET_MODEM_DIAL_PARAM:
                     // the mode params for the 3G
-                    CHC_Receiver.CHCGetCmdQueryModemDialParams(mReceiverRef,
-                            mCmdRef);
+                    Log.d(TAG, "post: modeldial param 받기");
+                    CHC_Receiver.CHCGetCmdQueryModemDialParams(mReceiverRef, mCmdRef);
                     break;
                 case RECEIVER_CMD_SET_MODEM_COMMUNICATION_MODE:
                     // change th internet to the 3G

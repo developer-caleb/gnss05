@@ -130,6 +130,8 @@ class SourceListActivity : AppCompatActivity() {
         val cmds: MutableList<EnumReceiverCmd> = ArrayList()
         cmds.add(EnumReceiverCmd.RECEIVER_ASW_GET_MODEM_DIAL_STATUS)
         cmds.add(EnumReceiverCmd.RECEIVER_ASW_GET_SOURCE_TABLE)
+        cmds.add(EnumReceiverCmd.RECEIVER_ASW_GET_MODEM_DIAL_PARAM)
+
         //cmds.add(EnumReceiverCmd.RECEIVER_ASW_SET_GNSS_POSDATA)
         LocalBroadcastManager.getInstance(this).registerReceiver(mReceiver, ReceiverService.createReceiverAswIntentFilter(cmds))
         Log.d(TAG, "onResume: 리시버 등록")
@@ -182,6 +184,19 @@ class SourceListActivity : AppCompatActivity() {
                         }
                     }
                 }
+
+                EnumReceiverCmd.RECEIVER_ASW_GET_MODEM_DIAL_PARAM.name ->{
+                    Log.d(TAG, "onReceive: zz받아따")
+                    val asw: ReceiverAsw? = ReceiverService.getBroadcastData(intent)
+                    if (asw== null){ Log.d(TAG, "onReceive: null"); return}
+                    if(asw.receiverCmdType == EnumReceiverCmd.RECEIVER_ASW_GET_MODEM_DIAL_PARAM && (asw.parcelable is ModemDialParams)){
+                        Log.d(TAG, "onReceive: zz받아따222")
+                        val p = asw.getParcelable() as ModemDialParams
+                        Log.d(TAG, "onReceive: p.strApn : ${p.strApn}" +
+                                "\np.strDialName : ${p.strDialName}, p.strDialNum : ${p.strDialNum}, p.strDialPswd : ${p.strDialPswd}")
+                    }
+                }
+
 
             }
 

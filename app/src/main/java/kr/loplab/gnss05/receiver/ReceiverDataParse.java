@@ -13,6 +13,7 @@ import com.chc.gnss.sdk.CHC_ModemDialParams;
 import com.chc.gnss.sdk.CHC_ModemDialStatus;
 import com.chc.gnss.sdk.CHC_NONE_MAGNETIC_SUPPORT_TYPE;
 import com.chc.gnss.sdk.CHC_NoneMagneticTiltInfo;
+import com.chc.gnss.sdk.CHC_POWER_STATUS;
 import com.chc.gnss.sdk.CHC_Position;
 import com.chc.gnss.sdk.CHC_Receiver;
 import com.chc.gnss.sdk.CHC_ReceiverConstants;
@@ -33,6 +34,7 @@ import com.huace.gnssserver.gnss.data.receiver.ModemDialStatus;
 import com.huace.gnssserver.gnss.data.receiver.NoneMagneticSetParams;
 import com.huace.gnssserver.gnss.data.receiver.NoneMagneticTiltInfo;
 import com.huace.gnssserver.gnss.data.receiver.PositionInfo;
+import com.huace.gnssserver.gnss.data.receiver.PowerStatus;
 import com.huace.gnssserver.gnss.data.receiver.ReceiverInfo;
 import com.huace.gnssserver.gnss.data.receiver.SatelliteNumber;
 
@@ -143,6 +145,7 @@ public class ReceiverDataParse {
 		Log.d(TAG, "getPdaData: 1");
 		/** 3G modem dial params */
 		if ((ulmsg & CHC_ReceiverConstants.CHC_MESSAGE_MODEM_DIALPARAM) != 0) {
+			Log.d(TAG, "getPdaData: 2");
 			CHC_ModemDialParams chc_params = new CHC_ModemDialParams();
 			CHC_Receiver.CHCGetModemAutoDialParams(mReceiverRef, chc_params);
 			ModemDialParams apn = ConversionDataStruct
@@ -154,6 +157,7 @@ public class ReceiverDataParse {
 
 		/** 3G status of dial*/
 		if ((ulmsg & CHC_ReceiverConstants.CHC_MESSAGE_MODEM_DIALSTATUS) != 0) {
+			Log.d(TAG, "getPdaData: 3");
 			CHC_ModemDialStatus chc_status = new CHC_ModemDialStatus();
 			CHC_Receiver.CHCGetModemDialStatus(mReceiverRef, chc_status);
 			ModemDialStatus status = ConversionDataStruct
@@ -163,6 +167,19 @@ public class ReceiverDataParse {
 							EnumReceiverCmd.RECEIVER_ASW_GET_MODEM_DIAL_STATUS,
 							status));
 			chc_status.delete();
+		}
+
+		/** power status of GPRS -백용익-*/
+		if ((ulmsg & CHC_ReceiverConstants.CHC_MESSAGE_MODEM_POWERSTATUS) != 0) {
+			Log.d(TAG, "getPdaData: 4");
+			//CHC_POWER_STATUS status= new CHC_POWER_STATUS();
+			CHC_POWER_STATUS[] status= new CHC_POWER_STATUS[1];
+			status[0]=CHC_POWER_STATUS.CHC_POWER_STATUS_INIT_ING;
+			CHC_Receiver.CHCGetModemPowerStatus(mReceiverRef, status);
+			Log.d(TAG, "getPdaData: "+ status[0].toString());
+			if(status[0] == CHC_POWER_STATUS.CHC_POWER_STATUS_ON){
+				Log.d(TAG, "getPdaData: -> MODEM POWER STATUS 확인");
+			}
 		}
 
 	}
